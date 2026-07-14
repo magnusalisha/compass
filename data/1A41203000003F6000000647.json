@@ -1,0 +1,39 @@
+{
+ "id": "a3f8c2e917",
+ "metrc_tag": "1A41203000003F6000000647",
+ "brand": "PURPS",
+ "strain": "Oishii",
+ "form": "Preroll 1g",
+ "thc": 32.056,
+ "total_terpenes": 1.53,
+ "lean": "mixed",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Unverified",
+ "reported": [
+  "32% Total THC",
+  "1.53% Total Terpenes"
+ ],
+ "dominant": [
+  "Linalool",
+  "beta-Caryophyllene",
+  "Limonene"
+ ],
+ "aroma": [
+  "floral",
+  "citrus",
+  "spice",
+  "herbal",
+  "earthy"
+ ],
+ "terpenes": {
+  "Linalool": 0.45,
+  "beta-Caryophyllene": 0.25,
+  "Limonene": 0.32,
+  "Farnesene": 0.1,
+  "alpha-Humulene": 0.08,
+  "Terpineol": 0.08,
+  "Fenchol": 0.07,
+  "beta-Myrcene": 0.17
+ }
+}
