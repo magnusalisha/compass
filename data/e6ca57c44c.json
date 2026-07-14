@@ -1,0 +1,53 @@
+{
+ "id": "e6ca57c44c",
+ "brand": "Florette",
+ "strain": "Honey Dream",
+ "form": "Preroll 1g 4-pack",
+ "thc": 16.7113,
+ "total_terpenes": 0.42,
+ "lean": "settling",
+ "balance": -0.51,
+ "confidence": "faint",
+ "note": "Low total terpenes and mostly heavy sesquiterpenes — the volatile ones have likely evaporated. Read the label, not this profile.",
+ "reported": [
+  "calm in the body",
+  "heavy and relaxed"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "beta-Myrcene",
+  "alpha-Humulene"
+ ],
+ "aroma": [
+  "pepper",
+  "spice",
+  "woody",
+  "earthy",
+  "musky"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.12,
+  "beta-Myrcene": 0.07,
+  "alpha-Humulene": 0.05,
+  "alpha-Bisabolol": 0.04,
+  "alpha-Pinene": 0.04,
+  "Limonene": 0.03,
+  "beta-Pinene": 0.03,
+  "Linalool": 0.02,
+  "Caryophyllene oxide": 0.01,
+  "Guaiol": 0.01,
+  "Terpineol": 0.0,
+  "Camphene": 0.0,
+  "Farnesene": 0.0,
+  "Fenchol": 0.0,
+  "Geraniol": 0.0,
+  "Menthol": 0.0,
+  "Ocimene": 0.0,
+  "Terpinolene": 0.0,
+  "Valencene": 0.0,
+  "alpha-Phellandrene": 0.0,
+  "alpha-Terpinene": 0.0
+ },
+ "in_stock": true,
+ "shelf_tag": "Unverified"
+}

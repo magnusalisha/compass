@@ -1,0 +1,53 @@
+{
+ "id": "2d4ae28887",
+ "brand": "Rolling Green",
+ "strain": "Banana Cream Gelato",
+ "form": "Flower 3.5g",
+ "thc": 32.4044,
+ "total_terpenes": 1.31,
+ "lean": "mixed",
+ "balance": -0.21,
+ "confidence": "strong",
+ "note": null,
+ "reported": [
+  "bright and talkative",
+  "mellow and soft"
+ ],
+ "dominant": [
+  "Limonene",
+  "Linalool",
+  "beta-Myrcene"
+ ],
+ "aroma": [
+  "citrus",
+  "lemon",
+  "bright",
+  "floral",
+  "lavender"
+ ],
+ "terpenes": {
+  "Limonene": 0.47,
+  "Linalool": 0.21,
+  "beta-Myrcene": 0.2,
+  "alpha-Humulene": 0.14,
+  "Farnesene": 0.12,
+  "Guaiol": 0.07,
+  "Terpineol": 0.05,
+  "Fenchol": 0.05,
+  "Camphene": 0.0,
+  "Caryophyllene oxide": 0.0,
+  "Ocimene": 0.0,
+  "Terpinolene": 0.0,
+  "Valencene": 0.0,
+  "alpha-Bisabolol": 0.0,
+  "alpha-Pinene": 0.0,
+  "beta-Pinene": 0.0,
+  "beta-Caryophyllene": 0.0,
+  "Geraniol": 0.0,
+  "Menthol": 0.0,
+  "alpha-Phellandrene": 0.0,
+  "alpha-Terpinene": 0.0
+ },
+ "in_stock": true,
+ "shelf_tag": "Unverified"
+}

@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1B2A22">
+<title>Compass</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#1B2A22; --card:#F1EBE0; --card2:#E7E0D2; --ink:#20261F; --ink2:#5C6558;
+    --gold:#C4913B; --line:#D6CDBC; --pale:#C9D6C4; --dim:#7E9182; --warn:#8C3B22;
+    --car:#B5462F; --lim:#D4802A; --myr:#6B8C3A; --apn:#3E7A5E; --bpn:#3E7A5E;
+    --lin:#8B7BC7; --hum:#8B6A3E; --bis:#D4B483; --tpl:#2F8F7A; --oci:#94A83C;
+    --ter:#5E9B8F; --far:#B08A4E; --etc:#9AA694;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  body{background:var(--bg);color:var(--pale);font-family:Inter,system-ui,sans-serif;
+       line-height:1.5;padding:22px 18px calc(48px + env(safe-area-inset-bottom));max-width:680px;margin:0 auto}
+  .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;
+           text-transform:uppercase;color:var(--dim);display:flex;align-items:center;gap:8px}
+  h1{font-family:Fraunces,serif;font-size:52px;font-weight:700;color:#F3EFE4;
+     letter-spacing:-.02em;line-height:1;margin:12px 0 10px}
+  .sub{color:var(--dim);font-size:15px;max-width:34ch;margin-bottom:22px}
+
+  .tabs{display:flex;gap:9px;margin-bottom:16px}
+  .tabs button{flex:1;padding:12px 8px;border-radius:999px;border:1px solid var(--dim);
+    background:transparent;color:var(--pale);font:600 14px Inter,sans-serif;cursor:pointer}
+  .tabs button[aria-selected="true"]{background:var(--gold);border-color:var(--gold);color:#231A08}
+
+  .stockrow{display:flex;align-items:center;gap:10px;margin-bottom:16px;color:var(--pale);font-size:14px}
+  .stockrow input{width:20px;height:20px;accent-color:var(--gold)}
+
+  input[type=text],select{width:100%;padding:15px 16px;border-radius:12px;border:none;
+    background:var(--card);color:var(--ink);font:500 16px Inter,sans-serif;margin-bottom:11px}
+  select{font-family:'IBM Plex Mono',monospace;font-size:15px;
+    appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--ink2) 50%),linear-gradient(135deg,var(--ink2) 50%,transparent 50%);
+    background-position:calc(100% - 20px) calc(50% - 2px),calc(100% - 15px) calc(50% - 2px);
+    background-size:5px 5px,5px 5px;background-repeat:no-repeat}
+  input:focus,select:focus{outline:2px solid var(--gold);outline-offset:2px}
+  .pair{display:flex;gap:9px}
+  .pair select{flex:1;min-width:0}
+
+  .card{background:var(--card);color:var(--ink);border-radius:16px;padding:18px;margin-bottom:12px}
+  .card h2{font-family:Fraunces,serif;font-size:23px;font-weight:700;letter-spacing:-.01em;line-height:1.15}
+  .thc{font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:19px;text-align:right;white-space:nowrap}
+  .thc small{display:block;font-size:10px;color:var(--ink2);font-weight:400;letter-spacing:.08em}
+  .top{display:flex;justify-content:space-between;gap:14px;align-items:flex-start}
+  .tag{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;
+    text-transform:uppercase;background:#DCE6D8;color:#3D5140;padding:4px 9px;border-radius:5px;margin-top:8px}
+
+  .stack{display:flex;height:11px;border-radius:6px;overflow:hidden;margin:13px 0 11px;background:#E0D8C8}
+  .stack i{height:100%}
+  .chips{display:flex;flex-wrap:wrap;gap:6px 16px;font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--ink2)}
+  .chips span{display:flex;align-items:center;gap:6px}
+  .chips b{width:8px;height:8px;border-radius:50%;flex:none}
+
+  /* mirrored comparison — read the difference, don't decode it */
+  .cmp{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:6px 10px;margin-top:14px}
+  .cmp .val{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--ink2)}
+  .cmp .val.r{text-align:right}
+  .cmp .nm{font-size:13.5px;text-align:center;white-space:nowrap;font-weight:500}
+  .cmp .tr{height:11px;border-radius:4px;background:#E0D8C8;position:relative}
+  .cmp .tr i{position:absolute;top:0;bottom:0;border-radius:4px}
+  .cmp .tr.l i{right:0} .cmp .tr.r i{left:0}
+
+  .read{margin-top:18px;padding-top:15px;border-top:1px dashed var(--line)}
+  .read p{margin-bottom:10px;font-size:15px}
+  .read p:last-child{margin-bottom:0}
+  .warnbox{background:#F6E3D3;border:1px solid #E0B99A;color:#7A3A1C;border-radius:10px;
+    padding:12px 13px;margin-top:13px;font-size:13.5px;line-height:1.45}
+  .ev{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--ink2);margin-top:7px;letter-spacing:.04em}
+  .match{font-family:'IBM Plex Mono',monospace;font-size:13px;color:#3D6B4F;margin-top:12px;font-weight:500}
+  .acts{display:flex;gap:18px;margin-top:13px;padding-top:12px;border-top:1px dashed var(--line)}
+  .acts button{background:none;border:none;padding:0;color:var(--ink2);font:500 13.5px Inter,sans-serif;cursor:pointer}
+  .acts button:hover{color:var(--ink)}
+  .empty{color:var(--dim);text-align:center;padding:34px 14px;font-size:15px}
+  .foot{margin-top:26px;color:var(--dim);font-family:'IBM Plex Mono',monospace;font-size:11px;line-height:1.6}
+  .flash{background:#33473A;border:1px solid #48604F;color:var(--pale);border-radius:10px;
+    padding:11px 13px;margin-bottom:14px;font-size:13px}
+  @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="eyebrow">🌿 Budtender's tool</div>
+<h1>Compass</h1>
+<div class="sub">Match what's on the shelf to what a customer's actually asking for — by terpene, not by strain name.</div>
+
+<div class="tabs" role="tablist">
+  <button role="tab" data-tab="effect" aria-selected="true">Match by effect</button>
+  <button role="tab" data-tab="similar" aria-selected="false">Find similar</button>
+  <button role="tab" data-tab="compare" aria-selected="false">Compare</button>
+</div>
+<label class="stockrow"><input type="checkbox" id="oos"> Include out-of-stock items</label>
+<div id="panel"></div>
+<div id="out"></div>
+<div class="foot" id="foot"></div>
+
+<script>
+// ── point at your repo once it exists
+const GH_USER = "magnusalisha", GH_REPO = "compass";
+
+const COLOR = {'beta-Caryophyllene':'--car','Limonene':'--lim','beta-Myrcene':'--myr',
+  'alpha-Pinene':'--apn','beta-Pinene':'--bpn','Linalool':'--lin','alpha-Humulene':'--hum',
+  'alpha-Bisabolol':'--bis','Terpinolene':'--tpl','Ocimene':'--oci','Terpineol':'--ter','Farnesene':'--far'};
+// [phrase, evidence 1-3, what it rests on]
+// 3 = a real receptor mechanism. 2 = animal work + some human data. 1 = folklore,
+// rodent studies at doses you'll never inhale, or aromatherapy. Most of this is a 1.
+const REPORTED = {
+  'beta-Caryophyllene':['body calm, eases tension',3,'Selective CB2 agonist (Gertsch 2008) — the only terpene with a real receptor mechanism. Human trials still thin.'],
+  'Limonene':['lifts mood, brightens',2,'Some small human inhalation studies on mood/anxiety. No cannabinoid-receptor mechanism.'],
+  'Linalool':['mellow, softens the edges',2,'Sedative in rodent models and aromatherapy work. Not shown at inhaled cannabis doses.'],
+  'beta-Myrcene':['heavy, sedating, couch-leaning',1,'The couch-lock claim traces to rodent studies at doses far above anything you inhale. Popular, poorly evidenced.'],
+  'Terpinolene':['heady, alert, buzzy',1,'Essentially strain-database folklore. No mechanism identified.'],
+  'alpha-Pinene':['clear-headed, focused',1,'Rests on in-vitro enzyme inhibition. No human data at these doses.'],
+  'beta-Pinene':['clear-headed',1,'As above.'],
+  'Ocimene':['light, lively',1,'Folklore.'],
+  'alpha-Humulene':['grounded, low-key',1,'Folklore. Shares a pathway with caryophyllene but no CB2 activity.'],
+  'alpha-Bisabolol':['gentle, easy',1,'Folklore.'],
+  'Farnesene':['settled',1,'Folklore.'],
+  'Terpineol':['mellow',1,'Folklore.']
+};
+const dots = n => '●'.repeat(n) + '○'.repeat(3-n);
+
+// "relaxing but not sleepy" — how customers actually talk.
+const WANT = {
+  relax:['beta-Caryophyllene','Linalool','alpha-Humulene','alpha-Bisabolol'], calm:['beta-Caryophyllene','Linalool','alpha-Bisabolol'],
+  chill:['beta-Caryophyllene','Linalool'], mellow:['Linalool','alpha-Humulene'], body:['beta-Caryophyllene'],
+  sleep:['beta-Myrcene'], sleepy:['beta-Myrcene'], sedat:['beta-Myrcene'], heavy:['beta-Myrcene'], couch:['beta-Myrcene'],
+  energ:['Terpinolene','Limonene','Ocimene'], awake:['Terpinolene','alpha-Pinene'], upbeat:['Limonene','Ocimene'],
+  uplift:['Limonene','Ocimene','Terpinolene'], happy:['Limonene'], social:['Limonene'], talk:['Limonene'],
+  focus:['alpha-Pinene','Terpinolene'], clear:['alpha-Pinene'], alert:['Terpinolene','alpha-Pinene'],
+  creative:['Terpinolene','Limonene'], heady:['Terpinolene'], head:['Terpinolene'], funct:['alpha-Pinene','Limonene']
+};
+// Conditions are medical. The tool doesn't go there — it says so.
+const MEDICAL = ['anxiety','anxious','depress','pain','insomnia','ptsd','adhd','nausea','migraine','seizure','cancer'];
+
+const $ = s => document.querySelector(s);
+const short = t => t.replace('beta-','').replace('alpha-','').replace('gamma-','');
+const col = t => COLOR[t] ? `var(${COLOR[t]})` : 'var(--etc)';
+let DATA = [
+ {
+  "id": "106526f0b3",
+  "brand": "Florette",
+  "strain": "Honey Banana Face",
+  "form": "Preroll 1g 4-pack",
+  "thc": 15.5366,
+  "total_terpenes": 0.54,
+  "lean": "settling",
+  "balance": -0.54,
+  "confidence": "faint",
+  "note": "Low total terpenes and mostly heavy sesquiterpenes \u2014 the volatile ones have likely evaporated. Read the label, not this profile.",
+  "reported": [
+   "calm in the body",
+   "bright and talkative"
+  ],
+  "dominant": [
+   "beta-Caryophyllene",
+   "Limonene",
+   "alpha-Humulene"
+  ],
+  "aroma": [
+   "pepper",
+   "spice",
+   "woody",
+   "citrus",
+   "lemon"
+  ],
+  "terpenes": {
+   "beta-Caryophyllene": 0.21,
+   "Limonene": 0.09,
+   "alpha-Humulene": 0.08,
+   "Linalool": 0.03,
+   "beta-Myrcene": 0.03,
+   "Guaiol": 0.02,
+   "alpha-Bisabolol": 0.02,
+   "Terpineol": 0.01,
+   "Caryophyllene oxide": 0.01,
+   "Fenchol": 0.01,
+   "Valencene": 0.01,
+   "alpha-Pinene": 0.01,
+   "beta-Pinene": 0.01,
+   "Camphene": 0.0,
+   "Farnesene": 0.0,
+   "Geraniol": 0.0,
+   "Menthol": 0.0,
+   "Ocimene": 0.0,
+   "Terpinolene": 0.0,
+   "alpha-Phellandrene": 0.0,
+   "alpha-Terpinene": 0.0
+  },
+  "in_stock": true
+ },
+ {
+  "id": "e6ca57c44c",
+  "brand": "Florette",
+  "strain": "Honey Dream",
+  "form": "Preroll 1g 4-pack",
+  "thc": 16.7113,
+  "total_terpenes": 0.42,
+  "lean": "settling",
+  "balance": -0.51,
+  "confidence": "faint",
+  "note": "Low total terpenes and mostly heavy sesquiterpenes \u2014 the volatile ones have likely evaporated. Read the label, not this profile.",
+  "reported": [
+   "calm in the body",
+   "heavy and relaxed"
+  ],
+  "dominant": [
+   "beta-Caryophyllene",
+   "beta-Myrcene",
+   "alpha-Humulene"
+  ],
+  "aroma": [
+   "pepper",
+   "spice",
+   "woody",
+   "earthy",
+   "musky"
+  ],
+  "terpenes": {
+   "beta-Caryophyllene": 0.12,
+   "beta-Myrcene": 0.07,
+   "alpha-Humulene": 0.05,
+   "alpha-Bisabolol": 0.04,
+   "alpha-Pinene": 0.04,
+   "Limonene": 0.03,
+   "beta-Pinene": 0.03,
+   "Linalool": 0.02,
+   "Caryophyllene oxide": 0.01,
+   "Guaiol": 0.01,
+   "Terpineol": 0.0,
+   "Camphene": 0.0,
+   "Farnesene": 0.0,
+   "Fenchol": 0.0,
+   "Geraniol": 0.0,
+   "Menthol": 0.0,
+   "Ocimene": 0.0,
+   "Terpinolene": 0.0,
+   "Valencene": 0.0,
+   "alpha-Phellandrene": 0.0,
+   "alpha-Terpinene": 0.0
+  },
+  "in_stock": true
+ },
+ {
+  "id": "b413a3544f",
+  "brand": "Rolling Green",
+  "strain": "Georgia Haze",
+  "form": "Flower 3.5g",
+  "thc": 31.5084,
+  "total_terpenes": 1.53,
+  "lean": "settling",
+  "balance": -0.73,
+  "confidence": "strong",
+  "note": null,
+  "reported": [
+   "heavy and relaxed",
+   "calm in the body"
+  ],
+  "dominant": [
+   "beta-Myrcene",
+   "beta-Caryophyllene",
+   "alpha-Humulene"
+  ],
+  "aroma": [
+   "earthy",
+   "musky",
+   "mango",
+   "pepper",
+   "spice"
+  ],
+  "terpenes": {
+   "beta-Myrcene": 0.74,
+   "beta-Caryophyllene": 0.28,
+   "alpha-Humulene": 0.12,
+   "Limonene": 0.11,
+   "Linalool": 0.11,
+   "alpha-Pinene": 0.1,
+   "alpha-Bisabolol": 0.07,
+   "Terpineol": 0.0,
+   "Camphene": 0.0,
+   "Caryophyllene oxide": 0.0,
+   "Farnesene": 0.0,
+   "Fenchol": 0.0,
+   "Geraniol": 0.0,
+   "Guaiol": 0.0,
+   "Menthol": 0.0,
+   "Ocimene": 0.0,
+   "Terpinolene": 0.0,
+   "Valencene": 0.0,
+   "alpha-Phellandrene": 0.0,
+   "alpha-Terpinene": 0.0,
+   "beta-Pinene": 0.0
+  },
+  "in_stock": true
+ },
+ {
+  "id": "eed9775a79",
+  "brand": "Rolling Green",
+  "strain": "Glitter Bomb",
+  "form": "Flower 3.5g",
+  "thc": 26.5995,
+  "total_terpenes": 1.32,
+  "lean": "settling",
+  "balance": -0.44,
+  "confidence": "strong",
+  "note": null,
+  "reported": [
+   "calm in the body",
+   "bright and talkative"
+  ],
+  "dominant": [
+   "beta-Caryophyllene",
+   "Limonene",
+   "Linalool"
+  ],
+  "aroma": [
+   "pepper",
+   "spice",
+   "woody",
+   "citrus",
+   "lemon"
+  ],
+  "terpenes": {
+   "beta-Caryophyllene": 0.38,
+   "Limonene": 0.33,
+   "Linalool": 0.29,
+   "alpha-Humulene": 0.12,
+   "beta-Myrcene": 0.12,
+   "Terpineol": 0.04,
+   "Fenchol": 0.04,
+   "Camphene": 0.0,
+   "Caryophyllene oxide": 0.0,
+   "Farnesene": 0.0,
+   "Geraniol": 0.0,
+   "Guaiol": 0.0,
+   "Menthol": 0.0,
+   "Ocimene": 0.0,
+   "Terpinolene": 0.0,
+   "Valencene": 0.0,
+   "alpha-Bisabolol": 0.0,
+   "alpha-Phellandrene": 0.0,
+   "alpha-Pinene": 0.0,
+   "alpha-Terpinene": 0.0,
+   "beta-Pinene": 0.0
+  },
+  "in_stock": true
+ },
+ {
+  "id": "2d4ae28887",
+  "brand": "Rolling Green",
+  "strain": "Banana Cream Gelato",
+  "form": "Flower 3.5g",
+  "thc": 32.4044,
+  "total_terpenes": 1.31,
+  "lean": "mixed",
+  "balance": -0.21,
+  "confidence": "strong",
+  "note": null,
+  "reported": [
+   "bright and talkative",
+   "mellow and soft"
+  ],
+  "dominant": [
+   "Limonene",
+   "Linalool",
+   "beta-Myrcene"
+  ],
+  "aroma": [
+   "citrus",
+   "lemon",
+   "bright",
+   "floral",
+   "lavender"
+  ],
+  "terpenes": {
+   "Limonene": 0.47,
+   "Linalool": 0.21,
+   "beta-Myrcene": 0.2,
+   "alpha-Humulene": 0.14,
+   "Farnesene": 0.12,
+   "Guaiol": 0.07,
+   "Terpineol": 0.05,
+   "Fenchol": 0.05,
+   "Camphene": 0.0,
+   "Caryophyllene oxide": 0.0,
+   "Ocimene": 0.0,
+   "Terpinolene": 0.0,
+   "Valencene": 0.0,
+   "alpha-Bisabolol": 0.0,
+   "alpha-Pinene": 0.0,
+   "beta-Pinene": 0.0,
+   "beta-Caryophyllene": 0.0,
+   "Geraniol": 0.0,
+   "Menthol": 0.0,
+   "alpha-Phellandrene": 0.0,
+   "alpha-Terpinene": 0.0
+  },
+  "in_stock": true
+ },
+ {
+  "id": "981e080b47",
+  "brand": "1Off / SMARTBUD",
+  "strain": "Strawberry Cough",
+  "form": "Preroll 1g",
+  "thc": 31.05,
+  "total_terpenes": 1.45,
+  "lean": "settling",
+  "balance": -0.55,
+  "confidence": "strong",
+  "note": null,
+  "reported": [
+   "mellow and soft",
+   "calm in the body"
+  ],
+  "dominant": [
+   "Linalool",
+   "beta-Caryophyllene",
+   "Limonene"
+  ],
+  "aroma": [
+   "floral",
+   "lavender",
+   "pepper",
+   "spice",
+   "woody"
+  ],
+  "terpenes": {
+   "Linalool": 0.47,
+   "beta-Caryophyllene": 0.26,
+   "Limonene": 0.25,
+   "beta-Myrcene": 0.12,
+   "Farnesene": 0.11,
+   "alpha-Humulene": 0.09,
+   "Fenchol": 0.08,
+   "Terpineol": 0.08
+  },
+  "in_stock": true
+ },
+ {
+  "id": "5d93d1fa8f",
+  "brand": "Rolling Green",
+  "strain": "Apple Banana Flambe",
+  "form": "Flower 3.5g",
+  "thc": 28.2499,
+  "total_terpenes": 1.29,
+  "lean": "settling",
+  "balance": -0.41,
+  "confidence": "strong",
+  "note": null,
+  "reported": [
+   "mellow and soft",
+   "bright and talkative"
+  ],
+  "dominant": [
+   "Linalool",
+   "Limonene",
+   "beta-Caryophyllene"
+  ],
+  "aroma": [
+   "floral",
+   "lavender",
+   "citrus",
+   "lemon",
+   "bright"
+  ],
+  "terpenes": {
+   "Linalool": 0.44,
+   "Limonene": 0.33,
+   "beta-Caryophyllene": 0.28,
+   "alpha-Humulene": 0.1,
+   "Terpineol": 0.05,
+   "Fenchol": 0.05,
+   "alpha-Bisabolol": 0.04,
+   "Camphene": 0.0,
+   "Caryophyllene oxide": 0.0,
+   "Farnesene": 0.0,
+   "Ocimene": 0.0,
+   "Terpinolene": 0.0,
+   "Valencene": 0.0,
+   "alpha-Pinene": 0.0,
+   "beta-Myrcene": 0.0,
+   "beta-Pinene": 0.0,
+   "Geraniol": 0.0,
+   "Guaiol": 0.0,
+   "Menthol": 0.0,
+   "alpha-Phellandrene": 0.0,
+   "alpha-Terpinene": 0.0
+  },
+  "in_stock": true
+ },
+ {
+  "id": "cffa411513",
+  "brand": "Curaleaf / Find",
+  "strain": "Slingria",
+  "form": "Flower 3.5g",
+  "thc": 31.9792,
+  "total_terpenes": 1.16,
+  "lean": "settling",
+  "balance": -0.74,
+  "confidence": "moderate",
+  "note": null,
+  "reported": [
+   "heavy and relaxed",
+   "calm in the body"
+  ],
+  "dominant": [
+   "beta-Myrcene",
+   "beta-Caryophyllene",
+   "Limonene"
+  ],
+  "aroma": [
+   "earthy",
+   "musky",
+   "mango",
+   "pepper",
+   "spice"
+  ],
+  "terpenes": {
+   "beta-Myrcene": 0.5,
+   "beta-Caryophyllene": 0.18,
+   "Limonene": 0.12,
+   "alpha-Humulene": 0.07,
+   "Guaiol": 0.06,
+   "Terpineol": 0.0,
+   "Camphene": 0.0,
+   "Caryophyllene oxide": 0.0,
+   "Farnesene": 0.0,
+   "Fenchol": 0.0,
+   "Geraniol": 0.0,
+   "Linalool": 0.0,
+   "Menthol": 0.0,
+   "Ocimene": 0.0,
+   "Terpinolene": 0.0,
+   "Valencene": 0.0,
+   "alpha-Bisabolol": 0.0,
+   "alpha-Phellandrene": 0.0,
+   "alpha-Pinene": 0.0,
+   "alpha-Terpinene": 0.0,
+   "beta-Pinene": 0.0
+  },
+  "in_stock": true
+ },
+ {
+  "id": "565b657ea2",
+  "brand": "Vireo / Flower Warrior",
+  "strain": "Fresh Powder",
+  "form": "Flower 3.5g",
+  "thc": 20.5,
+  "total_terpenes": 1.9,
+  "lean": "lifting",
+  "balance": 0.8,
+  "confidence": "strong",
+  "note": null,
+  "reported": [
+   "heady and alert",
+   "clear-headed"
+  ],
+  "dominant": [
+   "Terpinolene",
+   "beta-Pinene",
+   "beta-Myrcene"
+  ],
+  "aroma": [
+   "sharp",
+   "piney",
+   "herbal",
+   "fresh",
+   "pine"
+  ],
+  "terpenes": {
+   "Terpinolene": 1.4,
+   "beta-Pinene": 0.15,
+   "beta-Myrcene": 0.15,
+   "Limonene": 0.09,
+   "alpha-Terpinene": 0.04,
+   "alpha-Humulene": 0.04,
+   "alpha-Pinene": 0.03,
+   "alpha-Bisabolol": 0.0,
+   "alpha-Phellandrene": 0.0,
+   "beta-Caryophyllene": 0.0,
+   "Camphene": 0.0,
+   "Caryophyllene oxide": 0.0,
+   "Farnesene": 0.0,
+   "Fenchol": 0.0,
+   "Geraniol": 0.0,
+   "Guaiol": 0.0,
+   "Linalool": 0.0,
+   "Ocimene": 0.0,
+   "Terpineol": 0.0,
+   "Valencene": 0.0
+  },
+  "in_stock": true
+ }
+], tab = 'effect', a = null, b = null, sel = null, flash = '';
+
+// Stock status lives on the device. Product data lives in the repo.
+// (This is why the old build couldn't save: sandboxes block storage. Real hosting doesn't.)
+let OVERRIDES = {};
+try { OVERRIDES = JSON.parse(localStorage.getItem('fp_stock') || '{}'); }
+catch(e){ flash = 'Stock changes will last for this session only — storage is blocked here.'; }
+function setStock(id, val){
+  OVERRIDES[id] = val;
+  try { localStorage.setItem('fp_stock', JSON.stringify(OVERRIDES)); } catch(e){}
+  render();
+}
+const stocked = p => OVERRIDES[p.id] !== undefined ? OVERRIDES[p.id] : p.in_stock;
+const pool = () => DATA.filter(p => $('#oos').checked || stocked(p));
+
+function vec(p){ const t = p.total_terpenes || 1, o = {};
+  for (const [k,v] of Object.entries(p.terpenes)) o[k] = v/t; return o; }
+function sim(x, y){
+  const vx = vec(x), vy = vec(y); let d=0, nx=0, ny=0;
+  for (const k of new Set([...Object.keys(vx), ...Object.keys(vy)])){
+    const p = vx[k]||0, q = vy[k]||0; d += p*q; nx += p*p; ny += q*q;
+  }
+  return (nx&&ny) ? d/(Math.sqrt(nx)*Math.sqrt(ny)) : 0;
+}
+function says(p){
+  const w = p.dominant.map(k => REPORTED[k] && REPORTED[k][0]).filter(Boolean).slice(0,2);
+  return w.length ? w.join(', ') : 'hard to call from the terpenes alone';
+}
+// the honest bit: how good is the evidence behind THIS product's read?
+function ev(p){
+  const es = p.dominant.map(k => REPORTED[k] && REPORTED[k][1]).filter(Boolean);
+  return es.length ? Math.max(...es) : 1;
+}
+function evNote(p){
+  const k = p.dominant.find(k => REPORTED[k] && REPORTED[k][1] === ev(p));
+  return k ? REPORTED[k][2] : '';
+}
+
+function stack(p){
+  const e = Object.entries(p.terpenes).filter(([,v]) => v>0);
+  const s = e.reduce((t,[,v]) => t+v, 0) || 1;
+  return `<div class="stack">${e.map(([k,v]) => `<i style="width:${v/s*100}%;background:${col(k)}"></i>`).join('')}</div>
+    <div class="chips">${e.slice(0,3).map(([k,v]) => `<span><b style="background:${col(k)}"></b>${short(k).toLowerCase()} ${v}%</span>`).join('')}</div>`;
+}
+function card(p, extra=''){
+  return `<div class="card">
+    <div class="top">
+      <div><h2>${p.strain}</h2><div class="tag">${p.form.split(' ')[0]}</div>
+        <div style="font-size:13px;color:var(--ink2);margin-top:6px">${p.brand}${stocked(p)?'':' · out of stock'}</div></div>
+      <div class="thc">${p.thc}%<small>THC</small></div>
+    </div>
+    ${stack(p)}
+    ${p.confidence === 'faint'
+      ? `<div class="warnbox">⚠ ${p.note}</div>`
+      : `<div class="read" style="border-top:none;padding-top:12px;margin-top:12px">
+           <p style="font-size:14px;color:var(--ink2)">Can read as <b>${says(p)}</b>.</p>
+           <p class="ev" title="${evNote(p)}">${dots(ev(p))} evidence · ${ev(p)===3?'real mechanism':ev(p)===2?'some human data':'folklore — trust your nose over this'}</p>
+         </div>`}
+    ${extra}
+    <div class="acts">
+      <button onclick="setStock('${p.id}', ${!stocked(p)})">${stocked(p) ? 'Mark out of stock' : 'Back in stock'}</button>
+    </div>
+  </div>`;
+}
+
+// ── the read: honest about what it can and can't call
+function read(x, y){
+  const faint = [x,y].filter(p => p.confidence === 'faint');
+  let h = '';
+  if (faint.length){
+    h += `<p><b>Can't call this from the terpenes.</b> ${faint.map(p=>p.strain).join(' and ')} ${faint.length>1?'have':'has'} very little terpene content left (${faint.map(p=>p.total_terpenes+'%').join(', ')}), and what survives is the heavy stuff that always survives. That tells you about age and handling, not about the strain. <b>Go with the package label here.</b></p>`;
+    if (Math.abs(x.thc - y.thc) >= 3){
+      const [hi, lo] = x.thc >= y.thc ? [x,y] : [y,x];
+      h += `<p>What I can say: <b>${hi.strain}</b> is the stronger one (${hi.thc}% THC vs ${lo.thc}%).</p>`;
+    }
+    return h;
+  }
+  if (x.lean !== y.lean && x.lean !== 'mixed' && y.lean !== 'mixed')
+    h += `<p>These pull in opposite directions. People tend to describe <b>${x.strain}</b> as <b>${says(x)}</b>; <b>${y.strain}</b> more <b>${says(y)}</b>.</p>`;
+  else if (x.dominant[0] === y.dominant[0])
+    h += `<p>Both lead with <b>${short(x.dominant[0]).toLowerCase()}</b>, so they're close cousins — both usually described as <b>${says(x)}</b>. The difference is underneath.</p>`;
+  else
+    h += `<p><b>${x.strain}</b> reads <b>${says(x)}</b>. <b>${y.strain}</b> reads <b>${says(y)}</b>.</p>`;
+
+  const gaps = [...new Set([...x.dominant, ...y.dominant])]
+    .map(k => [k, (x.terpenes[k]||0) - (y.terpenes[k]||0)])
+    .filter(([,d]) => Math.abs(d) >= 0.1)
+    .sort((p,q) => Math.abs(q[1]) - Math.abs(p[1])).slice(0,2);
+  for (const [k, d] of gaps){
+    const [hi, lo] = d > 0 ? [x,y] : [y,x];
+    h += `<p><b>${hi.strain}</b> carries more ${short(k).toLowerCase()} (${hi.terpenes[k]||0}% vs ${lo.terpenes[k]||0}%) — ${REPORTED[k]?REPORTED[k][0]:'a character difference'} <span class="ev">${REPORTED[k]?dots(REPORTED[k][1]):''}</span></p>`;
+  }
+  if (!gaps.length) h += `<p>The profiles are close enough that I'd sell on smell or price.</p>`;
+  if (Math.abs(x.thc - y.thc) >= 3){
+    const [hi, lo] = x.thc >= y.thc ? [x,y] : [y,x];
+    h += `<p><b>${hi.strain}</b> is meaningfully stronger (${hi.thc}% THC vs ${lo.thc}%) — that'll drive the experience more than any terpene here.</p>`;
+  }
+  return h;
+}
+
+function compare(x, y){
+  const keys = [...new Set([...Object.keys(x.terpenes), ...Object.keys(y.terpenes)])]
+    .filter(k => (x.terpenes[k]||0) > 0 || (y.terpenes[k]||0) > 0)
+    .sort((p,q) => ((y.terpenes[q]||0)+(x.terpenes[q]||0)) - ((y.terpenes[p]||0)+(x.terpenes[p]||0)));
+  const max = Math.max(...keys.map(k => Math.max(x.terpenes[k]||0, y.terpenes[k]||0)), 0.01);
+  return `<div class="card">
+    <div class="top">
+      <div><h2>${x.strain}</h2><div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink2);margin-top:4px">THC ${x.thc}% · terps ${x.total_terpenes}%</div></div>
+      <div style="text-align:right"><h2>${y.strain}</h2><div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink2);margin-top:4px">THC ${y.thc}% · terps ${y.total_terpenes}%</div></div>
+    </div>
+    <div class="cmp">
+      ${keys.map(k => {
+        const p = x.terpenes[k]||0, q = y.terpenes[k]||0;
+        return `<div class="val r">${p||'—'}</div>
+          <div style="display:grid;grid-template-columns:1fr 108px 1fr;align-items:center;gap:9px;grid-column:2;width:100%">
+            <div class="tr l"><i style="width:${p/max*100}%;background:${col(k)};opacity:${p>=q?1:.42}"></i></div>
+            <div class="nm">${short(k)}</div>
+            <div class="tr r"><i style="width:${q/max*100}%;background:${col(k)};opacity:${q>=p?1:.42}"></i></div>
+          </div>
+          <div class="val">${q||'—'}</div>`;
+      }).join('')}
+    </div>
+    <div class="read"><div class="eyebrow" style="color:var(--ink2);margin-bottom:10px">The read</div>${read(x,y)}</div>
+  </div>`;
+}
+
+function opts(v){ return pool().map(p => `<option value="${p.id}" ${p.id===v?'selected':''}>${p.strain} (${p.brand})</option>`).join(''); }
+
+function render(){
+  const P = $('#panel'), O = $('#out');
+  document.querySelectorAll('.tabs button').forEach(t => t.setAttribute('aria-selected', t.dataset.tab === tab));
+  const list = pool();
+  const banner = flash ? `<div class="flash">${flash}</div>` : '';
+
+  if (tab === 'effect'){
+    P.innerHTML = banner + `<input type="text" id="q" placeholder="e.g. relaxing but not sleepy" value="${window._q||''}">`;
+    const q = (window._q||'').toLowerCase().trim();
+    const med = MEDICAL.find(m => q.includes(m));
+    if (med){
+      O.innerHTML = `<div class="card"><div class="warnbox" style="margin:0">I can't match on medical conditions — that's not a claim this tool is allowed to make, or one the science supports. Try describing the <b>feeling</b> instead: "relaxed but clear-headed", "energetic", "mellow".</div></div>`;
+      return foot();
+    }
+    if (!q){ O.innerHTML = list.map(p => card(p)).join(''); return foot(); }
+
+    const [pos, neg] = [[], []];
+    q.split(/\bbut\b|,|\band\b/).forEach(part => {
+      const negated = /\bnot\b|\bwithout\b|\bno\b/.test(part);
+      Object.entries(WANT).forEach(([kw, ts]) => {
+        if (part.includes(kw)) ts.forEach(t => (negated ? neg : pos).push(t));
+      });
+    });
+    if (!pos.length && !neg.length){ O.innerHTML = `<div class="empty">Nothing matched “${q}”. Try words like relaxed, energetic, focused, mellow, sleepy, social.</div>`; return foot(); }
+
+    const scored = list.map(p => {
+      const v = vec(p);
+      let s = pos.reduce((t,k) => t + (v[k]||0), 0) - neg.reduce((t,k) => t + (v[k]||0)*1.4, 0);
+      if (p.confidence === 'faint') s *= 0.45;   // faded profiles don't get to win
+      return [s, p];
+    }).filter(([s]) => s > 0.02).sort((m,n) => n[0]-m[0]);
+
+    O.innerHTML = scored.length
+      ? scored.slice(0,6).map(([,p]) => card(p)).join('')
+      : `<div class="empty">Nothing on the shelf fits that. Saying so is better than a bad substitution.</div>`;
+    return foot();
+  }
+
+  if (tab === 'similar'){
+    sel = sel && list.some(p=>p.id===sel) ? sel : (list[0]||{}).id;
+    P.innerHTML = banner + `<select id="s1">${opts(sel)}</select>`;
+    const p = DATA.find(x => x.id === sel);
+    if (!p){ O.innerHTML = `<div class="empty">Nothing in stock.</div>`; return foot(); }
+    const ranked = DATA.filter(x => x.id !== p.id && ($('#oos').checked || stocked(x)))
+      .map(x => [sim(p,x), x]).sort((m,n) => n[0]-m[0]);
+    O.innerHTML = (!ranked.length || ranked[0][0] < 0.5
+        ? `<div class="card"><div class="warnbox" style="margin:0">Nothing on the shelf is close to <b>${p.strain}</b> — its profile is ${p.dominant.slice(0,2).map(k=>short(k).toLowerCase()).join('/')}-led and nothing else here looks like that. <b>Say so. Don't substitute.</b></div></div>`
+        : '')
+      + ranked.slice(0,4).map(([s,x]) =>
+          card(x, `<div class="match">${Math.round(s*100)}% terpene similarity</div>`)).join('');
+    return foot();
+  }
+
+  // compare
+  a = a && list.some(p=>p.id===a) ? a : (list[0]||{}).id;
+  b = b && list.some(p=>p.id===b) ? b : (list[1]||{}).id;
+  P.innerHTML = banner + `<div class="pair"><select id="a">${opts(a)}</select><select id="b">${opts(b)}</select></div>`;
+  const x = DATA.find(p => p.id === a), y = DATA.find(p => p.id === b);
+  O.innerHTML = (x && y && x !== y) ? compare(x, y) : `<div class="empty">Pick two different products.</div>`;
+  foot();
+}
+function foot(){
+  $('#foot').innerHTML = `${DATA.length} products · ${DATA.filter(stocked).length} in stock<br>
+    ●●● real receptor mechanism · ●●○ some human data · ●○○ folklore<br>
+    Only caryophyllene has a mechanism (CB2). The rest is inherited from strain databases.<br>
+    <b>THC is the one number on the COA that reliably drives the experience.</b>`;
+}
+
+document.addEventListener('click', e => {
+  const t = e.target.closest('.tabs button');
+  if (t){ tab = t.dataset.tab; render(); }
+});
+document.addEventListener('change', e => {
+  if (e.target.id === 'oos') render();
+  if (e.target.id === 's1'){ sel = e.target.value; render(); }
+  if (e.target.id === 'a'){ a = e.target.value; render(); }
+  if (e.target.id === 'b'){ b = e.target.value; render(); }
+});
+document.addEventListener('input', e => {
+  if (e.target.id === 'q'){
+    window._q = e.target.value;
+    const pos = e.target.selectionStart;
+    render();
+    const n = $('#q'); if (n){ n.focus(); n.setSelectionRange(pos, pos); }
+  }
+});
+
+(async function load(){
+  if (GH_USER && GH_REPO){
+    try{
+      const idx = await fetch(`https://api.github.com/repos/${GH_USER}/${GH_REPO}/contents/data`).then(r=>r.json());
+      const files = await Promise.all(idx.filter(f=>f.name.endsWith('.json')).map(f=>fetch(f.download_url).then(r=>r.json())));
+      if (files.length) DATA = files;
+    }catch(err){ flash = 'Using built-in data — couldn\'t reach the repo.'; }
+  }
+  render();
+})();
+</script>
+</body>
+</html>

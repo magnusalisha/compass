@@ -1,0 +1,456 @@
+[
+ {
+  "id": "106526f0b3",
+  "brand": "Florette",
+  "strain": "Honey Banana Face",
+  "form": "Preroll 1g 4-pack",
+  "thc": 15.5366,
+  "total_terpenes": 0.54,
+  "lean": "settling",
+  "balance": -0.54,
+  "confidence": "faint",
+  "note": "Low total terpenes and mostly heavy sesquiterpenes \u2014 the volatile ones have likely evaporated. Read the label, not this profile.",
+  "reported": [
+   "calm in the body",
+   "bright and talkative"
+  ],
+  "dominant": [
+   "beta-Caryophyllene",
+   "Limonene",
+   "alpha-Humulene"
+  ],
+  "aroma": [
+   "pepper",
+   "spice",
+   "woody",
+   "citrus",
+   "lemon"
+  ],
+  "terpenes": {
+   "beta-Caryophyllene": 0.21,
+   "Limonene": 0.09,
+   "alpha-Humulene": 0.08,
+   "Linalool": 0.03,
+   "beta-Myrcene": 0.03,
+   "Guaiol": 0.02,
+   "alpha-Bisabolol": 0.02,
+   "Terpineol": 0.01,
+   "Caryophyllene oxide": 0.01,
+   "Fenchol": 0.01,
+   "Valencene": 0.01,
+   "alpha-Pinene": 0.01,
+   "beta-Pinene": 0.01,
+   "Camphene": 0.0,
+   "Farnesene": 0.0,
+   "Geraniol": 0.0,
+   "Menthol": 0.0,
+   "Ocimene": 0.0,
+   "Terpinolene": 0.0,
+   "alpha-Phellandrene": 0.0,
+   "alpha-Terpinene": 0.0
+  },
+  "in_stock": true
+ },
+ {
+  "id": "e6ca57c44c",
+  "brand": "Florette",
+  "strain": "Honey Dream",
+  "form": "Preroll 1g 4-pack",
+  "thc": 16.7113,
+  "total_terpenes": 0.42,
+  "lean": "settling",
+  "balance": -0.51,
+  "confidence": "faint",
+  "note": "Low total terpenes and mostly heavy sesquiterpenes \u2014 the volatile ones have likely evaporated. Read the label, not this profile.",
+  "reported": [
+   "calm in the body",
+   "heavy and relaxed"
+  ],
+  "dominant": [
+   "beta-Caryophyllene",
+   "beta-Myrcene",
+   "alpha-Humulene"
+  ],
+  "aroma": [
+   "pepper",
+   "spice",
+   "woody",
+   "earthy",
+   "musky"
+  ],
+  "terpenes": {
+   "beta-Caryophyllene": 0.12,
+   "beta-Myrcene": 0.07,
+   "alpha-Humulene": 0.05,
+   "alpha-Bisabolol": 0.04,
+   "alpha-Pinene": 0.04,
+   "Limonene": 0.03,
+   "beta-Pinene": 0.03,
+   "Linalool": 0.02,
+   "Caryophyllene oxide": 0.01,
+   "Guaiol": 0.01,
+   "Terpineol": 0.0,
+   "Camphene": 0.0,
+   "Farnesene": 0.0,
+   "Fenchol": 0.0,
+   "Geraniol": 0.0,
+   "Menthol": 0.0,
+   "Ocimene": 0.0,
+   "Terpinolene": 0.0,
+   "Valencene": 0.0,
+   "alpha-Phellandrene": 0.0,
+   "alpha-Terpinene": 0.0
+  },
+  "in_stock": true
+ },
+ {
+  "id": "b413a3544f",
+  "brand": "Rolling Green",
+  "strain": "Georgia Haze",
+  "form": "Flower 3.5g",
+  "thc": 31.5084,
+  "total_terpenes": 1.53,
+  "lean": "settling",
+  "balance": -0.73,
+  "confidence": "strong",
+  "note": null,
+  "reported": [
+   "heavy and relaxed",
+   "calm in the body"
+  ],
+  "dominant": [
+   "beta-Myrcene",
+   "beta-Caryophyllene",
+   "alpha-Humulene"
+  ],
+  "aroma": [
+   "earthy",
+   "musky",
+   "mango",
+   "pepper",
+   "spice"
+  ],
+  "terpenes": {
+   "beta-Myrcene": 0.74,
+   "beta-Caryophyllene": 0.28,
+   "alpha-Humulene": 0.12,
+   "Limonene": 0.11,
+   "Linalool": 0.11,
+   "alpha-Pinene": 0.1,
+   "alpha-Bisabolol": 0.07,
+   "Terpineol": 0.0,
+   "Camphene": 0.0,
+   "Caryophyllene oxide": 0.0,
+   "Farnesene": 0.0,
+   "Fenchol": 0.0,
+   "Geraniol": 0.0,
+   "Guaiol": 0.0,
+   "Menthol": 0.0,
+   "Ocimene": 0.0,
+   "Terpinolene": 0.0,
+   "Valencene": 0.0,
+   "alpha-Phellandrene": 0.0,
+   "alpha-Terpinene": 0.0,
+   "beta-Pinene": 0.0
+  },
+  "in_stock": true
+ },
+ {
+  "id": "eed9775a79",
+  "brand": "Rolling Green",
+  "strain": "Glitter Bomb",
+  "form": "Flower 3.5g",
+  "thc": 26.5995,
+  "total_terpenes": 1.32,
+  "lean": "settling",
+  "balance": -0.44,
+  "confidence": "strong",
+  "note": null,
+  "reported": [
+   "calm in the body",
+   "bright and talkative"
+  ],
+  "dominant": [
+   "beta-Caryophyllene",
+   "Limonene",
+   "Linalool"
+  ],
+  "aroma": [
+   "pepper",
+   "spice",
+   "woody",
+   "citrus",
+   "lemon"
+  ],
+  "terpenes": {
+   "beta-Caryophyllene": 0.38,
+   "Limonene": 0.33,
+   "Linalool": 0.29,
+   "alpha-Humulene": 0.12,
+   "beta-Myrcene": 0.12,
+   "Terpineol": 0.04,
+   "Fenchol": 0.04,
+   "Camphene": 0.0,
+   "Caryophyllene oxide": 0.0,
+   "Farnesene": 0.0,
+   "Geraniol": 0.0,
+   "Guaiol": 0.0,
+   "Menthol": 0.0,
+   "Ocimene": 0.0,
+   "Terpinolene": 0.0,
+   "Valencene": 0.0,
+   "alpha-Bisabolol": 0.0,
+   "alpha-Phellandrene": 0.0,
+   "alpha-Pinene": 0.0,
+   "alpha-Terpinene": 0.0,
+   "beta-Pinene": 0.0
+  },
+  "in_stock": true
+ },
+ {
+  "id": "2d4ae28887",
+  "brand": "Rolling Green",
+  "strain": "Banana Cream Gelato",
+  "form": "Flower 3.5g",
+  "thc": 32.4044,
+  "total_terpenes": 1.31,
+  "lean": "mixed",
+  "balance": -0.21,
+  "confidence": "strong",
+  "note": null,
+  "reported": [
+   "bright and talkative",
+   "mellow and soft"
+  ],
+  "dominant": [
+   "Limonene",
+   "Linalool",
+   "beta-Myrcene"
+  ],
+  "aroma": [
+   "citrus",
+   "lemon",
+   "bright",
+   "floral",
+   "lavender"
+  ],
+  "terpenes": {
+   "Limonene": 0.47,
+   "Linalool": 0.21,
+   "beta-Myrcene": 0.2,
+   "alpha-Humulene": 0.14,
+   "Farnesene": 0.12,
+   "Guaiol": 0.07,
+   "Terpineol": 0.05,
+   "Fenchol": 0.05,
+   "Camphene": 0.0,
+   "Caryophyllene oxide": 0.0,
+   "Ocimene": 0.0,
+   "Terpinolene": 0.0,
+   "Valencene": 0.0,
+   "alpha-Bisabolol": 0.0,
+   "alpha-Pinene": 0.0,
+   "beta-Pinene": 0.0,
+   "beta-Caryophyllene": 0.0,
+   "Geraniol": 0.0,
+   "Menthol": 0.0,
+   "alpha-Phellandrene": 0.0,
+   "alpha-Terpinene": 0.0
+  },
+  "in_stock": true
+ },
+ {
+  "id": "981e080b47",
+  "brand": "1Off / SMARTBUD",
+  "strain": "Strawberry Cough",
+  "form": "Preroll 1g",
+  "thc": 31.05,
+  "total_terpenes": 1.45,
+  "lean": "settling",
+  "balance": -0.55,
+  "confidence": "strong",
+  "note": null,
+  "reported": [
+   "mellow and soft",
+   "calm in the body"
+  ],
+  "dominant": [
+   "Linalool",
+   "beta-Caryophyllene",
+   "Limonene"
+  ],
+  "aroma": [
+   "floral",
+   "lavender",
+   "pepper",
+   "spice",
+   "woody"
+  ],
+  "terpenes": {
+   "Linalool": 0.47,
+   "beta-Caryophyllene": 0.26,
+   "Limonene": 0.25,
+   "beta-Myrcene": 0.12,
+   "Farnesene": 0.11,
+   "alpha-Humulene": 0.09,
+   "Fenchol": 0.08,
+   "Terpineol": 0.08
+  },
+  "in_stock": true
+ },
+ {
+  "id": "5d93d1fa8f",
+  "brand": "Rolling Green",
+  "strain": "Apple Banana Flambe",
+  "form": "Flower 3.5g",
+  "thc": 28.2499,
+  "total_terpenes": 1.29,
+  "lean": "settling",
+  "balance": -0.41,
+  "confidence": "strong",
+  "note": null,
+  "reported": [
+   "mellow and soft",
+   "bright and talkative"
+  ],
+  "dominant": [
+   "Linalool",
+   "Limonene",
+   "beta-Caryophyllene"
+  ],
+  "aroma": [
+   "floral",
+   "lavender",
+   "citrus",
+   "lemon",
+   "bright"
+  ],
+  "terpenes": {
+   "Linalool": 0.44,
+   "Limonene": 0.33,
+   "beta-Caryophyllene": 0.28,
+   "alpha-Humulene": 0.1,
+   "Terpineol": 0.05,
+   "Fenchol": 0.05,
+   "alpha-Bisabolol": 0.04,
+   "Camphene": 0.0,
+   "Caryophyllene oxide": 0.0,
+   "Farnesene": 0.0,
+   "Ocimene": 0.0,
+   "Terpinolene": 0.0,
+   "Valencene": 0.0,
+   "alpha-Pinene": 0.0,
+   "beta-Myrcene": 0.0,
+   "beta-Pinene": 0.0,
+   "Geraniol": 0.0,
+   "Guaiol": 0.0,
+   "Menthol": 0.0,
+   "alpha-Phellandrene": 0.0,
+   "alpha-Terpinene": 0.0
+  },
+  "in_stock": true
+ },
+ {
+  "id": "cffa411513",
+  "brand": "Curaleaf / Find",
+  "strain": "Slingria",
+  "form": "Flower 3.5g",
+  "thc": 31.9792,
+  "total_terpenes": 1.16,
+  "lean": "settling",
+  "balance": -0.74,
+  "confidence": "moderate",
+  "note": null,
+  "reported": [
+   "heavy and relaxed",
+   "calm in the body"
+  ],
+  "dominant": [
+   "beta-Myrcene",
+   "beta-Caryophyllene",
+   "Limonene"
+  ],
+  "aroma": [
+   "earthy",
+   "musky",
+   "mango",
+   "pepper",
+   "spice"
+  ],
+  "terpenes": {
+   "beta-Myrcene": 0.5,
+   "beta-Caryophyllene": 0.18,
+   "Limonene": 0.12,
+   "alpha-Humulene": 0.07,
+   "Guaiol": 0.06,
+   "Terpineol": 0.0,
+   "Camphene": 0.0,
+   "Caryophyllene oxide": 0.0,
+   "Farnesene": 0.0,
+   "Fenchol": 0.0,
+   "Geraniol": 0.0,
+   "Linalool": 0.0,
+   "Menthol": 0.0,
+   "Ocimene": 0.0,
+   "Terpinolene": 0.0,
+   "Valencene": 0.0,
+   "alpha-Bisabolol": 0.0,
+   "alpha-Phellandrene": 0.0,
+   "alpha-Pinene": 0.0,
+   "alpha-Terpinene": 0.0,
+   "beta-Pinene": 0.0
+  },
+  "in_stock": true
+ },
+ {
+  "id": "565b657ea2",
+  "brand": "Vireo / Flower Warrior",
+  "strain": "Fresh Powder",
+  "form": "Flower 3.5g",
+  "thc": 20.5,
+  "total_terpenes": 1.9,
+  "lean": "lifting",
+  "balance": 0.8,
+  "confidence": "strong",
+  "note": null,
+  "reported": [
+   "heady and alert",
+   "clear-headed"
+  ],
+  "dominant": [
+   "Terpinolene",
+   "beta-Pinene",
+   "beta-Myrcene"
+  ],
+  "aroma": [
+   "sharp",
+   "piney",
+   "herbal",
+   "fresh",
+   "pine"
+  ],
+  "terpenes": {
+   "Terpinolene": 1.4,
+   "beta-Pinene": 0.15,
+   "beta-Myrcene": 0.15,
+   "Limonene": 0.09,
+   "alpha-Terpinene": 0.04,
+   "alpha-Humulene": 0.04,
+   "alpha-Pinene": 0.03,
+   "alpha-Bisabolol": 0.0,
+   "alpha-Phellandrene": 0.0,
+   "beta-Caryophyllene": 0.0,
+   "Camphene": 0.0,
+   "Caryophyllene oxide": 0.0,
+   "Farnesene": 0.0,
+   "Fenchol": 0.0,
+   "Geraniol": 0.0,
+   "Guaiol": 0.0,
+   "Linalool": 0.0,
+   "Ocimene": 0.0,
+   "Terpineol": 0.0,
+   "Valencene": 0.0
+  },
+  "in_stock": true
+ }
+]

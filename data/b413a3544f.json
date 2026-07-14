@@ -1,0 +1,53 @@
+{
+ "id": "b413a3544f",
+ "brand": "Rolling Green",
+ "strain": "Georgia Haze",
+ "form": "Flower 3.5g",
+ "thc": 31.5084,
+ "total_terpenes": 1.53,
+ "lean": "settling",
+ "balance": -0.73,
+ "confidence": "strong",
+ "note": null,
+ "reported": [
+  "heavy and relaxed",
+  "calm in the body"
+ ],
+ "dominant": [
+  "beta-Myrcene",
+  "beta-Caryophyllene",
+  "alpha-Humulene"
+ ],
+ "aroma": [
+  "earthy",
+  "musky",
+  "mango",
+  "pepper",
+  "spice"
+ ],
+ "terpenes": {
+  "beta-Myrcene": 0.74,
+  "beta-Caryophyllene": 0.28,
+  "alpha-Humulene": 0.12,
+  "Limonene": 0.11,
+  "Linalool": 0.11,
+  "alpha-Pinene": 0.1,
+  "alpha-Bisabolol": 0.07,
+  "Terpineol": 0.0,
+  "Camphene": 0.0,
+  "Caryophyllene oxide": 0.0,
+  "Farnesene": 0.0,
+  "Fenchol": 0.0,
+  "Geraniol": 0.0,
+  "Guaiol": 0.0,
+  "Menthol": 0.0,
+  "Ocimene": 0.0,
+  "Terpinolene": 0.0,
+  "Valencene": 0.0,
+  "alpha-Phellandrene": 0.0,
+  "alpha-Terpinene": 0.0,
+  "beta-Pinene": 0.0
+ },
+ "in_stock": true,
+ "shelf_tag": "Unverified"
+}

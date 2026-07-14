@@ -1,0 +1,52 @@
+{
+ "id": "565b657ea2",
+ "brand": "Vireo / Flower Warrior",
+ "strain": "Fresh Powder",
+ "form": "Flower 3.5g",
+ "thc": 20.5,
+ "total_terpenes": 1.9,
+ "lean": "lifting",
+ "balance": 0.8,
+ "confidence": "strong",
+ "note": null,
+ "reported": [
+  "heady and alert",
+  "clear-headed"
+ ],
+ "dominant": [
+  "Terpinolene",
+  "beta-Pinene",
+  "beta-Myrcene"
+ ],
+ "aroma": [
+  "sharp",
+  "piney",
+  "herbal",
+  "fresh",
+  "pine"
+ ],
+ "terpenes": {
+  "Terpinolene": 1.4,
+  "beta-Pinene": 0.15,
+  "beta-Myrcene": 0.15,
+  "Limonene": 0.09,
+  "alpha-Terpinene": 0.04,
+  "alpha-Humulene": 0.04,
+  "alpha-Pinene": 0.03,
+  "alpha-Bisabolol": 0.0,
+  "alpha-Phellandrene": 0.0,
+  "beta-Caryophyllene": 0.0,
+  "Camphene": 0.0,
+  "Caryophyllene oxide": 0.0,
+  "Farnesene": 0.0,
+  "Fenchol": 0.0,
+  "Geraniol": 0.0,
+  "Guaiol": 0.0,
+  "Linalool": 0.0,
+  "Ocimene": 0.0,
+  "Terpineol": 0.0,
+  "Valencene": 0.0
+ },
+ "in_stock": true,
+ "shelf_tag": "Unverified"
+}
