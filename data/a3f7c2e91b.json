@@ -1,0 +1,40 @@
+{
+ "id": "a3f7c2e91b",
+ "brand": "Smartbud",
+ "strain": "Gorilla Glue",
+ "form": "Flower 3.5g",
+ "thc": 29.21,
+ "total_terpenes": 1.82,
+ "lean": "mixed",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Unverified",
+ "reported": [
+  "Gorilla Glue",
+  "Adult Use Flower"
+ ],
+ "dominant": [
+  "Linalool",
+  "Limonene",
+  "beta-Caryophyllene"
+ ],
+ "aroma": [
+  "floral",
+  "citrus",
+  "earthy",
+  "spicy",
+  "piney"
+ ],
+ "terpenes": {
+  "Linalool": 0.48,
+  "Limonene": 0.39,
+  "beta-Caryophyllene": 0.25,
+  "beta-Myrcene": 0.23,
+  "Farnesene": 0.1,
+  "Fenchol": 0.08,
+  "Terpineol": 0.08,
+  "alpha-Humulene": 0.08,
+  "beta-Pinene": 0.07,
+  "Nerolidol": 0.06
+ }
+}
