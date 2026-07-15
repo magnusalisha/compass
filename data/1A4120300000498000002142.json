@@ -1,0 +1,45 @@
+{
+ "id": "a3f9c12e7b",
+ "metrc_tag": "1A4120300000498000002142",
+ "brand": "Green Wells Farms",
+ "strain": "Pinyatti",
+ "form": "Preroll 1g",
+ "thc": 20.6274,
+ "total_terpenes": 0.59,
+ "lean": "settling",
+ "confidence": "faint",
+ "in_stock": true,
+ "shelf_tag": "Unverified",
+ "reported": [
+  "20.6% Total THC",
+  "0.59% Total Terpenes"
+ ],
+ "dominant": [
+  "Linalool",
+  "beta-Caryophyllene",
+  "alpha-Bisabolol"
+ ],
+ "aroma": [
+  "floral",
+  "spicy",
+  "woody",
+  "earthy",
+  "citrus"
+ ],
+ "terpenes": {
+  "Linalool": 0.13,
+  "beta-Caryophyllene": 0.11,
+  "alpha-Bisabolol": 0.06,
+  "Terpineol": 0.04,
+  "Limonene": 0.04,
+  "alpha-Humulene": 0.04,
+  "Caryophyllene Oxide": 0.03,
+  "Fenchol": 0.03,
+  "Ocimene": 0.02,
+  "Valencene": 0.02,
+  "alpha-Pinene": 0.02,
+  "beta-Myrcene": 0.02,
+  "beta-Pinene": 0.02,
+  "Camphene": 0.01
+ }
+}
