@@ -1,0 +1,36 @@
+{
+ "id": "a3f7c2b901",
+ "metrc_tag": "1A412030000191D000001843",
+ "brand": "Dank",
+ "strain": "Acapulco Gold",
+ "form": "Preroll 1g",
+ "thc": 30.349,
+ "total_terpenes": 0.27,
+ "lean": "settling",
+ "confidence": "faint",
+ "in_stock": true,
+ "shelf_tag": "Unverified",
+ "reported": [
+  "Sungrown",
+  "Cured"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "Guaiol",
+  "Caryophyllene Oxide"
+ ],
+ "aroma": [
+  "earthy",
+  "spicy",
+  "woody",
+  "floral",
+  "herbal"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.09,
+  "Guaiol": 0.06,
+  "Caryophyllene Oxide": 0.04,
+  "Farnesene": 0.04,
+  "alpha-Humulene": 0.04
+ }
+}
