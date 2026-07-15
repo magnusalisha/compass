@@ -1,0 +1,46 @@
+{
+ "id": "a3f9c21b84",
+ "metrc_tag": "1A412030000026D000008320",
+ "brand": "Curaleaf NY, LLC.",
+ "strain": "Acapulco Gold",
+ "form": "Infused Preroll 1g",
+ "thc": 44.1264,
+ "total_terpenes": 0.69,
+ "lean": "lifting",
+ "confidence": "faint",
+ "in_stock": true,
+ "shelf_tag": "Unverified",
+ "reported": [
+  "Glass Tip Infused",
+  "Enhanced Pre-roll (Medical Use)"
+ ],
+ "dominant": [
+  "Limonene",
+  "Terpinolene",
+  "beta-Myrcene"
+ ],
+ "aroma": [
+  "citrus",
+  "floral",
+  "earthy",
+  "herbal",
+  "spice"
+ ],
+ "terpenes": {
+  "Limonene": 0.14,
+  "Terpinolene": 0.1,
+  "beta-Myrcene": 0.1,
+  "beta-Caryophyllene": 0.09,
+  "Ocimene": 0.04,
+  "alpha-Bisabolol": 0.04,
+  "alpha-Humulene": 0.04,
+  "Caryophyllene Oxide": 0.03,
+  "beta-Pinene": 0.03,
+  "Linalool": 0.02,
+  "alpha-Pinene": 0.02,
+  "Terpineol": 0.01,
+  "Fenchol": 0.01,
+  "Valencene": 0.01,
+  "alpha-Phellandrene": 0.01
+ }
+}
