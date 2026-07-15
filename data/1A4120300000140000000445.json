@@ -1,0 +1,28 @@
+{
+ "id": "a3f8c2e1b9",
+ "metrc_tag": "1A4120300000140000000445",
+ "brand": "Basin Mixtures, INC, dba The Sauce",
+ "strain": "White Cherry Guava Lights",
+ "form": "Preroll 5g",
+ "thc": 15.809,
+ "total_terpenes": 0.1,
+ "lean": "settling",
+ "confidence": "faint",
+ "in_stock": true,
+ "shelf_tag": "Unverified",
+ "reported": [
+  "15.8% Total THC",
+  "0.10% Total Terpenes"
+ ],
+ "dominant": [
+  "beta-Caryophyllene"
+ ],
+ "aroma": [
+  "earthy",
+  "spicy",
+  "woody"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.1
+ }
+}
