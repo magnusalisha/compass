@@ -1,0 +1,40 @@
+{
+ "id": "a3f82c1d9e",
+ "metrc_tag": "1A4120300000498000002346",
+ "brand": "Green Wells Farms",
+ "strain": "Heir Heads",
+ "form": "Preroll 1g",
+ "thc": 26.548,
+ "total_terpenes": 1.72,
+ "lean": "settling",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Unverified",
+ "reported": [
+  "26.5% Total THC",
+  "1.72% Total Terpenes"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "Linalool",
+  "Limonene"
+ ],
+ "aroma": [
+  "floral",
+  "spicy",
+  "citrus",
+  "earthy",
+  "herbal"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.52,
+  "Linalool": 0.33,
+  "Limonene": 0.26,
+  "alpha-Humulene": 0.18,
+  "alpha-Bisabolol": 0.11,
+  "beta-Myrcene": 0.11,
+  "Farnesene": 0.09,
+  "Terpineol": 0.06,
+  "Fenchol": 0.06
+ }
+}
