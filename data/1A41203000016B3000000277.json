@@ -1,0 +1,37 @@
+{
+ "id": "a3f9c12e4b",
+ "metrc_tag": "1A41203000016B3000000277",
+ "brand": "Canna Cure Farms LLC",
+ "strain": "Pineapple Express",
+ "form": "Flower",
+ "thc": 28.056,
+ "total_terpenes": 0.89,
+ "lean": "mixed",
+ "confidence": "faint",
+ "in_stock": true,
+ "shelf_tag": "Unverified",
+ "reported": [
+  "28% Total THC",
+  "0.89% Total Terpenes"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "Linalool",
+  "Limonene"
+ ],
+ "aroma": [
+  "floral",
+  "citrus",
+  "spicy",
+  "woody",
+  "herbal"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.25,
+  "Linalool": 0.22,
+  "Limonene": 0.17,
+  "Guaiol": 0.11,
+  "alpha-Humulene": 0.08,
+  "trans-Nerolidol": 0.06
+ }
+}
