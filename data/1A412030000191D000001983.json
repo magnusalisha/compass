@@ -1,0 +1,42 @@
+{
+ "id": "a3f82c1d09",
+ "metrc_tag": "1A412030000191D000001983",
+ "brand": "Miss Grass",
+ "strain": "Super Lemon Haze",
+ "form": "Preroll 0.4g",
+ "thc": 25.5561,
+ "total_terpenes": 0.9,
+ "lean": "settling",
+ "confidence": "faint",
+ "in_stock": true,
+ "shelf_tag": "Unverified",
+ "reported": [
+  "Super Lemon Haze",
+  "Fast Times"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "alpha-Humulene",
+  "alpha-Bisabolol"
+ ],
+ "aroma": [
+  "citrus",
+  "floral",
+  "spice",
+  "herbal",
+  "earthy"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.38,
+  "alpha-Humulene": 0.13,
+  "alpha-Bisabolol": 0.1,
+  "Linalool": 0.09,
+  "Limonene": 0.05,
+  "Terpineol": 0.04,
+  "Geraniol": 0.04,
+  "Fenchol": 0.03,
+  "Caryophyllene Oxide": 0.02,
+  "Valencene": 0.01,
+  "beta-Pinene": 0.01
+ }
+}
