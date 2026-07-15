@@ -1,0 +1,38 @@
+{
+ "id": "a3f82c1d9e",
+ "metrc_tag": "1A41203000003F5000000471",
+ "brand": "Greener Standards Inc.",
+ "strain": "Glitter Bomb",
+ "form": "Flower 3.5g",
+ "thc": 26.5995,
+ "total_terpenes": 1.32,
+ "lean": "mixed",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Unverified",
+ "reported": [
+  "26.6% Total THC",
+  "1.32% Total Terpenes"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "Limonene",
+  "Linalool"
+ ],
+ "aroma": [
+  "spicy",
+  "citrus",
+  "floral",
+  "herbal",
+  "earthy"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.38,
+  "Limonene": 0.33,
+  "Linalool": 0.29,
+  "alpha-Humulene": 0.12,
+  "beta-Myrcene": 0.12,
+  "Terpineol": 0.04,
+  "Fenchol": 0.04
+ }
+}
