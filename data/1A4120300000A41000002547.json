@@ -1,18 +1,18 @@
 {
- "id": "a3f82c1e94",
+ "id": "a3f7c2e891",
  "metrc_tag": "1A4120300000A41000002547",
- "brand": "HV Ag Corporation",
+ "brand": "Slurricane",
  "strain": "Purple Punch X",
  "form": "Flower 3.5g",
  "thc": 25.54,
  "total_terpenes": 2.06,
- "lean": "mixed",
+ "lean": "lifting",
  "confidence": "strong",
  "in_stock": true,
  "shelf_tag": "Unverified",
  "reported": [
-  "Lab tested and regulated by NY OCM",
-  "Manufactured by HV Ag Corporation"
+  "Tested & Regulated by NY OCM",
+  "Lab Test Status: TestPassed"
  ],
  "dominant": [
   "Limonene",
@@ -21,10 +21,10 @@
  ],
  "aroma": [
   "citrus",
-  "spice",
+  "spicy",
   "herbal",
-  "floral",
-  "woody"
+  "earthy",
+  "floral"
  ],
  "terpenes": {
   "Limonene": 0.54,
