@@ -1,0 +1,38 @@
+{
+ "id": "a3f82c1d9e",
+ "metrc_tag": "1A4120300000498000002255",
+ "brand": "Green Wells Venture LLC",
+ "strain": "Pinyatti",
+ "form": "Flower 3.5g",
+ "thc": null,
+ "total_terpenes": 2.2,
+ "lean": "mixed",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Unverified",
+ "reported": [],
+ "dominant": [
+  "Limonene",
+  "beta-Caryophyllene",
+  "Linalool"
+ ],
+ "aroma": [
+  "citrus",
+  "spice",
+  "floral",
+  "herbal",
+  "woody"
+ ],
+ "terpenes": {
+  "Limonene": 0.59,
+  "beta-Caryophyllene": 0.53,
+  "Linalool": 0.35,
+  "alpha-Humulene": 0.18,
+  "Ocimene": 0.17,
+  "beta-Myrcene": 0.12,
+  "alpha-Bisabolol": 0.1,
+  "Terpineol": 0.06,
+  "Fenchol": 0.05,
+  "Farnesene": 0.05
+ }
+}
