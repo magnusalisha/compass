@@ -1,0 +1,44 @@
+{
+ "id": "a3f9c2e1b7",
+ "metrc_tag": "1A412030000026D000018987",
+ "brand": "Curaleaf NY, LLC.",
+ "strain": "Durban Poison",
+ "form": "Infused Preroll 2.5g 5 Pack",
+ "thc": 41.1594,
+ "total_terpenes": 0.37,
+ "lean": "mixed",
+ "confidence": "faint",
+ "in_stock": true,
+ "shelf_tag": "Unverified",
+ "reported": [
+  "Glass tip infused preroll",
+  "Sativa classification"
+ ],
+ "dominant": [
+  "Linalool",
+  "beta-Caryophyllene",
+  "Terpineol"
+ ],
+ "aroma": [
+  "floral",
+  "spicy",
+  "herbal",
+  "citrus",
+  "woody"
+ ],
+ "terpenes": {
+  "Linalool": 0.09,
+  "beta-Caryophyllene": 0.06,
+  "Terpineol": 0.03,
+  "Fenchol": 0.03,
+  "Geraniol": 0.03,
+  "Limonene": 0.03,
+  "Terpinolene": 0.02,
+  "alpha-Humulene": 0.02,
+  "beta-Myrcene": 0.02,
+  "Ocimene": 0.01,
+  "alpha-Bisabolol": 0.01,
+  "alpha-Pinene": 0.01,
+  "beta-Pinene": 0.01
+ }
+}
