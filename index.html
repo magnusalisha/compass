@@ -40,7 +40,24 @@
     background-size:5px 5px,5px 5px;background-repeat:no-repeat}
   input:focus,select:focus{outline:2px solid var(--gold);outline-offset:2px}
   .pair{display:flex;gap:9px}
-  .pair select{flex:1;min-width:0}
+  .pair select,.pair .combo{flex:1;min-width:0}
+
+  .catseg{display:flex;gap:6px;margin-bottom:11px}
+  .catseg button{flex:1;padding:9px 6px;border-radius:999px;border:1px solid var(--dim);
+    background:transparent;color:var(--pale);font:600 12.5px Inter,sans-serif;cursor:pointer}
+  .catseg button.active{background:var(--gold);border-color:var(--gold);color:#231A08}
+
+  .combo{position:relative;margin-bottom:11px}
+  .combo input{margin-bottom:0}
+  .combo-list{position:absolute;left:0;right:0;top:calc(100% + 4px);background:var(--card);
+    border-radius:12px;max-height:240px;overflow-y:auto;z-index:20;list-style:none;
+    box-shadow:0 8px 24px rgba(0,0,0,.35)}
+  .combo-list li{padding:12px 16px;font:500 15px Inter,sans-serif;color:var(--ink);cursor:pointer;
+    display:flex;gap:8px;align-items:baseline}
+  .combo-list li span{color:var(--ink2);font-size:13px}
+  .combo-list li:hover,.combo-list li.hl{background:var(--card2)}
+  .combo-list li.combo-empty{color:var(--ink2);cursor:default;font-size:13.5px}
+  .combo-list li.combo-empty:hover{background:none}
 
   .card{background:var(--card);color:var(--ink);border-radius:16px;padding:18px;margin-bottom:12px}
   .card h2{font-family:Fraunces,serif;font-size:23px;font-weight:700;letter-spacing:-.01em;line-height:1.15}
@@ -122,6 +139,16 @@ const REPORTED = {
   'Terpineol':['mellow',1,'Folklore.']
 };
 const dots = n => '●'.repeat(n) + '○'.repeat(3-n);
+
+// ── category: derived from `form`. Add a rule to grow into Vape/Edible later.
+const CATEGORY_RULES = [
+  [/preroll/i, 'Preroll'],
+];
+const category = p => (CATEGORY_RULES.find(([re]) => re.test(p.form)) || [,'Flower'])[1];
+const CATEGORIES = ['All', 'Flower', 'Preroll'];
+// lets "social preroll" in the effect box auto-apply the Preroll filter
+const CATEGORY_WORDS = [[/\bprerolls?\b/, 'Preroll'], [/\bflowers?\b/, 'Flower']];
+const detectCategoryWord = q => (CATEGORY_WORDS.find(([re]) => re.test(q)) || [])[1] || null;
 
 // "relaxing but not sleepy" — how customers actually talk.
 const WANT = {
@@ -594,7 +621,7 @@ let DATA = [
   },
   "in_stock": true
  }
-], tab = 'effect', a = null, b = null, sel = null, flash = '';
+], tab = 'effect', a = null, b = null, sel = null, flash = '', effCat = 'All', simCat = 'All';
 
 // Stock status lives on the device. Product data lives in the repo.
 // (This is why the old build couldn't save: sandboxes block storage. Real hosting doesn't.)
@@ -720,7 +747,41 @@ function compare(x, y){
   </div>`;
 }
 
-function opts(v){ return pool().map(p => `<option value="${p.id}" ${p.id===v?'selected':''}>${p.strain} (${p.brand})</option>`).join(''); }
+function categoryButtons(key, current){
+  return `<div class="catseg" data-catkey="${key}">${CATEGORIES.map(c =>
+    `<button type="button" class="${c===current?'active':''}" data-cat="${c}">${c}</button>`).join('')}</div>`;
+}
+
+// ── reusable searchable combobox: filters a product list by strain or brand.
+// One instance per `id` (e.g. 'a', 'b', 'similar'); state persists across re-renders.
+let COMBO = {};
+const comboState = id => COMBO[id] || (COMBO[id] = {query: null, open: false, highlight: -1, filtered: []});
+const comboLabel = p => p ? `${p.strain} (${p.brand})` : '';
+
+function comboHTML(id, list, selectedId){
+  const st = comboState(id);
+  const shown = st.query !== null ? st.query : comboLabel(list.find(p => p.id === selectedId));
+  const q = shown.toLowerCase().trim();
+  const filtered = st.open
+    ? list.filter(p => p.strain.toLowerCase().includes(q) || p.brand.toLowerCase().includes(q)).slice(0,8)
+    : [];
+  st.filtered = filtered;
+  return `<div class="combo" data-combo="${id}">
+    <input type="text" class="combo-input" id="combo-${id}" autocomplete="off"
+      placeholder="Search strain or brand…" value="${shown.replace(/"/g,'&quot;')}">
+    ${st.open ? (filtered.length
+        ? `<ul class="combo-list">${filtered.map((p,i) => `<li data-id="${p.id}" class="${i===st.highlight?'hl':''}">${p.strain} <span>${p.brand}</span></li>`).join('')}</ul>`
+        : `<ul class="combo-list"><li class="combo-empty">No match</li></ul>`) : ''}
+  </div>`;
+}
+function comboChoose(id, productId){
+  const st = comboState(id);
+  st.query = null; st.open = false; st.highlight = -1;
+  if (id === 'similar') sel = productId;
+  else if (id === 'a') a = productId;
+  else if (id === 'b') b = productId;
+  render();
+}
 
 function render(){
   const P = $('#panel'), O = $('#out');
@@ -729,25 +790,38 @@ function render(){
   const banner = flash ? `<div class="flash">${flash}</div>` : '';
 
   if (tab === 'effect'){
-    P.innerHTML = banner + `<input type="text" id="q" placeholder="e.g. relaxing but not sleepy" value="${window._q||''}">`;
-    const q = (window._q||'').toLowerCase().trim();
-    const med = MEDICAL.find(m => q.includes(m));
+    const rawQ = (window._q||'').toLowerCase().trim();
+    const detected = detectCategoryWord(rawQ);
+    const activeCat = effCat !== 'All' ? effCat : (detected || 'All');   // explicit button wins; text is a bonus
+
+    P.innerHTML = banner + categoryButtons('effCat', activeCat)
+      + `<input type="text" id="q" placeholder='e.g. "relaxing but not sleepy" or "social preroll"' value="${window._q||''}">`;
+
+    const med = MEDICAL.find(m => rawQ.includes(m));
     if (med){
       O.innerHTML = `<div class="card"><div class="warnbox" style="margin:0">I can't match on medical conditions — that's not a claim this tool is allowed to make, or one the science supports. Try describing the <b>feeling</b> instead: "relaxed but clear-headed", "energetic", "mellow".</div></div>`;
       return foot();
     }
-    if (!q){ O.innerHTML = list.map(p => card(p)).join(''); return foot(); }
+
+    const scoped = list.filter(p => activeCat === 'All' || category(p) === activeCat);
+    if (!rawQ){
+      O.innerHTML = scoped.length ? scoped.map(p => card(p)).join('') : `<div class="empty">Nothing ${activeCat === 'All' ? '' : activeCat.toLowerCase()+' '}on the shelf.</div>`;
+      return foot();
+    }
+
+    // strip a recognized category word so it doesn't get parsed as an effect keyword
+    const qClean = detected ? rawQ.replace(CATEGORY_WORDS.find(([re]) => re.test(rawQ))[0], ' ').replace(/\s+/g,' ').trim() : rawQ;
 
     const [pos, neg] = [[], []];
-    q.split(/\bbut\b|,|\band\b/).forEach(part => {
+    qClean.split(/\bbut\b|,|\band\b/).forEach(part => {
       const negated = /\bnot\b|\bwithout\b|\bno\b/.test(part);
       Object.entries(WANT).forEach(([kw, ts]) => {
         if (part.includes(kw)) ts.forEach(t => (negated ? neg : pos).push(t));
       });
     });
-    if (!pos.length && !neg.length){ O.innerHTML = `<div class="empty">Nothing matched “${q}”. Try words like relaxed, energetic, focused, mellow, sleepy, social.</div>`; return foot(); }
+    if (!pos.length && !neg.length){ O.innerHTML = `<div class="empty">Nothing matched “${rawQ}”. Try words like relaxed, energetic, focused, mellow, sleepy, social.</div>`; return foot(); }
 
-    const scored = list.map(p => {
+    const scored = scoped.map(p => {
       const v = vec(p);
       let s = pos.reduce((t,k) => t + (v[k]||0), 0) - neg.reduce((t,k) => t + (v[k]||0)*1.4, 0);
       if (p.confidence === 'faint') s *= 0.45;   // faded profiles don't get to win
@@ -762,12 +836,19 @@ function render(){
 
   if (tab === 'similar'){
     sel = sel && list.some(p=>p.id===sel) ? sel : (list[0]||{}).id;
-    P.innerHTML = banner + `<select id="s1">${opts(sel)}</select>`;
+    P.innerHTML = banner + comboHTML('similar', list, sel) + categoryButtons('simCat', simCat);
     const p = DATA.find(x => x.id === sel);
     if (!p){ O.innerHTML = `<div class="empty">Nothing in stock.</div>`; return foot(); }
-    const ranked = DATA.filter(x => x.id !== p.id && ($('#oos').checked || stocked(x)))
-      .map(x => [sim(p,x), x]).sort((m,n) => n[0]-m[0]);
-    O.innerHTML = (!ranked.length || ranked[0][0] < 0.5
+
+    // category filter narrows the *results* only — the source product is unaffected
+    const candidates = DATA.filter(x => x.id !== p.id && ($('#oos').checked || stocked(x))
+      && (simCat === 'All' || category(x) === simCat));
+    if (!candidates.length){
+      O.innerHTML = `<div class="empty">Nothing ${simCat === 'All' ? '' : simCat.toLowerCase()+' '}on the shelf to compare against.</div>`;
+      return foot();
+    }
+    const ranked = candidates.map(x => [sim(p,x), x]).sort((m,n) => n[0]-m[0]);
+    O.innerHTML = (ranked[0][0] < 0.5
         ? `<div class="card"><div class="warnbox" style="margin:0">Nothing on the shelf is close to <b>${p.strain}</b> — its profile is ${p.dominant.slice(0,2).map(k=>short(k).toLowerCase()).join('/')}-led and nothing else here looks like that. <b>Say so. Don't substitute.</b></div></div>`
         : '')
       + ranked.slice(0,4).map(([s,x]) =>
@@ -778,7 +859,7 @@ function render(){
   // compare
   a = a && list.some(p=>p.id===a) ? a : (list[0]||{}).id;
   b = b && list.some(p=>p.id===b) ? b : (list[1]||{}).id;
-  P.innerHTML = banner + `<div class="pair"><select id="a">${opts(a)}</select><select id="b">${opts(b)}</select></div>`;
+  P.innerHTML = banner + `<div class="pair">${comboHTML('a', list, a)}${comboHTML('b', list, b)}</div>`;
   const x = DATA.find(p => p.id === a), y = DATA.find(p => p.id === b);
   O.innerHTML = (x && y && x !== y) ? compare(x, y) : `<div class="empty">Pick two different products.</div>`;
   foot();
@@ -792,13 +873,18 @@ function foot(){
 
 document.addEventListener('click', e => {
   const t = e.target.closest('.tabs button');
-  if (t){ tab = t.dataset.tab; render(); }
+  if (t){ tab = t.dataset.tab; render(); return; }
+
+  const c = e.target.closest('.catseg button');
+  if (c){
+    const key = c.closest('.catseg').dataset.catkey;
+    if (key === 'effCat') effCat = c.dataset.cat;
+    if (key === 'simCat') simCat = c.dataset.cat;
+    render();
+  }
 });
 document.addEventListener('change', e => {
   if (e.target.id === 'oos') render();
-  if (e.target.id === 's1'){ sel = e.target.value; render(); }
-  if (e.target.id === 'a'){ a = e.target.value; render(); }
-  if (e.target.id === 'b'){ b = e.target.value; render(); }
 });
 document.addEventListener('input', e => {
   if (e.target.id === 'q'){
@@ -806,6 +892,60 @@ document.addEventListener('input', e => {
     const pos = e.target.selectionStart;
     render();
     const n = $('#q'); if (n){ n.focus(); n.setSelectionRange(pos, pos); }
+  }
+  const inp = e.target.closest('.combo-input');
+  if (inp){
+    const id = inp.closest('.combo').dataset.combo;
+    const st = comboState(id);
+    st.query = inp.value; st.open = true; st.highlight = -1;
+    const pos = inp.selectionStart;
+    render();
+    const n = document.getElementById(`combo-${id}`); if (n){ n.focus(); n.setSelectionRange(pos, pos); }
+  }
+});
+
+// mousedown (not click) so selecting a row fires before the input's blur closes the list
+document.addEventListener('mousedown', e => {
+  const li = e.target.closest('.combo-list li[data-id]');
+  if (!li) return;
+  e.preventDefault();
+  comboChoose(li.closest('.combo').dataset.combo, li.dataset.id);
+});
+document.addEventListener('focusin', e => {
+  const inp = e.target.closest('.combo-input');
+  if (!inp) return;
+  const id = inp.closest('.combo').dataset.combo;
+  const st = comboState(id);
+  if (st.open) return;   // already open (e.g. refocus after a keypress) — don't reset the query
+  st.open = true;
+  if (st.query === null) st.query = '';
+  render();
+  const n = document.getElementById(`combo-${id}`); if (n){ n.focus(); n.select(); }
+});
+document.addEventListener('focusout', e => {
+  const inp = e.target.closest('.combo-input');
+  if (!inp) return;
+  const id = inp.closest('.combo').dataset.combo;
+  const st = comboState(id);
+  st.open = false; st.query = null; st.highlight = -1;
+  render();
+});
+document.addEventListener('keydown', e => {
+  const inp = e.target.closest('.combo-input');
+  if (!inp) return;
+  const id = inp.closest('.combo').dataset.combo;
+  const st = comboState(id);
+  if (e.key === 'ArrowDown'){
+    e.preventDefault(); st.open = true; st.highlight = Math.min(st.highlight+1, st.filtered.length-1);
+    render(); const n = document.getElementById(`combo-${id}`); if (n) n.focus();
+  } else if (e.key === 'ArrowUp'){
+    e.preventDefault(); st.highlight = Math.max(st.highlight-1, 0);
+    render(); const n = document.getElementById(`combo-${id}`); if (n) n.focus();
+  } else if (e.key === 'Enter'){
+    e.preventDefault();
+    if (st.highlight >= 0 && st.filtered[st.highlight]) comboChoose(id, st.filtered[st.highlight].id);
+  } else if (e.key === 'Escape'){
+    st.open = false; st.query = null; st.highlight = -1; render(); inp.blur();
   }
 });
 
