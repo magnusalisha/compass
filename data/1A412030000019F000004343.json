@@ -1,0 +1,43 @@
+{
+ "id": "a3f9c21b74",
+ "metrc_tag": "1A412030000019F000004343",
+ "brand": "Florist Farms",
+ "strain": "Sour Stomper",
+ "form": "Preroll 0.5g (5pk)",
+ "thc": 25.32,
+ "total_terpenes": 1.3991,
+ "lean": "settling",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Unverified",
+ "reported": [
+  "Live Resin Infused",
+  "1/2 Gram Joints 5pk"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "alpha-Humulene",
+  "Limonene"
+ ],
+ "aroma": [
+  "spicy",
+  "earthy",
+  "citrus",
+  "floral",
+  "herbal"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.5876,
+  "alpha-Humulene": 0.1917,
+  "Limonene": 0.1192,
+  "beta-Myrcene": 0.1127,
+  "alpha-Bisabolol": 0.1125,
+  "Nerolidol": 0.0484,
+  "Guaiol": 0.0474,
+  "Linalool": 0.0472,
+  "Terpineol": 0.0269,
+  "Farnesene": 0.0254,
+  "Fenchol": 0.0252,
+  "beta-Pinene": 0.0171
+ }
+}
