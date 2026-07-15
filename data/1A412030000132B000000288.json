@@ -1,0 +1,35 @@
+{
+ "id": "a3f8c12e90",
+ "metrc_tag": "1A412030000132B000000288",
+ "brand": "Route 27 Hopyard LLC",
+ "strain": "Gruntz",
+ "form": "Infused Preroll 1g",
+ "thc": 43.677,
+ "total_terpenes": 0.95,
+ "lean": "settling",
+ "confidence": "faint",
+ "in_stock": true,
+ "shelf_tag": "Unverified",
+ "reported": [
+  "43.7% Total THC",
+  "Dominant terpenes: beta-Caryophyllene, alpha-Humulene"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "alpha-Humulene",
+  "Limonene"
+ ],
+ "aroma": [
+  "earthy",
+  "spicy",
+  "herbal",
+  "citrus",
+  "woody"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.46,
+  "alpha-Humulene": 0.19,
+  "Limonene": 0.15,
+  "beta-Myrcene": 0.15
+ }
+}
