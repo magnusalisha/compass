@@ -1,0 +1,35 @@
+{
+ "id": "a3f8c12e94",
+ "metrc_tag": "1A41203000016B3000000242",
+ "brand": "Canna Cure Farms LLC",
+ "strain": "White Widow",
+ "form": "Flower",
+ "thc": 22.65,
+ "total_terpenes": 0.99,
+ "lean": "settling",
+ "confidence": "faint",
+ "in_stock": true,
+ "shelf_tag": "Unverified",
+ "reported": [
+  "22.65% Total THC",
+  "0.99% Total Terpenes"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "alpha-Humulene",
+  "Limonene"
+ ],
+ "aroma": [
+  "spicy",
+  "woody",
+  "floral",
+  "citrus",
+  "earthy"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.49,
+  "alpha-Humulene": 0.18,
+  "Limonene": 0.17,
+  "Linalool": 0.15
+ }
+}
