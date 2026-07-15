@@ -1,0 +1,46 @@
+{
+ "id": "a3f82c1e9d",
+ "metrc_tag": "1A412030000019F000004894",
+ "brand": "Florist Farms",
+ "strain": "Headband",
+ "form": "Preroll 0.5g (7pk)",
+ "thc": 28.59,
+ "total_terpenes": 1.9687,
+ "lean": "settling",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Unverified",
+ "reported": [
+  "166.71 mg/dose Total Cannabinoids",
+  "Passed all safety tests"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "Limonene",
+  "alpha-Humulene"
+ ],
+ "aroma": [
+  "spicy",
+  "citrus",
+  "earthy",
+  "floral",
+  "herbal"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.6466,
+  "Limonene": 0.3697,
+  "alpha-Humulene": 0.2574,
+  "Linalool": 0.1597,
+  "alpha-Bisabolol": 0.1284,
+  "cis-Nerolidol": 0.1076,
+  "beta-Myrcene": 0.0598,
+  "Camphor": 0.0497,
+  "Terpineol": 0.0454,
+  "Caryophyllene Oxide": 0.0373,
+  "Nerolidol": 0.0364,
+  "beta-Pinene": 0.0332,
+  "Farnesene": 0.0155,
+  "Borneol": 0.0112,
+  "alpha-Pinene": 0.0108
+ }
+}
