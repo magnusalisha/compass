@@ -1,0 +1,37 @@
+{
+ "id": "a3f9c2e817",
+ "metrc_tag": "1A412030000191D000001736",
+ "brand": "HPI Canna Inc",
+ "strain": "Blue Dream",
+ "form": "Preroll 1g",
+ "thc": 29.5953,
+ "total_terpenes": 0.75,
+ "lean": "settling",
+ "confidence": "faint",
+ "in_stock": true,
+ "shelf_tag": "Unverified",
+ "reported": [
+  "Sungrown",
+  "Cured"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "Linalool",
+  "alpha-Humulene"
+ ],
+ "aroma": [
+  "floral",
+  "spicy",
+  "earthy",
+  "woody",
+  "herbal"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.28,
+  "Linalool": 0.19,
+  "alpha-Humulene": 0.11,
+  "Caryophyllene Oxide": 0.06,
+  "alpha-Bisabolol": 0.06,
+  "Farnesene": 0.05
+ }
+}
