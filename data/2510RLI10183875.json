@@ -1,0 +1,43 @@
+{
+ "id": "a3f82c1d9e",
+ "metrc_tag": "2510RLI10183875",
+ "brand": "Vireo Health",
+ "strain": "Kilimanjaro",
+ "form": "Flower 3.5g",
+ "thc": 25.89,
+ "total_terpenes": 1.5199,
+ "lean": "lifting",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Unverified",
+ "reported": [
+  "25.89% Total THC",
+  "1.52% Total Terpenes"
+ ],
+ "dominant": [
+  "Terpinolene",
+  "beta-Myrcene",
+  "beta-Caryophyllene"
+ ],
+ "aroma": [
+  "turpentine",
+  "hops",
+  "cinnamon",
+  "orange",
+  "pine"
+ ],
+ "terpenes": {
+  "Terpinolene": 0.69,
+  "beta-Myrcene": 0.21,
+  "beta-Caryophyllene": 0.14,
+  "Limonene": 0.13,
+  "beta-Pinene": 0.1,
+  "alpha-Pinene": 0.06,
+  "alpha-Humulene": 0.04,
+  "alpha-Phellandrene": 0.04,
+  "Ocimene": 0.04,
+  "Caryophyllene Oxide": 0.02,
+  "Linalool": 0.02,
+  "alpha-Terpinene": 0.02
+ }
+}
