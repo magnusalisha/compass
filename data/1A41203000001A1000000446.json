@@ -1,0 +1,40 @@
+{
+ "id": "a3f8c2e917",
+ "metrc_tag": "1A41203000001A1000000446",
+ "brand": "Jamestown Canna Company LLC",
+ "strain": "Papaya Mimosa",
+ "form": "Disposable Vape 0.5g",
+ "thc": 71.043,
+ "total_terpenes": 4.43,
+ "lean": "settling",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Unverified",
+ "reported": [
+  "71% Total THC",
+  "4.43% Total Terpenes"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "alpha-Humulene",
+  "Limonene"
+ ],
+ "aroma": [
+  "spicy",
+  "woody",
+  "citrus",
+  "floral",
+  "earthy"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 1.88,
+  "alpha-Humulene": 0.87,
+  "Limonene": 0.62,
+  "Farnesene": 0.29,
+  "beta-Myrcene": 0.19,
+  "alpha-Bisabolol": 0.18,
+  "Linalool": 0.15,
+  "alpha-Cedrene": 0.15,
+  "Guaiol": 0.11
+ }
+}
