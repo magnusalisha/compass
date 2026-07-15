@@ -1,3 +1,9 @@
+> **Superseded.** Capture now runs as a Scriptable script — see
+> [`compass-capture.js`](compass-capture.js). It does the same scan → extract → write-to-repo
+> job without the Shortcuts base64 gremlins, handles both COA PDFs and screenshots, and keys
+> each file on the Metrc tag so rescanning a jar updates it in place. This document is kept
+> for historical reference; you don't need to build the Shortcut below.
+
 # The Compass Shortcut: scan → shelf-ready, no laptop
 
 You build this by hand in the Shortcuts app, once. It's about 15 actions. Nothing can
