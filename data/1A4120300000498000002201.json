@@ -1,0 +1,41 @@
+{
+ "id": "a3f8c2e1d9",
+ "metrc_tag": "1A4120300000498000002201",
+ "brand": "Green Wells Farms",
+ "strain": "Blue Dream",
+ "form": "Preroll 1g",
+ "thc": 22.3024,
+ "total_terpenes": 0.44,
+ "lean": "settling",
+ "confidence": "faint",
+ "in_stock": true,
+ "shelf_tag": "Unverified",
+ "reported": [
+  "22.3% Total THC",
+  "Blue Dream strain"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "alpha-Pinene",
+  "alpha-Humulene"
+ ],
+ "aroma": [
+  "earthy",
+  "woody",
+  "spicy",
+  "herbal",
+  "floral"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.13,
+  "alpha-Pinene": 0.07,
+  "alpha-Humulene": 0.06,
+  "beta-Myrcene": 0.05,
+  "alpha-Bisabolol": 0.04,
+  "Linalool": 0.03,
+  "beta-Pinene": 0.03,
+  "Caryophyllene Oxide": 0.01,
+  "Limonene": 0.01,
+  "Valencene": 0.01
+ }
+}
