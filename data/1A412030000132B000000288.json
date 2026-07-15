@@ -1,5 +1,5 @@
 {
- "id": "a3f8c21b9d",
+ "id": "a3f9c21b84",
  "metrc_tag": "1A412030000132B000000288",
  "brand": "Route 27 Hopyard LLC",
  "strain": "Gruntz",
@@ -12,7 +12,7 @@
  "shelf_tag": "Unverified",
  "reported": [
   "43.7% Total THC",
-  "Dominant: beta-Caryophyllene, alpha-Humulene"
+  "0.95% Total Terpenes"
  ],
  "dominant": [
   "beta-Caryophyllene",
@@ -20,11 +20,11 @@
   "Limonene"
  ],
  "aroma": [
-  "earthy",
   "spicy",
+  "earthy",
   "citrus",
   "herbal",
-  "peppery"
+  "woody"
  ],
  "terpenes": {
   "beta-Caryophyllene": 0.46,
