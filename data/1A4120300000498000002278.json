@@ -1,0 +1,46 @@
+{
+ "id": "a3f82c19d7",
+ "metrc_tag": "1A4120300000498000002278",
+ "brand": "Green Wells Farms",
+ "strain": "Heir Heads",
+ "form": "Flower 3.5g",
+ "thc": 31.4349,
+ "total_terpenes": 2.64,
+ "lean": "settling",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Unverified",
+ "reported": [
+  "31.4% Total THC",
+  "2.64% Total Terpenes"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "Limonene",
+  "Linalool"
+ ],
+ "aroma": [
+  "spicy",
+  "citrus",
+  "floral",
+  "herbal",
+  "earthy"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.66,
+  "Limonene": 0.64,
+  "Linalool": 0.4,
+  "beta-Myrcene": 0.26,
+  "alpha-Humulene": 0.21,
+  "Farnesene": 0.09,
+  "alpha-Bisabolol": 0.09,
+  "beta-Pinene": 0.08,
+  "Terpineol": 0.06,
+  "Fenchol": 0.06,
+  "alpha-Pinene": 0.04,
+  "Caryophyllene Oxide": 0.02,
+  "Camphene": 0.01,
+  "Geraniol": 0.01,
+  "Valencene": 0.01
+ }
+}
