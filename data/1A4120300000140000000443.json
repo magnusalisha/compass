@@ -1,0 +1,28 @@
+{
+ "id": "a3f92c1d4e",
+ "metrc_tag": "1A4120300000140000000443",
+ "brand": "Basin Mixtures INC dba The Sauce",
+ "strain": "HH Wedding Cookies Lights",
+ "form": "Preroll 1g",
+ "thc": 15.709,
+ "total_terpenes": 0.07,
+ "lean": "settling",
+ "confidence": "faint",
+ "in_stock": true,
+ "shelf_tag": "Unverified",
+ "reported": [
+  "15.7% Total THC",
+  "Beta-Caryophyllene dominant"
+ ],
+ "dominant": [
+  "beta-Caryophyllene"
+ ],
+ "aroma": [
+  "earthy",
+  "spicy",
+  "woody"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.07
+ }
+}
