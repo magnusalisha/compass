@@ -1,0 +1,44 @@
+{
+ "id": "a3f7c2e910",
+ "metrc_tag": "1A412030000026D000018968",
+ "brand": "Curaleaf NY, LLC.",
+ "strain": "Northern Lights",
+ "form": "Infused Preroll 2.5g",
+ "thc": 49.6551,
+ "total_terpenes": 0.6,
+ "lean": "settling",
+ "confidence": "faint",
+ "in_stock": true,
+ "shelf_tag": "Unverified",
+ "reported": [
+  "Total THC 49.66%",
+  "Total Terpenes 0.60%"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "alpha-Humulene",
+  "Linalool"
+ ],
+ "aroma": [
+  "spicy",
+  "woody",
+  "floral",
+  "earthy",
+  "herbal"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.23,
+  "alpha-Humulene": 0.11,
+  "Linalool": 0.08,
+  "alpha-Bisabolol": 0.04,
+  "Terpineol": 0.03,
+  "Caryophyllene Oxide": 0.02,
+  "Fenchol": 0.02,
+  "beta-Myrcene": 0.02,
+  "Limonene": 0.01,
+  "Terpinolene": 0.01,
+  "Valencene": 0.01,
+  "alpha-Pinene": 0.01,
+  "beta-Pinene": 0.01
+ }
+}
