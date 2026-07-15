@@ -1,0 +1,44 @@
+{
+ "id": "a3f8c12e9b",
+ "metrc_tag": "2603RLI03141623",
+ "brand": "New York Seed Lab",
+ "strain": "PuffinZ",
+ "form": "Flower 3.5g",
+ "thc": 22.26,
+ "total_terpenes": 1.3189,
+ "lean": "mixed",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Unverified",
+ "reported": [
+  "22.26% Total THC",
+  "1.32% Total Terpenes"
+ ],
+ "dominant": [
+  "beta-Myrcene",
+  "Caryophyllene Oxide",
+  "alpha-Phellandrene"
+ ],
+ "aroma": [
+  "hops",
+  "wood",
+  "mint",
+  "cinnamon",
+  "turpentine"
+ ],
+ "terpenes": {
+  "beta-Myrcene": 0.36,
+  "Caryophyllene Oxide": 0.33,
+  "alpha-Phellandrene": 0.11,
+  "beta-Caryophyllene": 0.1,
+  "alpha-Humulene": 0.07,
+  "Terpinolene": 0.07,
+  "Linalool": 0.07,
+  "alpha-Bisabolol": 0.05,
+  "Ocimene": 0.04,
+  "alpha-Terpinene": 0.04,
+  "Farnesene": 0.04,
+  "Fenchol": 0.02,
+  "Terpineol": 0.02
+ }
+}
