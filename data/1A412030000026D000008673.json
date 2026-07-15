@@ -1,0 +1,49 @@
+{
+ "id": "a3f8c12e9b",
+ "metrc_tag": "1A412030000026D000008673",
+ "brand": "Curaleaf NY",
+ "strain": "Blue Dream",
+ "form": "Infused Preroll 5-Pack 2.5g",
+ "thc": 43.1452,
+ "total_terpenes": 0.84,
+ "lean": "mixed",
+ "confidence": "moderate",
+ "in_stock": true,
+ "shelf_tag": "Unverified",
+ "reported": [
+  "43.1% Total THC",
+  "Glass Tip Infused Pre-Roll"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "Limonene",
+  "Linalool"
+ ],
+ "aroma": [
+  "floral",
+  "citrus",
+  "spice",
+  "herbal",
+  "woody"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.13,
+  "Limonene": 0.12,
+  "Linalool": 0.1,
+  "alpha-Pinene": 0.08,
+  "beta-Myrcene": 0.08,
+  "beta-Pinene": 0.06,
+  "Terpineol": 0.04,
+  "Fenchol": 0.04,
+  "Guaiol": 0.04,
+  "alpha-Bisabolol": 0.04,
+  "alpha-Humulene": 0.04,
+  "Camphene": 0.01,
+  "Caryophyllene Oxide": 0.01,
+  "Ocimene": 0.01,
+  "Terpinolene": 0.01,
+  "Valencene": 0.01,
+  "alpha-Phellandrene": 0.01,
+  "alpha-Terpinene": 0.01
+ }
+}
