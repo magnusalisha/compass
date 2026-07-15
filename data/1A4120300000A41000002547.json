@@ -1,0 +1,40 @@
+{
+ "id": "a3f9c12e47",
+ "metrc_tag": "1A4120300000A41000002547",
+ "brand": "HV Ag Corporation",
+ "strain": "Purple Punch X",
+ "form": "Flower 3.5g",
+ "thc": null,
+ "total_terpenes": 2.06,
+ "lean": "mixed",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Unverified",
+ "reported": [
+  "citrusy lift from Limonene",
+  "earthy spice from beta-Caryophyllene"
+ ],
+ "dominant": [
+  "Limonene",
+  "beta-Caryophyllene",
+  "beta-Myrcene"
+ ],
+ "aroma": [
+  "citrus",
+  "spice",
+  "earthy",
+  "herbal",
+  "pine"
+ ],
+ "terpenes": {
+  "Limonene": 0.54,
+  "beta-Caryophyllene": 0.49,
+  "beta-Myrcene": 0.38,
+  "alpha-Humulene": 0.18,
+  "alpha-Pinene": 0.12,
+  "beta-Pinene": 0.11,
+  "Guaiol": 0.09,
+  "Linalool": 0.08,
+  "Farnesene": 0.06
+ }
+}
