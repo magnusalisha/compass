@@ -60,7 +60,8 @@
   .combo-list li.combo-empty:hover{background:none}
 
   .card{background:var(--card);color:var(--ink);border-radius:16px;padding:18px;margin-bottom:12px}
-  .card h2{font-family:Fraunces,serif;font-size:23px;font-weight:700;letter-spacing:-.01em;line-height:1.15}
+  .card.card-faint{border:1px dashed var(--warn)}
+  .card h2{font-family:Fraunces,serif;font-size:19px;font-weight:700;letter-spacing:-.01em;line-height:1.25}
   .thc{font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:19px;text-align:right;white-space:nowrap}
   .thc small{display:block;font-size:10px;color:var(--ink2);font-weight:400;letter-spacing:.08em}
   .top{display:flex;justify-content:space-between;gap:14px;align-items:flex-start}
@@ -85,14 +86,38 @@
   .read{margin-top:18px;padding-top:15px;border-top:1px dashed var(--line)}
   .read p{margin-bottom:10px;font-size:15px}
   .read p:last-child{margin-bottom:0}
+  .read-faint{opacity:.88}
+  .faint-flag{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em;
+    text-transform:uppercase;color:var(--warn);margin-bottom:9px}
+  .faint-explain{font-size:12.5px;color:var(--ink2);font-style:italic;margin-top:8px}
   .warnbox{background:#F6E3D3;border:1px solid #E0B99A;color:#7A3A1C;border-radius:10px;
     padding:12px 13px;margin-top:13px;font-size:13.5px;line-height:1.45}
   .ev{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--ink2);margin-top:7px;letter-spacing:.04em}
+  .why{margin-top:9px;font-size:12.5px;color:var(--ink2)}
+  .why summary{cursor:pointer;color:var(--ink2);font-family:'IBM Plex Mono',monospace;font-size:11px;
+    text-transform:uppercase;letter-spacing:.06em;list-style:none}
+  .why summary::-webkit-details-marker{display:none}
+  .why summary::before{content:'▸ '}
+  .why[open] summary::before{content:'▾ '}
+  .why ul{margin-top:9px;padding-left:16px}
+  .why li{margin-bottom:9px;line-height:1.45}
+  .why li:last-child{margin-bottom:0}
+  .why .ev{display:inline;margin:0 0 0 4px}
   .match{font-family:'IBM Plex Mono',monospace;font-size:13px;color:#3D6B4F;margin-top:12px;font-weight:500}
   .acts{display:flex;gap:18px;margin-top:13px;padding-top:12px;border-top:1px dashed var(--line)}
   .acts button{background:none;border:none;padding:0;color:var(--ink2);font:500 13.5px Inter,sans-serif;cursor:pointer}
   .acts button:hover{color:var(--ink)}
   .empty{color:var(--dim);text-align:center;padding:34px 14px;font-size:15px}
+  .lookup-list{display:flex;flex-direction:column;gap:8px}
+  .lookup-row{display:flex;justify-content:space-between;align-items:baseline;gap:10px;
+    background:var(--card);color:var(--ink);border:none;border-radius:12px;padding:14px 16px;
+    font:inherit;text-align:left;cursor:pointer;width:100%}
+  .lookup-row:hover{background:var(--card2)}
+  .lookup-strain{font-family:Fraunces,serif;font-weight:700;font-size:15.5px}
+  .lookup-brand{color:var(--ink2);font-size:13px;white-space:nowrap;flex:none}
+  .lookup-back{background:none;border:none;color:var(--pale);font:600 13.5px Inter,sans-serif;
+    cursor:pointer;padding:0;margin-bottom:12px;display:block}
+  .lookup-back:hover{color:#fff}
   .foot{margin-top:26px;color:var(--dim);font-family:'IBM Plex Mono',monospace;font-size:11px;line-height:1.6}
   .flash{background:#33473A;border:1px solid #48604F;color:var(--pale);border-radius:10px;
     padding:11px 13px;margin-bottom:14px;font-size:13px}
@@ -108,6 +133,7 @@
   <button role="tab" data-tab="effect" aria-selected="true">Match by effect</button>
   <button role="tab" data-tab="similar" aria-selected="false">Find similar</button>
   <button role="tab" data-tab="compare" aria-selected="false">Compare</button>
+  <button role="tab" data-tab="lookup" aria-selected="false">Lookup</button>
 </div>
 <label class="stockrow"><input type="checkbox" id="oos"> Include out-of-stock items</label>
 <div id="panel"></div>
@@ -168,6 +194,12 @@ const MEDICAL = ['anxiety','anxious','depress','pain','insomnia','ptsd','adhd','
 const $ = s => document.querySelector(s);
 const short = t => t.replace('beta-','').replace('alpha-','').replace('gamma-','');
 const col = t => COLOR[t] ? `var(${COLOR[t]})` : 'var(--etc)';
+// The extraction step asks the model for "10 random hex chars" as `id` — in
+// practice that's low-entropy and collides a lot at real scale (two totally
+// different products can share the same `id`). A file's own name in the repo
+// is unique by construction, so that's the real identity; `key()` prefers it
+// and only falls back to `id` for the embedded seed, which has no filename.
+const key = p => p._key || p.id;
 let DATA = [
  {
   "id": "106526f0b3",
@@ -623,7 +655,8 @@ let DATA = [
   },
   "in_stock": true
  }
-], tab = 'effect', a = null, b = null, sel = null, flash = '', effCat = 'All', simCat = 'All';
+], tab = 'effect', a = null, b = null, sel = null, flash = '', effCat = 'All', simCat = 'All',
+  lookupQ = '', lookupSel = null;
 
 // Stock status lives on the device. Product data lives in the repo.
 // (This is why the old build couldn't save: sandboxes block storage. Real hosting doesn't.)
@@ -635,7 +668,7 @@ function setStock(id, val){
   try { localStorage.setItem('fp_stock', JSON.stringify(OVERRIDES)); } catch(e){}
   render();
 }
-const stocked = p => OVERRIDES[p.id] !== undefined ? OVERRIDES[p.id] : p.in_stock;
+const stocked = p => OVERRIDES[key(p)] !== undefined ? OVERRIDES[key(p)] : p.in_stock;
 const pool = () => DATA.filter(p => $('#oos').checked || stocked(p));
 
 function vec(p){ const t = p.total_terpenes || 1, o = {};
@@ -656,9 +689,12 @@ function ev(p){
   const es = p.dominant.map(k => REPORTED[k] && REPORTED[k][1]).filter(Boolean);
   return es.length ? Math.max(...es) : 1;
 }
-function evNote(p){
-  const k = p.dominant.find(k => REPORTED[k] && REPORTED[k][1] === ev(p));
-  return k ? REPORTED[k][2] : '';
+// the explanation: which dominant terpenes drive the read, and what that rests on
+function whyHTML(p){
+  const rows = p.dominant.map(k => REPORTED[k] ? [k, ...REPORTED[k]] : null).filter(Boolean);
+  if (!rows.length) return '';
+  return `<details class="why"><summary>Why?</summary><ul>${rows.map(([k, phrase, strength, mech]) =>
+    `<li><b>${short(k)}</b> → ${phrase} <span class="ev">${dots(strength)}</span><br>${mech}</li>`).join('')}</ul></details>`;
 }
 // the "evaporated" story is a flower/preroll thing — an edible reads faint
 // because it's naturally low in terpenes, not because it's stale. Extraction
@@ -678,22 +714,24 @@ function stack(p){
     <div class="chips">${e.slice(0,3).map(([k,v]) => `<span><b style="background:${col(k)}"></b>${short(k).toLowerCase()} ${v}%</span>`).join('')}</div>`;
 }
 function card(p, extra=''){
-  return `<div class="card">
+  const faint = p.confidence === 'faint';
+  return `<div class="card${faint ? ' card-faint' : ''}">
     <div class="top">
       <div><h2>${p.strain}</h2><div class="tag">${p.form.split(' ')[0]}</div>
         <div style="font-size:13px;color:var(--ink2);margin-top:6px">${p.brand}${stocked(p)?'':' · out of stock'}</div></div>
       <div class="thc">${p.thc}%<small>THC</small></div>
     </div>
     ${stack(p)}
-    ${p.confidence === 'faint'
-      ? `<div class="warnbox">⚠ ${faintNote(p)}</div>`
-      : `<div class="read" style="border-top:none;padding-top:12px;margin-top:12px">
-           <p style="font-size:14px;color:var(--ink2)">Can read as <b>${says(p)}</b>.</p>
-           <p class="ev" title="${evNote(p)}">${dots(ev(p))} evidence · ${ev(p)===3?'real mechanism':ev(p)===2?'some human data':'folklore — trust your nose over this'}</p>
-         </div>`}
+    <div class="read${faint ? ' read-faint' : ''}" style="border-top:none;padding-top:12px;margin-top:12px">
+      ${faint ? `<p class="faint-flag">⚠ Low-confidence guess — terpenes are faint here, trust your nose</p>` : ''}
+      <p style="font-size:14px;color:var(--ink2)">Can read as <b>${says(p)}</b>.</p>
+      <p class="ev">${dots(ev(p))} evidence · ${ev(p)===3?'real mechanism':ev(p)===2?'some human data':'folklore — trust your nose over this'}</p>
+      ${whyHTML(p)}
+      ${faint ? `<p class="faint-explain">${faintNote(p)}</p>` : ''}
+    </div>
     ${extra}
     <div class="acts">
-      <button onclick="setStock('${p.id}', ${!stocked(p)})">${stocked(p) ? 'Mark out of stock' : 'Back in stock'}</button>
+      <button onclick="setStock('${key(p)}', ${!stocked(p)})">${stocked(p) ? 'Mark out of stock' : 'Back in stock'}</button>
     </div>
   </div>`;
 }
@@ -759,32 +797,48 @@ function compare(x, y){
   </div>`;
 }
 
-function categoryButtons(key, current){
-  return `<div class="catseg" data-catkey="${key}">${CATEGORIES.map(c =>
+function categoryButtons(catKey, current){
+  return `<div class="catseg" data-catkey="${catKey}">${CATEGORIES.map(c =>
     `<button type="button" class="${c===current?'active':''}" data-cat="${c}">${c}</button>`).join('')}</div>`;
 }
 
 // ── reusable searchable combobox: filters a product list by strain or brand.
 // One instance per `id` (e.g. 'a', 'b', 'similar'); state persists across re-renders.
+//
+// The <input> node is mounted ONCE by comboShellHTML (called only from the full
+// render(), on tab switch / selection / category change — never on keystroke).
+// Typing only replaces the .combo-list-holder's contents via updateComboList().
+// Destroying and recreating a focused input on every keystroke is exactly the
+// bug reported in round 3 (search "can't be typed into") — never do that again.
 let COMBO = {};
 const comboState = id => COMBO[id] || (COMBO[id] = {query: null, open: false, highlight: -1, filtered: []});
 const comboLabel = p => p ? `${p.strain} (${p.brand})` : '';
+const comboSelectedId = id => id === 'similar' ? sel : id === 'a' ? a : b;
+const comboSelectedProduct = id => DATA.find(p => key(p) === comboSelectedId(id));
 
-function comboHTML(id, list, selectedId){
+function comboListHTML(id, list){
   const st = comboState(id);
-  const shown = st.query !== null ? st.query : comboLabel(list.find(p => p.id === selectedId));
-  const q = shown.toLowerCase().trim();
-  const filtered = st.open
-    ? list.filter(p => p.strain.toLowerCase().includes(q) || p.brand.toLowerCase().includes(q)).slice(0,8)
-    : [];
+  if (!st.open) return '';
+  const q = (st.query || '').toLowerCase().trim();
+  // plain case-insensitive substring match on strain + brand — no fuzzy scoring,
+  // no fallback to a stale/previous result. Zero matches means "no matches," full stop.
+  const filtered = list.filter(p => (p.strain + ' ' + p.brand).toLowerCase().includes(q));
   st.filtered = filtered;
+  if (!filtered.length) return `<ul class="combo-list"><li class="combo-empty">No matches found</li></ul>`;
+  return `<ul class="combo-list">${filtered.map((p,i) => `<li data-id="${key(p)}" class="${i===st.highlight?'hl':''}">${p.strain} <span>${p.brand}</span></li>`).join('')}</ul>`;
+}
+function comboShellHTML(id, list, selectedId){
+  const st = comboState(id);
+  const shown = st.query !== null ? st.query : comboLabel(list.find(p => key(p) === selectedId));
   return `<div class="combo" data-combo="${id}">
     <input type="text" class="combo-input" id="combo-${id}" autocomplete="off"
       placeholder="Search strain or brand…" value="${shown.replace(/"/g,'&quot;')}">
-    ${st.open ? (filtered.length
-        ? `<ul class="combo-list">${filtered.map((p,i) => `<li data-id="${p.id}" class="${i===st.highlight?'hl':''}">${p.strain} <span>${p.brand}</span></li>`).join('')}</ul>`
-        : `<ul class="combo-list"><li class="combo-empty">No match</li></ul>`) : ''}
+    <div class="combo-list-holder">${comboListHTML(id, list)}</div>
   </div>`;
+}
+function updateComboList(id){
+  const holder = document.querySelector(`[data-combo="${id}"] .combo-list-holder`);
+  if (holder) holder.innerHTML = comboListHTML(id, pool());
 }
 function comboChoose(id, productId){
   const st = comboState(id);
@@ -792,7 +846,7 @@ function comboChoose(id, productId){
   if (id === 'similar') sel = productId;
   else if (id === 'a') a = productId;
   else if (id === 'b') b = productId;
-  render();
+  render();   // a real selection, not a keystroke — safe to fully rebuild
 }
 
 function render(){
@@ -802,58 +856,21 @@ function render(){
   const banner = flash ? `<div class="flash">${flash}</div>` : '';
 
   if (tab === 'effect'){
-    const rawQ = (window._q||'').toLowerCase().trim();
-    const detected = detectCategoryWord(rawQ);
-    const activeCat = effCat !== 'All' ? effCat : (detected || 'All');   // explicit button wins; text is a bonus
-
-    P.innerHTML = banner + categoryButtons('effCat', activeCat)
+    // mount the shell ONCE per render(); typing updates results only, via
+    // renderEffectResults() — never touches this <input> node (see combo comment above)
+    P.innerHTML = banner + categoryButtons('effCat', effCat)
       + `<input type="text" id="q" placeholder='e.g. "relaxing but not sleepy" or "social preroll"' value="${window._q||''}">`;
-
-    const med = MEDICAL.find(m => rawQ.includes(m));
-    if (med){
-      O.innerHTML = `<div class="card"><div class="warnbox" style="margin:0">I can't match on medical conditions — that's not a claim this tool is allowed to make, or one the science supports. Try describing the <b>feeling</b> instead: "relaxed but clear-headed", "energetic", "mellow".</div></div>`;
-      return foot();
-    }
-
-    const scoped = list.filter(p => activeCat === 'All' || category(p) === activeCat);
-    if (!rawQ){
-      O.innerHTML = scoped.length ? scoped.map(p => card(p)).join('') : `<div class="empty">Nothing ${activeCat === 'All' ? '' : activeCat.toLowerCase()+' '}on the shelf.</div>`;
-      return foot();
-    }
-
-    // strip a recognized category word so it doesn't get parsed as an effect keyword
-    const qClean = detected ? rawQ.replace(CATEGORY_WORDS.find(([re]) => re.test(rawQ))[0], ' ').replace(/\s+/g,' ').trim() : rawQ;
-
-    const [pos, neg] = [[], []];
-    qClean.split(/\bbut\b|,|\band\b/).forEach(part => {
-      const negated = /\bnot\b|\bwithout\b|\bno\b/.test(part);
-      Object.entries(WANT).forEach(([kw, ts]) => {
-        if (part.includes(kw)) ts.forEach(t => (negated ? neg : pos).push(t));
-      });
-    });
-    if (!pos.length && !neg.length){ O.innerHTML = `<div class="empty">Nothing matched “${rawQ}”. Try words like relaxed, energetic, focused, mellow, sleepy, social.</div>`; return foot(); }
-
-    const scored = scoped.map(p => {
-      const v = vec(p);
-      let s = pos.reduce((t,k) => t + (v[k]||0), 0) - neg.reduce((t,k) => t + (v[k]||0)*1.4, 0);
-      if (p.confidence === 'faint') s *= 0.45;   // faded profiles don't get to win
-      return [s, p];
-    }).filter(([s]) => s > 0.02).sort((m,n) => n[0]-m[0]);
-
-    O.innerHTML = scored.length
-      ? scored.slice(0,6).map(([,p]) => card(p)).join('')
-      : `<div class="empty">Nothing on the shelf fits that. Saying so is better than a bad substitution.</div>`;
-    return foot();
+    return renderEffectResults();
   }
 
   if (tab === 'similar'){
-    sel = sel && list.some(p=>p.id===sel) ? sel : (list[0]||{}).id;
-    P.innerHTML = banner + comboHTML('similar', list, sel) + categoryButtons('simCat', simCat);
-    const p = DATA.find(x => x.id === sel);
+    sel = sel && list.some(p=>key(p)===sel) ? sel : key(list[0]||{});
+    P.innerHTML = banner + comboShellHTML('similar', list, sel) + categoryButtons('simCat', simCat);
+    const p = DATA.find(x => key(x) === sel);
     if (!p){ O.innerHTML = `<div class="empty">Nothing in stock.</div>`; return foot(); }
 
     // category filter narrows the *results* only — the source product is unaffected
-    const candidates = DATA.filter(x => x.id !== p.id && ($('#oos').checked || stocked(x))
+    const candidates = DATA.filter(x => key(x) !== key(p) && ($('#oos').checked || stocked(x))
       && (simCat === 'All' || category(x) === simCat));
     if (!candidates.length){
       O.innerHTML = `<div class="empty">Nothing ${simCat === 'All' ? '' : simCat.toLowerCase()+' '}on the shelf to compare against.</div>`;
@@ -868,13 +885,96 @@ function render(){
     return foot();
   }
 
+  if (tab === 'lookup'){
+    P.innerHTML = banner + `<input type="text" id="lookupQ" placeholder="Type a strain or brand…" value="${lookupQ.replace(/"/g,'&quot;')}">`;
+    return renderLookupResults();
+  }
+
   // compare
-  a = a && list.some(p=>p.id===a) ? a : (list[0]||{}).id;
-  b = b && list.some(p=>p.id===b) ? b : (list[1]||{}).id;
-  P.innerHTML = banner + `<div class="pair">${comboHTML('a', list, a)}${comboHTML('b', list, b)}</div>`;
-  const x = DATA.find(p => p.id === a), y = DATA.find(p => p.id === b);
+  a = a && list.some(p=>key(p)===a) ? a : key(list[0]||{});
+  b = b && list.some(p=>key(p)===b) ? b : key(list[1]||{});
+  P.innerHTML = banner + `<div class="pair">${comboShellHTML('a', list, a)}${comboShellHTML('b', list, b)}</div>`;
+  const x = DATA.find(p => key(p) === a), y = DATA.find(p => key(p) === b);
   O.innerHTML = (x && y && x !== y) ? compare(x, y) : `<div class="empty">Pick two different products.</div>`;
   foot();
+}
+
+// ── effect-tab results only: called on every keystroke AND on full render().
+// Must never touch #q or the category buttons' DOM nodes wholesale — only
+// toggle their .active class and rewrite #out. (Root cause of round-3 bugs
+// #1/#2/#3: rebuilding an input on every keystroke kills focus mid-type.)
+function renderEffectResults(){
+  const O = $('#out');
+  const rawQ = (window._q||'').toLowerCase().trim();
+  const detected = detectCategoryWord(rawQ);
+  const activeCat = effCat !== 'All' ? effCat : (detected || 'All');   // explicit button wins; text is a bonus
+
+  document.querySelectorAll('[data-catkey="effCat"] button').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.cat === activeCat);
+  });
+
+  const med = MEDICAL.find(m => rawQ.includes(m));
+  if (med){
+    O.innerHTML = `<div class="card"><div class="warnbox" style="margin:0">I can't match on medical conditions — that's not a claim this tool is allowed to make, or one the science supports. Try describing the <b>feeling</b> instead: "relaxed but clear-headed", "energetic", "mellow".</div></div>`;
+    return foot();
+  }
+
+  const list = pool();
+  const scoped = list.filter(p => activeCat === 'All' || category(p) === activeCat);
+  if (!rawQ){
+    O.innerHTML = scoped.length ? scoped.map(p => card(p)).join('') : `<div class="empty">Nothing ${activeCat === 'All' ? '' : activeCat.toLowerCase()+' '}on the shelf.</div>`;
+    return foot();
+  }
+
+  // strip a recognized category word so it doesn't get parsed as an effect keyword
+  const qClean = detected ? rawQ.replace(CATEGORY_WORDS.find(([re]) => re.test(rawQ))[0], ' ').replace(/\s+/g,' ').trim() : rawQ;
+
+  const [pos, neg] = [[], []];
+  qClean.split(/\bbut\b|,|\band\b/).forEach(part => {
+    const negated = /\bnot\b|\bwithout\b|\bno\b/.test(part);
+    Object.entries(WANT).forEach(([kw, ts]) => {
+      if (part.includes(kw)) ts.forEach(t => (negated ? neg : pos).push(t));
+    });
+  });
+  if (!pos.length && !neg.length){ O.innerHTML = `<div class="empty">Nothing matched “${rawQ}”. Try words like relaxed, energetic, focused, mellow, sleepy, social.</div>`; return foot(); }
+
+  const scored = scoped.map(p => {
+    const v = vec(p);
+    let s = pos.reduce((t,k) => t + (v[k]||0), 0) - neg.reduce((t,k) => t + (v[k]||0)*1.4, 0);
+    if (p.confidence === 'faint') s *= 0.45;   // faded profiles don't get to win
+    return [s, p];
+  }).filter(([s]) => s > 0.02).sort((m,n) => n[0]-m[0]);
+
+  O.innerHTML = scored.length
+    ? scored.slice(0,6).map(([,p]) => card(p)).join('')
+    : `<div class="empty">Nothing on the shelf fits that. Saying so is better than a bad substitution.</div>`;
+  return foot();
+}
+
+// ── lookup: type → matching list → tap one → full card (reuses card()).
+// Search covers whatever the in-stock toggle currently scopes to, same as
+// every other tab. Typing (see the #lookupQ input handler) clears lookupSel
+// so a fresh keystroke means "search again" — this function must NOT clear it
+// itself, since it also runs right after a selection is made.
+function renderLookupResults(){
+  const O = $('#out');
+  if (lookupSel){
+    const p = DATA.find(x => key(x) === lookupSel);
+    if (p){
+      O.innerHTML = `<button type="button" class="lookup-back" data-lookup-back="1">‹ Back to search</button>` + card(p);
+      return foot();
+    }
+    lookupSel = null;
+  }
+  const q = lookupQ.trim().toLowerCase();
+  if (!q){ O.innerHTML = `<div class="empty">Type a strain or brand to look it up.</div>`; return foot(); }
+  const matches = pool().filter(p => (p.strain + ' ' + p.brand).toLowerCase().includes(q));
+  O.innerHTML = matches.length
+    ? `<div class="lookup-list">${matches.map(p => `<button type="button" class="lookup-row" data-lookup-id="${key(p)}">
+         <span class="lookup-strain">${p.strain}</span><span class="lookup-brand">${p.brand}${stocked(p)?'':' · out of stock'}</span>
+       </button>`).join('')}</div>`
+    : `<div class="empty">No matches found.</div>`;
+  return foot();
 }
 function foot(){
   $('#foot').innerHTML = `${DATA.length} products · ${DATA.filter(stocked).length} in stock<br>
@@ -889,30 +989,32 @@ document.addEventListener('click', e => {
 
   const c = e.target.closest('.catseg button');
   if (c){
-    const key = c.closest('.catseg').dataset.catkey;
-    if (key === 'effCat') effCat = c.dataset.cat;
-    if (key === 'simCat') simCat = c.dataset.cat;
+    const catKey = c.closest('.catseg').dataset.catkey;
+    if (catKey === 'effCat') effCat = c.dataset.cat;
+    if (catKey === 'simCat') simCat = c.dataset.cat;
     render();
+    return;
   }
+
+  const row = e.target.closest('.lookup-row');
+  if (row){ lookupSel = row.dataset.lookupId; renderLookupResults(); return; }
+  const back = e.target.closest('[data-lookup-back]');
+  if (back){ lookupSel = null; renderLookupResults(); }
 });
 document.addEventListener('change', e => {
   if (e.target.id === 'oos') render();
 });
 document.addEventListener('input', e => {
-  if (e.target.id === 'q'){
-    window._q = e.target.value;
-    const pos = e.target.selectionStart;
-    render();
-    const n = $('#q'); if (n){ n.focus(); n.setSelectionRange(pos, pos); }
-  }
+  // Each of these updates ONLY the results below its input — the input node
+  // itself is never touched, so focus and cursor position are never at risk.
+  if (e.target.id === 'q'){ window._q = e.target.value; renderEffectResults(); return; }
+  if (e.target.id === 'lookupQ'){ lookupQ = e.target.value; lookupSel = null; renderLookupResults(); return; }
   const inp = e.target.closest('.combo-input');
   if (inp){
     const id = inp.closest('.combo').dataset.combo;
     const st = comboState(id);
     st.query = inp.value; st.open = true; st.highlight = -1;
-    const pos = inp.selectionStart;
-    render();
-    const n = document.getElementById(`combo-${id}`); if (n){ n.focus(); n.setSelectionRange(pos, pos); }
+    updateComboList(id);
   }
 });
 
@@ -929,10 +1031,9 @@ document.addEventListener('focusin', e => {
   const id = inp.closest('.combo').dataset.combo;
   const st = comboState(id);
   if (st.open) return;   // already open (e.g. refocus after a keypress) — don't reset the query
-  st.open = true;
-  if (st.query === null) st.query = '';
-  render();
-  const n = document.getElementById(`combo-${id}`); if (n){ n.focus(); n.select(); }
+  st.open = true; st.query = ''; st.highlight = -1;
+  inp.value = '';         // clear to search fresh; direct DOM write, no re-render
+  updateComboList(id);
 });
 document.addEventListener('focusout', e => {
   const inp = e.target.closest('.combo-input');
@@ -940,7 +1041,8 @@ document.addEventListener('focusout', e => {
   const id = inp.closest('.combo').dataset.combo;
   const st = comboState(id);
   st.open = false; st.query = null; st.highlight = -1;
-  render();
+  inp.value = comboLabel(comboSelectedProduct(id));   // revert to the current selection's label
+  updateComboList(id);
 });
 document.addEventListener('keydown', e => {
   const inp = e.target.closest('.combo-input');
@@ -949,15 +1051,18 @@ document.addEventListener('keydown', e => {
   const st = comboState(id);
   if (e.key === 'ArrowDown'){
     e.preventDefault(); st.open = true; st.highlight = Math.min(st.highlight+1, st.filtered.length-1);
-    render(); const n = document.getElementById(`combo-${id}`); if (n) n.focus();
+    updateComboList(id);
   } else if (e.key === 'ArrowUp'){
     e.preventDefault(); st.highlight = Math.max(st.highlight-1, 0);
-    render(); const n = document.getElementById(`combo-${id}`); if (n) n.focus();
+    updateComboList(id);
   } else if (e.key === 'Enter'){
     e.preventDefault();
-    if (st.highlight >= 0 && st.filtered[st.highlight]) comboChoose(id, st.filtered[st.highlight].id);
+    if (st.highlight >= 0 && st.filtered[st.highlight]) comboChoose(id, key(st.filtered[st.highlight]));
   } else if (e.key === 'Escape'){
-    st.open = false; st.query = null; st.highlight = -1; render(); inp.blur();
+    st.open = false; st.query = null; st.highlight = -1;
+    inp.value = comboLabel(comboSelectedProduct(id));
+    updateComboList(id);
+    inp.blur();
   }
 });
 
@@ -965,7 +1070,11 @@ document.addEventListener('keydown', e => {
   if (GH_USER && GH_REPO){
     try{
       const idx = await fetch(`https://api.github.com/repos/${GH_USER}/${GH_REPO}/contents/data`).then(r=>r.json());
-      const files = await Promise.all(idx.filter(f=>f.name.endsWith('.json')).map(f=>fetch(f.download_url).then(r=>r.json())));
+      const files = await Promise.all(idx.filter(f=>f.name.endsWith('.json')).map(async f => {
+        const p = await fetch(f.download_url).then(r=>r.json());
+        p._key = f.name.replace(/\.json$/, '');   // the repo filename is unique by construction; the record's own `id` isn't guaranteed to be
+        return p;
+      }));
       if (files.length) DATA = files;
     }catch(err){ flash = 'Using built-in data — couldn\'t reach the repo.'; }
   }
