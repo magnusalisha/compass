@@ -1,0 +1,44 @@
+{
+ "id": "a3f8c2e719",
+ "metrc_tag": "1A412030000026D000007045",
+ "brand": "Curaleaf NY, LLC.",
+ "strain": "Tangie Dream",
+ "form": "Infused Preroll 1g",
+ "thc": 48.7926,
+ "total_terpenes": 1,
+ "lean": "settling",
+ "confidence": "moderate",
+ "in_stock": true,
+ "shelf_tag": "Unverified",
+ "reported": [
+  "Glass tip infused pre-roll",
+  "Enhanced pre-roll for medical use"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "Linalool",
+  "Guaiol"
+ ],
+ "aroma": [
+  "floral",
+  "earthy",
+  "spicy",
+  "woody",
+  "herbal"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.31,
+  "Linalool": 0.2,
+  "Guaiol": 0.09,
+  "alpha-Bisabolol": 0.09,
+  "alpha-Humulene": 0.07,
+  "Caryophyllene Oxide": 0.06,
+  "Limonene": 0.04,
+  "Terpineol": 0.03,
+  "Fenchol": 0.03,
+  "beta-Myrcene": 0.03,
+  "beta-Pinene": 0.03,
+  "Valencene": 0.01,
+  "alpha-Pinene": 0.01
+ }
+}
