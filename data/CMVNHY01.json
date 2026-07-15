@@ -1,0 +1,31 @@
+{
+ "id": "a3f8c2e1b9",
+ "metrc_tag": "CMVNHY01",
+ "brand": "Empire Standard LLC",
+ "strain": "CM-VNHY-01",
+ "form": "Infused Pre-roll 0.5g",
+ "thc": 30.668,
+ "total_terpenes": 0.61,
+ "lean": "settling",
+ "confidence": "faint",
+ "in_stock": true,
+ "shelf_tag": "Unverified",
+ "reported": [
+  "30.67% Total THC",
+  "0.61% Total Terpenes"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "alpha-Humulene"
+ ],
+ "aroma": [
+  "earthy",
+  "woody",
+  "spicy",
+  "herbal"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.43,
+  "alpha-Humulene": 0.18
+ }
+}
