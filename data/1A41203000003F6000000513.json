@@ -1,0 +1,42 @@
+{
+ "id": "a3f92c1b4e",
+ "metrc_tag": "1A41203000003F6000000513",
+ "brand": "SMARTBUD",
+ "strain": "Crunch Berries",
+ "form": "Flower 3.5g",
+ "thc": 28.552,
+ "total_terpenes": 1.61,
+ "lean": "mixed",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Unverified",
+ "reported": [
+  "28.55% Total THC",
+  "1.61% Total Terpenes"
+ ],
+ "dominant": [
+  "Linalool",
+  "beta-Caryophyllene",
+  "Limonene"
+ ],
+ "aroma": [
+  "floral",
+  "citrus",
+  "spice",
+  "herbal",
+  "earthy"
+ ],
+ "terpenes": {
+  "Linalool": 0.4,
+  "beta-Caryophyllene": 0.25,
+  "Limonene": 0.27,
+  "Farnesene": 0.1,
+  "alpha-Humulene": 0.08,
+  "Terpineol": 0.08,
+  "beta-Pinene": 0.07,
+  "Fenchol": 0.07,
+  "trans-Nerolidol": 0.07,
+  "beta-Myrcene": 0.17,
+  "Alpha-cedrene": 0.05
+ }
+}
