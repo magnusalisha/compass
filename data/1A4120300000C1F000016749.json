@@ -1,0 +1,38 @@
+{
+ "id": "a3f82c1e9b",
+ "metrc_tag": "1A4120300000C1F000016749",
+ "brand": "Vireo Health of New York LLC",
+ "strain": "Sky Fire OG",
+ "form": "Flower 3.5g",
+ "thc": 25.3496,
+ "total_terpenes": 1.72,
+ "lean": "settling",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Unverified",
+ "reported": [
+  "Indoor grown",
+  "Large Bud"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "alpha-Humulene",
+  "Limonene"
+ ],
+ "aroma": [
+  "earthy",
+  "spicy",
+  "citrus",
+  "herbal",
+  "floral"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.68,
+  "alpha-Humulene": 0.29,
+  "Limonene": 0.28,
+  "beta-Myrcene": 0.27,
+  "Linalool": 0.1,
+  "alpha-Bisabolol": 0.06,
+  "Fenchol": 0.04
+ }
+}
