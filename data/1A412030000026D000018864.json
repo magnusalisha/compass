@@ -1,0 +1,45 @@
+{
+ "id": "a3f82c1d9e",
+ "metrc_tag": "1A412030000026D000018864",
+ "brand": "Curaleaf NY, LLC.",
+ "strain": "Jack Herer",
+ "form": "Infused Preroll 1g",
+ "thc": 48.6295,
+ "total_terpenes": 1.07,
+ "lean": "mixed",
+ "confidence": "moderate",
+ "in_stock": true,
+ "shelf_tag": "Unverified",
+ "reported": [
+  "Total THC 48.63%",
+  "Total Terpenes 1.07%"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "alpha-Humulene",
+  "Terpinolene"
+ ],
+ "aroma": [
+  "spicy",
+  "woody",
+  "citrus",
+  "floral",
+  "herbal"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.38,
+  "alpha-Humulene": 0.17,
+  "Terpinolene": 0.12,
+  "Limonene": 0.1,
+  "Linalool": 0.1,
+  "Fenchol": 0.05,
+  "Terpineol": 0.04,
+  "Caryophyllene Oxide": 0.02,
+  "Valencene": 0.02,
+  "alpha-Bisabolol": 0.02,
+  "beta-Myrcene": 0.02,
+  "alpha-Phellandrene": 0.01,
+  "alpha-Pinene": 0.01,
+  "beta-Pinene": 0.01
+ }
+}
