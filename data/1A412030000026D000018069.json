@@ -1,0 +1,42 @@
+{
+ "id": "a3f8c2e91b",
+ "metrc_tag": "1A412030000026D000018069",
+ "brand": "Curaleaf NY",
+ "strain": "Rocket Glare",
+ "form": "Infused Preroll 1g",
+ "thc": 47.5632,
+ "total_terpenes": 1.1,
+ "lean": "mixed",
+ "confidence": "moderate",
+ "in_stock": true,
+ "shelf_tag": "Unverified",
+ "reported": [
+  "Total THC 47.56%",
+  "Total Terpenes 1.10%"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "Limonene",
+  "alpha-Pinene"
+ ],
+ "aroma": [
+  "spicy",
+  "citrus",
+  "piney",
+  "earthy",
+  "woody"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.2,
+  "Limonene": 0.17,
+  "alpha-Pinene": 0.14,
+  "alpha-Humulene": 0.13,
+  "beta-Myrcene": 0.12,
+  "beta-Pinene": 0.1,
+  "Guaiol": 0.06,
+  "Terpineol": 0.05,
+  "Terpinolene": 0.05,
+  "Fenchol": 0.04,
+  "alpha-Bisabolol": 0.04
+ }
+}
