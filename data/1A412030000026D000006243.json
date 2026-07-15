@@ -1,0 +1,46 @@
+{
+ "id": "a3f8c21b9e",
+ "metrc_tag": "1A412030000026D000006243",
+ "brand": "Curaleaf NY, LLC.",
+ "strain": "Boogie Wuggie",
+ "form": "Flower 3.5g",
+ "thc": 34.1222,
+ "total_terpenes": 1.87,
+ "lean": "settling",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Unverified",
+ "reported": [
+  "Total THC 34.1%",
+  "Total Terpenes 1.87%"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "Limonene",
+  "Linalool"
+ ],
+ "aroma": [
+  "spicy",
+  "citrus",
+  "floral",
+  "earthy",
+  "woody"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.44,
+  "Limonene": 0.4,
+  "Linalool": 0.29,
+  "alpha-Humulene": 0.14,
+  "beta-Myrcene": 0.14,
+  "alpha-Bisabolol": 0.12,
+  "Guaiol": 0.11,
+  "beta-Pinene": 0.07,
+  "Terpineol": 0.04,
+  "Fenchol": 0.04,
+  "alpha-Pinene": 0.03,
+  "Caryophyllene Oxide": 0.02,
+  "Camphene": 0.01,
+  "Geraniol": 0.01,
+  "Valencene": 0.01
+ }
+}
