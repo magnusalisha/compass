@@ -146,6 +146,8 @@ const CATEGORY_RULES = [
 ];
 const category = p => (CATEGORY_RULES.find(([re]) => re.test(p.form)) || [,'Flower'])[1];
 const CATEGORIES = ['All', 'Flower', 'Preroll'];
+// not a UI filter category (yet) — just enough to pick honest fallback copy below
+const isEdible = p => /gummy|edible|chocolate|beverage|tincture|capsule/i.test(p.form);
 // lets "social preroll" in the effect box auto-apply the Preroll filter
 const CATEGORY_WORDS = [[/\bprerolls?\b/, 'Preroll'], [/\bflowers?\b/, 'Flower']];
 const detectCategoryWord = q => (CATEGORY_WORDS.find(([re]) => re.test(q)) || [])[1] || null;
@@ -658,6 +660,16 @@ function evNote(p){
   const k = p.dominant.find(k => REPORTED[k] && REPORTED[k][1] === ev(p));
   return k ? REPORTED[k][2] : '';
 }
+// the "evaporated" story is a flower/preroll thing — an edible reads faint
+// because it's naturally low in terpenes, not because it's stale. Extraction
+// always writes a note (see SHORTCUT.md), so this is only a fallback for
+// hand-edited or older records.
+function faintNote(p){
+  if (p.note) return p.note;
+  return isEdible(p)
+    ? "Terpene content this low is normal for this form — it's not a sign of age, there's just not enough here to read a character off of. Read the label, not this profile."
+    : "Low total terpenes and mostly heavy sesquiterpenes — the volatile ones have likely evaporated. Read the label, not this profile.";
+}
 
 function stack(p){
   const e = Object.entries(p.terpenes).filter(([,v]) => v>0);
@@ -674,7 +686,7 @@ function card(p, extra=''){
     </div>
     ${stack(p)}
     ${p.confidence === 'faint'
-      ? `<div class="warnbox">⚠ ${p.note}</div>`
+      ? `<div class="warnbox">⚠ ${faintNote(p)}</div>`
       : `<div class="read" style="border-top:none;padding-top:12px;margin-top:12px">
            <p style="font-size:14px;color:var(--ink2)">Can read as <b>${says(p)}</b>.</p>
            <p class="ev" title="${evNote(p)}">${dots(ev(p))} evidence · ${ev(p)===3?'real mechanism':ev(p)===2?'some human data':'folklore — trust your nose over this'}</p>
