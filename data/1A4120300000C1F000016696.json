@@ -1,0 +1,39 @@
+{
+ "id": "a3f82c1d9e",
+ "metrc_tag": "1A4120300000C1F000016696",
+ "brand": "Vireo Health of New York LLC",
+ "strain": "Rose Gold Runtz",
+ "form": "Flower 3.5g",
+ "thc": 29.9112,
+ "total_terpenes": 3.58,
+ "lean": "lifting",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Unverified",
+ "reported": [
+  "Indoor Large Bud",
+  "Cured Flower"
+ ],
+ "dominant": [
+  "beta-Myrcene",
+  "alpha-Pinene",
+  "Ocimene"
+ ],
+ "aroma": [
+  "earthy",
+  "herbal",
+  "piney",
+  "floral",
+  "citrus"
+ ],
+ "terpenes": {
+  "beta-Myrcene": 1.8,
+  "alpha-Pinene": 0.55,
+  "Ocimene": 0.54,
+  "Linalool": 0.21,
+  "Limonene": 0.17,
+  "beta-Caryophyllene": 0.13,
+  "beta-Pinene": 0.13,
+  "alpha-Humulene": 0.05
+ }
+}
