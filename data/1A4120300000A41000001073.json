@@ -1,0 +1,40 @@
+{
+ "id": "a3f9c2e17b",
+ "metrc_tag": "1A4120300000A41000001073",
+ "brand": "High Falls Canna",
+ "strain": "Lemon Cherry Gelato",
+ "form": "Flower 3.5g",
+ "thc": 21.564,
+ "total_terpenes": 1.82,
+ "lean": "mixed",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Unverified",
+ "reported": [
+  "Lab tested & verified",
+  "Full compliance pass"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "beta-Myrcene",
+  "alpha-Humulene"
+ ],
+ "aroma": [
+  "citrus",
+  "floral",
+  "earthy",
+  "spice",
+  "herbal"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.48,
+  "beta-Myrcene": 0.4,
+  "alpha-Humulene": 0.23,
+  "Limonene": 0.26,
+  "Farnesene": 0.12,
+  "alpha-Pinene": 0.11,
+  "Guaiol": 0.09,
+  "Linalool": 0.08,
+  "alpha-Cedrene": 0.06
+ }
+}
