@@ -1,0 +1,39 @@
+{
+ "id": "a3f9c12b7e",
+ "metrc_tag": "1A41203000003F6000000657",
+ "brand": "1Off",
+ "strain": "ADL 2",
+ "form": "Preroll 1.5g 2-Pack",
+ "thc": 30.377,
+ "total_terpenes": 1.62,
+ "lean": "mixed",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Unverified",
+ "reported": [
+  "~30% Total THC",
+  "1.62% Total Terpenes"
+ ],
+ "dominant": [
+  "Linalool",
+  "Limonene",
+  "beta-Caryophyllene"
+ ],
+ "aroma": [
+  "floral",
+  "citrus",
+  "spice",
+  "earthy",
+  "herbal"
+ ],
+ "terpenes": {
+  "Linalool": 0.48,
+  "Limonene": 0.34,
+  "beta-Caryophyllene": 0.26,
+  "beta-Myrcene": 0.18,
+  "Farnesene": 0.11,
+  "alpha-Humulene": 0.09,
+  "Fenchol": 0.08,
+  "Terpineol": 0.08
+ }
+}
