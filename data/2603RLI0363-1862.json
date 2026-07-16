@@ -1,0 +1,39 @@
+{
+ "id": "a3f7c2e819",
+ "metrc_tag": "2603RLI0363-1862",
+ "brand": "Nanticoke",
+ "strain": "All Gas",
+ "form": "Flower 3.5g",
+ "thc": 28.71,
+ "total_terpenes": 2.7296,
+ "lean": "mixed",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Unverified",
+ "reported": [
+  "28.71% Total THC",
+  "2.73% Total Terpenes"
+ ],
+ "dominant": [
+  "Valencene",
+  "alpha-Humulene",
+  "Linalool"
+ ],
+ "aroma": [
+  "orange",
+  "hops",
+  "lavender",
+  "earthy",
+  "cinnamon"
+ ],
+ "terpenes": {
+  "Valencene": 0.7,
+  "alpha-Humulene": 0.46,
+  "Linalool": 0.42,
+  "Ocimene": 0.41,
+  "beta-Caryophyllene": 0.38,
+  "Terpinolene": 0.21,
+  "alpha-Pinene": 0.11,
+  "Terpineol": 0.04
+ }
+}
