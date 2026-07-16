@@ -1,0 +1,32 @@
+{
+ "id": "a3f8c2e1b9",
+ "metrc_tag": "1A4120300000235000002037",
+ "brand": "Empire Standard LLC",
+ "strain": "Bubba Kush",
+ "form": "Infused Pre-roll 0.5g",
+ "thc": 25.576,
+ "total_terpenes": 0.74,
+ "lean": "settling",
+ "confidence": "faint",
+ "in_stock": true,
+ "shelf_tag": "Unverified",
+ "reported": [
+  "Beta-Caryophyllene dominant",
+  "alpha-Humulene present"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "alpha-Humulene"
+ ],
+ "aroma": [
+  "earthy",
+  "spicy",
+  "woody",
+  "herbal",
+  "peppery"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.49,
+  "alpha-Humulene": 0.25
+ }
+}
