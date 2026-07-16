@@ -1,0 +1,43 @@
+{
+ "id": "a3f8c21d9e",
+ "metrc_tag": "2604RLI04592319",
+ "brand": "Nanticoke",
+ "strain": "Animal Cookies",
+ "form": "Flower 3.5g",
+ "thc": 29.86,
+ "total_terpenes": 2.9682,
+ "lean": "mixed",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Unverified",
+ "reported": [
+  "29.86% Total THC",
+  "2.97% Total Terpenes"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "Fenchol",
+  "Limonene"
+ ],
+ "aroma": [
+  "cinnamon",
+  "basil",
+  "orange",
+  "hops",
+  "lavender"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.95,
+  "Fenchol": 0.62,
+  "Limonene": 0.49,
+  "alpha-Humulene": 0.21,
+  "Linalool": 0.15,
+  "alpha-Pinene": 0.13,
+  "beta-Myrcene": 0.12,
+  "beta-Pinene": 0.11,
+  "Terpineol": 0.09,
+  "Valencene": 0.03,
+  "alpha-Bisabolol": 0.03,
+  "Camphene": 0.02
+ }
+}
