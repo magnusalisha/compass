@@ -1,0 +1,31 @@
+{
+ "id": "a3f7c2e910",
+ "metrc_tag": "CPRHEY01",
+ "brand": "Empire Standard LLC",
+ "strain": "CP-RHEY-01",
+ "form": "Infused Preroll 3g",
+ "thc": 31.887,
+ "total_terpenes": 0.66,
+ "lean": "settling",
+ "confidence": "faint",
+ "in_stock": true,
+ "shelf_tag": "Unverified",
+ "reported": [
+  "~32% Total THC",
+  "Beta-Caryophyllene dominant"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "alpha-Humulene"
+ ],
+ "aroma": [
+  "earthy",
+  "spicy",
+  "woody",
+  "herbal"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.47,
+  "alpha-Humulene": 0.19
+ }
+}
