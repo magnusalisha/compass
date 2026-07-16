@@ -1,0 +1,47 @@
+{
+ "id": "a3f7c2e891",
+ "metrc_tag": "2605RLI05882924",
+ "brand": "Nanticoke",
+ "strain": "Black Panther",
+ "form": "Flower 3.5g",
+ "thc": 23.87,
+ "total_terpenes": 3.3153,
+ "lean": "lifting",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Unverified",
+ "reported": [
+  "Orange, cinnamon, and hop aromas",
+  "3.3% total terpenes with limonene dominant"
+ ],
+ "dominant": [
+  "Limonene",
+  "beta-Caryophyllene",
+  "beta-Myrcene"
+ ],
+ "aroma": [
+  "orange",
+  "cinnamon",
+  "hops",
+  "lavender",
+  "basil"
+ ],
+ "terpenes": {
+  "Limonene": 0.84,
+  "beta-Caryophyllene": 0.63,
+  "beta-Myrcene": 0.4,
+  "Linalool": 0.28,
+  "alpha-Humulene": 0.2,
+  "Fenchol": 0.18,
+  "beta-Pinene": 0.18,
+  "alpha-Pinene": 0.16,
+  "Guaiol": 0.13,
+  "Terpineol": 0.12,
+  "Valencene": 0.07,
+  "alpha-Bisabolol": 0.04,
+  "Camphene": 0.02,
+  "Farnesene": 0.02,
+  "Terpinolene": 0.02,
+  "Caryophyllene Oxide": 0.01
+ }
+}
