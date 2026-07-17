@@ -14,6 +14,18 @@ const GITHUB_TOKEN = "github_pat_REPLACE_ME";
 const base = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/data`;
 const H = { "Authorization": "Bearer " + GITHUB_TOKEN, "User-Agent": "compass", "Accept": "application/vnd.github+json" };
 
+// The controlled vocabulary. shelf_tag is picked from this, never typed: it
+// feeds the label-vs-chemistry comparison, and a typo ("Stavia", a trailing
+// space) reads as Unverified and silently drops that record out of the
+// analysis. A picker can't typo.
+//
+// Declared UP HERE on purpose. The menu below ends in a top-level `await`, so
+// execution suspends there and never reaches the rest of the file — anything
+// the action handlers touch must already be initialised above that await, or
+// it's still in the temporal dead zone when they run. Function declarations
+// hoist; `const` does not.
+const SHELF_TAGS = ["Sativa", "Indica", "Hybrid", "Unverified"];
+
 // ---- 1. list every record file -------------------------------------------
 let files;
 try {
@@ -117,12 +129,6 @@ async function deleteOne() {
     await note(ok ? "Deleted" : "Delete failed", ok ? `${target.strain} is gone. Refresh Compass.` : "Check token write permission.");
   }
 }
-
-// The controlled vocabulary. shelf_tag is picked from this, never typed: it
-// feeds the label-vs-chemistry comparison, and a typo ("Stavia", a trailing
-// space) reads as Unverified and silently drops that record out of the
-// analysis. A picker can't typo.
-const SHELF_TAGS = ["Sativa", "Indica", "Hybrid", "Unverified"];
 
 async function pickShelfTag(current) {
   const a = new Alert();
