@@ -1,23 +1,31 @@
 {
  "id": "d0a5cbbaf5",
- "metrc_tag": "1A4120300000498000002028",
- "brand": "Green Wells Farms",
- "strain": "Baby Yoda",
- "form": "Preroll 1g",
- "thc": 28.1512,
- "total_terpenes": 0.46,
- "lean": "settling",
- "confidence": "faint",
- "in_stock": true,
  "shelf_tag": "Unverified",
- "reported": [
-  "28.15% Total THC",
-  "0.46% Total Terpenes"
- ],
+ "confidence": "faint",
  "dominant": [
   "beta-Caryophyllene",
   "alpha-Humulene",
   "beta-Myrcene"
+ ],
+ "terpenes": {
+  "beta-Myrcene": 0.07,
+  "alpha-Pinene": 0.02,
+  "Guaiol": 0.01,
+  "Caryophyllene Oxide": 0.02,
+  "Linalool": 0.02,
+  "Limonene": 0.01,
+  "alpha-Bisabolol": 0.05,
+  "alpha-Humulene": 0.07,
+  "Valencene": 0.01,
+  "beta-Pinene": 0.01,
+  "beta-Caryophyllene": 0.17
+ },
+ "brand": "Cheevo",
+ "total_terpenes": 0.46,
+ "metrc_tag": "1A4120300000498000002028",
+ "reported": [
+  "28.15% Total THC",
+  "0.46% Total Terpenes"
  ],
  "aroma": [
   "spicy",
@@ -26,17 +34,9 @@
   "earthy",
   "floral"
  ],
- "terpenes": {
-  "beta-Caryophyllene": 0.17,
-  "alpha-Humulene": 0.07,
-  "beta-Myrcene": 0.07,
-  "alpha-Bisabolol": 0.05,
-  "Caryophyllene Oxide": 0.02,
-  "Linalool": 0.02,
-  "alpha-Pinene": 0.02,
-  "Guaiol": 0.01,
-  "Limonene": 0.01,
-  "Valencene": 0.01,
-  "beta-Pinene": 0.01
- }
+ "form": "Preroll 1g",
+ "strain": "Baby Yoda",
+ "lean": "settling",
+ "in_stock": true,
+ "thc": 28.1512
 }
