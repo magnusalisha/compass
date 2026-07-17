@@ -669,7 +669,12 @@ function setStock(id, val){
   render();
 }
 const stocked = p => OVERRIDES[key(p)] !== undefined ? OVERRIDES[key(p)] : p.in_stock;
-const pool = () => DATA.filter(p => $('#oos').checked || stocked(p));
+// Alphabetical by strain — this is the resting order every tab inherits (effect
+// with nothing typed, Lookup's matches, the combobox dropdowns). The ranked views
+// re-sort by score/similarity on top of this, so relevance still wins where it
+// exists; alphabetical just breaks their ties. filter() copies, so DATA is never mutated.
+const pool = () => DATA.filter(p => $('#oos').checked || stocked(p))
+  .sort((x, y) => x.strain.localeCompare(y.strain, undefined, {sensitivity: 'base'}));
 
 function vec(p){ const t = p.total_terpenes || 1, o = {};
   for (const [k,v] of Object.entries(p.terpenes)) o[k] = v/t; return o; }
