@@ -60,6 +60,7 @@ const untagged = recs.filter(r => !(r.data.metrc_tag || "").trim());
 // one (that fragility bit an earlier version of this script) --------------
 const actions = [];
 if (dupeKeys.length) actions.push({ label: "Auto-clean duplicates", run: autoClean });
+actions.push({ label: "Set shelf tag", run: setShelfTag });
 actions.push({ label: "Edit a record", run: editOne });
 actions.push({ label: "Delete one by hand", run: deleteOne });
 
@@ -117,10 +118,50 @@ async function deleteOne() {
   }
 }
 
+// The controlled vocabulary. shelf_tag is picked from this, never typed: it
+// feeds the label-vs-chemistry comparison, and a typo ("Stavia", a trailing
+// space) reads as Unverified and silently drops that record out of the
+// analysis. A picker can't typo.
+const SHELF_TAGS = ["Sativa", "Indica", "Hybrid", "Unverified"];
+
+async function pickShelfTag(current) {
+  const a = new Alert();
+  a.title = "Shelf tag";
+  a.message = `What does the PACKAGE say?\nNot what the terpenes suggest — the point is to compare the two.\n\nCurrently: ${current || "Unverified"}`;
+  SHELF_TAGS.forEach(t => a.addAction(t === (current || "Unverified") ? `${t} ✓` : t));
+  a.addCancelAction("Cancel");
+  const i = await a.presentSheet();
+  return i === -1 ? null : SHELF_TAGS[i];
+}
+
+// ---- SET SHELF TAG: the BUILD.md step-6 pass. Stand in front of the
+// packages, read each label, tap it in. Untagged records come first because
+// those are the ones the comparison is still waiting on.
+async function setShelfTag() {
+  const untaggedFirst = recs.slice().sort((a, b) => {
+    const ua = SHELF_TAGS.indexOf(a.data.shelf_tag) < 3 ? 1 : 0;   // tagged = 1, unverified = 0
+    const ub = SHELF_TAGS.indexOf(b.data.shelf_tag) < 3 ? 1 : 0;
+    return ua - ub || a.strain.localeCompare(b.strain);
+  });
+  const list = new Alert();
+  list.title = "Set shelf tag";
+  untaggedFirst.forEach(r => {
+    const t = SHELF_TAGS.includes(r.data.shelf_tag) ? r.data.shelf_tag : "Unverified";
+    list.addAction(`${t === "Unverified" ? "○" : "●"} ${r.strain} · ${r.data.form || "?"} — ${t}`);
+  });
+  list.addCancelAction("Cancel");
+  const i = await list.presentSheet();
+  if (i === -1) return;
+  const target = untaggedFirst[i];
+
+  const tag = await pickShelfTag(target.data.shelf_tag);
+  if (!tag) return;
+  const updated = Object.assign({}, target.data, { shelf_tag: tag });
+  const ok = await putUpdate(target.file, target.sha, updated);
+  await note(ok ? "Saved" : "Save failed", ok ? `${target.strain} → ${tag}. Refresh Compass.` : "Check token write permission.");
+}
+
 // ---- EDIT ONE: strain, brand, shelf_tag ----------------------------------
-// This is also where you set shelf_tag by hand from the package — extraction
-// always writes "Unverified" on purpose (see CLAUDE_CODE_BRIEF.md) and a
-// human is supposed to fill it in here, not just when something's wrong.
 async function editOne() {
   const target = await pickRecord("Edit which?");
   if (!target) return;
@@ -130,15 +171,18 @@ async function editOne() {
   edit.message = target.file;
   edit.addTextField("Strain", target.strain);
   edit.addTextField("Brand", target.brand);
-  edit.addTextField("Shelf tag: Sativa / Indica / Hybrid / Unverified", target.data.shelf_tag || "Unverified");
   edit.addAction("Save");
   edit.addCancelAction("Cancel");
   if (await edit.presentAlert() !== 0) return;
 
+  // shelf_tag gets its own picker rather than a third text field
+  const tag = await pickShelfTag(target.data.shelf_tag);
+  if (!tag) return;
+
   const updated = Object.assign({}, target.data, {
     strain: edit.textFieldValue(0).trim() || target.strain,
     brand: edit.textFieldValue(1).trim() || target.brand,
-    shelf_tag: edit.textFieldValue(2).trim() || "Unverified"
+    shelf_tag: tag
   });
 
   const ok = await putUpdate(target.file, target.sha, updated);

@@ -65,8 +65,16 @@
   .thc{font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:19px;text-align:right;white-space:nowrap}
   .thc small{display:block;font-size:10px;color:var(--ink2);font-weight:400;letter-spacing:.08em}
   .top{display:flex;justify-content:space-between;gap:14px;align-items:flex-start}
+  .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
   .tag{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;
-    text-transform:uppercase;background:#DCE6D8;color:#3D5140;padding:4px 9px;border-radius:5px;margin-top:8px}
+    text-transform:uppercase;background:#DCE6D8;color:#3D5140;padding:4px 9px;border-radius:5px}
+  .tag-shelf{background:#E0DAEF;color:#4B3E70}
+  .tag-unset{background:transparent;border:1px dashed var(--line);color:var(--ink2)}
+
+  /* label vs chemistry — the comparison the archive exists to make */
+  .verdict{font-size:13.5px;margin-top:10px;padding:9px 11px;border-radius:8px;
+    background:#E8E7DD;color:var(--ink2);line-height:1.4}
+  .verdict.clash{background:#F6E3D3;border:1px solid #E0B99A;color:#7A3A1C}
 
   .stack{display:flex;height:11px;border-radius:6px;overflow:hidden;margin:13px 0 11px;background:#E0D8C8}
   .stack i{height:100%}
@@ -105,8 +113,8 @@
   .why .ev{display:inline;margin:0 0 0 4px}
   .match{font-family:'IBM Plex Mono',monospace;font-size:13px;color:#3D6B4F;margin-top:12px;font-weight:500}
   .acts{display:flex;gap:18px;margin-top:13px;padding-top:12px;border-top:1px dashed var(--line)}
-  .acts button{background:none;border:none;padding:0;color:var(--ink2);font:500 13.5px Inter,sans-serif;cursor:pointer}
-  .acts button:hover{color:var(--ink)}
+  .acts button,.acts a{background:none;border:none;padding:0;color:var(--ink2);font:500 13.5px Inter,sans-serif;cursor:pointer;text-decoration:none}
+  .acts button:hover,.acts a:hover{color:var(--ink);text-decoration:underline}
   .empty{color:var(--dim);text-align:center;padding:34px 14px;font-size:15px}
   .lookup-list{display:flex;flex-direction:column;gap:8px}
   .lookup-row{display:flex;justify-content:space-between;align-items:baseline;gap:10px;
@@ -174,6 +182,40 @@ const category = p => (CATEGORY_RULES.find(([re]) => re.test(p.form)) || [,'Flow
 const CATEGORIES = ['All', 'Flower', 'Preroll'];
 // not a UI filter category (yet) — just enough to pick honest fallback copy below
 const isEdible = p => /gummy|edible|chocolate|beverage|tincture|capsule/i.test(p.form);
+
+// ── shelf_tag: what the PACKAGE claims. Never inferred from chemistry — a
+// guessed tag would make the label-vs-chemistry comparison measure the guess
+// (CLAUDE_CODE_BRIEF.md). Anything unrecognised — a typo, a stray space, a
+// missing field — normalises to Unverified, which is excluded from the
+// comparison. Failing closed is the point: a mistyped tag must never be
+// mistaken for a real one a human stood in front of the package and set.
+const SHELF_TAGS = ['Sativa', 'Indica', 'Hybrid'];
+const shelfTag = p => SHELF_TAGS.find(v => v.toLowerCase() === String(p.shelf_tag || '').trim().toLowerCase()) || 'Unverified';
+// the true contradictions: the shelf claims one direction, the terps read the other.
+const SHELF_OPPOSITE = {Sativa: 'settling', Indica: 'lifting'};
+
+// Returns null when we can't ask the question honestly: Unverified is excluded
+// by the brief, and a faint profile is explicitly LESS trustworthy than the
+// package label ("trust the package label, not this profile") — so it doesn't
+// get to contradict it.
+function labelCheck(p){
+  const tag = shelfTag(p);
+  if (tag === 'Unverified' || p.confidence === 'faint' || !p.lean) return null;
+  return {tag, lean: p.lean, clash: SHELF_OPPOSITE[tag] === p.lean};
+}
+function verdictHTML(p){
+  const v = labelCheck(p);
+  if (!v) return '';
+  return v.clash
+    ? `<div class="verdict clash">⚠ Shelf says <b>${v.tag}</b> — the terps read <b>${v.lean}</b>. Worth a look at the package.</div>`
+    : `<div class="verdict">Shelf says <b>${v.tag}</b> · terps read <b>${v.lean}</b>.</div>`;
+}
+// one tap from the card to this record's file in GitHub's editor. No token: the
+// page stays public and read-only, GitHub does the auth. Only for records that
+// came from the repo (_key) — the embedded seed has no file to point at.
+const editURL = p => (GH_USER && GH_REPO && p._key)
+  ? `https://github.com/${GH_USER}/${GH_REPO}/edit/main/data/${encodeURIComponent(p._key)}.json`
+  : null;
 // lets "social preroll" in the effect box auto-apply the Preroll filter
 const CATEGORY_WORDS = [[/\bprerolls?\b/, 'Preroll'], [/\bflowers?\b/, 'Flower']];
 const detectCategoryWord = q => (CATEGORY_WORDS.find(([re]) => re.test(q)) || [])[1] || null;
@@ -720,9 +762,15 @@ function stack(p){
 }
 function card(p, extra=''){
   const faint = p.confidence === 'faint';
+  const tag = shelfTag(p);
+  const href = editURL(p);
   return `<div class="card${faint ? ' card-faint' : ''}">
     <div class="top">
-      <div><h2>${p.strain}</h2><div class="tag">${p.form.split(' ')[0]}</div>
+      <div><h2>${p.strain}</h2>
+        <div class="tags">
+          <span class="tag">${p.form.split(' ')[0]}</span>
+          <span class="tag tag-${tag === 'Unverified' ? 'unset' : 'shelf'}">${tag}</span>
+        </div>
         <div style="font-size:13px;color:var(--ink2);margin-top:6px">${p.brand}${stocked(p)?'':' · out of stock'}</div></div>
       <div class="thc">${p.thc}%<small>THC</small></div>
     </div>
@@ -732,11 +780,13 @@ function card(p, extra=''){
       <p style="font-size:14px;color:var(--ink2)">Can read as <b>${says(p)}</b>.</p>
       <p class="ev">${dots(ev(p))} evidence · ${ev(p)===3?'real mechanism':ev(p)===2?'some human data':'folklore — trust your nose over this'}</p>
       ${whyHTML(p)}
+      ${verdictHTML(p)}
       ${faint ? `<p class="faint-explain">${faintNote(p)}</p>` : ''}
     </div>
     ${extra}
     <div class="acts">
       <button onclick="setStock('${key(p)}', ${!stocked(p)})">${stocked(p) ? 'Mark out of stock' : 'Back in stock'}</button>
+      ${href ? `<a href="${href}" target="_blank" rel="noopener">Edit ↗</a>` : ''}
     </div>
   </div>`;
 }
@@ -982,7 +1032,9 @@ function renderLookupResults(){
   return foot();
 }
 function foot(){
-  $('#foot').innerHTML = `${DATA.length} products · ${DATA.filter(stocked).length} in stock<br>
+  const unverified = DATA.filter(p => shelfTag(p) === 'Unverified').length;
+  $('#foot').innerHTML = `${DATA.length} products · ${DATA.filter(stocked).length} in stock${
+    unverified ? ` · <b>${unverified} shelf tag${unverified>1?'s':''} unverified</b> — tap Edit on a card to set one` : ''}<br>
     ●●● real receptor mechanism · ●●○ some human data · ●○○ folklore<br>
     Only caryophyllene has a mechanism (CB2). The rest is inherited from strain databases.<br>
     <b>THC is the one number on the COA that reliably drives the experience.</b>`;
