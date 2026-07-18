@@ -1,0 +1,44 @@
+{
+ "id": "a3f8c2e1b9",
+ "metrc_tag": "1A4120300000C1F000034177",
+ "brand": "Vireo Health of New York LLC",
+ "strain": "Silver Surfer",
+ "form": "Flower 3.5g",
+ "thc": 24.0372,
+ "total_terpenes": 1.5,
+ "lean": "settling",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Unverified",
+ "reported": [
+  "24% Total THC",
+  "Mixed Bud"
+ ],
+ "dominant": [
+  "beta-Myrcene",
+  "beta-Caryophyllene",
+  "Limonene"
+ ],
+ "aroma": [
+  "earthy",
+  "musky",
+  "spicy",
+  "citrus",
+  "floral"
+ ],
+ "terpenes": {
+  "beta-Myrcene": 0.72,
+  "beta-Caryophyllene": 0.39,
+  "Limonene": 0.17,
+  "alpha-Humulene": 0.14,
+  "Farnesene": 0.08,
+  "Linalool": 0.06,
+  "beta-Pinene": 0.03,
+  "Fenchol": 0.02,
+  "alpha-Pinene": 0.02,
+  "Terpineol": 0.01,
+  "Camphene": 0.01,
+  "Caryophyllene Oxide": 0.01,
+  "Valencene": 0.01
+ }
+}
