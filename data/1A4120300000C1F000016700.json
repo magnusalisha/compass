@@ -1,0 +1,38 @@
+{
+ "id": "a3f82c1d9e",
+ "metrc_tag": "1A4120300000C1F000016700",
+ "brand": "Vireo Health of New York LLC",
+ "strain": "Rain Drops",
+ "form": "Flower 3.5g",
+ "thc": 22.1707,
+ "total_terpenes": 1.34,
+ "lean": "lifting",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Unverified",
+ "reported": [
+  "Total THC 22.17%",
+  "Total Terpenes 1.34%"
+ ],
+ "dominant": [
+  "Limonene",
+  "beta-Myrcene",
+  "Linalool"
+ ],
+ "aroma": [
+  "citrus",
+  "fruity",
+  "floral",
+  "herbal",
+  "sweet"
+ ],
+ "terpenes": {
+  "Limonene": 0.54,
+  "beta-Myrcene": 0.31,
+  "Linalool": 0.21,
+  "beta-Caryophyllene": 0.12,
+  "Terpineol": 0.06,
+  "Fenchol": 0.05,
+  "alpha-Humulene": 0.05
+ }
+}
