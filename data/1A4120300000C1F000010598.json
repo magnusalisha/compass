@@ -1,0 +1,34 @@
+{
+ "id": "a3f8c21d90",
+ "metrc_tag": "1A4120300000C1F000010598",
+ "brand": "Kings and Queens",
+ "strain": "Mixed Sativa",
+ "form": "Preroll 3g",
+ "thc": 28.91,
+ "total_terpenes": 0.1788,
+ "lean": "lifting",
+ "confidence": "faint",
+ "in_stock": true,
+ "shelf_tag": "Sativa",
+ "reported": [
+  "28.91% Total THC",
+  "Indoor grown"
+ ],
+ "dominant": [
+  "Fenchol",
+  "Linalool",
+  "Caryophyllene Oxide"
+ ],
+ "aroma": [
+  "basil",
+  "lavender",
+  "wood",
+  "turpentine"
+ ],
+ "terpenes": {
+  "Fenchol": 0.08,
+  "Linalool": 0.05,
+  "Caryophyllene Oxide": 0.03,
+  "Terpinolene": 0.02
+ }
+}
