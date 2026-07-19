@@ -1,23 +1,26 @@
 {
  "id": "a3f8c1d9e2",
- "metrc_tag": "1A41203000016B4000001087",
- "brand": "Canna Cure Farms, LLC",
- "strain": "Purple Zkittlez",
- "form": "Flower",
- "thc": 25.013,
- "total_terpenes": 1.26,
- "lean": "mixed",
+ "shelf_tag": "Indica",
  "confidence": "strong",
- "in_stock": true,
- "shelf_tag": "Unverified",
- "reported": [
-  "Lab tested and state regulated",
-  "Manufactured by Canna Cure Farms, LLC"
- ],
  "dominant": [
   "beta-Caryophyllene",
   "Limonene",
   "Linalool"
+ ],
+ "terpenes": {
+  "Limonene": 0.29,
+  "beta-Myrcene": 0.08,
+  "beta-Caryophyllene": 0.34,
+  "Linalool": 0.29,
+  "Guaiol": 0.16,
+  "alpha-Humulene": 0.11
+ },
+ "brand": "Canna Cure Farms, LLC",
+ "total_terpenes": 1.26,
+ "metrc_tag": "1A41203000016B4000001087",
+ "reported": [
+  "Lab tested and state regulated",
+  "Manufactured by Canna Cure Farms, LLC"
  ],
  "aroma": [
   "spicy",
@@ -26,12 +29,9 @@
   "earthy",
   "woody"
  ],
- "terpenes": {
-  "beta-Caryophyllene": 0.34,
-  "Limonene": 0.29,
-  "Linalool": 0.29,
-  "Guaiol": 0.16,
-  "alpha-Humulene": 0.11,
-  "beta-Myrcene": 0.08
- }
+ "form": "Flower",
+ "strain": "Purple Zkittlez",
+ "lean": "mixed",
+ "in_stock": true,
+ "thc": 25.013
 }
