@@ -1,22 +1,29 @@
 {
  "id": "981e080b47",
- "brand": "1Off / SMARTBUD",
- "strain": "Strawberry Cough",
- "form": "Preroll 1g",
- "thc": 31.05,
- "total_terpenes": 1.45,
- "lean": "settling",
- "balance": -0.55,
+ "shelf_tag": "Sativa",
  "confidence": "strong",
- "note": null,
- "reported": [
-  "mellow and soft",
-  "calm in the body"
- ],
  "dominant": [
   "Linalool",
   "beta-Caryophyllene",
   "Limonene"
+ ],
+ "note": null,
+ "terpenes": {
+  "Limonene": 0.25,
+  "beta-Myrcene": 0.12,
+  "Farnesene": 0.11,
+  "Linalool": 0.47,
+  "alpha-Humulene": 0.09,
+  "Terpineol": 0.08,
+  "Fenchol": 0.08,
+  "beta-Caryophyllene": 0.26
+ },
+ "brand": "1Off / SMARTBUD",
+ "total_terpenes": 1.45,
+ "balance": -0.55,
+ "reported": [
+  "mellow and soft",
+  "calm in the body"
  ],
  "aroma": [
   "floral",
@@ -25,16 +32,9 @@
   "spice",
   "woody"
  ],
- "terpenes": {
-  "Linalool": 0.47,
-  "beta-Caryophyllene": 0.26,
-  "Limonene": 0.25,
-  "beta-Myrcene": 0.12,
-  "Farnesene": 0.11,
-  "alpha-Humulene": 0.09,
-  "Fenchol": 0.08,
-  "Terpineol": 0.08
- },
+ "form": "Preroll 1g",
+ "strain": "Strawberry Cough",
+ "lean": "settling",
  "in_stock": true,
- "shelf_tag": "Unverified"
+ "thc": 31.05
 }
