@@ -1,0 +1,45 @@
+{
+ "id": "a3f7c2e891",
+ "metrc_tag": "1A4120300000C1F000004560",
+ "brand": "Kings and Queens",
+ "strain": "Generic Hybrid",
+ "form": "Preroll 3g 3ct",
+ "thc": 29.4964,
+ "total_terpenes": 1.05,
+ "lean": "settling",
+ "confidence": "moderate",
+ "in_stock": true,
+ "shelf_tag": "Hybrid",
+ "reported": [
+  "29.5% Total THC",
+  "Indoor Flower Pre-roll"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "Linalool",
+  "alpha-Humulene"
+ ],
+ "aroma": [
+  "floral",
+  "spicy",
+  "herbal",
+  "woody",
+  "citrus"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.32,
+  "Linalool": 0.17,
+  "alpha-Humulene": 0.13,
+  "Limonene": 0.11,
+  "alpha-Bisabolol": 0.06,
+  "Terpineol": 0.05,
+  "Fenchol": 0.05,
+  "beta-Myrcene": 0.05,
+  "Ocimene": 0.03,
+  "Guaiol": 0.02,
+  "Valencene": 0.02,
+  "beta-Pinene": 0.02,
+  "Caryophyllene Oxide": 0.01,
+  "alpha-Pinene": 0.01
+ }
+}
