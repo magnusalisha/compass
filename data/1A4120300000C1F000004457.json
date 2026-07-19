@@ -1,0 +1,44 @@
+{
+ "id": "a3f8c2e571",
+ "metrc_tag": "1A4120300000C1F000004457",
+ "brand": "Kings and Queens",
+ "strain": "Purple Ghost Candy",
+ "form": "Preroll 3g (3-pack)",
+ "thc": 27.8966,
+ "total_terpenes": 1.12,
+ "lean": "mixed",
+ "confidence": "moderate",
+ "in_stock": true,
+ "shelf_tag": "Indica",
+ "reported": [
+  "27.9% Total THC",
+  "1.12% Total Terpenes"
+ ],
+ "dominant": [
+  "beta-Myrcene",
+  "Ocimene",
+  "beta-Caryophyllene"
+ ],
+ "aroma": [
+  "earthy",
+  "herbal",
+  "spicy",
+  "citrus",
+  "floral"
+ ],
+ "terpenes": {
+  "beta-Myrcene": 0.23,
+  "Ocimene": 0.17,
+  "beta-Caryophyllene": 0.16,
+  "Limonene": 0.16,
+  "alpha-Bisabolol": 0.1,
+  "Fenchol": 0.06,
+  "alpha-Humulene": 0.06,
+  "Linalool": 0.05,
+  "Terpineol": 0.04,
+  "alpha-Pinene": 0.04,
+  "beta-Pinene": 0.03,
+  "Caryophyllene Oxide": 0.01,
+  "Valencene": 0.01
+ }
+}
