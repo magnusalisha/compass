@@ -1,46 +1,46 @@
 {
- "id": "a3f9c21b84",
- "shelf_tag": "Sativa",
+ "id": "a3f8c21b9d",
+ "metrc_tag": "1A412030000026D000008320",
+ "brand": "Anthem",
+ "strain": "Acapulco Gold",
+ "form": "Infused Preroll 1g",
+ "thc": 44.1264,
+ "total_terpenes": 0.69,
+ "lean": "lifting",
  "confidence": "faint",
+ "in_stock": true,
+ "shelf_tag": "Sativa",
+ "reported": [
+  "Glass Tip Infused",
+  "Bold Series"
+ ],
  "dominant": [
   "Limonene",
   "Terpinolene",
   "beta-Myrcene"
  ],
- "terpenes": {
-  "Ocimene": 0.04,
-  "Valencene": 0.01,
-  "Linalool": 0.02,
-  "Fenchol": 0.01,
-  "alpha-Phellandrene": 0.01,
-  "Caryophyllene Oxide": 0.03,
-  "alpha-Bisabolol": 0.04,
-  "Terpinolene": 0.1,
-  "beta-Myrcene": 0.1,
-  "beta-Caryophyllene": 0.09,
-  "beta-Pinene": 0.03,
-  "alpha-Humulene": 0.04,
-  "alpha-Pinene": 0.02,
-  "Terpineol": 0.01,
-  "Limonene": 0.14
- },
- "brand": "Anthem",
- "total_terpenes": 0.69,
- "metrc_tag": "1A412030000026D000008320",
- "reported": [
-  "Glass Tip Infused",
-  "Enhanced Pre-roll (Medical Use)"
- ],
  "aroma": [
   "citrus",
   "floral",
-  "earthy",
   "herbal",
-  "spice"
+  "spice",
+  "woody"
  ],
- "form": "Infused Preroll 1g",
- "strain": "Acapulco Gold",
- "lean": "lifting",
- "in_stock": true,
- "thc": 44.1264
+ "terpenes": {
+  "Limonene": 0.14,
+  "Terpinolene": 0.1,
+  "beta-Myrcene": 0.1,
+  "beta-Caryophyllene": 0.09,
+  "Ocimene": 0.04,
+  "alpha-Bisabolol": 0.04,
+  "alpha-Humulene": 0.04,
+  "Caryophyllene Oxide": 0.03,
+  "beta-Pinene": 0.03,
+  "Linalool": 0.02,
+  "alpha-Pinene": 0.02,
+  "Terpineol": 0.01,
+  "Fenchol": 0.01,
+  "Valencene": 0.01,
+  "alpha-Phellandrene": 0.01
+ }
 }
