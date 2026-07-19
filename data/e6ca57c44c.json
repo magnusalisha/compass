@@ -1,22 +1,42 @@
 {
  "id": "e6ca57c44c",
- "brand": "Florette",
- "strain": "Honey Dream",
- "form": "Preroll 1g 4-pack",
- "thc": 16.7113,
- "total_terpenes": 0.42,
- "lean": "settling",
- "balance": -0.51,
+ "shelf_tag": "Sativa",
  "confidence": "faint",
- "note": "Low total terpenes and mostly heavy sesquiterpenes — the volatile ones have likely evaporated. Read the label, not this profile.",
- "reported": [
-  "calm in the body",
-  "heavy and relaxed"
- ],
  "dominant": [
   "beta-Caryophyllene",
   "beta-Myrcene",
   "alpha-Humulene"
+ ],
+ "note": "Low total terpenes and mostly heavy sesquiterpenes — the volatile ones have likely evaporated. Read the label, not this profile.",
+ "terpenes": {
+  "alpha-Pinene": 0.04,
+  "Terpineol": 0,
+  "Farnesene": 0,
+  "beta-Caryophyllene": 0.12,
+  "Guaiol": 0.01,
+  "Linalool": 0.02,
+  "Camphene": 0,
+  "Geraniol": 0,
+  "Ocimene": 0,
+  "Limonene": 0.03,
+  "Valencene": 0,
+  "Terpinolene": 0,
+  "beta-Pinene": 0.03,
+  "alpha-Terpinene": 0,
+  "alpha-Humulene": 0.05,
+  "alpha-Bisabolol": 0.04,
+  "beta-Myrcene": 0.07,
+  "Caryophyllene oxide": 0.01,
+  "Fenchol": 0,
+  "Menthol": 0,
+  "alpha-Phellandrene": 0
+ },
+ "brand": "Florette",
+ "total_terpenes": 0.42,
+ "balance": -0.51,
+ "reported": [
+  "calm in the body",
+  "heavy and relaxed"
  ],
  "aroma": [
   "pepper",
@@ -25,29 +45,9 @@
   "earthy",
   "musky"
  ],
- "terpenes": {
-  "beta-Caryophyllene": 0.12,
-  "beta-Myrcene": 0.07,
-  "alpha-Humulene": 0.05,
-  "alpha-Bisabolol": 0.04,
-  "alpha-Pinene": 0.04,
-  "Limonene": 0.03,
-  "beta-Pinene": 0.03,
-  "Linalool": 0.02,
-  "Caryophyllene oxide": 0.01,
-  "Guaiol": 0.01,
-  "Terpineol": 0.0,
-  "Camphene": 0.0,
-  "Farnesene": 0.0,
-  "Fenchol": 0.0,
-  "Geraniol": 0.0,
-  "Menthol": 0.0,
-  "Ocimene": 0.0,
-  "Terpinolene": 0.0,
-  "Valencene": 0.0,
-  "alpha-Phellandrene": 0.0,
-  "alpha-Terpinene": 0.0
- },
+ "form": "Preroll 1g 4-pack",
+ "strain": "Honey Dream",
+ "lean": "settling",
  "in_stock": true,
- "shelf_tag": "Unverified"
+ "thc": 16.7113
 }
