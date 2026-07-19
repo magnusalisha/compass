@@ -1,23 +1,37 @@
 {
  "id": "678d63e522",
- "metrc_tag": "1A412030000019F000004837",
- "brand": "Florist Farms",
- "strain": "GMO Bomb",
- "form": "Infused Preroll 0.5g 5pk",
- "thc": 37.61,
- "total_terpenes": 2.5631,
- "lean": "settling",
+ "shelf_tag": "Indica",
  "confidence": "strong",
- "in_stock": true,
- "shelf_tag": "Unverified",
- "reported": [
-  "Live Resin Infused",
-  "Spicy, Citrus, Earthy"
- ],
  "dominant": [
   "beta-Caryophyllene",
   "Limonene",
   "alpha-Humulene"
+ ],
+ "terpenes": {
+  "Linalool": 0.1467,
+  "Fenchol": 0.0852,
+  "Guaiol": 0.0639,
+  "Nerolidol": 0.0767,
+  "Farnesene": 0.2388,
+  "Geranyl Acetate": 0.0346,
+  "Caryophyllene Oxide": 0.0836,
+  "alpha-Bisabolol": 0.1282,
+  "Camphene": 0.0111,
+  "beta-Myrcene": 0.1049,
+  "beta-Caryophyllene": 0.7981,
+  "beta-Pinene": 0.0732,
+  "Terpineol": 0.0583,
+  "alpha-Humulene": 0.2439,
+  "alpha-Pinene": 0.0368,
+  "Borneol": 0.015,
+  "Limonene": 0.3364
+ },
+ "brand": "Florist Farms",
+ "total_terpenes": 2.5631,
+ "metrc_tag": "1A412030000019F000004837",
+ "reported": [
+  "Live Resin Infused",
+  "Spicy, Citrus, Earthy"
  ],
  "aroma": [
   "spicy",
@@ -26,23 +40,9 @@
   "herbal",
   "floral"
  ],
- "terpenes": {
-  "beta-Caryophyllene": 0.7981,
-  "Limonene": 0.3364,
-  "alpha-Humulene": 0.2439,
-  "Farnesene": 0.2388,
-  "Linalool": 0.1467,
-  "alpha-Bisabolol": 0.1282,
-  "beta-Myrcene": 0.1049,
-  "Fenchol": 0.0852,
-  "Caryophyllene Oxide": 0.0836,
-  "Nerolidol": 0.0767,
-  "beta-Pinene": 0.0732,
-  "Guaiol": 0.0639,
-  "Terpineol": 0.0583,
-  "alpha-Pinene": 0.0368,
-  "Geranyl Acetate": 0.0346,
-  "Borneol": 0.015,
-  "Camphene": 0.0111
- }
+ "form": "Infused Preroll 0.5g 5pk",
+ "strain": "GMO Bomb",
+ "lean": "settling",
+ "in_stock": true,
+ "thc": 37.61
 }
