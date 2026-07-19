@@ -1,28 +1,28 @@
 {
  "id": "a3f7c2e891",
- "metrc_tag": "2603RLI0332-1691",
- "brand": "Nanticoke",
- "strain": "Permafrost",
- "form": "Flower 3.5g",
- "thc": 28.59,
- "total_terpenes": 0.0613,
- "lean": "settling",
+ "shelf_tag": "Sativa-leaning Hybrid",
  "confidence": "faint",
- "in_stock": true,
- "shelf_tag": "Unverified",
+ "dominant": [
+  "Caryophyllene Oxide"
+ ],
+ "terpenes": {
+  "Caryophyllene Oxide": 0.06
+ },
+ "brand": "Nanticoke",
+ "total_terpenes": 0.0613,
+ "metrc_tag": "2603RLI0332-1691",
  "reported": [
   "28.59% Total THC",
   "Wood aroma profile"
- ],
- "dominant": [
-  "Caryophyllene Oxide"
  ],
  "aroma": [
   "wood",
   "earthy",
   "spice"
  ],
- "terpenes": {
-  "Caryophyllene Oxide": 0.06
- }
+ "form": "Flower 3.5g",
+ "strain": "Permafrost",
+ "lean": "settling",
+ "in_stock": true,
+ "thc": 28.59
 }
