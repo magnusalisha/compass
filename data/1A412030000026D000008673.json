@@ -1,18 +1,18 @@
 {
- "id": "a3f9c2e1b7",
+ "id": "a3f9c12e74",
  "metrc_tag": "1A412030000026D000008673",
  "brand": "Anthem",
- "strain": "Blue Dream",
+ "strain": "Blue Dream - Pack",
  "form": "Infused Preroll 5-Pack 2.5g",
  "thc": 43.1452,
  "total_terpenes": 0.84,
  "lean": "mixed",
  "confidence": "moderate",
  "in_stock": true,
- "shelf_tag": "Unverified",
+ "shelf_tag": "Hybrid",
  "reported": [
-  "Glass tip infused pre-roll pack",
-  "Enhanced pre-roll for medical use"
+  "Glass Tip Infused",
+  "Enhanced Pre-roll Medical Use"
  ],
  "dominant": [
   "beta-Caryophyllene",
@@ -22,7 +22,7 @@
  "aroma": [
   "floral",
   "citrus",
-  "spicy",
+  "spice",
   "herbal",
   "woody"
  ],
