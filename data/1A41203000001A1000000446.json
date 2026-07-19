@@ -1,6 +1,6 @@
 {
  "id": "a3f8c2e917",
- "shelf_tag": "Sativa",
+ "shelf_tag": "Hybrid",
  "confidence": "strong",
  "dominant": [
   "beta-Caryophyllene",
@@ -8,17 +8,17 @@
   "Limonene"
  ],
  "terpenes": {
-  "Limonene": 0.62,
   "beta-Myrcene": 0.19,
+  "Guaiol": 0.11,
   "Farnesene": 0.29,
   "Linalool": 0.15,
-  "Guaiol": 0.11,
+  "beta-Caryophyllene": 1.88,
   "alpha-Bisabolol": 0.18,
   "alpha-Humulene": 0.87,
   "alpha-Cedrene": 0.15,
-  "beta-Caryophyllene": 1.88
+  "Limonene": 0.62
  },
- "brand": "Jamestown Canna Company LLC",
+ "brand": "NYCE",
  "total_terpenes": 4.43,
  "metrc_tag": "1A41203000001A1000000446",
  "reported": [
