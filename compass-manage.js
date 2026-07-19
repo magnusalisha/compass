@@ -24,7 +24,25 @@ const H = { "Authorization": "Bearer " + GITHUB_TOKEN, "User-Agent": "compass", 
 // the action handlers touch must already be initialised above that await, or
 // it's still in the temporal dead zone when they run. Function declarations
 // hoist; `const` does not.
-const SHELF_TAGS = ["Sativa", "Indica", "Hybrid", "Unverified"];
+// Six values: some NY brands (Nanticoke among them) print "leaning hybrid" on
+// the jar, which the old 3-way split couldn't record. This array is the single
+// source of truth for the vocabulary — index.html displays whatever lands in
+// the field and never validates against its own copy of this list.
+const SHELF_TAGS = ["Sativa", "Sativa-leaning Hybrid", "Hybrid", "Indica-leaning Hybrid", "Indica", "Unverified"];
+
+// Ask "is this tagged?" directly rather than by position in SHELF_TAGS. The
+// previous version tested `indexOf(tag) < 3`, which quietly meant something
+// different the moment the vocabulary grew — and returned -1 (i.e. "tagged")
+// for a record with no shelf_tag field at all. Same positional fragility the
+// action menu above was deliberately built to avoid.
+const isTagged = r => {
+  const t = String(r.data.shelf_tag || "").trim();
+  return t && t.toLowerCase() !== "unverified" ? 1 : 0;
+};
+const shownTag = r => {
+  const t = String(r.data.shelf_tag || "").trim();
+  return t && t.toLowerCase() !== "unverified" ? t : "Unverified";
+};
 
 // ---- 1. list every record file -------------------------------------------
 let files;
@@ -145,14 +163,12 @@ async function pickShelfTag(current) {
 // those are the ones the comparison is still waiting on.
 async function setShelfTag() {
   const untaggedFirst = recs.slice().sort((a, b) => {
-    const ua = SHELF_TAGS.indexOf(a.data.shelf_tag) < 3 ? 1 : 0;   // tagged = 1, unverified = 0
-    const ub = SHELF_TAGS.indexOf(b.data.shelf_tag) < 3 ? 1 : 0;
-    return ua - ub || a.strain.localeCompare(b.strain);
+    return isTagged(a) - isTagged(b) || a.strain.localeCompare(b.strain);
   });
   const list = new Alert();
   list.title = "Set shelf tag";
   untaggedFirst.forEach(r => {
-    const t = SHELF_TAGS.includes(r.data.shelf_tag) ? r.data.shelf_tag : "Unverified";
+    const t = shownTag(r);
     list.addAction(`${t === "Unverified" ? "○" : "●"} ${r.strain} · ${r.data.form || "?"} — ${t}`);
   });
   list.addCancelAction("Cancel");

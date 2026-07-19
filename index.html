@@ -174,12 +174,19 @@ const REPORTED = {
 };
 const dots = n => '●'.repeat(n) + '○'.repeat(3-n);
 
-// ── category: derived from `form`. Add a rule to grow into Vape/Edible later.
+// ── category: derived from `form`, first rule wins. Add a rule to grow further.
+// Vape is checked before Preroll: a disposable never says "preroll", but an
+// "Infused Preroll" must not be caught by a loose vape term.
+// Word boundaries matter — bare /cart/ would match "carton" and /pod/ "tripod".
+// The preroll pattern accepts Preroll, Pre-roll, Pre-Roll and Pre Roll: real
+// COAs use all four, and /preroll/i alone was silently filing the hyphenated
+// ones under Flower.
 const CATEGORY_RULES = [
-  [/preroll/i, 'Preroll'],
+  [/\b(vapes?|carts?|cartridges?|disposables?|pods?)\b/i, 'Vape'],
+  [/pre[\s-]?rolls?/i, 'Preroll'],
 ];
 const category = p => (CATEGORY_RULES.find(([re]) => re.test(p.form)) || [,'Flower'])[1];
-const CATEGORIES = ['All', 'Flower', 'Preroll'];
+const CATEGORIES = ['All', 'Flower', 'Preroll', 'Vape'];
 // not a UI filter category (yet) — just enough to pick honest fallback copy below
 const isEdible = p => /gummy|edible|chocolate|beverage|tincture|capsule/i.test(p.form);
 
@@ -189,10 +196,26 @@ const isEdible = p => /gummy|edible|chocolate|beverage|tincture|capsule/i.test(p
 // missing field — normalises to Unverified, which is excluded from the
 // comparison. Failing closed is the point: a mistyped tag must never be
 // mistaken for a real one a human stood in front of the package and set.
-const SHELF_TAGS = ['Sativa', 'Indica', 'Hybrid'];
-const shelfTag = p => SHELF_TAGS.find(v => v.toLowerCase() === String(p.shelf_tag || '').trim().toLowerCase()) || 'Unverified';
-// the true contradictions: the shelf claims one direction, the terps read the other.
-const SHELF_OPPOSITE = {Sativa: 'settling', Indica: 'lifting'};
+// The page does NOT own this vocabulary — compass-manage.js does, and the page
+// never writes the field. So display whatever string the record holds instead
+// of validating against a list here: a value added at the editing end (like
+// "Sativa-leaning Hybrid", which some NY brands print) renders with no change
+// to this file. Only blank/missing/"Unverified" count as unset.
+const shelfTag = p => {
+  const v = String(p.shelf_tag || '').trim();
+  return (!v || v.toLowerCase() === 'unverified') ? 'Unverified' : v;
+};
+// The direction each label CLAIMS — used only to decide whether the package
+// and the chemistry contradict each other. A plain "Hybrid" asserts no
+// direction, and an unrecognised value has no known one, so neither can clash;
+// both still display, they just don't get a verdict. Keys are lowercased for
+// matching, so capitalisation drift in a hand-edited record still resolves.
+const SHELF_EXPECTS = {
+  'sativa': 'lifting',
+  'sativa-leaning hybrid': 'lifting',
+  'indica-leaning hybrid': 'settling',
+  'indica': 'settling'
+};
 
 // Returns null when we can't ask the question honestly: Unverified is excluded
 // by the brief, and a faint profile is explicitly LESS trustworthy than the
@@ -201,7 +224,9 @@ const SHELF_OPPOSITE = {Sativa: 'settling', Indica: 'lifting'};
 function labelCheck(p){
   const tag = shelfTag(p);
   if (tag === 'Unverified' || p.confidence === 'faint' || !p.lean) return null;
-  return {tag, lean: p.lean, clash: SHELF_OPPOSITE[tag] === p.lean};
+  const expects = SHELF_EXPECTS[tag.toLowerCase()];
+  // 'mixed' is the absence of a direction, not the opposite one — it contradicts nothing.
+  return {tag, lean: p.lean, clash: !!expects && p.lean !== 'mixed' && p.lean !== expects};
 }
 function verdictHTML(p){
   const v = labelCheck(p);
@@ -217,7 +242,7 @@ const editURL = p => (GH_USER && GH_REPO && p._key)
   ? `https://github.com/${GH_USER}/${GH_REPO}/edit/main/data/${encodeURIComponent(p._key)}.json`
   : null;
 // lets "social preroll" in the effect box auto-apply the Preroll filter
-const CATEGORY_WORDS = [[/\bprerolls?\b/, 'Preroll'], [/\bflowers?\b/, 'Flower']];
+const CATEGORY_WORDS = [[/\b(vapes?|carts?)\b/, 'Vape'], [/\bpre[\s-]?rolls?\b/, 'Preroll'], [/\bflowers?\b/, 'Flower']];
 const detectCategoryWord = q => (CATEGORY_WORDS.find(([re]) => re.test(q)) || [])[1] || null;
 
 // "relaxing but not sleepy" — how customers actually talk.
