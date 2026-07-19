@@ -1,0 +1,45 @@
+{
+ "id": "a3f8c1e290",
+ "metrc_tag": "1A412030000026D000006417",
+ "brand": "Grassroots",
+ "strain": "Animal Mint Cake",
+ "form": "Flower 3.5g",
+ "thc": 27.5528,
+ "total_terpenes": 1.7,
+ "lean": "lifting",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Hybrid",
+ "reported": [
+  "27.55% Total THC",
+  "1.70% Total Terpenes"
+ ],
+ "dominant": [
+  "Limonene",
+  "beta-Caryophyllene",
+  "Farnesene"
+ ],
+ "aroma": [
+  "citrus",
+  "floral",
+  "spice",
+  "herbal",
+  "pine"
+ ],
+ "terpenes": {
+  "Limonene": 0.48,
+  "beta-Caryophyllene": 0.42,
+  "Farnesene": 0.16,
+  "Linalool": 0.16,
+  "alpha-Humulene": 0.13,
+  "beta-Myrcene": 0.11,
+  "beta-Pinene": 0.07,
+  "Terpineol": 0.04,
+  "Fenchol": 0.04,
+  "alpha-Pinene": 0.04,
+  "Valencene": 0.02,
+  "Camphene": 0.01,
+  "Caryophyllene Oxide": 0.01,
+  "alpha-Bisabolol": 0.01
+ }
+}
