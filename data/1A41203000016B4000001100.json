@@ -1,23 +1,25 @@
 {
  "id": "da961bea65",
- "metrc_tag": "1A41203000016B4000001100",
- "brand": "Canna Cure Farms, LLC",
- "strain": "Strawberry Diesel",
- "form": "Flower",
- "thc": 22.307,
- "total_terpenes": 1.13,
- "lean": "settling",
+ "shelf_tag": "Sativa",
  "confidence": "moderate",
- "in_stock": true,
- "shelf_tag": "Unverified",
- "reported": [
-  "Strawberry Diesel Dime Bag",
-  "TestPassed"
- ],
  "dominant": [
   "beta-Caryophyllene",
   "alpha-Humulene",
   "Limonene"
+ ],
+ "terpenes": {
+  "Limonene": 0.11,
+  "beta-Caryophyllene": 0.59,
+  "alpha-Humulene": 0.22,
+  "beta-Myrcene": 0.1,
+  "Linalool": 0.1
+ },
+ "brand": "Canna Cure Farms, LLC",
+ "total_terpenes": 1.13,
+ "metrc_tag": "1A41203000016B4000001100",
+ "reported": [
+  "Strawberry Diesel Dime Bag",
+  "TestPassed"
  ],
  "aroma": [
   "spicy",
@@ -26,11 +28,9 @@
   "floral",
   "herbal"
  ],
- "terpenes": {
-  "beta-Caryophyllene": 0.59,
-  "alpha-Humulene": 0.22,
-  "Limonene": 0.11,
-  "beta-Myrcene": 0.1,
-  "Linalool": 0.1
- }
+ "form": "Flower",
+ "strain": "Strawberry Diesel",
+ "lean": "settling",
+ "in_stock": true,
+ "thc": 22.307
 }
