@@ -1,0 +1,51 @@
+{
+ "id": "a3f8c2d91b",
+ "metrc_tag": "1A4120300000285000005448",
+ "brand": "Fernway",
+ "strain": "Pineapple Express",
+ "form": "Concentrate 1g",
+ "thc": 84.26,
+ "total_terpenes": 5.455,
+ "lean": "lifting",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Sativa-leaning Hybrid",
+ "reported": [
+  "84.26% Total THC",
+  "5.455% Total Terpenes"
+ ],
+ "dominant": [
+  "Terpinolene",
+  "beta-Myrcene",
+  "beta-Caryophyllene"
+ ],
+ "aroma": [
+  "piney",
+  "herbal",
+  "woody",
+  "floral",
+  "earthy"
+ ],
+ "terpenes": {
+  "Terpinolene": 2.464,
+  "beta-Myrcene": 0.738,
+  "beta-Caryophyllene": 0.4734,
+  "trans-b-Ocimene": 0.2952,
+  "Farnesene": 0.2043,
+  "Sabinene": 0.2001,
+  "alpha-Phellandrene": 0.1723,
+  "alpha-Pinene": 0.1443,
+  "beta-Pinene": 0.1431,
+  "alpha-Humulene": 0.1253,
+  "Linalool": 0.103,
+  "Ocimene": 0.0619,
+  "alpha-Terpinene": 0.0611,
+  "alpha-Bisabolol": 0.0641,
+  "3-Carene": 0.0598,
+  "Fenchol": 0.0452,
+  "gamma-Terpinene": 0.0346,
+  "Terpineol": 0.0419,
+  "Borneol": 0.0096,
+  "Isoborneol": 0.013
+ }
+}
