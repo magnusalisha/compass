@@ -1,23 +1,36 @@
 {
  "id": "a3f9c2e817",
- "metrc_tag": "1A4120300000208000002066",
- "brand": "The Botanist",
- "strain": "Tasty Trees #9",
- "form": "Flower 7g",
- "thc": 26.74,
- "total_terpenes": 2.4942,
- "lean": "settling",
+ "shelf_tag": "Hybrid",
  "confidence": "strong",
- "in_stock": true,
- "shelf_tag": "Unverified",
- "reported": [
-  "Earthy",
-  "Woodsy"
- ],
  "dominant": [
   "beta-Myrcene",
   "alpha-Pinene",
   "beta-Caryophyllene"
+ ],
+ "terpenes": {
+  "Ocimene": 0.0984,
+  "Terpinolene": 0.0106,
+  "Linalool": 0.0608,
+  "Fenchol": 0.0256,
+  "Nerolidol": 0.0762,
+  "Farnesene": 0.1054,
+  "Camphene": 0.0141,
+  "alpha-Bisabolol": 0.0559,
+  "beta-Myrcene": 0.9875,
+  "beta-Caryophyllene": 0.2095,
+  "alpha-Pinene": 0.385,
+  "beta-Pinene": 0.1555,
+  "alpha-Humulene": 0.0569,
+  "Terpineol": 0.034,
+  "Geraniol": 0.0239,
+  "Limonene": 0.1823
+ },
+ "brand": "The Botanist",
+ "total_terpenes": 2.4942,
+ "metrc_tag": "1A4120300000208000002066",
+ "reported": [
+  "Earthy",
+  "Woodsy"
  ],
  "aroma": [
   "earthy",
@@ -26,22 +39,9 @@
   "citrus",
   "herbal"
  ],
- "terpenes": {
-  "beta-Myrcene": 0.9875,
-  "alpha-Pinene": 0.385,
-  "beta-Caryophyllene": 0.2095,
-  "Limonene": 0.1823,
-  "beta-Pinene": 0.1555,
-  "Farnesene": 0.1054,
-  "Ocimene": 0.0984,
-  "Nerolidol": 0.0762,
-  "Linalool": 0.0608,
-  "alpha-Humulene": 0.0569,
-  "alpha-Bisabolol": 0.0559,
-  "Terpineol": 0.034,
-  "Fenchol": 0.0256,
-  "Geraniol": 0.0239,
-  "Camphene": 0.0141,
-  "Terpinolene": 0.0106
- }
+ "form": "Flower 7g",
+ "strain": "Tasty Trees #9",
+ "lean": "settling",
+ "in_stock": true,
+ "thc": 26.74
 }
