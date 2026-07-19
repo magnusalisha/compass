@@ -1,23 +1,38 @@
 {
  "id": "a3f7c2e914",
- "metrc_tag": "1A4120300000208000001993",
- "brand": "NYCanna LLC / The Botanist",
- "strain": "Millionaire #4",
- "form": "Flower 3.5g",
- "thc": 29.07,
- "total_terpenes": 3.009,
- "lean": "lifting",
+ "shelf_tag": "Sativa",
  "confidence": "strong",
- "in_stock": true,
- "shelf_tag": "Unverified",
- "reported": [
-  "Dominant terpene: Terpinolene",
-  "Passes all safety testing including pesticides, heavy metals, and microbials"
- ],
  "dominant": [
   "Terpinolene",
   "beta-Myrcene",
   "beta-Caryophyllene"
+ ],
+ "terpenes": {
+  "alpha-Phellandrene": 0.0557,
+  "Carene": 0.0433,
+  "Linalool": 0.1014,
+  "alpha-Terpinene": 0.0398,
+  "Ocimene": 0.0319,
+  "Fenchol": 0.0183,
+  "Eucalyptol": 0.0099,
+  "Nerolidol": 0.016,
+  "Farnesene": 0.0258,
+  "alpha-Bisabolol": 0.0919,
+  "Terpinolene": 1.2749,
+  "beta-Myrcene": 0.5649,
+  "beta-Caryophyllene": 0.2024,
+  "beta-Pinene": 0.1174,
+  "alpha-Pinene": 0.067,
+  "alpha-Humulene": 0.058,
+  "Terpineol": 0.0448,
+  "Limonene": 0.12
+ },
+ "brand": "NYCanna LLC / The Botanist",
+ "total_terpenes": 3.009,
+ "metrc_tag": "1A4120300000208000001993",
+ "reported": [
+  "Dominant terpene: Terpinolene",
+  "Passes all safety testing including pesticides, heavy metals, and microbials"
  ],
  "aroma": [
   "floral",
@@ -26,24 +41,9 @@
   "citrus",
   "herbal"
  ],
- "terpenes": {
-  "Terpinolene": 1.2749,
-  "beta-Myrcene": 0.5649,
-  "beta-Caryophyllene": 0.2024,
-  "Limonene": 0.12,
-  "beta-Pinene": 0.1174,
-  "Linalool": 0.1014,
-  "alpha-Bisabolol": 0.0919,
-  "alpha-Pinene": 0.067,
-  "Nerolidol": 0.016,
-  "alpha-Humulene": 0.058,
-  "alpha-Phellandrene": 0.0557,
-  "Terpineol": 0.0448,
-  "Carene": 0.0433,
-  "alpha-Terpinene": 0.0398,
-  "Ocimene": 0.0319,
-  "Farnesene": 0.0258,
-  "Fenchol": 0.0183,
-  "Eucalyptol": 0.0099
- }
+ "form": "Flower 3.5g",
+ "strain": "Millionaire #4",
+ "lean": "lifting",
+ "in_stock": true,
+ "thc": 29.07
 }
