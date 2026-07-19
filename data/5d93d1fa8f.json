@@ -1,22 +1,42 @@
 {
  "id": "5d93d1fa8f",
- "brand": "Rolling Green",
- "strain": "Apple Banana Flambe",
- "form": "Flower 3.5g",
- "thc": 28.2499,
- "total_terpenes": 1.29,
- "lean": "settling",
- "balance": -0.41,
+ "shelf_tag": "Hybrid",
  "confidence": "strong",
- "note": null,
- "reported": [
-  "mellow and soft",
-  "bright and talkative"
- ],
  "dominant": [
   "Linalool",
   "Limonene",
   "beta-Caryophyllene"
+ ],
+ "note": null,
+ "terpenes": {
+  "alpha-Pinene": 0,
+  "Terpineol": 0.05,
+  "Farnesene": 0,
+  "beta-Caryophyllene": 0.28,
+  "Guaiol": 0,
+  "Linalool": 0.44,
+  "Camphene": 0,
+  "Geraniol": 0,
+  "Ocimene": 0,
+  "Limonene": 0.33,
+  "Valencene": 0,
+  "Terpinolene": 0,
+  "beta-Pinene": 0,
+  "alpha-Terpinene": 0,
+  "alpha-Humulene": 0.1,
+  "Fenchol": 0.05,
+  "alpha-Bisabolol": 0.04,
+  "Caryophyllene oxide": 0,
+  "beta-Myrcene": 0,
+  "Menthol": 0,
+  "alpha-Phellandrene": 0
+ },
+ "brand": "Rolling Green",
+ "total_terpenes": 1.29,
+ "balance": -0.41,
+ "reported": [
+  "mellow and soft",
+  "bright and talkative"
  ],
  "aroma": [
   "floral",
@@ -25,29 +45,9 @@
   "lemon",
   "bright"
  ],
- "terpenes": {
-  "Linalool": 0.44,
-  "Limonene": 0.33,
-  "beta-Caryophyllene": 0.28,
-  "alpha-Humulene": 0.1,
-  "Terpineol": 0.05,
-  "Fenchol": 0.05,
-  "alpha-Bisabolol": 0.04,
-  "Camphene": 0.0,
-  "Caryophyllene oxide": 0.0,
-  "Farnesene": 0.0,
-  "Ocimene": 0.0,
-  "Terpinolene": 0.0,
-  "Valencene": 0.0,
-  "alpha-Pinene": 0.0,
-  "beta-Myrcene": 0.0,
-  "beta-Pinene": 0.0,
-  "Geraniol": 0.0,
-  "Guaiol": 0.0,
-  "Menthol": 0.0,
-  "alpha-Phellandrene": 0.0,
-  "alpha-Terpinene": 0.0
- },
+ "form": "Flower 3.5g",
+ "strain": "Apple Banana Flambe",
+ "lean": "settling",
  "in_stock": true,
- "shelf_tag": "Unverified"
+ "thc": 28.2499
 }
