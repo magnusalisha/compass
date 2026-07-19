@@ -1,23 +1,34 @@
 {
  "id": "a3f82c1e9b",
- "metrc_tag": "1A412030000026D000010265",
- "brand": "Curaleaf NY, LLC.",
- "strain": "Bottomless Mints",
- "form": "Flower 3.5g",
- "thc": 36.4767,
- "total_terpenes": 2.55,
- "lean": "lifting",
+ "shelf_tag": "Hybrid",
  "confidence": "strong",
- "in_stock": true,
- "shelf_tag": "Unverified",
- "reported": [
-  "Hybrid",
-  "Medical Use"
- ],
  "dominant": [
   "Limonene",
   "beta-Caryophyllene",
   "beta-Myrcene"
+ ],
+ "terpenes": {
+  "Linalool": 0.25,
+  "Fenchol": 0.07,
+  "Guaiol": 0.1,
+  "Farnesene": 0.07,
+  "Camphene": 0.02,
+  "alpha-Bisabolol": 0.03,
+  "Caryophyllene Oxide": 0.01,
+  "beta-Myrcene": 0.26,
+  "beta-Caryophyllene": 0.46,
+  "beta-Pinene": 0.13,
+  "Terpineol": 0.08,
+  "alpha-Humulene": 0.14,
+  "alpha-Pinene": 0.07,
+  "Limonene": 0.86
+ },
+ "brand": "Curaleaf NY, LLC.",
+ "total_terpenes": 2.55,
+ "metrc_tag": "1A412030000026D000010265",
+ "reported": [
+  "Hybrid",
+  "Medical Use"
  ],
  "aroma": [
   "citrus",
@@ -26,20 +37,9 @@
   "floral",
   "herbal"
  ],
- "terpenes": {
-  "Limonene": 0.86,
-  "beta-Caryophyllene": 0.46,
-  "beta-Myrcene": 0.26,
-  "Linalool": 0.25,
-  "alpha-Humulene": 0.14,
-  "beta-Pinene": 0.13,
-  "Guaiol": 0.1,
-  "Terpineol": 0.08,
-  "Farnesene": 0.07,
-  "Fenchol": 0.07,
-  "alpha-Pinene": 0.07,
-  "alpha-Bisabolol": 0.03,
-  "Camphene": 0.02,
-  "Caryophyllene Oxide": 0.01
- }
+ "form": "Flower 3.5g",
+ "strain": "Bottomless Mints",
+ "lean": "lifting",
+ "in_stock": true,
+ "thc": 36.4767
 }
