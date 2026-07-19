@@ -1,28 +1,28 @@
 {
  "id": "a3f92c1d7e",
- "metrc_tag": "1A4120300000140000000444",
- "brand": "Basin Mixtures INC dba The Sauce",
- "strain": "HH Glitterbomb Lights",
- "form": "Preroll 1g",
- "thc": 15.864,
- "total_terpenes": 0.08,
- "lean": "settling",
+ "shelf_tag": "Indica",
  "confidence": "faint",
- "in_stock": true,
- "shelf_tag": "Unverified",
+ "dominant": [
+  "beta-Caryophyllene"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.08
+ },
+ "brand": "Basin Mixtures INC dba The Sauce",
+ "total_terpenes": 0.08,
+ "metrc_tag": "1A4120300000140000000444",
  "reported": [
   "15.86% Total THC",
   "Beta-Caryophyllene dominant"
- ],
- "dominant": [
-  "beta-Caryophyllene"
  ],
  "aroma": [
   "earthy",
   "spicy",
   "woody"
  ],
- "terpenes": {
-  "beta-Caryophyllene": 0.08
- }
+ "form": "Preroll 1g",
+ "strain": "HH Glitterbomb Lights",
+ "lean": "settling",
+ "in_stock": true,
+ "thc": 15.864
 }
