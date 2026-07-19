@@ -1,15 +1,15 @@
 {
- "id": "a3f7c2e910",
+ "id": "a3f7c92e1b",
  "metrc_tag": "1A412030000026D000018968",
- "brand": "Curaleaf NY, LLC.",
- "strain": "Northern Lights",
- "form": "Infused Preroll 2.5g",
+ "brand": "Anthem",
+ "strain": "Northern Lights - Pack",
+ "form": "Infused Preroll 2.5g Glass Tip 5-Pack",
  "thc": 49.6551,
  "total_terpenes": 0.6,
  "lean": "settling",
  "confidence": "faint",
  "in_stock": true,
- "shelf_tag": "Unverified",
+ "shelf_tag": "Indica",
  "reported": [
   "Total THC 49.66%",
   "Total Terpenes 0.60%"
@@ -20,10 +20,10 @@
   "Linalool"
  ],
  "aroma": [
-  "spicy",
-  "woody",
-  "floral",
   "earthy",
+  "spicy",
+  "floral",
+  "woody",
   "herbal"
  ],
  "terpenes": {
