@@ -1,23 +1,31 @@
 {
  "id": "a3f8c2e175",
- "metrc_tag": "1A4120300000C1F000016655",
- "brand": "Vireo Health of New York LLC",
- "strain": "Banana Kush",
- "form": "Flower 3.5g",
- "thc": 29.3616,
- "total_terpenes": 2.62,
- "lean": "lifting",
+ "shelf_tag": "Hybrid",
  "confidence": "strong",
- "in_stock": true,
- "shelf_tag": "Unverified",
- "reported": [
-  "Indoor grown",
-  "Cured flower"
- ],
  "dominant": [
   "Terpinolene",
   "beta-Myrcene",
   "Ocimene"
+ ],
+ "terpenes": {
+  "beta-Myrcene": 0.31,
+  "Ocimene": 0.25,
+  "beta-Caryophyllene": 0.2,
+  "alpha-Pinene": 0.1,
+  "alpha-Bisabolol": 0.05,
+  "beta-Pinene": 0.16,
+  "Terpinolene": 1.13,
+  "alpha-Humulene": 0.07,
+  "Terpineol": 0.06,
+  "Fenchol": 0.05,
+  "Limonene": 0.24
+ },
+ "brand": "Vireo Health of New York LLC",
+ "total_terpenes": 2.62,
+ "metrc_tag": "1A4120300000C1F000016655",
+ "reported": [
+  "Indoor grown",
+  "Cured flower"
  ],
  "aroma": [
   "tropical",
@@ -26,17 +34,9 @@
   "woody",
   "sweet"
  ],
- "terpenes": {
-  "Terpinolene": 1.13,
-  "beta-Myrcene": 0.31,
-  "Ocimene": 0.25,
-  "Limonene": 0.24,
-  "beta-Caryophyllene": 0.2,
-  "beta-Pinene": 0.16,
-  "alpha-Pinene": 0.1,
-  "alpha-Humulene": 0.07,
-  "Terpineol": 0.06,
-  "Fenchol": 0.05,
-  "alpha-Bisabolol": 0.05
- }
+ "form": "Flower 3.5g",
+ "strain": "Banana Kush",
+ "lean": "lifting",
+ "in_stock": true,
+ "thc": 29.3616
 }
