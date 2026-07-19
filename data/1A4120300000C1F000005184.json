@@ -1,23 +1,33 @@
 {
  "id": "4dcf124255",
- "metrc_tag": "1A4120300000C1F000005184",
- "brand": "Vireo Health of New York LLC",
- "strain": "Honeymoon Diesel",
- "form": "Flower 3.5g",
- "thc": 22.4296,
- "total_terpenes": 1.15,
- "lean": "mixed",
+ "shelf_tag": "Hybrid",
  "confidence": "moderate",
- "in_stock": true,
- "shelf_tag": "Unverified",
- "reported": [
-  "Indoor grown",
-  "Large Bud"
- ],
  "dominant": [
   "beta-Caryophyllene",
   "Limonene",
   "beta-Myrcene"
+ ],
+ "terpenes": {
+  "Valencene": 0.01,
+  "Linalool": 0.07,
+  "Fenchol": 0.03,
+  "Camphene": 0.01,
+  "alpha-Bisabolol": 0.04,
+  "beta-Myrcene": 0.27,
+  "beta-Caryophyllene": 0.27,
+  "beta-Pinene": 0.04,
+  "Terpineol": 0.02,
+  "alpha-Humulene": 0.09,
+  "alpha-Pinene": 0.02,
+  "Terpinolene": 0.01,
+  "Limonene": 0.27
+ },
+ "brand": "Vireo Health of New York LLC",
+ "total_terpenes": 1.15,
+ "metrc_tag": "1A4120300000C1F000005184",
+ "reported": [
+  "Indoor grown",
+  "Large Bud"
  ],
  "aroma": [
   "diesel",
@@ -26,19 +36,9 @@
   "citrus",
   "herbal"
  ],
- "terpenes": {
-  "beta-Caryophyllene": 0.27,
-  "Limonene": 0.27,
-  "beta-Myrcene": 0.27,
-  "alpha-Humulene": 0.09,
-  "Linalool": 0.07,
-  "alpha-Bisabolol": 0.04,
-  "beta-Pinene": 0.04,
-  "Fenchol": 0.03,
-  "Terpineol": 0.02,
-  "alpha-Pinene": 0.02,
-  "Camphene": 0.01,
-  "Terpinolene": 0.01,
-  "Valencene": 0.01
- }
+ "form": "Flower 3.5g",
+ "strain": "Honeymoon Diesel",
+ "lean": "mixed",
+ "in_stock": true,
+ "thc": 22.4296
 }
