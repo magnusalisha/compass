@@ -1,23 +1,37 @@
 {
  "id": "a3f9c12e74",
- "metrc_tag": "1A4120300000C1F000016195",
- "brand": "Vireo Health of New York LLC",
- "strain": "ChemD x I95",
- "form": "Flower 3.5g",
- "thc": 25.1455,
- "total_terpenes": 1.19,
- "lean": "lifting",
+ "shelf_tag": "Indica",
  "confidence": "moderate",
- "in_stock": true,
- "shelf_tag": "Unverified",
- "reported": [
-  "Mixed Bud",
-  "Cured Flower"
- ],
  "dominant": [
   "Limonene",
   "beta-Myrcene",
   "Linalool"
+ ],
+ "terpenes": {
+  "Ocimene": 0.01,
+  "Terpinolene": 0.01,
+  "Linalool": 0.18,
+  "Fenchol": 0.03,
+  "Guaiol": 0.05,
+  "Farnesene": 0.04,
+  "Caryophyllene Oxide": 0.02,
+  "alpha-Bisabolol": 0.04,
+  "Camphene": 0.01,
+  "beta-Myrcene": 0.23,
+  "beta-Caryophyllene": 0.13,
+  "beta-Pinene": 0.05,
+  "Terpineol": 0.03,
+  "alpha-Humulene": 0.06,
+  "alpha-Pinene": 0.03,
+  "Valencene": 0.02,
+  "Limonene": 0.25
+ },
+ "brand": "Vireo Health of New York LLC",
+ "total_terpenes": 1.19,
+ "metrc_tag": "1A4120300000C1F000016195",
+ "reported": [
+  "Mixed Bud",
+  "Cured Flower"
  ],
  "aroma": [
   "citrus",
@@ -26,23 +40,9 @@
   "herbal",
   "earthy"
  ],
- "terpenes": {
-  "Limonene": 0.25,
-  "beta-Myrcene": 0.23,
-  "Linalool": 0.18,
-  "beta-Caryophyllene": 0.13,
-  "alpha-Humulene": 0.06,
-  "Guaiol": 0.05,
-  "beta-Pinene": 0.05,
-  "Farnesene": 0.04,
-  "alpha-Bisabolol": 0.04,
-  "Terpineol": 0.03,
-  "Fenchol": 0.03,
-  "alpha-Pinene": 0.03,
-  "Caryophyllene Oxide": 0.02,
-  "Valencene": 0.02,
-  "Camphene": 0.01,
-  "Ocimene": 0.01,
-  "Terpinolene": 0.01
- }
+ "form": "Flower 3.5g",
+ "strain": "ChemD x I95",
+ "lean": "lifting",
+ "in_stock": true,
+ "thc": 25.1455
 }
