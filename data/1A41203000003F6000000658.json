@@ -1,23 +1,28 @@
 {
  "id": "18e2bd2153",
- "metrc_tag": "1A41203000003F6000000658",
- "brand": "1Off",
- "strain": "Sherbanger 3",
- "form": "Preroll 1.5g 2-Pack",
- "thc": 30.072,
- "total_terpenes": 1.47,
- "lean": "settling",
+ "shelf_tag": "Hybrid",
  "confidence": "strong",
- "in_stock": true,
- "shelf_tag": "Unverified",
- "reported": [
-  "30% Total THC",
-  "1.47% Total Terpenes"
- ],
  "dominant": [
   "Linalool",
   "Limonene",
   "beta-Caryophyllene"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.26,
+  "beta-Myrcene": 0.13,
+  "Farnesene": 0.11,
+  "Linalool": 0.47,
+  "alpha-Humulene": 0.09,
+  "Terpineol": 0.08,
+  "Fenchol": 0.07,
+  "Limonene": 0.27
+ },
+ "brand": "1Off",
+ "total_terpenes": 1.47,
+ "metrc_tag": "1A41203000003F6000000658",
+ "reported": [
+  "30% Total THC",
+  "1.47% Total Terpenes"
  ],
  "aroma": [
   "floral",
@@ -26,14 +31,9 @@
   "herbal",
   "earthy"
  ],
- "terpenes": {
-  "Linalool": 0.47,
-  "Limonene": 0.27,
-  "beta-Caryophyllene": 0.26,
-  "beta-Myrcene": 0.13,
-  "Farnesene": 0.11,
-  "alpha-Humulene": 0.09,
-  "Terpineol": 0.08,
-  "Fenchol": 0.07
- }
+ "form": "Preroll 1.5g 2-Pack",
+ "strain": "Sherbanger 3",
+ "lean": "settling",
+ "in_stock": true,
+ "thc": 30.072
 }
