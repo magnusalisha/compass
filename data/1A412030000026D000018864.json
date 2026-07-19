@@ -1,7 +1,7 @@
 {
- "id": "a3f82c1d9e",
+ "id": "a3f9c21b7e",
  "metrc_tag": "1A412030000026D000018864",
- "brand": "Curaleaf NY, LLC.",
+ "brand": "Anthem",
  "strain": "Jack Herer",
  "form": "Infused Preroll 1g",
  "thc": 48.6295,
@@ -9,7 +9,7 @@
  "lean": "mixed",
  "confidence": "moderate",
  "in_stock": true,
- "shelf_tag": "Unverified",
+ "shelf_tag": "Sativa",
  "reported": [
   "Total THC 48.63%",
   "Total Terpenes 1.07%"
@@ -22,8 +22,8 @@
  "aroma": [
   "spicy",
   "woody",
-  "citrus",
   "floral",
+  "citrus",
   "herbal"
  ],
  "terpenes": {
