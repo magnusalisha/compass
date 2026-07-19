@@ -1,23 +1,33 @@
 {
  "id": "d8f28b7bf7",
- "metrc_tag": "1A4120300000268000013043",
- "brand": "Rythm",
- "strain": "Creamsicle Sunset",
- "form": "Flower 3.5g",
- "thc": null,
- "total_terpenes": 2.2149,
- "lean": "mixed",
+ "shelf_tag": "Hybrid",
  "confidence": "strong",
- "in_stock": true,
- "shelf_tag": "Unverified",
- "reported": [
-  "hybrid",
-  "pre-pack buds"
- ],
  "dominant": [
   "Limonene",
   "beta-Caryophyllene",
   "alpha-Humulene"
+ ],
+ "terpenes": {
+  "Linalool": 0.1617,
+  "Fenchol": 0.0551,
+  "Farnesene": 0.1177,
+  "Caryophyllene Oxide": 0.0285,
+  "alpha-Bisabolol": 0.0425,
+  "Camphene": 0.0151,
+  "beta-Myrcene": 0.1771,
+  "beta-Caryophyllene": 0.53,
+  "beta-Pinene": 0.0945,
+  "alpha-Pinene": 0.0496,
+  "alpha-Humulene": 0.1775,
+  "Terpinolene": 0.0103,
+  "Limonene": 0.6403
+ },
+ "brand": "Rythm",
+ "total_terpenes": 2.2149,
+ "metrc_tag": "1A4120300000268000013043",
+ "reported": [
+  "hybrid",
+  "pre-pack buds"
  ],
  "aroma": [
   "citrus",
@@ -26,19 +36,9 @@
   "floral",
   "earthy"
  ],
- "terpenes": {
-  "Limonene": 0.6403,
-  "beta-Caryophyllene": 0.53,
-  "alpha-Humulene": 0.1775,
-  "beta-Myrcene": 0.1771,
-  "Linalool": 0.1617,
-  "Farnesene": 0.1177,
-  "beta-Pinene": 0.0945,
-  "Fenchol": 0.0551,
-  "alpha-Pinene": 0.0496,
-  "alpha-Bisabolol": 0.0425,
-  "Caryophyllene Oxide": 0.0285,
-  "Camphene": 0.0151,
-  "Terpinolene": 0.0103
- }
+ "form": "Flower 3.5g",
+ "strain": "Creamsicle Sunset",
+ "lean": "mixed",
+ "in_stock": true,
+ "thc": null
 }
