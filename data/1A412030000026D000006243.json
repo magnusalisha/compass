@@ -8,7 +8,7 @@
   "Linalool"
  ],
  "terpenes": {
-  "Valencene": 0.01,
+  "Limonene": 0.4,
   "Linalool": 0.29,
   "Fenchol": 0.04,
   "Guaiol": 0.11,
@@ -19,12 +19,12 @@
   "beta-Caryophyllene": 0.44,
   "beta-Pinene": 0.07,
   "Terpineol": 0.04,
+  "Valencene": 0.01,
   "alpha-Humulene": 0.14,
   "alpha-Pinene": 0.03,
-  "Geraniol": 0.01,
-  "Limonene": 0.4
+  "Geraniol": 0.01
  },
- "brand": "Curaleaf NY, LLC.",
+ "brand": "B Noble",
  "total_terpenes": 1.87,
  "metrc_tag": "1A412030000026D000006243",
  "reported": [
