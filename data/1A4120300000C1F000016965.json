@@ -1,23 +1,31 @@
 {
  "id": "a3f7c2e814",
- "metrc_tag": "1A4120300000C1F000016965",
- "brand": "Vireo Health of New York LLC",
- "strain": "Banana Power",
- "form": "Flower 3.5g",
- "thc": 27.1027,
- "total_terpenes": 1.43,
- "lean": "lifting",
+ "shelf_tag": "Indica",
  "confidence": "strong",
- "in_stock": true,
- "shelf_tag": "Unverified",
- "reported": [
-  "27.1% Total THC",
-  "1.43% Total Terpenes"
- ],
  "dominant": [
   "Limonene",
   "Linalool",
   "beta-Caryophyllene"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.23,
+  "beta-Myrcene": 0.11,
+  "Guaiol": 0.08,
+  "Linalool": 0.29,
+  "alpha-Pinene": 0.03,
+  "beta-Pinene": 0.05,
+  "alpha-Humulene": 0.08,
+  "Terpineol": 0.04,
+  "Camphene": 0.01,
+  "Fenchol": 0.05,
+  "Limonene": 0.46
+ },
+ "brand": "Vireo Health of New York LLC",
+ "total_terpenes": 1.43,
+ "metrc_tag": "1A4120300000C1F000016965",
+ "reported": [
+  "27.1% Total THC",
+  "1.43% Total Terpenes"
  ],
  "aroma": [
   "citrus",
@@ -26,17 +34,9 @@
   "herbal",
   "piney"
  ],
- "terpenes": {
-  "Limonene": 0.46,
-  "Linalool": 0.29,
-  "beta-Caryophyllene": 0.23,
-  "beta-Myrcene": 0.11,
-  "Guaiol": 0.08,
-  "alpha-Humulene": 0.08,
-  "Fenchol": 0.05,
-  "beta-Pinene": 0.05,
-  "Terpineol": 0.04,
-  "alpha-Pinene": 0.03,
-  "Camphene": 0.01
- }
+ "form": "Flower 3.5g",
+ "strain": "Banana Power",
+ "lean": "lifting",
+ "in_stock": true,
+ "thc": 27.1027
 }
