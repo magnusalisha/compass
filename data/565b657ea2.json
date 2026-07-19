@@ -1,22 +1,41 @@
 {
  "id": "565b657ea2",
- "brand": "Vireo / Flower Warrior",
- "strain": "Fresh Powder",
- "form": "Flower 3.5g",
- "thc": 20.5,
- "total_terpenes": 1.9,
- "lean": "lifting",
- "balance": 0.8,
+ "shelf_tag": "Sativa",
  "confidence": "strong",
- "note": null,
- "reported": [
-  "heady and alert",
-  "clear-headed"
- ],
  "dominant": [
   "Terpinolene",
   "beta-Pinene",
   "beta-Myrcene"
+ ],
+ "note": null,
+ "terpenes": {
+  "alpha-Pinene": 0.03,
+  "Terpineol": 0,
+  "Farnesene": 0,
+  "beta-Caryophyllene": 0,
+  "Guaiol": 0,
+  "Linalool": 0,
+  "Camphene": 0,
+  "Geraniol": 0,
+  "Ocimene": 0,
+  "Limonene": 0.09,
+  "Valencene": 0,
+  "Terpinolene": 1.4,
+  "beta-Pinene": 0.15,
+  "alpha-Terpinene": 0.04,
+  "alpha-Humulene": 0.04,
+  "alpha-Bisabolol": 0,
+  "beta-Myrcene": 0.15,
+  "Caryophyllene oxide": 0,
+  "Fenchol": 0,
+  "alpha-Phellandrene": 0
+ },
+ "brand": "Vireo / Flower Warrior",
+ "total_terpenes": 1.9,
+ "balance": 0.8,
+ "reported": [
+  "heady and alert",
+  "clear-headed"
  ],
  "aroma": [
   "sharp",
@@ -25,28 +44,9 @@
   "fresh",
   "pine"
  ],
- "terpenes": {
-  "Terpinolene": 1.4,
-  "beta-Pinene": 0.15,
-  "beta-Myrcene": 0.15,
-  "Limonene": 0.09,
-  "alpha-Terpinene": 0.04,
-  "alpha-Humulene": 0.04,
-  "alpha-Pinene": 0.03,
-  "alpha-Bisabolol": 0.0,
-  "alpha-Phellandrene": 0.0,
-  "beta-Caryophyllene": 0.0,
-  "Camphene": 0.0,
-  "Caryophyllene oxide": 0.0,
-  "Farnesene": 0.0,
-  "Fenchol": 0.0,
-  "Geraniol": 0.0,
-  "Guaiol": 0.0,
-  "Linalool": 0.0,
-  "Ocimene": 0.0,
-  "Terpineol": 0.0,
-  "Valencene": 0.0
- },
+ "form": "Flower 3.5g",
+ "strain": "Fresh Powder",
+ "lean": "lifting",
  "in_stock": true,
- "shelf_tag": "Unverified"
+ "thc": 20.5
 }
