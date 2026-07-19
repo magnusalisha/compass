@@ -1,22 +1,42 @@
 {
  "id": "cffa411513",
- "brand": "Curaleaf / Find",
- "strain": "Slingria",
- "form": "Flower 3.5g",
- "thc": 31.9792,
- "total_terpenes": 1.16,
- "lean": "settling",
- "balance": -0.74,
+ "shelf_tag": "Sativa",
  "confidence": "moderate",
- "note": null,
- "reported": [
-  "heavy and relaxed",
-  "calm in the body"
- ],
  "dominant": [
   "beta-Myrcene",
   "beta-Caryophyllene",
   "Limonene"
+ ],
+ "note": null,
+ "terpenes": {
+  "alpha-Pinene": 0,
+  "Terpineol": 0,
+  "Farnesene": 0,
+  "beta-Caryophyllene": 0.18,
+  "Guaiol": 0.06,
+  "Linalool": 0,
+  "Camphene": 0,
+  "Geraniol": 0,
+  "Ocimene": 0,
+  "Limonene": 0.12,
+  "Valencene": 0,
+  "Terpinolene": 0,
+  "alpha-Terpinene": 0,
+  "beta-Pinene": 0,
+  "alpha-Humulene": 0.07,
+  "Caryophyllene oxide": 0,
+  "beta-Myrcene": 0.5,
+  "Fenchol": 0,
+  "Menthol": 0,
+  "alpha-Bisabolol": 0,
+  "alpha-Phellandrene": 0
+ },
+ "brand": "Curaleaf / Find",
+ "total_terpenes": 1.16,
+ "balance": -0.74,
+ "reported": [
+  "heavy and relaxed",
+  "calm in the body"
  ],
  "aroma": [
   "earthy",
@@ -25,29 +45,9 @@
   "pepper",
   "spice"
  ],
- "terpenes": {
-  "beta-Myrcene": 0.5,
-  "beta-Caryophyllene": 0.18,
-  "Limonene": 0.12,
-  "alpha-Humulene": 0.07,
-  "Guaiol": 0.06,
-  "Terpineol": 0.0,
-  "Camphene": 0.0,
-  "Caryophyllene oxide": 0.0,
-  "Farnesene": 0.0,
-  "Fenchol": 0.0,
-  "Geraniol": 0.0,
-  "Linalool": 0.0,
-  "Menthol": 0.0,
-  "Ocimene": 0.0,
-  "Terpinolene": 0.0,
-  "Valencene": 0.0,
-  "alpha-Bisabolol": 0.0,
-  "alpha-Phellandrene": 0.0,
-  "alpha-Pinene": 0.0,
-  "alpha-Terpinene": 0.0,
-  "beta-Pinene": 0.0
- },
+ "form": "Flower 3.5g",
+ "strain": "Slingria",
+ "lean": "settling",
  "in_stock": true,
- "shelf_tag": "Unverified"
+ "thc": 31.9792
 }
