@@ -1,21 +1,28 @@
 {
  "id": "42ea30a2da",
- "metrc_tag": "1A4120300000498000002255",
- "brand": "Green Wells Venture LLC",
- "strain": "Pinyatti",
- "form": "Flower 3.5g",
- "thc": null,
- "total_terpenes": 2.2,
- "lean": "mixed",
+ "shelf_tag": "Sativa",
  "confidence": "strong",
- "in_stock": true,
- "shelf_tag": "Unverified",
- "reported": [],
  "dominant": [
   "Limonene",
   "beta-Caryophyllene",
   "Linalool"
  ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.53,
+  "Ocimene": 0.17,
+  "beta-Myrcene": 0.12,
+  "Linalool": 0.35,
+  "Farnesene": 0.05,
+  "alpha-Bisabolol": 0.1,
+  "alpha-Humulene": 0.18,
+  "Terpineol": 0.06,
+  "Fenchol": 0.05,
+  "Limonene": 0.59
+ },
+ "brand": "Green Wells Venture LLC",
+ "total_terpenes": 2.2,
+ "metrc_tag": "1A4120300000498000002255",
+ "reported": [],
  "aroma": [
   "citrus",
   "spice",
@@ -23,16 +30,9 @@
   "herbal",
   "woody"
  ],
- "terpenes": {
-  "Limonene": 0.59,
-  "beta-Caryophyllene": 0.53,
-  "Linalool": 0.35,
-  "alpha-Humulene": 0.18,
-  "Ocimene": 0.17,
-  "beta-Myrcene": 0.12,
-  "alpha-Bisabolol": 0.1,
-  "Terpineol": 0.06,
-  "Fenchol": 0.05,
-  "Farnesene": 0.05
- }
+ "form": "Flower 3.5g",
+ "strain": "Pinyatti",
+ "lean": "mixed",
+ "in_stock": true,
+ "thc": null
 }
