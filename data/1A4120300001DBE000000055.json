@@ -1,23 +1,27 @@
 {
  "id": "a3f8c21d94",
- "metrc_tag": "1A4120300001DBE000000055",
- "brand": "Beforeland Farms LLC dba High Priority",
- "strain": "Piescream",
- "form": "Flower 3.5g",
- "thc": 26.559,
- "total_terpenes": 2.16,
- "lean": "lifting",
+ "shelf_tag": "Hybrid",
  "confidence": "strong",
- "in_stock": true,
- "shelf_tag": "Unverified",
- "reported": [
-  "Total THC 26.559% w/w",
-  "Total Terpenes 2.16% w/w"
- ],
  "dominant": [
   "beta-Myrcene",
   "alpha-Pinene",
   "Ocimene"
+ ],
+ "terpenes": {
+  "beta-Myrcene": 1.32,
+  "Ocimene": 0.16,
+  "beta-Caryophyllene": 0.15,
+  "Linalool": 0.1,
+  "Limonene": 0.08,
+  "beta-Pinene": 0.08,
+  "alpha-Pinene": 0.26
+ },
+ "brand": "Beforeland Farms LLC dba High Priority",
+ "total_terpenes": 2.16,
+ "metrc_tag": "1A4120300001DBE000000055",
+ "reported": [
+  "Total THC 26.559% w/w",
+  "Total Terpenes 2.16% w/w"
  ],
  "aroma": [
   "earthy",
@@ -26,13 +30,9 @@
   "citrus",
   "floral"
  ],
- "terpenes": {
-  "beta-Myrcene": 1.32,
-  "alpha-Pinene": 0.26,
-  "Ocimene": 0.16,
-  "beta-Caryophyllene": 0.15,
-  "Linalool": 0.1,
-  "Limonene": 0.08,
-  "beta-Pinene": 0.08
- }
+ "form": "Flower 3.5g",
+ "strain": "Piescream",
+ "lean": "lifting",
+ "in_stock": true,
+ "thc": 26.559
 }
