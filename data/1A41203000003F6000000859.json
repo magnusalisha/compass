@@ -1,23 +1,31 @@
 {
  "id": "a3f9c2b7e1",
- "metrc_tag": "1A41203000003F6000000859",
- "brand": "Smartbud",
- "strain": "Georgia Z",
- "form": "Flower 3.5g",
- "thc": 28.638,
- "total_terpenes": 2.19,
- "lean": "mixed",
+ "shelf_tag": "Hybrid",
  "confidence": "strong",
- "in_stock": true,
- "shelf_tag": "Unverified",
- "reported": [
-  "28.6% Total THC",
-  "2.19% Total Terpenes"
- ],
  "dominant": [
   "Linalool",
   "Limonene",
   "beta-Caryophyllene"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.31,
+  "beta-Myrcene": 0.23,
+  "Farnesene": 0.11,
+  "Linalool": 0.58,
+  "Alpha-cedrene": 0.06,
+  "beta-Pinene": 0.09,
+  "alpha-Humulene": 0.09,
+  "Terpineol": 0.09,
+  "trans-Nerolidol": 0.06,
+  "Fenchol": 0.1,
+  "Limonene": 0.47
+ },
+ "brand": "Smartbud",
+ "total_terpenes": 2.19,
+ "metrc_tag": "1A41203000003F6000000859",
+ "reported": [
+  "28.6% Total THC",
+  "2.19% Total Terpenes"
  ],
  "aroma": [
   "floral",
@@ -26,17 +34,9 @@
   "herbal",
   "piney"
  ],
- "terpenes": {
-  "Linalool": 0.58,
-  "Limonene": 0.47,
-  "beta-Caryophyllene": 0.31,
-  "beta-Myrcene": 0.23,
-  "Farnesene": 0.11,
-  "Fenchol": 0.1,
-  "beta-Pinene": 0.09,
-  "alpha-Humulene": 0.09,
-  "Terpineol": 0.09,
-  "Alpha-cedrene": 0.06,
-  "trans-Nerolidol": 0.06
- }
+ "form": "Flower 3.5g",
+ "strain": "Georgia Z",
+ "lean": "mixed",
+ "in_stock": true,
+ "thc": 28.638
 }
