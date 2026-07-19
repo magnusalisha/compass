@@ -1,23 +1,31 @@
 {
  "id": "a3f9c2e814",
- "metrc_tag": "1A41203000003F6000000860",
- "brand": "Smartbud",
- "strain": "Girl Scout Cookies",
- "form": "Flower 3.5g",
- "thc": 27.922,
- "total_terpenes": 2.13,
- "lean": "settling",
+ "shelf_tag": "Indica",
  "confidence": "strong",
- "in_stock": true,
- "shelf_tag": "Unverified",
- "reported": [
-  "Linalool-forward with citrus lift",
-  "Smooth caryophyllene backbone"
- ],
  "dominant": [
   "Linalool",
   "Limonene",
   "beta-Caryophyllene"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.32,
+  "beta-Myrcene": 0.22,
+  "Farnesene": 0.11,
+  "Linalool": 0.55,
+  "Alpha-cedrene": 0.06,
+  "beta-Pinene": 0.09,
+  "alpha-Humulene": 0.09,
+  "Terpineol": 0.09,
+  "trans-Nerolidol": 0.06,
+  "Fenchol": 0.09,
+  "Limonene": 0.45
+ },
+ "brand": "Smartbud",
+ "total_terpenes": 2.13,
+ "metrc_tag": "1A41203000003F6000000860",
+ "reported": [
+  "Linalool-forward with citrus lift",
+  "Smooth caryophyllene backbone"
  ],
  "aroma": [
   "floral",
@@ -26,17 +34,9 @@
   "herbal",
   "earthy"
  ],
- "terpenes": {
-  "Linalool": 0.55,
-  "Limonene": 0.45,
-  "beta-Caryophyllene": 0.32,
-  "beta-Myrcene": 0.22,
-  "Farnesene": 0.11,
-  "Fenchol": 0.09,
-  "alpha-Humulene": 0.09,
-  "beta-Pinene": 0.09,
-  "Terpineol": 0.09,
-  "trans-Nerolidol": 0.06,
-  "Alpha-cedrene": 0.06
- }
+ "form": "Flower 3.5g",
+ "strain": "Girl Scout Cookies",
+ "lean": "settling",
+ "in_stock": true,
+ "thc": 27.922
 }
