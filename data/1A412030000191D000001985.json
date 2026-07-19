@@ -1,23 +1,33 @@
 {
  "id": "4c8fa56b7d",
- "metrc_tag": "1A412030000191D000001985",
- "brand": "Miss Grass",
- "strain": "Cookies N Cream",
- "form": "Preroll 0.4g",
- "thc": 27.9512,
- "total_terpenes": 1.42,
- "lean": "settling",
+ "shelf_tag": "Hybrid",
  "confidence": "strong",
- "in_stock": true,
- "shelf_tag": "Unverified",
- "reported": [
-  "Total THC 27.95%",
-  "Total Terpenes 1.42%"
- ],
  "dominant": [
   "beta-Caryophyllene",
   "alpha-Humulene",
   "Limonene"
+ ],
+ "terpenes": {
+  "Ocimene": 0.01,
+  "Linalool": 0.02,
+  "Fenchol": 0.02,
+  "Farnesene": 0.05,
+  "Caryophyllene Oxide": 0.02,
+  "alpha-Bisabolol": 0.1,
+  "beta-Myrcene": 0.03,
+  "beta-Caryophyllene": 0.72,
+  "beta-Pinene": 0.02,
+  "Terpineol": 0.02,
+  "alpha-Humulene": 0.3,
+  "alpha-Pinene": 0.01,
+  "Limonene": 0.1
+ },
+ "brand": "Miss Grass",
+ "total_terpenes": 1.42,
+ "metrc_tag": "1A412030000191D000001985",
+ "reported": [
+  "Total THC 27.95%",
+  "Total Terpenes 1.42%"
  ],
  "aroma": [
   "earthy",
@@ -26,19 +36,9 @@
   "floral",
   "citrus"
  ],
- "terpenes": {
-  "beta-Caryophyllene": 0.72,
-  "alpha-Humulene": 0.3,
-  "Limonene": 0.1,
-  "alpha-Bisabolol": 0.1,
-  "Farnesene": 0.05,
-  "beta-Myrcene": 0.03,
-  "Terpineol": 0.02,
-  "Caryophyllene Oxide": 0.02,
-  "Fenchol": 0.02,
-  "Linalool": 0.02,
-  "beta-Pinene": 0.02,
-  "Ocimene": 0.01,
-  "alpha-Pinene": 0.01
- }
+ "form": "Preroll 0.4g",
+ "strain": "Cookies N Cream",
+ "lean": "settling",
+ "in_stock": true,
+ "thc": 27.9512
 }
