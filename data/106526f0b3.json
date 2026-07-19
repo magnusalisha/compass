@@ -1,22 +1,42 @@
 {
  "id": "106526f0b3",
- "brand": "Florette",
- "strain": "Honey Banana Face",
- "form": "Preroll 1g 4-pack",
- "thc": 15.5366,
- "total_terpenes": 0.54,
- "lean": "settling",
- "balance": -0.54,
+ "shelf_tag": "Sativa",
  "confidence": "faint",
- "note": "Low total terpenes and mostly heavy sesquiterpenes — the volatile ones have likely evaporated. Read the label, not this profile.",
- "reported": [
-  "calm in the body",
-  "bright and talkative"
- ],
  "dominant": [
   "beta-Caryophyllene",
   "Limonene",
   "alpha-Humulene"
+ ],
+ "note": "Low total terpenes and mostly heavy sesquiterpenes — the volatile ones have likely evaporated. Read the label, not this profile.",
+ "terpenes": {
+  "alpha-Pinene": 0.01,
+  "Terpineol": 0.01,
+  "Farnesene": 0,
+  "beta-Caryophyllene": 0.21,
+  "Guaiol": 0.02,
+  "Linalool": 0.03,
+  "Camphene": 0,
+  "Geraniol": 0,
+  "Ocimene": 0,
+  "Limonene": 0.09,
+  "Valencene": 0.01,
+  "Terpinolene": 0,
+  "beta-Pinene": 0.01,
+  "alpha-Terpinene": 0,
+  "alpha-Humulene": 0.08,
+  "alpha-Bisabolol": 0.02,
+  "beta-Myrcene": 0.03,
+  "Caryophyllene oxide": 0.01,
+  "Fenchol": 0.01,
+  "Menthol": 0,
+  "alpha-Phellandrene": 0
+ },
+ "brand": "Florette",
+ "total_terpenes": 0.54,
+ "balance": -0.54,
+ "reported": [
+  "calm in the body",
+  "bright and talkative"
  ],
  "aroma": [
   "pepper",
@@ -25,29 +45,9 @@
   "citrus",
   "lemon"
  ],
- "terpenes": {
-  "beta-Caryophyllene": 0.21,
-  "Limonene": 0.09,
-  "alpha-Humulene": 0.08,
-  "Linalool": 0.03,
-  "beta-Myrcene": 0.03,
-  "Guaiol": 0.02,
-  "alpha-Bisabolol": 0.02,
-  "Terpineol": 0.01,
-  "Caryophyllene oxide": 0.01,
-  "Fenchol": 0.01,
-  "Valencene": 0.01,
-  "alpha-Pinene": 0.01,
-  "beta-Pinene": 0.01,
-  "Camphene": 0.0,
-  "Farnesene": 0.0,
-  "Geraniol": 0.0,
-  "Menthol": 0.0,
-  "Ocimene": 0.0,
-  "Terpinolene": 0.0,
-  "alpha-Phellandrene": 0.0,
-  "alpha-Terpinene": 0.0
- },
+ "form": "Preroll 1g 4-pack",
+ "strain": "Honey Banana Face",
+ "lean": "settling",
  "in_stock": true,
- "shelf_tag": "Unverified"
+ "thc": 15.5366
 }
