@@ -1,23 +1,35 @@
 {
  "id": "a3f8c21b9e",
- "metrc_tag": "1A412030000019F000004349",
- "brand": "Florist Farms",
- "strain": "Iced Sangria",
- "form": "Preroll 0.5g (7pk)",
- "thc": 23.89,
- "total_terpenes": 2.472,
- "lean": "settling",
+ "shelf_tag": "Hybrid",
  "confidence": "strong",
- "in_stock": true,
- "shelf_tag": "Unverified",
- "reported": [
-  "Spicy",
-  "Earthy"
- ],
  "dominant": [
   "beta-Caryophyllene",
   "alpha-Humulene",
   "alpha-Bisabolol"
+ ],
+ "terpenes": {
+  "Ocimene": 0.0234,
+  "Linalool": 0.0561,
+  "Fenchol": 0.0251,
+  "Guaiol": 0.0571,
+  "Nerolidol": 0.0431,
+  "Farnesene": 0.1443,
+  "Caryophyllene Oxide": 0.0395,
+  "alpha-Bisabolol": 0.1823,
+  "beta-Myrcene": 0.0301,
+  "beta-Caryophyllene": 1.2475,
+  "beta-Pinene": 0.0207,
+  "Terpineol": 0.0293,
+  "alpha-Humulene": 0.3908,
+  "alpha-Pinene": 0.0106,
+  "Limonene": 0.1603
+ },
+ "brand": "Florist Farms",
+ "total_terpenes": 2.472,
+ "metrc_tag": "1A412030000019F000004349",
+ "reported": [
+  "Spicy",
+  "Earthy"
  ],
  "aroma": [
   "spicy",
@@ -26,21 +38,9 @@
   "floral",
   "herbal"
  ],
- "terpenes": {
-  "beta-Caryophyllene": 1.2475,
-  "alpha-Humulene": 0.3908,
-  "alpha-Bisabolol": 0.1823,
-  "Limonene": 0.1603,
-  "Farnesene": 0.1443,
-  "Guaiol": 0.0571,
-  "Linalool": 0.0561,
-  "Nerolidol": 0.0431,
-  "Caryophyllene Oxide": 0.0395,
-  "beta-Myrcene": 0.0301,
-  "Terpineol": 0.0293,
-  "Fenchol": 0.0251,
-  "Ocimene": 0.0234,
-  "beta-Pinene": 0.0207,
-  "alpha-Pinene": 0.0106
- }
+ "form": "Preroll 0.5g (7pk)",
+ "strain": "Iced Sangria",
+ "lean": "settling",
+ "in_stock": true,
+ "thc": 23.89
 }
