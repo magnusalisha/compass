@@ -1,35 +1,35 @@
 {
- "id": "574d7a8741",
+ "id": "a3f9c2e817",
  "metrc_tag": "1A412030000132B000000288",
- "brand": "Route 27 Hopyard LLC",
+ "brand": "Lobo",
  "strain": "Gruntz",
- "form": "Infused Preroll 1g",
+ "form": "Preroll 1g",
  "thc": 43.677,
  "total_terpenes": 0.95,
  "lean": "settling",
  "confidence": "faint",
  "in_stock": true,
- "shelf_tag": "Unverified",
+ "shelf_tag": "Hybrid",
  "reported": [
   "43.7% Total THC",
-  "0.95% Total Terpenes"
+  "Infused Pre-roll"
  ],
  "dominant": [
   "beta-Caryophyllene",
   "alpha-Humulene",
-  "Limonene"
+  "beta-Myrcene"
  ],
  "aroma": [
-  "spicy",
   "earthy",
-  "citrus",
+  "spicy",
   "herbal",
-  "woody"
+  "citrus",
+  "musky"
  ],
  "terpenes": {
   "beta-Caryophyllene": 0.46,
   "alpha-Humulene": 0.19,
-  "Limonene": 0.15,
-  "beta-Myrcene": 0.15
+  "beta-Myrcene": 0.15,
+  "Limonene": 0.15
  }
 }
