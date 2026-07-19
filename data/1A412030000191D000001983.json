@@ -1,23 +1,31 @@
 {
  "id": "a3f82c1d09",
- "metrc_tag": "1A412030000191D000001983",
- "brand": "Miss Grass",
- "strain": "Super Lemon Haze",
- "form": "Preroll 0.4g",
- "thc": 25.5561,
- "total_terpenes": 0.9,
- "lean": "settling",
+ "shelf_tag": "Sativa",
  "confidence": "faint",
- "in_stock": true,
- "shelf_tag": "Unverified",
- "reported": [
-  "Super Lemon Haze",
-  "Fast Times"
- ],
  "dominant": [
   "beta-Caryophyllene",
   "alpha-Humulene",
   "alpha-Bisabolol"
+ ],
+ "terpenes": {
+  "Limonene": 0.05,
+  "Valencene": 0.01,
+  "beta-Pinene": 0.01,
+  "Linalool": 0.09,
+  "Caryophyllene Oxide": 0.02,
+  "alpha-Bisabolol": 0.1,
+  "alpha-Humulene": 0.13,
+  "Terpineol": 0.04,
+  "Geraniol": 0.04,
+  "Fenchol": 0.03,
+  "beta-Caryophyllene": 0.38
+ },
+ "brand": "Miss Grass",
+ "total_terpenes": 0.9,
+ "metrc_tag": "1A412030000191D000001983",
+ "reported": [
+  "Super Lemon Haze",
+  "Fast Times"
  ],
  "aroma": [
   "citrus",
@@ -26,17 +34,9 @@
   "herbal",
   "earthy"
  ],
- "terpenes": {
-  "beta-Caryophyllene": 0.38,
-  "alpha-Humulene": 0.13,
-  "alpha-Bisabolol": 0.1,
-  "Linalool": 0.09,
-  "Limonene": 0.05,
-  "Terpineol": 0.04,
-  "Geraniol": 0.04,
-  "Fenchol": 0.03,
-  "Caryophyllene Oxide": 0.02,
-  "Valencene": 0.01,
-  "beta-Pinene": 0.01
- }
+ "form": "Preroll 0.4g",
+ "strain": "Super Lemon Haze",
+ "lean": "settling",
+ "in_stock": true,
+ "thc": 25.5561
 }
