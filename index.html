@@ -42,6 +42,16 @@
   .pair{display:flex;gap:9px}
   .pair select,.pair .combo{flex:1;min-width:0}
 
+  /* clear (×) button living inside the search field */
+  .searchwrap{position:relative;margin-bottom:11px}
+  .searchwrap input{margin-bottom:0;padding-right:46px}
+  .clearbtn{position:absolute;right:7px;top:50%;transform:translateY(-50%);
+    width:32px;height:32px;border:none;background:none;color:var(--ink2);
+    font:400 21px/1 Inter,sans-serif;border-radius:50%;cursor:pointer;
+    display:none;align-items:center;justify-content:center;padding:0}
+  .clearbtn.show{display:flex}
+  .clearbtn:hover{background:var(--card2);color:var(--ink)}
+
   .catseg{display:flex;gap:6px;margin-bottom:11px}
   .catseg button{flex:1;padding:9px 6px;border-radius:999px;border:1px solid var(--dim);
     background:transparent;color:var(--pale);font:600 12.5px Inter,sans-serif;cursor:pointer}
@@ -151,6 +161,11 @@
 <script>
 // ── point at your repo once it exists
 const GH_USER = "magnusalisha", GH_REPO = "compass";
+// ── the Cloudflare Worker that writes stock changes back to the repo.
+// Paste your Worker URL here after deploying it (see DEPLOY-WORKER.md).
+// Left empty, the page still works — it just hides the sold-out buttons
+// rather than offering a control that would silently do nothing.
+const STOCK_API = "";
 
 const COLOR = {'beta-Caryophyllene':'--car','Limonene':'--lim','beta-Myrcene':'--myr',
   'alpha-Pinene':'--apn','beta-Pinene':'--bpn','Linalool':'--lin','alpha-Humulene':'--hum',
@@ -725,17 +740,50 @@ let DATA = [
 ], tab = 'effect', a = null, b = null, sel = null, flash = '', effCat = 'All', simCat = 'All',
   lookupQ = '', lookupSel = null;
 
-// Stock status lives on the device. Product data lives in the repo.
-// (This is why the old build couldn't save: sandboxes block storage. Real hosting doesn't.)
-let OVERRIDES = {};
-try { OVERRIDES = JSON.parse(localStorage.getItem('fp_stock') || '{}'); }
-catch(e){ flash = 'Stock changes will last for this session only — storage is blocked here.'; }
-function setStock(id, val){
-  OVERRIDES[id] = val;
-  try { localStorage.setItem('fp_stock', JSON.stringify(OVERRIDES)); } catch(e){}
-  render();
+// Stock lives in the repo — ONE copy, the same on every device and every shift.
+// It used to be a localStorage overlay per device, which meant your phone, the
+// other budtender's phone and each register could all disagree, and a device
+// that had ever toggled a record ignored the repo for it permanently. Writes go
+// through the Worker (see compass-stock-worker.js) because this page is public
+// and must never hold a GitHub token.
+const stocked = p => p.in_stock !== false;
+
+// When something was marked sold out. Shown because stock accuracy depends on
+// people remembering to mark things — same discipline the jar labels need. A
+// visible date makes drift obvious instead of invisible.
+function soldOutWhen(p){
+  if (!p.sold_out_at) return '';
+  const days = Math.floor((Date.now() - new Date(p.sold_out_at)) / 86400000);
+  if (isNaN(days)) return '';
+  return days <= 0 ? ' today' : days === 1 ? ' yesterday' : ` ${days} days ago`;
 }
-const stocked = p => OVERRIDES[key(p)] !== undefined ? OVERRIDES[key(p)] : p.in_stock;
+
+let busyKey = null;   // record currently being written, so we can disable its button
+async function setStock(k, soldOut){
+  if (!STOCK_API || busyKey) return;
+  const p = DATA.find(x => key(x) === k);
+  if (!p) return;
+  const before = p.in_stock;
+  busyKey = k;
+  p.in_stock = !soldOut;      // optimistic — the counter shouldn't wait on a round trip
+  render();
+  try {
+    const res = await fetch(STOCK_API, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({key: k, sold_out: soldOut})
+    });
+    const out = await res.json().catch(() => ({}));
+    if (!res.ok || !out.ok) throw new Error(out.error || `HTTP ${res.status}`);
+    flash = `${p.strain} — ${soldOut ? 'marked sold out' : 'back in stock'}. Everyone sees this.`;
+  } catch (err) {
+    p.in_stock = before;      // put it back; never leave a lie on screen
+    flash = `Couldn't save that — ${err.message}. Nothing changed, try again.`;
+  }
+  busyKey = null;
+  render();
+  setTimeout(() => { flash = ''; render(); }, 4000);
+}
 // Alphabetical by strain — this is the resting order every tab inherits (effect
 // with nothing typed, Lookup's matches, the combobox dropdowns). The ranked views
 // re-sort by score/similarity on top of this, so relevance still wins where it
@@ -796,7 +844,7 @@ function card(p, extra=''){
           <span class="tag">${p.form.split(' ')[0]}</span>
           <span class="tag tag-${tag === 'Unverified' ? 'unset' : 'shelf'}">${tag}</span>
         </div>
-        <div style="font-size:13px;color:var(--ink2);margin-top:6px">${p.brand}${stocked(p)?'':' · out of stock'}</div></div>
+        <div style="font-size:13px;color:var(--ink2);margin-top:6px">${p.brand}${stocked(p)?'':` · sold out${soldOutWhen(p)}`}</div></div>
       <div class="thc">${p.thc}%<small>THC</small></div>
     </div>
     ${stack(p)}
@@ -810,7 +858,8 @@ function card(p, extra=''){
     </div>
     ${extra}
     <div class="acts">
-      <button onclick="setStock('${key(p)}', ${!stocked(p)})">${stocked(p) ? 'Mark out of stock' : 'Back in stock'}</button>
+      ${STOCK_API ? `<button onclick="setStock('${key(p)}', ${stocked(p)})" ${busyKey === key(p) ? 'disabled' : ''}>${
+        busyKey === key(p) ? 'Saving…' : stocked(p) ? 'Mark sold out' : 'Back in stock'}</button>` : ''}
       ${href ? `<a href="${href}" target="_blank" rel="noopener">Edit ↗</a>` : ''}
     </div>
   </div>`;
@@ -905,7 +954,7 @@ function comboListHTML(id, list){
   const filtered = list.filter(p => (p.strain + ' ' + p.brand).toLowerCase().includes(q));
   st.filtered = filtered;
   if (!filtered.length) return `<ul class="combo-list"><li class="combo-empty">No matches found</li></ul>`;
-  return `<ul class="combo-list">${filtered.map((p,i) => `<li data-id="${key(p)}" class="${i===st.highlight?'hl':''}">${p.strain} <span>${p.brand}</span></li>`).join('')}</ul>`;
+  return `<ul class="combo-list">${filtered.map((p,i) => `<li data-id="${key(p)}" class="${i===st.highlight?'hl':''}">${p.strain} <span>${p.brand}${stocked(p)?'':' · sold out'}</span></li>`).join('')}</ul>`;
 }
 function comboShellHTML(id, list, selectedId){
   const st = comboState(id);
@@ -916,9 +965,17 @@ function comboShellHTML(id, list, selectedId){
     <div class="combo-list-holder">${comboListHTML(id, list)}</div>
   </div>`;
 }
+// Find Similar's source picker searches the WHOLE archive, sold-out included —
+// "I loved X, you're out of it, what's close?" is the question it exists to
+// answer, so the discontinued product has to be selectable. Compare's two
+// pickers stay on the in-stock pool. (Recommendations are filtered separately;
+// only in-stock items are ever suggested.)
+const comboSource = id => id === 'similar'
+  ? DATA.slice().sort((x, y) => x.strain.localeCompare(y.strain, undefined, {sensitivity: 'base'}))
+  : pool();
 function updateComboList(id){
   const holder = document.querySelector(`[data-combo="${id}"] .combo-list-holder`);
-  if (holder) holder.innerHTML = comboListHTML(id, pool());
+  if (holder) holder.innerHTML = comboListHTML(id, comboSource(id));
 }
 function comboChoose(id, productId){
   const st = comboState(id);
@@ -939,15 +996,20 @@ function render(){
     // mount the shell ONCE per render(); typing updates results only, via
     // renderEffectResults() — never touches this <input> node (see combo comment above)
     P.innerHTML = banner + categoryButtons('effCat', effCat)
-      + `<input type="text" id="q" placeholder='e.g. "relaxing but not sleepy" or "social preroll"' value="${window._q||''}">`;
+      + `<div class="searchwrap">
+           <input type="text" id="q" placeholder='e.g. "relaxing but not sleepy" or "social preroll"' value="${window._q||''}">
+           <button type="button" class="clearbtn${(window._q||'') ? ' show' : ''}" data-clear="q" aria-label="Clear search">&times;</button>
+         </div>`;
     return renderEffectResults();
   }
 
   if (tab === 'similar'){
-    sel = sel && list.some(p=>key(p)===sel) ? sel : key(list[0]||{});
-    P.innerHTML = banner + comboShellHTML('similar', list, sel) + categoryButtons('simCat', simCat);
+    // source: anything in the archive, including sold-out. candidates: in stock only.
+    const sources = comboSource('similar');
+    sel = sel && DATA.some(p=>key(p)===sel) ? sel : key(sources[0]||{});
+    P.innerHTML = banner + comboShellHTML('similar', sources, sel) + categoryButtons('simCat', simCat);
     const p = DATA.find(x => key(x) === sel);
-    if (!p){ O.innerHTML = `<div class="empty">Nothing in stock.</div>`; return foot(); }
+    if (!p){ O.innerHTML = `<div class="empty">No records yet.</div>`; return foot(); }
 
     // category filter narrows the *results* only — the source product is unaffected
     const candidates = DATA.filter(x => key(x) !== key(p) && ($('#oos').checked || stocked(x))
@@ -966,7 +1028,10 @@ function render(){
   }
 
   if (tab === 'lookup'){
-    P.innerHTML = banner + `<input type="text" id="lookupQ" placeholder="Type a strain or brand…" value="${lookupQ.replace(/"/g,'&quot;')}">`;
+    P.innerHTML = banner + `<div class="searchwrap">
+        <input type="text" id="lookupQ" placeholder="Type a strain or brand…" value="${lookupQ.replace(/"/g,'&quot;')}">
+        <button type="button" class="clearbtn${lookupQ ? ' show' : ''}" data-clear="lookupQ" aria-label="Clear search">&times;</button>
+      </div>`;
     return renderLookupResults();
   }
 
@@ -1078,6 +1143,18 @@ document.addEventListener('click', e => {
     return;
   }
 
+  const clr = e.target.closest('[data-clear]');
+  if (clr){
+    const id = clr.dataset.clear;
+    const inp = document.getElementById(id);
+    if (inp) inp.value = '';                 // direct write; the node stays mounted
+    if (id === 'q'){ window._q = ''; renderEffectResults(); }
+    else { lookupQ = ''; lookupSel = null; renderLookupResults(); }
+    toggleClear(id);
+    if (inp) inp.focus();                    // ready to type the next thing
+    return;
+  }
+
   const row = e.target.closest('.lookup-row');
   if (row){ lookupSel = row.dataset.lookupId; renderLookupResults(); return; }
   const back = e.target.closest('[data-lookup-back]');
@@ -1086,11 +1163,20 @@ document.addEventListener('click', e => {
 document.addEventListener('change', e => {
   if (e.target.id === 'oos') render();
 });
+// Show the × only when there's something to clear. Toggles a class on the
+// button that's already mounted — never re-renders the input, same rule as
+// everything else that runs on keystroke.
+function toggleClear(inputId){
+  const btn = document.querySelector(`[data-clear="${inputId}"]`);
+  const inp = document.getElementById(inputId);
+  if (btn && inp) btn.classList.toggle('show', !!inp.value);
+}
+
 document.addEventListener('input', e => {
   // Each of these updates ONLY the results below its input — the input node
   // itself is never touched, so focus and cursor position are never at risk.
-  if (e.target.id === 'q'){ window._q = e.target.value; renderEffectResults(); return; }
-  if (e.target.id === 'lookupQ'){ lookupQ = e.target.value; lookupSel = null; renderLookupResults(); return; }
+  if (e.target.id === 'q'){ window._q = e.target.value; toggleClear('q'); renderEffectResults(); return; }
+  if (e.target.id === 'lookupQ'){ lookupQ = e.target.value; lookupSel = null; toggleClear('lookupQ'); renderLookupResults(); return; }
   const inp = e.target.closest('.combo-input');
   if (inp){
     const id = inp.closest('.combo').dataset.combo;
