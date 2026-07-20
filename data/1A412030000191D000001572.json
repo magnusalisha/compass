@@ -1,0 +1,40 @@
+{
+ "id": "a3f9c2e71b",
+ "metrc_tag": "1A412030000191D000001572",
+ "brand": "Dank",
+ "strain": "Amnesia Haze",
+ "form": "Preroll 3.5g 7-Pack",
+ "thc": 27.8997,
+ "total_terpenes": 0.57,
+ "lean": "settling",
+ "confidence": "faint",
+ "in_stock": true,
+ "shelf_tag": "Unverified",
+ "reported": [
+  "heavy hitting",
+  "classic haze"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "Linalool",
+  "Caryophyllene Oxide"
+ ],
+ "aroma": [
+  "earthy",
+  "floral",
+  "spicy",
+  "woody",
+  "herbal"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.17,
+  "Linalool": 0.16,
+  "Caryophyllene Oxide": 0.06,
+  "alpha-Humulene": 0.06,
+  "Terpineol": 0.05,
+  "Fenchol": 0.03,
+  "alpha-Bisabolol": 0.02,
+  "Valencene": 0.01,
+  "beta-Myrcene": 0.01
+ }
+}
