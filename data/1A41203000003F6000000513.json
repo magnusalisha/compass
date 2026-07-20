@@ -37,6 +37,7 @@
  "form": "Flower 3.5g",
  "strain": "Crunch Berries",
  "lean": "mixed",
- "in_stock": true,
- "thc": 28.552
+ "in_stock": false,
+ "thc": 28.552,
+ "sold_out_at": "2026-07-20T16:34:52.378Z"
 }
