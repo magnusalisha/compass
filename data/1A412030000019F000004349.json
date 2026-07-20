@@ -41,6 +41,7 @@
  "form": "Preroll 0.5g (7pk)",
  "strain": "Iced Sangria",
  "lean": "settling",
- "in_stock": true,
- "thc": 23.89
+ "in_stock": false,
+ "thc": 23.89,
+ "sold_out_at": "2026-07-20T17:34:23.064Z"
 }
