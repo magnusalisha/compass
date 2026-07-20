@@ -8,7 +8,7 @@
  "total_terpenes": 0.44,
  "lean": "settling",
  "confidence": "faint",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Unverified",
  "reported": [
   "22.3% Total THC",
@@ -37,5 +37,6 @@
   "Caryophyllene Oxide": 0.01,
   "Limonene": 0.01,
   "Valencene": 0.01
- }
+ },
+ "sold_out_at": "2026-07-20T20:51:50.496Z"
 }
