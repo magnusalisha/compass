@@ -41,6 +41,7 @@
  "form": "Preroll 0.5g (7pk)",
  "strain": "Headband",
  "lean": "settling",
- "in_stock": true,
- "thc": 28.59
+ "in_stock": false,
+ "thc": 28.59,
+ "sold_out_at": "2026-07-20T17:34:35.255Z"
 }
