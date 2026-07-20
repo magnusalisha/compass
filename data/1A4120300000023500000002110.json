@@ -1,0 +1,36 @@
+{
+ "id": "a3f82c1d09",
+ "metrc_tag": "1A4120300000023500000002110",
+ "brand": "Cru",
+ "strain": "Lemonatti",
+ "form": "Infused Preroll 0.5g 6pk/12cpk",
+ "thc": null,
+ "total_terpenes": 0.7,
+ "lean": "settling",
+ "confidence": "faint",
+ "in_stock": true,
+ "shelf_tag": "Sativa-leaning Hybrid",
+ "reported": [
+  "Infused preroll",
+  "Lab tested and passed"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "alpha-Humulene",
+  "Limonene"
+ ],
+ "aroma": [
+  "spicy",
+  "earthy",
+  "citrus",
+  "floral",
+  "woody"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.33,
+  "alpha-Humulene": 0.13,
+  "Limonene": 0.08,
+  "Linalool": 0.08,
+  "Caryophyllene Oxide": 0.08
+ }
+}
