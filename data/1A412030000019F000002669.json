@@ -1,0 +1,48 @@
+{
+ "id": "a3f8c21e94",
+ "metrc_tag": "1A412030000019F000002669",
+ "brand": "Florist Farms",
+ "strain": "Candy Jack",
+ "form": "Preroll 0.5g (5pk)",
+ "thc": 37.11,
+ "total_terpenes": 3.229,
+ "lean": "settling",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Sativa",
+ "reported": [
+  "Live Resin Infused",
+  "Spicy, Citrus, Earthy"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "Limonene",
+  "alpha-Humulene"
+ ],
+ "aroma": [
+  "spicy",
+  "citrus",
+  "earthy",
+  "floral",
+  "herbal"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 1.1955,
+  "Limonene": 0.3945,
+  "alpha-Humulene": 0.3898,
+  "Farnesene": 0.3438,
+  "alpha-Bisabolol": 0.1451,
+  "Caryophyllene Oxide": 0.1432,
+  "Nerolidol": 0.0191,
+  "Linalool": 0.1118,
+  "Fenchol": 0.0929,
+  "beta-Pinene": 0.0721,
+  "beta-Myrcene": 0.0499,
+  "Terpineol": 0.0495,
+  "alpha-Pinene": 0.0431,
+  "Guaiol": 0.0105,
+  "Ocimene": 0.0104,
+  "Camphene": 0.0112,
+  "Borneol": 0.0138
+ }
+}
