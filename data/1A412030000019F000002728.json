@@ -1,0 +1,47 @@
+{
+ "id": "a3f82c19d7",
+ "metrc_tag": "1A412030000019F000002728",
+ "brand": "Florist Farms",
+ "strain": "Tropical Cookies",
+ "form": "Preroll 0.5g (5pk)",
+ "thc": 35.79,
+ "total_terpenes": 2.4869,
+ "lean": "settling",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Sativa",
+ "reported": [
+  "Live Resin Infused",
+  "1/2 Gram Joints 5pk"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "alpha-Humulene",
+  "Limonene"
+ ],
+ "aroma": [
+  "spicy",
+  "earthy",
+  "citrus",
+  "floral",
+  "herbal"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.9959,
+  "alpha-Humulene": 0.3067,
+  "Limonene": 0.2417,
+  "Farnesene": 0.196,
+  "alpha-Bisabolol": 0.178,
+  "Linalool": 0.1152,
+  "Nerolidol": 0.0186,
+  "Caryophyllene Oxide": 0.0837,
+  "Fenchol": 0.0721,
+  "beta-Pinene": 0.0429,
+  "Terpineol": 0.0398,
+  "beta-Myrcene": 0.0357,
+  "alpha-Pinene": 0.0259,
+  "Ocimene": 0.0111,
+  "Borneol": 0.0097,
+  "Fenchone": 0.0086
+ }
+}
