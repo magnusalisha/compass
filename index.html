@@ -1033,12 +1033,12 @@ function render(){
     const candidates = DATA.filter(x => key(x) !== key(p) && ($('#oos').checked || stocked(x))
       && (simCat === 'All' || category(x) === simCat));
     if (!candidates.length){
-      O.innerHTML = `<div class="empty">Nothing ${simCat === 'All' ? '' : simCat.toLowerCase()+' '}on the shelf to compare against.</div>`;
+      O.innerHTML = `<div class="empty">No ${simCat === 'All' ? '' : simCat.toLowerCase()+' '}records scanned to compare against.</div>`;
       return foot();
     }
     const ranked = candidates.map(x => [sim(p,x), x]).sort((m,n) => n[0]-m[0]);
     O.innerHTML = (ranked[0][0] < 0.5
-        ? `<div class="card"><div class="warnbox" style="margin:0">Nothing on the shelf is close to <b>${p.strain}</b> — its profile is ${p.dominant.slice(0,2).map(k=>short(k).toLowerCase()).join('/')}-led and nothing else here looks like that. <b>Say so. Don't substitute.</b></div></div>`
+        ? `<div class="card"><div class="warnbox" style="margin:0">Nothing <b>scanned</b> is close to <b>${p.strain}</b> — its profile is ${p.dominant.slice(0,2).map(k=>short(k).toLowerCase()).join('/')}-led and nothing else in here looks like that. <b>Say so. Don't substitute.</b> Worth a look at the shelf too, in case something isn't scanned yet.</div></div>`
         : '')
       + ranked.slice(0,4).map(([s,x]) =>
           card(x, `<div class="match">${Math.round(s*100)}% terpene similarity</div>`)).join('');
@@ -1085,7 +1085,7 @@ function renderEffectResults(){
   const list = pool();
   const scoped = list.filter(p => activeCat === 'All' || category(p) === activeCat);
   if (!rawQ){
-    O.innerHTML = scoped.length ? scoped.map(p => card(p)).join('') : `<div class="empty">Nothing ${activeCat === 'All' ? '' : activeCat.toLowerCase()+' '}on the shelf.</div>`;
+    O.innerHTML = scoped.length ? scoped.map(p => card(p)).join('') : `<div class="empty">No ${activeCat === 'All' ? '' : activeCat.toLowerCase()+' '}records scanned yet.</div>`;
     return foot();
   }
 
@@ -1110,7 +1110,7 @@ function renderEffectResults(){
 
   O.innerHTML = scored.length
     ? scored.slice(0,6).map(([,p]) => card(p)).join('')
-    : `<div class="empty">Nothing on the shelf fits that. Saying so is better than a bad substitution.</div>`;
+    : `<div class="empty">Nothing scanned fits that. Saying so is better than a bad substitution — but check the shelf for anything not scanned yet.</div>`;
   return foot();
 }
 
@@ -1136,12 +1136,15 @@ function renderLookupResults(){
     ? `<div class="lookup-list">${matches.map(p => `<button type="button" class="lookup-row" data-lookup-id="${key(p)}">
          <span class="lookup-strain">${p.strain}</span><span class="lookup-brand">${p.brand}${stocked(p)?'':' · out of stock'}</span>
        </button>`).join('')}</div>`
-    : `<div class="empty">No matches found.</div>`;
+    : `<div class="empty">Nothing scanned matches that.<br><span style="font-size:13px">It may be on the shelf but not in Compass yet.</span></div>`;
   return foot();
 }
 function foot(){
   const unverified = DATA.filter(p => shelfTag(p) === 'Unverified').length;
-  $('#foot').innerHTML = `${DATA.length} products · ${DATA.filter(stocked).length} in stock${
+  // "scanned", not "products" — the catalogue is whatever has been through the
+  // capture script, which is not the same as what is on the shelf. Every empty
+  // state says so too; this keeps the scope visible even when results look full.
+  $('#foot').innerHTML = `${DATA.length} scanned · ${DATA.filter(stocked).length} in stock${
     unverified ? ` · <b>${unverified} shelf tag${unverified>1?'s':''} unverified</b> — tap Edit on a card to set one` : ''}<br>
     ●●● real receptor mechanism · ●●○ some human data · ●○○ folklore<br>
     Only caryophyllene has a mechanism (CB2). The rest is inherited from strain databases.<br>
