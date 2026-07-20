@@ -1,0 +1,46 @@
+{
+ "id": "a3f9c2e1b7",
+ "metrc_tag": "1A41203000015E7000000337",
+ "brand": "Boom",
+ "strain": "Luka Magic",
+ "form": "Preroll 1g",
+ "thc": null,
+ "total_terpenes": 1.9608,
+ "lean": "settling",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Sativa",
+ "reported": [
+  "spicy and earthy",
+  "citrus and floral notes"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "Limonene",
+  "Valencene"
+ ],
+ "aroma": [
+  "spicy",
+  "earthy",
+  "citrus",
+  "floral",
+  "woody"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.5443,
+  "Limonene": 0.2605,
+  "Valencene": 0.2377,
+  "alpha-Humulene": 0.209,
+  "Linalool": 0.2045,
+  "Farnesene": 0.1036,
+  "alpha-Bisabolol": 0.0885,
+  "Terpineol": 0.0516,
+  "Fenchol": 0.0476,
+  "beta-Myrcene": 0.0443,
+  "Caryophyllene Oxide": 0.0342,
+  "beta-Pinene": 0.0194,
+  "alpha-Pinene": 0.0184,
+  "Guaiol": 0.0135,
+  "Terpinolene": 0.0118
+ }
+}
