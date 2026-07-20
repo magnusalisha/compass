@@ -41,6 +41,7 @@
  "form": "Flower 3.5g",
  "strain": "Boogie Wuggie",
  "lean": "settling",
- "in_stock": true,
- "thc": 34.1222
+ "in_stock": false,
+ "thc": 34.1222,
+ "sold_out_at": "2026-07-20T20:26:06.666Z"
 }
