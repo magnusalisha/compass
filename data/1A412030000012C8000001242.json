@@ -1,0 +1,44 @@
+{
+ "id": "a3f92c1d8e",
+ "metrc_tag": "1A412030000012C8000001242",
+ "brand": "Pax",
+ "strain": "Guava Gelato",
+ "form": "Vape 1g Disposable",
+ "thc": 71.3,
+ "total_terpenes": 7.503,
+ "lean": "settling",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Hybrid",
+ "reported": [
+  "PAX Live Rosin",
+  "All In One"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "Limonene",
+  "alpha-Humulene"
+ ],
+ "aroma": [
+  "spice",
+  "citrus",
+  "earth",
+  "floral",
+  "herb"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 2.6273,
+  "Limonene": 1.9282,
+  "alpha-Humulene": 0.7917,
+  "beta-Myrcene": 0.5072,
+  "Linalool": 0.3587,
+  "alpha-Pinene": 0.2152,
+  "beta-Pinene": 0.164,
+  "Fenchol": 0.1125,
+  "Caryophyllene Oxide": 0.0624,
+  "Terpineol": 0.0493,
+  "Camphene": 0.0414,
+  "alpha-Bisabolol": 0.0412,
+  "Ocimene": 0.0062
+ }
+}
