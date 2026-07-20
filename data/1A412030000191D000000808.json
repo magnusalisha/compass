@@ -1,0 +1,42 @@
+{
+ "id": "a3f82c1d9e",
+ "metrc_tag": "1A412030000191D000000808",
+ "brand": "Dank",
+ "strain": "Girl Scout Cookies - Pack",
+ "form": "Preroll 3.5g 7-pack",
+ "thc": 25.8164,
+ "total_terpenes": 0.32,
+ "lean": "settling",
+ "confidence": "faint",
+ "in_stock": true,
+ "shelf_tag": "Indica-leaning Hybrid",
+ "reported": [
+  "heavy sesquiterpene profile",
+  "low volatile terpenes"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "Linalool",
+  "Guaiol"
+ ],
+ "aroma": [
+  "earthy",
+  "floral",
+  "woody",
+  "spicy",
+  "musky"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.08,
+  "Linalool": 0.05,
+  "Guaiol": 0.04,
+  "Limonene": 0.03,
+  "alpha-Bisabolol": 0.03,
+  "alpha-Humulene": 0.03,
+  "beta-Myrcene": 0.02,
+  "Terpineol": 0.01,
+  "Caryophyllene Oxide": 0.01,
+  "Fenchol": 0.01,
+  "Valencene": 0.01
+ }
+}
