@@ -1,0 +1,34 @@
+{
+ "id": "a3f9c21b8e",
+ "metrc_tag": "1A4120300000235000001645",
+ "brand": "Cru",
+ "strain": "Amnesia Haze",
+ "form": "Infused Preroll 0.5g",
+ "thc": 30.169,
+ "total_terpenes": 1.48,
+ "lean": "settling",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Sativa-leaning Hybrid",
+ "reported": [
+  "beta-Caryophyllene dominant",
+  "Limonene and alpha-Humulene present"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "alpha-Humulene",
+  "Limonene"
+ ],
+ "aroma": [
+  "spicy",
+  "herbal",
+  "citrus",
+  "earthy",
+  "peppery"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.69,
+  "alpha-Humulene": 0.34,
+  "Limonene": 0.44
+ }
+}
