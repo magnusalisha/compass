@@ -1,0 +1,45 @@
+{
+ "id": "a3f9c12e74",
+ "metrc_tag": "1A412030000019F000002120",
+ "brand": "Florist Farms",
+ "strain": "Dutch Hawaiian",
+ "form": "Preroll 0.5g (5pk)",
+ "thc": 42.45,
+ "total_terpenes": 1.8725,
+ "lean": "mixed",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Sativa",
+ "reported": [
+  "Live Resin Infused",
+  "1/2 Gram Joints 5pk"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "Limonene",
+  "alpha-Humulene"
+ ],
+ "aroma": [
+  "spicy",
+  "citrus",
+  "earthy",
+  "floral",
+  "herbal"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.601,
+  "Limonene": 0.2743,
+  "alpha-Humulene": 0.1881,
+  "Farnesene": 0.1378,
+  "Linalool": 0.1284,
+  "Nerolidol": 0.0941,
+  "Fenchol": 0.0767,
+  "alpha-Bisabolol": 0.0747,
+  "beta-Pinene": 0.0563,
+  "Terpineol": 0.0476,
+  "beta-Myrcene": 0.051,
+  "alpha-Pinene": 0.047,
+  "Camphene": 0.0117,
+  "Carene": 0.0103
+ }
+}
