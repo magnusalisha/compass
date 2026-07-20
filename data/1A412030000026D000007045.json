@@ -1,18 +1,18 @@
 {
  "id": "a3f8c2e719",
  "metrc_tag": "1A412030000026D000007045",
- "brand": "Curaleaf NY, LLC.",
+ "brand": "Anthem",
  "strain": "Tangie Dream",
- "form": "Infused Preroll 1g",
+ "form": "Preroll 1g Infused",
  "thc": 48.7926,
  "total_terpenes": 1,
  "lean": "settling",
  "confidence": "moderate",
  "in_stock": true,
- "shelf_tag": "Unverified",
+ "shelf_tag": "Hybrid",
  "reported": [
   "Glass tip infused pre-roll",
-  "Enhanced pre-roll for medical use"
+  "Bold series"
  ],
  "dominant": [
   "beta-Caryophyllene",
@@ -20,11 +20,11 @@
   "Guaiol"
  ],
  "aroma": [
-  "floral",
-  "earthy",
   "spicy",
+  "floral",
   "woody",
-  "herbal"
+  "earthy",
+  "piney"
  ],
  "terpenes": {
   "beta-Caryophyllene": 0.31,
