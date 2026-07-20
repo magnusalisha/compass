@@ -1275,7 +1275,13 @@ function recordsFromIndex(files){
 async function fetchRecords(){
   if (STOCK_API){
     try {
-      const res = await fetch(STOCK_API.replace(/\/+$/, '') + '/data', {cache: 'no-store'});
+      // The cache-buster is deliberate. `cache: 'no-store'` only governs the
+      // browser's own cache — Cloudflare's edge cache sits in front of it, and
+      // it once pinned a 500 from a broken deploy so hard that the fix looked
+      // like it hadn't worked. A unique URL each time cannot be served stale.
+      // The Worker still collapses its GitHub calls internally, under its own
+      // fixed cache key, so this costs nothing.
+      const res = await fetch(STOCK_API.replace(/\/+$/, '') + '/data?t=' + Date.now(), {cache: 'no-store'});
       if (!res.ok) throw new Error('worker ' + res.status);
       const body = await res.json();
       if (Array.isArray(body) && body.length){

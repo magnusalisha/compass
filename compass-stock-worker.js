@@ -19,8 +19,17 @@
 //   ALLOWED_ORIGIN (var)     e.g. https://magnusalisha.github.io
 // ==========================================================================
 
+// Errors carry no-store: a cached failure outlives the bug that caused it. A
+// 500 from a broken deploy stayed pinned at the edge after the fix went live,
+// which looked exactly like the fix not working.
 const j = (obj, status = 200) =>
-  new Response(JSON.stringify(obj), { status, headers: { "Content-Type": "application/json" } });
+  new Response(JSON.stringify(obj), {
+    status,
+    headers: {
+      "Content-Type": "application/json",
+      ...(status >= 400 ? { "Cache-Control": "no-store" } : {}),
+    },
+  });
 
 function withCORS(res, origin) {
   const h = new Headers(res.headers);
@@ -134,7 +143,8 @@ export default {
     } catch (err) {
       return new Response(
         JSON.stringify({ error: "worker exception", message: String(err && err.message || err) }),
-        { status: 500, headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" } }
+        { status: 500, headers: { "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*", "Cache-Control": "no-store" } }
       );
     }
   },
