@@ -50,15 +50,24 @@ Click **Deploy** again so the settings take effect.
 
 ## 4. Point Compass at it (1 min)
 
-Copy your Worker URL — it looks like
-`https://compass-stock.<your-subdomain>.workers.dev`
+Copy the Worker's URL **from your own Cloudflare dashboard** — for this account
+it is:
 
-Then edit [`index.html`](index.html) (the pencil on GitHub works fine) and put it
-on line ~168:
+```
+https://compass-stock.magnus-alisha.workers.dev
+```
+
+Then edit [`index.html`](index.html) (the pencil on GitHub works fine) and paste
+it between the quotes on line ~168:
 
 ```js
-const STOCK_API = "https://compass-stock.your-subdomain.workers.dev";
+const STOCK_API = "https://compass-stock.magnus-alisha.workers.dev";
 ```
+
+⚠️ Never paste an example subdomain from a guide. A wrong hostname fails
+quietly — the buttons still appear, they just error on every tap, because the
+address doesn't resolve at all. (This happened on the first setup: the
+placeholder `budega` got copied in verbatim.)
 
 Commit. Wait a minute for GitHub Pages to rebuild.
 
