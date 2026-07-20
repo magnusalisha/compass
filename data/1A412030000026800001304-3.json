@@ -1,0 +1,44 @@
+{
+ "id": "a3f91bc042",
+ "metrc_tag": "1A412030000026800001304​3",
+ "brand": "Rythm",
+ "strain": "Creamsicle Sunset",
+ "form": "Flower 3.5g",
+ "thc": null,
+ "total_terpenes": 2.2149,
+ "lean": "lifting",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Hybrid",
+ "reported": [
+  "citrusy and bright",
+  "relaxing hybrid feel"
+ ],
+ "dominant": [
+  "Limonene",
+  "beta-Caryophyllene",
+  "alpha-Humulene"
+ ],
+ "aroma": [
+  "citrus",
+  "spice",
+  "herbal",
+  "floral",
+  "pine"
+ ],
+ "terpenes": {
+  "Limonene": 0.6403,
+  "beta-Caryophyllene": 0.53,
+  "alpha-Humulene": 0.1775,
+  "beta-Myrcene": 0.1771,
+  "Linalool": 0.1617,
+  "Farnesene": 0.1177,
+  "beta-Pinene": 0.0945,
+  "Fenchol": 0.0551,
+  "alpha-Pinene": 0.0496,
+  "alpha-Bisabolol": 0.0425,
+  "Caryophyllene Oxide": 0.0285,
+  "Camphene": 0.0151,
+  "Terpinolene": 0.0103
+ }
+}
