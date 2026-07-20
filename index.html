@@ -1260,31 +1260,44 @@ document.addEventListener('keydown', e => {
 // the shop's wifi shares that one number, so a busy shift can exhaust it and
 // silently drop everyone back to the embedded seed. The Worker path is what
 // makes polling safe.
+// Turn [{name, sha, url}] into records. The sha in the URL makes each version
+// immutable, so the browser's own cache serves anything that hasn't changed and
+// only genuinely-edited records cross the network — while a stock change is
+// picked up instantly, because editing a file changes its sha.
+function recordsFromIndex(files){
+  return Promise.all(files.map(async f => {
+    const p = await fetch(`${f.url}?v=${f.sha}`).then(r=>r.json());
+    p._key = f.name.replace(/\.json$/, '');   // repo filename is unique by construction; the record's own `id` isn't
+    return p;
+  }));
+}
+
 async function fetchRecords(){
   if (STOCK_API){
     try {
       const res = await fetch(STOCK_API.replace(/\/+$/, '') + '/data', {cache: 'no-store'});
       if (!res.ok) throw new Error('worker ' + res.status);
-      const recs = await res.json();
-      if (Array.isArray(recs) && recs.length) return recs;
-      throw new Error('empty');
+      const body = await res.json();
+      if (Array.isArray(body) && body.length){
+        // Current Worker returns a file index; an older one returned whole
+        // records. Accept either so a redeploy can happen in any order.
+        if (body[0] && body[0].url && body[0].sha) return recordsFromIndex(body);
+        if (body[0] && body[0].strain) return body;
+      }
+      throw new Error('unrecognised response');
     } catch(e){
-      // Worker not redeployed yet, or having a bad day. Fall through to GitHub
-      // rather than dropping everyone to the 9-record embedded seed.
+      // Worker unreachable or mid-redeploy. Fall through to GitHub rather than
+      // dropping everyone to the 9-record embedded seed.
     }
   }
   const idx = await fetch(`https://api.github.com/repos/${GH_USER}/${GH_REPO}/contents/data`,
     {cache: 'no-store'}).then(r=>r.json());
   if (!Array.isArray(idx)) throw new Error('rate limited');   // caller keeps the seed
-  return Promise.all(idx.filter(f=>f.name.endsWith('.json')).map(async f => {
-    // ?v=<sha> is load-bearing, not decoration. raw.githubusercontent serves
-    // max-age=300, so without it a refresh reads a five-minute-old copy and
-    // overwrites a stock change that was just made. The sha changes exactly
-    // when the file does, so this is always fresh and still CDN-cacheable.
-    const p = await fetch(`${f.download_url}?v=${f.sha}`).then(r=>r.json());
-    p._key = f.name.replace(/\.json$/, '');   // repo filename is unique by construction; the record's own `id` isn't
-    return p;
-  }));
+  // ?v=<sha> is load-bearing, not decoration: raw.githubusercontent serves
+  // max-age=300, so without it a refresh reads a five-minute-old copy and
+  // overwrites a stock change that was just made.
+  return recordsFromIndex(idx.filter(f => f.name.endsWith('.json'))
+    .map(f => ({name: f.name, sha: f.sha, url: f.download_url})));
 }
 
 (async function load(){

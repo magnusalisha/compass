@@ -73,7 +73,20 @@ function cacheDrop(key, ctx) {
   try { ctx.waitUntil(caches.default.delete(key)); } catch (e) { /* nothing to drop */ }
 }
 
-async function serveData(env, ctx) {
+// Return the FILE INDEX, not the file contents.
+//
+// Cloudflare's free plan caps a Worker at 50 subrequests per invocation, and
+// reading 80 records meant 81 — so this endpoint died with "Too many
+// subrequests" as soon as it went live. It also got worse with every product
+// scanned, which makes fetching-all-files the wrong shape regardless of plan.
+//
+// So the Worker makes exactly ONE subrequest (the listing, which needs the
+// token's authenticated quota) and hands the browser a list of raw URLs plus
+// each file's git sha. The browser fetches those itself: raw.githubusercontent
+// has no 60/hour API limit, and a sha-pinned URL is immutable, so unchanged
+// files come straight from the browser cache and only genuinely-changed records
+// cross the network.
+async function serveIndex(env, ctx) {
   const hit = await cacheGet(dataCacheKey());
   if (hit) return hit;
 
@@ -83,42 +96,26 @@ async function serveData(env, ctx) {
     Accept: "application/vnd.github+json",
   };
 
-  // Bypass Cloudflare's subrequest cache here. GitHub serves this listing with
-  // max-age=60, and a stale listing means stale shas — which would make the
-  // cache-buster below point at old file content and silently undo a write.
+  // Bypass Cloudflare's subrequest cache. GitHub serves this listing with
+  // max-age=60, and a stale listing means stale shas — which would point the
+  // browser's cache-busted URLs at old content and silently undo a write.
   const listRes = await fetch(
     `https://api.github.com/repos/${env.GH_USER}/${env.GH_REPO}/contents/data`,
     { headers: H, cf: { cacheTtl: 0, cacheEverything: false } }
   );
   if (!listRes.ok) return j({ error: "list failed", status: listRes.status }, 502);
 
-  const files = (await listRes.json()).filter((f) => f.name.endsWith(".json"));
+  const listing = await listRes.json();
+  if (!Array.isArray(listing)) return j({ error: "unexpected listing" }, 502);
 
-  // download_url points at raw.githubusercontent, which caches for 5 minutes —
-  // long enough to serve a stale record right after someone marks it sold out.
-  // Appending the file's git sha changes the URL exactly when the file changes,
-  // so edits are picked up instantly while unchanged files still hit the CDN.
-  const records = await Promise.all(
-    files.map(async (f) => {
-      const r = await fetch(`${f.download_url}?v=${f.sha}`, {
-        headers: { "User-Agent": "compass-stock" },
-      });
-      if (!r.ok) return null;
-      const rec = await r.json().catch(() => null);
-      if (!rec) return null;
-      rec._key = f.name.replace(/\.json$/, "");
-      return rec;
-    })
-  );
+  const files = listing
+    .filter((f) => f.name.endsWith(".json"))
+    .map((f) => ({ name: f.name, sha: f.sha, url: f.download_url }));
+  if (!files.length) return j({ error: "no records" }, 502);
 
-  const clean = records.filter(Boolean);
-  if (!clean.length) return j({ error: "no records" }, 502);
-
-  const res = new Response(JSON.stringify(clean), {
+  const res = new Response(JSON.stringify(files), {
     headers: {
       "Content-Type": "application/json",
-      // Short, so a stock change reaches everyone quickly, but long enough
-      // that ten people loading at once cost one rebuild.
       "Cache-Control": "public, max-age=30",
       "Access-Control-Allow-Origin": "*",
     },
@@ -153,7 +150,7 @@ async function handle(request, env, ctx) {
     // Reading is public — the repo is public, so there is nothing to gate here,
     // and leaving it open means the page can fetch data before anyone signs in
     // to anything. Only writes are origin-checked.
-    if (request.method === "GET") return serveData(env, ctx);
+    if (request.method === "GET") return serveIndex(env, ctx);
 
     if (request.method !== "POST")
       return withCORS(j({ error: "POST or GET only" }, 405), allowed);
