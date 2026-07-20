@@ -1,0 +1,46 @@
+{
+ "id": "a3f7c2e910",
+ "metrc_tag": "1A41203000015E7000000338",
+ "brand": "Boom",
+ "strain": "Nerd Runtz",
+ "form": "Preroll 1g Infused",
+ "thc": null,
+ "total_terpenes": 2.2598,
+ "lean": "settling",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Hybrid",
+ "reported": [
+  "infused preroll",
+  "test passed"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "Limonene",
+  "Valencene"
+ ],
+ "aroma": [
+  "spicy",
+  "citrus",
+  "floral",
+  "woody",
+  "herbal"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.6205,
+  "Limonene": 0.2913,
+  "Valencene": 0.2745,
+  "alpha-Humulene": 0.2367,
+  "Linalool": 0.2208,
+  "Farnesene": 0.1053,
+  "alpha-Bisabolol": 0.1025,
+  "beta-Myrcene": 0.0592,
+  "Terpineol": 0.0533,
+  "Fenchol": 0.0505,
+  "Caryophyllene Oxide": 0.0376,
+  "beta-Pinene": 0.0231,
+  "alpha-Pinene": 0.0201,
+  "Guaiol": 0.0144,
+  "Terpinolene": 0.013
+ }
+}
