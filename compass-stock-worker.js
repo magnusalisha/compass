@@ -46,9 +46,11 @@ const b64encode = (str) => {
   return btoa(bin);
 };
 
-// One synthetic key for the assembled-data response in Cloudflare's edge cache.
-// Concurrent page loads collapse onto this instead of each rebuilding the set.
-const DATA_CACHE_KEY = new Request("https://compass-internal/data");
+// Cache key for the assembled-data response. Must be a fully-valid URL with a
+// real TLD — Cloudflare rejects hostnames like "compass-internal", which is one
+// way this endpoint can blow up with a bare 1101 and no explanation.
+const DATA_CACHE_URL = "https://compass-internal.example.com/data";
+const dataCacheKey = () => new Request(DATA_CACHE_URL, { method: "GET" });
 
 // Assemble every record into one response.
 //
@@ -57,9 +59,22 @@ const DATA_CACHE_KEY = new Request("https://compass-internal/data");
 // number. The Worker's requests are authenticated (5,000/hour) and come from
 // Cloudflare, so the shop's limit stops mattering — which is what makes it safe
 // for the page to poll at all.
+// The Cache API is an optimisation, not a requirement — and it is NOT available
+// on workers.dev subdomains, where touching it can throw. A failed cache lookup
+// must never take the endpoint down with it, so every call is guarded and the
+// worst case is simply rebuilding the response.
+async function cacheGet(key) {
+  try { return await caches.default.match(key); } catch (e) { return undefined; }
+}
+function cacheSet(key, res, ctx) {
+  try { ctx.waitUntil(caches.default.put(key, res.clone())); } catch (e) { /* uncached is fine */ }
+}
+function cacheDrop(key, ctx) {
+  try { ctx.waitUntil(caches.default.delete(key)); } catch (e) { /* nothing to drop */ }
+}
+
 async function serveData(env, ctx) {
-  const cache = caches.default;
-  const hit = await cache.match(DATA_CACHE_KEY);
+  const hit = await cacheGet(dataCacheKey());
   if (hit) return hit;
 
   const H = {
@@ -68,9 +83,12 @@ async function serveData(env, ctx) {
     Accept: "application/vnd.github+json",
   };
 
+  // Bypass Cloudflare's subrequest cache here. GitHub serves this listing with
+  // max-age=60, and a stale listing means stale shas — which would make the
+  // cache-buster below point at old file content and silently undo a write.
   const listRes = await fetch(
     `https://api.github.com/repos/${env.GH_USER}/${env.GH_REPO}/contents/data`,
-    { headers: H }
+    { headers: H, cf: { cacheTtl: 0, cacheEverything: false } }
   );
   if (!listRes.ok) return j({ error: "list failed", status: listRes.status }, 502);
 
@@ -105,12 +123,27 @@ async function serveData(env, ctx) {
       "Access-Control-Allow-Origin": "*",
     },
   });
-  ctx.waitUntil(cache.put(DATA_CACHE_KEY, res.clone()));
+  cacheSet(dataCacheKey(), res, ctx);
   return res;
 }
 
 export default {
+  // Everything runs inside this wrapper so a thrown exception comes back as a
+  // readable message instead of Cloudflare's opaque "error code: 1101", which
+  // cost a full debug cycle the first time this endpoint broke.
   async fetch(request, env, ctx) {
+    try {
+      return await handle(request, env, ctx);
+    } catch (err) {
+      return new Response(
+        JSON.stringify({ error: "worker exception", message: String(err && err.message || err) }),
+        { status: 500, headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" } }
+      );
+    }
+  },
+};
+
+async function handle(request, env, ctx) {
     const origin = request.headers.get("Origin") || "";
     const allowed = env.ALLOWED_ORIGIN || "";
 
@@ -182,7 +215,7 @@ export default {
       if (put.ok) {
         // Drop the cached record set so the next reader gets this change
         // immediately instead of waiting out the 30s TTL.
-        ctx.waitUntil(caches.default.delete(DATA_CACHE_KEY));
+        cacheDrop(dataCacheKey(), ctx);
         return withCORS(j({ ok: true, key, in_stock: rec.in_stock, strain: rec.strain || null }), allowed);
       }
       if (put.status === 409) continue;  // stale sha — re-read and retry once
@@ -191,5 +224,4 @@ export default {
     }
 
     return withCORS(j({ error: "write conflict, try again" }, 409), allowed);
-  },
-};
+  }

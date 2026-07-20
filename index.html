@@ -759,6 +759,23 @@ function soldOutWhen(p){
 }
 
 let busyKey = null;   // record currently being written, so we can disable its button
+
+// Belt and braces against stale reads. There are three caches between a write
+// and the next read (Cloudflare edge, raw.githubusercontent, the GitHub API
+// listing). If any of them serves an old copy, a refresh would silently flip a
+// just-marked record back — which is exactly the bug that showed up in use.
+// So for two minutes after a confirmed write we re-assert what we know is true,
+// regardless of what a refresh brings back.
+const recentWrites = new Map();   // key -> {in_stock, until}
+function applyRecentWrites(records){
+  const now = Date.now();
+  for (const [k, w] of recentWrites) if (w.until < now) recentWrites.delete(k);
+  if (!recentWrites.size) return records;
+  return records.map(r => {
+    const w = recentWrites.get(key(r));
+    return w ? Object.assign({}, r, {in_stock: w.in_stock}) : r;
+  });
+}
 async function setStock(k, soldOut){
   if (!STOCK_API || busyKey) return;
   const p = DATA.find(x => key(x) === k);
@@ -775,6 +792,7 @@ async function setStock(k, soldOut){
     });
     const out = await res.json().catch(() => ({}));
     if (!res.ok || !out.ok) throw new Error(out.error || `HTTP ${res.status}`);
+    recentWrites.set(k, {in_stock: !soldOut, until: Date.now() + 120000});
     flash = `${p.strain} — ${soldOut ? 'marked sold out' : 'back in stock'}. Everyone sees this.`;
   } catch (err) {
     p.in_stock = before;      // put it back; never leave a lie on screen
@@ -1255,10 +1273,15 @@ async function fetchRecords(){
       // rather than dropping everyone to the 9-record embedded seed.
     }
   }
-  const idx = await fetch(`https://api.github.com/repos/${GH_USER}/${GH_REPO}/contents/data`).then(r=>r.json());
+  const idx = await fetch(`https://api.github.com/repos/${GH_USER}/${GH_REPO}/contents/data`,
+    {cache: 'no-store'}).then(r=>r.json());
   if (!Array.isArray(idx)) throw new Error('rate limited');   // caller keeps the seed
   return Promise.all(idx.filter(f=>f.name.endsWith('.json')).map(async f => {
-    const p = await fetch(f.download_url).then(r=>r.json());
+    // ?v=<sha> is load-bearing, not decoration. raw.githubusercontent serves
+    // max-age=300, so without it a refresh reads a five-minute-old copy and
+    // overwrites a stock change that was just made. The sha changes exactly
+    // when the file does, so this is always fresh and still CDN-cacheable.
+    const p = await fetch(`${f.download_url}?v=${f.sha}`).then(r=>r.json());
     p._key = f.name.replace(/\.json$/, '');   // repo filename is unique by construction; the record's own `id` isn't
     return p;
   }));
@@ -1285,7 +1308,7 @@ async function refresh(){
   let fresh;
   try { fresh = await fetchRecords(); } catch(e){ return; }   // offline: keep what we have
   if (!fresh || !fresh.length) return;
-  DATA = fresh;
+  DATA = applyRecentWrites(fresh);
   // Re-rendering under someone's fingers would wipe what they're typing, so
   // take the data now and let the next natural render show it.
   const el = document.activeElement;
