@@ -1,0 +1,40 @@
+{
+ "id": "a3f8c2d1e9",
+ "metrc_tag": "1A412030000191D000001573",
+ "brand": "Dank",
+ "strain": "Green Crack - Pack",
+ "form": "Preroll 3.5g 7-Pack",
+ "thc": 27.3233,
+ "total_terpenes": 0.54,
+ "lean": "settling",
+ "confidence": "faint",
+ "in_stock": true,
+ "shelf_tag": "Sativa",
+ "reported": [
+  "Green Crack",
+  "7 Pack"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "Linalool",
+  "alpha-Humulene"
+ ],
+ "aroma": [
+  "spicy",
+  "floral",
+  "woody",
+  "earthy",
+  "herbal"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.16,
+  "Linalool": 0.16,
+  "alpha-Humulene": 0.06,
+  "Terpineol": 0.05,
+  "Caryophyllene Oxide": 0.04,
+  "Fenchol": 0.03,
+  "alpha-Bisabolol": 0.02,
+  "Guaiol": 0.01,
+  "Valencene": 0.01
+ }
+}
