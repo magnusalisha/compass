@@ -43,6 +43,7 @@
  "form": "Infused Preroll 0.5g 5pk",
  "strain": "GMO Bomb",
  "lean": "settling",
- "in_stock": true,
- "thc": 37.61
+ "in_stock": false,
+ "thc": 37.61,
+ "sold_out_at": "2026-07-20T17:34:58.864Z"
 }
