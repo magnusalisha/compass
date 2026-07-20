@@ -46,15 +46,84 @@ const b64encode = (str) => {
   return btoa(bin);
 };
 
+// One synthetic key for the assembled-data response in Cloudflare's edge cache.
+// Concurrent page loads collapse onto this instead of each rebuilding the set.
+const DATA_CACHE_KEY = new Request("https://compass-internal/data");
+
+// Assemble every record into one response.
+//
+// Why the page can't just do this itself: GitHub's API allows 60 requests an
+// hour PER IP unauthenticated, and every device on the shop's wifi shares that
+// number. The Worker's requests are authenticated (5,000/hour) and come from
+// Cloudflare, so the shop's limit stops mattering — which is what makes it safe
+// for the page to poll at all.
+async function serveData(env, ctx) {
+  const cache = caches.default;
+  const hit = await cache.match(DATA_CACHE_KEY);
+  if (hit) return hit;
+
+  const H = {
+    Authorization: `Bearer ${env.GH_TOKEN}`,
+    "User-Agent": "compass-stock",
+    Accept: "application/vnd.github+json",
+  };
+
+  const listRes = await fetch(
+    `https://api.github.com/repos/${env.GH_USER}/${env.GH_REPO}/contents/data`,
+    { headers: H }
+  );
+  if (!listRes.ok) return j({ error: "list failed", status: listRes.status }, 502);
+
+  const files = (await listRes.json()).filter((f) => f.name.endsWith(".json"));
+
+  // download_url points at raw.githubusercontent, which caches for 5 minutes —
+  // long enough to serve a stale record right after someone marks it sold out.
+  // Appending the file's git sha changes the URL exactly when the file changes,
+  // so edits are picked up instantly while unchanged files still hit the CDN.
+  const records = await Promise.all(
+    files.map(async (f) => {
+      const r = await fetch(`${f.download_url}?v=${f.sha}`, {
+        headers: { "User-Agent": "compass-stock" },
+      });
+      if (!r.ok) return null;
+      const rec = await r.json().catch(() => null);
+      if (!rec) return null;
+      rec._key = f.name.replace(/\.json$/, "");
+      return rec;
+    })
+  );
+
+  const clean = records.filter(Boolean);
+  if (!clean.length) return j({ error: "no records" }, 502);
+
+  const res = new Response(JSON.stringify(clean), {
+    headers: {
+      "Content-Type": "application/json",
+      // Short, so a stock change reaches everyone quickly, but long enough
+      // that ten people loading at once cost one rebuild.
+      "Cache-Control": "public, max-age=30",
+      "Access-Control-Allow-Origin": "*",
+    },
+  });
+  ctx.waitUntil(cache.put(DATA_CACHE_KEY, res.clone()));
+  return res;
+}
+
 export default {
-  async fetch(request, env) {
+  async fetch(request, env, ctx) {
     const origin = request.headers.get("Origin") || "";
     const allowed = env.ALLOWED_ORIGIN || "";
 
     if (request.method === "OPTIONS")
       return withCORS(new Response(null, { status: 204 }), allowed);
+
+    // Reading is public — the repo is public, so there is nothing to gate here,
+    // and leaving it open means the page can fetch data before anyone signs in
+    // to anything. Only writes are origin-checked.
+    if (request.method === "GET") return serveData(env, ctx);
+
     if (request.method !== "POST")
-      return withCORS(j({ error: "POST only" }, 405), allowed);
+      return withCORS(j({ error: "POST or GET only" }, 405), allowed);
 
     // Not a security boundary so much as a bot filter — an Origin header is
     // trivially forged by anything that isn't a browser. It costs staff
@@ -110,8 +179,12 @@ export default {
         }),
       });
 
-      if (put.ok)
+      if (put.ok) {
+        // Drop the cached record set so the next reader gets this change
+        // immediately instead of waiting out the 30s TTL.
+        ctx.waitUntil(caches.default.delete(DATA_CACHE_KEY));
         return withCORS(j({ ok: true, key, in_stock: rec.in_stock, strain: rec.strain || null }), allowed);
+      }
       if (put.status === 409) continue;  // stale sha — re-read and retry once
 
       return withCORS(j({ error: "write failed", status: put.status }, 502), allowed);

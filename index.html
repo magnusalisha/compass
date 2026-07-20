@@ -1234,20 +1234,69 @@ document.addEventListener('keydown', e => {
   }
 });
 
+// ── loading data
+//
+// Preferred path is the Worker: it returns every record in ONE response, using
+// its own authenticated GitHub quota. Going straight to GitHub from here means
+// 1 API call per load against a limit of 60/hour PER IP — and every device on
+// the shop's wifi shares that one number, so a busy shift can exhaust it and
+// silently drop everyone back to the embedded seed. The Worker path is what
+// makes polling safe.
+async function fetchRecords(){
+  if (STOCK_API){
+    try {
+      const res = await fetch(STOCK_API.replace(/\/+$/, '') + '/data', {cache: 'no-store'});
+      if (!res.ok) throw new Error('worker ' + res.status);
+      const recs = await res.json();
+      if (Array.isArray(recs) && recs.length) return recs;
+      throw new Error('empty');
+    } catch(e){
+      // Worker not redeployed yet, or having a bad day. Fall through to GitHub
+      // rather than dropping everyone to the 9-record embedded seed.
+    }
+  }
+  const idx = await fetch(`https://api.github.com/repos/${GH_USER}/${GH_REPO}/contents/data`).then(r=>r.json());
+  if (!Array.isArray(idx)) throw new Error('rate limited');   // caller keeps the seed
+  return Promise.all(idx.filter(f=>f.name.endsWith('.json')).map(async f => {
+    const p = await fetch(f.download_url).then(r=>r.json());
+    p._key = f.name.replace(/\.json$/, '');   // repo filename is unique by construction; the record's own `id` isn't
+    return p;
+  }));
+}
+
 (async function load(){
   if (GH_USER && GH_REPO){
-    try{
-      const idx = await fetch(`https://api.github.com/repos/${GH_USER}/${GH_REPO}/contents/data`).then(r=>r.json());
-      const files = await Promise.all(idx.filter(f=>f.name.endsWith('.json')).map(async f => {
-        const p = await fetch(f.download_url).then(r=>r.json());
-        p._key = f.name.replace(/\.json$/, '');   // the repo filename is unique by construction; the record's own `id` isn't guaranteed to be
-        return p;
-      }));
-      if (files.length) DATA = files;
-    }catch(err){ flash = 'Using built-in data — couldn\'t reach the repo.'; }
+    try { DATA = await fetchRecords(); }
+    catch(err){ flash = 'Using built-in data — couldn\'t reach the repo.'; }
   }
   render();
+  startAutoRefresh();
 })();
+
+// ── keep every screen current without anyone touching it
+//
+// A register sits on this page all shift. Without this it would show whatever
+// was true when the page was opened — which would defeat the entire point of
+// stock being shared. Refresh on a timer while visible, and immediately when
+// someone comes back to the tab.
+let refreshTimer = null;
+async function refresh(){
+  if (busyKey) return;                      // don't fight an in-flight write
+  let fresh;
+  try { fresh = await fetchRecords(); } catch(e){ return; }   // offline: keep what we have
+  if (!fresh || !fresh.length) return;
+  DATA = fresh;
+  // Re-rendering under someone's fingers would wipe what they're typing, so
+  // take the data now and let the next natural render show it.
+  const el = document.activeElement;
+  const typing = el && (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA');
+  if (!typing) render();
+}
+function startAutoRefresh(){
+  if (refreshTimer) clearInterval(refreshTimer);
+  refreshTimer = setInterval(() => { if (!document.hidden) refresh(); }, 60000);
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) refresh(); });
+}
 </script>
 </body>
 </html>
