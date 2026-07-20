@@ -1,0 +1,44 @@
+{
+ "id": "a3f7c2e1b9",
+ "metrc_tag": "1A412030000191D000000925",
+ "brand": "Dank",
+ "strain": "Grease Monkey - Pack",
+ "form": "Preroll 3.5g 7-Pack",
+ "thc": 29.4485,
+ "total_terpenes": 0.44,
+ "lean": "settling",
+ "confidence": "faint",
+ "in_stock": true,
+ "shelf_tag": "Unverified",
+ "reported": [
+  "heavy",
+  "earthy"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "Guaiol",
+  "alpha-Humulene"
+ ],
+ "aroma": [
+  "earthy",
+  "woody",
+  "spicy",
+  "herbal",
+  "floral"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.15,
+  "Guaiol": 0.06,
+  "alpha-Humulene": 0.05,
+  "beta-Myrcene": 0.05,
+  "Linalool": 0.03,
+  "Limonene": 0.02,
+  "alpha-Bisabolol": 0.02,
+  "Terpineol": 0.01,
+  "Fenchol": 0.01,
+  "Ocimene": 0.01,
+  "Valencene": 0.01,
+  "alpha-Pinene": 0.01,
+  "beta-Pinene": 0.01
+ }
+}
