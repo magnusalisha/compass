@@ -1,0 +1,43 @@
+{
+ "id": "a3f82c91d4",
+ "metrc_tag": "1A412030000019F000004069",
+ "brand": "Florist Farms",
+ "strain": "La Bomba",
+ "form": "Preroll 0.5g",
+ "thc": 20.46,
+ "total_terpenes": 1.1022,
+ "lean": "settling",
+ "confidence": "moderate",
+ "in_stock": true,
+ "shelf_tag": "Sativa",
+ "reported": [
+  "spicy & earthy",
+  "citrus & floral notes"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "Limonene",
+  "alpha-Humulene"
+ ],
+ "aroma": [
+  "spicy",
+  "earthy",
+  "citrus",
+  "floral",
+  "herbal"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.3105,
+  "Limonene": 0.1965,
+  "alpha-Humulene": 0.1298,
+  "Linalool": 0.1061,
+  "Farnesene": 0.0855,
+  "alpha-Bisabolol": 0.0551,
+  "Nerolidol": 0.0402,
+  "Fenchol": 0.0367,
+  "Terpineol": 0.0357,
+  "beta-Pinene": 0.0274,
+  "beta-Myrcene": 0.0198,
+  "alpha-Pinene": 0.0146
+ }
+}
