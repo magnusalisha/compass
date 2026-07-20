@@ -1,0 +1,35 @@
+{
+ "id": "a3f82c914e",
+ "metrc_tag": "1A412030000132B000000481",
+ "brand": "Lobo",
+ "strain": "Papaya Punch",
+ "form": "Preroll 1g",
+ "thc": 34.4635,
+ "total_terpenes": 0.8,
+ "lean": "settling",
+ "confidence": "moderate",
+ "in_stock": true,
+ "shelf_tag": "Hybrid",
+ "reported": [
+  "beta-Caryophyllene dominant",
+  "light terpene expression"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "alpha-Humulene",
+  "alpha-Bisabolol"
+ ],
+ "aroma": [
+  "earthy",
+  "woody",
+  "spicy",
+  "floral",
+  "tropical"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.2,
+  "alpha-Humulene": 0.1,
+  "alpha-Bisabolol": 0.06,
+  "Guaiol": 0.04
+ }
+}
