@@ -1,0 +1,46 @@
+{
+ "id": "a3f7c2e910",
+ "metrc_tag": "1A41203000015E7000000336",
+ "brand": "BOOM",
+ "strain": "Grape Gas",
+ "form": "Preroll 1g",
+ "thc": null,
+ "total_terpenes": 1.919,
+ "lean": "settling",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Hybrid",
+ "reported": [
+  "Grape Gas infused preroll",
+  "Lab test passed"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "Limonene",
+  "Linalool"
+ ],
+ "aroma": [
+  "grape",
+  "fuel",
+  "floral",
+  "spice",
+  "citrus"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.6308,
+  "Limonene": 0.2829,
+  "Linalool": 0.2566,
+  "alpha-Humulene": 0.2386,
+  "alpha-Bisabolol": 0.1084,
+  "Farnesene": 0.0808,
+  "beta-Myrcene": 0.0563,
+  "Terpineol": 0.0445,
+  "Fenchol": 0.043,
+  "Caryophyllene Oxide": 0.0392,
+  "beta-Pinene": 0.0221,
+  "alpha-Pinene": 0.0206,
+  "Guaiol": 0.0165,
+  "Geraniol": 0.0115,
+  "Terpinolene": 0.0102
+ }
+}
