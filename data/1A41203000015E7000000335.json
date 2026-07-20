@@ -1,0 +1,45 @@
+{
+ "id": "a3f82c1d9e",
+ "metrc_tag": "1A41203000015E7000000335",
+ "brand": "Boom",
+ "strain": "Gas Runtz",
+ "form": "Preroll 1g",
+ "thc": null,
+ "total_terpenes": 1.9535,
+ "lean": "settling",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Hybrid",
+ "reported": [
+  "Gas Runtz infused preroll",
+  "lab tested and compliant"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "Limonene",
+  "Linalool"
+ ],
+ "aroma": [
+  "spicy",
+  "citrus",
+  "floral",
+  "earthy",
+  "herbal"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.6035,
+  "Limonene": 0.3225,
+  "Linalool": 0.3036,
+  "alpha-Humulene": 0.2259,
+  "Farnesene": 0.1088,
+  "alpha-Bisabolol": 0.097,
+  "Terpineol": 0.0697,
+  "Fenchol": 0.0653,
+  "beta-Myrcene": 0.055,
+  "Caryophyllene Oxide": 0.0344,
+  "beta-Pinene": 0.0273,
+  "alpha-Pinene": 0.0234,
+  "Terpinolene": 0.0148,
+  "Guaiol": 0.0143
+ }
+}
