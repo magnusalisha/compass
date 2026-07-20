@@ -1,9 +1,9 @@
 {
- "id": "a3f8c21b9d",
+ "id": "a3f8c92e1b",
  "metrc_tag": "1A412030000026D000008320",
  "brand": "Anthem",
  "strain": "Acapulco Gold",
- "form": "Infused Preroll 1g",
+ "form": "Preroll 1g Infused",
  "thc": 44.1264,
  "total_terpenes": 0.69,
  "lean": "lifting",
@@ -11,8 +11,8 @@
  "in_stock": true,
  "shelf_tag": "Sativa",
  "reported": [
-  "Glass Tip Infused",
-  "Bold Series"
+  "Glass tip infused pre-roll",
+  "Bold series medical pre-roll"
  ],
  "dominant": [
   "Limonene",
@@ -21,9 +21,9 @@
  ],
  "aroma": [
   "citrus",
-  "floral",
   "herbal",
-  "spice",
+  "earthy",
+  "floral",
   "woody"
  ],
  "terpenes": {
