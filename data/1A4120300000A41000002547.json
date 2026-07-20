@@ -8,7 +8,7 @@
  "total_terpenes": 2.06,
  "lean": "lifting",
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Unverified",
  "reported": [
   "Tested & Regulated by NY OCM",
@@ -36,5 +36,6 @@
   "Guaiol": 0.09,
   "Linalool": 0.08,
   "Farnesene": 0.06
- }
+ },
+ "sold_out_at": "2026-07-20T17:12:52.760Z"
 }
