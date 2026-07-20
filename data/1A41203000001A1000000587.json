@@ -1,0 +1,43 @@
+{
+ "id": "a3f8c2e1d9",
+ "metrc_tag": "1A41203000001A1000000587",
+ "brand": "NYCE",
+ "strain": "Fruit Salad",
+ "form": "Vape 0.5g Disposable",
+ "thc": 74.708,
+ "total_terpenes": 6.07,
+ "lean": "settling",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Hybrid",
+ "reported": [
+  "Live Rosin Vape",
+  "Adult Use"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "alpha-Humulene",
+  "Limonene"
+ ],
+ "aroma": [
+  "spicy",
+  "earthy",
+  "citrus",
+  "herbal",
+  "woody"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 2.01,
+  "alpha-Humulene": 0.75,
+  "Limonene": 1.18,
+  "beta-Myrcene": 0.48,
+  "alpha-Pinene": 0.44,
+  "Linalool": 0.28,
+  "beta-Pinene": 0.18,
+  "Farnesene": 0.19,
+  "alpha-Bisabolol": 0.19,
+  "Guaiol": 0.16,
+  "Fenchol": 0.11,
+  "Terpineol": 0.1
+ }
+}
