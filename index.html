@@ -272,7 +272,20 @@ const WANT = {
   energ:['Terpinolene','Limonene','Ocimene'], awake:['Terpinolene','alpha-Pinene'], upbeat:['Limonene','Ocimene'],
   uplift:['Limonene','Ocimene','Terpinolene'], happy:['Limonene'], social:['Limonene'], talk:['Limonene'],
   focus:['alpha-Pinene','Terpinolene'], clear:['alpha-Pinene'], alert:['Terpinolene','alpha-Pinene'],
-  creative:['Terpinolene','Limonene'], heady:['Terpinolene'], head:['Terpinolene'], funct:['alpha-Pinene','Limonene']
+  creative:['Terpinolene','Limonene'], heady:['Terpinolene'], head:['Terpinolene'], funct:['alpha-Pinene','Limonene'],
+  // round-5: common counter language that used to return "nothing matched".
+  // Every one routes to a terpene already in the map — the evidence dots on
+  // each card still tell the honest story, so a new word can't overclaim.
+  giggl:['Limonene'], euphor:['Limonene','Terpinolene'], productive:['alpha-Pinene','Limonene'],
+  hik:['Terpinolene','alpha-Pinene'], outdoor:['Terpinolene','alpha-Pinene'], adventur:['Terpinolene','Limonene'],
+  intima:['Limonene'], arous:['Limonene'], horny:['Limonene'],
+  // appetite: the myrcene "munchies" association — folklore, and the card says so.
+  munch:['beta-Myrcene'], hungr:['beta-Myrcene'], appetite:['beta-Myrcene'],
+  // "stress" is wellness language, not a diagnosis (unlike the guarded medical
+  // terms), and it never becomes an output claim — the card only ever says
+  // "people describe this as calm". So it routes like "relax". ("date"/"wind"
+  // were left out on purpose: they'd substring-match sedate / window / rewind.)
+  stress:['beta-Caryophyllene','Linalool','alpha-Bisabolol'], unwind:['Linalool','alpha-Humulene']
 };
 // Conditions are medical. The tool doesn't go there — it says so.
 const MEDICAL = ['anxiety','anxious','depress','pain','insomnia','ptsd','adhd','nausea','migraine','seizure','cancer'];
@@ -922,6 +935,41 @@ function read(x, y){
   return h;
 }
 
+// Find Similar's result line. A bare "89% similarity" is a decode-it number,
+// against the whole point of this tool. So say WHAT makes them close, and — per
+// the brief, THC drives the experience more than any terpene — how the strength
+// compares to what the customer actually had. `src` is the product they asked
+// about; `x` is the in-stock suggestion.
+function matchNote(src, x, s){
+  let why = '';
+  // a faint source has unreliable dominants, so don't assert a shared lead off it
+  if (src.confidence !== 'faint' && src.dominant && src.dominant.length){
+    if (src.dominant[0] === x.dominant[0]) why = `both lead with ${short(x.dominant[0]).toLowerCase()}`;
+    else {
+      const shared = x.dominant.find(k => src.dominant.includes(k));
+      if (shared) why = `both carry ${short(shared).toLowerCase()}`;
+    }
+  }
+  const d = x.thc - src.thc;
+  const thc = Math.abs(d) >= 3
+    ? `${d > 0 ? 'stronger' : 'lighter'} — ${x.thc}% THC vs the ${src.thc}% you had`
+    : `${x.thc}% THC, about the same strength`;
+  return `<div class="match">${Math.round(s*100)}% match${why ? ' · ' + why : ''}<br>${thc}</div>`;
+}
+
+// The shelf tag + label-vs-chemistry check, sized for the Compare header. This
+// is the single-card verdict brought into the two-up view — the tool's whole
+// point is holding the package's claim against the chemistry, and Compare is
+// exactly where a budtender is weighing "the sativa vs the indica".
+function cmpShelf(p, align){
+  const tag = shelfTag(p);
+  if (tag === 'Unverified') return '';
+  const base = `font-family:'IBM Plex Mono',monospace;font-size:11px;margin-top:5px;text-align:${align}`;
+  const v = labelCheck(p);   // null when faint/unverified/no-lean — then we show the tag but never contradict it
+  return v && v.clash
+    ? `<div style="${base};color:var(--warn)">⚠ shelf: ${tag} · terps read ${v.lean}</div>`
+    : `<div style="${base};color:var(--ink2)">shelf: ${tag}</div>`;
+}
 function compare(x, y){
   const keys = [...new Set([...Object.keys(x.terpenes), ...Object.keys(y.terpenes)])]
     .filter(k => (x.terpenes[k]||0) > 0 || (y.terpenes[k]||0) > 0)
@@ -929,8 +977,8 @@ function compare(x, y){
   const max = Math.max(...keys.map(k => Math.max(x.terpenes[k]||0, y.terpenes[k]||0)), 0.01);
   return `<div class="card">
     <div class="top">
-      <div><h2>${x.strain}</h2><div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink2);margin-top:4px">THC ${x.thc}% · terps ${x.total_terpenes}%</div></div>
-      <div style="text-align:right"><h2>${y.strain}</h2><div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink2);margin-top:4px">THC ${y.thc}% · terps ${y.total_terpenes}%</div></div>
+      <div><h2>${x.strain}</h2><div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink2);margin-top:4px">THC ${x.thc}% · terps ${x.total_terpenes}%</div>${cmpShelf(x,'left')}</div>
+      <div style="text-align:right"><h2>${y.strain}</h2><div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink2);margin-top:4px">THC ${y.thc}% · terps ${y.total_terpenes}%</div>${cmpShelf(y,'right')}</div>
     </div>
     <div class="read" style="margin-top:15px"><div class="eyebrow" style="color:var(--ink2);margin-bottom:10px">The read</div>${read(x,y)}</div>
     <div class="read"><div class="eyebrow" style="color:var(--ink2);margin-bottom:12px">Terpenes</div>
@@ -1042,11 +1090,18 @@ function render(){
       return foot();
     }
     const ranked = candidates.map(x => [sim(p,x), x]).sort((m,n) => n[0]-m[0]);
-    O.innerHTML = (ranked[0][0] < 0.5
+    // A faint source has lost its volatile terpenes, so "similar" mostly means
+    // "also heavy-terpene-dominant" — which is what everything degrades toward.
+    // The tool penalises faint everywhere else; Find Similar shouldn't present a
+    // confident 96% off an unreliable source without saying so. ~a third of the
+    // catalogue is faint, so this fires often.
+    const faintSrcNote = p.confidence === 'faint'
+      ? `<div class="warnbox" style="margin:0 0 12px">⚠ <b>${p.strain}</b>'s own profile is faint, so these matches are approximate — they mostly share the heavy terpenes that survive in everything. Lean on the package and your nose here.</div>`
+      : '';
+    O.innerHTML = faintSrcNote + (ranked[0][0] < 0.5
         ? `<div class="card"><div class="warnbox" style="margin:0">Nothing <b>scanned</b> is close to <b>${p.strain}</b> — its profile is ${p.dominant.slice(0,2).map(k=>short(k).toLowerCase()).join('/')}-led and nothing else in here looks like that. <b>Say so. Don't substitute.</b> Worth a look at the shelf too, in case something isn't scanned yet.</div></div>`
         : '')
-      + ranked.slice(0,4).map(([s,x]) =>
-          card(x, `<div class="match">${Math.round(s*100)}% terpene similarity</div>`)).join('');
+      + ranked.slice(0,4).map(([s,x]) => card(x, matchNote(p, x, s))).join('');
     return foot();
   }
 
