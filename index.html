@@ -93,7 +93,11 @@
   .chips b{width:8px;height:8px;border-radius:50%;flex:none}
 
   /* mirrored comparison — read the difference, don't decode it */
-  .cmp{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:6px 10px;margin-top:14px}
+  /* Number columns size to their content; the MIDDLE (bars + name) takes the
+     rest. With 1fr on the outer columns instead, the middle collapsed to the
+     name width and both bar tracks rendered at 0px — the mirrored comparison
+     was invisible. auto/1fr/auto is what gives the bars room. */
+  .cmp{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:6px 10px;margin-top:14px}
   .cmp .val{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--ink2)}
   .cmp .val.r{text-align:right}
   .cmp .nm{font-size:13.5px;text-align:center;white-space:nowrap;font-weight:500}
@@ -928,7 +932,9 @@ function compare(x, y){
       <div><h2>${x.strain}</h2><div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink2);margin-top:4px">THC ${x.thc}% · terps ${x.total_terpenes}%</div></div>
       <div style="text-align:right"><h2>${y.strain}</h2><div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink2);margin-top:4px">THC ${y.thc}% · terps ${y.total_terpenes}%</div></div>
     </div>
-    <div class="cmp">
+    <div class="read" style="margin-top:15px"><div class="eyebrow" style="color:var(--ink2);margin-bottom:10px">The read</div>${read(x,y)}</div>
+    <div class="read"><div class="eyebrow" style="color:var(--ink2);margin-bottom:12px">Terpenes</div>
+    <div class="cmp" style="margin-top:0">
       ${keys.map(k => {
         const p = x.terpenes[k]||0, q = y.terpenes[k]||0;
         return `<div class="val r">${p||'—'}</div>
@@ -939,8 +945,7 @@ function compare(x, y){
           </div>
           <div class="val">${q||'—'}</div>`;
       }).join('')}
-    </div>
-    <div class="read"><div class="eyebrow" style="color:var(--ink2);margin-bottom:10px">The read</div>${read(x,y)}</div>
+    </div></div>
   </div>`;
 }
 
