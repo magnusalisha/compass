@@ -1,0 +1,43 @@
+{
+ "id": "a3f9c12e84",
+ "metrc_tag": "1A4120300000285000005317",
+ "brand": "Fernway",
+ "strain": "Stonefruit",
+ "form": "Vape 1g Cartridge",
+ "thc": 82.54,
+ "total_terpenes": 3.796,
+ "lean": "lifting",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Hybrid",
+ "reported": [
+  "stonefruit",
+  "bright"
+ ],
+ "dominant": [
+  "beta-Myrcene",
+  "Ocimene",
+  "beta-Caryophyllene"
+ ],
+ "aroma": [
+  "fruity",
+  "sweet",
+  "herbal",
+  "spicy",
+  "piney"
+ ],
+ "terpenes": {
+  "beta-Myrcene": 1.189,
+  "Ocimene": 0.5971,
+  "beta-Caryophyllene": 0.3924,
+  "alpha-Pinene": 0.3516,
+  "Limonene": 0.2547,
+  "Sabinene": 0.2002,
+  "beta-Pinene": 0.1431,
+  "Linalool": 0.1597,
+  "alpha-Bisabolol": 0.1449,
+  "alpha-Phellandrene": 0.1107,
+  "Camphor": 0.1232,
+  "alpha-Humulene": 0.129
+ }
+}
