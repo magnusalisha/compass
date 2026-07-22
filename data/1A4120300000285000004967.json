@@ -1,0 +1,47 @@
+{
+ "id": "a3f7c2e019",
+ "metrc_tag": "1A4120300000285000004967",
+ "brand": "Fernway",
+ "strain": "Mountain Girl",
+ "form": "Vape 1g Cartridge",
+ "thc": 83.499,
+ "total_terpenes": 6.321,
+ "lean": "lifting",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Hybrid",
+ "reported": [
+  "beta-Myrcene dominant",
+  "Terpinolene forward"
+ ],
+ "dominant": [
+  "beta-Myrcene",
+  "Terpinolene",
+  "alpha-Pinene"
+ ],
+ "aroma": [
+  "herbal",
+  "piney",
+  "woody",
+  "spicy",
+  "earthy"
+ ],
+ "terpenes": {
+  "beta-Myrcene": 2.412,
+  "Terpinolene": 2.059,
+  "alpha-Pinene": 0.396,
+  "Sabinene": 0.2939,
+  "trans-Caryophyllene": 0.2584,
+  "beta-Pinene": 0.231,
+  "trans-b-Ocimene": 0.1755,
+  "alpha-Phellandrene": 0.0828,
+  "Linalool": 0.0717,
+  "alpha-Terpinene": 0.0698,
+  "3-Carene": 0.0662,
+  "alpha-Humulene": 0.0539,
+  "alpha-Bisabolol": 0.0532,
+  "gamma-Terpinene": 0.0417,
+  "alpha-Terpineol": 0.0301,
+  "Fenchol": 0.0258
+ }
+}
