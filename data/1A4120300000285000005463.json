@@ -1,0 +1,45 @@
+{
+ "id": "a3f82c1d9e",
+ "metrc_tag": "1A4120300000285000005463",
+ "brand": "Fernway",
+ "strain": "Key Lime",
+ "form": "Vape 2g Disposable",
+ "thc": 87.602,
+ "total_terpenes": 3.124,
+ "lean": "lifting",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Sativa",
+ "reported": [
+  "citrusy lime",
+  "piney fresh"
+ ],
+ "dominant": [
+  "Limonene",
+  "beta-Caryophyllene",
+  "beta-Myrcene"
+ ],
+ "aroma": [
+  "citrus",
+  "lime",
+  "spice",
+  "pine",
+  "herbal"
+ ],
+ "terpenes": {
+  "Limonene": 0.7533,
+  "beta-Caryophyllene": 0.66,
+  "beta-Myrcene": 0.5844,
+  "alpha-Pinene": 0.2557,
+  "Sabinene": 0.2082,
+  "beta-Pinene": 0.1488,
+  "Linalool": 0.1297,
+  "alpha-Bisabolol": 0.0828,
+  "gamma-Terpinene": 0.0633,
+  "Fenchol": 0.0498,
+  "alpha-Terpineol": 0.0674,
+  "alpha-Phellandrene": 0.0471,
+  "alpha-Humulene": 0.0391,
+  "3-Carene": 0.0349
+ }
+}
