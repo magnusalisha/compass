@@ -1,0 +1,32 @@
+{
+ "id": "a3f9c2e817",
+ "metrc_tag": "1A4120300000235000004270",
+ "brand": "Untitled",
+ "strain": "Golden Yuzu",
+ "form": "Vape 1g Cartridge",
+ "thc": null,
+ "total_terpenes": 1.53,
+ "lean": "settling",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Sativa",
+ "reported": [
+  "alpha-Humulene dominant",
+  "light linalool presence"
+ ],
+ "dominant": [
+  "alpha-Humulene",
+  "Linalool"
+ ],
+ "aroma": [
+  "herbal",
+  "floral",
+  "earthy",
+  "woody",
+  "citrus"
+ ],
+ "terpenes": {
+  "alpha-Humulene": 0.16,
+  "Linalool": 0.15
+ }
+}
