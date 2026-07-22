@@ -1,0 +1,44 @@
+{
+ "id": "a3f7c2e9b1",
+ "metrc_tag": "1A41203000018CC000001073",
+ "brand": "Jetty",
+ "strain": "Papaya Split",
+ "form": "Vape 1g Disposable",
+ "thc": 83.4,
+ "total_terpenes": 6.91,
+ "lean": "settling",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Indica",
+ "reported": [
+  "Citrus",
+  "Spicy"
+ ],
+ "dominant": [
+  "Limonene",
+  "beta-Caryophyllene",
+  "beta-Myrcene"
+ ],
+ "aroma": [
+  "citrus",
+  "spicy",
+  "herbal",
+  "pine",
+  "hops"
+ ],
+ "terpenes": {
+  "Limonene": 2.2217,
+  "beta-Caryophyllene": 1.5462,
+  "beta-Myrcene": 1.298,
+  "alpha-Humulene": 0.4413,
+  "beta-Pinene": 0.3326,
+  "Linalool": 0.2988,
+  "alpha-Pinene": 0.2002,
+  "Farnesene": 0.1853,
+  "Fenchol": 0.1464,
+  "Terpineol": 0.0946,
+  "Camphene": 0.0586,
+  "Ocimene": 0.0502,
+  "alpha-Bisabolol": 0.0325
+ }
+}
