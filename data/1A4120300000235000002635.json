@@ -1,0 +1,34 @@
+{
+ "id": "a3f7c2e891",
+ "metrc_tag": "1A4120300000235000002635",
+ "brand": "Untitled",
+ "strain": "Wedding Crashers",
+ "form": "Vape 1g Cartridge",
+ "thc": 81.796,
+ "total_terpenes": 0.68,
+ "lean": "lifting",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Hybrid",
+ "reported": [
+  "Wedding Crashers",
+  "Adult Use Vape Cartridge"
+ ],
+ "dominant": [
+  "Terpinolene",
+  "beta-Myrcene",
+  "Limonene"
+ ],
+ "aroma": [
+  "herbal",
+  "citrus",
+  "floral",
+  "earthy",
+  "fresh"
+ ],
+ "terpenes": {
+  "Terpinolene": 0.42,
+  "beta-Myrcene": 0.14,
+  "Limonene": 0.13
+ }
+}
