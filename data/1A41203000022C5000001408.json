@@ -1,5 +1,5 @@
 {
- "id": "a3f7c92e14",
+ "id": "a3f8c21e90",
  "metrc_tag": "1A41203000022C5000001408",
  "brand": "Major",
  "strain": "Blue Lobster",
@@ -9,10 +9,10 @@
  "lean": "lifting",
  "confidence": "strong",
  "in_stock": true,
- "shelf_tag": "Unverified",
+ "shelf_tag": "Hybrid",
  "reported": [
-  "Blue Lobster",
-  "Major - Eighth"
+  "citrusy and floral",
+  "bright and aromatic"
  ],
  "dominant": [
   "Limonene",
@@ -22,9 +22,9 @@
  "aroma": [
   "citrus",
   "floral",
-  "spicy",
   "herbal",
-  "woody"
+  "spicy",
+  "piney"
  ],
  "terpenes": {
   "Limonene": 0.45,
