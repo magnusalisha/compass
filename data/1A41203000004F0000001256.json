@@ -1,0 +1,43 @@
+{
+ "id": "a3f8c92e1b",
+ "metrc_tag": "1A41203000004F0000001256",
+ "brand": "Major",
+ "strain": "Grape Gas",
+ "form": "Flower 3.5g",
+ "thc": 19.471,
+ "total_terpenes": 0.56,
+ "lean": "settling",
+ "confidence": "faint",
+ "in_stock": true,
+ "shelf_tag": "Indica-leaning Hybrid",
+ "reported": [
+  "Grape Gas",
+  "Cured Flower"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "beta-Myrcene",
+  "Linalool"
+ ],
+ "aroma": [
+  "grape",
+  "fuel",
+  "earthy",
+  "floral",
+  "spice"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.19,
+  "beta-Myrcene": 0.12,
+  "Linalool": 0.08,
+  "alpha-Humulene": 0.06,
+  "Limonene": 0.03,
+  "alpha-Bisabolol": 0.02,
+  "Terpineol": 0.01,
+  "Caryophyllene Oxide": 0.01,
+  "Fenchol": 0.01,
+  "Ocimene": 0.01,
+  "alpha-Pinene": 0.01,
+  "beta-Pinene": 0.01
+ }
+}
