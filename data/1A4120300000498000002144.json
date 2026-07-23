@@ -1,47 +1,47 @@
 {
- "id": "0815490e59",
- "shelf_tag": "Indica",
+ "id": "a3f9c12e84",
+ "metrc_tag": "1A4120300000498000002144",
+ "brand": "Cheevo",
+ "strain": "Blue Andeze",
+ "form": "Preroll 1g",
+ "thc": 26.9042,
+ "total_terpenes": 0.77,
+ "lean": "settling",
  "confidence": "faint",
+ "in_stock": true,
+ "shelf_tag": "Indica",
+ "reported": [
+  "26.9% Total THC",
+  "0.77% Total Terpenes"
+ ],
  "dominant": [
   "Linalool",
   "beta-Caryophyllene",
   "Farnesene"
  ],
- "terpenes": {
-  "Terpinolene": 0.01,
-  "alpha-Pinene": 0.01,
-  "Linalool": 0.23,
-  "Fenchol": 0.05,
-  "Farnesene": 0.06,
-  "Caryophyllene Oxide": 0.02,
-  "alpha-Bisabolol": 0.02,
-  "Camphene": 0.01,
-  "Geraniol": 0.03,
-  "beta-Caryophyllene": 0.12,
-  "beta-Myrcene": 0.03,
-  "Terpineol": 0.05,
-  "alpha-Humulene": 0.05,
-  "Valencene": 0.02,
-  "beta-Pinene": 0.02,
-  "Limonene": 0.04
- },
- "brand": "Green Wells Farms",
- "total_terpenes": 0.77,
- "metrc_tag": "1A4120300000498000002144",
- "reported": [
-  "26.9% Total THC",
-  "0.77% Total Terpenes"
- ],
  "aroma": [
   "floral",
   "spicy",
   "woody",
-  "herbal",
-  "earthy"
+  "earthy",
+  "herbal"
  ],
- "form": "Preroll 1g",
- "strain": "Blue Andeze",
- "lean": "settling",
- "in_stock": true,
- "thc": 26.9042
+ "terpenes": {
+  "Linalool": 0.23,
+  "beta-Caryophyllene": 0.12,
+  "Farnesene": 0.06,
+  "Terpineol": 0.05,
+  "Fenchol": 0.05,
+  "alpha-Humulene": 0.05,
+  "Limonene": 0.04,
+  "Geraniol": 0.03,
+  "beta-Myrcene": 0.03,
+  "Caryophyllene Oxide": 0.02,
+  "Valencene": 0.02,
+  "alpha-Bisabolol": 0.02,
+  "beta-Pinene": 0.02,
+  "Camphene": 0.01,
+  "Terpinolene": 0.01,
+  "alpha-Pinene": 0.01
+ }
 }
