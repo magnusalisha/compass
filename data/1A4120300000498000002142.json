@@ -1,34 +1,23 @@
 {
- "id": "bca4c5901a",
- "shelf_tag": "Sativa",
+ "id": "a3f7c2b8e1",
+ "metrc_tag": "1A4120300000498000002142",
+ "brand": "Cheevo",
+ "strain": "Pinyatti",
+ "form": "Preroll 1g",
+ "thc": 20.6274,
+ "total_terpenes": 0.59,
+ "lean": "settling",
  "confidence": "faint",
+ "in_stock": true,
+ "shelf_tag": "Sativa",
+ "reported": [
+  "20.6% Total THC",
+  "Pinyatti strain"
+ ],
  "dominant": [
   "Linalool",
   "beta-Caryophyllene",
   "alpha-Bisabolol"
- ],
- "terpenes": {
-  "Ocimene": 0.02,
-  "Linalool": 0.13,
-  "Fenchol": 0.03,
-  "Caryophyllene Oxide": 0.03,
-  "alpha-Bisabolol": 0.06,
-  "Camphene": 0.01,
-  "beta-Myrcene": 0.02,
-  "beta-Caryophyllene": 0.11,
-  "alpha-Pinene": 0.02,
-  "Terpineol": 0.04,
-  "alpha-Humulene": 0.04,
-  "Valencene": 0.02,
-  "beta-Pinene": 0.02,
-  "Limonene": 0.04
- },
- "brand": "Green Wells Farms",
- "total_terpenes": 0.59,
- "metrc_tag": "1A4120300000498000002142",
- "reported": [
-  "20.6% Total THC",
-  "0.59% Total Terpenes"
  ],
  "aroma": [
   "floral",
@@ -37,9 +26,20 @@
   "earthy",
   "citrus"
  ],
- "form": "Preroll 1g",
- "strain": "Pinyatti",
- "lean": "settling",
- "in_stock": true,
- "thc": 20.6274
+ "terpenes": {
+  "Linalool": 0.13,
+  "beta-Caryophyllene": 0.11,
+  "alpha-Bisabolol": 0.06,
+  "Terpineol": 0.04,
+  "Limonene": 0.04,
+  "alpha-Humulene": 0.04,
+  "Caryophyllene Oxide": 0.03,
+  "Fenchol": 0.03,
+  "Ocimene": 0.02,
+  "Valencene": 0.02,
+  "alpha-Pinene": 0.02,
+  "beta-Myrcene": 0.02,
+  "beta-Pinene": 0.02,
+  "Camphene": 0.01
+ }
 }
