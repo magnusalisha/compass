@@ -1,0 +1,39 @@
+{
+ "id": "a3f8c1d9e2",
+ "metrc_tag": "1A41203000022C5000001411",
+ "brand": "Major",
+ "strain": "Purple Diesel",
+ "form": "Flower 3.5g",
+ "thc": 34.166,
+ "total_terpenes": 2.01,
+ "lean": "settling",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Hybrid",
+ "reported": [
+  "34.2% Total THC",
+  "2.01% Total Terpenes"
+ ],
+ "dominant": [
+  "beta-Myrcene",
+  "beta-Caryophyllene",
+  "Linalool"
+ ],
+ "aroma": [
+  "earthy",
+  "floral",
+  "spicy",
+  "citrus",
+  "herbal"
+ ],
+ "terpenes": {
+  "beta-Myrcene": 0.67,
+  "beta-Caryophyllene": 0.41,
+  "Linalool": 0.32,
+  "Limonene": 0.26,
+  "alpha-Humulene": 0.13,
+  "Ocimene": 0.08,
+  "alpha-Bisabolol": 0.08,
+  "beta-Pinene": 0.07
+ }
+}
