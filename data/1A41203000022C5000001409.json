@@ -1,0 +1,42 @@
+{
+ "id": "a3f8c12e74",
+ "metrc_tag": "1A41203000022C5000001409",
+ "brand": "Major",
+ "strain": "Chermoya",
+ "form": "Flower 3.5g",
+ "thc": 33.652,
+ "total_terpenes": 2.24,
+ "lean": "lifting",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Hybrid",
+ "reported": [
+  "33.65% Total THC",
+  "2.24% Total Terpenes"
+ ],
+ "dominant": [
+  "Limonene",
+  "Linalool",
+  "beta-Caryophyllene"
+ ],
+ "aroma": [
+  "citrus",
+  "floral",
+  "spice",
+  "herbal",
+  "pine"
+ ],
+ "terpenes": {
+  "Limonene": 0.54,
+  "Linalool": 0.42,
+  "beta-Caryophyllene": 0.43,
+  "alpha-Humulene": 0.14,
+  "beta-Myrcene": 0.2,
+  "beta-Pinene": 0.1,
+  "Terpineol": 0.1,
+  "Fenchol": 0.09,
+  "alpha-Bisabolol": 0.09,
+  "Farnesene": 0.08,
+  "alpha-Pinene": 0.07
+ }
+}
