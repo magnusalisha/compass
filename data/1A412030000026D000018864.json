@@ -8,7 +8,7 @@
  "total_terpenes": 1.07,
  "lean": "mixed",
  "confidence": "moderate",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Sativa",
  "reported": [
   "Total THC 48.63%",
@@ -41,5 +41,6 @@
   "alpha-Phellandrene": 0.01,
   "alpha-Pinene": 0.01,
   "beta-Pinene": 0.01
- }
+ },
+ "sold_out_at": "2026-07-23T14:12:54.860Z"
 }
