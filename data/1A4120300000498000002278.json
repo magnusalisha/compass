@@ -1,46 +1,46 @@
 {
- "id": "a3f82c19d7",
- "shelf_tag": "Indica",
+ "id": "a3f9c12e74",
+ "metrc_tag": "1A4120300000498000002278",
+ "brand": "Florette",
+ "strain": "Heir Heads",
+ "form": "Flower 3.5g",
+ "thc": 31.4349,
+ "total_terpenes": 2.64,
+ "lean": "settling",
  "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Indica",
+ "reported": [
+  "high THC",
+  "complex terpene profile"
+ ],
  "dominant": [
   "beta-Caryophyllene",
   "Limonene",
   "Linalool"
  ],
- "terpenes": {
-  "Valencene": 0.01,
-  "Linalool": 0.4,
-  "Fenchol": 0.06,
-  "Farnesene": 0.09,
-  "Caryophyllene Oxide": 0.02,
-  "alpha-Bisabolol": 0.09,
-  "Camphene": 0.01,
-  "beta-Myrcene": 0.26,
-  "beta-Caryophyllene": 0.66,
-  "beta-Pinene": 0.08,
-  "Terpineol": 0.06,
-  "alpha-Humulene": 0.21,
-  "alpha-Pinene": 0.04,
-  "Geraniol": 0.01,
-  "Limonene": 0.64
- },
- "brand": "Green Wells Farms",
- "total_terpenes": 2.64,
- "metrc_tag": "1A4120300000498000002278",
- "reported": [
-  "31.4% Total THC",
-  "2.64% Total Terpenes"
- ],
  "aroma": [
   "spicy",
   "citrus",
   "floral",
-  "herbal",
-  "earthy"
+  "earthy",
+  "herbal"
  ],
- "form": "Flower 3.5g",
- "strain": "Heir Heads",
- "lean": "settling",
- "in_stock": true,
- "thc": 31.4349
+ "terpenes": {
+  "beta-Caryophyllene": 0.66,
+  "Limonene": 0.64,
+  "Linalool": 0.4,
+  "beta-Myrcene": 0.26,
+  "alpha-Humulene": 0.21,
+  "Farnesene": 0.09,
+  "alpha-Bisabolol": 0.09,
+  "beta-Pinene": 0.08,
+  "Terpineol": 0.06,
+  "Fenchol": 0.06,
+  "alpha-Pinene": 0.04,
+  "Caryophyllene Oxide": 0.02,
+  "Camphene": 0.01,
+  "Geraniol": 0.01,
+  "Valencene": 0.01
+ }
 }
