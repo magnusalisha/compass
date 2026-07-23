@@ -40,6 +40,7 @@
  "form": "Flower 3.5g",
  "strain": "Bottomless Mints",
  "lean": "lifting",
- "in_stock": true,
- "thc": 36.4767
+ "in_stock": false,
+ "thc": 36.4767,
+ "sold_out_at": "2026-07-23T14:11:21.069Z"
 }
