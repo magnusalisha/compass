@@ -33,6 +33,7 @@
  "form": "Flower 3.5g",
  "strain": "Pinyatti",
  "lean": "mixed",
- "in_stock": true,
- "thc": null
+ "in_stock": false,
+ "thc": null,
+ "sold_out_at": "2026-07-23T14:17:08.491Z"
 }
