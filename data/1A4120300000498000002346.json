@@ -35,6 +35,7 @@
  "form": "Preroll 1g",
  "strain": "Heir Heads",
  "lean": "settling",
- "in_stock": true,
- "thc": 26.548
+ "in_stock": false,
+ "thc": 26.548,
+ "sold_out_at": "2026-07-23T14:12:37.663Z"
 }
