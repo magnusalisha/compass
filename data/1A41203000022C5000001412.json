@@ -1,0 +1,41 @@
+{
+ "id": "a3f8c21d09",
+ "metrc_tag": "1A41203000022C5000001412",
+ "brand": "Major",
+ "strain": "Purple Thai",
+ "form": "Flower 3.5g",
+ "thc": 28.425,
+ "total_terpenes": 2.09,
+ "lean": "lifting",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Sativa-leaning Hybrid",
+ "reported": [
+  "high CBGA at 5.098%",
+  "ocimene-forward terpene profile"
+ ],
+ "dominant": [
+  "Ocimene",
+  "Limonene",
+  "beta-Caryophyllene"
+ ],
+ "aroma": [
+  "herbal",
+  "citrus",
+  "floral",
+  "piney",
+  "woody"
+ ],
+ "terpenes": {
+  "Ocimene": 0.63,
+  "Limonene": 0.35,
+  "beta-Caryophyllene": 0.34,
+  "alpha-Humulene": 0.13,
+  "alpha-Pinene": 0.16,
+  "Linalool": 0.11,
+  "beta-Pinene": 0.1,
+  "Terpineol": 0.09,
+  "Fenchol": 0.09,
+  "beta-Myrcene": 0.08
+ }
+}
