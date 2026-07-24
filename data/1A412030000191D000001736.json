@@ -8,7 +8,7 @@
  "total_terpenes": 0.75,
  "lean": "settling",
  "confidence": "faint",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Unverified",
  "reported": [
   "Sungrown",
@@ -33,5 +33,6 @@
   "Caryophyllene Oxide": 0.06,
   "alpha-Bisabolol": 0.06,
   "Farnesene": 0.05
- }
+ },
+ "sold_out_at": "2026-07-24T00:59:44.908Z"
 }
