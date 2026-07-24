@@ -1,0 +1,43 @@
+{
+ "id": "a3f7c2e914",
+ "metrc_tag": "1A412030000191D000000828",
+ "brand": "Dank",
+ "strain": "Vanilla Berries",
+ "form": "Flower 14g",
+ "thc": 26.6156,
+ "total_terpenes": 1.63,
+ "lean": "settling",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Hybrid",
+ "reported": [
+  "beta-Caryophyllene dominant",
+  "light berry terpene profile"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "alpha-Humulene",
+  "Limonene"
+ ],
+ "aroma": [
+  "spicy",
+  "earthy",
+  "citrus",
+  "floral",
+  "woody"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.73,
+  "alpha-Humulene": 0.22,
+  "Limonene": 0.17,
+  "alpha-Bisabolol": 0.13,
+  "beta-Myrcene": 0.13,
+  "Linalool": 0.1,
+  "Terpineol": 0.03,
+  "Fenchol": 0.03,
+  "Valencene": 0.03,
+  "beta-Pinene": 0.03,
+  "Caryophyllene Oxide": 0.02,
+  "alpha-Pinene": 0.01
+ }
+}
