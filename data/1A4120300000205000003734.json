@@ -1,0 +1,45 @@
+{
+ "id": "a3f8c12e90",
+ "metrc_tag": "1A4120300000205000003734",
+ "brand": "Rythm",
+ "strain": "L'Orange",
+ "form": "Flower 28g",
+ "thc": 21.1,
+ "total_terpenes": 1.5959,
+ "lean": "lifting",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Hybrid",
+ "reported": [
+  "citrusy aroma",
+  "sativa dominant"
+ ],
+ "dominant": [
+  "Limonene",
+  "beta-Caryophyllene",
+  "Linalool"
+ ],
+ "aroma": [
+  "citrus",
+  "floral",
+  "spicy",
+  "earthy",
+  "herbal"
+ ],
+ "terpenes": {
+  "Limonene": 0.4181,
+  "beta-Caryophyllene": 0.2871,
+  "Linalool": 0.2517,
+  "beta-Myrcene": 0.2235,
+  "alpha-Humulene": 0.0869,
+  "beta-Pinene": 0.0658,
+  "Terpineol": 0.0508,
+  "Fenchol": 0.0503,
+  "Nerolidol": 0.0403,
+  "alpha-Pinene": 0.0322,
+  "alpha-Bisabolol": 0.0267,
+  "Farnesene": 0.0097,
+  "Camphene": 0.0106,
+  "Borneol": 0.011
+ }
+}
