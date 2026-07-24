@@ -1,0 +1,46 @@
+{
+ "id": "a3f2c91b7e",
+ "metrc_tag": "1A4120300000205000003575",
+ "brand": "Rythm",
+ "strain": "Hash Queen",
+ "form": "Flower 28g",
+ "thc": 21.24,
+ "total_terpenes": 2.3307,
+ "lean": "settling",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Hybrid",
+ "reported": [
+  "earthy",
+  "spicy"
+ ],
+ "dominant": [
+  "beta-Myrcene",
+  "beta-Caryophyllene",
+  "Limonene"
+ ],
+ "aroma": [
+  "earthy",
+  "spicy",
+  "citrus",
+  "herbal",
+  "woody"
+ ],
+ "terpenes": {
+  "beta-Myrcene": 0.8384,
+  "beta-Caryophyllene": 0.6203,
+  "Limonene": 0.2196,
+  "alpha-Humulene": 0.1634,
+  "Farnesene": 0.1412,
+  "Linalool": 0.0843,
+  "Guaiol": 0.0809,
+  "beta-Pinene": 0.0409,
+  "alpha-Bisabolol": 0.0306,
+  "Nerolidol": 0.0266,
+  "Terpineol": 0.0244,
+  "Fenchol": 0.0207,
+  "alpha-Pinene": 0.0182,
+  "Terpinolene": 0.0129,
+  "Caryophyllene Oxide": 0.0084
+ }
+}
