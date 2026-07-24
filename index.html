@@ -131,7 +131,20 @@
   .acts button:hover,.acts a:hover{color:var(--ink);text-decoration:underline}
   .empty{color:var(--dim);text-align:center;padding:34px 14px;font-size:15px}
   .lookup-list{display:flex;flex-direction:column;gap:8px}
-  .lookup-row{display:flex;justify-content:space-between;align-items:baseline;gap:10px;
+  /* effect search: "right terps, wrong size" pivots — dimmed but readable */
+  .pivot-head{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--dim);margin:20px 2px 10px}
+  .pivot{display:flex;justify-content:space-between;align-items:center;gap:14px;
+    background:var(--card);color:var(--ink);border-radius:12px;padding:13px 18px;margin-bottom:8px;opacity:.62}
+  .pivot-strain{font-family:Fraunces,serif;font-weight:700;font-size:16px}
+  .pivot-terps{display:flex;flex-wrap:wrap;gap:4px 14px;font-family:'IBM Plex Mono',monospace;
+    font-size:12px;color:var(--ink2);margin-top:5px}
+  .pivot-terps span{display:flex;align-items:center;gap:5px}
+  .pivot-terps b{width:7px;height:7px;border-radius:50%;flex:none}
+
+  .lookup-left{display:flex;flex-direction:column;gap:3px;min-width:0}
+  .lookup-form{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--ink2);letter-spacing:.03em}
+  .lookup-row{display:flex;justify-content:space-between;align-items:center;gap:10px;
     background:var(--card);color:var(--ink);border:none;border-radius:12px;padding:14px 16px;
     font:inherit;text-align:left;cursor:pointer;width:100%}
   .lookup-row:hover{background:var(--card2)}
@@ -208,6 +221,26 @@ const category = p => (CATEGORY_RULES.find(([re]) => re.test(p.form)) || [,'Flow
 const CATEGORIES = ['All', 'Flower', 'Preroll', 'Vape'];
 // not a UI filter category (yet) — just enough to pick honest fallback copy below
 const isEdible = p => /gummy|edible|chocolate|beverage|tincture|capsule/i.test(p.form);
+
+// ── weight / package details, parsed out of `form`.
+// weightText: "3.5g", "1g ×4" (multipack), "" when the form has no weight.
+// The forms are messy ("0.5g (5pk)", "4-pack", "3ct", "Pre-Roll") so parse
+// defensively rather than trust a fixed layout.
+const weightText = p => {
+  const w = (p.form||'').match(/(\d+(?:\.\d+)?)\s*g\b/i);
+  const pk = (p.form||'').match(/(\d+)\s*-?\s*(?:pk|ct|pack|cpk)/i);
+  return w ? w[1]+'g'+(pk?' ×'+pk[1]:'') : '';
+};
+// bare per-unit weight for grouping in the size dropdown: "3.5g", "1g", ""
+const weightOnly = p => { const w=(p.form||'').match(/(\d+(?:\.\d+)?)\s*g\b/i); return w?w[1]+'g':''; };
+// vape sub-type — the package distinction a budtender needs
+const vapeType = p => /cart/i.test(p.form) ? 'Cart' : /dispos/i.test(p.form) ? 'Disposable' : '';
+// the label shown in the form chip: "Flower · 3.5g", "Vape · Cart · 1g"
+const formLabel = p => {
+  const c = category(p), s = weightText(p);
+  if (c === 'Vape') return ['Vape', vapeType(p), s].filter(Boolean).join(' · ');
+  return s ? `${c} · ${s}` : c;
+};
 
 // ── shelf_tag: what the PACKAGE claims. Never inferred from chemistry — a
 // guessed tag would make the label-vs-chemistry comparison measure the guess
@@ -755,7 +788,7 @@ let DATA = [
   "in_stock": true
  }
 ], tab = 'effect', a = null, b = null, sel = null, flash = '', effCat = 'All', simCat = 'All',
-  lookupQ = '', lookupSel = null;
+  lookupQ = '', lookupSel = null, effSize = 'any';
 
 // Stock lives in the repo — ONE copy, the same on every device and every shift.
 // It used to be a localStorage overlay per device, which meant your phone, the
@@ -931,7 +964,7 @@ function card(p, extra=''){
     <div class="top">
       <div><h2>${p.strain}</h2>
         <div class="tags">
-          <span class="tag">${p.form.split(' ')[0]}</span>
+          <span class="tag">${formLabel(p)}</span>
           <span class="tag tag-${tag === 'Unverified' ? 'unset' : 'shelf'}">${tag}</span>
         </div>
         <div style="font-size:13px;color:var(--ink2);margin-top:6px">${p.brand}${stocked(p)?'':` · sold out${soldOutWhen(p)}`}</div></div>
@@ -1032,8 +1065,8 @@ function compare(x, y){
   const max = Math.max(...keys.map(k => Math.max(x.terpenes[k]||0, y.terpenes[k]||0)), 0.01);
   return `<div class="card">
     <div class="top">
-      <div><h2>${x.strain}</h2><div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink2);margin-top:4px">THC ${x.thc}% · terps ${x.total_terpenes}%</div>${cmpShelf(x,'left')}</div>
-      <div style="text-align:right"><h2>${y.strain}</h2><div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink2);margin-top:4px">THC ${y.thc}% · terps ${y.total_terpenes}%</div>${cmpShelf(y,'right')}</div>
+      <div><h2>${x.strain}</h2><div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink2);margin-top:4px">${formLabel(x)}<br>THC ${x.thc}% · terps ${x.total_terpenes}%</div>${cmpShelf(x,'left')}</div>
+      <div style="text-align:right"><h2>${y.strain}</h2><div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink2);margin-top:4px">${formLabel(y)}<br>THC ${y.thc}% · terps ${y.total_terpenes}%</div>${cmpShelf(y,'right')}</div>
     </div>
     <div class="read" style="margin-top:15px"><div class="eyebrow" style="color:var(--ink2);margin-bottom:10px">The read</div>${read(x,y)}</div>
     <div class="read"><div class="eyebrow" style="color:var(--ink2);margin-bottom:12px">Terpenes</div>
@@ -1121,11 +1154,20 @@ function render(){
   if (tab === 'effect'){
     // mount the shell ONCE per render(); typing updates results only, via
     // renderEffectResults() — never touches this <input> node (see combo comment above)
+    // sizes available in the current category, for the dropdown
+    const sizeOpts = [...new Set(pool()
+      .filter(p => effCat === 'All' || category(p) === effCat)
+      .map(weightOnly).filter(Boolean))].sort((a,b) => parseFloat(a) - parseFloat(b));
+    if (effSize !== 'any' && !sizeOpts.includes(effSize)) effSize = 'any';   // category changed out from under it
     P.innerHTML = banner + categoryButtons('effCat', effCat)
       + `<div class="searchwrap">
            <input type="text" id="q" placeholder='e.g. "relaxing but not sleepy" or "social preroll"' value="${window._q||''}">
            <button type="button" class="clearbtn${(window._q||'') ? ' show' : ''}" data-clear="q" aria-label="Clear search">&times;</button>
-         </div>`;
+         </div>
+         <select id="effSize" aria-label="Size">
+           <option value="any"${effSize==='any'?' selected':''}>Any size</option>
+           ${sizeOpts.map(s => `<option value="${s}"${effSize===s?' selected':''}>${s}</option>`).join('')}
+         </select>`;
     return renderEffectResults();
   }
 
@@ -1200,7 +1242,10 @@ function renderEffectResults(){
   const list = pool();
   const scoped = list.filter(p => activeCat === 'All' || category(p) === activeCat);
   if (!rawQ){
-    O.innerHTML = scoped.length ? scoped.map(p => card(p)).join('') : `<div class="empty">No ${activeCat === 'All' ? '' : activeCat.toLowerCase()+' '}records scanned yet.</div>`;
+    // browsing: the size dropdown just narrows, like the category buttons
+    const shown = effSize === 'any' ? scoped : scoped.filter(p => weightOnly(p) === effSize);
+    O.innerHTML = shown.length ? shown.map(p => card(p)).join('')
+      : `<div class="empty">No ${effSize === 'any' ? (activeCat === 'All' ? '' : activeCat.toLowerCase()+' ') : effSize+' '}records scanned yet.</div>`;
     return foot();
   }
 
@@ -1223,10 +1268,36 @@ function renderEffectResults(){
     return [s, p];
   }).filter(([s]) => s > 0.02).sort((m,n) => n[0]-m[0]);
 
-  O.innerHTML = scored.length
-    ? scored.slice(0,6).map(([,p]) => card(p)).join('')
-    : `<div class="empty">Nothing scanned fits that. Saying so is better than a bad substitution — but check the shelf for anything not scanned yet.</div>`;
+  const noFit = `<div class="empty">Nothing scanned fits that. Saying so is better than a bad substitution — but check the shelf for anything not scanned yet.</div>`;
+  if (!scored.length){ O.innerHTML = noFit; return foot(); }
+
+  if (effSize === 'any'){
+    O.innerHTML = scored.slice(0,6).map(([,p]) => card(p)).join('');
+    return foot();
+  }
+  // a size is chosen: the desired size ranks full; strong matches in other
+  // sizes drop below, dimmed but readable — you might still pivot to one.
+  const inSize = scored.filter(([,p]) => weightOnly(p) === effSize);
+  const other  = scored.filter(([,p]) => weightOnly(p) !== effSize);
+  O.innerHTML =
+    (inSize.length
+      ? inSize.slice(0,6).map(([,p]) => card(p)).join('')
+      : `<div class="empty">Nothing in ${effSize} fits that${other.length ? ' — but these other sizes are close' : '.'}.</div>`)
+    + (other.length
+      ? `<div class="pivot-head">Great match, other sizes — worth a pivot</div>`
+        + other.slice(0,4).map(([,p]) => pivotRow(p)).join('')
+      : '');
   return foot();
+}
+// a strong effect match that's the wrong size — kept readable but subordinate:
+// strain, its three dominant terpenes, and the size, so a pivot is one glance away.
+function pivotRow(p){
+  const chips = domTerps(p).slice(0,3)
+    .map(k => `<span><b style="background:${col(k)}"></b>${short(k).toLowerCase()}</span>`).join('');
+  return `<div class="pivot">
+    <div><div class="pivot-strain">${p.strain}</div><div class="pivot-terps">${chips}</div></div>
+    <span class="tag" style="flex:none">${formLabel(p)}</span>
+  </div>`;
 }
 
 // ── lookup: type → matching list → tap one → full card (reuses card()).
@@ -1249,7 +1320,7 @@ function renderLookupResults(){
   const matches = pool().filter(p => (p.strain + ' ' + p.brand).toLowerCase().includes(q));
   O.innerHTML = matches.length
     ? `<div class="lookup-list">${matches.map(p => `<button type="button" class="lookup-row" data-lookup-id="${key(p)}">
-         <span class="lookup-strain">${p.strain}</span><span class="lookup-brand">${p.brand}${stocked(p)?'':' · out of stock'}</span>
+         <span class="lookup-left"><span class="lookup-strain">${p.strain}</span><span class="lookup-form">${formLabel(p)}</span></span><span class="lookup-brand">${p.brand}${stocked(p)?'':' · out of stock'}</span>
        </button>`).join('')}</div>`
     : `<div class="empty">Nothing scanned matches that.<br><span style="font-size:13px">It may be on the shelf but not in Compass yet.</span></div>`;
   return foot();
@@ -1298,6 +1369,7 @@ document.addEventListener('click', e => {
 });
 document.addEventListener('change', e => {
   if (e.target.id === 'oos') render();
+  if (e.target.id === 'effSize'){ effSize = e.target.value; renderEffectResults(); }
 });
 // Show the × only when there's something to clear. Toggles a class on the
 // button that's already mounted — never re-renders the input, same rule as
