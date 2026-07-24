@@ -1,0 +1,37 @@
+{
+ "id": "a3f8c21b9d",
+ "metrc_tag": "1A4120300000235000003949",
+ "brand": "Untitled",
+ "strain": "Blue Dream",
+ "form": "Flower 3.5g",
+ "thc": 30.421,
+ "total_terpenes": 1.45,
+ "lean": "lifting",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Sativa",
+ "reported": [
+  "Blue Dream smalls",
+  "Adult use flower"
+ ],
+ "dominant": [
+  "beta-Myrcene",
+  "alpha-Pinene",
+  "beta-Caryophyllene"
+ ],
+ "aroma": [
+  "herbal",
+  "pine",
+  "earthy",
+  "spice",
+  "citrus"
+ ],
+ "terpenes": {
+  "beta-Myrcene": 0.75,
+  "alpha-Pinene": 0.22,
+  "beta-Caryophyllene": 0.2,
+  "beta-Pinene": 0.1,
+  "alpha-Humulene": 0.09,
+  "Limonene": 0.09
+ }
+}
