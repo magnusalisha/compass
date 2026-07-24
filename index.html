@@ -226,13 +226,30 @@ const isEdible = p => /gummy|edible|chocolate|beverage|tincture|capsule/i.test(p
 // weightText: "3.5g", "1g ×4" (multipack), "" when the form has no weight.
 // The forms are messy ("0.5g (5pk)", "4-pack", "3ct", "Pre-Roll") so parse
 // defensively rather than trust a fixed layout.
-const weightText = p => {
+// A pack's gram figure is ambiguous: some labels state the PER-UNIT weight
+// ("1g 4-pack" = four 1g joints), others the TOTAL ("3.5g 7-pack" = seven 0.5g
+// joints, 3.5g total). Nothing in the string says which, and a COA reports net
+// weight, not per-unit. So infer: a real preroll is a standard size; if the
+// stated grams is implausible as one joint but divides evenly into a standard
+// size, it's the total. Genuinely ambiguous cases (e.g. 1.5g 2-pack) default to
+// per-unit and show the total too, so a human can sanity-check via Edit.
+const STD_UNIT = [0.35, 0.5, 0.7, 0.75, 1, 1.5];
+const nearStd = g => STD_UNIT.some(s => Math.abs(s - g) < 0.01);
+const gstr = g => (+g.toFixed(2)) + 'g';
+const parseSize = p => {
   const w = (p.form||'').match(/(\d+(?:\.\d+)?)\s*g\b/i);
   const pk = (p.form||'').match(/(\d+)\s*-?\s*(?:pk|ct|pack|cpk)/i);
-  return w ? w[1]+'g'+(pk?' ×'+pk[1]:'') : '';
+  if (!w) return null;
+  const g = parseFloat(w[1]);
+  if (!pk) return { per:g, count:1, total:g };
+  const n = parseInt(pk[1], 10), perIfTotal = g / n;
+  const statedIsTotal = category(p) === 'Preroll' && nearStd(perIfTotal) && !nearStd(g);
+  return statedIsTotal ? { per:perIfTotal, count:n, total:g } : { per:g, count:n, total:g*n };
 };
-// bare per-unit weight for grouping in the size dropdown: "3.5g", "1g", ""
-const weightOnly = p => { const w=(p.form||'').match(/(\d+(?:\.\d+)?)\s*g\b/i); return w?w[1]+'g':''; };
+const weightText = p => { const s = parseSize(p); if (!s) return '';
+  return s.count > 1 ? `${gstr(s.per)} ×${s.count} · ${gstr(s.total)} total` : gstr(s.per); };
+// per-unit weight for grouping in the size dropdown — the TRUE per-joint size
+const weightOnly = p => { const s = parseSize(p); return s ? gstr(s.per) : ''; };
 // vape sub-type — the package distinction a budtender needs
 const vapeType = p => /cart/i.test(p.form) ? 'Cart' : /dispos/i.test(p.form) ? 'Disposable' : '';
 // the label shown in the form chip: "Flower · 3.5g", "Vape · Cart · 1g"
