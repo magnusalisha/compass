@@ -8,7 +8,7 @@
  "total_terpenes": 1,
  "lean": "settling",
  "confidence": "moderate",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Hybrid",
  "reported": [
   "Glass tip infused pre-roll",
@@ -40,5 +40,6 @@
   "beta-Pinene": 0.03,
   "Valencene": 0.01,
   "alpha-Pinene": 0.01
- }
+ },
+ "sold_out_at": "2026-07-24T14:02:07.148Z"
 }
