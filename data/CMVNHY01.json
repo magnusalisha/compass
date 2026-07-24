@@ -8,7 +8,7 @@
  "total_terpenes": 0.61,
  "lean": "settling",
  "confidence": "faint",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Unverified",
  "reported": [
   "30.67% Total THC",
@@ -27,5 +27,6 @@
  "terpenes": {
   "beta-Caryophyllene": 0.43,
   "alpha-Humulene": 0.18
- }
+ },
+ "sold_out_at": "2026-07-24T01:03:00.857Z"
 }
