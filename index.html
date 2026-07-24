@@ -835,18 +835,69 @@ function sim(x, y){
   }
   return (nx&&ny) ? d/(Math.sqrt(nx)*Math.sqrt(ny)) : 0;
 }
+// Character words for the read: [lead phrase, one-word note, direction].
+// Kept separate from REPORTED (which still drives the evidence dots and Why
+// panel) because the read needs a headline phrase and a short undertone word,
+// not the clinical descriptor. "upbeat" replaces "bright" for limonene — bright
+// read as a flavour note, not a feeling.
+const CHAR = {
+  'Terpinolene':        ['heady and alert','heady','lift'],
+  'Limonene':           ['upbeat and social','upbeat','lift'],
+  'alpha-Pinene':       ['clear-headed','clear','lift'],
+  'beta-Pinene':        ['clear-headed','clear','lift'],
+  'Ocimene':            ['light and lively','lively','lift'],
+  'beta-Myrcene':       ['heavy and relaxed','heavy','settle'],
+  'beta-Caryophyllene': ['body-calm','calm','settle'],
+  'Linalool':           ['mellow and soft','mellow','settle'],
+  'alpha-Humulene':     ['grounded and low-key','grounded','settle'],
+  'alpha-Bisabolol':    ['gentle and easy','gentle','settle'],
+  'Farnesene':          ['settled','settled','settle'],
+  'Terpineol':          ['mellow','mellow','settle']
+};
+// The dominant terpenes derived from the ACTUAL measured values, sorted — not
+// the stored `dominant` field, which occasionally disagreed with the numbers.
+// This is the same order the chips now use, so the whole card reads consistently.
+const domTerps = p => Object.entries(p.terpenes||{})
+  .filter(([k,v]) => v>0 && REPORTED[k]).sort((a,b)=>b[1]-a[1]).map(([k])=>k);
+
+// Weight-aware read (Draft A): lead with the dominant character; frame a
+// meaningful opposing terpene as an undertone; call it mixed only when the top
+// two genuinely rival each other. Stops "heady AND sedating" from reading as a
+// contradiction when one terpene is really 3x the other.
 function says(p){
-  const w = p.dominant.map(k => REPORTED[k] && REPORTED[k][0]).filter(Boolean).slice(0,2);
-  return w.length ? w.join(', ') : 'hard to call from the terpenes alone';
+  const ranked = Object.entries(p.terpenes||{})
+    .filter(([k,v]) => v>0 && CHAR[k]).sort((a,b)=>b[1]-a[1]);
+  if (!ranked.length) return 'hard to call from the terpenes alone';
+  // Net direction comes from the stored `lean` — the careful whole-profile
+  // calc — NOT a raw top-two ratio, so the read never contradicts the verdict
+  // line, which reads from the same field.
+  const dir = p.lean === 'lifting' ? 'lift' : p.lean === 'settling' ? 'settle' : 'mixed';
+  if (dir === 'mixed'){
+    const top = CHAR[ranked[0][0]];
+    const opp = ranked.find(([k]) => CHAR[k][2] !== top[2]);
+    return opp ? `${top[1]} and ${CHAR[opp[0]][1]} in equal measure` : top[0];
+  }
+  // lead with the strongest terpene pulling the net direction
+  const leadPair = ranked.find(([k]) => CHAR[k][2] === dir) || ranked[0];
+  const lead = CHAR[leadPair[0]];
+  // frame a meaningful opposing terpene as an undertone (ignore if it's tiny)
+  const opp = ranked.find(([k]) => CHAR[k][2] !== dir);
+  if (opp && leadPair[1] / opp[1] <= 5){
+    const on = CHAR[opp[0]];
+    return on[2] === 'lift'
+      ? `${lead[0]}, with ${/^[aeiou]/i.test(on[1])?'an':'a'} ${on[1]} lift on top`
+      : `${lead[0]}, with a ${on[1]} undertone`;
+  }
+  return lead[0];
 }
-// the honest bit: how good is the evidence behind THIS product's read?
+// how good is the evidence behind THIS product's read? — top terps by amount
 function ev(p){
-  const es = p.dominant.map(k => REPORTED[k] && REPORTED[k][1]).filter(Boolean);
+  const es = domTerps(p).slice(0,3).map(k => REPORTED[k][1]);
   return es.length ? Math.max(...es) : 1;
 }
 // the explanation: which dominant terpenes drive the read, and what that rests on
 function whyHTML(p){
-  const rows = p.dominant.map(k => REPORTED[k] ? [k, ...REPORTED[k]] : null).filter(Boolean);
+  const rows = domTerps(p).slice(0,3).map(k => [k, ...REPORTED[k]]);
   if (!rows.length) return '';
   return `<details class="why"><summary>Why?</summary><ul>${rows.map(([k, phrase, strength, mech]) =>
     `<li><b>${short(k)}</b> → ${phrase} <span class="ev">${dots(strength)}</span><br>${mech}</li>`).join('')}</ul></details>`;
@@ -918,12 +969,12 @@ function read(x, y){
   }
   if (x.lean !== y.lean && x.lean !== 'mixed' && y.lean !== 'mixed')
     h += `<p>These pull in opposite directions. People tend to describe <b>${x.strain}</b> as <b>${says(x)}</b>; <b>${y.strain}</b> more <b>${says(y)}</b>.</p>`;
-  else if (x.dominant[0] === y.dominant[0])
-    h += `<p>Both lead with <b>${short(x.dominant[0]).toLowerCase()}</b>, so they're close cousins — both usually described as <b>${says(x)}</b>. The difference is underneath.</p>`;
+  else if (domTerps(x)[0] === domTerps(y)[0])
+    h += `<p>Both lead with <b>${short(domTerps(x)[0]).toLowerCase()}</b>, so they're close cousins — both usually described as <b>${says(x)}</b>. The difference is underneath.</p>`;
   else
     h += `<p><b>${x.strain}</b> reads <b>${says(x)}</b>. <b>${y.strain}</b> reads <b>${says(y)}</b>.</p>`;
 
-  const gaps = [...new Set([...x.dominant, ...y.dominant])]
+  const gaps = [...new Set([...domTerps(x).slice(0,3), ...domTerps(y).slice(0,3)])]
     .map(k => [k, (x.terpenes[k]||0) - (y.terpenes[k]||0)])
     .filter(([,d]) => Math.abs(d) >= 0.1)
     .sort((p,q) => Math.abs(q[1]) - Math.abs(p[1])).slice(0,2);
@@ -947,10 +998,10 @@ function read(x, y){
 function matchNote(src, x, s){
   let why = '';
   // a faint source has unreliable dominants, so don't assert a shared lead off it
-  if (src.confidence !== 'faint' && src.dominant && src.dominant.length){
-    if (src.dominant[0] === x.dominant[0]) why = `both lead with ${short(x.dominant[0]).toLowerCase()}`;
+  if (src.confidence !== 'faint' && domTerps(src).length){
+    if (domTerps(src)[0] === domTerps(x)[0]) why = `both lead with ${short(domTerps(x)[0]).toLowerCase()}`;
     else {
-      const shared = x.dominant.find(k => src.dominant.includes(k));
+      const shared = domTerps(x).slice(0,3).find(k => domTerps(src).slice(0,3).includes(k));
       if (shared) why = `both carry ${short(shared).toLowerCase()}`;
     }
   }
@@ -1103,7 +1154,7 @@ function render(){
       ? `<div class="warnbox" style="margin:0 0 12px">⚠ <b>${p.strain}</b>'s own profile is faint, so these matches are approximate — they mostly share the heavy terpenes that survive in everything. Lean on the package and your nose here.</div>`
       : '';
     O.innerHTML = faintSrcNote + (ranked[0][0] < 0.5
-        ? `<div class="card"><div class="warnbox" style="margin:0">Nothing <b>scanned</b> is close to <b>${p.strain}</b> — its profile is ${p.dominant.slice(0,2).map(k=>short(k).toLowerCase()).join('/')}-led and nothing else in here looks like that. <b>Say so. Don't substitute.</b> Worth a look at the shelf too, in case something isn't scanned yet.</div></div>`
+        ? `<div class="card"><div class="warnbox" style="margin:0">Nothing <b>scanned</b> is close to <b>${p.strain}</b> — its profile is ${domTerps(p).slice(0,2).map(k=>short(k).toLowerCase()).join('/')}-led and nothing else in here looks like that. <b>Say so. Don't substitute.</b> Worth a look at the shelf too, in case something isn't scanned yet.</div></div>`
         : '')
       + ranked.slice(0,4).map(([s,x]) => card(x, matchNote(p, x, s))).join('');
     return foot();
