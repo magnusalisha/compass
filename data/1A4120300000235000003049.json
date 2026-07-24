@@ -1,0 +1,37 @@
+{
+ "id": "a3f92c1e7b",
+ "metrc_tag": "1A4120300000235000003049",
+ "brand": "Untitled",
+ "strain": "Northern Lights",
+ "form": "Flower 7g Smalls",
+ "thc": 32.374,
+ "total_terpenes": 1.21,
+ "lean": "settling",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Indica",
+ "reported": [
+  "32.4% Total THC",
+  "1.21% Total Terpenes"
+ ],
+ "dominant": [
+  "beta-Myrcene",
+  "alpha-Pinene",
+  "beta-Caryophyllene"
+ ],
+ "aroma": [
+  "earthy",
+  "herbal",
+  "piney",
+  "spicy",
+  "woody"
+ ],
+ "terpenes": {
+  "beta-Myrcene": 0.61,
+  "alpha-Pinene": 0.19,
+  "beta-Caryophyllene": 0.17,
+  "alpha-Humulene": 0.08,
+  "Limonene": 0.08,
+  "beta-Pinene": 0.08
+ }
+}
