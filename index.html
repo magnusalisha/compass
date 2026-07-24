@@ -863,7 +863,11 @@ function faintNote(p){
 }
 
 function stack(p){
-  const e = Object.entries(p.terpenes).filter(([,v]) => v>0);
+  // Sort by amount — the stored file order is NOT reliably descending (46 of
+  // the records aren't), so relying on it made the bar and the "top 3" chips
+  // hide the actual biggest terpene. Banana Kush's terpinolene (1.13%, its
+  // largest by 3x) was invisible because it sat mid-file.
+  const e = Object.entries(p.terpenes).filter(([,v]) => v>0).sort((a,b) => b[1] - a[1]);
   const s = e.reduce((t,[,v]) => t+v, 0) || 1;
   return `<div class="stack">${e.map(([k,v]) => `<i style="width:${v/s*100}%;background:${col(k)}"></i>`).join('')}</div>
     <div class="chips">${e.slice(0,3).map(([k,v]) => `<span><b style="background:${col(k)}"></b>${short(k).toLowerCase()} ${v}%</span>`).join('')}</div>`;
