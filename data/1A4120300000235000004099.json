@@ -1,0 +1,36 @@
+{
+ "id": "a3f82c1d9e",
+ "metrc_tag": "1A4120300000235000004099",
+ "brand": "Untitled",
+ "strain": "Empire OG",
+ "form": "Flower 3.5g",
+ "thc": 30.625,
+ "total_terpenes": 1.13,
+ "lean": "settling",
+ "confidence": "moderate",
+ "in_stock": true,
+ "shelf_tag": "Unverified",
+ "reported": [
+  "smalls flower",
+  "adult use"
+ ],
+ "dominant": [
+  "beta-Myrcene",
+  "beta-Caryophyllene",
+  "alpha-Pinene"
+ ],
+ "aroma": [
+  "earthy",
+  "piney",
+  "spicy",
+  "herbal",
+  "woody"
+ ],
+ "terpenes": {
+  "beta-Myrcene": 0.56,
+  "beta-Caryophyllene": 0.21,
+  "alpha-Pinene": 0.18,
+  "alpha-Humulene": 0.09,
+  "beta-Pinene": 0.09
+ }
+}
