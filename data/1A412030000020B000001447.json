@@ -1,0 +1,41 @@
+{
+ "id": "a3f7c92e1b",
+ "metrc_tag": "1A412030000020B000001447",
+ "brand": "Ayrloom",
+ "strain": "Pineapple Express",
+ "form": "Vape 0.5g AIO Disposable",
+ "thc": 90.84,
+ "total_terpenes": 3.031,
+ "lean": "mixed",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Sativa",
+ "reported": [
+  "Earthy",
+  "Citrus"
+ ],
+ "dominant": [
+  "beta-Myrcene",
+  "beta-Caryophyllene",
+  "Limonene"
+ ],
+ "aroma": [
+  "earthy",
+  "spicy",
+  "citrus",
+  "woodsy",
+  "floral"
+ ],
+ "terpenes": {
+  "beta-Myrcene": 0.9151,
+  "beta-Caryophyllene": 0.5639,
+  "Limonene": 0.5061,
+  "beta-Pinene": 0.4678,
+  "alpha-Pinene": 0.3831,
+  "Linalool": 0.0573,
+  "Geraniol": 0.056,
+  "alpha-Bisabolol": 0.0299,
+  "alpha-Humulene": 0.0298,
+  "Caryophyllene Oxide": 0.022
+ }
+}
