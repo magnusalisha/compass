@@ -227,6 +227,13 @@ const CATEGORIES = ['All', 'Flower', 'Preroll', 'Vape'];
 // not a UI filter category (yet) — just enough to pick honest fallback copy below
 const isEdible = p => /gummy|edible|chocolate|beverage|tincture|capsule/i.test(p.form);
 
+// A customer's "sativa / indica / hybrid" is really a proxy for a felt
+// direction — so map their word to the CHEMISTRY lean, not the shelf tag. This
+// finds products the jar mislabels (a "hybrid" that actually lifts) and skips
+// the label-vs-chemistry clashes (a "sativa" whose terps settle), which is the
+// whole point of the tool. Deliberately NOT filtering on shelf_tag.
+const LEAN_OF = { Sativa: 'lifting', Indica: 'settling', Hybrid: 'mixed' };
+
 // ── weight / package details, parsed out of `form`.
 // weightText: "3.5g", "1g ×4" (multipack), "" when the form has no weight.
 // The forms are messy ("0.5g (5pk)", "4-pack", "3ct", "Pre-Roll") so parse
@@ -819,7 +826,7 @@ let DATA = [
   "in_stock": true
  }
 ], tab = 'effect', a = null, b = null, sel = null, flash = '', effCat = 'All', simCat = 'All',
-  lookupQ = '', lookupSel = null, effSize = 'any';
+  lookupQ = '', lookupSel = null, effSize = 'any', effLean = 'any';
 
 // Stock lives in the repo — ONE copy, the same on every device and every shift.
 // It used to be a localStorage overlay per device, which meant your phone, the
@@ -1198,10 +1205,18 @@ function render(){
            <input type="text" id="q" placeholder='e.g. "relaxing but not sleepy" or "social preroll"' value="${window._q||''}">
            <button type="button" class="clearbtn${(window._q||'') ? ' show' : ''}" data-clear="q" aria-label="Clear search">&times;</button>
          </div>
-         <select id="effSize" aria-label="Size">
-           <option value="any"${effSize==='any'?' selected':''}>Any size</option>
-           ${sizeOpts.map(s => `<option value="${s}"${effSize===s?' selected':''}>${s}</option>`).join('')}
-         </select>`;
+         <div class="pair">
+           <select id="effLean" aria-label="Sativa / Indica / Hybrid">
+             <option value="any"${effLean==='any'?' selected':''}>Any type</option>
+             <option value="Sativa"${effLean==='Sativa'?' selected':''}>Sativa</option>
+             <option value="Indica"${effLean==='Indica'?' selected':''}>Indica</option>
+             <option value="Hybrid"${effLean==='Hybrid'?' selected':''}>Hybrid</option>
+           </select>
+           <select id="effSize" aria-label="Size">
+             <option value="any"${effSize==='any'?' selected':''}>Any size</option>
+             ${sizeOpts.map(s => `<option value="${s}"${effSize===s?' selected':''}>${s}</option>`).join('')}
+           </select>
+         </div>`;
     return renderEffectResults();
   }
 
@@ -1274,7 +1289,8 @@ function renderEffectResults(){
   }
 
   const list = pool();
-  const scoped = list.filter(p => activeCat === 'All' || category(p) === activeCat);
+  const scoped = list.filter(p => (activeCat === 'All' || category(p) === activeCat)
+    && (effLean === 'any' || p.lean === LEAN_OF[effLean]));   // type = chemistry lean, not shelf tag
   if (!rawQ){
     // browsing: the size dropdown just narrows, like the category buttons
     const shown = effSize === 'any' ? scoped : scoped.filter(p => weightOnly(p) === effSize);
@@ -1404,6 +1420,7 @@ document.addEventListener('click', e => {
 document.addEventListener('change', e => {
   if (e.target.id === 'oos') render();
   if (e.target.id === 'effSize'){ effSize = e.target.value; renderEffectResults(); }
+  if (e.target.id === 'effLean'){ effLean = e.target.value; renderEffectResults(); }
 });
 // Show the × only when there's something to clear. Toggles a class on the
 // button that's already mounted — never re-renders the input, same rule as
