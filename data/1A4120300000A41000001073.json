@@ -8,7 +8,7 @@
  "total_terpenes": 1.82,
  "lean": "mixed",
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Unverified",
  "reported": [
   "Lab tested & verified",
@@ -36,5 +36,6 @@
   "Guaiol": 0.09,
   "Linalool": 0.08,
   "alpha-Cedrene": 0.06
- }
+ },
+ "sold_out_at": "2026-07-26T14:35:50.698Z"
 }
