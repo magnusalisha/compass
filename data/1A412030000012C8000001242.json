@@ -8,7 +8,7 @@
  "total_terpenes": 7.503,
  "lean": "settling",
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Hybrid",
  "reported": [
   "PAX Live Rosin",
@@ -40,5 +40,6 @@
   "Camphene": 0.0414,
   "alpha-Bisabolol": 0.0412,
   "Ocimene": 0.0062
- }
+ },
+ "sold_out_at": "2026-07-26T19:00:57.182Z"
 }
