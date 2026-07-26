@@ -1,23 +1,23 @@
 {
  "id": "a3f9c12e74",
- "metrc_tag": "1A4120300000235000002647",
- "brand": "Empire Standard LLC",
- "strain": "Pink Guava",
- "form": "Infused Pre-Roll 0.5g",
- "thc": 26.04,
- "total_terpenes": 0.87,
- "lean": "settling",
+ "shelf_tag": "Sativa-leaning Hybrid",
  "confidence": "faint",
- "in_stock": false,
- "shelf_tag": "Unverified",
- "reported": [
-  "26% Total THC",
-  "0.87% Total Terpenes"
- ],
  "dominant": [
   "beta-Caryophyllene",
   "alpha-Humulene",
   "beta-Myrcene"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.45,
+  "alpha-Humulene": 0.25,
+  "beta-Myrcene": 0.17
+ },
+ "brand": "Empire Standard LLC",
+ "total_terpenes": 0.87,
+ "metrc_tag": "1A4120300000235000002647",
+ "reported": [
+  "26% Total THC",
+  "0.87% Total Terpenes"
  ],
  "aroma": [
   "earthy",
@@ -26,10 +26,10 @@
   "woody",
   "musky"
  ],
- "terpenes": {
-  "beta-Caryophyllene": 0.45,
-  "alpha-Humulene": 0.25,
-  "beta-Myrcene": 0.17
- },
- "sold_out_at": "2026-07-20T16:51:55.449Z"
+ "sold_out_at": "2026-07-20T16:51:55.449Z",
+ "form": "Infused Pre-Roll 0.5g",
+ "strain": "Pink Guava",
+ "lean": "settling",
+ "in_stock": false,
+ "thc": 26.04
 }
