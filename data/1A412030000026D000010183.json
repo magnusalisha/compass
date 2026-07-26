@@ -8,7 +8,7 @@
  "total_terpenes": 1.69,
  "lean": "lifting",
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Sativa",
  "reported": [
   "Limonene-forward",
@@ -43,5 +43,6 @@
   "Caryophyllene Oxide": 0.01,
   "Terpinolene": 0.01,
   "Valencene": 0.01
- }
+ },
+ "sold_out_at": "2026-07-26T19:38:45.738Z"
 }
