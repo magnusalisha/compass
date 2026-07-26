@@ -8,7 +8,7 @@
  "total_terpenes": 2.4869,
  "lean": "settling",
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Sativa",
  "reported": [
   "Live Resin Infused",
@@ -43,5 +43,6 @@
   "Ocimene": 0.0111,
   "Borneol": 0.0097,
   "Fenchone": 0.0086
- }
+ },
+ "sold_out_at": "2026-07-26T14:01:25.270Z"
 }
