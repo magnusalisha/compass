@@ -1,0 +1,34 @@
+{
+ "id": "a3f8c92d1b",
+ "metrc_tag": "1A4120300000235000002642",
+ "brand": "High Garden",
+ "strain": "Acapulco Gold",
+ "form": "Vape 1g Cartridge",
+ "thc": 83.3,
+ "total_terpenes": 0.67,
+ "lean": "lifting",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Sativa",
+ "reported": [
+  "Pure Live Resin",
+  "Adult Use"
+ ],
+ "dominant": [
+  "Terpinolene",
+  "beta-Myrcene",
+  "Limonene"
+ ],
+ "aroma": [
+  "pine",
+  "citrus",
+  "herbal",
+  "fresh",
+  "bright"
+ ],
+ "terpenes": {
+  "Terpinolene": 0.41,
+  "beta-Myrcene": 0.13,
+  "Limonene": 0.13
+ }
+}
