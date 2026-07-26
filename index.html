@@ -1251,10 +1251,24 @@ function render(){
     const faintSrcNote = p.confidence === 'faint'
       ? `<div class="warnbox" style="margin:0 0 12px">⚠ <b>${p.strain}</b>'s own profile is faint, so these matches are approximate — they mostly share the heavy terpenes that survive in everything. Lean on the package and your nose here.</div>`
       : '';
+    // Same weight first. A 3.5g and a 28g of one strain test differently, and a
+    // customer holding an eighth doesn't want an ounce in the list — so matches
+    // in the source's own size lead, and strong matches in other sizes drop into
+    // the pivot section below (never mixed in). If the source has no parseable
+    // weight (vape carts etc.), or nothing else in its size was scanned, fall
+    // back to ranking every size — better than an empty screen.
+    const srcW = weightOnly(p);
+    const same  = srcW ? ranked.filter(([,x]) => weightOnly(x) === srcW) : ranked;
+    const other = srcW ? ranked.filter(([,x]) => weightOnly(x) !== srcW) : [];
+    const primary = same.length ? same : ranked;
     O.innerHTML = faintSrcNote + (ranked[0][0] < 0.5
         ? `<div class="card"><div class="warnbox" style="margin:0">Nothing <b>scanned</b> is close to <b>${p.strain}</b> — its profile is ${domTerps(p).slice(0,2).map(k=>short(k).toLowerCase()).join('/')}-led and nothing else in here looks like that. <b>Say so. Don't substitute.</b> Worth a look at the shelf too, in case something isn't scanned yet.</div></div>`
         : '')
-      + ranked.slice(0,4).map(([s,x]) => card(x, matchNote(p, x, s))).join('');
+      + primary.slice(0,4).map(([s,x]) => card(x, matchNote(p, x, s))).join('')
+      + (same.length && other.length && other[0][0] >= 0.5
+          ? `<div class="pivot-head">Closest in other sizes — worth a pivot</div>`
+            + other.slice(0,4).map(([,x]) => pivotRow(x)).join('')
+          : '');
     return foot();
   }
 
