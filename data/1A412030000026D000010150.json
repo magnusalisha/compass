@@ -1,0 +1,47 @@
+{
+ "id": "a3f7c2e910",
+ "metrc_tag": "1A412030000026D000010150",
+ "brand": "Find",
+ "strain": "Agent Z",
+ "form": "Flower 3.5g",
+ "thc": 26.0337,
+ "total_terpenes": 1.78,
+ "lean": "lifting",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Sativa",
+ "reported": [
+  "Sativa",
+  "Cured Flower"
+ ],
+ "dominant": [
+  "Limonene",
+  "beta-Myrcene",
+  "beta-Caryophyllene"
+ ],
+ "aroma": [
+  "citrus",
+  "herbal",
+  "spice",
+  "floral",
+  "pine"
+ ],
+ "terpenes": {
+  "Limonene": 0.45,
+  "beta-Myrcene": 0.28,
+  "beta-Caryophyllene": 0.27,
+  "Linalool": 0.22,
+  "alpha-Pinene": 0.1,
+  "beta-Pinene": 0.1,
+  "Geraniol": 0.08,
+  "alpha-Humulene": 0.08,
+  "Terpineol": 0.05,
+  "Fenchol": 0.05,
+  "Ocimene": 0.03,
+  "alpha-Bisabolol": 0.03,
+  "Camphene": 0.01,
+  "Caryophyllene Oxide": 0.01,
+  "Terpinolene": 0.01,
+  "Valencene": 0.01
+ }
+}
