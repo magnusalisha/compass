@@ -363,6 +363,8 @@ const termName = (k, keys) => keys.some(o => o !== k && short(o) === short(k)) ?
 // same strain from two brands reads like a typo in Compare ("Acapulco Gold and
 // Acapulco Gold…") — append the brand, but only when the two actually collide.
 const nameVs = (p, other) => p.strain === other.strain ? `${p.strain} (${p.brand})` : p.strain;
+// THC can be missing on a record (11 currently) — never render "null%".
+const thcText = p => p.thc == null ? '—' : p.thc + '%';
 const col = t => COLOR[t] ? `var(${COLOR[t]})` : 'var(--etc)';
 // The extraction step asks the model for "10 random hex chars" as `id` — in
 // practice that's low-entropy and collides a lot at real scale (two totally
@@ -1006,7 +1008,7 @@ function card(p, extra=''){
           <span class="tag tag-${tag === 'Unverified' ? 'unset' : 'shelf'}">${tag}</span>
         </div>
         <div style="font-size:13px;color:var(--ink2);margin-top:6px">${p.brand}${stocked(p)?'':` · sold out${soldOutWhen(p)}`}</div></div>
-      <div class="thc">${p.thc}%<small>THC</small></div>
+      <div class="thc">${thcText(p)}<small>THC</small></div>
     </div>
     ${stack(p)}
     <div class="read${faint ? ' read-faint' : ''}" style="border-top:none;padding-top:12px;margin-top:12px">
@@ -1034,7 +1036,7 @@ function read(x, y){
   let h = '';
   if (faint.length){
     h += `<p><b>Can't call this from the terpenes.</b> ${faint.map(nm).join(' and ')} ${faint.length>1?'have':'has'} very little terpene content left (${faint.map(p=>p.total_terpenes+'%').join(', ')}), and what survives is the heavy stuff that always survives. That tells you about age and handling, not about the strain. <b>Go with the package label here.</b></p>`;
-    if (Math.abs(x.thc - y.thc) >= 3){
+    if (x.thc != null && y.thc != null && Math.abs(x.thc - y.thc) >= 3){
       const [hi, lo] = x.thc >= y.thc ? [x,y] : [y,x];
       h += `<p>What I can say: <b>${nm(hi)}</b> is the stronger one (${hi.thc}% THC vs ${lo.thc}%).</p>`;
     }
@@ -1057,7 +1059,7 @@ function read(x, y){
     h += `<p><b>${nm(hi)}</b> carries more ${termName(k, gapKeys).toLowerCase()} (${hi.terpenes[k]||0}% vs ${lo.terpenes[k]||0}%) — ${REPORTED[k]?REPORTED[k][0]:'a character difference'} <span class="ev">${REPORTED[k]?dots(REPORTED[k][1]):''}</span></p>`;
   }
   if (!gaps.length) h += `<p>The profiles are close enough that I'd sell on smell or price.</p>`;
-  if (Math.abs(x.thc - y.thc) >= 3){
+  if (x.thc != null && y.thc != null && Math.abs(x.thc - y.thc) >= 3){
     const [hi, lo] = x.thc >= y.thc ? [x,y] : [y,x];
     h += `<p><b>${nm(hi)}</b> is meaningfully stronger (${hi.thc}% THC vs ${lo.thc}%) — that'll drive the experience more than any terpene here.</p>`;
   }
@@ -1079,10 +1081,13 @@ function matchNote(src, x, s){
       if (shared) why = `both carry ${short(shared).toLowerCase()}`;
     }
   }
-  const d = x.thc - src.thc;
-  const thc = Math.abs(d) >= 3
-    ? `${d > 0 ? 'stronger' : 'lighter'} — ${x.thc}% THC vs the ${src.thc}% you had`
-    : `${x.thc}% THC, about the same strength`;
+  // THC can be missing on either side — don't invent a comparison from a null
+  const d = (x.thc != null && src.thc != null) ? x.thc - src.thc : null;
+  const thc = d == null
+    ? (x.thc == null ? 'THC not recorded' : `${x.thc}% THC`)
+    : Math.abs(d) >= 3
+      ? `${d > 0 ? 'stronger' : 'lighter'} — ${x.thc}% THC vs the ${src.thc}% you had`
+      : `${x.thc}% THC, about the same strength`;
   return `<div class="match">${Math.round(s*100)}% match${why ? ' · ' + why : ''}<br>${thc}</div>`;
 }
 
@@ -1106,8 +1111,8 @@ function compare(x, y){
   const max = Math.max(...keys.map(k => Math.max(x.terpenes[k]||0, y.terpenes[k]||0)), 0.01);
   return `<div class="card">
     <div class="top">
-      <div><h2>${nameVs(x,y)}</h2><div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink2);margin-top:4px">${formLabel(x)}<br>THC ${x.thc}% · terps ${x.total_terpenes}%</div>${cmpShelf(x,'left')}</div>
-      <div style="text-align:right"><h2>${nameVs(y,x)}</h2><div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink2);margin-top:4px">${formLabel(y)}<br>THC ${y.thc}% · terps ${y.total_terpenes}%</div>${cmpShelf(y,'right')}</div>
+      <div><h2>${nameVs(x,y)}</h2><div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink2);margin-top:4px">${formLabel(x)}<br>THC ${thcText(x)} · terps ${x.total_terpenes}%</div>${cmpShelf(x,'left')}</div>
+      <div style="text-align:right"><h2>${nameVs(y,x)}</h2><div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink2);margin-top:4px">${formLabel(y)}<br>THC ${thcText(y)} · terps ${y.total_terpenes}%</div>${cmpShelf(y,'right')}</div>
     </div>
     <div class="read" style="margin-top:15px"><div class="eyebrow" style="color:var(--ink2);margin-bottom:10px">The read</div>${read(x,y)}</div>
     <div class="read"><div class="eyebrow" style="color:var(--ink2);margin-bottom:12px">Terpenes</div>
@@ -1141,7 +1146,9 @@ function categoryButtons(catKey, current){
 // bug reported in round 3 (search "can't be typed into") — never do that again.
 let COMBO = {};
 const comboState = id => COMBO[id] || (COMBO[id] = {query: null, open: false, highlight: -1, filtered: []});
-const comboLabel = p => p ? `${p.strain} (${p.brand})` : '';
+// include the weight — two sizes of the same strain+brand (e.g. Creamsicle
+// Sunset 3.5g vs 28g) are otherwise identical in the picker.
+const comboLabel = p => p ? `${p.strain} (${p.brand})${weightOnly(p) ? ' · '+weightOnly(p) : ''}` : '';
 const comboSelectedId = id => id === 'similar' ? sel : id === 'a' ? a : b;
 const comboSelectedProduct = id => DATA.find(p => key(p) === comboSelectedId(id));
 
@@ -1154,7 +1161,7 @@ function comboListHTML(id, list){
   const filtered = list.filter(p => (p.strain + ' ' + p.brand).toLowerCase().includes(q));
   st.filtered = filtered;
   if (!filtered.length) return `<ul class="combo-list"><li class="combo-empty">No matches found</li></ul>`;
-  return `<ul class="combo-list">${filtered.map((p,i) => `<li data-id="${key(p)}" class="${i===st.highlight?'hl':''}">${p.strain} <span>${p.brand}${stocked(p)?'':' · sold out'}</span></li>`).join('')}</ul>`;
+  return `<ul class="combo-list">${filtered.map((p,i) => `<li data-id="${key(p)}" class="${i===st.highlight?'hl':''}">${p.strain} <span>${p.brand}${weightOnly(p) ? ' · '+weightOnly(p) : ''}${stocked(p)?'':' · sold out'}</span></li>`).join('')}</ul>`;
 }
 function comboShellHTML(id, list, selectedId){
   const st = comboState(id);
