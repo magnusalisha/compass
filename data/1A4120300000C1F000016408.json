@@ -1,0 +1,50 @@
+{
+ "id": "a3f8c21d09",
+ "metrc_tag": "1A4120300000C1F000016408",
+ "brand": "Kings and Queens",
+ "strain": "Master Kush",
+ "form": "Vape 1g Disposable",
+ "thc": 87.58,
+ "total_terpenes": 6.0904,
+ "lean": "mixed",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Indica",
+ "reported": [
+  "Citrus",
+  "Spicy"
+ ],
+ "dominant": [
+  "Limonene",
+  "Farnesene",
+  "beta-Caryophyllene"
+ ],
+ "aroma": [
+  "citrus",
+  "floral",
+  "spicy",
+  "woody",
+  "herbal"
+ ],
+ "terpenes": {
+  "Limonene": 1.8187,
+  "Farnesene": 0.9664,
+  "beta-Caryophyllene": 0.7231,
+  "Linalool": 0.4677,
+  "beta-Myrcene": 0.4574,
+  "alpha-Bisabolol": 0.3696,
+  "beta-Pinene": 0.3015,
+  "alpha-Humulene": 0.2417,
+  "alpha-Pinene": 0.1668,
+  "Fenchol": 0.1617,
+  "Terpineol": 0.1546,
+  "Camphene": 0.0511,
+  "Geraniol": 0.0476,
+  "Borneol": 0.0327,
+  "Caryophyllene Oxide": 0.0302,
+  "Sabinene": 0.0295,
+  "alpha-Cedrene": 0.0265,
+  "Terpinolene": 0.0239,
+  "Cedrol": 0.0197
+ }
+}
