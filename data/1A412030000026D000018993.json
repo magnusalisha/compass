@@ -1,0 +1,43 @@
+{
+ "id": "a3f92c1d84",
+ "metrc_tag": "1A412030000026D000018993",
+ "brand": "Anthem",
+ "strain": "Durban Poison",
+ "form": "Preroll 1g Infused Glass Tip",
+ "thc": 48.7538,
+ "total_terpenes": 0.41,
+ "lean": "settling",
+ "confidence": "faint",
+ "in_stock": true,
+ "shelf_tag": "Sativa",
+ "reported": [
+  "Infused preroll",
+  "Glass tip"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "Linalool",
+  "alpha-Humulene"
+ ],
+ "aroma": [
+  "spicy",
+  "floral",
+  "herbal",
+  "woody",
+  "citrus"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.12,
+  "Linalool": 0.09,
+  "alpha-Humulene": 0.06,
+  "Terpineol": 0.02,
+  "Limonene": 0.02,
+  "Terpinolene": 0.02,
+  "alpha-Bisabolol": 0.02,
+  "beta-Myrcene": 0.02,
+  "Fenchol": 0.01,
+  "Valencene": 0.01,
+  "alpha-Pinene": 0.01,
+  "beta-Pinene": 0.01
+ }
+}
