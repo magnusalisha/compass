@@ -39,6 +39,7 @@
  "form": "Flower 3.5g",
  "strain": "PuffinZ",
  "lean": "mixed",
- "in_stock": true,
- "thc": 22.26
+ "in_stock": false,
+ "thc": 22.26,
+ "sold_out_at": "2026-07-26T14:37:09.679Z"
 }
