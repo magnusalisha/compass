@@ -1,0 +1,50 @@
+{
+ "id": "a3f8c21d9e",
+ "metrc_tag": "1A4120300000C1F000016409",
+ "brand": "Kings and Queens",
+ "strain": "Skywalker OG",
+ "form": "Vape 1g Disposable",
+ "thc": 86.93,
+ "total_terpenes": 6.2376,
+ "lean": "mixed",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Indica",
+ "reported": [
+  "Citrus",
+  "Spicy"
+ ],
+ "dominant": [
+  "Limonene",
+  "beta-Caryophyllene",
+  "beta-Myrcene"
+ ],
+ "aroma": [
+  "citrus",
+  "spicy",
+  "earthy",
+  "herbal",
+  "floral"
+ ],
+ "terpenes": {
+  "Limonene": 1.747,
+  "beta-Caryophyllene": 1.0891,
+  "beta-Myrcene": 0.9858,
+  "Valencene": 0.4886,
+  "Linalool": 0.4371,
+  "beta-Pinene": 0.3231,
+  "alpha-Humulene": 0.2261,
+  "Terpineol": 0.1897,
+  "Fenchol": 0.1718,
+  "alpha-Pinene": 0.153,
+  "alpha-Bisabolol": 0.1492,
+  "Terpinolene": 0.0547,
+  "Camphene": 0.0479,
+  "Borneol": 0.0452,
+  "Nerol": 0.0396,
+  "Geraniol": 0.0306,
+  "Caryophyllene Oxide": 0.0249,
+  "Ocimene": 0.018,
+  "Camphor": 0.0164
+ }
+}
