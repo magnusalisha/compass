@@ -1,0 +1,49 @@
+{
+ "id": "a3f7c2e91b",
+ "metrc_tag": "1A4120300000C1F000016321",
+ "brand": "Kings and Queens",
+ "strain": "Bubba Kush",
+ "form": "Vape 1g Disposable",
+ "thc": 87.07,
+ "total_terpenes": 5.6775,
+ "lean": "settling",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Indica",
+ "reported": [
+  "Spicy",
+  "Citrus"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "Farnesene",
+  "Limonene"
+ ],
+ "aroma": [
+  "spicy",
+  "earthy",
+  "citrus",
+  "floral",
+  "woody"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 1.0595,
+  "Farnesene": 0.8329,
+  "Limonene": 0.7836,
+  "alpha-Bisabolol": 0.731,
+  "alpha-Humulene": 0.3483,
+  "Linalool": 0.2789,
+  "beta-Myrcene": 0.2753,
+  "beta-Pinene": 0.274,
+  "Fenchol": 0.2217,
+  "Terpineol": 0.1788,
+  "alpha-Pinene": 0.1626,
+  "Caryophyllene Oxide": 0.1594,
+  "Cedrol": 0.1495,
+  "Nerolidol": 0.0637,
+  "Camphene": 0.0536,
+  "Borneol": 0.0519,
+  "Terpinolene": 0.0291,
+  "Geraniol": 0.0236
+ }
+}
