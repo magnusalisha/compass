@@ -1,22 +1,42 @@
 {
  "id": "2d4ae28887",
- "brand": "Rolling Green",
- "strain": "Banana Cream Gelato",
- "form": "Flower 3.5g",
- "thc": 32.4044,
- "total_terpenes": 1.31,
- "lean": "mixed",
- "balance": -0.21,
+ "shelf_tag": "Hybrid",
  "confidence": "strong",
- "note": null,
- "reported": [
-  "bright and talkative",
-  "mellow and soft"
- ],
  "dominant": [
   "Limonene",
   "Linalool",
   "beta-Myrcene"
+ ],
+ "note": null,
+ "terpenes": {
+  "alpha-Pinene": 0,
+  "Terpineol": 0.05,
+  "Farnesene": 0.12,
+  "Guaiol": 0.07,
+  "beta-Caryophyllene": 0,
+  "Linalool": 0.21,
+  "Camphene": 0,
+  "Geraniol": 0,
+  "Ocimene": 0,
+  "Limonene": 0.47,
+  "Valencene": 0,
+  "Terpinolene": 0,
+  "beta-Pinene": 0,
+  "alpha-Terpinene": 0,
+  "alpha-Humulene": 0.14,
+  "Fenchol": 0.05,
+  "beta-Myrcene": 0.2,
+  "Caryophyllene oxide": 0,
+  "alpha-Bisabolol": 0,
+  "Menthol": 0,
+  "alpha-Phellandrene": 0
+ },
+ "brand": "Rolling Green",
+ "total_terpenes": 1.31,
+ "balance": -0.21,
+ "reported": [
+  "bright and talkative",
+  "mellow and soft"
  ],
  "aroma": [
   "citrus",
@@ -25,29 +45,9 @@
   "floral",
   "lavender"
  ],
- "terpenes": {
-  "Limonene": 0.47,
-  "Linalool": 0.21,
-  "beta-Myrcene": 0.2,
-  "alpha-Humulene": 0.14,
-  "Farnesene": 0.12,
-  "Guaiol": 0.07,
-  "Terpineol": 0.05,
-  "Fenchol": 0.05,
-  "Camphene": 0.0,
-  "Caryophyllene oxide": 0.0,
-  "Ocimene": 0.0,
-  "Terpinolene": 0.0,
-  "Valencene": 0.0,
-  "alpha-Bisabolol": 0.0,
-  "alpha-Pinene": 0.0,
-  "beta-Pinene": 0.0,
-  "beta-Caryophyllene": 0.0,
-  "Geraniol": 0.0,
-  "Menthol": 0.0,
-  "alpha-Phellandrene": 0.0,
-  "alpha-Terpinene": 0.0
- },
+ "form": "Flower 3.5g",
+ "strain": "Banana Cream Gelato",
+ "lean": "mixed",
  "in_stock": true,
- "shelf_tag": "Unverified"
+ "thc": 32.4044
 }
