@@ -1,0 +1,46 @@
+{
+ "id": "a3f8c2e1d9",
+ "metrc_tag": "1A412030000019F000004856",
+ "brand": "Florist Farms",
+ "strain": "Garlic Bud",
+ "form": "Preroll 0.5g (5pk, Live Resin Infused)",
+ "thc": 35.47,
+ "total_terpenes": 2.3242,
+ "lean": "settling",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Indica",
+ "reported": [
+  "Live Resin Infused",
+  "Spicy & Earthy"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "Farnesene",
+  "alpha-Humulene"
+ ],
+ "aroma": [
+  "spicy",
+  "earthy",
+  "woody",
+  "herbal",
+  "citrus"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.8428,
+  "Farnesene": 0.276,
+  "alpha-Humulene": 0.2665,
+  "Limonene": 0.1687,
+  "Linalool": 0.1401,
+  "beta-Myrcene": 0.1295,
+  "alpha-Bisabolol": 0.0976,
+  "Caryophyllene Oxide": 0.0944,
+  "Fenchol": 0.0663,
+  "Nerolidol": 0.0562,
+  "Guaiol": 0.0542,
+  "Terpineol": 0.0505,
+  "beta-Pinene": 0.0285,
+  "alpha-Pinene": 0.0108,
+  "Borneol": 0.0097
+ }
+}
