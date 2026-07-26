@@ -996,7 +996,10 @@ function stack(p){
   return `<div class="stack">${e.map(([k,v]) => `<i style="width:${v/s*100}%;background:${col(k)}"></i>`).join('')}</div>
     <div class="chips">${e.slice(0,3).map(([k,v]) => `<span><b style="background:${col(k)}"></b>${short(k).toLowerCase()} ${v}%</span>`).join('')}</div>`;
 }
-function card(p, extra=''){
+// compareTo: a source product key. Only Find similar passes it — it turns on a
+// "Compare ↔" action that jumps straight into the Compare tab with the source
+// and this result pre-filled, so you don't re-pick a pair you've already found.
+function card(p, extra='', compareTo=null){
   const faint = p.confidence === 'faint';
   const tag = shelfTag(p);
   const href = editURL(p);
@@ -1023,6 +1026,7 @@ function card(p, extra=''){
     <div class="acts">
       ${STOCK_API ? `<button onclick="setStock('${key(p)}', ${stocked(p)})" ${busyKey === key(p) ? 'disabled' : ''}>${
         busyKey === key(p) ? 'Saving…' : stocked(p) ? 'Mark sold out' : 'Back in stock'}</button>` : ''}
+      ${compareTo ? `<a href="#" onclick="openCompare('${compareTo}','${key(p)}');return false;">Compare ↔</a>` : ''}
       ${href ? `<a href="${href}" target="_blank" rel="noopener">Edit ↗</a>` : ''}
     </div>
   </div>`;
@@ -1165,7 +1169,11 @@ function comboListHTML(id, list){
 }
 function comboShellHTML(id, list, selectedId){
   const st = comboState(id);
-  const shown = st.query !== null ? st.query : comboLabel(list.find(p => key(p) === selectedId));
+  // Fall back to the whole archive for the label so a pre-filled selection that
+  // isn't in the (in-stock) list — e.g. a sold-out source carried in from Find
+  // similar's Compare ↔ — still shows its name instead of an empty box.
+  const selected = list.find(p => key(p) === selectedId) || DATA.find(p => key(p) === selectedId);
+  const shown = st.query !== null ? st.query : comboLabel(selected);
   return `<div class="combo" data-combo="${id}">
     <input type="text" class="combo-input" id="combo-${id}" autocomplete="off"
       placeholder="Search strain or brand…" value="${shown.replace(/"/g,'&quot;')}">
@@ -1193,9 +1201,26 @@ function comboChoose(id, productId){
   render();   // a real selection, not a keystroke — safe to fully rebuild
 }
 
+// Find similar → Compare, in one tap. Pre-fills the pair you were already
+// looking at (source on the left, the result you tapped on the right) so the
+// full side-by-side is one click away instead of two hand-picks. Clearing any
+// typed combo text means the pickers show the new selection, not stale input.
+function openCompare(leftKey, rightKey){
+  tab = 'compare'; a = leftKey; b = rightKey;
+  if (COMBO.a) COMBO.a.query = null;
+  if (COMBO.b) COMBO.b.query = null;
+  render();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
 function render(){
   const P = $('#panel'), O = $('#out');
   document.querySelectorAll('.tabs button').forEach(t => t.setAttribute('aria-selected', t.dataset.tab === tab));
+  // Find similar fixes its own stock rules (sold-out source, in-stock results),
+  // so the global toggle has nothing to do there — hide it rather than show a
+  // control that does nothing.
+  const stockRow = document.querySelector('.stockrow');
+  if (stockRow) stockRow.style.display = tab === 'similar' ? 'none' : '';
   const list = pool();
   const banner = flash ? `<div class="flash">${flash}</div>` : '';
 
@@ -1235,8 +1260,13 @@ function render(){
     const p = DATA.find(x => key(x) === sel);
     if (!p){ O.innerHTML = `<div class="empty">No records yet.</div>`; return foot(); }
 
-    // category filter narrows the *results* only — the source product is unaffected
-    const candidates = DATA.filter(x => key(x) !== key(p) && ($('#oos').checked || stocked(x))
+    // Results are ALWAYS in-stock only — the whole question is "what can I hand
+    // this customer instead," and a sold-out match can't be handed to anyone.
+    // (The source above is the opposite: sold-out included, because the thing
+    // they loved being gone is exactly why you're here.) The global "include
+    // out-of-stock" toggle is hidden on this tab for the same reason.
+    // The category filter narrows the results only — the source is unaffected.
+    const candidates = DATA.filter(x => key(x) !== key(p) && stocked(x)
       && (simCat === 'All' || category(x) === simCat));
     if (!candidates.length){
       O.innerHTML = `<div class="empty">No ${simCat === 'All' ? '' : simCat.toLowerCase()+' '}records scanned to compare against.</div>`;
@@ -1264,7 +1294,7 @@ function render(){
     O.innerHTML = faintSrcNote + (ranked[0][0] < 0.5
         ? `<div class="card"><div class="warnbox" style="margin:0">Nothing <b>scanned</b> is close to <b>${p.strain}</b> — its profile is ${domTerps(p).slice(0,2).map(k=>short(k).toLowerCase()).join('/')}-led and nothing else in here looks like that. <b>Say so. Don't substitute.</b> Worth a look at the shelf too, in case something isn't scanned yet.</div></div>`
         : '')
-      + primary.slice(0,4).map(([s,x]) => card(x, matchNote(p, x, s))).join('')
+      + primary.slice(0,4).map(([s,x]) => card(x, matchNote(p, x, s), key(p))).join('')
       + (same.length && other.length && other[0][0] >= 0.5
           ? `<div class="pivot-head">Closest in other sizes — worth a pivot</div>`
             + other.slice(0,4).map(([,x]) => pivotRow(x)).join('')
@@ -1281,8 +1311,14 @@ function render(){
   }
 
   // compare
-  a = a && list.some(p=>key(p)===a) ? a : key(list[0]||{});
-  b = b && list.some(p=>key(p)===b) ? b : key(list[1]||{});
+  // Validate a selection against the WHOLE archive, not the in-stock pool: the
+  // compare view renders sold-out products fine (DATA.find below), and a source
+  // handed in from Find similar's Compare ↔ is often exactly a sold-out item —
+  // guarding on the pool would silently swap it for a random in-stock strain.
+  // The picker DROPDOWNS still list only in-stock (comboSource uses pool); this
+  // only stops a valid pre-set selection from being reset out from under us.
+  a = a && DATA.some(p=>key(p)===a) ? a : key(list[0]||{});
+  b = b && DATA.some(p=>key(p)===b) ? b : key(list[1]||{});
   P.innerHTML = banner + `<div class="pair">${comboShellHTML('a', list, a)}${comboShellHTML('b', list, b)}</div>`;
   const x = DATA.find(p => key(p) === a), y = DATA.find(p => key(p) === b);
   O.innerHTML = (x && y && x !== y) ? compare(x, y) : `<div class="empty">Pick two different products.</div>`;
