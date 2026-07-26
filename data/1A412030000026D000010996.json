@@ -1,0 +1,42 @@
+{
+ "id": "a3f7c2e9b1",
+ "metrc_tag": "1A412030000026D000010996",
+ "brand": "Find",
+ "strain": "Funk Bomb",
+ "form": "Flower 28g",
+ "thc": 31.0654,
+ "total_terpenes": 1.32,
+ "lean": "lifting",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Sativa",
+ "reported": [
+  "Funk Bomb",
+  "Sativa"
+ ],
+ "dominant": [
+  "alpha-Pinene",
+  "Limonene",
+  "beta-Myrcene"
+ ],
+ "aroma": [
+  "pine",
+  "citrus",
+  "herbal",
+  "floral",
+  "earthy"
+ ],
+ "terpenes": {
+  "alpha-Pinene": 0.36,
+  "Limonene": 0.3,
+  "beta-Myrcene": 0.27,
+  "Linalool": 0.12,
+  "beta-Pinene": 0.09,
+  "Guaiol": 0.06,
+  "beta-Caryophyllene": 0.04,
+  "Terpineol": 0.03,
+  "Fenchol": 0.03,
+  "Camphene": 0.01,
+  "alpha-Humulene": 0.01
+ }
+}
