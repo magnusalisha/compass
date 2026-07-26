@@ -1,0 +1,43 @@
+{
+ "id": "a3f82c1d9e",
+ "metrc_tag": "1A412030000026D000006276",
+ "brand": "Find",
+ "strain": "True OG",
+ "form": "Flower 14g",
+ "thc": 25.2741,
+ "total_terpenes": 1.65,
+ "lean": "settling",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Indica",
+ "reported": [
+  "True OG",
+  "Whole Flower"
+ ],
+ "dominant": [
+  "beta-Myrcene",
+  "beta-Caryophyllene",
+  "Limonene"
+ ],
+ "aroma": [
+  "earthy",
+  "musky",
+  "spicy",
+  "citrus",
+  "floral"
+ ],
+ "terpenes": {
+  "beta-Myrcene": 0.89,
+  "beta-Caryophyllene": 0.29,
+  "Limonene": 0.13,
+  "alpha-Humulene": 0.12,
+  "Linalool": 0.09,
+  "alpha-Bisabolol": 0.05,
+  "Valencene": 0.02,
+  "beta-Pinene": 0.02,
+  "Terpineol": 0.01,
+  "Caryophyllene Oxide": 0.01,
+  "Fenchol": 0.01,
+  "alpha-Pinene": 0.01
+ }
+}
