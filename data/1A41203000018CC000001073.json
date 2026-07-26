@@ -8,7 +8,7 @@
  "total_terpenes": 6.91,
  "lean": "settling",
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Indica",
  "reported": [
   "Citrus",
@@ -40,5 +40,6 @@
   "Camphene": 0.0586,
   "Ocimene": 0.0502,
   "alpha-Bisabolol": 0.0325
- }
+ },
+ "sold_out_at": "2026-07-26T19:01:15.856Z"
 }
