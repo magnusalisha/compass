@@ -1,0 +1,41 @@
+{
+ "id": "a3f82c1d9e",
+ "metrc_tag": "1A412030000019F000002417",
+ "brand": "Florist Farms",
+ "strain": "Green Crack",
+ "form": "Vape 1g Cartridge",
+ "thc": 80.884,
+ "total_terpenes": 4.4,
+ "lean": "lifting",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Sativa",
+ "reported": [
+  "energizing",
+  "uplifting"
+ ],
+ "dominant": [
+  "Terpinolene",
+  "Ocimene",
+  "beta-Myrcene"
+ ],
+ "aroma": [
+  "citrus",
+  "pine",
+  "herbal",
+  "woody",
+  "sweet"
+ ],
+ "terpenes": {
+  "Terpinolene": 1.41,
+  "Ocimene": 0.8,
+  "beta-Myrcene": 0.7,
+  "Limonene": 0.59,
+  "beta-Caryophyllene": 0.26,
+  "alpha-Pinene": 0.25,
+  "beta-Pinene": 0.16,
+  "alpha-Humulene": 0.12,
+  "Farnesene": 0.07,
+  "Fenchol": 0.04
+ }
+}
