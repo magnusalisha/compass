@@ -828,7 +828,7 @@ let DATA = [
   "in_stock": true
  }
 ], tab = 'effect', a = null, b = null, sel = null, flash = '', effCat = 'All', simCat = 'All',
-  lookupQ = '', lookupSel = null, effSize = 'any', effLean = 'any';
+  lookupQ = '', lookupSel = null, effSize = 'any', effLean = 'any', unreadable = 0;
 
 // Stock lives in the repo — ONE copy, the same on every device and every shift.
 // It used to be a localStorage overlay per device, which meant your phone, the
@@ -1388,6 +1388,7 @@ function foot(){
   // capture script, which is not the same as what is on the shelf. Every empty
   // state says so too; this keeps the scope visible even when results look full.
   $('#foot').innerHTML = `${DATA.length} scanned · ${DATA.filter(stocked).length} in stock${
+    unreadable ? ` · <b style="color:var(--warn)">${unreadable} unreadable (a data typo?)</b>` : ''}${
     unverified ? ` · <b>${unverified} shelf tag${unverified>1?'s':''} unverified</b> — tap Edit on a card to set one` : ''}<br>
     ●●● real receptor mechanism · ●●○ some human data · ●○○ folklore<br>
     Only caryophyllene has a mechanism (CB2). The rest is inherited from strain databases.<br>
@@ -1512,12 +1513,22 @@ document.addEventListener('keydown', e => {
 // immutable, so the browser's own cache serves anything that hasn't changed and
 // only genuinely-edited records cross the network — while a stock change is
 // picked up instantly, because editing a file changes its sha.
-function recordsFromIndex(files){
-  return Promise.all(files.map(async f => {
+async function recordsFromIndex(files){
+  // allSettled, NOT Promise.all: one unreadable record (a hand-edit typo like
+  // `"thc": 26.07%`, invalid JSON) must never sink the whole load. Skip the bad
+  // ones, keep the rest, and surface the count in the footer so the break is
+  // visible instead of silent. Only a total wipeout falls back to the caller.
+  const settled = await Promise.allSettled(files.map(async f => {
     const p = await fetch(`${f.url}?v=${f.sha}`).then(r=>r.json());
     p._key = f.name.replace(/\.json$/, '');   // repo filename is unique by construction; the record's own `id` isn't
     return p;
   }));
+  const ok = settled.filter(s => s.status === 'fulfilled').map(s => s.value);
+  const bad = files.filter((f,i) => settled[i].status === 'rejected').map(f => f.name);
+  unreadable = bad.length;
+  if (bad.length) console.warn('Compass: skipped ' + bad.length + ' unreadable record(s):', bad);
+  if (!ok.length) throw new Error('no readable records');   // truly nothing — let the caller fall back
+  return ok;
 }
 
 async function fetchRecords(){
