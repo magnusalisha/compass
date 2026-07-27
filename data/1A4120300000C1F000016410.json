@@ -1,0 +1,48 @@
+{
+ "id": "a3f82c1d9e",
+ "metrc_tag": "1A4120300000C1F000016410",
+ "brand": "Kings and Queens",
+ "strain": "Super Silver Haze",
+ "form": "Vape 1g Disposable",
+ "thc": 87.06,
+ "total_terpenes": 3.6638,
+ "lean": "lifting",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Sativa",
+ "reported": [
+  "Super Silver Haze",
+  "Kings & Queens Distillate"
+ ],
+ "dominant": [
+  "Terpinolene",
+  "beta-Myrcene",
+  "Limonene"
+ ],
+ "aroma": [
+  "floral",
+  "citrus",
+  "earthy",
+  "spicy",
+  "herbal"
+ ],
+ "terpenes": {
+  "Terpinolene": 1.4664,
+  "beta-Myrcene": 0.5197,
+  "Limonene": 0.4061,
+  "beta-Caryophyllene": 0.2772,
+  "Ocimene": 0.2618,
+  "beta-Pinene": 0.1711,
+  "Linalool": 0.1129,
+  "alpha-Pinene": 0.106,
+  "alpha-Humulene": 0.0787,
+  "alpha-Phellandrene": 0.0713,
+  "alpha-Terpinene": 0.0376,
+  "Carene": 0.0311,
+  "Sabinene": 0.0272,
+  "Geraniol": 0.0257,
+  "Caryophyllene Oxide": 0.0188,
+  "alpha-Bisabolol": 0.018,
+  "Fenchol": 0.0156
+ }
+}
