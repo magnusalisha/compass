@@ -1,0 +1,31 @@
+{
+ "id": "a3f9c12b4e",
+ "metrc_tag": "1A41203000009CE000000822",
+ "brand": "Revert",
+ "strain": "Apple Fritter",
+ "form": "Flower 14g Kief Infused Ground",
+ "thc": null,
+ "total_terpenes": 0.66,
+ "lean": "settling",
+ "confidence": "faint",
+ "in_stock": true,
+ "shelf_tag": "Hybrid",
+ "reported": [
+  "kief infused ground flower",
+  "hybrid"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "Linalool"
+ ],
+ "aroma": [
+  "spicy",
+  "floral",
+  "earthy",
+  "sweet"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.45,
+  "Linalool": 0.21
+ }
+}
