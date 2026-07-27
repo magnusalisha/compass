@@ -1,0 +1,38 @@
+{
+ "id": "a3f8c12e9b",
+ "metrc_tag": "1A4120300000235000003351",
+ "brand": "Jetpacks",
+ "strain": "Blueberry Pancakes",
+ "form": "Infused Preroll 0.6g",
+ "thc": 34.287,
+ "total_terpenes": 2.46,
+ "lean": "mixed",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Sativa",
+ "reported": [
+  "Blueberry Pancakes flavor",
+  "Infused pre-roll"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "alpha-Humulene",
+  "Terpinolene"
+ ],
+ "aroma": [
+  "earthy",
+  "spicy",
+  "herbal",
+  "floral",
+  "citrus"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.75,
+  "alpha-Humulene": 0.5,
+  "Terpinolene": 0.28,
+  "Linalool": 0.23,
+  "beta-Myrcene": 0.21,
+  "Caryophyllene oxide": 0.19,
+  "Limonene": 0.32
+ }
+}
