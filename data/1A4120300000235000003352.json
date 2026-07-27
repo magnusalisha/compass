@@ -1,0 +1,38 @@
+{
+ "id": "a3f8c12e9b",
+ "metrc_tag": "1A4120300000235000003352",
+ "brand": "Jetpacks",
+ "strain": "Cereal Milk",
+ "form": "Preroll 0.6g Infused 5pk",
+ "thc": 36.706,
+ "total_terpenes": 2.01,
+ "lean": "settling",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Hybrid",
+ "reported": [
+  "36.7% Total THC",
+  "Cereal Milk flavor"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "alpha-Humulene",
+  "Linalool"
+ ],
+ "aroma": [
+  "earthy",
+  "spicy",
+  "floral",
+  "citrus",
+  "herbal"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.64,
+  "alpha-Humulene": 0.45,
+  "Linalool": 0.2,
+  "Limonene": 0.24,
+  "Terpinolene": 0.18,
+  "Caryophyllene oxide": 0.17,
+  "beta-Myrcene": 0.14
+ }
+}
