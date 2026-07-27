@@ -1,0 +1,40 @@
+{
+ "id": "a3f8c2e1d9",
+ "metrc_tag": "2604RLI04862486",
+ "brand": "Nanticoke",
+ "strain": "Sour Diesel",
+ "form": "Flower 3.5g",
+ "thc": 31.32,
+ "total_terpenes": 0.9099,
+ "lean": "lifting",
+ "confidence": "faint",
+ "in_stock": true,
+ "shelf_tag": "Sativa",
+ "reported": [
+  "Pine",
+  "Cinnamon"
+ ],
+ "dominant": [
+  "alpha-Pinene",
+  "beta-Caryophyllene",
+  "beta-Myrcene"
+ ],
+ "aroma": [
+  "pine",
+  "cinnamon",
+  "hops",
+  "orange",
+  "lavender"
+ ],
+ "terpenes": {
+  "alpha-Pinene": 0.25,
+  "beta-Caryophyllene": 0.17,
+  "beta-Myrcene": 0.14,
+  "beta-Pinene": 0.12,
+  "Limonene": 0.09,
+  "alpha-Humulene": 0.06,
+  "Linalool": 0.04,
+  "Terpineol": 0.03,
+  "Camphene": 0.02
+ }
+}
