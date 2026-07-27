@@ -1,0 +1,38 @@
+{
+ "id": "a3f7c2e910",
+ "metrc_tag": "1A4120300000A41000001075",
+ "brand": "High Falls Canna",
+ "strain": "Killer Queen",
+ "form": "Flower 3.5g",
+ "thc": 25.124,
+ "total_terpenes": 2,
+ "lean": "settling",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Sativa",
+ "reported": [
+  "beta-Caryophyllene dominant",
+  "earthy and floral notes"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "beta-Myrcene",
+  "alpha-Humulene"
+ ],
+ "aroma": [
+  "earthy",
+  "spicy",
+  "citrus",
+  "floral",
+  "herbal"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.77,
+  "beta-Myrcene": 0.34,
+  "alpha-Humulene": 0.31,
+  "Limonene": 0.29,
+  "Linalool": 0.12,
+  "Farnesene": 0.12,
+  "Ocimene": 0.05
+ }
+}
