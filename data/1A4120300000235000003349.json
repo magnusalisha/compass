@@ -1,0 +1,38 @@
+{
+ "id": "a3f82c1d9e",
+ "metrc_tag": "1A4120300000235000003349",
+ "brand": "Jetpacks",
+ "strain": "Afghani",
+ "form": "Infused Preroll 0.6g",
+ "thc": 39.002,
+ "total_terpenes": 2.41,
+ "lean": "settling",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Indica",
+ "reported": [
+  "beta-Caryophyllene dominant",
+  "earthy and spicy profile"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "alpha-Humulene",
+  "Linalool"
+ ],
+ "aroma": [
+  "earthy",
+  "spicy",
+  "floral",
+  "citrus",
+  "piney"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.78,
+  "alpha-Humulene": 0.52,
+  "Linalool": 0.25,
+  "Terpinolene": 0.22,
+  "Caryophyllene oxide": 0.2,
+  "Limonene": 0.3,
+  "beta-Myrcene": 0.14
+ }
+}
