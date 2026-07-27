@@ -39,6 +39,7 @@
  "form": "Flower 3.5g",
  "strain": "Honeymoon Diesel",
  "lean": "mixed",
- "in_stock": true,
- "thc": 22.4296
+ "in_stock": false,
+ "thc": 22.4296,
+ "sold_out_at": "2026-07-27T13:57:42.108Z"
 }
