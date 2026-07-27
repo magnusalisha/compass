@@ -1,0 +1,49 @@
+{
+ "id": "a3f7c291be",
+ "metrc_tag": "1A4120300000C1F000016407",
+ "brand": "Kings and Queens",
+ "strain": "Durban Poison",
+ "form": "Vape 1g Disposable",
+ "thc": 87.81,
+ "total_terpenes": 6.0245,
+ "lean": "lifting",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Sativa",
+ "reported": [
+  "Spicy",
+  "Woodsy"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "alpha-Pinene",
+  "beta-Myrcene"
+ ],
+ "aroma": [
+  "spicy",
+  "woody",
+  "earthy",
+  "citrus",
+  "piney"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 1.5704,
+  "alpha-Pinene": 0.8313,
+  "beta-Myrcene": 0.6455,
+  "Limonene": 0.4862,
+  "beta-Pinene": 0.4843,
+  "alpha-Humulene": 0.4238,
+  "alpha-Bisabolol": 0.3067,
+  "Terpinolene": 0.2375,
+  "Nerolidol": 0.1815,
+  "Linalool": 0.1344,
+  "Farnesene": 0.1195,
+  "Ocimene": 0.1191,
+  "Terpineol": 0.0894,
+  "Fenchol": 0.0696,
+  "Valencene": 0.0621,
+  "Camphene": 0.0361,
+  "Geraniol": 0.0252,
+  "Guaiol": 0.02
+ }
+}
