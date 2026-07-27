@@ -1,0 +1,45 @@
+{
+ "id": "a3f82c1d9e",
+ "metrc_tag": "1A412030000166B000000027",
+ "brand": "BX Runtz",
+ "strain": "Sour Joker",
+ "form": "Flower 3.5g",
+ "thc": 28.363,
+ "total_terpenes": 1.39,
+ "lean": "settling",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Hybrid",
+ "reported": [
+  "high-THC",
+  "myrcene-dominant"
+ ],
+ "dominant": [
+  "beta-Myrcene",
+  "Linalool",
+  "beta-Caryophyllene"
+ ],
+ "aroma": [
+  "earthy",
+  "floral",
+  "spicy",
+  "woody",
+  "citrus"
+ ],
+ "terpenes": {
+  "beta-Myrcene": 0.71,
+  "Linalool": 0.2,
+  "beta-Caryophyllene": 0.13,
+  "Ocimene": 0.1,
+  "Limonene": 0.08,
+  "Guaiol": 0.05,
+  "alpha-Humulene": 0.04,
+  "beta-Pinene": 0.02,
+  "Terpineol": 0.01,
+  "Caryophyllene Oxide": 0.01,
+  "Fenchol": 0.01,
+  "Valencene": 0.01,
+  "alpha-Bisabolol": 0.01,
+  "alpha-Pinene": 0.01
+ }
+}
