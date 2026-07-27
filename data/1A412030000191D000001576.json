@@ -1,0 +1,44 @@
+{
+ "id": "a3f82c1d9e",
+ "metrc_tag": "1A412030000191D000001576",
+ "brand": "Dank",
+ "strain": "Cherry AK-47",
+ "form": "Preroll 1g",
+ "thc": 26.9572,
+ "total_terpenes": 0.95,
+ "lean": "settling",
+ "confidence": "faint",
+ "in_stock": true,
+ "shelf_tag": "Sativa-leaning Hybrid",
+ "reported": [
+  "Sungrown",
+  "Cured flower"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "Linalool",
+  "alpha-Humulene"
+ ],
+ "aroma": [
+  "floral",
+  "spicy",
+  "earthy",
+  "woody",
+  "herbal"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.33,
+  "Linalool": 0.24,
+  "alpha-Humulene": 0.12,
+  "alpha-Bisabolol": 0.05,
+  "Terpineol": 0.04,
+  "Caryophyllene Oxide": 0.04,
+  "Limonene": 0.04,
+  "Fenchol": 0.03,
+  "beta-Myrcene": 0.02,
+  "Geraniol": 0.01,
+  "Guaiol": 0.01,
+  "Valencene": 0.01,
+  "beta-Pinene": 0.01
+ }
+}
