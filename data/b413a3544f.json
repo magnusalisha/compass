@@ -48,6 +48,7 @@
  "form": "Flower 3.5g",
  "strain": "Georgia Haze",
  "lean": "settling",
- "in_stock": true,
- "thc": 31.5084
+ "in_stock": false,
+ "thc": 31.5084,
+ "sold_out_at": "2026-07-27T20:36:13.380Z"
 }
