@@ -1,0 +1,38 @@
+{
+ "id": "a3f82c19d4",
+ "metrc_tag": "1A4120300000A41000002819",
+ "brand": "High Falls Canna",
+ "strain": "Purple Punch X",
+ "form": "Flower 3.5g",
+ "thc": null,
+ "total_terpenes": 2.03,
+ "lean": "mixed",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Indica",
+ "reported": [
+  "lab tested and regulated by NY OCM",
+  "manufactured by HV Ag Corporation"
+ ],
+ "dominant": [
+  "beta-Myrcene",
+  "beta-Caryophyllene",
+  "Limonene"
+ ],
+ "aroma": [
+  "fruity",
+  "earthy",
+  "citrus",
+  "spicy",
+  "floral"
+ ],
+ "terpenes": {
+  "beta-Myrcene": 0.55,
+  "beta-Caryophyllene": 0.54,
+  "Limonene": 0.47,
+  "alpha-Humulene": 0.2,
+  "Linalool": 0.11,
+  "beta-Pinene": 0.09,
+  "Farnesene": 0.08
+ }
+}
