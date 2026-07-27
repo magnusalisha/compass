@@ -1,0 +1,43 @@
+{
+ "id": "a3f9c12b4e",
+ "metrc_tag": "NYHPSMF251020001GZ",
+ "brand": "Jusbud",
+ "strain": "Sour Diesel",
+ "form": "Flower 1g",
+ "thc": 19.9,
+ "total_terpenes": 1.1484,
+ "lean": "settling",
+ "confidence": "moderate",
+ "in_stock": true,
+ "shelf_tag": "Sativa",
+ "reported": [
+  "Sour Diesel",
+  "Adult Use Flower"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "alpha-Humulene",
+  "Limonene"
+ ],
+ "aroma": [
+  "diesel",
+  "earthy",
+  "spicy",
+  "floral",
+  "citrus"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.3882,
+  "alpha-Humulene": 0.2906,
+  "Limonene": 0.1044,
+  "Linalool": 0.1026,
+  "alpha-Bisabolol": 0.0873,
+  "Fenchol": 0.0353,
+  "beta-Myrcene": 0.0412,
+  "Caryophyllene Oxide": 0.0329,
+  "beta-Pinene": 0.0134,
+  "trans-Nerolidol": 0.0167,
+  "cis-Nerolidol": 0.013,
+  "Terpineol": 0.0228
+ }
+}
