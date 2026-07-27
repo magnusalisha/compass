@@ -1,0 +1,52 @@
+{
+ "id": "a3f8c12e9b",
+ "metrc_tag": "1A4120300000C1F000016450",
+ "brand": "Kings and Queens",
+ "strain": "Jack Herer",
+ "form": "Vape 1g Disposable",
+ "thc": 88.13,
+ "total_terpenes": 6.438,
+ "lean": "lifting",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Sativa",
+ "reported": [
+  "Floral",
+  "Spicy"
+ ],
+ "dominant": [
+  "Terpinolene",
+  "beta-Caryophyllene",
+  "Ocimene"
+ ],
+ "aroma": [
+  "floral",
+  "spicy",
+  "citrus",
+  "herbal",
+  "piney"
+ ],
+ "terpenes": {
+  "Terpinolene": 2.4452,
+  "beta-Caryophyllene": 0.6734,
+  "Ocimene": 0.6484,
+  "Farnesene": 0.6299,
+  "beta-Myrcene": 0.3434,
+  "Nerolidol": 0.2523,
+  "alpha-Humulene": 0.2187,
+  "beta-Pinene": 0.2046,
+  "Limonene": 0.1547,
+  "alpha-Phellandrene": 0.1476,
+  "alpha-Pinene": 0.1234,
+  "Valencene": 0.0898,
+  "Carene": 0.0895,
+  "alpha-Terpinene": 0.0771,
+  "Linalool": 0.0679,
+  "Terpineol": 0.0542,
+  "Eucalyptol": 0.0252,
+  "Fenchol": 0.021,
+  "p-Cymene": 0.0185,
+  "alpha-Bisabolol": 0.037,
+  "Cedrol": 0.0379
+ }
+}
