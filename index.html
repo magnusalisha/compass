@@ -353,10 +353,60 @@ const WANT = {
   // terms), and it never becomes an output claim — the card only ever says
   // "people describe this as calm". So it routes like "relax". ("date"/"wind"
   // were left out on purpose: they'd substring-match sedate / window / rewind.)
-  stress:['beta-Caryophyllene','Linalool','alpha-Bisabolol'], unwind:['Linalool','alpha-Humulene']
+  stress:['beta-Caryophyllene','Linalool','alpha-Bisabolol'], unwind:['Linalool','alpha-Humulene'],
+
+  // ── activities. Customers often don't name a feeling at all — they name what
+  // they're about to go do, and leave the feeling implied. These translate the
+  // plan into the same terpene targets every other word uses, so an activity
+  // can't overclaim: the evidence dots on each card still tell the honest story.
+  // (hik/outdoor/adventur above were already activities — this finishes the idea.)
+  //
+  // Most carry an `avoid` as well as a `want`, which matters more here than
+  // anywhere else: what defines "errands" or "cleaning" is as much NOT getting
+  // couch-locked halfway through as it is feeling bright. Without the avoid, a
+  // heavy myrcene strain with a little limonene still ranks for "cleaning".
+  concert:  {want:['Limonene','Terpinolene','Ocimene'],      avoid:['beta-Myrcene']},
+  party:    {want:['Limonene','Ocimene','Terpinolene'],      avoid:['beta-Myrcene']},
+  errand:   {want:['alpha-Pinene','Limonene'],               avoid:['beta-Myrcene']},
+  clean:    {want:['alpha-Pinene','Limonene','Terpinolene'], avoid:['beta-Myrcene']},
+  chore:    {want:['alpha-Pinene','Limonene','Terpinolene'], avoid:['beta-Myrcene']},
+  gym:      {want:['Terpinolene','Limonene','alpha-Pinene'], avoid:['beta-Myrcene']},
+  workout:  {want:['Terpinolene','Limonene','alpha-Pinene'], avoid:['beta-Myrcene']},
+  exercise: {want:['Terpinolene','Limonene','alpha-Pinene'], avoid:['beta-Myrcene']},
+  work:     {want:['alpha-Pinene','Limonene'],               avoid:['beta-Myrcene']},
+  study:    {want:['alpha-Pinene','Terpinolene'],            avoid:['beta-Myrcene']},
+  morning:  {want:['alpha-Pinene','Limonene','Terpinolene'], avoid:['beta-Myrcene']},
+  game:     {want:['Terpinolene','alpha-Pinene','Limonene'], avoid:['beta-Myrcene']},
+  walk:     {want:['Limonene','alpha-Pinene','Ocimene']},
+  beach:    {want:['Limonene','Ocimene']},
+  writ:     {want:['alpha-Pinene','Terpinolene']},
+  paint:    {want:['Terpinolene','Limonene']},
+  draw:     {want:['Terpinolene','Limonene']},
+  cook:     {want:['Limonene','alpha-Pinene']},
+  dinner:   {want:['Limonene','beta-Caryophyllene']},
+  // couch activities — here myrcene is the point, not the problem. Deliberately
+  // no limonene: it was in this list at first and the single brightest strain in
+  // the case (limonene 0.95, lean lifting) won "movie night" outright, which is
+  // the opposite of the ask.
+  movie:    {want:['beta-Myrcene','beta-Caryophyllene']},
+  netflix:  {want:['beta-Myrcene','beta-Caryophyllene']},
+  binge:    {want:['beta-Myrcene','beta-Caryophyllene']},
+  yoga:     {want:['Linalool','beta-Caryophyllene','alpha-Pinene']},
+  medita:   {want:['Linalool','beta-Caryophyllene','alpha-Pinene']},
+  bath:     {want:['Linalool','beta-Caryophyllene']},
+  bed:      {want:['beta-Myrcene','Linalool']}
 };
 // Conditions are medical. The tool doesn't go there — it says so.
-const MEDICAL = ['anxiety','anxious','depress','pain','insomnia','ptsd','adhd','nausea','migraine','seizure','cancer'];
+// Matched on word boundaries rather than bare substrings: "pain" sits inside
+// "painting", so "something for painting" was being refused as a medical
+// question. Terms that must catch their own inflections (depress ->
+// depressed/depression) stay open at the end; "pain" is pinned closed.
+const MEDICAL = [/\banxi(ety|ous)/, /\bdepress/, /\bpain(s|ful)?\b/, /\binsomnia/,
+  /\bptsd\b/, /\bnause/, /\badhd\b/, /\bmigraine/, /\bseizure/, /\bcancer/];
+// One thing the tool will never answer, however it's phrased. Worth its own
+// guard now that it takes activity words — "something for the drive" is a
+// plausible thing to type, and no terpene makes anyone fit to drive.
+const NEVER_DRIVE = /\bdriv(e|es|ing|er)\b|\bbehind the wheel\b|\bthe road\b/;
 
 const $ = s => document.querySelector(s);
 const short = t => t.replace('beta-','').replace('alpha-','').replace('gamma-','');
@@ -1295,7 +1345,7 @@ function render(){
            </select>
          </div>
          <div class="searchwrap">
-           <input type="text" id="q" placeholder='e.g. "relaxing but not sleepy" or "social preroll"' value="${window._q||''}">
+           <input type="text" id="q" placeholder='e.g. "relaxing but not sleepy" or "for a concert"' value="${window._q||''}">
            <button type="button" class="clearbtn${(window._q||'') ? ' show' : ''}" data-clear="q" aria-label="Clear search">&times;</button>
          </div>`;
     return renderEffectResults();
@@ -1402,7 +1452,11 @@ function renderEffectResults(){
     btn.classList.toggle('active', btn.dataset.cat === activeCat);
   });
 
-  const med = MEDICAL.find(m => rawQ.includes(m));
+  if (NEVER_DRIVE.test(rawQ)){
+    O.innerHTML = `<div class="card"><div class="warnbox" style="margin:0">Not something I'll match on. Nothing on the shelf makes anyone okay to drive — that's true whatever the terpenes say, and a "clear-headed" profile doesn't change it.</div></div>`;
+    return foot();
+  }
+  const med = MEDICAL.find(re => re.test(rawQ));
   if (med){
     O.innerHTML = `<div class="card"><div class="warnbox" style="margin:0">I can't match on medical conditions — that's not a claim this tool is allowed to make, or one the science supports. Try describing the <b>feeling</b> instead: "relaxed but clear-headed", "energetic", "mellow".</div></div>`;
     return foot();
@@ -1425,11 +1479,17 @@ function renderEffectResults(){
   const [pos, neg] = [[], []];
   qClean.split(/\bbut\b|,|\band\b/).forEach(part => {
     const negated = /\bnot\b|\bwithout\b|\bno\b/.test(part);
-    Object.entries(WANT).forEach(([kw, ts]) => {
-      if (part.includes(kw)) ts.forEach(t => (negated ? neg : pos).push(t));
+    Object.entries(WANT).forEach(([kw, spec]) => {
+      if (!part.includes(kw)) return;
+      // a plain array is all "want"; the object form adds terpenes to steer AWAY
+      // from (see the activity words). "not for cleaning" flips both lists.
+      const want  = Array.isArray(spec) ? spec : (spec.want  || []);
+      const avoid = Array.isArray(spec) ? []   : (spec.avoid || []);
+      want.forEach(t => (negated ? neg : pos).push(t));
+      avoid.forEach(t => (negated ? pos : neg).push(t));
     });
   });
-  if (!pos.length && !neg.length){ O.innerHTML = `<div class="empty">Nothing matched “${rawQ}”. Try words like relaxed, energetic, focused, mellow, sleepy, social.</div>`; return foot(); }
+  if (!pos.length && !neg.length){ O.innerHTML = `<div class="empty">Nothing matched “${rawQ}”. Try a feeling — relaxed, energetic, focused, mellow, sleepy, social — or what they're off to do: a concert, cleaning, errands, a movie.</div>`; return foot(); }
 
   const scored = scoped.map(p => {
     const v = vec(p);
