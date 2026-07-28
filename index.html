@@ -830,6 +830,13 @@ let DATA = [
 ], tab = 'effect', a = null, b = null, sel = null, flash = '', effCat = 'All', simCat = 'All',
   lookupQ = '', lookupSel = null, effSize = 'any', effLean = 'any', unreadable = 0;
 
+// Which "Why?" panels are expanded, by product key. A "Why?" is a native
+// <details>, so any re-render (the 60s refresh, the 4s flash-clear after a
+// stock change, coming back to the tab) rebuilds its HTML and would snap it
+// shut under the reader. Tracking open state here lets every render restore it,
+// so an expanded "Why?" stays open until the person actually closes it.
+const openWhy = new Set();
+
 // Stock lives in the repo — ONE copy, the same on every device and every shift.
 // It used to be a localStorage overlay per device, which meant your phone, the
 // other budtender's phone and each register could all disagree, and a device
@@ -977,7 +984,8 @@ function ev(p){
 function whyHTML(p){
   const rows = domTerps(p).slice(0,3).map(k => [k, ...REPORTED[k]]);
   if (!rows.length) return '';
-  return `<details class="why"><summary>Why?</summary><ul>${rows.map(([k, phrase, strength, mech]) =>
+  const open = openWhy.has(key(p)) ? ' open' : '';
+  return `<details class="why" data-why="${key(p)}"${open}><summary>Why?</summary><ul>${rows.map(([k, phrase, strength, mech]) =>
     `<li><b>${short(k)}</b> → ${phrase} <span class="ev">${dots(strength)}</span><br>${mech}</li>`).join('')}</ul></details>`;
 }
 // the "evaporated" story is a flower/preroll thing — an edible reads faint
@@ -1485,6 +1493,15 @@ document.addEventListener('click', e => {
   const back = e.target.closest('[data-lookup-back]');
   if (back){ lookupSel = null; renderLookupResults(); }
 });
+// Keep the open-Why set in sync with what the reader actually does. `toggle`
+// doesn't bubble, so listen in the capture phase (which still reaches document
+// for non-bubbling events). No re-render here — the <details> already reflects
+// its own new state; we're only remembering it for the NEXT render.
+document.addEventListener('toggle', e => {
+  const d = e.target;
+  if (!d.matches || !d.matches('details.why') || !d.dataset.why) return;
+  if (d.open) openWhy.add(d.dataset.why); else openWhy.delete(d.dataset.why);
+}, true);
 document.addEventListener('change', e => {
   if (e.target.id === 'oos') render();
   if (e.target.id === 'effSize'){ effSize = e.target.value; renderEffectResults(); }
