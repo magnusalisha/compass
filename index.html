@@ -898,6 +898,11 @@ async function setStock(k, soldOut){
 // exists; alphabetical just breaks their ties. filter() copies, so DATA is never mutated.
 const pool = () => DATA.filter(p => $('#oos').checked || stocked(p))
   .sort((x, y) => x.strain.localeCompare(y.strain, undefined, {sensitivity: 'base'}));
+// The sellable shelf — in-stock only, alphabetical. Used by the tabs that
+// recommend something to hand a customer (effect, similar), which hide the
+// out-of-stock toggle and so must never consult it.
+const inStock = () => DATA.filter(p => stocked(p))
+  .sort((x, y) => x.strain.localeCompare(y.strain, undefined, {sensitivity: 'base'}));
 
 function vec(p){ const t = p.total_terpenes || 1, o = {};
   for (const [k,v] of Object.entries(p.terpenes)) o[k] = v/t; return o; }
@@ -1216,11 +1221,13 @@ function openCompare(leftKey, rightKey){
 function render(){
   const P = $('#panel'), O = $('#out');
   document.querySelectorAll('.tabs button').forEach(t => t.setAttribute('aria-selected', t.dataset.tab === tab));
-  // Find similar fixes its own stock rules (sold-out source, in-stock results),
-  // so the global toggle has nothing to do there — hide it rather than show a
+  // The out-of-stock toggle only belongs where you're browsing the whole
+  // archive (Compare, Lookup). Match by effect and Find similar both answer
+  // "what can I hand this customer?" — a sold-out item is never an answer there,
+  // so those tabs are in-stock-only and hide the toggle rather than show a
   // control that does nothing.
   const stockRow = document.querySelector('.stockrow');
-  if (stockRow) stockRow.style.display = tab === 'similar' ? 'none' : '';
+  if (stockRow) stockRow.style.display = (tab === 'similar' || tab === 'effect') ? 'none' : '';
   const list = pool();
   const banner = flash ? `<div class="flash">${flash}</div>` : '';
 
@@ -1228,16 +1235,15 @@ function render(){
     // mount the shell ONCE per render(); typing updates results only, via
     // renderEffectResults() — never touches this <input> node (see combo comment above)
     // sizes available in the current category, for the dropdown
-    const sizeOpts = [...new Set(pool()
+    const sizeOpts = [...new Set(inStock()
       .filter(p => effCat === 'All' || category(p) === effCat)
       .map(weightOnly).filter(Boolean))].sort((a,b) => parseFloat(a) - parseFloat(b));
     if (effSize !== 'any' && !sizeOpts.includes(effSize)) effSize = 'any';   // category changed out from under it
+    // Funnel order, top to bottom: category → type → size → effect. The effect
+    // box is the last, finest filter ("flower › indica › 3.5g › heavy"), so it
+    // sits at the bottom, below the two dropdowns.
     P.innerHTML = banner + categoryButtons('effCat', effCat)
-      + `<div class="searchwrap">
-           <input type="text" id="q" placeholder='e.g. "relaxing but not sleepy" or "social preroll"' value="${window._q||''}">
-           <button type="button" class="clearbtn${(window._q||'') ? ' show' : ''}" data-clear="q" aria-label="Clear search">&times;</button>
-         </div>
-         <div class="pair">
+      + `<div class="pair">
            <select id="effLean" aria-label="Sativa / Indica / Hybrid">
              <option value="any"${effLean==='any'?' selected':''}>Any type</option>
              <option value="Sativa"${effLean==='Sativa'?' selected':''}>Sativa</option>
@@ -1248,6 +1254,10 @@ function render(){
              <option value="any"${effSize==='any'?' selected':''}>Any size</option>
              ${sizeOpts.map(s => `<option value="${s}"${effSize===s?' selected':''}>${s}</option>`).join('')}
            </select>
+         </div>
+         <div class="searchwrap">
+           <input type="text" id="q" placeholder='e.g. "relaxing but not sleepy" or "social preroll"' value="${window._q||''}">
+           <button type="button" class="clearbtn${(window._q||'') ? ' show' : ''}" data-clear="q" aria-label="Clear search">&times;</button>
          </div>`;
     return renderEffectResults();
   }
@@ -1345,7 +1355,7 @@ function renderEffectResults(){
     return foot();
   }
 
-  const list = pool();
+  const list = inStock();   // effect recommends what to sell — in-stock only, and the OOS toggle is hidden here
   const scoped = list.filter(p => (activeCat === 'All' || category(p) === activeCat)
     && (effLean === 'any' || p.lean === LEAN_OF[effLean]));   // type = chemistry lean, not shelf tag
   if (!rawQ){
