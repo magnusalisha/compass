@@ -32,6 +32,10 @@
   .tabs{display:flex;gap:9px;margin-bottom:16px}
   .tabs button{flex:1;padding:12px 8px;border-radius:999px;border:1px solid var(--dim);
     background:transparent;color:var(--pale);font:600 14px Inter,sans-serif;cursor:pointer}
+  /* On a narrow phone four across leaves ~77px each, so "Match by effect" wrapped
+     to three lines and the 999px radius turned every tab into a circle. Two rows
+     of two keeps each label on one line and the pill shape intact. */
+  @media(max-width:440px){ .tabs{display:grid;grid-template-columns:1fr 1fr} }
   .tabs button[aria-selected="true"]{background:var(--gold);border-color:var(--gold);color:#231A08}
 
   .stockrow{display:flex;align-items:center;gap:10px;margin-bottom:16px;color:var(--pale);font-size:14px}
@@ -304,7 +308,9 @@ const SHELF_EXPECTS = {
 // get to contradict it.
 function labelCheck(p){
   const tag = shelfTag(p);
-  if (tag === 'Unverified' || p.confidence === 'faint' || !p.lean) return null;
+  // No profile = no chemistry to compare the label against. `lean` may still say
+  // "mixed" on such a record, but that's a default, not a measurement.
+  if (tag === 'Unverified' || p.confidence === 'faint' || !p.lean || !hasProfile(p)) return null;
   const expects = SHELF_EXPECTS[tag.toLowerCase()];
   // 'mixed' is the absence of a direction, not the opposite one — it contradicts nothing.
   return {tag, lean: p.lean, clash: !!expects && p.lean !== 'mixed' && p.lean !== expects};
@@ -945,6 +951,15 @@ const CHAR = {
 const domTerps = p => Object.entries(p.terpenes||{})
   .filter(([k,v]) => v>0 && REPORTED[k]).sort((a,b)=>b[1]-a[1]).map(([k])=>k);
 
+// Some records carry NO terpene profile at all — distillate carts whose COA
+// reports cannabinoids only. That is a different thing from `faint` (a real
+// reading that has degraded): there is nothing here to read, at any confidence.
+// Everything the card says about chemistry has to stand down for these, or the
+// tool states a reading it does not have. This caught three vape carts that
+// were stored as confidence:"strong", lean:"mixed" with terpenes:{} — and so
+// announced "terps read mixed" off an empty profile.
+const hasProfile = p => Object.values(p.terpenes || {}).some(v => v > 0);
+
 // Weight-aware read (Draft A): lead with the dominant character; frame a
 // meaningful opposing terpene as an undertone; call it mixed only when the top
 // two genuinely rival each other. Stops "heady AND sedating" from reading as a
@@ -1013,10 +1028,12 @@ function stack(p){
 // "Compare ↔" action that jumps straight into the Compare tab with the source
 // and this result pre-filled, so you don't re-pick a pair you've already found.
 function card(p, extra='', compareTo=null){
-  const faint = p.confidence === 'faint';
+  const bare = !hasProfile(p);              // no terpene data at all
+  const faint = p.confidence === 'faint' && !bare;
+  const cautious = faint || bare;           // both earn the dashed "don't lean on this" card
   const tag = shelfTag(p);
   const href = editURL(p);
-  return `<div class="card${faint ? ' card-faint' : ''}">
+  return `<div class="card${cautious ? ' card-faint' : ''}">
     <div class="top">
       <div><h2>${p.strain}</h2>
         <div class="tags">
@@ -1027,13 +1044,16 @@ function card(p, extra='', compareTo=null){
       <div class="thc">${thcText(p)}<small>THC</small></div>
     </div>
     ${stack(p)}
-    <div class="read${faint ? ' read-faint' : ''}" style="border-top:none;padding-top:12px;margin-top:12px">
-      ${faint ? `<p class="faint-flag">⚠ Low-confidence guess — terpenes are faint here, trust your nose</p>` : ''}
-      <p style="font-size:14px;color:var(--ink2)">Can read as <b>${says(p)}</b>.</p>
-      <p class="ev">${dots(ev(p))} evidence · ${ev(p)===3?'real mechanism':ev(p)===2?'some human data':'folklore — trust your nose over this'}</p>
-      ${whyHTML(p)}
-      ${verdictHTML(p)}
-      ${faint ? `<p class="faint-explain">${faintNote(p)}</p>` : ''}
+    <div class="read${cautious ? ' read-faint' : ''}" style="border-top:none;padding-top:12px;margin-top:12px">
+      ${bare
+        ? `<p class="faint-flag">⚠ No terpene profile on this one — the lab reported cannabinoids only</p>
+           <p class="faint-explain">There's no chemistry here to read, so Compass can't tell you anything the package doesn't. Go by the label and your nose.</p>`
+        : `${faint ? `<p class="faint-flag">⚠ Low-confidence guess — terpenes are faint here, trust your nose</p>` : ''}
+           <p style="font-size:14px;color:var(--ink2)">Can read as <b>${says(p)}</b>.</p>
+           <p class="ev">${dots(ev(p))} evidence · ${ev(p)===3?'real mechanism':ev(p)===2?'some human data':'folklore — trust your nose over this'}</p>
+           ${whyHTML(p)}
+           ${verdictHTML(p)}
+           ${faint ? `<p class="faint-explain">${faintNote(p)}</p>` : ''}`}
     </div>
     ${extra}
     <div class="acts">
@@ -1049,8 +1069,19 @@ function card(p, extra='', compareTo=null){
 function read(x, y){
   // disambiguate the two strains only when they collide (same name, diff brand)
   const xn = nameVs(x, y), yn = nameVs(y, x), nm = p => p === x ? xn : yn;
-  const faint = [x,y].filter(p => p.confidence === 'faint');
+  const faint = [x,y].filter(p => p.confidence === 'faint' && hasProfile(p));
   let h = '';
+  // No profile at all is a harder stop than faint: there's no reading to
+  // discount, so don't imply one. THC is still a real, comparable number.
+  const bare = [x,y].filter(p => !hasProfile(p));
+  if (bare.length){
+    h += `<p><b>Can't compare these on chemistry.</b> ${bare.map(nm).join(' and ')} ${bare.length>1?'have':'has'} no terpene profile on file — the lab reported cannabinoids only. <b>Go with the package label here.</b></p>`;
+    if (x.thc != null && y.thc != null && Math.abs(x.thc - y.thc) >= 3){
+      const [hi, lo] = x.thc >= y.thc ? [x,y] : [y,x];
+      h += `<p>What I can say: <b>${nm(hi)}</b> is the stronger one (${hi.thc}% THC vs ${lo.thc}%).</p>`;
+    }
+    return h;
+  }
   if (faint.length){
     h += `<p><b>Can't call this from the terpenes.</b> ${faint.map(nm).join(' and ')} ${faint.length>1?'have':'has'} very little terpene content left (${faint.map(p=>p.total_terpenes+'%').join(', ')}), and what survives is the heavy stuff that always survives. That tells you about age and handling, not about the strain. <b>Go with the package label here.</b></p>`;
     if (x.thc != null && y.thc != null && Math.abs(x.thc - y.thc) >= 3){
@@ -1277,6 +1308,17 @@ function render(){
     P.innerHTML = banner + comboShellHTML('similar', sources, sel) + categoryButtons('simCat', simCat);
     const p = DATA.find(x => key(x) === sel);
     if (!p){ O.innerHTML = `<div class="empty">No records yet.</div>`; return foot(); }
+    // Similarity is a comparison of two terpene profiles. With no profile on the
+    // source there is nothing to compare, and every score comes back 0 — which
+    // would render as a confident-looking "nothing is close to this." Say the
+    // true reason instead.
+    if (!hasProfile(p)){
+      O.innerHTML = `<div class="card"><div class="warnbox" style="margin:0">
+        <b>${p.strain}</b> has no terpene profile on file — the lab reported cannabinoids only.
+        There's nothing to match against, so Compass can't suggest a substitute for it.
+        Match by the package, the brand, or ask what they liked about it.</div></div>`;
+      return foot();
+    }
 
     // Results are ALWAYS in-stock only — the whole question is "what can I hand
     // this customer instead," and a sold-out match can't be handed to anyone.
@@ -1284,7 +1326,10 @@ function render(){
     // they loved being gone is exactly why you're here.) The global "include
     // out-of-stock" toggle is hidden on this tab for the same reason.
     // The category filter narrows the results only — the source is unaffected.
-    const candidates = DATA.filter(x => key(x) !== key(p) && stocked(x)
+    // hasProfile: a record with no terpene data scores 0 against everything, so
+    // it would sit at the bottom of the list as a meaningless "0% match" — it
+    // isn't a candidate for a chemistry match at all.
+    const candidates = DATA.filter(x => key(x) !== key(p) && stocked(x) && hasProfile(x)
       && (simCat === 'All' || category(x) === simCat));
     if (!candidates.length){
       O.innerHTML = `<div class="empty">No ${simCat === 'All' ? '' : simCat.toLowerCase()+' '}records scanned to compare against.</div>`;
