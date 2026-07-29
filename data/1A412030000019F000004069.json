@@ -8,7 +8,7 @@
  "total_terpenes": 1.1022,
  "lean": "settling",
  "confidence": "moderate",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Sativa",
  "reported": [
   "spicy & earthy",
@@ -39,5 +39,6 @@
   "beta-Pinene": 0.0274,
   "beta-Myrcene": 0.0198,
   "alpha-Pinene": 0.0146
- }
+ },
+ "sold_out_at": "2026-07-29T14:49:31.480Z"
 }
