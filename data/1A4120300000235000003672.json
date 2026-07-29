@@ -8,10 +8,11 @@
  "total_terpenes": 0,
  "lean": "mixed",
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Indica",
  "reported": [],
  "dominant": [],
  "aroma": [],
- "terpenes": {}
+ "terpenes": {},
+ "sold_out_at": "2026-07-29T14:18:45.924Z"
 }
