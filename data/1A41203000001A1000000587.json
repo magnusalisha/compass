@@ -8,7 +8,7 @@
  "total_terpenes": 6.07,
  "lean": "settling",
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Hybrid",
  "reported": [
   "Live Rosin Vape",
@@ -39,5 +39,6 @@
   "Guaiol": 0.16,
   "Fenchol": 0.11,
   "Terpineol": 0.1
- }
+ },
+ "sold_out_at": "2026-07-29T18:52:38.375Z"
 }
