@@ -50,6 +50,12 @@
   input:focus,select:focus{outline:2px solid var(--gold);outline-offset:2px}
   .pair{display:flex;gap:9px}
   .pair select,.pair .combo{flex:1;min-width:0}
+  /* Compare's two pickers carry a long label (strain · form · brand). Side by
+     side on a 375px phone that leaves about 16 characters each, which cut off
+     the form — the exact thing the label is there to show. Stack them on narrow
+     screens so each gets the full width. The effect tab's type/size pair keeps
+     its row: "Any type" and "Any size" fit fine. */
+  @media(max-width:560px){ .pair-compare{display:block} }
 
   /* clear (×) button living inside the search field */
   .searchwrap{position:relative;margin-bottom:11px}
@@ -268,11 +274,18 @@ const weightText = p => { const s = parseSize(p); if (!s) return '';
 const weightOnly = p => { const s = parseSize(p); return s ? gstr(s.per) : ''; };
 // vape sub-type — the package distinction a budtender needs
 const vapeType = p => /cart/i.test(p.form) ? 'Cart' : /dispos/i.test(p.form) ? 'Disposable' : '';
-// the label shown in the form chip: "Flower · 3.5g", "Vape · Cart · 1g"
+// Infused means concentrate was added, and it moves the number a lot: infused
+// prerolls here average 39.7% THC against 27.6% for plain ones. The word sits in
+// a different place in every form string ("Infused Preroll 0.5g", "Preroll 0.6g
+// Infused", "Preroll 0.5g (5pk, Live Resin Infused)"), so just look for it.
+// Not applied to vapes — those are concentrate by definition.
+const isInfused = p => /infus/i.test(p.form || '');
+// the label shown in the form chip: "Flower · 3.5g", "Vape · Cart · 1g",
+// "Preroll · Infused · 1g"
 const formLabel = p => {
   const c = category(p), s = weightText(p);
   if (c === 'Vape') return ['Vape', vapeType(p), s].filter(Boolean).join(' · ');
-  return s ? `${c} · ${s}` : c;
+  return [c, isInfused(p) ? 'Infused' : '', s].filter(Boolean).join(' · ');
 };
 
 // ── shelf_tag: what the PACKAGE claims. Never inferred from chemistry — a
@@ -1244,9 +1257,27 @@ function categoryButtons(catKey, current){
 // bug reported in round 3 (search "can't be typed into") — never do that again.
 let COMBO = {};
 const comboState = id => COMBO[id] || (COMBO[id] = {query: null, open: false, highlight: -1, filtered: []});
-// include the weight — two sizes of the same strain+brand (e.g. Creamsicle
-// Sunset 3.5g vs 28g) are otherwise identical in the picker.
-const comboLabel = p => p ? `${p.strain} (${p.brand})${weightOnly(p) ? ' · '+weightOnly(p) : ''}` : '';
+// Compact form for the pickers: "Flower 3.5g", "Preroll 1g×4", "Vape Cart 1g".
+//
+// The CATEGORY is what these labels used to be missing, and it's the difference
+// between two genuinely different products. Acapulco Gold at 1g exists three
+// times in this catalogue — a vape cart (83% THC), an infused preroll (44%) and
+// a preroll (30%) — and the picker rendered all three as "Acapulco Gold
+// (Brand) · 1g". 17 strains here are carried by more than one brand, and one
+// pair (Pineapple Express 1g) is a vape versus flower. The only reason that was
+// ever workable is that the person using it already knew the shelf by heart.
+const comboForm = p => {
+  const s = parseSize(p);
+  const w = s ? (s.count > 1 ? `${gstr(s.per)}×${s.count}` : gstr(s.per)) : '';
+  const c = category(p);
+  return (c === 'Vape' ? ['Vape', vapeType(p), w]
+                       : [isInfused(p) ? 'Infused' : '', c, w]).filter(Boolean).join(' ');
+};
+// Ordered by what disambiguates fastest — strain, then form+weight, then brand.
+// The Compare tab puts two of these side by side, so on a phone the text WILL
+// truncate; this order means what gets cut is the brand, which is also printed
+// on the card, rather than the form, which isn't anywhere else in the picker.
+const comboLabel = p => p ? `${p.strain} · ${comboForm(p)} · ${p.brand}` : '';
 const comboSelectedId = id => id === 'similar' ? sel : id === 'a' ? a : b;
 const comboSelectedProduct = id => DATA.find(p => key(p) === comboSelectedId(id));
 
@@ -1259,7 +1290,7 @@ function comboListHTML(id, list){
   const filtered = list.filter(p => (p.strain + ' ' + p.brand).toLowerCase().includes(q));
   st.filtered = filtered;
   if (!filtered.length) return `<ul class="combo-list"><li class="combo-empty">No matches found</li></ul>`;
-  return `<ul class="combo-list">${filtered.map((p,i) => `<li data-id="${key(p)}" class="${i===st.highlight?'hl':''}">${p.strain} <span>${p.brand}${weightOnly(p) ? ' · '+weightOnly(p) : ''}${stocked(p)?'':' · sold out'}</span></li>`).join('')}</ul>`;
+  return `<ul class="combo-list">${filtered.map((p,i) => `<li data-id="${key(p)}" class="${i===st.highlight?'hl':''}">${p.strain} <span>${comboForm(p)} · ${p.brand}${stocked(p)?'':' · sold out'}</span></li>`).join('')}</ul>`;
 }
 function comboShellHTML(id, list, selectedId){
   const st = comboState(id);
@@ -1432,7 +1463,7 @@ function render(){
   // only stops a valid pre-set selection from being reset out from under us.
   a = a && DATA.some(p=>key(p)===a) ? a : key(list[0]||{});
   b = b && DATA.some(p=>key(p)===b) ? b : key(list[1]||{});
-  P.innerHTML = banner + `<div class="pair">${comboShellHTML('a', list, a)}${comboShellHTML('b', list, b)}</div>`;
+  P.innerHTML = banner + `<div class="pair pair-compare">${comboShellHTML('a', list, a)}${comboShellHTML('b', list, b)}</div>`;
   const x = DATA.find(p => key(p) === a), y = DATA.find(p => key(p) === b);
   O.innerHTML = (x && y && x !== y) ? compare(x, y) : `<div class="empty">Pick two different products.</div>`;
   foot();
