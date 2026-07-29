@@ -1,1 +1,5 @@
 .DS_Store
+
+# Built demo output — regenerate with: node build-demo.js
+# The script is versioned; the 200KB generated snapshot is not.
+demo/
