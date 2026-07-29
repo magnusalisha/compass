@@ -8,7 +8,7 @@
  "total_terpenes": 0.84,
  "lean": "mixed",
  "confidence": "moderate",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Hybrid",
  "reported": [
   "Glass tip infused pre-roll 5-pack",
@@ -45,5 +45,6 @@
   "Valencene": 0.01,
   "alpha-Phellandrene": 0.01,
   "alpha-Terpinene": 0.01
- }
+ },
+ "sold_out_at": "2026-07-29T15:31:05.164Z"
 }
