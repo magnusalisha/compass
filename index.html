@@ -1027,6 +1027,28 @@ const domTerps = p => Object.entries(p.terpenes||{})
 // announced "terps read mixed" off an empty profile.
 const hasProfile = p => Object.values(p.terpenes || {}).some(v => v > 0);
 
+// Which lean the TYPE dropdown matches a product on.
+//
+// Chemistry, wherever the chemistry can actually be read — that is the whole
+// point of this tool, and it's what surfaces a mislabelled jar. But where the
+// profile is faint or missing, the tool has ALREADY ruled it untrustworthy:
+// labelCheck() refuses to let such a record contradict its own package, and the
+// card tells you in as many words to read the label, not the profile. Filtering
+// on that same profile contradicted both, so here the package claim stands in.
+//
+// This is not "filter on shelf_tag". Where the chemistry is readable it still
+// wins, mislabels still surface, and a plain "Hybrid" still asserts nothing.
+//
+// It mattered most on prerolls: they're ground and exposed, 48% of ours are
+// faint, and the terpenes that evaporate first (limonene, terpinolene, pinene)
+// are exactly the ones that mean "lifting". So degraded prerolls read
+// "settling" almost mechanically — Preroll + Sativa was returning 2 of the 27
+// sativa-labelled prerolls actually sitting in the case.
+const SHELF_LEAN = Object.assign({}, SHELF_EXPECTS, { hybrid: 'mixed' });
+const filterLean = p => (p.confidence === 'faint' || !hasProfile(p))
+  ? (SHELF_LEAN[String(p.shelf_tag || '').trim().toLowerCase()] || null)
+  : p.lean;
+
 // Weight-aware read (Draft A): lead with the dominant character; frame a
 // meaningful opposing terpene as an undertone; call it mixed only when the top
 // two genuinely rival each other. Stops "heady AND sedating" from reading as a
@@ -1505,7 +1527,7 @@ function renderEffectResults(){
 
   const list = inStock();   // effect recommends what to sell — in-stock only, and the OOS toggle is hidden here
   const scoped = list.filter(p => (activeCat === 'All' || category(p) === activeCat)
-    && (effLean === 'any' || p.lean === LEAN_OF[effLean]));   // type = chemistry lean, not shelf tag
+    && (effLean === 'any' || filterLean(p) === LEAN_OF[effLean]));   // chemistry where it's readable, the package where it isn't
   if (!rawQ){
     // Nothing typed AND nothing narrowed: say what the box is for instead of
     // dumping the whole case. 149 cards is a scroll, not an answer, and it
