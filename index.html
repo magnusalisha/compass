@@ -151,6 +151,10 @@
     text-transform:uppercase;color:var(--dim);margin:20px 2px 10px}
   .pivot{display:flex;justify-content:space-between;align-items:center;gap:14px;
     background:var(--card);color:var(--ink);border-radius:12px;padding:13px 18px;margin-bottom:8px;opacity:.62}
+  /* A wrong-size match, dimmed but whole. opacity doesn't block pointer events,
+     so every control inside stays clickable — that's the point. */
+  .card-dim{opacity:.62}
+  .card-dim:hover,.card-dim:focus-within{opacity:1}
   .pivot-strain{font-family:Fraunces,serif;font-weight:700;font-size:16px}
   .pivot-terps{display:flex;flex-wrap:wrap;gap:4px 14px;font-family:'IBM Plex Mono',monospace;
     font-size:12px;color:var(--ink2);margin-top:5px}
@@ -1439,9 +1443,15 @@ function render(){
         ? `<div class="card"><div class="warnbox" style="margin:0">Nothing <b>scanned</b> is close to <b>${p.strain}</b> — its profile is ${domTerps(p).slice(0,2).map(k=>short(k).toLowerCase()).join('/')}-led and nothing else in here looks like that. <b>Say so. Don't substitute.</b> Worth a look at the shelf too, in case something isn't scanned yet.</div></div>`
         : '')
       + primary.slice(0,4).map(([s,x]) => card(x, matchNote(p, x, s), key(p))).join('')
+      // Other sizes get the SAME full card, just dimmed — a compact teaser you
+      // can't act on is the wrong shape here. The dimming still says "this isn't
+      // the size you asked for", but the read, the terpenes and Compare ↔ are
+      // all there, so pivoting is a decision you can actually make rather than
+      // a name you then have to go look up.
       + (same.length && other.length && other[0][0] >= 0.5
           ? `<div class="pivot-head">Closest in other sizes — worth a pivot</div>`
-            + other.slice(0,4).map(([,x]) => pivotRow(x)).join('')
+            + other.slice(0,4).map(([s,x]) =>
+                `<div class="card-dim">${card(x, matchNote(p, x, s), key(p))}</div>`).join('')
           : '');
     return foot();
   }
@@ -1497,6 +1507,20 @@ function renderEffectResults(){
   const scoped = list.filter(p => (activeCat === 'All' || category(p) === activeCat)
     && (effLean === 'any' || p.lean === LEAN_OF[effLean]));   // type = chemistry lean, not shelf tag
   if (!rawQ){
+    // Nothing typed AND nothing narrowed: say what the box is for instead of
+    // dumping the whole case. 149 cards is a scroll, not an answer, and it
+    // contradicts the funnel the panel sets up (category > type > size >
+    // effect). The moment any filter is touched, browsing IS the intent — so
+    // the cards come back. This is also the only place with room to mention
+    // that activities work, which nothing else on screen says.
+    if (activeCat === 'All' && effLean === 'any' && effSize === 'any'){
+      O.innerHTML = `<div class="empty">
+        <b style="color:var(--pale)">What are they after?</b><br>
+        Describe the feeling — <i>relaxed but clear-headed</i>, <i>energetic</i>, <i>mellow</i> —
+        or just say what they're off to do: <i>a concert</i>, <i>cleaning</i>, <i>a movie</i>.<br><br>
+        Or pick a category above to browse the case.</div>`;
+      return foot();
+    }
     // browsing: the size dropdown just narrows, like the category buttons
     const shown = effSize === 'any' ? scoped : scoped.filter(p => weightOnly(p) === effSize);
     O.innerHTML = shown.length ? shown.map(p => card(p)).join('')
