@@ -1,0 +1,47 @@
+{
+ "id": "a3f9c12e74",
+ "metrc_tag": "1A4120300000291000003412",
+ "brand": "Jaunty",
+ "strain": "Velvet Lushers",
+ "form": "Preroll Infused 1g",
+ "thc": 31.57,
+ "total_terpenes": 2.9318,
+ "lean": "settling",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Indica-leaning Hybrid",
+ "reported": [
+  "spicy",
+  "earthy"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "Limonene",
+  "alpha-Humulene"
+ ],
+ "aroma": [
+  "spicy",
+  "earthy",
+  "citrus",
+  "floral",
+  "herbal"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 1.1031,
+  "Limonene": 0.313,
+  "alpha-Humulene": 0.3116,
+  "Farnesene": 0.3046,
+  "Linalool": 0.1438,
+  "alpha-Bisabolol": 0.134,
+  "Nerolidol": 0.1253,
+  "Valencene": 0.0697,
+  "Terpineol": 0.0674,
+  "Fenchol": 0.0619,
+  "beta-Myrcene": 0.0575,
+  "Guaiol": 0.0562,
+  "beta-Pinene": 0.041,
+  "alpha-Pinene": 0.0354,
+  "Terpinolene": 0.0155,
+  "Ocimene": 0.0079
+ }
+}
