@@ -96,14 +96,12 @@
   .tag-shelf{background:#E0DAEF;color:#4B3E70}
   .tag-unset{background:transparent;border:1px dashed var(--line);color:var(--ink2)}
 
-  /* label vs chemistry — the comparison the archive exists to make */
-  .verdict{font-size:13.5px;margin-top:10px;padding:9px 11px;border-radius:8px;
-    background:#E8E7DD;color:var(--ink2);line-height:1.4}
-  .verdict.clash{background:#F6E3D3;border:1px solid #E0B99A;color:#7A3A1C}
-
   .stack{display:flex;height:11px;border-radius:6px;overflow:hidden;margin:13px 0 11px;background:#E0D8C8}
   .stack i{height:100%}
   .chips{display:flex;flex-wrap:wrap;gap:6px 16px;font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--ink2)}
+  /* the plain word riding along with each molecule — present but never louder
+     than the measurement it explains */
+  .chips em{font-style:normal;opacity:.62}
   .chips span{display:flex;align-items:center;gap:6px}
   .chips b{width:8px;height:8px;border-radius:50%;flex:none}
 
@@ -241,11 +239,11 @@ const CATEGORIES = ['All', 'Flower', 'Preroll', 'Vape'];
 // not a UI filter category (yet) — just enough to pick honest fallback copy below
 const isEdible = p => /gummy|edible|chocolate|beverage|tincture|capsule/i.test(p.form);
 
-// A customer's "sativa / indica / hybrid" is really a proxy for a felt
-// direction — so map their word to the CHEMISTRY lean, not the shelf tag. This
-// finds products the jar mislabels (a "hybrid" that actually lifts) and skips
-// the label-vs-chemistry clashes (a "sativa" whose terps settle), which is the
-// whole point of the tool. Deliberately NOT filtering on shelf_tag.
+// A customer's "sativa / indica / hybrid" is a request in the vocabulary the
+// package is written in, so it's answered from the package — see filterLean()
+// below for the measurements behind that, which reversed an earlier decision to
+// answer it from chemistry instead. The card still shows the ⚠ clash where the
+// terps disagree; the budtender sees it and can say so.
 const LEAN_OF = { Sativa: 'lifting', Indica: 'settling', Hybrid: 'mixed' };
 
 // ── weight / package details, parsed out of `form`.
@@ -319,26 +317,37 @@ const SHELF_EXPECTS = {
   'indica': 'settling'
 };
 
-// Returns null when we can't ask the question honestly: Unverified is excluded
-// by the brief, and a faint profile is explicitly LESS trustworthy than the
-// package label ("trust the package label, not this profile") — so it doesn't
-// get to contradict it.
-function labelCheck(p){
-  const tag = shelfTag(p);
-  // No profile = no chemistry to compare the label against. `lean` may still say
-  // "mixed" on such a record, but that's a default, not a measurement.
-  if (tag === 'Unverified' || p.confidence === 'faint' || !p.lean || !hasProfile(p)) return null;
-  const expects = SHELF_EXPECTS[tag.toLowerCase()];
-  // 'mixed' is the absence of a direction, not the opposite one — it contradicts nothing.
-  return {tag, lean: p.lean, clash: !!expects && p.lean !== 'mixed' && p.lean !== expects};
-}
-function verdictHTML(p){
-  const v = labelCheck(p);
-  if (!v) return '';
-  return v.clash
-    ? `<div class="verdict clash">⚠ Shelf says <b>${v.tag}</b> — the terps read <b>${v.lean}</b>. Worth a look at the package.</div>`
-    : `<div class="verdict">Shelf says <b>${v.tag}</b> · terps read <b>${v.lean}</b>.</div>`;
-}
+// ── The shelf-vs-chemistry verdict line and its ⚠ clash warning were REMOVED
+// on 2026-07-30, along with labelCheck(). Recorded here because it was the
+// tool's signature feature and removing it deserves a reason on the record.
+//
+// It claimed the terpenes contradicted the package. Two findings killed it:
+//
+// 1. Nothing supports the claim. Tested across every non-faint sativa/indica
+//    record (n=48/31), no terpene in CHAR separates the two groups at any
+//    corrected significance level; myrcene is a coin flip and limonene runs
+//    backwards. Learn the directions on half the records, predict the other
+//    half: 45.7% accurate against 60.8% for always guessing "sativa". That is
+//    the same result the published chemovar work reports — terpene profiles
+//    cluster reliably, but not along the sativa/indica axis. It is also exactly
+//    why filterLean() below stopped filtering on chemistry. The warning was
+//    asserting in prose the claim the dropdown had just abandoned.
+//
+// 2. Repairing it made it worse. Pointing the line at the measured chemistry
+//    (rather than the stored `lean`) fixes the contradiction by construction —
+//    36 of 135 cards disagreed with the read printed directly above them — but
+//    it would then flag 29 of 48 sativa-labelled products against 7 of 31
+//    indica. Caryophyllene and myrcene dominate nearly every profile and both
+//    point "settle", so sativa labels absorb almost every hit. That is the
+//    structural bias, not a shelf full of mislabelled jars.
+//
+// The package claim still shows — it's a chip at the top of every card — and
+// the read below it is plain English. The tension is visible where it exists;
+// Compass just no longer adjudicates it on evidence it doesn't have. A real
+// mislabel check needs something outside the terpenes to check against.
+//
+// `p.lean` now has NO reader anywhere in this page. The capture script still
+// writes it; nothing here consults it.
 // one tap from the card to this record's file in GitHub's editor. No token: the
 // page stays public and read-only, GitHub does the auth. Only for records that
 // came from the repo (_key) — the embedded seed has no file to point at.
@@ -437,7 +446,12 @@ const termName = (k, keys) => keys.some(o => o !== k && short(o) === short(k)) ?
 // Acapulco Gold…") — append the brand, but only when the two actually collide.
 const nameVs = (p, other) => p.strain === other.strain ? `${p.strain} (${p.brand})` : p.strain;
 // THC can be missing on a record (11 currently) — never render "null%".
-const thcText = p => p.thc == null ? '—' : p.thc + '%';
+// COAs report THC to 3-4 decimals (37.705, 15.5366). That precision is real but
+// it isn't decision-relevant, and reading two of them in one sentence is work.
+// One decimal everywhere a THC figure is PRINTED; comparisons still run on the
+// stored value.
+const thc1 = v => v == null ? '—' : (+(+v).toFixed(1)) + '%';
+const thcText = p => thc1(p.thc);
 const col = t => COLOR[t] ? `var(${COLOR[t]})` : 'var(--etc)';
 // The extraction step asks the model for "10 random hex chars" as `id` — in
 // practice that's low-entropy and collides a lot at real scale (two totally
@@ -999,7 +1013,12 @@ function sim(x, y){
 // not the clinical descriptor. "upbeat" replaces "bright" for limonene — bright
 // read as a flavour note, not a feeling.
 const CHAR = {
-  'Terpinolene':        ['heady and alert','heady','lift'],
+  // "buzzy", not "heady": heady is industry vernacular whose everyday meaning is
+  // "intoxicating" — a strength claim, competing with the THC figure printed
+  // directly above it — and it sat one letter from "heavy", its own opposite, in
+  // the same sentence on 10 cards ("heavy and heady in equal measure"). Buzzy is
+  // already this terpene's own descriptor in REPORTED and collides with nothing.
+  'Terpinolene':        ['alert and buzzy','buzzy','lift'],
   'Limonene':           ['upbeat and social','upbeat','lift'],
   'alpha-Pinene':       ['clear-headed','clear','lift'],
   'beta-Pinene':        ['clear-headed','clear','lift'],
@@ -1012,6 +1031,23 @@ const CHAR = {
   'Farnesene':          ['settled','settled','settle'],
   'Terpineol':          ['mellow','mellow','settle']
 };
+// ── DO NOT derive `lean` by summing this table. Tried 2026-07-30, reverted the
+// same day; the numbers are in PLAN.md §1 so nobody repeats it.
+//
+// The stored `lean` really is a model guess rather than arithmetic, and it really
+// is unreproducible — that diagnosis was right. But replacing it with
+// `sum(lift terps) vs sum(settle terps)` measures nothing:
+//   - The settle side is NEVER zero (0 of 176 readable profiles); the lift side
+//     is zero in 17. Median settle:lift across the whole inventory is 2.76x, so
+//     any threshold at or under that calls the AVERAGE product settling. It was
+//     returning the baseline, not a reading.
+//   - beta-Caryophyllene is in 165 of 177 profiles and LEADS 89 of them, and of
+//     those leaders the package says Sativa 29 / Indica 18. It cannot mark a
+//     direction it appears in nearly everything with.
+//   - Against the package on 79 non-faint sativa/indica records, the sum agreed
+//     28 and contradicted 28 — a coin flip. The stored field scores 60%.
+// Consistency with says() is not evidence: the read and the verdict agreeing
+// proves only that they share a computation, which is equally true of a wrong one.
 // The dominant terpenes derived from the ACTUAL measured values, sorted — not
 // the stored `dominant` field, which occasionally disagreed with the numbers.
 // This is the same order the chips now use, so the whole card reads consistently.
@@ -1027,62 +1063,159 @@ const domTerps = p => Object.entries(p.terpenes||{})
 // announced "terps read mixed" off an empty profile.
 const hasProfile = p => Object.values(p.terpenes || {}).some(v => v > 0);
 
-// Which lean the TYPE dropdown matches a product on.
+// Which lean the TYPE dropdown matches a product on: THE PACKAGE, always.
 //
-// Chemistry, wherever the chemistry can actually be read — that is the whole
-// point of this tool, and it's what surfaces a mislabelled jar. But where the
-// profile is faint or missing, the tool has ALREADY ruled it untrustworthy:
-// labelCheck() refuses to let such a record contradict its own package, and the
-// card tells you in as many words to read the label, not the profile. Filtering
-// on that same profile contradicted both, so here the package claim stands in.
+// This used to filter on chemistry wherever the profile was readable, on the
+// grounds that surfacing a mislabelled jar is the point of the tool. Changed
+// 2026-07-30, because the chemistry does not carry that claim. Tested against
+// every sativa/indica-labelled non-faint record we have (n=48/31): not one of
+// the twelve terpenes in CHAR separates the two groups at any corrected
+// significance level, myrcene lands at AUC 0.498 — a coin flip — and limonene
+// runs backwards. Learn each terpene's direction on half the records and predict
+// the other half and you get 45.7% accuracy, against 60.8% for always guessing
+// "sativa". Full numbers in PLAN.md §1.
 //
-// This is not "filter on shelf_tag". Where the chemistry is readable it still
-// wins, mislabels still surface, and a plain "Hybrid" still asserts nothing.
+// That result is not a surprise; it's the published one. Terpene profiles do
+// cluster into reliable chemovars, but those clusters don't line up with the
+// sativa/indica axis. So filtering the dropdown on derived direction was sorting
+// the case by a quantity nobody has shown to exist, and it was doing it instead
+// of the one claim a human actually stood in front of the package and read.
 //
-// It mattered most on prerolls: they're ground and exposed, 48% of ours are
-// faint, and the terpenes that evaporate first (limonene, terpinolene, pinene)
-// are exactly the ones that mean "lifting". So degraded prerolls read
-// "settling" almost mechanically — Preroll + Sativa was returning 2 of the 27
-// sativa-labelled prerolls actually sitting in the case.
+// The mislabel warning that used to sit alongside this went the same way, later
+// the same day and for the same reason — see the note where labelCheck() was.
+// A plain "Hybrid" still asserts nothing, and Unverified still matches no type.
 const SHELF_LEAN = Object.assign({}, SHELF_EXPECTS, { hybrid: 'mixed' });
-const filterLean = p => (p.confidence === 'faint' || !hasProfile(p))
-  ? (SHELF_LEAN[String(p.shelf_tag || '').trim().toLowerCase()] || null)
-  : p.lean;
+const filterLean = p => SHELF_LEAN[String(p.shelf_tag || '').trim().toLowerCase()] || null;
 
-// Weight-aware read (Draft A): lead with the dominant character; frame a
-// meaningful opposing terpene as an undertone; call it mixed only when the top
-// two genuinely rival each other. Stops "heady AND sedating" from reading as a
-// contradiction when one terpene is really 3x the other.
+// How close the two sides have to be before the card will call them even.
+//
+// 1.25x, not the 1.5x this started at. Once the read stopped picking its lead by
+// direction, far more cards found their top two genuinely close and "in equal
+// measure" jumped from 14 cards to 43 — a quarter of the shelf sharing one
+// phrase, which is how the evidence badge became meaningless. Every one of the
+// 43 was accurate; that isn't the same as useful. At 1.25x it lands on 26.
+// Measured alternatives: 1.15x → 12 cards, 1.35x → 32, 1.5x → 43.
+const EVEN_T = 1.25;
+// Lead phrase plus the opposing terpene as an undertone. Shared by both branches
+// so a skewed "mixed" reads exactly like any other lead-with-undertone product,
+// which is what it is.
+const undertone = (leadPair, oppPair) => {
+  const lead = CHAR[leadPair[0]], on = CHAR[oppPair[0]];
+  return on[2] === 'lift'
+    ? `${lead[0]}, with ${/^[aeiou]/i.test(on[1])?'an':'a'} ${on[1]} lift on top`
+    : `${lead[0]}, with a ${on[1]} undertone`;
+};
+// Terpenes that have a character word, biggest first. The read is built from the
+// top of this list and nothing else.
+const rankedTerps = p => Object.entries(p.terpenes||{})
+  .filter(([k,v]) => v>0 && CHAR[k]).sort((a,b)=>b[1]-a[1]);
+
+// Does this profile have a direction worth naming at all? Null when the top two
+// are close enough that the read calls them even — the same test says() applies,
+// so anything reading "X and Y in equal measure" is never also described as
+// pulling one way. Used by Compare.
+const netDir = p => {
+  const r = rankedTerps(p);
+  if (!r.length) return null;
+  const top = r[0], td = CHAR[top[0]][2];
+  const opp = r.find(([k]) => CHAR[k][2] !== td);
+  return (opp && top[1] / opp[1] <= EVEN_T) ? null : td;
+};
+
+// The read: lead with the BIGGEST measured terpene, name a meaningful opposing
+// one as an undertone, call them even only when they nearly are.
+//
+// It used to pick the lead by direction — take `lean`, then lead with the
+// strongest terpene pointing that way. That let the sentence lead with a terpene
+// that wasn't the biggest one on the card: Mountain Girl reads "heady and alert"
+// off 2.41% myrcene, the largest single terpene reading in the inventory, with
+// the chips saying so directly above. Eight records did that.
+//
+// `lean` is gone from here entirely. It was a model guess that disagreed with
+// itself on 58% of strains scanned more than once (Pineapple Express is stored
+// as mixed, lifting AND settling), so it had no business choosing the first
+// three words of the card. The biggest terpene is measured, stable and already
+// printed in the chips above — the read now just agrees with them.
 function says(p){
-  const ranked = Object.entries(p.terpenes||{})
-    .filter(([k,v]) => v>0 && CHAR[k]).sort((a,b)=>b[1]-a[1]);
+  const ranked = rankedTerps(p);
   if (!ranked.length) return 'hard to call from the terpenes alone';
-  // Net direction comes from the stored `lean` — the careful whole-profile
-  // calc — NOT a raw top-two ratio, so the read never contradicts the verdict
-  // line, which reads from the same field.
-  const dir = p.lean === 'lifting' ? 'lift' : p.lean === 'settling' ? 'settle' : 'mixed';
-  if (dir === 'mixed'){
-    const top = CHAR[ranked[0][0]];
-    const opp = ranked.find(([k]) => CHAR[k][2] !== top[2]);
-    return opp ? `${top[1]} and ${CHAR[opp[0]][1]} in equal measure` : top[0];
-  }
-  // lead with the strongest terpene pulling the net direction
-  const leadPair = ranked.find(([k]) => CHAR[k][2] === dir) || ranked[0];
-  const lead = CHAR[leadPair[0]];
-  // frame a meaningful opposing terpene as an undertone (ignore if it's tiny)
-  const opp = ranked.find(([k]) => CHAR[k][2] !== dir);
-  if (opp && leadPair[1] / opp[1] <= 5){
-    const on = CHAR[opp[0]];
-    return on[2] === 'lift'
-      ? `${lead[0]}, with ${/^[aeiou]/i.test(on[1])?'an':'a'} ${on[1]} lift on top`
-      : `${lead[0]}, with a ${on[1]} undertone`;
-  }
-  return lead[0];
+  const top = ranked[0], topDir = CHAR[top[0]][2];
+  const opp = ranked.find(([k]) => CHAR[k][2] !== topDir);
+  if (!opp) return CHAR[top[0]][0];
+  if (top[1] / opp[1] <= EVEN_T) return `${CHAR[top[0]][1]} and ${CHAR[opp[0]][1]} in equal measure`;
+  // The lead genuinely leads — undertone if the other is still meaningful.
+  return top[1] / opp[1] <= 5 ? undertone(top, opp) : CHAR[top[0]][0];
 }
-// how good is the evidence behind THIS product's read? — top terps by amount
+// How good is the evidence behind THIS product's read?
+//
+// Grade the LEADING terpene — the one the read is actually written from. This
+// used to take the MAX tier across the top three, which made the badge a near
+// constant: caryophyllene is the only tier-3 entry and it sits in the top three
+// of 83% of records, so it granted the top badge from third place. 150 of 180
+// records showed ●●● "real mechanism", and 70 displayed a higher badge than
+// their leading terpene earns — OG Kush leads with myrcene (folklore) and
+// claimed a real receptor mechanism belonging to a molecule sitting in third.
+//
+// Weighting the tiers by amount was tested and rejected: averaging drags
+// everything to the middle (74% land on ●●○), swapping one meaningless constant
+// for another. Grading the lead gives 49/42/89 across the three tiers.
+//
+// This does not cynically downgrade everything. The records still at ●●● do
+// lead with caryophyllene, which does have a receptor mechanism (Gertsch 2008).
+// Only the ones borrowing credit from third place change.
+const evLead = p => domTerps(p)[0] || null;
 function ev(p){
-  const es = domTerps(p).slice(0,3).map(k => REPORTED[k][1]);
-  return es.length ? Math.max(...es) : 1;
+  const k = evLead(p);
+  return k ? REPORTED[k][1] : 1;
+}
+// Name the terpene the badge is grading. It makes the claim checkable against
+// the WHY? panel directly below, which explains that same terpene — and it
+// teaches the chemistry instead of asking anyone to trust three dots.
+function evWord(p){
+  const n = ev(p), k = evLead(p);
+  const on = k ? ` — leans on ${short(k).toLowerCase()}` : '';
+  return n === 3 ? `real mechanism${on}`
+       : n === 2 ? `some human data${on}`
+       : `folklore${on}, trust your nose over this`;
+}
+// ── THC in the read.
+//
+// The footer already calls THC "the one number on the COA that reliably drives
+// the experience", and says() was purely terpene-based — so within one group of
+// 17 products sharing a terpene ranking, THC ran 15.5% to 75.6% and every one
+// got an identical read. Lemon Fresh is the clean case: a 37.7% infused preroll
+// whose single most decision-relevant fact went unmentioned.
+//
+// Banded against THIS shop's own distribution, per category, rather than against
+// invented absolute thresholds — categories aren't remotely comparable (median
+// THC: flower 27.6%, preroll 30.3%, vape 86.7%), so "high" only means anything
+// relative to its peers. Percentile rather than a point gap for the same reason:
+// vapes span 71-94% and flower 19-51%, so "+8 points" is not one thing.
+//
+// Cached against the DATA array itself, which is REPLACED (not mutated) when
+// records load or a stock write lands — so an identity check invalidates exactly
+// when the underlying numbers change.
+let _thcPeersFor = null, _thcPeers = {};
+const thcPeers = c => {
+  if (_thcPeersFor !== DATA){ _thcPeersFor = DATA; _thcPeers = {}; }
+  return _thcPeers[c] || (_thcPeers[c] =
+    DATA.filter(p => category(p) === c && p.thc != null).map(p => p.thc).sort((a,b) => a-b));
+};
+function thcNote(p){
+  if (p.thc == null) return '';
+  const c = category(p), peers = thcPeers(c);
+  // Too few peers to call anything typical — state the number and stop.
+  if (peers.length < 8) return `<p>Strength: <b>${thc1(p.thc)} THC</b>.</p>`;
+  const below = peers.filter(v => v < p.thc).length;
+  const pct = below / peers.length;
+  const med = peers[Math.floor(peers.length / 2)];
+  const cat = c.toLowerCase() + 's';
+  const where = pct >= 0.90 ? `among the strongest ${cat} here`
+              : pct >= 0.70 ? `on the strong side for ${cat} here`
+              : pct >  0.30 ? `about typical for ${cat} here`
+              : pct >  0.10 ? `on the lighter side for ${cat} here`
+              :               `among the lightest ${cat} here`;
+  return `<p>Strength: <b>${thc1(p.thc)} THC</b> — ${where} (typical is ${thc1(med)}).</p>`;
 }
 // the explanation: which dominant terpenes drive the read, and what that rests on
 function whyHTML(p){
@@ -1104,6 +1237,16 @@ function faintNote(p){
 }
 
 function stack(p){
+  // Each chip carries its plain-English word: "caryophyllene 1.19% · calm".
+  //
+  // Nobody behind the counter has twelve terpenes memorised, and the card used
+  // to name three molecules in the chips while putting their meaning in a
+  // sentence below — where you can't tell which word belongs to which molecule.
+  // The word here is the same one CHAR gives the read, so the chips and the
+  // sentence teach each other, and the mapping is learned by use instead of
+  // memorised up front. It also repairs the evidence line below, which names a
+  // molecule ("leans on caryophyllene") that a chip has now already translated.
+  //
   // Sort by amount — the stored file order is NOT reliably descending (46 of
   // the records aren't), so relying on it made the bar and the "top 3" chips
   // hide the actual biggest terpene. Banana Kush's terpinolene (1.13%, its
@@ -1111,7 +1254,8 @@ function stack(p){
   const e = Object.entries(p.terpenes).filter(([,v]) => v>0).sort((a,b) => b[1] - a[1]);
   const s = e.reduce((t,[,v]) => t+v, 0) || 1;
   return `<div class="stack">${e.map(([k,v]) => `<i style="width:${v/s*100}%;background:${col(k)}"></i>`).join('')}</div>
-    <div class="chips">${e.slice(0,3).map(([k,v]) => `<span><b style="background:${col(k)}"></b>${short(k).toLowerCase()} ${v}%</span>`).join('')}</div>`;
+    <div class="chips">${e.slice(0,3).map(([k,v]) => `<span><b style="background:${col(k)}"></b>${short(k).toLowerCase()} ${v}%${
+      CHAR[k] ? ` <em>· ${CHAR[k][1]}</em>` : ''}</span>`).join('')}</div>`;
 }
 // compareTo: a source product key. Only Find similar passes it — it turns on a
 // "Compare ↔" action that jumps straight into the Compare tab with the source
@@ -1134,14 +1278,14 @@ function card(p, extra='', compareTo=null){
     </div>
     ${stack(p)}
     <div class="read${cautious ? ' read-faint' : ''}" style="border-top:none;padding-top:12px;margin-top:12px">
+      ${thcNote(p)}
       ${bare
         ? `<p class="faint-flag">⚠ No terpene profile on this one — the lab reported cannabinoids only</p>
-           <p class="faint-explain">There's no chemistry here to read, so Compass can't tell you anything the package doesn't. Go by the label and your nose.</p>`
+           <p class="faint-explain">Beyond that strength figure there's no chemistry here to read, so Compass can't tell you anything about its character. Go by the label and your nose.</p>`
         : `${faint ? `<p class="faint-flag">⚠ Low-confidence guess — terpenes are faint here, trust your nose</p>` : ''}
            <p style="font-size:14px;color:var(--ink2)">Can read as <b>${says(p)}</b>.</p>
-           <p class="ev">${dots(ev(p))} evidence · ${ev(p)===3?'real mechanism':ev(p)===2?'some human data':'folklore — trust your nose over this'}</p>
+           <p class="ev">${dots(ev(p))} evidence · ${evWord(p)}</p>
            ${whyHTML(p)}
-           ${verdictHTML(p)}
            ${faint ? `<p class="faint-explain">${faintNote(p)}</p>` : ''}`}
     </div>
     ${extra}
@@ -1167,7 +1311,7 @@ function read(x, y){
     h += `<p><b>Can't compare these on chemistry.</b> ${bare.map(nm).join(' and ')} ${bare.length>1?'have':'has'} no terpene profile on file — the lab reported cannabinoids only. <b>Go with the package label here.</b></p>`;
     if (x.thc != null && y.thc != null && Math.abs(x.thc - y.thc) >= 3){
       const [hi, lo] = x.thc >= y.thc ? [x,y] : [y,x];
-      h += `<p>What I can say: <b>${nm(hi)}</b> is the stronger one (${hi.thc}% THC vs ${lo.thc}%).</p>`;
+      h += `<p>What I can say: <b>${nm(hi)}</b> is the stronger one (${thc1(hi.thc)} THC vs ${thc1(lo.thc)}).</p>`;
     }
     return h;
   }
@@ -1175,11 +1319,15 @@ function read(x, y){
     h += `<p><b>Can't call this from the terpenes.</b> ${faint.map(nm).join(' and ')} ${faint.length>1?'have':'has'} very little terpene content left (${faint.map(p=>p.total_terpenes+'%').join(', ')}), and what survives is the heavy stuff that always survives. That tells you about age and handling, not about the strain. <b>Go with the package label here.</b></p>`;
     if (x.thc != null && y.thc != null && Math.abs(x.thc - y.thc) >= 3){
       const [hi, lo] = x.thc >= y.thc ? [x,y] : [y,x];
-      h += `<p>What I can say: <b>${nm(hi)}</b> is the stronger one (${hi.thc}% THC vs ${lo.thc}%).</p>`;
+      h += `<p>What I can say: <b>${nm(hi)}</b> is the stronger one (${thc1(hi.thc)} THC vs ${thc1(lo.thc)}).</p>`;
     }
     return h;
   }
-  if (x.lean !== y.lean && x.lean !== 'mixed' && y.lean !== 'mixed')
+  // Same test the read uses, so Compare can't announce "opposite directions"
+  // over two reads that both lead the same way — or over a pair the cards call
+  // even. Was branching on `lean`, which the read no longer consults.
+  const [xd, yd] = [netDir(x), netDir(y)];
+  if (xd && yd && xd !== yd)
     h += `<p>These pull in opposite directions. People tend to describe <b>${xn}</b> as <b>${says(x)}</b>; <b>${yn}</b> more <b>${says(y)}</b>.</p>`;
   else if (domTerps(x)[0] === domTerps(y)[0])
     h += `<p>Both lead with <b>${short(domTerps(x)[0]).toLowerCase()}</b>, so they're close cousins — both usually described as <b>${says(x)}</b>. The difference is underneath.</p>`;
@@ -1198,7 +1346,7 @@ function read(x, y){
   if (!gaps.length) h += `<p>The profiles are close enough that I'd sell on smell or price.</p>`;
   if (x.thc != null && y.thc != null && Math.abs(x.thc - y.thc) >= 3){
     const [hi, lo] = x.thc >= y.thc ? [x,y] : [y,x];
-    h += `<p><b>${nm(hi)}</b> is meaningfully stronger (${hi.thc}% THC vs ${lo.thc}%) — that'll drive the experience more than any terpene here.</p>`;
+    h += `<p><b>${nm(hi)}</b> is meaningfully stronger (${thc1(hi.thc)} THC vs ${thc1(lo.thc)}) — that'll drive the experience more than any terpene here.</p>`;
   }
   return h;
 }
@@ -1221,25 +1369,23 @@ function matchNote(src, x, s){
   // THC can be missing on either side — don't invent a comparison from a null
   const d = (x.thc != null && src.thc != null) ? x.thc - src.thc : null;
   const thc = d == null
-    ? (x.thc == null ? 'THC not recorded' : `${x.thc}% THC`)
+    ? (x.thc == null ? 'THC not recorded' : `${thc1(x.thc)} THC`)
     : Math.abs(d) >= 3
-      ? `${d > 0 ? 'stronger' : 'lighter'} — ${x.thc}% THC vs the ${src.thc}% you had`
-      : `${x.thc}% THC, about the same strength`;
+      ? `${d > 0 ? 'stronger' : 'lighter'} — ${thc1(x.thc)} THC vs the ${thc1(src.thc)} you had`
+      : `${thc1(x.thc)} THC, about the same strength`;
   return `<div class="match">${Math.round(s*100)}% match${why ? ' · ' + why : ''}<br>${thc}</div>`;
 }
 
-// The shelf tag + label-vs-chemistry check, sized for the Compare header. This
-// is the single-card verdict brought into the two-up view — the tool's whole
-// point is holding the package's claim against the chemistry, and Compare is
-// exactly where a budtender is weighing "the sativa vs the indica".
+// What the package claims, sized for the Compare header. It used to carry the
+// ⚠ clash too — the single-card verdict brought into the two-up view — and went
+// when that did (see the note where labelCheck used to live). The tag still
+// shows: Compare is exactly where someone is weighing "the sativa vs the
+// indica", so the package's own word belongs here. Compass just doesn't argue
+// with it any more.
 function cmpShelf(p, align){
   const tag = shelfTag(p);
   if (tag === 'Unverified') return '';
-  const base = `font-family:'IBM Plex Mono',monospace;font-size:11px;margin-top:5px;text-align:${align}`;
-  const v = labelCheck(p);   // null when faint/unverified/no-lean — then we show the tag but never contradict it
-  return v && v.clash
-    ? `<div style="${base};color:var(--warn)">⚠ shelf: ${tag} · terps read ${v.lean}</div>`
-    : `<div style="${base};color:var(--ink2)">shelf: ${tag}</div>`;
+  return `<div style="font-family:'IBM Plex Mono',monospace;font-size:11px;margin-top:5px;text-align:${align};color:var(--ink2)">shelf: ${tag}</div>`;
 }
 function compare(x, y){
   const keys = [...new Set([...Object.keys(x.terpenes), ...Object.keys(y.terpenes)])]
