@@ -1,0 +1,41 @@
+{
+ "id": "a3f7c29b1e",
+ "metrc_tag": "1A41203000018CC000000963",
+ "brand": "Jetty",
+ "strain": "Rainbow Zoap",
+ "form": "Vape 1g Cartridge",
+ "thc": 85.0902,
+ "total_terpenes": 4.14,
+ "lean": "settling",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Hybrid",
+ "reported": [
+  "Solventless",
+  "Hybrid"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "Limonene",
+  "alpha-Humulene"
+ ],
+ "aroma": [
+  "spicy",
+  "citrus",
+  "herbal",
+  "floral",
+  "earthy"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 1.46,
+  "Limonene": 0.93,
+  "alpha-Humulene": 0.62,
+  "beta-Myrcene": 0.34,
+  "Linalool": 0.24,
+  "Farnesene": 0.23,
+  "beta-Pinene": 0.14,
+  "Fenchol": 0.07,
+  "alpha-Bisabolol": 0.06,
+  "Terpineol": 0.05
+ }
+}
