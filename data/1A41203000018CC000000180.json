@@ -1,0 +1,44 @@
+{
+ "id": "a3f8c21e90",
+ "metrc_tag": "1A41203000018CC000000180",
+ "brand": "Jetty",
+ "strain": "Pressure In Paradise",
+ "form": "Vape 1g Disposable",
+ "thc": 78.1,
+ "total_terpenes": 6.5754,
+ "lean": "settling",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Hybrid",
+ "reported": [
+  "Spicy",
+  "Citrus"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "Limonene",
+  "beta-Myrcene"
+ ],
+ "aroma": [
+  "spicy",
+  "citrus",
+  "herbal",
+  "earthy",
+  "hoppy"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 1.7673,
+  "Limonene": 1.4581,
+  "beta-Myrcene": 1.2068,
+  "Caryophyllene Oxide": 0.6019,
+  "alpha-Humulene": 0.4835,
+  "Linalool": 0.2568,
+  "beta-Pinene": 0.2459,
+  "alpha-Pinene": 0.1362,
+  "Farnesene": 0.1424,
+  "Fenchol": 0.1126,
+  "Terpineol": 0.0694,
+  "alpha-Bisabolol": 0.0548,
+  "Camphene": 0.0397
+ }
+}
