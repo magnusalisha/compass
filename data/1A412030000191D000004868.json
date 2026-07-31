@@ -1,0 +1,49 @@
+{
+ "id": "a3f82c1e9d",
+ "metrc_tag": "1A412030000191D000004868",
+ "brand": "Ghost",
+ "strain": "RS-11",
+ "form": "Vape 2g Distillate",
+ "thc": 81.987,
+ "total_terpenes": 2.61,
+ "lean": "lifting",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Hybrid",
+ "reported": [
+  "Limonene-forward",
+  "Linalool secondary"
+ ],
+ "dominant": [
+  "Limonene",
+  "Linalool",
+  "beta-Caryophyllene"
+ ],
+ "aroma": [
+  "citrus",
+  "floral",
+  "spice",
+  "pine",
+  "herbal"
+ ],
+ "terpenes": {
+  "Limonene": 0.81,
+  "Linalool": 0.61,
+  "beta-Caryophyllene": 0.26,
+  "alpha-Bisabolol": 0.13,
+  "Fenchol": 0.12,
+  "Valencene": 0.11,
+  "alpha-Humulene": 0.09,
+  "beta-Pinene": 0.09,
+  "alpha-Pinene": 0.07,
+  "alpha-Terpinene": 0.07,
+  "Terpineol": 0.06,
+  "Camphene": 0.06,
+  "Ocimene": 0.04,
+  "Terpinolene": 0.03,
+  "Caryophyllene Oxide": 0.02,
+  "alpha-Phellandrene": 0.02,
+  "Menthol": 0.01,
+  "beta-Myrcene": 0.01
+ }
+}
