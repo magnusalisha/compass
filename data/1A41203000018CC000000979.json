@@ -1,0 +1,46 @@
+{
+ "id": "a3f9c12e74",
+ "metrc_tag": "1A41203000018CC000000979",
+ "brand": "Jetty",
+ "strain": "Piñata",
+ "form": "Vape 1g Disposable",
+ "thc": 83.4,
+ "total_terpenes": 5.79,
+ "lean": "mixed",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Sativa",
+ "reported": [
+  "Spicy",
+  "Citrus"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "Limonene",
+  "beta-Myrcene"
+ ],
+ "aroma": [
+  "spicy",
+  "citrus",
+  "herbal",
+  "floral",
+  "hops"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 1.7411,
+  "Limonene": 1.7072,
+  "beta-Myrcene": 0.577,
+  "alpha-Humulene": 0.5194,
+  "Linalool": 0.2701,
+  "beta-Pinene": 0.2417,
+  "Farnesene": 0.1931,
+  "alpha-Pinene": 0.139,
+  "Fenchol": 0.1203,
+  "alpha-Bisabolol": 0.0985,
+  "Terpineol": 0.0748,
+  "Camphene": 0.0429,
+  "trans-beta-Ocimene": 0.0328,
+  "Guaiol": 0.026,
+  "cis-beta-Ocimene": 0.0069
+ }
+}
