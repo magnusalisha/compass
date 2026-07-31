@@ -1,0 +1,47 @@
+{
+ "id": "a3f9c12e4b",
+ "metrc_tag": "1A412030000070A000000187",
+ "brand": "Ruby Farms",
+ "strain": "Trop Cherry",
+ "form": "Preroll 5g (7-pack)",
+ "thc": 25.9693,
+ "total_terpenes": 1.12,
+ "lean": "mixed",
+ "confidence": "moderate",
+ "in_stock": true,
+ "shelf_tag": "Hybrid",
+ "reported": [
+  "Trop Cherry",
+  "7 Count Classics"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "alpha-Humulene",
+  "Terpinolene"
+ ],
+ "aroma": [
+  "spicy",
+  "earthy",
+  "herbal",
+  "citrus",
+  "floral"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.37,
+  "alpha-Humulene": 0.13,
+  "Terpinolene": 0.12,
+  "Limonene": 0.11,
+  "alpha-Bisabolol": 0.07,
+  "Farnesene": 0.06,
+  "beta-Myrcene": 0.04,
+  "Guaiol": 0.03,
+  "Linalool": 0.03,
+  "Ocimene": 0.03,
+  "beta-Pinene": 0.03,
+  "Terpineol": 0.02,
+  "Fenchol": 0.02,
+  "alpha-Pinene": 0.02,
+  "Geraniol": 0.01,
+  "Valencene": 0.01
+ }
+}
