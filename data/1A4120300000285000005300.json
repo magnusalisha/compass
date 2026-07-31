@@ -1,0 +1,48 @@
+{
+ "id": "a3f7c2b891",
+ "metrc_tag": "1A4120300000285000005300",
+ "brand": "Fernway",
+ "strain": "Mochi",
+ "form": "Vape 1g Disposable",
+ "thc": 81.07,
+ "total_terpenes": 6.002,
+ "lean": "lifting",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Sativa",
+ "reported": [
+  "Terpinolene-forward",
+  "High potency concentrate"
+ ],
+ "dominant": [
+  "Terpinolene",
+  "beta-Myrcene",
+  "beta-Caryophyllene"
+ ],
+ "aroma": [
+  "floral",
+  "herbal",
+  "woody",
+  "spicy",
+  "sweet"
+ ],
+ "terpenes": {
+  "Terpinolene": 3.017,
+  "beta-Myrcene": 0.567,
+  "beta-Caryophyllene": 0.5055,
+  "trans-b-Ocimene": 0.454,
+  "alpha-Pinene": 0.2628,
+  "alpha-Phellandrene": 0.2281,
+  "Sabinene": 0.2118,
+  "beta-Pinene": 0.1515,
+  "Linalool": 0.0982,
+  "alpha-Humulene": 0.1011,
+  "cis-Ocimene": 0.0947,
+  "alpha-Terpinene": 0.0867,
+  "3-Carene": 0.0796,
+  "gamma-Terpinene": 0.0474,
+  "alpha-Bisabolol": 0.0519,
+  "Fenchol": 0.0205,
+  "Terpineol": 0.0242
+ }
+}
