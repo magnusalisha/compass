@@ -1,0 +1,48 @@
+{
+ "id": "a3f82e91bc",
+ "metrc_tag": "1A4120300000222000000488",
+ "brand": "Alchemy Pure LLC",
+ "strain": "Chronic Cake",
+ "form": "Preroll 0.75g Hash Infused",
+ "thc": 33.2,
+ "total_terpenes": 3.5868,
+ "lean": "settling",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Indica-leaning Hybrid",
+ "reported": [
+  "Spicy",
+  "Earthy"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "Limonene",
+  "Farnesene"
+ ],
+ "aroma": [
+  "spicy",
+  "citrus",
+  "earthy",
+  "floral",
+  "woody"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.9532,
+  "Limonene": 0.6559,
+  "Farnesene": 0.5056,
+  "alpha-Humulene": 0.2997,
+  "Linalool": 0.2048,
+  "beta-Myrcene": 0.1668,
+  "alpha-Bisabolol": 0.12,
+  "beta-Pinene": 0.1041,
+  "Nerolidol": 0.0137,
+  "Valencene": 0.0997,
+  "Fenchol": 0.0738,
+  "alpha-Pinene": 0.0728,
+  "Terpineol": 0.0638,
+  "Camphene": 0.0152,
+  "Geraniol": 0.0147,
+  "Ocimene": 0.0218,
+  "Carene": 0.0403
+ }
+}
