@@ -1,0 +1,39 @@
+{
+ "id": "a3f9c2b871",
+ "metrc_tag": "1A4120300000C1F000034442",
+ "brand": "1937",
+ "strain": "Face Off",
+ "form": "Flower 3.5g",
+ "thc": 31.2514,
+ "total_terpenes": 1.72,
+ "lean": "settling",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Hybrid",
+ "reported": [
+  "high THC",
+  "limonene-forward"
+ ],
+ "dominant": [
+  "Limonene",
+  "beta-Caryophyllene",
+  "Linalool"
+ ],
+ "aroma": [
+  "citrus",
+  "spice",
+  "floral",
+  "earthy",
+  "pine"
+ ],
+ "terpenes": {
+  "Limonene": 0.66,
+  "beta-Caryophyllene": 0.33,
+  "Linalool": 0.18,
+  "beta-Myrcene": 0.16,
+  "alpha-Humulene": 0.13,
+  "beta-Pinene": 0.11,
+  "Fenchol": 0.08,
+  "Terpineol": 0.07
+ }
+}
