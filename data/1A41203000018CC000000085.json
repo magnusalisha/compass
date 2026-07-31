@@ -1,0 +1,44 @@
+{
+ "id": "a3f8c21d9e",
+ "metrc_tag": "1A41203000018CC000000085",
+ "brand": "Jetty",
+ "strain": "Gaslight Sundae",
+ "form": "Vape 1g Disposable",
+ "thc": 83.7,
+ "total_terpenes": 6.12,
+ "lean": "settling",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Hybrid",
+ "reported": [
+  "Spicy",
+  "Citrus"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "Limonene",
+  "beta-Myrcene"
+ ],
+ "aroma": [
+  "spicy",
+  "citrus",
+  "herbal",
+  "pine",
+  "hoppy"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 2.0255,
+  "Limonene": 1.6807,
+  "beta-Myrcene": 0.7536,
+  "alpha-Humulene": 0.5497,
+  "beta-Pinene": 0.2928,
+  "Linalool": 0.2735,
+  "alpha-Pinene": 0.1883,
+  "Fenchol": 0.1351,
+  "Terpineol": 0.0643,
+  "alpha-Bisabolol": 0.069,
+  "Camphene": 0.0448,
+  "trans-Ocimene": 0.0336,
+  "cis-Ocimene": 0.0079
+ }
+}
