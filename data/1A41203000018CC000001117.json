@@ -1,0 +1,44 @@
+{
+ "id": "a3f9c21b7e",
+ "metrc_tag": "1A41203000018CC000001117",
+ "brand": "Jetty",
+ "strain": "Pink Meridian",
+ "form": "Vape 1g Disposable",
+ "thc": null,
+ "total_terpenes": 6.7353,
+ "lean": "lifting",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Hybrid",
+ "reported": [
+  "vibrant",
+  "fruit-forward"
+ ],
+ "dominant": [
+  "Limonene",
+  "beta-Caryophyllene",
+  "beta-Myrcene"
+ ],
+ "aroma": [
+  "citrus",
+  "fruity",
+  "spicy",
+  "herbal",
+  "woody"
+ ],
+ "terpenes": {
+  "Limonene": 2.3098,
+  "beta-Caryophyllene": 1.6243,
+  "beta-Myrcene": 1.0673,
+  "alpha-Humulene": 0.4247,
+  "beta-Pinene": 0.3514,
+  "Linalool": 0.2671,
+  "alpha-Pinene": 0.2596,
+  "Ocimene": 0.1264,
+  "Fenchol": 0.1171,
+  "Terpineol": 0.066,
+  "Camphene": 0.051,
+  "alpha-Bisabolol": 0.0493,
+  "Guaiol": 0.0213
+ }
+}
