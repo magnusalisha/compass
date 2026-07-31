@@ -1,5 +1,5 @@
 {
- "id": "a3f8c2e719",
+ "id": "a3f8c2e1b9",
  "metrc_tag": "1A412030000026D000007045",
  "brand": "Anthem",
  "strain": "Tangie Dream",
@@ -8,11 +8,11 @@
  "total_terpenes": 1,
  "lean": "settling",
  "confidence": "moderate",
- "in_stock": false,
- "shelf_tag": "Hybrid",
+ "in_stock": true,
+ "shelf_tag": "Sativa",
  "reported": [
-  "Glass tip infused pre-roll",
-  "Bold series"
+  "Bold",
+  "Glass Tip"
  ],
  "dominant": [
   "beta-Caryophyllene",
@@ -20,11 +20,11 @@
   "Guaiol"
  ],
  "aroma": [
-  "spicy",
   "floral",
-  "woody",
   "earthy",
-  "piney"
+  "spicy",
+  "herbal",
+  "woody"
  ],
  "terpenes": {
   "beta-Caryophyllene": 0.31,
@@ -40,6 +40,5 @@
   "beta-Pinene": 0.03,
   "Valencene": 0.01,
   "alpha-Pinene": 0.01
- },
- "sold_out_at": "2026-07-24T14:02:07.148Z"
+ }
 }
