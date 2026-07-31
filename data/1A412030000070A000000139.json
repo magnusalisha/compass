@@ -1,0 +1,48 @@
+{
+ "id": "a3f8c21b9d",
+ "metrc_tag": "1A412030000070A000000139",
+ "brand": "Ruby Farms",
+ "strain": "OG #18",
+ "form": "Preroll 1g",
+ "thc": 35.9374,
+ "total_terpenes": 1.55,
+ "lean": "settling",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Hybrid",
+ "reported": [
+  "OG #18",
+  "2 Count Doobies"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "alpha-Humulene",
+  "Limonene"
+ ],
+ "aroma": [
+  "earthy",
+  "spicy",
+  "citrus",
+  "floral",
+  "herbal"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.61,
+  "alpha-Humulene": 0.22,
+  "Limonene": 0.16,
+  "alpha-Bisabolol": 0.15,
+  "Farnesene": 0.06,
+  "Guaiol": 0.06,
+  "Terpineol": 0.04,
+  "Fenchol": 0.04,
+  "Linalool": 0.04,
+  "beta-Myrcene": 0.04,
+  "beta-Pinene": 0.04,
+  "Caryophyllene Oxide": 0.02,
+  "Terpinolene": 0.02,
+  "alpha-Pinene": 0.02,
+  "Camphene": 0.01,
+  "Ocimene": 0.01,
+  "Valencene": 0.01
+ }
+}
