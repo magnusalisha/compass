@@ -1,5 +1,5 @@
 {
- "id": "a3f7c2e891",
+ "id": "a3f8c2e1b9",
  "metrc_tag": "1A4120300000285000005451",
  "brand": "Fernway",
  "strain": "Granddaddy Purple",
@@ -11,8 +11,8 @@
  "in_stock": true,
  "shelf_tag": "Indica",
  "reported": [
-  "Granddaddy Purple",
-  "Adult Use Concentrate"
+  "alpha-Pinene forward",
+  "beta-Myrcene body"
  ],
  "dominant": [
   "alpha-Pinene",
@@ -21,9 +21,9 @@
  ],
  "aroma": [
   "pine",
-  "herbal",
-  "spice",
   "earthy",
+  "spicy",
+  "herbal",
   "citrus"
  ],
  "terpenes": {
@@ -37,8 +37,8 @@
   "Linalool": 0.195,
   "alpha-Humulene": 0.1697,
   "Ocimene": 0.1329,
-  "Terpinolene": 0.0672,
   "alpha-Bisabolol": 0.0638,
+  "Terpinolene": 0.0672,
   "Camphene": 0.0321,
   "Fenchol": 0.0312,
   "Terpineol": 0.0249,
