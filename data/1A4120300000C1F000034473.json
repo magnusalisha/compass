@@ -1,0 +1,45 @@
+{
+ "id": "a3f8c12e9b",
+ "metrc_tag": "1A4120300000C1F000034473",
+ "brand": "Bouket",
+ "strain": "Ethanol #33",
+ "form": "Flower 3.5g",
+ "thc": 27.063,
+ "total_terpenes": 2.49,
+ "lean": "lifting",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Hybrid",
+ "reported": [
+  "27% Total THC",
+  "Limonene dominant"
+ ],
+ "dominant": [
+  "Limonene",
+  "beta-Caryophyllene",
+  "Linalool"
+ ],
+ "aroma": [
+  "citrus",
+  "floral",
+  "spicy",
+  "piney",
+  "herbal"
+ ],
+ "terpenes": {
+  "Limonene": 0.97,
+  "beta-Caryophyllene": 0.28,
+  "Linalool": 0.21,
+  "alpha-Pinene": 0.17,
+  "beta-Myrcene": 0.16,
+  "beta-Pinene": 0.16,
+  "Fenchol": 0.14,
+  "alpha-Humulene": 0.14,
+  "Terpineol": 0.12,
+  "Ocimene": 0.08,
+  "Camphene": 0.02,
+  "Valencene": 0.02,
+  "Caryophyllene Oxide": 0.01,
+  "Terpinolene": 0.01
+ }
+}
