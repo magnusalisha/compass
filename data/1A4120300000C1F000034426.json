@@ -1,0 +1,46 @@
+{
+ "id": "a3f92c1d7e",
+ "metrc_tag": "1A4120300000C1F000034426",
+ "brand": "1937",
+ "strain": "Solar Haze",
+ "form": "Flower 3.5g",
+ "thc": 31.399,
+ "total_terpenes": 2.19,
+ "lean": "lifting",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Sativa",
+ "reported": [
+  "Solar Haze",
+  "Mixed Bud"
+ ],
+ "dominant": [
+  "Limonene",
+  "beta-Caryophyllene",
+  "beta-Myrcene"
+ ],
+ "aroma": [
+  "citrus",
+  "spicy",
+  "earthy",
+  "herbal",
+  "piney"
+ ],
+ "terpenes": {
+  "Limonene": 0.67,
+  "beta-Caryophyllene": 0.46,
+  "beta-Myrcene": 0.29,
+  "alpha-Humulene": 0.21,
+  "Guaiol": 0.1,
+  "beta-Pinene": 0.09,
+  "Fenchol": 0.08,
+  "Terpineol": 0.07,
+  "alpha-Bisabolol": 0.06,
+  "alpha-Pinene": 0.06,
+  "Linalool": 0.05,
+  "Camphene": 0.02,
+  "Caryophyllene Oxide": 0.01,
+  "Terpinolene": 0.01,
+  "Valencene": 0.01
+ }
+}
