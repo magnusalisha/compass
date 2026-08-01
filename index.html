@@ -377,6 +377,10 @@ const WANT = {
   relax:['beta-Caryophyllene','Linalool','alpha-Humulene','alpha-Bisabolol'], calm:['beta-Caryophyllene','Linalool','alpha-Bisabolol'],
   chill:['beta-Caryophyllene','Linalool'], mellow:['Linalool','alpha-Humulene'], body:['beta-Caryophyllene'],
   sleep:['beta-Myrcene'], sleepy:['beta-Myrcene'], sedat:['beta-Myrcene'], heavy:['beta-Myrcene'], couch:['beta-Myrcene'],
+  // "light" is asked for as the absence of heavy, not the presence of anything —
+  // so it steers away from myrcene rather than claiming a lift. Same for "not too
+  // heavy", which lands in the same place via the negation path.
+  light:{want:[], avoid:['beta-Myrcene']},
   energ:['Terpinolene','Limonene','Ocimene'], awake:['Terpinolene','alpha-Pinene'], upbeat:['Limonene','Ocimene'],
   uplift:['Limonene','Ocimene','Terpinolene'], happy:['Limonene'], social:['Limonene'], talk:['Limonene'],
   focus:['alpha-Pinene','Terpinolene'], clear:['alpha-Pinene'], alert:['Terpinolene','alpha-Pinene'],
@@ -1748,7 +1752,10 @@ function renderEffectResults(){
 
   const [pos, neg] = [[], []];
   qClean.split(/\bbut\b|,|\band\b/).forEach(part => {
-    const negated = /\bnot\b|\bwithout\b|\bno\b/.test(part);
+    // "nothing heavy" used to score as WANTING myrcene and returned the heaviest
+    // products on the shelf — \bno\b can't match inside "nothing". Contractions
+    // are matched on the suffix so isn't / doesn't / don't / won't all land.
+    const negated = /\bnot\b|\bnothing\b|\bnone\b|\bwithout\b|\bavoid\b|\bless\b|\bskip\b|\bno\b|n't/.test(part);
     Object.entries(WANT).forEach(([kw, spec]) => {
       if (!part.includes(kw)) return;
       // a plain array is all "want"; the object form adds terpenes to steer AWAY
@@ -1761,12 +1768,25 @@ function renderEffectResults(){
   });
   if (!pos.length && !neg.length){ O.innerHTML = `<div class="empty">Nothing matched “${rawQ}”. Try a feeling — relaxed, energetic, focused, mellow, sleepy, social — or what they're off to do: a concert, cleaning, errands, a movie.</div>`; return foot(); }
 
-  const scored = scoped.map(p => {
-    const v = vec(p);
-    let s = pos.reduce((t,k) => t + (v[k]||0), 0) - neg.reduce((t,k) => t + (v[k]||0)*1.4, 0);
-    if (p.confidence === 'faint') s *= 0.45;   // faded profiles don't get to win
-    return [s, p];
-  }).filter(([s]) => s > 0.02).sort((m,n) => n[0]-m[0]);
+  // A query can be purely negative — "not too heavy", "nothing sleepy" — which is
+  // ordinary counter language and used to return NOTHING. The score is
+  // wanted-minus-avoided, so with nothing wanted every product scored <= 0 and the
+  // > 0.02 cut swept the lot. There's no positive to rank against, so rank by
+  // ABSENCE instead: least of the avoided terpene first. Faint profiles sort last
+  // rather than being penalised numerically — "low in myrcene" off a degraded
+  // reading isn't a finding, but it isn't a reason to hide the product either.
+  const scored = pos.length
+    ? scoped.map(p => {
+        const v = vec(p);
+        let s = pos.reduce((t,k) => t + (v[k]||0), 0) - neg.reduce((t,k) => t + (v[k]||0)*1.4, 0);
+        if (p.confidence === 'faint') s *= 0.45;   // faded profiles don't get to win
+        return [s, p];
+      }).filter(([s]) => s > 0.02).sort((m,n) => n[0]-m[0])
+    : scoped.filter(hasProfile)   // no profile = zero myrcene for the wrong reason
+        .map(p => {
+          const v = vec(p);
+          return [neg.reduce((t,k) => t + (v[k]||0), 0), p];
+        }).sort((m,n) => (m[1].confidence === 'faint') - (n[1].confidence === 'faint') || m[0]-n[0]);
 
   const noFit = `<div class="empty">Nothing scanned fits that. Saying so is better than a bad substitution — but check the shelf for anything not scanned yet.</div>`;
   if (!scored.length){ O.innerHTML = noFit; return foot(); }
