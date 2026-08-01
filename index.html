@@ -267,7 +267,7 @@ const LEAN_OF = { Sativa: 'lifting', Indica: 'settling', Hybrid: 'mixed' };
 // card claimed "5g ×7 · 35g total". Five records said that. As a fraction of the
 // standard it's 2%, which a relative window catches without letting anything
 // else through (0.75g 2-pack stays per-unit at 7% off 0.35).
-const STD_UNIT = [0.35, 0.5, 0.7, 0.75, 1, 1.5];
+const STD_UNIT = [0.35, 0.5, 0.7, 0.75, 0.9, 1, 1.5];
 const stdUnit = g => STD_UNIT.find(s => Math.abs(s - g) / s < 0.03) || null;
 const nearStd = g => stdUnit(g) !== null;
 const gstr = g => (+g.toFixed(2)) + 'g';
