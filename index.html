@@ -1244,6 +1244,13 @@ const thcPeers = c => {
 function thcNote(p){
   if (p.thc == null) return '';
   const c = category(p), peers = thcPeers(c);
+  // Vapes are all strong and all strong to about the same degree: p10 to p90 is
+  // 75.6-90.5%, a spread of 17% of the median, against 90% for prerolls. Sorting
+  // that into five bands invented a distinction nobody chooses on — 18 vapes read
+  // "about typical", and the ones flagged "on the lighter side" were 83% THC.
+  // The figure itself still sits at the top of the card; it just stops being
+  // dressed up as a finding.
+  if (c === 'Vape') return '';
   // Too few peers to call anything typical — state the number and stop.
   if (peers.length < 8) return `<p>Strength: <b>${thc1(p.thc)} THC</b>.</p>`;
   const below = peers.filter(v => v < p.thc).length;
@@ -1321,7 +1328,7 @@ function card(p, extra='', compareTo=null){
       ${thcNote(p)}
       ${bare
         ? `<p class="faint-flag">⚠ No terpene profile on this one — the lab reported cannabinoids only</p>
-           <p class="faint-explain">Beyond that strength figure there's no chemistry here to read, so Compass can't tell you anything about its character. Go by the label and your nose.</p>`
+           <p class="faint-explain">Beyond the THC figure there's no chemistry here to read, so Compass can't tell you anything about its character. Go by the label and your nose.</p>`
         : `${faint ? `<p class="faint-flag">⚠ Low-confidence guess — terpenes are faint here, trust your nose</p>` : ''}
            <p style="font-size:14px;color:var(--ink2)">Can read as <b>${says(p)}</b>.</p>
            <p class="ev">${dots(ev(p))} evidence · ${evWord(p)}</p>
