@@ -48,8 +48,11 @@
     background-position:calc(100% - 20px) calc(50% - 2px),calc(100% - 15px) calc(50% - 2px);
     background-size:5px 5px,5px 5px;background-repeat:no-repeat}
   input:focus,select:focus{outline:2px solid var(--gold);outline-offset:2px}
-  .pair{display:flex;gap:9px}
-  .pair select,.pair .combo{flex:1;min-width:0}
+  /* Two per row fits a 375px phone. The effect tab shows a third (infusion) on
+     All/Preroll only — at three, 110px each would truncate "Non-infused", so
+     let it wrap to a second line rather than cramp. */
+  .pair{display:flex;gap:9px;flex-wrap:wrap}
+  .pair select,.pair .combo{flex:1 1 140px;min-width:0}
   /* Compare's two pickers carry a long label (strain · form · brand). Side by
      side on a 375px phone that leaves about 16 characters each, which cut off
      the form — the exact thing the label is there to show. Stack them on narrow
@@ -257,8 +260,16 @@ const LEAN_OF = { Sativa: 'lifting', Indica: 'settling', Hybrid: 'mixed' };
 // stated grams is implausible as one joint but divides evenly into a standard
 // size, it's the total. Genuinely ambiguous cases (e.g. 1.5g 2-pack) default to
 // per-unit and show the total too, so a human can sanity-check via Edit.
+// Tolerance is RELATIVE, not absolute, because producers round the pack weight
+// on the label. Ruby Farms' "Preroll 5g (7-pack)" is seven 0.7g joints — 4.9g,
+// printed as 5g. 5/7 = 0.7143, which is 0.0143 from the 0.7 standard: outside a
+// 0.01 absolute window, so the old test read 5g as the PER-JOINT weight and the
+// card claimed "5g ×7 · 35g total". Five records said that. As a fraction of the
+// standard it's 2%, which a relative window catches without letting anything
+// else through (0.75g 2-pack stays per-unit at 7% off 0.35).
 const STD_UNIT = [0.35, 0.5, 0.7, 0.75, 1, 1.5];
-const nearStd = g => STD_UNIT.some(s => Math.abs(s - g) < 0.01);
+const stdUnit = g => STD_UNIT.find(s => Math.abs(s - g) / s < 0.03) || null;
+const nearStd = g => stdUnit(g) !== null;
 const gstr = g => (+g.toFixed(2)) + 'g';
 const parseSize = p => {
   const w = (p.form||'').match(/(\d+(?:\.\d+)?)\s*g\b/i);
@@ -268,7 +279,10 @@ const parseSize = p => {
   if (!pk) return { per:g, count:1, total:g };
   const n = parseInt(pk[1], 10), perIfTotal = g / n;
   const statedIsTotal = category(p) === 'Preroll' && nearStd(perIfTotal) && !nearStd(g);
-  return statedIsTotal ? { per:perIfTotal, count:n, total:g } : { per:g, count:n, total:g*n };
+  // Snap to the standard size rather than showing the raw division: the joints
+  // are 0.7g, not 0.71g, and the size dropdown should group them with every
+  // other 0.7g preroll. The stated pack weight stays as the total.
+  return statedIsTotal ? { per:stdUnit(perIfTotal), count:n, total:g } : { per:g, count:n, total:g*n };
 };
 const weightText = p => { const s = parseSize(p); if (!s) return '';
   return s.count > 1 ? `${gstr(s.per)} ×${s.count} · ${gstr(s.total)} total` : gstr(s.per); };
@@ -915,7 +929,7 @@ let DATA = [
   "in_stock": true
  }
 ], tab = 'effect', a = null, b = null, sel = null, flash = '', effCat = 'All', simCat = 'All',
-  lookupQ = '', lookupSel = null, effSize = 'any', effLean = 'any', unreadable = 0;
+  lookupQ = '', lookupSel = null, effSize = 'any', effLean = 'any', effInfused = 'any', unreadable = 0;
 
 // Which "Why?" panels are expanded, by product key. A "Why?" is a native
 // <details>, so any re-render (the 60s refresh, the 4s flash-clear after a
@@ -1553,9 +1567,14 @@ function render(){
       .filter(p => effCat === 'All' || category(p) === effCat)
       .map(weightOnly).filter(Boolean))].sort((a,b) => parseFloat(a) - parseFloat(b));
     if (effSize !== 'any' && !sizeOpts.includes(effSize)) effSize = 'any';   // category changed out from under it
+    // Infusion is a preroll question — 27 of 67 in-stock prerolls are infused,
+    // against 1 flower and 0 vapes. So the picker only appears where it can do
+    // something, and resets when you leave.
+    const infusedApplies = effCat === 'All' || effCat === 'Preroll';
+    if (!infusedApplies) effInfused = 'any';
     // Funnel order, top to bottom: category → type → size → effect. The effect
     // box is the last, finest filter ("flower › indica › 3.5g › heavy"), so it
-    // sits at the bottom, below the two dropdowns.
+    // sits at the bottom, below the dropdowns.
     P.innerHTML = banner + categoryButtons('effCat', effCat)
       + `<div class="pair">
            <select id="effLean" aria-label="Sativa / Indica / Hybrid">
@@ -1568,6 +1587,11 @@ function render(){
              <option value="any"${effSize==='any'?' selected':''}>Any size</option>
              ${sizeOpts.map(s => `<option value="${s}"${effSize===s?' selected':''}>${s}</option>`).join('')}
            </select>
+           ${infusedApplies ? `<select id="effInfused" aria-label="Infused or non-infused">
+             <option value="any"${effInfused==='any'?' selected':''}>Any infusion</option>
+             <option value="yes"${effInfused==='yes'?' selected':''}>Infused</option>
+             <option value="no"${effInfused==='no'?' selected':''}>Non-infused</option>
+           </select>` : ''}
          </div>
          <div class="searchwrap">
            <input type="text" id="q" placeholder='e.g. "relaxing but not sleepy" or "for a concert"' value="${window._q||''}">
@@ -1695,7 +1719,8 @@ function renderEffectResults(){
 
   const list = inStock();   // effect recommends what to sell — in-stock only, and the OOS toggle is hidden here
   const scoped = list.filter(p => (activeCat === 'All' || category(p) === activeCat)
-    && (effLean === 'any' || filterLean(p) === LEAN_OF[effLean]));   // chemistry where it's readable, the package where it isn't
+    && (effLean === 'any' || filterLean(p) === LEAN_OF[effLean])   // chemistry where it's readable, the package where it isn't
+    && (effInfused === 'any' || isInfused(p) === (effInfused === 'yes')));
   if (!rawQ){
     // Nothing typed AND nothing narrowed: say what the box is for instead of
     // dumping the whole case. 149 cards is a scroll, not an answer, and it
@@ -1856,6 +1881,7 @@ document.addEventListener('change', e => {
   if (e.target.id === 'oos') render();
   if (e.target.id === 'effSize'){ effSize = e.target.value; renderEffectResults(); }
   if (e.target.id === 'effLean'){ effLean = e.target.value; renderEffectResults(); }
+  if (e.target.id === 'effInfused'){ effInfused = e.target.value; renderEffectResults(); }
 });
 // Show the × only when there's something to clear. Toggles a class on the
 // button that's already mounted — never re-renders the input, same rule as
