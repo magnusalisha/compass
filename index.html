@@ -1024,7 +1024,22 @@ const CHAR = {
   'beta-Pinene':        ['clear-headed','clear','lift'],
   'Ocimene':            ['light and lively','lively','lift'],
   'beta-Myrcene':       ['heavy and relaxed','heavy','settle'],
-  'beta-Caryophyllene': ['body-calm','calm','settle'],
+  // 'body', not 'settle'. Caryophyllene's evidence is CB2 (Gertsch 2008) —
+  // peripheral, anti-inflammatory — and REPORTED calls it "body calm, eases
+  // tension". That is a body claim, not a drowsiness one, and filing it beside
+  // myrcene's sedation treated "calm in the body" and "low energy" as one thing.
+  //
+  // It also broke the read. With caryophyllene on the settle side and leading 71
+  // of 150 in stock, everything else settling counted as "same direction", so the
+  // sentence reached past a 0.24% linalool to find a 0.04% limonene and then
+  // dropped that too for being tiny. 44 reads named a terpene that wasn't the
+  // runner-up; 43 named no second character at all. Giving caryophyllene its own
+  // direction means it contrasts with both sides and the read finds the actual
+  // runner-up: those drop to 5 and 12.
+  //
+  // A third value is NOT a third opposite — see OPPOSED below. Body sits apart
+  // from the lift/settle pair rather than at one end of it.
+  'beta-Caryophyllene': ['body-calm','calm','body'],
   'Linalool':           ['mellow and soft','mellow','settle'],
   'alpha-Humulene':     ['grounded and low-key','grounded','settle'],
   'alpha-Bisabolol':    ['gentle and easy','gentle','settle'],
@@ -1121,6 +1136,13 @@ const netDir = p => {
   const opp = r.find(([k]) => CHAR[k][2] !== td);
   return (opp && top[1] / opp[1] <= EVEN_T) ? null : td;
 };
+// Only lift and settle are opposites. 'body' is a third character, not a third
+// end of the same line — a caryophyllene-led product and a myrcene-led one are
+// different, but they do not pull against each other, and Compare must not say
+// they do. Without this, adding 'body' would have turned every body-vs-settle
+// pairing into "these pull in opposite directions", on the 71-of-150 products
+// caryophyllene leads.
+const OPPOSED = (a, b) => (a === 'lift' && b === 'settle') || (a === 'settle' && b === 'lift');
 
 // The read: lead with the BIGGEST measured terpene, name a meaningful opposing
 // one as an undertone, call them even only when they nearly are.
@@ -1327,7 +1349,7 @@ function read(x, y){
   // over two reads that both lead the same way — or over a pair the cards call
   // even. Was branching on `lean`, which the read no longer consults.
   const [xd, yd] = [netDir(x), netDir(y)];
-  if (xd && yd && xd !== yd)
+  if (OPPOSED(xd, yd))
     h += `<p>These pull in opposite directions. People tend to describe <b>${xn}</b> as <b>${says(x)}</b>; <b>${yn}</b> more <b>${says(y)}</b>.</p>`;
   else if (domTerps(x)[0] === domTerps(y)[0])
     h += `<p>Both lead with <b>${short(domTerps(x)[0]).toLowerCase()}</b>, so they're close cousins — both usually described as <b>${says(x)}</b>. The difference is underneath.</p>`;
