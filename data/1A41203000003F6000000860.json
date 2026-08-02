@@ -37,6 +37,7 @@
  "form": "Flower 3.5g",
  "strain": "Girl Scout Cookies",
  "lean": "settling",
- "in_stock": true,
- "thc": 27.922
+ "in_stock": false,
+ "thc": 27.922,
+ "sold_out_at": "2026-08-02T13:59:06.880Z"
 }
