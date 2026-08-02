@@ -8,7 +8,7 @@
  "total_terpenes": 5.455,
  "lean": "lifting",
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Sativa-leaning Hybrid",
  "reported": [
   "84.26% Total THC",
@@ -47,5 +47,6 @@
   "Terpineol": 0.0419,
   "Borneol": 0.0096,
   "Isoborneol": 0.013
- }
+ },
+ "sold_out_at": "2026-08-02T17:35:23.696Z"
 }
