@@ -35,6 +35,7 @@
  "form": "Flower 3.5g",
  "strain": "Gorilla Glue",
  "lean": "mixed",
- "in_stock": true,
- "thc": 29.21
+ "in_stock": false,
+ "thc": 29.21,
+ "sold_out_at": "2026-08-02T13:59:20.667Z"
 }
