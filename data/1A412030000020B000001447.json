@@ -8,7 +8,7 @@
  "total_terpenes": 3.031,
  "lean": "mixed",
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Sativa",
  "reported": [
   "Earthy",
@@ -37,5 +37,6 @@
   "alpha-Bisabolol": 0.0299,
   "alpha-Humulene": 0.0298,
   "Caryophyllene Oxide": 0.022
- }
+ },
+ "sold_out_at": "2026-08-02T17:45:38.545Z"
 }
