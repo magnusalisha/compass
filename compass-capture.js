@@ -5,11 +5,19 @@
 // No Shortcuts, no base64 gremlins.
 // ==========================================================================
 
-// ---- FILL THESE IN ONCE ---------------------------------------------------
-const ANTHROPIC_KEY = "sk-ant-REPLACE_ME";
-const GITHUB_USER   = "REPLACE_ME";
-const GITHUB_REPO   = "compass";
-const GITHUB_TOKEN  = "github_pat_REPLACE_ME";
+// ---- CREDENTIALS ----------------------------------------------------------
+// Normally injected by compass-bootstrap.js, the ten-line script that lives on
+// the phone: it holds the secrets, fetches THIS file from GitHub, and runs it.
+// That way updating the capture logic is a git push, not a copy-paste, and the
+// keys never sit in a public repo.
+//
+// The fallbacks below only apply if you paste this whole file into Scriptable
+// directly, which still works — fill them in if you do.
+const CFG = (typeof COMPASS_CONFIG !== "undefined" && COMPASS_CONFIG) ? COMPASS_CONFIG : {};
+const ANTHROPIC_KEY = CFG.ANTHROPIC_KEY || "sk-ant-REPLACE_ME";
+const GITHUB_USER   = CFG.GITHUB_USER   || "REPLACE_ME";
+const GITHUB_REPO   = CFG.GITHUB_REPO   || "compass";
+const GITHUB_TOKEN  = CFG.GITHUB_TOKEN  || "github_pat_REPLACE_ME";
 // ---------------------------------------------------------------------------
 
 const PROMPT = `This is a cannabis Certificate of Analysis. Return ONLY a JSON object, no preamble, no markdown fences.
