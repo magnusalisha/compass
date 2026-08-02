@@ -31,7 +31,6 @@
  "form": "Preroll 1g",
  "strain": "Acapulco Gold",
  "lean": "settling",
- "in_stock": false,
- "thc": 30.349,
- "sold_out_at": "2026-08-02T13:56:20.376Z"
+ "in_stock": true,
+ "thc": 30.349
 }
