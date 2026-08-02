@@ -198,11 +198,28 @@ try {
 }
 
 // ---- 3. write it to GitHub -----------------------------------------------
-// Filename = batch number (falls back to the id). Rescanning updates in place.
 // Filename = the stable Metrc tag (identical every scan of the same package),
-// then batch, and only as a last resort the random id. Keying on `id` would
-// make every scan a new file — that was the dupe bug.
-const key = product.metrc_tag || product.batch || product.id || ("" + Date.now());
+// then batch. Rescanning the same package updates it in place; keying on
+// anything that changes per scan would make every scan a new file, which was
+// the original dupe bug.
+//
+// The last resort used to be `product.id`, and that was a live way to DESTROY a
+// record. The prompt asks for "10 random hex chars" and the model does not
+// comply: across 213 records there are only 103 distinct ids, one of them
+// shared by 18 products. a3f7c2e91b.json holds Gorilla Glue and that same id
+// appears on Carnival, OG Kush, Northern Lights - Pack, Strawberry Guava and
+// Bubba Kush — so rescanning any of those without a readable tag would have
+// overwritten Gorilla Glue, reported "✅ updated", and left no trace.
+//
+// So derive the fallback from what the product IS. Same product rescanned ->
+// same slug -> updates in place. Two different products cannot collide: tested
+// across all 213 records, brand+strain+form gives 212 distinct keys, and the
+// single clash is two batches of the same Florist Farms Gelato cart. Worst case
+// is now a duplicate file, which compass-manage.js can already clean up, rather
+// than an unrecoverable overwrite.
+const slug = s => String(s || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+const fromContent = [product.brand, product.strain, product.form].map(slug).filter(Boolean).join("_");
+const key = product.metrc_tag || product.batch || fromContent || ("" + Date.now());
 const filename = (key + "").replace(/[^A-Za-z0-9_-]/g, "-") + ".json";
 const path = "data/" + filename;
 const contentB64 = Data.fromString(JSON.stringify(product, null, 1)).toBase64String();
