@@ -35,6 +35,7 @@
  "form": "Preroll 1g",
  "strain": "Strawberry Cough",
  "lean": "settling",
- "in_stock": true,
- "thc": 31.05
+ "in_stock": false,
+ "thc": 31.05,
+ "sold_out_at": "2026-08-02T14:04:24.567Z"
 }
