@@ -8,7 +8,7 @@
  "total_terpenes": 0.66,
  "lean": "settling",
  "confidence": "faint",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Hybrid",
  "reported": [
   "kief infused ground flower",
@@ -27,5 +27,6 @@
  "terpenes": {
   "beta-Caryophyllene": 0.45,
   "Linalool": 0.21
- }
+ },
+ "sold_out_at": "2026-08-02T13:54:29.534Z"
 }
