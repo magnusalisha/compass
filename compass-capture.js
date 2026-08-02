@@ -45,7 +45,7 @@ Rules:
   cannot tell which matrix belongs to this product, set total_terpenes to -1
   and leave terpenes empty rather than guessing.
 - SANITY CHECK before returning: the terpenes you list must add up to
-  total_terpenes within about 15%. If they don't, either you missed rows of the
+  total_terpenes within about 20%. If they don't, either you missed rows of the
   terpene table, or you took the total from one matrix and the terpenes from
   another. Re-read the full table from a single matrix. List EVERY detected
   terpene, not just the largest few.
@@ -159,14 +159,22 @@ try {
 // (Raw Plant Material) with two terpenes summing to 0.31 (Infused Prerolls);
 // neither described the cart it was filed under.
 //
-// Adding them up catches it. 15%, chosen against the real data: at 3% this
-// rejects 23 of 210 existing records, nearly all merely missing a trace compound
-// below the reporting threshold. 10% looked right until Papaya Punch was checked
-// against Alleaves — the LAB's own 14 terpenes sum to 0.8916 against its stated
-// Total Terpenes of 0.8, an 11.5% discrepancy in the source itself, so a
-// perfectly captured record would have been rejected. Labs differ on which
-// analytes count toward "total terpenes". 15% sits above that noise and well
-// below the 20-80% a crossed matrix produces.
+// Adding them up catches it. The threshold took three tries, because the LAB's
+// own numbers don't add up either — a stated "Total Terpenes" routinely differs
+// from the sum of the analytes printed beneath it, in both directions.
+// Everything below was checked field-by-field against Alleaves:
+//
+//   REAL capture failures     Baja Breeze 80% · Golden Yuzu 80% · Papaya Punch 50%
+//   LAB's own inconsistency   Slingria 20% short · Silver Surfer 11% over
+//                             Papaya Punch (once corrected) 11% over
+//
+// Short gaps are compounds detected but below the reporting limit: counted in
+// the total, not printed as rows. Over-gaps are labs differing on which analytes
+// count toward "total". So anything under ~20% is noise, and 3%, 10% and 15%
+// each rejected records that turned out to be perfectly captured.
+//
+// 30% sits clear of the noise and still catches every genuine failure seen,
+// which run 50-80% because a crossed matrix is a completely different sample.
 //
 // Refuses rather than saving. A bad record that looks fine is worse than no
 // record, and rescanning costs one photo.
@@ -180,7 +188,7 @@ try {
   }
   if (typeof tot === "number" && tot > 0 && Object.keys(t).length) {
     const off = Math.abs(sum - tot) / tot;
-    if (off > 0.15) {
+    if (off > 0.30) {
       notify("Compass ⚠️ not saved",
         `Terpenes sum to ${sum.toFixed(2)}% but the total says ${tot}% (${Math.round(off*100)}% off). ` +
         `Likely two different product forms on one COA. Re-scan the section for ${product.form || "this product"}.`);
