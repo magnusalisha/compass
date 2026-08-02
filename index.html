@@ -1203,6 +1203,55 @@ function says(p){
 // This does not cynically downgrade everything. The records still at ●●● do
 // lead with caryophyllene, which does have a receptor mechanism (Gertsch 2008).
 // Only the ones borrowing credit from third place change.
+// ── Labs report the same compound under different names, and the page only
+// recognises one spelling of each — so a terpene filed under a synonym is
+// INVISIBLE: absent from the read, the chips, the WHY panel and search. Jusbud's
+// OG had 12% of its profile hidden because its limonene came through as
+// "D-Limonene". Fernway reports ocimene as separate cis/trans isomers and
+// caryophyllene as "trans-", which is the same molecule as beta-.
+//
+// Two kinds of entry below. The first resolve to a terpene CHAR already knows,
+// so they make hidden chemistry visible. The second are pairs that are one
+// compound under two spellings — neither is in CHAR, so nothing appears on a
+// card either way, but splitting one compound across two keys is wrong on its
+// own terms and would break a terpene-name search later.
+//
+// Isomers are SUMMED, not overwritten: a record with cis- and trans-ocimene has
+// that much ocimene between them.
+//
+// Deliberately not merged: bare "Cedrene", which could be the alpha or beta
+// isomer — guessing would invent a fact. Casing-only variants are merged.
+const TERP_ALIAS = {
+  // resolve to something CHAR knows
+  'trans-Caryophyllene': 'beta-Caryophyllene',
+  'D-Limonene':          'Limonene',
+  'cis-Ocimene':         'Ocimene',
+  'trans-Ocimene':       'Ocimene',
+  'trans-b-Ocimene':     'Ocimene',
+  'trans-beta-Ocimene':  'Ocimene',
+  'cis-beta-Ocimene':    'Ocimene',
+  'alpha-Terpineol':     'Terpineol',
+  'trans-Farnesene':     'Farnesene',
+  // one compound, two spellings — not in CHAR, but still one compound
+  'Caryophyllene oxide': 'Caryophyllene Oxide',
+  'trans-Nerolidol':     'Nerolidol',
+  'cis-Nerolidol':       'Nerolidol',
+  '3-Carene':            'Carene',
+  'Alpha-cedrene':       'alpha-Cedrene'
+};
+// Rewrites p.terpenes in place, at the two points records enter the page, so
+// every reader downstream (vec, rankedTerps, domTerps, stack, search) sees
+// canonical names without knowing this exists.
+function normTerps(p){
+  if (!p || !p.terpenes) return p;
+  const out = {};
+  for (const [k, v] of Object.entries(p.terpenes)){
+    const key = TERP_ALIAS[k] || k;
+    out[key] = (out[key] || 0) + (typeof v === 'number' ? v : 0);
+  }
+  p.terpenes = out;
+  return p;
+}
 const evLead = p => domTerps(p)[0] || null;
 function ev(p){
   const k = evLead(p);
@@ -2001,7 +2050,7 @@ async function recordsFromIndex(files){
   const settled = await Promise.allSettled(files.map(async f => {
     const p = await fetch(`${f.url}?v=${f.sha}`).then(r=>r.json());
     p._key = f.name.replace(/\.json$/, '');   // repo filename is unique by construction; the record's own `id` isn't
-    return p;
+    return normTerps(p);   // synonyms resolved once, here — see TERP_ALIAS
   }));
   const ok = settled.filter(s => s.status === 'fulfilled').map(s => s.value);
   const bad = files.filter((f,i) => settled[i].status === 'rejected').map(f => f.name);
@@ -2046,6 +2095,7 @@ async function fetchRecords(){
 }
 
 (async function load(){
+  DATA.forEach(normTerps);   // the embedded seed goes through the same normalisation
   if (GH_USER && GH_REPO){
     try { DATA = await fetchRecords(); }
     catch(err){ flash = 'Using built-in data — couldn\'t reach the repo.'; }
