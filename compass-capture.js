@@ -45,9 +45,10 @@ Rules:
   cannot tell which matrix belongs to this product, set total_terpenes to -1
   and leave terpenes empty rather than guessing.
 - SANITY CHECK before returning: the terpenes you list must add up to
-  total_terpenes within about 10%. If they don't, you have almost certainly
-  taken the total from one matrix and the terpenes from another — go back and
-  re-read from a single matrix.
+  total_terpenes within about 15%. If they don't, either you missed rows of the
+  terpene table, or you took the total from one matrix and the terpenes from
+  another. Re-read the full table from a single matrix. List EVERY detected
+  terpene, not just the largest few.
 - Canonical names: beta-Myrcene, Limonene, beta-Caryophyllene, Terpinolene, Linalool, alpha-Pinene, beta-Pinene, alpha-Humulene, alpha-Bisabolol, Ocimene, Farnesene, Terpineol, Fenchol, Guaiol, Valencene, Geraniol, Camphene, Carene, alpha-Terpinene, alpha-Phellandrene, p-Cymene, Eucalyptol, Nerolidol. FENCHYL ALCOHOL is Fenchol. ALPHA TERPINEOL is Terpineol.
 - lean: terpinolene, limonene, pinene, ocimene push lifting. myrcene, linalool, caryophyllene, humulene, bisabolol push settling. Close to even is mixed.
 - confidence: strong if total terpenes >= 1.2, moderate if >= 0.8, faint if under 0.8. ALSO faint if under 0.8 and mostly heavy sesquiterpenes (caryophyllene, humulene, bisabolol, guaiol) because the volatile terpenes have evaporated and the profile is unreliable.
@@ -158,10 +159,14 @@ try {
 // (Raw Plant Material) with two terpenes summing to 0.31 (Infused Prerolls);
 // neither described the cart it was filed under.
 //
-// Adding them up catches it. 10%, not tighter: at 3% this rejects 23 of 210
-// existing records, nearly all of them merely missing a trace compound below
-// the reporting threshold. At 10% it rejects 5 — the four mixed-matrix records
-// and one that overshoots — and nothing that is simply imprecise.
+// Adding them up catches it. 15%, chosen against the real data: at 3% this
+// rejects 23 of 210 existing records, nearly all merely missing a trace compound
+// below the reporting threshold. 10% looked right until Papaya Punch was checked
+// against Alleaves — the LAB's own 14 terpenes sum to 0.8916 against its stated
+// Total Terpenes of 0.8, an 11.5% discrepancy in the source itself, so a
+// perfectly captured record would have been rejected. Labs differ on which
+// analytes count toward "total terpenes". 15% sits above that noise and well
+// below the 20-80% a crossed matrix produces.
 //
 // Refuses rather than saving. A bad record that looks fine is worse than no
 // record, and rescanning costs one photo.
@@ -175,7 +180,7 @@ try {
   }
   if (typeof tot === "number" && tot > 0 && Object.keys(t).length) {
     const off = Math.abs(sum - tot) / tot;
-    if (off > 0.10) {
+    if (off > 0.15) {
       notify("Compass ⚠️ not saved",
         `Terpenes sum to ${sum.toFixed(2)}% but the total says ${tot}% (${Math.round(off*100)}% off). ` +
         `Likely two different product forms on one COA. Re-scan the section for ${product.form || "this product"}.`);
