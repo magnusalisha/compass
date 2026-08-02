@@ -272,8 +272,9 @@ const stdUnit = g => STD_UNIT.find(s => Math.abs(s - g) / s < 0.03) || null;
 const nearStd = g => stdUnit(g) !== null;
 const gstr = g => (+g.toFixed(2)) + 'g';
 const parseSize = p => {
-  const w = (p.form||'').match(/(\d+(?:\.\d+)?)\s*g\b/i);
-  const pk = (p.form||'').match(/(\d+)\s*-?\s*(?:pk|ct|pack|cpk)/i);
+  const f = String(p.form || '');   // a numeric `form` is truthy and has no .match
+  const w = f.match(/(\d+(?:\.\d+)?)\s*g\b/i);
+  const pk = f.match(/(\d+)\s*-?\s*(?:pk|ct|pack|cpk)/i);
   if (!w) return null;
   const g = parseFloat(w[1]);
   if (!pk) return { per:g, count:1, total:g };
@@ -1017,7 +1018,7 @@ const inStock = () => DATA.filter(p => stocked(p))
   .sort((x, y) => x.strain.localeCompare(y.strain, undefined, {sensitivity: 'base'}));
 
 function vec(p){ const t = p.total_terpenes || 1, o = {};
-  for (const [k,v] of Object.entries(p.terpenes)) o[k] = v/t; return o; }
+  for (const [k,v] of Object.entries(p.terpenes||{})) o[k] = v/t; return o; }
 function sim(x, y){
   const vx = vec(x), vy = vec(y); let d=0, nx=0, ny=0;
   for (const k of new Set([...Object.keys(vx), ...Object.keys(vy)])){
@@ -1288,10 +1289,13 @@ let _thcPeersFor = null, _thcPeers = {};
 const thcPeers = c => {
   if (_thcPeersFor !== DATA){ _thcPeersFor = DATA; _thcPeers = {}; }
   return _thcPeers[c] || (_thcPeers[c] =
-    DATA.filter(p => category(p) === c && p.thc != null).map(p => p.thc).sort((a,b) => a-b));
+    DATA.filter(p => category(p) === c && typeof p.thc === 'number' && isFinite(p.thc))
+        .map(p => p.thc).sort((a,b) => a-b));
 };
 function thcNote(p){
-  if (p.thc == null) return '';
+  // Not just null: a hand-edited `"thc": 26.07%` parses as a STRING, which is
+  // != null and would print "NaN% THC". Say nothing rather than say nonsense.
+  if (typeof p.thc !== 'number' || !isFinite(p.thc)) return '';
   const c = category(p), peers = thcPeers(c);
   // Vapes are all strong and all strong to about the same degree: p10 to p90 is
   // 75.6-90.5%, a spread of 17% of the median, against 90% for prerolls. Sorting
@@ -1347,7 +1351,7 @@ function stack(p){
   // the records aren't), so relying on it made the bar and the "top 3" chips
   // hide the actual biggest terpene. Banana Kush's terpinolene (1.13%, its
   // largest by 3x) was invisible because it sat mid-file.
-  const e = Object.entries(p.terpenes).filter(([,v]) => v>0).sort((a,b) => b[1] - a[1]);
+  const e = Object.entries(p.terpenes||{}).filter(([,v]) => v>0).sort((a,b) => b[1] - a[1]);
   const s = e.reduce((t,[,v]) => t+v, 0) || 1;
   return `<div class="stack">${e.map(([k,v]) => `<i style="width:${v/s*100}%;background:${col(k)}"></i>`).join('')}</div>
     <div class="chips">${e.slice(0,3).map(([k,v]) => `<span><b style="background:${col(k)}"></b>${short(k).toLowerCase()} ${v}%${
