@@ -31,6 +31,23 @@ Rules:
   the PERCENT column (identical situation to THC above) — always take PERCENT,
   ignore weight/mg columns entirely for both cannabinoids and terpenes.
 - ND, NR, <MRL and <0.0400 all mean 0 — omit them from terpenes.
+- ONE COA CAN COVER SEVERAL PRODUCT FORMS. A single batch is often tested as
+  Raw Plant Material, Concentrate/Extract, Infused Flower, Infused Prerolls AND
+  Inhalable Concentrate, each with its OWN full set of results. Pick the ONE
+  matrix matching the product in hand and take every value from it — thc,
+  total_terpenes and all terpenes. NEVER mix rows across matrices, and never
+  fall back to an earlier stage of the supply chain.
+    vape / cart / disposable -> Inhalable Concentrate
+    preroll (infused)        -> Infused Prerolls
+    flower (infused)         -> Infused Flower
+    flower / preroll (plain) -> Raw Plant Material
+  The COA usually names it near the top as "Matrix:" or "Category:". If you
+  cannot tell which matrix belongs to this product, set total_terpenes to -1
+  and leave terpenes empty rather than guessing.
+- SANITY CHECK before returning: the terpenes you list must add up to
+  total_terpenes within about 10%. If they don't, you have almost certainly
+  taken the total from one matrix and the terpenes from another — go back and
+  re-read from a single matrix.
 - Canonical names: beta-Myrcene, Limonene, beta-Caryophyllene, Terpinolene, Linalool, alpha-Pinene, beta-Pinene, alpha-Humulene, alpha-Bisabolol, Ocimene, Farnesene, Terpineol, Fenchol, Guaiol, Valencene, Geraniol, Camphene, Carene, alpha-Terpinene, alpha-Phellandrene, p-Cymene, Eucalyptol, Nerolidol. FENCHYL ALCOHOL is Fenchol. ALPHA TERPINEOL is Terpineol.
 - lean: terpinolene, limonene, pinene, ocimene push lifting. myrcene, linalool, caryophyllene, humulene, bisabolol push settling. Close to even is mixed.
 - confidence: strong if total terpenes >= 1.2, moderate if >= 0.8, faint if under 0.8. ALSO faint if under 0.8 and mostly heavy sesquiterpenes (caryophyllene, humulene, bisabolol, guaiol) because the volatile terpenes have evaporated and the profile is unreliable.
@@ -131,6 +148,40 @@ try {
 } catch (e) {
   notify("Compass", "Extraction failed: " + e.message);
   return;
+}
+
+// ---- 2b. sum check: do the terpenes add up to the stated total? -----------
+// A COA often carries several product forms side by side — Raw Plant Material,
+// Infused Prerolls, Inhalable Concentrate — each with its own results. Taking
+// the total from one and the terpenes from another produces a record that looks
+// completely normal and describes nothing. Baja Breeze had total_terpenes 1.53
+// (Raw Plant Material) with two terpenes summing to 0.31 (Infused Prerolls);
+// neither described the cart it was filed under.
+//
+// Adding them up catches it. 10%, not tighter: at 3% this rejects 23 of 210
+// existing records, nearly all of them merely missing a trace compound below
+// the reporting threshold. At 10% it rejects 5 — the four mixed-matrix records
+// and one that overshoots — and nothing that is simply imprecise.
+//
+// Refuses rather than saving. A bad record that looks fine is worse than no
+// record, and rescanning costs one photo.
+{
+  const t = product.terpenes || {};
+  const sum = Object.values(t).reduce((a, v) => a + (typeof v === "number" ? v : 0), 0);
+  const tot = product.total_terpenes;
+  if (tot === -1) {
+    notify("Compass ⚠️", "Couldn't tell which product form this COA is for. Re-shoot the page showing Matrix/Category.");
+    return;
+  }
+  if (typeof tot === "number" && tot > 0 && Object.keys(t).length) {
+    const off = Math.abs(sum - tot) / tot;
+    if (off > 0.10) {
+      notify("Compass ⚠️ not saved",
+        `Terpenes sum to ${sum.toFixed(2)}% but the total says ${tot}% (${Math.round(off*100)}% off). ` +
+        `Likely two different product forms on one COA. Re-scan the section for ${product.form || "this product"}.`);
+      return;
+    }
+  }
 }
 
 // ---- 3. write it to GitHub -----------------------------------------------
