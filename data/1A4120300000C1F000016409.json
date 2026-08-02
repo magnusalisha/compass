@@ -8,7 +8,7 @@
  "total_terpenes": 6.2376,
  "lean": "mixed",
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Indica",
  "reported": [
   "Citrus",
@@ -46,5 +46,6 @@
   "Caryophyllene Oxide": 0.0249,
   "Ocimene": 0.018,
   "Camphor": 0.0164
- }
+ },
+ "sold_out_at": "2026-08-02T13:55:14.173Z"
 }
