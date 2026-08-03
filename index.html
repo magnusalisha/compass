@@ -1667,10 +1667,19 @@ function render(){
   if (tab === 'similar'){
     // source: anything in the archive, including sold-out. candidates: in stock only.
     const sources = comboSource('similar');
-    sel = sel && DATA.some(p=>key(p)===sel) ? sel : key(sources[0]||{});
+    // Only keep a selection that still resolves; never invent one. This used to
+    // fall back to sources[0], so opening the tab silently picked whatever
+    // happened to sort first and presented matches for a product nobody asked
+    // about — results that look like an answer to a question you didn't ask.
+    if (sel && !DATA.some(p=>key(p)===sel)) sel = null;
     P.innerHTML = banner + comboShellHTML('similar', sources, sel) + categoryButtons('simCat', simCat);
-    const p = DATA.find(x => key(x) === sel);
-    if (!p){ O.innerHTML = `<div class="empty">No records yet.</div>`; return foot(); }
+    const p = sel ? DATA.find(x => key(x) === sel) : null;
+    if (!p){
+      O.innerHTML = sources.length
+        ? `<div class="empty">Start with what they liked.<br><span style="font-size:13px">Type a strain or brand above — Compass finds what's closest to it on the shelf.</span></div>`
+        : `<div class="empty">No records yet.</div>`;
+      return foot();
+    }
     // Similarity is a comparison of two terpene profiles. With no profile on the
     // source there is nothing to compare, and every score comes back 0 — which
     // would render as a confident-looking "nothing is close to this." Say the
@@ -1749,11 +1758,19 @@ function render(){
   // guarding on the pool would silently swap it for a random in-stock strain.
   // The picker DROPDOWNS still list only in-stock (comboSource uses pool); this
   // only stops a valid pre-set selection from being reset out from under us.
-  a = a && DATA.some(p=>key(p)===a) ? a : key(list[0]||{});
-  b = b && DATA.some(p=>key(p)===b) ? b : key(list[1]||{});
+  // Drop a selection that no longer resolves, but never invent one. This used to
+  // default to list[0] and list[1], so opening Compare put up a comparison of
+  // the two products that happened to sort first — a confident-looking answer to
+  // a question nobody asked. Compare ↔ from Find similar still pre-fills both,
+  // because there the pair IS the question.
+  if (a && !DATA.some(p=>key(p)===a)) a = null;
+  if (b && !DATA.some(p=>key(p)===b)) b = null;
   P.innerHTML = banner + `<div class="pair pair-compare">${comboShellHTML('a', list, a)}${comboShellHTML('b', list, b)}</div>`;
-  const x = DATA.find(p => key(p) === a), y = DATA.find(p => key(p) === b);
-  O.innerHTML = (x && y && x !== y) ? compare(x, y) : `<div class="empty">Pick two different products.</div>`;
+  const x = a ? DATA.find(p => key(p) === a) : null, y = b ? DATA.find(p => key(p) === b) : null;
+  O.innerHTML = (x && y && x !== y) ? compare(x, y)
+    : (x || y)
+      ? `<div class="empty">Pick a second product to compare against.</div>`
+      : `<div class="empty">Pick two products to compare.<br><span style="font-size:13px">Type a strain or brand in each box — Compass shows how they differ.</span></div>`;
   foot();
 }
 
