@@ -7,6 +7,11 @@ earns.** None of them change which products appear in search results.
 
 Do them one at a time. **1 and 2 together** (same function neighbourhood).
 
+> **Superseded. See "Session 2 — 2026-08-01/02" at the end** for everything
+> shipped since, including three crash-class bugs and a filename fallback that
+> could silently destroy a record. The status note below covers the original
+> four fixes only.
+>
 > **Status 2026-07-30 — this plan is closed.** Fixes 2, 3 and 4 shipped. Fix 1
 > was tried and REVERTED the same day; the prescription in §1 does not work and
 > the reason is worth reading before anyone touches `lean` again ("§1 was wrong",
@@ -514,6 +519,185 @@ either a measurement or a hedge on one. Nothing adjudicates the package any more
   and normalising `trans-Caryophyllene` / `D-Limonene` / `trans-b-Ocimene` so a
   lab changing conventions can't produce a card that skips its own biggest terpene.
 - **Terpene percentages still print raw** (`1.1955%`). THC is rounded; these aren't.
+
+## Session 2 — 2026-08-01/02
+
+Everything below shipped after this plan closed. Kept here because most of it
+cost measurement to find and would be expensive to re-derive.
+
+### Card and search
+
+**Caryophyllene got its own direction: `body`, not `settle`.** Its evidence is
+CB2 (Gertsch 2008) — peripheral, anti-inflammatory — and `REPORTED` already
+called it "body calm, eases tension", which is not a drowsiness claim. Filing it
+beside myrcene meant everything else settling counted as the same direction, so
+`says()` reached past a 0.24% linalool for a 0.04% limonene and then dropped that
+too. Reads naming a non-runner-up: **44 → 5**. Reads naming no second character:
+**43 → 12**. A third value is NOT a third opposite — `OPPOSED()` treats only
+lift↔settle as opposed, or Compare would have called 7,387 of 21,736 pairs
+"opposite directions".
+
+**Negative-only effect queries were completely broken.** Found from one counter
+moment — scrolling the hybrid list for something not too heavy.
+
+- `"not too heavy"` returned **nothing**. Score is wanted-minus-avoided, so with
+  nothing wanted every product scored ≤0 and the `> 0.02` cut swept the lot. Now
+  ranks by ABSENCE: least of the avoided terpene first.
+- `"nothing heavy"` returned the **55 heaviest products**, led by Piescream
+  ("heavy and relaxed"). `\bno\b` cannot match inside "nothing", so it read as
+  WANTING myrcene — the exact opposite of the request.
+- `"light"` wasn't a keyword at all.
+- Records with no terpene profile are excluded from negative ranking: two
+  cannabinoid-only carts were scoring zero myrcene and taking the top slots on
+  the strength of having no data.
+
+**Infusion picker on the effect tab** (Any infusion / Infused / Non-infused).
+A FILTER, not a sort — a sort would put the weakest thing that matched on top.
+Shown only on All and Preroll, because in stock there are 27 infused prerolls,
+1 infused flower and 0 infused vapes. After the Lobo/Boom corrections below, a
+random infused preroll beats a random plain one **94%** of the time (medians
+36.7% vs 26.5% THC).
+
+**Strength line dropped from vapes.** Vapes span 17% of their median from p10 to
+p90 (75.6–90.5%); prerolls span 90%. Sorting that into five bands invented a
+distinction nobody chooses on — 18 vapes read "about typical", and products
+flagged "on the lighter side" were 83% THC. The figure still sits at the top of
+the card.
+
+**Terpene synonyms resolved (`TERP_ALIAS`).** Labs report the same compound under
+different names and the page knew one spelling each, so a terpene filed under a
+synonym was invisible — absent from the read, chips, WHY and search. Jusbud's OG
+had 12% of its profile hidden as "D-Limonene". Isomers are SUMMED, not
+overwritten; verified total terpene mass changes on zero of 213 records.
+Deliberately not merged: bare "Cedrene", which could be the alpha or beta isomer.
+
+**Find similar and Compare start empty.** Both auto-selected on open — Find
+similar fell back to `sources[0]`, Compare to `list[0]` and `list[1]` — so
+opening either showed a confident result for products nobody asked about. The
+Compare ↔ handoff still pre-fills, because there the pair IS the question.
+Clear (×) buttons added to all three pickers; clearing drops the SELECTION, not
+just the text.
+
+### Correctness review — three crash-class bugs
+
+Found by fuzzing 25 malformed record shapes through 18 display functions and
+every pair function.
+
+1. **A record missing `terpenes` blanked the whole results list, silently.**
+   `stack()` and `vec()` called `Object.entries(p.terpenes)` unguarded while
+   `domTerps`, `hasProfile` and `rankedTerps` all used `p.terpenes||{}`. One such
+   record threw inside `card()`, `render()` aborted, and `#out` kept whatever was
+   there before — no error, no empty state. Reachable: the capture sum check
+   skips itself when terpenes is absent.
+2. **A non-numeric `thc` corrupted every card in its category.** `thcPeers`
+   filtered on `!= null`, never on type, so a hand-edited `"thc": 26.07%` (which
+   parses as a STRING) entered the peer array and printed "typical is NaN%" on
+   every flower card.
+3. **A numeric `form` threw** — `(p.form||'').match(...)`, and a number is truthy.
+
+Same shape in all three: some call sites defensive about a field, others not.
+
+### The filename fallback nearly ate a record
+
+`product.id` was the last-resort filename key. The prompt asks for "10 random hex
+chars" and the model does not comply: **213 records, 103 distinct ids, one shared
+by 18 products.** `a3f7c2e91b.json` holds Gorilla Glue and that id also appears on
+Carnival, OG Kush, Northern Lights - Pack, Strawberry Guava and Bubba Kush — so
+rescanning any of them without a readable tag would have overwritten Gorilla Glue
+and reported "✅ updated".
+
+Refusing to save was rejected: it strands a scan at the counter for a case that
+is very rare (all 10 tagless records are legacy). Fallback is now
+`brand_strain_form`, which gives 212 distinct keys across 213 records — the one
+clash is two batches of the same Florist Farms Gelato cart. Worst case is a
+duplicate, which `compass-manage.js` can clean, rather than an unrecoverable
+overwrite.
+
+### Capture: the multi-matrix problem
+
+**One COA can cover several product forms** — Raw Plant Material,
+Concentrate/Extract, Infused Flower, Infused Prerolls, Inhalable Concentrate —
+each with a full set of results. Taking the total from one and the terpenes from
+another produces a record that looks entirely normal and describes nothing.
+
+Baja Breeze was **three matrices at once**: total 1.53 from Raw Plant Material,
+humulene 0.16 and linalool 0.15 from Infused Prerolls, thc 90.47 from the
+standalone field — on a vape cart, whose matrix is Inhalable Concentrate.
+
+The prompt now maps product type to matrix and asks the model to check its own
+arithmetic; the script re-checks independently before writing and refuses on a
+mismatch.
+
+**The threshold took four tries because the LABS' own numbers don't add up.**
+Every figure verified field-by-field against Alleaves:
+
+| | gap | verdict |
+|---|---|---|
+| Baja Breeze | 80% short | real failure |
+| Golden Yuzu | 80% short | real failure |
+| Papaya Punch | 50% short | real failure — 4 of 14 terpenes captured |
+| Slingria | 20% short | **lab's own**, capture was perfect |
+| Silver Surfer | 11% over | **lab's own** |
+| Papaya Punch, corrected | 11% over | **lab's own** |
+
+Short gaps are compounds detected but below the reporting limit — counted in the
+stated total, not printed as rows. Over-gaps are labs differing on which analytes
+count toward "total". **3%, 10% and 15% each rejected records that were perfectly
+captured.** 30% clears the noise and still catches every real failure, which run
+50–80% because a crossed matrix is a different sample entirely.
+
+### Data corrections, and records that were already right
+
+Corrected: Papaya Punch (4→14 terpenes), Baja Breeze and Golden Yuzu (rebuilt
+from Inhalable Concentrate), Jetpacks ×5 and Ruby ×3 and Kings and Queens and Cru
+and Anthem ×3 preroll pack counts, Lobo ×3 and Boom ×3 marked infused, Basin
+Mixtures renamed **Hashtag Honey**, Ruby "Preroll 5g (7-pack)" → 0.7g ×7.
+
+`parseSize` tolerance is now RELATIVE (3%), because producers round: Ruby's
+5g/7-pack is seven 0.7g joints — 4.9g printed as 5g, and 0.0143 off 0.7 fell
+outside the old absolute 0.01 window. `STD_UNIT` gained 0.9.
+
+**Already correct, do not re-investigate:** Slingria (Med Raw Plant Material —
+note *Med*, not AU), Silver Surfer, High Garden's Granddaddy Purple and Acapulco
+Gold. All four were flagged as suspicious and all four checked out exactly.
+
+### Two identical-profile pairs
+
+Baja Breeze and Golden Yuzu have byte-identical Inhalable Concentrate terpenes.
+So do High Garden's Granddaddy Purple and Acapulco Gold. Not duplicate records —
+Total THC and the minor cannabinoids differ in both pairs. The likely
+explanation is a standardised terpene blend added back to distillate, which makes
+the strain names decorative. GDP is labelled Indica and Acapulco Gold Sativa, and
+they are chemically the same thing.
+
+High Garden's carts are the shelf's outlier at **0.67%** total terpenes against a
+brand median range of 2.7–9.0%, and the package says "pure live resin". The lab
+result does not look like live resin. Not called a false claim without seeing
+process detail, but worth knowing.
+
+### Still open
+
+- **The annotated README figure is unfinished.** `docs-card-anatomy.svg` renders
+  but its five callouts collide, because they were anchored to guessed positions
+  and the card height is now computed from content. Needs leader lines fanning
+  out to evenly spaced labels.
+- **Terpene percentages still print raw** (`1.1955%`). THC is rounded to 1dp.
+- **The 10 legacy random-id files** still exist. Rescanning one now writes a new
+  slug-named file beside it rather than updating it, leaving a duplicate.
+  Renaming them would close that.
+- **`CHAR`'s lift/settle axis** beyond caryophyllene — humulene is arguably body
+  too. Deferred; it's a copy project.
+- **Capture-side, needs a phone edit:** normalising isomer names at source, so
+  the page's alias table stops being load-bearing.
+
+### The methodological note, which is the actual lesson
+
+Internal consistency is not evidence. A change that makes the tool agree with
+itself proves nothing — two outputs of one computation always agree, including
+when the computation is noise. Every real error across both sessions was caught
+by checking against something outside the code: the physical shelf, a COA, the
+Alleaves record, a customer. The verify recipe above inherits this blind spot —
+every metric in it is internal to the page.
 
 ## Rebuilding the demo
 

@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="453" viewBox="0 0 1120 453" font-family="system-ui">
+<rect width="1120" height="453" fill="#1B2A22"/>
+<text x="40" y="34" font-family="Georgia,serif" font-size="21" font-weight="700" fill="#F3EFE4">Anatomy of a Compass card</text>
+<text x="1080" y="34" text-anchor="end" font-family="ui-monospace,Menlo,monospace" font-size="10.5" fill="#7E9182" letter-spacing="1.2">MATCH BY EFFECT · FIND SIMILAR · COMPARE · LOOKUP</text>
+<rect x="40" y="84" width="470" height="318" rx="16" fill="#F1EBE0"/>
+<text x="62" y="114" font-family="Georgia,serif" font-size="20" font-weight="700" fill="#20261F" text-anchor="start">Lemon Fresh</text>
+<text x="488" y="114" font-family="ui-monospace,Menlo,monospace" font-size="19" font-weight="600" fill="#20261F" text-anchor="end">37.7%</text>
+<text x="488" y="128" font-family="ui-monospace,Menlo,monospace" font-size="9" font-weight="400" fill="#5C6558" text-anchor="end" letter-spacing="1">THC</text>
+<rect x="62" y="136" width="150" height="19" rx="5" fill="#E0E7DC"/>
+<text x="69" y="149" font-family="ui-monospace,Menlo,monospace" font-size="8.5" font-weight="400" fill="#5C6558" text-anchor="start" letter-spacing="0.7">PREROLL · INFUSED · 1G</text>
+<rect x="220" y="136" width="52" height="19" rx="5" fill="#E7E0F2"/>
+<text x="228" y="149" font-family="ui-monospace,Menlo,monospace" font-size="8.5" font-weight="400" fill="#4B3F6B" text-anchor="start" letter-spacing="0.7">SATIVA</text>
+<text x="62" y="170" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="12" font-weight="400" fill="#5C6558" text-anchor="start">Jaunty</text>
+<clipPath id="cl"><rect x="62" y="188" width="426" height="11" rx="5.5"/></clipPath><g clip-path="url(#cl)">
+<rect x="62.0" y="188" width="127.5" height="11" fill="#B5462F"/>
+<rect x="188.9" y="188" width="52.8" height="11" fill="#2F8F7A"/>
+<rect x="241.1" y="188" width="48.9" height="11" fill="#B08A4E"/>
+<rect x="289.4" y="188" width="39.8" height="11" fill="#8B6A3E"/>
+<rect x="328.6" y="188" width="37.1" height="11" fill="#D4802A"/>
+<rect x="365.1" y="188" width="21.2" height="11" fill="#6B8C3A"/>
+<rect x="385.7" y="188" width="20.8" height="11" fill="#D4B483"/>
+<rect x="405.9" y="188" width="17.6" height="11" fill="#8B7BC7"/>
+<rect x="422.9" y="188" width="12.0" height="11" fill="#9AA694"/>
+<rect x="434.2" y="188" width="11.1" height="11" fill="#5E9B8F"/>
+<rect x="444.7" y="188" width="9.5" height="11" fill="#9AA694"/>
+<rect x="453.6" y="188" width="9.3" height="11" fill="#3E7A5E"/>
+<rect x="462.3" y="188" width="7.4" height="11" fill="#3E7A5E"/>
+<rect x="469.1" y="188" width="6.7" height="11" fill="#9AA694"/>
+<rect x="475.3" y="188" width="4.4" height="11" fill="#9AA694"/>
+<rect x="479.1" y="188" width="2.7" height="11" fill="#9AA694"/>
+<rect x="481.2" y="188" width="2.3" height="11" fill="#9AA694"/>
+<rect x="482.9" y="188" width="2.3" height="11" fill="#9AA694"/>
+<rect x="484.6" y="188" width="2.3" height="11" fill="#9AA694"/>
+<rect x="486.3" y="188" width="2.2" height="11" fill="#9AA694"/>
+</g>
+<circle cx="66" cy="214" r="4" fill="#B5462F"/>
+<text x="76" y="218" font-family="ui-monospace,Menlo,monospace" font-size="11.5" font-weight="400" fill="#5C6558" text-anchor="start">caryophyllene 0.84%</text>
+<text x="207.39999999999998" y="218" font-family="ui-monospace,Menlo,monospace" font-size="11.5" font-weight="400" fill="#5C6558" text-anchor="start" opacity="0.62">· calm</text>
+<circle cx="267.6" cy="214" r="4" fill="#2F8F7A"/>
+<text x="277.6" y="218" font-family="ui-monospace,Menlo,monospace" font-size="11.5" font-weight="400" fill="#5C6558" text-anchor="start">terpinolene 0.3455%</text>
+<text x="409" y="218" font-family="ui-monospace,Menlo,monospace" font-size="11.5" font-weight="400" fill="#5C6558" text-anchor="start" opacity="0.62">· buzzy</text>
+<circle cx="66" cy="234" r="4" fill="#B08A4E"/>
+<text x="76" y="238" font-family="ui-monospace,Menlo,monospace" font-size="11.5" font-weight="400" fill="#5C6558" text-anchor="start">farnesene 0.3195%</text>
+<text x="194.2" y="238" font-family="ui-monospace,Menlo,monospace" font-size="11.5" font-weight="400" fill="#5C6558" text-anchor="start" opacity="0.62">· settled</text>
+<text x="62" y="268" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="13.5" font-weight="400" fill="#20261F" text-anchor="start">Strength: 37.7% THC — on the strong side for</text>
+<text x="62" y="286" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="13.5" font-weight="400" fill="#20261F" text-anchor="start">prerolls here (typical is 30.4%).</text>
+<text x="62" y="312" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="13.5" font-weight="400" fill="#20261F" text-anchor="start">Can read as body-calm, with a buzzy lift on top.</text>
+<text x="62" y="340" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="400" fill="#5C6558" text-anchor="start">●●● evidence · real mechanism — leans on</text>
+<text x="62" y="355" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="400" fill="#5C6558" text-anchor="start">caryophyllene</text>
+<text x="62" y="376" font-family="ui-monospace,Menlo,monospace" font-size="10" font-weight="400" fill="#5C6558" text-anchor="start" letter-spacing="0.8">▸ WHY?</text>
+<path d="M514 118 H588" stroke="#C4913B" stroke-width="1.2" fill="none" opacity=".85"/>
+<circle cx="514" cy="118" r="3" fill="#C4913B"/>
+<text x="602" y="104" font-family="ui-monospace,Menlo,monospace" font-size="9.5" font-weight="400" fill="#C4913B" text-anchor="start" letter-spacing="1.4">MEASURED</text>
+<text x="602" y="119" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="12" font-weight="400" fill="#C9D6C4" text-anchor="start">Lab figures, straight from the COA.</text>
+<text x="602" y="133" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="12" font-weight="400" fill="#C9D6C4" text-anchor="start">Strength is ranked against this</text>
+<text x="602" y="147" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="12" font-weight="400" fill="#C9D6C4" text-anchor="start">category's own range in this shop.</text>
+<path d="M514 194 H588" stroke="#C4913B" stroke-width="1.2" fill="none" opacity=".85"/>
+<circle cx="514" cy="194" r="3" fill="#C4913B"/>
+<text x="602" y="180" font-family="ui-monospace,Menlo,monospace" font-size="9.5" font-weight="400" fill="#C4913B" text-anchor="start" letter-spacing="1.4">CHEMISTRY</text>
+<text x="602" y="195" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="12" font-weight="400" fill="#C9D6C4" text-anchor="start">Every terpene, biggest first — and</text>
+<text x="602" y="209" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="12" font-weight="400" fill="#C9D6C4" text-anchor="start">each chip carries the plain word</text>
+<text x="602" y="223" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="12" font-weight="400" fill="#C9D6C4" text-anchor="start">the read is written from.</text>
+<path d="M514 308 H588" stroke="#C4913B" stroke-width="1.2" fill="none" opacity=".85"/>
+<circle cx="514" cy="308" r="3" fill="#C4913B"/>
+<text x="602" y="294" font-family="ui-monospace,Menlo,monospace" font-size="9.5" font-weight="400" fill="#C4913B" text-anchor="start" letter-spacing="1.4">INTERPRETATION</text>
+<text x="602" y="309" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="12" font-weight="400" fill="#C9D6C4" text-anchor="start">One sentence, led by the largest</text>
+<text x="602" y="323" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="12" font-weight="400" fill="#C9D6C4" text-anchor="start">terpene. Hedged on purpose.</text>
+<path d="M514 344 H588" stroke="#C4913B" stroke-width="1.2" fill="none" opacity=".85"/>
+<circle cx="514" cy="344" r="3" fill="#C4913B"/>
+<text x="602" y="330" font-family="ui-monospace,Menlo,monospace" font-size="9.5" font-weight="400" fill="#C4913B" text-anchor="start" letter-spacing="1.4">EVIDENCE</text>
+<text x="602" y="345" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="12" font-weight="400" fill="#C9D6C4" text-anchor="start">How good the claim is, and which</text>
+<text x="602" y="359" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="12" font-weight="400" fill="#C9D6C4" text-anchor="start">terpene it rests on. 52 of 213</text>
+<text x="602" y="373" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="12" font-weight="400" fill="#C9D6C4" text-anchor="start">cards grade themselves folklore.</text>
+<path d="M514 373 H588" stroke="#C4913B" stroke-width="1.2" fill="none" opacity=".85"/>
+<circle cx="514" cy="373" r="3" fill="#C4913B"/>
+<text x="602" y="359" font-family="ui-monospace,Menlo,monospace" font-size="9.5" font-weight="400" fill="#C4913B" text-anchor="start" letter-spacing="1.4">SHOW YOUR WORK</text>
+<text x="602" y="374" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="12" font-weight="400" fill="#C9D6C4" text-anchor="start">Opens the source behind every</text>
+<text x="602" y="388" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="12" font-weight="400" fill="#C9D6C4" text-anchor="start">claim on the card.</text>
+</svg>
