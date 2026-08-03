@@ -76,7 +76,8 @@
   .catseg button.active{background:var(--gold);border-color:var(--gold);color:#231A08}
 
   .combo{position:relative;margin-bottom:11px}
-  .combo input{margin-bottom:0}
+  /* room for the × so a long "strain · form · brand" label doesn't run under it */
+  .combo input{margin-bottom:0;padding-right:46px}
   .combo-list{position:absolute;left:0;right:0;top:calc(100% + 4px);background:var(--card);
     border-radius:12px;max-height:240px;overflow-y:auto;z-index:20;list-style:none;
     box-shadow:0 8px 24px rgba(0,0,0,.35)}
@@ -1574,6 +1575,7 @@ function comboShellHTML(id, list, selectedId){
   return `<div class="combo" data-combo="${id}">
     <input type="text" class="combo-input" id="combo-${id}" autocomplete="off"
       placeholder="Search strain or brand…" value="${shown.replace(/"/g,'&quot;')}">
+    <button type="button" class="clearbtn${shown ? ' show' : ''}" data-clear="combo-${id}" aria-label="Clear">&times;</button>
     <div class="combo-list-holder">${comboListHTML(id, list)}</div>
   </div>`;
 }
@@ -1954,6 +1956,20 @@ document.addEventListener('click', e => {
     const inp = document.getElementById(id);
     if (inp) inp.value = '';                 // direct write; the node stays mounted
     if (id === 'q'){ window._q = ''; renderEffectResults(); }
+    else if (id.startsWith('combo-')){
+      // Clearing a picker drops the SELECTION, not just the typed text —
+      // otherwise the box looks empty while the results below still show the
+      // old product. render() then puts up the "start with what they liked"
+      // empty state. Focus is restored after, because render() rebuilds the node.
+      const cid = id.slice(6);
+      const st = comboState(cid);
+      st.query = null; st.open = false; st.highlight = -1;
+      if (cid === 'similar') sel = null; else if (cid === 'a') a = null; else if (cid === 'b') b = null;
+      render();
+      const back = document.getElementById(id);
+      if (back) back.focus();
+      return;
+    }
     else { lookupQ = ''; lookupSel = null; renderLookupResults(); }
     toggleClear(id);
     if (inp) inp.focus();                    // ready to type the next thing
@@ -1999,6 +2015,7 @@ document.addEventListener('input', e => {
     const id = inp.closest('.combo').dataset.combo;
     const st = comboState(id);
     st.query = inp.value; st.open = true; st.highlight = -1;
+    toggleClear('combo-' + id);   // same rule as the other inputs: class only, never re-render
     updateComboList(id);
   }
 });
@@ -2027,6 +2044,7 @@ document.addEventListener('focusout', e => {
   const st = comboState(id);
   st.open = false; st.query = null; st.highlight = -1;
   inp.value = comboLabel(comboSelectedProduct(id));   // revert to the current selection's label
+  toggleClear('combo-' + id);
   updateComboList(id);
 });
 document.addEventListener('keydown', e => {
@@ -2046,6 +2064,7 @@ document.addEventListener('keydown', e => {
   } else if (e.key === 'Escape'){
     st.open = false; st.query = null; st.highlight = -1;
     inp.value = comboLabel(comboSelectedProduct(id));
+    toggleClear('combo-' + id);
     updateComboList(id);
     inp.blur();
   }
