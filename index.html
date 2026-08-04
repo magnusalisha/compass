@@ -1603,7 +1603,17 @@ function updateComboList(id){
 function comboChoose(id, productId){
   const st = comboState(id);
   st.query = null; st.open = false; st.highlight = -1;
-  if (id === 'similar') sel = productId;
+  // Picking a source also sets the result filter to that source's category.
+  // "What can I hand this customer instead" almost always means the same shelf
+  // — a cart is not a substitute for an eighth, however close the terpenes are.
+  // It's a default, not a lock: the segment stays tappable, and All is one tap
+  // away. The next selection re-defaults, which is why a manual override isn't
+  // remembered across picks.
+  if (id === 'similar'){
+    sel = productId;
+    const src = DATA.find(x => key(x) === productId);
+    if (src) simCat = category(src);
+  }
   else if (id === 'a') a = productId;
   else if (id === 'b') b = productId;
   render();   // a real selection, not a keystroke — safe to fully rebuild
@@ -1716,7 +1726,12 @@ function render(){
     const candidates = DATA.filter(x => key(x) !== key(p) && stocked(x) && hasProfile(x)
       && (simCat === 'All' || category(x) === simCat));
     if (!candidates.length){
-      O.innerHTML = `<div class="empty">No ${simCat === 'All' ? '' : simCat.toLowerCase()+' '}records scanned to compare against.</div>`;
+      // Now that the filter auto-follows the source, the likeliest way to land
+      // here is a thin category rather than an empty catalogue — so say which
+      // one is the constraint and point at the way out.
+      O.innerHTML = simCat === 'All'
+        ? `<div class="empty">No records scanned to compare against.</div>`
+        : `<div class="empty">Nothing else in stock under ${simCat}.<br><span style="font-size:13px">Tap All above to match across every category.</span></div>`;
       return foot();
     }
     const ranked = candidates.map(x => [sim(p,x), x]).sort((m,n) => n[0]-m[0]);
@@ -1974,7 +1989,10 @@ document.addEventListener('click', e => {
       const cid = id.slice(6);
       const st = comboState(cid);
       st.query = null; st.open = false; st.highlight = -1;
-      if (cid === 'similar') sel = null; else if (cid === 'a') a = null; else if (cid === 'b') b = null;
+      // simCat back to All too — it was set from the product being cleared, and
+      // an active "Vape" pill above an empty state describes nothing.
+      if (cid === 'similar'){ sel = null; simCat = 'All'; }
+      else if (cid === 'a') a = null; else if (cid === 'b') b = null;
       render();
       const back = document.getElementById(id);
       if (back) back.focus();
