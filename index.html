@@ -70,6 +70,11 @@
   .clearbtn.show{display:flex}
   .clearbtn:hover{background:var(--card2);color:var(--ink)}
 
+  /* unmistakable at a glance on a phone mid-shift */
+  .sandbox-strip{background:#8C3B22;color:#FFEDE4;font-family:'IBM Plex Mono',monospace;
+    font-size:11px;letter-spacing:.09em;text-transform:uppercase;text-align:center;
+    padding:8px 10px;border-radius:8px;margin-bottom:11px;font-weight:600}
+
   .catseg{display:flex;gap:6px;margin-bottom:11px}
   .catseg button{flex:1;padding:9px 6px;border-radius:999px;border:1px solid var(--dim);
     background:transparent;color:var(--pale);font:600 12.5px Inter,sans-serif;cursor:pointer}
@@ -199,6 +204,10 @@
 <script>
 // ── point at your repo once it exists
 const GH_USER = "magnusalisha", GH_REPO = "compass";
+// Sandbox is derived from the repo name, never set by hand — so index.html is
+// byte-identical in both places and a change can move either direction without
+// an edit. Only the GH_REPO/STOCK_API constants differ between environments.
+const SANDBOX = /sandbox/i.test(GH_REPO);
 // ── the Cloudflare Worker that writes stock changes back to the repo.
 // Paste your Worker URL here after deploying it (see DEPLOY-WORKER.md).
 // Left empty, the page still works — it just hides the sold-out buttons
@@ -1623,7 +1632,8 @@ function render(){
   const stockRow = document.querySelector('.stockrow');
   if (stockRow) stockRow.style.display = (tab === 'similar' || tab === 'effect') ? 'none' : '';
   const list = pool();
-  const banner = flash ? `<div class="flash">${flash}</div>` : '';
+  const banner = (SANDBOX ? `<div class="sandbox-strip">SANDBOX · ${DATA.length} records · nothing here reaches the shop</div>` : '')
+    + (flash ? `<div class="flash">${flash}</div>` : '');
 
   if (tab === 'effect'){
     // mount the shell ONCE per render(); typing updates results only, via
