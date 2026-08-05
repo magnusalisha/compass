@@ -8,7 +8,7 @@
  "total_terpenes": 1.1,
  "lean": "mixed",
  "confidence": "moderate",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Hybrid",
  "reported": [
   "Enhanced Pre-roll (Medical Use)",
@@ -38,5 +38,6 @@
   "Terpinolene": 0.05,
   "Fenchol": 0.04,
   "alpha-Bisabolol": 0.04
- }
+ },
+ "sold_out_at": "2026-08-05T14:19:18.137Z"
 }
