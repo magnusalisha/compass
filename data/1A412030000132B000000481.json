@@ -8,7 +8,7 @@
  "total_terpenes": 0.8,
  "lean": "settling",
  "confidence": "moderate",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Hybrid",
  "reported": [
   "beta-Caryophyllene dominant",
@@ -41,5 +41,6 @@
   "Caryophyllene Oxide": 0.0331,
   "beta-Pinene": 0.0181,
   "alpha-Pinene": 0.0147
- }
+ },
+ "sold_out_at": "2026-08-05T14:18:47.346Z"
 }
