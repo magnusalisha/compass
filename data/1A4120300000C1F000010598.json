@@ -8,7 +8,7 @@
  "total_terpenes": 0.1788,
  "lean": "lifting",
  "confidence": "faint",
- "in_stock": false,
+ "in_stock": true,
  "shelf_tag": "Sativa",
  "reported": [
   "28.91% Total THC",
@@ -30,6 +30,5 @@
   "Linalool": 0.05,
   "Caryophyllene Oxide": 0.03,
   "Terpinolene": 0.02
- },
- "sold_out_at": "2026-08-02T15:46:02.744Z"
+ }
 }
