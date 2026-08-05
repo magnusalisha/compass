@@ -39,6 +39,7 @@
  "form": "Preroll 3.5g 7-Pack",
  "strain": "Grease Monkey - Pack",
  "lean": "settling",
- "in_stock": true,
- "thc": 29.4485
+ "in_stock": false,
+ "thc": 29.4485,
+ "sold_out_at": "2026-08-05T14:22:02.346Z"
 }
