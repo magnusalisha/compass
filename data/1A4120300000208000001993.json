@@ -44,6 +44,7 @@
  "form": "Flower 3.5g",
  "strain": "Millionaire #4",
  "lean": "lifting",
- "in_stock": true,
- "thc": 29.07
+ "in_stock": false,
+ "thc": 29.07,
+ "sold_out_at": "2026-08-06T14:10:30.184Z"
 }
