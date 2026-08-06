@@ -1517,9 +1517,23 @@ function read(x, y){
     .filter(([,d]) => Math.abs(d) >= 0.1)
     .sort((p,q) => Math.abs(q[1]) - Math.abs(p[1])).slice(0,2);
   const gapKeys = gaps.map(g => g[0]);
+  // Both gaps favour the SAME product on 14,670 of 21,945 pairs — two thirds of
+  // every comparison — so the product's name was opening two consecutive lines
+  // and the reader had to notice it hadn't changed. Say it once and continue.
+  //
+  // Only when it's the same product. On the other third the two lines name
+  // different products, and there the repetition is the whole point: it's what
+  // shows the trade being made. Collapsing those would lose the contrast.
+  //
+  // Each line still carries its own figures, phrase and dots together, because
+  // that grouping is what makes them usable mid-conversation — the version that
+  // pushed both effect phrases to the end read shorter and parsed worse.
+  let prevHi = null;
   for (const [k, d] of gaps){
     const [hi, lo] = d > 0 ? [x,y] : [y,x];
-    h += `<p><b>${nm(hi)}</b> carries more ${termName(k, gapKeys).toLowerCase()} (${hi.terpenes[k]||0}% vs ${lo.terpenes[k]||0}%) — ${REPORTED[k]?REPORTED[k][0]:'a character difference'} <span class="ev">${REPORTED[k]?dots(REPORTED[k][1]):''}</span></p>`;
+    const lead = hi === prevHi ? '…and more' : `<b>${nm(hi)}</b> carries more`;
+    h += `<p>${lead} ${termName(k, gapKeys).toLowerCase()} (${hi.terpenes[k]||0}% vs ${lo.terpenes[k]||0}%) — ${REPORTED[k]?REPORTED[k][0]:'a character difference'} <span class="ev">${REPORTED[k]?dots(REPORTED[k][1]):''}</span></p>`;
+    prevHi = hi;
   }
   if (!gaps.length) h += `<p>The profiles are close enough that I'd sell on smell or price.</p>`;
   if (x.thc != null && y.thc != null && Math.abs(x.thc - y.thc) >= 3){
