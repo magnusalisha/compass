@@ -8,7 +8,7 @@
  "total_terpenes": 3.6638,
  "lean": "lifting",
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Sativa",
  "reported": [
   "Super Silver Haze",
@@ -44,5 +44,6 @@
   "Caryophyllene Oxide": 0.0188,
   "alpha-Bisabolol": 0.018,
   "Fenchol": 0.0156
- }
+ },
+ "sold_out_at": "2026-08-06T14:11:23.646Z"
 }
