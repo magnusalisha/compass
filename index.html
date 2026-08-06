@@ -231,8 +231,14 @@ const REPORTED = {
   'Ocimene':['light, breezy',1,'Folklore.'],
   'alpha-Humulene':['cozy, low-key',1,'Folklore. Shares a pathway with caryophyllene but no CB2 activity.'],
   'alpha-Bisabolol':['gentle, easy',1,'Folklore.'],
-  'Farnesene':['settled',1,'Folklore.'],
-  'Terpineol':['mellow',1,'Folklore.']
+  'Farnesene':['settled',1,'Folklore.']
+  // Terpineol retired 2026-08-06. It was in 141 of 210 profiles and reached
+  // exactly one card — a 0.03% chip on Durban Poison, below the 0.04% the labs
+  // treat as detected. Linalool outranked it everywhere else, and the two shared
+  // the word "mellow", so the table carried a collision that could never fire.
+  // Removed from CHAR and REPORTED together: CHAR drives the read and the chips,
+  // REPORTED drives the WHY panel and the evidence lead, and leaving it in one
+  // would half-retire it.
 };
 const dots = n => '●'.repeat(n) + '○'.repeat(3-n);
 
@@ -1072,8 +1078,11 @@ const CHAR = {
   'Linalool':           ['mellow and soft','mellow','settle'],
   'alpha-Humulene':     ['cozy and low-key','cozy','settle'],
   'alpha-Bisabolol':    ['gentle and easy','gentle','settle'],
-  'Farnesene':          ['settled','settled','settle'],
-  'Terpineol':          ['mellow','mellow','settle']
+  'Farnesene':          ['settled','settled','settle']
+  // Terpineol retired — see the note in REPORTED above. beta-Pinene was retired
+  // in the same pass and then kept: unlike terpineol it does reach real cards
+  // (0.40% on Cereal Milk, 0.15% on Fresh Powder), so removing it would delete
+  // content rather than dead weight. "Never leads" is not the same as "inert".
 };
 // ── DO NOT derive `lean` by summing this table. Tried 2026-07-30, reverted the
 // same day; the numbers are in PLAN.md §1 so nobody repeats it.
