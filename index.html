@@ -1335,16 +1335,17 @@ function whyHTML(p){
   return `<details class="why" data-why="${key(p)}"${open}><summary>Why?</summary><ul>${rows.map(([k, phrase, strength, mech]) =>
     `<li><b>${short(k)}</b> → ${phrase} <span class="ev">${dots(strength)}</span><br>${mech}</li>`).join('')}</ul></details>`;
 }
-// the "evaporated" story is a flower/preroll thing — an edible reads faint
-// because it's naturally low in terpenes, not because it's stale. Extraction
-// always writes a note (see SHORTCUT.md), so this is only a fallback for
-// hand-edited or older records.
-function faintNote(p){
-  if (p.note) return p.note;
-  return isEdible(p)
-    ? "Terpene content this low is normal for this form — it's not a sign of age, there's just not enough here to read a character off of. Read the label, not this profile."
-    : "Low total terpenes and mostly heavy sesquiterpenes — the volatile ones have likely evaporated. Read the label, not this profile.";
-}
+// faintNote() lived here and is gone. It explained WHY a profile was faint —
+// "the volatile ones have likely evaporated" — which was wrong about 13 of the
+// 43 faint records (Blue Andeze is 35% heavy and leads with linalool; it isn't
+// a faded profile, just a small one), and irrelevant to the person holding
+// three identical preroll tubes who needs to say how they differ.
+//
+// Nothing was lost by deleting it. The line above it already carries the only
+// part that mattered — "⚠ Low-confidence guess — terpenes are faint here, trust
+// your nose" — so the note repeated the warning and appended a mechanism the
+// counter has no use for. The `note` field on a record is no longer rendered;
+// the only two that had one carried this same boilerplate, not custom text.
 
 function stack(p){
   // Each chip carries its plain-English word: "caryophyllene 1.19% · calm".
@@ -1395,8 +1396,7 @@ function card(p, extra='', compareTo=null){
         : `${faint ? `<p class="faint-flag">⚠ Low-confidence guess — terpenes are faint here, trust your nose</p>` : ''}
            <p style="font-size:14px;color:var(--ink2)">Can read as <b>${says(p)}</b>.</p>
            <p class="ev">${dots(ev(p))} evidence · ${evWord(p)}</p>
-           ${whyHTML(p)}
-           ${faint ? `<p class="faint-explain">${faintNote(p)}</p>` : ''}`}
+           ${whyHTML(p)}`}
     </div>
     ${extra}
     <div class="acts">
@@ -1426,12 +1426,25 @@ function read(x, y){
     return h;
   }
   if (faint.length){
-    h += `<p><b>Can't call this from the terpenes.</b> ${faint.map(nm).join(' and ')} ${faint.length>1?'have':'has'} very little terpene content left (${faint.map(p=>p.total_terpenes+'%').join(', ')}), and what survives is the heavy stuff that always survives. That tells you about age and handling, not about the strain. <b>Go with the package label here.</b></p>`;
-    if (x.thc != null && y.thc != null && Math.abs(x.thc - y.thc) >= 3){
-      const [hi, lo] = x.thc >= y.thc ? [x,y] : [y,x];
-      h += `<p>What I can say: <b>${nm(hi)}</b> is the stronger one (${thc1(hi.thc)} THC vs ${thc1(lo.thc)}).</p>`;
-    }
-    return h;
+    // Faint is a CAUTION, never a short circuit. It used to return here, and
+    // every version of that was wrong for the same reason: it decided the whole
+    // comparison on one product's total, or on which single terpene was largest,
+    // and threw away the comparison the customer actually needs.
+    //
+    // Heir Heads (1.72%, strong) vs Baby Yoda (0.46%, faint) is the case that
+    // proved it. Both lead with caryophyllene, so a lead-based test called them
+    // indistinguishable and said "go with the package label" — while Heir Heads
+    // carried 16x the linalool and 26x the limonene, and both packages said
+    // Indica. One side of that pair has excellent data.
+    //
+    // The gap test below is the right noise filter and already existed: it
+    // compares in ABSOLUTE percentage points (>= 0.1), so a 0.33-vs-0.02
+    // linalool difference survives while 0.17-vs-0.12 caryophyllene doesn't.
+    // Faintness makes small values unreliable; it does not make large
+    // differences unreliable. Nothing here needed a second, weaker rule.
+    //
+    // So: say the numbers are small, then get out of the way.
+    h += `<p><b>Faint profile${faint.length>1?'s':''} — read the top rows only.</b> ${faint.map(nm).join(' and ')} ${faint.length>1?'have':'has'} very little terpene content (${faint.map(p=>p.total_terpenes+'%').join(', ')}), so the small values below are close to noise.</p>`;
   }
   // Same test the read uses, so Compare can't announce "opposite directions"
   // over two reads that both lead the same way — or over a pair the cards call
