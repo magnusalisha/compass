@@ -134,6 +134,7 @@
   .faint-flag{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em;
     text-transform:uppercase;color:var(--warn);margin-bottom:9px}
   .faint-explain{font-size:12.5px;color:var(--ink2);font-style:italic;margin-top:8px}
+  .unread{font-size:12.5px;color:var(--ink2);font-style:italic;margin-top:8px}
   .warnbox{background:#F6E3D3;border:1px solid #E0B99A;color:#7A3A1C;border-radius:10px;
     padding:12px 13px;margin-top:13px;font-size:13.5px;line-height:1.45}
   .ev{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--ink2);margin-top:7px;letter-spacing:.04em}
@@ -1345,6 +1346,41 @@ function thcNote(p){
               :               `among the lightest ${cat} here`;
   return `<p>Strength: <b>${thc1(p.thc)} THC</b> — ${where} (typical is ${thc1(med)}).</p>`;
 }
+// ── terpenes the read cannot speak to
+//
+// The read is assembled from REPORTED, so a terpene with no entry there is
+// invisible to it. Fine when it's trace; wrong when it's the biggest thing in
+// the jar. All Gas leads with valencene at 0.7% and its read is built on the
+// 2nd, 3rd and 4th largest. Americano is 57% nerolidol and the card describes
+// the other 43%. Both were caught by smelling the jar, which does not scale to
+// a delivery every week.
+//
+// The fix is NOT to invent an effect word for each new terpene — that's folklore
+// on demand, and it still needs someone to notice first. The card says what it
+// can't say instead. That works for any terpene that ever arrives, including
+// ones nobody here has heard of, and there's no table to keep up to date.
+//
+// Top 3 and >= 0.1%, the same absolute threshold Compare uses for a real gap.
+// It admits nerolidol (0.99%), valencene (0.7%) and fenchol (0.62%), and stays
+// quiet about caryophyllene oxide at 0.06% on a 0.06% profile — there the faint
+// flag already says the whole thing is unreadable, and a second warning would
+// just be noise. 7 products today, 6 of them in stock.
+const UNREAD_FLOOR = 0.1;
+function unreadTerps(p){
+  const ranked = Object.entries(p.terpenes || {})
+    .filter(([, v]) => v > 0).sort((a, b) => b[1] - a[1]);
+  const hits = ranked.slice(0, 3).filter(([k, v]) => !REPORTED[k] && v >= UNREAD_FLOOR);
+  return {hits, leads: !!hits.length && !!ranked[0] && hits[0][0] === ranked[0][0]};
+}
+function unreadNote(p){
+  const {hits, leads} = unreadTerps(p);
+  if (!hits.length) return '';
+  const many = hits.length > 1;
+  // Percentages are rounded here even though the chips print raw — nerolidol
+  // stores as 0.9853000000000001 and that is not a thing to show a customer.
+  const names = hits.map(([k, v]) => `<b>${short(k).toLowerCase()} (${(+v).toFixed(2)}%)</b>`).join(' and ');
+  return `<p class="unread">${names} ${many ? 'are' : 'is'} ${leads ? 'the largest terpene here' : 'among the largest here'} and ${many ? 'have' : 'has'} no evidenced character — so the read above leaves ${many ? 'them' : 'it'} out. Trust your nose on that part.</p>`;
+}
 // the explanation: which dominant terpenes drive the read, and what that rests on
 function whyHTML(p){
   const rows = domTerps(p).slice(0,3).map(k => [k, ...REPORTED[k]]);
@@ -1414,7 +1450,8 @@ function card(p, extra='', compareTo=null){
         : `${faint ? `<p class="faint-flag">⚠ Low-confidence guess — terpenes are faint here, trust your nose</p>` : ''}
            <p style="font-size:14px;color:var(--ink2)">Can read as <b>${says(p)}</b>.</p>
            <p class="ev">${dots(ev(p))} evidence · ${evWord(p)}</p>
-           ${whyHTML(p)}`}
+           ${whyHTML(p)}
+           ${unreadNote(p)}`}
     </div>
     ${extra}
     <div class="acts">
@@ -1982,12 +2019,17 @@ function renderLookupResults(){
 }
 function foot(){
   const unverified = DATA.filter(p => shelfTag(p) === 'Unverified').length;
+  // Counted in the footer so a new arrival tells YOU, instead of waiting to be
+  // noticed at the counter. All Gas and Americano were both found by smelling
+  // the jar; nothing in the tool had flagged either one.
+  const unread = DATA.filter(p => hasProfile(p) && unreadTerps(p).hits.length).length;
   // "scanned", not "products" — the catalogue is whatever has been through the
   // capture script, which is not the same as what is on the shelf. Every empty
   // state says so too; this keeps the scope visible even when results look full.
   $('#foot').innerHTML = `${DATA.length} scanned · ${DATA.filter(stocked).length} in stock${
     unreadable ? ` · <b style="color:var(--warn)">${unreadable} unreadable (a data typo?)</b>` : ''}${
-    unverified ? ` · <b>${unverified} shelf tag${unverified>1?'s':''} unverified</b> — tap Edit on a card to set one` : ''}<br>
+    unverified ? ` · <b>${unverified} shelf tag${unverified>1?'s':''} unverified</b> — tap Edit on a card to set one` : ''}${
+    unread ? ` · <b>${unread} with a major terpene I can't describe</b>` : ''}<br>
     ●●● real receptor mechanism · ●●○ some human data · ●○○ folklore<br>
     Only caryophyllene has a mechanism (CB2). The rest is inherited from strain databases.<br>
     <b>THC is the one number on the COA that reliably drives the experience.</b>`;
