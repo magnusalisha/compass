@@ -1,0 +1,46 @@
+{
+ "id": "a3f7c2e190",
+ "metrc_tag": "1A412030000019F000018710",
+ "brand": "Florist Farms",
+ "strain": "Double OG Chem",
+ "form": "Preroll 0.5g (5-pack, 2.5g total)",
+ "thc": 34.321,
+ "total_terpenes": 2.7955,
+ "lean": "settling",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Hybrid",
+ "reported": [
+  "Live Resin Infused",
+  "Double OG Chem"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "alpha-Humulene",
+  "Limonene"
+ ],
+ "aroma": [
+  "spicy",
+  "earthy",
+  "citrus",
+  "floral",
+  "herbal"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 1.2184,
+  "alpha-Humulene": 0.3773,
+  "Limonene": 0.244,
+  "Farnesene": 0.2272,
+  "alpha-Bisabolol": 0.1526,
+  "Linalool": 0.1444,
+  "beta-Myrcene": 0.1282,
+  "Fenchol": 0.0625,
+  "Terpineol": 0.0517,
+  "Caryophyllene Oxide": 0.0514,
+  "Nerolidol": 0.0481,
+  "beta-Pinene": 0.039,
+  "alpha-Pinene": 0.0258,
+  "Ocimene": 0.0135,
+  "Borneol": 0.0114
+ }
+}
