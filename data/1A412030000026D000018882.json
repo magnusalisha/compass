@@ -1,18 +1,18 @@
 {
- "id": "a3f2c91b7e",
+ "id": "a3f82c1d9e",
  "metrc_tag": "1A412030000026D000018882",
- "brand": "Anthem",
- "strain": "Jack Herer - Pack",
- "form": "Infused Preroll 2.5g (5-pack)",
+ "brand": "Curaleaf NY",
+ "strain": "Jack Herer",
+ "form": "Preroll glass tip, infused 0.5g (5-pack, 2.5g total)",
  "thc": 47.1968,
  "total_terpenes": 0.83,
  "lean": "settling",
  "confidence": "faint",
- "in_stock": false,
+ "in_stock": true,
  "shelf_tag": "Sativa",
  "reported": [
   "47.2% Total THC",
-  "Glass tip 5-pack"
+  "Enhanced infused preroll with glass tip"
  ],
  "dominant": [
   "beta-Caryophyllene",
@@ -24,7 +24,7 @@
   "woody",
   "floral",
   "citrus",
-  "herbal"
+  "piney"
  ],
  "terpenes": {
   "beta-Caryophyllene": 0.32,
@@ -34,11 +34,11 @@
   "Limonene": 0.05,
   "Terpinolene": 0.05,
   "Terpineol": 0.04,
+  "Caryophyllene Oxide": 0.02,
   "Valencene": 0.02,
   "alpha-Bisabolol": 0.02,
   "alpha-Pinene": 0.01,
   "beta-Myrcene": 0.01,
   "beta-Pinene": 0.01
- },
- "sold_out_at": "2026-08-02T13:56:55.487Z"
+ }
 }
