@@ -1,9 +1,9 @@
 {
- "id": "a3f7c2e914",
+ "id": "a3f7c92e1b",
  "metrc_tag": "1A412030000026D000018987",
- "brand": "Anthem",
- "strain": "Durban Poison - Pack",
- "form": "Preroll 2.5g Infused 5-Pack",
+ "brand": "Curaleaf NY, LLC.",
+ "strain": "Durban Poison",
+ "form": "Preroll 0.5g (5-pack, 2.5g total)",
  "thc": 41.1594,
  "total_terpenes": 0.37,
  "lean": "mixed",
@@ -11,8 +11,8 @@
  "in_stock": true,
  "shelf_tag": "Sativa",
  "reported": [
-  "Infused preroll",
-  "Glass tip 5-pack"
+  "Infused Preroll",
+  "Glass Tip"
  ],
  "dominant": [
   "Linalool",
@@ -24,7 +24,7 @@
   "spicy",
   "citrus",
   "herbal",
-  "woody"
+  "piney"
  ],
  "terpenes": {
   "Linalool": 0.09,
