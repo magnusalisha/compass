@@ -8,7 +8,7 @@
  "total_terpenes": 3.1,
  "lean": "settling",
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Sativa",
  "reported": [
   "alpha-Humulene dominant",
@@ -34,5 +34,6 @@
   "alpha-Bisabolol": 0.14,
   "Guaiol": 0.11,
   "beta-Pinene": 0.09
- }
+ },
+ "sold_out_at": "2026-08-07T19:59:05.944Z"
 }
