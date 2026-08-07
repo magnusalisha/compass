@@ -1,0 +1,36 @@
+{
+ "id": "a3f9c2e841",
+ "metrc_tag": "1A412030000026D000018146",
+ "brand": "Curaleaf NY, LLC.",
+ "strain": "Northern Lights",
+ "form": "Infused Preroll 0.5g (5-pack, 2.5g total)",
+ "thc": 47.965,
+ "total_terpenes": 0.4,
+ "lean": "settling",
+ "confidence": "faint",
+ "in_stock": true,
+ "shelf_tag": "Indica",
+ "reported": [
+  "Enhanced Pre-roll (Medical Use)",
+  "Indica"
+ ],
+ "dominant": [
+  "Linalool",
+  "beta-Caryophyllene",
+  "alpha-Humulene"
+ ],
+ "aroma": [
+  "floral",
+  "spicy",
+  "earthy",
+  "woody",
+  "herbal"
+ ],
+ "terpenes": {
+  "Linalool": 0.14,
+  "beta-Caryophyllene": 0.13,
+  "alpha-Humulene": 0.05,
+  "Terpineol": 0.04,
+  "Fenchol": 0.04
+ }
+}
