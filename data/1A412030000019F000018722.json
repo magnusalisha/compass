@@ -1,0 +1,45 @@
+{
+ "id": "a3f7c2e910",
+ "metrc_tag": "1A412030000019F000018722",
+ "brand": "Florist Farms",
+ "strain": "Black Widow",
+ "form": "Preroll 0.5g (7-pack, 3.5g total)",
+ "thc": 30.101,
+ "total_terpenes": 2.0402,
+ "lean": "mixed",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Indica",
+ "reported": [
+  "150.51 mg Total THC per preroll",
+  "175.3 mg Total Cannabinoids per preroll"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "Limonene",
+  "Linalool"
+ ],
+ "aroma": [
+  "spicy",
+  "citrus",
+  "floral",
+  "earthy",
+  "herbal"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.5286,
+  "Limonene": 0.4486,
+  "Linalool": 0.2793,
+  "beta-Myrcene": 0.1975,
+  "alpha-Humulene": 0.1576,
+  "alpha-Bisabolol": 0.1444,
+  "Terpineol": 0.0609,
+  "Fenchol": 0.0594,
+  "beta-Pinene": 0.05,
+  "Nerolidol": 0.0403,
+  "Farnesene": 0.0222,
+  "alpha-Pinene": 0.0207,
+  "Caryophyllene Oxide": 0.0188,
+  "Borneol": 0.012
+ }
+}
