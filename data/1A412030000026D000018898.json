@@ -1,0 +1,45 @@
+{
+ "id": "a3f9c12e84",
+ "metrc_tag": "1A412030000026D000018898",
+ "brand": "Curaleaf NY",
+ "strain": "Anthem Bold Jet Fuel",
+ "form": "Preroll 0.5g (5-pack, 2.5g total)",
+ "thc": 50.9374,
+ "total_terpenes": 0.66,
+ "lean": "mixed",
+ "confidence": "faint",
+ "in_stock": true,
+ "shelf_tag": "Hybrid",
+ "reported": [
+  "50.9% Total THC",
+  "Hybrid"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "Terpinolene",
+  "alpha-Humulene"
+ ],
+ "aroma": [
+  "fuel",
+  "spicy",
+  "woody",
+  "herbal",
+  "floral"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.17,
+  "Terpinolene": 0.14,
+  "alpha-Humulene": 0.07,
+  "Limonene": 0.06,
+  "Linalool": 0.05,
+  "alpha-Bisabolol": 0.04,
+  "Terpineol": 0.03,
+  "beta-Myrcene": 0.03,
+  "Ocimene": 0.02,
+  "Caryophyllene Oxide": 0.01,
+  "Fenchol": 0.01,
+  "Valencene": 0.01,
+  "alpha-Pinene": 0.01,
+  "beta-Pinene": 0.01
+ }
+}
