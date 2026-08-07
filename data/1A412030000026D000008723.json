@@ -1,0 +1,43 @@
+{
+ "id": "a3f82c1d9e",
+ "metrc_tag": "1A412030000026D000008723",
+ "brand": "Curaleaf NY",
+ "strain": "King Louis XIII",
+ "form": "Preroll 0.5g (5-pack, 2.5g total)",
+ "thc": 46.5719,
+ "total_terpenes": 0.57,
+ "lean": "settling",
+ "confidence": "faint",
+ "in_stock": true,
+ "shelf_tag": "Indica",
+ "reported": [
+  "Glass Tip Infused",
+  "Bold Series"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "Limonene",
+  "Linalool"
+ ],
+ "aroma": [
+  "earthy",
+  "spicy",
+  "citrus",
+  "floral",
+  "woody"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.18,
+  "Limonene": 0.08,
+  "Linalool": 0.08,
+  "Terpineol": 0.04,
+  "Fenchol": 0.04,
+  "alpha-Bisabolol": 0.04,
+  "beta-Myrcene": 0.04,
+  "alpha-Humulene": 0.03,
+  "Caryophyllene Oxide": 0.01,
+  "Geraniol": 0.01,
+  "Valencene": 0.01,
+  "beta-Pinene": 0.01
+ }
+}
