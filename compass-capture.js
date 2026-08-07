@@ -52,7 +52,8 @@ Rules:
 - Canonical names: beta-Myrcene, Limonene, beta-Caryophyllene, Terpinolene, Linalool, alpha-Pinene, beta-Pinene, alpha-Humulene, alpha-Bisabolol, Ocimene, Farnesene, Terpineol, Fenchol, Guaiol, Valencene, Geraniol, Camphene, Carene, alpha-Terpinene, alpha-Phellandrene, p-Cymene, Eucalyptol, Nerolidol. FENCHYL ALCOHOL is Fenchol. ALPHA TERPINEOL is Terpineol.
 - lean: terpinolene, limonene, pinene, ocimene push lifting. myrcene, linalool, caryophyllene, humulene, bisabolol push settling. Close to even is mixed.
 - confidence: strong if total terpenes >= 1.2, moderate if >= 0.8, faint if under 0.8. ALSO faint if under 0.8 and mostly heavy sesquiterpenes (caryophyllene, humulene, bisabolol, guaiol) because the volatile terpenes have evaporated and the profile is unreliable.
-- shelf_tag: ALWAYS the literal string Unverified. NEVER guess Sativa/Indica/Hybrid — that comes from the package, not the COA.
+- shelf_tag: ALWAYS the literal string Unverified. NEVER guess Sativa/Indica/Hybrid — that comes from the package, not the COA. (The script asks the human right after this, with the package in their hand.)
+- form: for a MULTIPACK give the PER-UNIT size and the count, never just the total — "Preroll 0.4g (5-pack, 2g total)", not "Preroll 2g". Many NY packs print only the total weight on the front, so check for a count anywhere on the label. This is only a prefill; the human confirms it.
 - terpenes: detected only, sorted descending.`;
 
 // ---- 1. get the shared file, and figure out what kind it is ---------------
@@ -193,6 +194,66 @@ try {
         `Terpenes sum to ${sum.toFixed(2)}% but the total says ${tot}% (${Math.round(off*100)}% off). ` +
         `Likely two different product forms on one COA. Re-scan the section for ${product.form || "this product"}.`);
       return;
+    }
+  }
+}
+
+// ---- 2c. confirm the two things only the package can tell you -------------
+// The COA carries chemistry. It does NOT carry sativa/indica, and it usually
+// doesn't carry pack structure — both are printed on the package you are
+// holding at the moment you scan. So ask, once, instead of leaving a cleanup
+// job for later.
+//
+// SHELF TAG. The prompt still forbids the model from guessing this, and that
+// stays: the whole label-vs-chemistry question is only answerable because the
+// tag comes from a human looking at the package. This just moves that human
+// from "some evening, going through the Unverified list" to "now, with the jar
+// in hand". Cancel still writes Unverified, so nothing is ever worse than before.
+//
+// PACK STRUCTURE. Miss Grass prints "2g" on a tube holding five 0.4g joints, so
+// the model wrote `Preroll 2g` and the page read it as one 2g joint — wrong on
+// the card and, worse, filed under 2g in the size filter, where nobody looking
+// for a small preroll would ever see it. The page can only detect a multipack
+// if the form string says so, so build a string it can always parse.
+const CANON = (() => {
+  const f = String(product.form || "");
+  // What the model thought, used to prefill — so the common case is two taps.
+  const w  = f.match(/(\d+(?:\.\d+)?)\s*g\b/i);
+  const pk = f.match(/(\d+)\s*-?\s*(?:pk|ct|pack|cpk)/i);
+  // Everything that isn't size or pack info — "Infused Preroll", "Flower".
+  // Kept verbatim because it carries category and qualifiers the page reads.
+  const head = f.replace(/\([^)]*\)/g, "")
+                .replace(/\d+(?:\.\d+)?\s*g\b/gi, "")
+                .replace(/\d+\s*-?\s*(?:pk|ct|pack|cpk)/gi, "")
+                .replace(/[\s,·-]+$/, "").replace(/\s{2,}/g, " ").trim();
+  return { head: head || "Preroll", per: w ? w[1] : "", count: pk ? pk[1] : "1" };
+})();
+
+{
+  const a = new Alert();
+  a.title = `${product.strain || "?"} · ${product.brand || "?"}`;
+  a.message = `${product.form || "?"}\n${product.thc ?? "?"}% THC · ${product.total_terpenes ?? "?"}% terps\n\n`
+            + `Check the package: per-joint size, how many, and what it says.`;
+  // Leading "." is what a label prints and what a person types (".75g"), but the
+  // page's size regex needs a digit before the point, so normalise on the way in.
+  a.addTextField("size of ONE, in g", CANON.per);
+  a.addTextField("how many in the pack", CANON.count);
+  a.addAction("Sativa"); a.addAction("Indica"); a.addAction("Hybrid");
+  a.addCancelAction("Skip (leave Unverified)");
+
+  const choice = await a.presentAlert();
+  if (choice >= 0) {
+    product.shelf_tag = ["Sativa", "Indica", "Hybrid"][choice];
+
+    const per = parseFloat(String(a.textFieldValue(0)).trim().replace(/^\./, "0."));
+    const n   = parseInt(String(a.textFieldValue(1)).trim(), 10);
+    // Only rewrite `form` on sane input. A typo must not turn a good record into
+    // "Preroll NaNg" — leaving the model's original string is the safe failure.
+    if (per > 0 && n >= 1) {
+      const g = x => (+x.toFixed(2)) + "g";
+      product.form = n > 1
+        ? `${CANON.head} ${g(per)} (${n}-pack, ${g(per * n)} total)`
+        : `${CANON.head} ${g(per)}`;
     }
   }
 }
