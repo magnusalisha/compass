@@ -311,7 +311,12 @@ const nearStd = g => stdUnit(g) !== null;
 const gstr = g => (+g.toFixed(2)) + 'g';
 const parseSize = p => {
   const f = String(p.form || '');   // a numeric `form` is truthy and has no .match
-  const w = f.match(/(\d+(?:\.\d+)?)\s*g\b/i);
+  // The leading digit is OPTIONAL. A hand-edit of ".75g 2-Pack" made this
+  // regex skip the dot, capture "75", and render "75g ×2 · 150g total" — a
+  // hundredfold error that still looks like a weight, on a card nobody would
+  // think to double-check. `\d*\.?\d+` reads ".75" as 0.75, and the engine
+  // finds the dot first, so it can never fall back to the bare digits.
+  const w = f.match(/(\d*\.?\d+)\s*g\b/i);
   const pk = f.match(/(\d+)\s*-?\s*(?:pk|ct|pack|cpk)/i);
   if (!w) return null;
   const g = parseFloat(w[1]);
