@@ -999,7 +999,26 @@ function soldOutWhen(p){
   return days <= 0 ? ' today' : days === 1 ? ' yesterday' : ` ${days} days ago`;
 }
 
-let busyKey = null;   // record currently being written, so we can disable its button
+// ── stock writes are QUEUED, not serialised.
+//
+// Closing up means marking five or six things sold out in a row. This used to
+// hold a single `busyKey` and return early on any tap while a write was in
+// flight — but only the saving row's button was disabled, so every other button
+// looked live, did nothing when tapped, and said nothing about it. You'd mark
+// six and land four, and only find out on the next shift.
+//
+// So a tap never hits the network directly. It goes in `pending`, the card
+// updates immediately, and a short debounce collects whatever else gets tapped
+// before sending the lot as ONE request — which the worker lands as one commit,
+// which is also what stops a burst from stampeding the Pages rebuild.
+const pending = new Map();   // key -> soldOut, tapped but not yet sent
+const sending = new Map();   // key -> soldOut, in flight right now
+let flushTimer = null;
+// Long enough to gather a run of taps, short enough that one tap still feels
+// immediate — the card has already flipped optimistically by then anyway.
+const FLUSH_MS = 700;
+const writing = k => pending.has(k) || sending.has(k);
+const anyWrites = () => pending.size > 0 || sending.size > 0;
 
 // Belt and braces against stale reads. There are three caches between a write
 // and the next read (Cloudflare edge, raw.githubusercontent, the GitHub API
@@ -1017,31 +1036,116 @@ function applyRecentWrites(records){
     return w ? Object.assign({}, r, {in_stock: w.in_stock}) : r;
   });
 }
-async function setStock(k, soldOut){
-  if (!STOCK_API || busyKey) return;
+// What was true before we started touching anything, so a failure can put the
+// screen back to the truth rather than to the previous optimistic guess. Only
+// the FIRST tap on a record records this — tapping twice shouldn't make the
+// original value unrecoverable.
+const wasStocked = new Map();   // key -> in_stock as the repo last confirmed it
+
+function setStock(k, soldOut){
+  if (!STOCK_API) return;
   const p = DATA.find(x => key(x) === k);
   if (!p) return;
-  const before = p.in_stock;
-  busyKey = k;
+  if (!wasStocked.has(k)) wasStocked.set(k, p.in_stock);
+  pending.set(k, soldOut);
   p.in_stock = !soldOut;      // optimistic — the counter shouldn't wait on a round trip
   render();
-  try {
-    const res = await fetch(STOCK_API, {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({key: k, sold_out: soldOut})
-    });
-    const out = await res.json().catch(() => ({}));
-    if (!res.ok || !out.ok) throw new Error(out.error || `HTTP ${res.status}`);
-    recentWrites.set(k, {in_stock: !soldOut, until: Date.now() + 120000});
-    flash = `${p.strain} — ${soldOut ? 'marked sold out' : 'back in stock'}. Everyone sees this.`;
-  } catch (err) {
-    p.in_stock = before;      // put it back; never leave a lie on screen
-    flash = `Couldn't save that — ${err.message}. Nothing changed, try again.`;
+  // Restart the clock on every tap: the window closes once tapping stops, so a
+  // run of six lands as one request no matter how long it takes to work down
+  // the shelf.
+  clearTimeout(flushTimer);
+  flushTimer = setTimeout(flushStock, FLUSH_MS);
+}
+
+const postStock = async body => {
+  const res = await fetch(STOCK_API, {
+    method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(body)
+  });
+  const out = await res.json().catch(() => ({}));
+  return {res, out};
+};
+
+// The page and the worker are deployed by different means — this file goes out
+// with a git push, the worker is pasted into Cloudflare by hand — so for a while
+// after shipping batching, a NEW page will be talking to an OLD worker. That
+// worker reads body.key, finds nothing, and answers "bad key" 400. Rather than
+// leaving stock unwritable until the paste happens, fall back to what it does
+// understand: one legacy request per record, in sequence.
+//
+// Delete this once the worker has been updated. It is a migration ramp, not a
+// permanent second path.
+async function postBatch(batch){
+  const {res, out} = await postStock({changes: batch});
+  if (res.ok && out.ok) return out;
+  if (!(res.status === 400 && /bad key|no changes/.test(out.error || ''))) {
+    throw new Error(out.error || `HTTP ${res.status}`);
   }
-  busyKey = null;
+  const applied = [], failed = [];
+  for (const c of batch){
+    const one = await postStock(c);            // {key, sold_out} — the old shape
+    if (one.res.ok && one.out.ok)
+      applied.push({key: c.key, in_stock: one.out.in_stock, strain: one.out.strain});
+    else
+      failed.push({key: c.key, error: one.out.error || `HTTP ${one.res.status}`});
+  }
+  if (!applied.length) throw new Error(failed[0] ? failed[0].error : 'write failed');
+  return {ok: true, applied, failed};
+}
+
+async function flushStock(){
+  clearTimeout(flushTimer);
+  flushTimer = null;
+  // One request at a time. Taps that arrive mid-flight stay in `pending` and go
+  // out in the next round, which the tail of this function kicks off.
+  if (sending.size || !pending.size) return;
+  for (const [k, v] of pending) sending.set(k, v);
+  pending.clear();
+  const batch = [...sending].map(([key, sold_out]) => ({key, sold_out}));
+  const name = k => (DATA.find(x => key(x) === k) || {}).strain || k;
+
+  try {
+    const out = await postBatch(batch);
+
+    // The worker commits what it can and names what it couldn't — a record
+    // deleted or renamed since this page loaded shouldn't cost you the other
+    // five marks. Trust its list, not the one we sent.
+    const applied = out.applied || batch.map(c => ({key: c.key, in_stock: !c.sold_out}));
+    const failed = out.failed || [];
+    for (const a of applied){
+      recentWrites.set(a.key, {in_stock: a.in_stock, until: Date.now() + 120000});
+      wasStocked.delete(a.key);
+    }
+    for (const f of failed) revertStock(f.key);
+
+    const soldCount = applied.filter(a => !a.in_stock).length;
+    const backCount = applied.length - soldCount;
+    const summary = applied.length === 1
+      ? `${applied[0].strain || name(applied[0].key)} — ${applied[0].in_stock ? 'back in stock' : 'marked sold out'}`
+      : [soldCount ? `${soldCount} marked sold out` : '', backCount ? `${backCount} back in stock` : '']
+          .filter(Boolean).join(', ');
+    flash = failed.length
+      ? `${summary}. Couldn't save ${failed.map(f => name(f.key)).join(', ')} — ${failed[0].error}. Pull to refresh.`
+      : `${summary}. Everyone sees this.`;
+  } catch (err) {
+    // The whole batch failed, so nothing was committed — put every card back.
+    for (const k of sending.keys()) revertStock(k);
+    flash = batch.length === 1
+      ? `Couldn't save that — ${err.message}. Nothing changed, try again.`
+      : `Couldn't save those ${batch.length} — ${err.message}. Nothing changed, try again.`;
+  }
+  sending.clear();
   render();
-  setTimeout(() => { flash = ''; render(); }, 4000);
+  setTimeout(() => { if (!anyWrites()) { flash = ''; render(); } }, 4000);
+  // Anything tapped while that was in the air goes out now.
+  if (pending.size) flushStock();
+}
+
+// Never leave a lie on screen: back to the last value the repo confirmed.
+function revertStock(k){
+  if (!wasStocked.has(k)) return;
+  const p = DATA.find(x => key(x) === k);
+  if (p) p.in_stock = wasStocked.get(k);
+  wasStocked.delete(k);
 }
 // Alphabetical by strain — this is the resting order every tab inherits (effect
 // with nothing typed, Lookup's matches, the combobox dropdowns). The ranked views
@@ -1473,8 +1577,8 @@ function card(p, extra='', compareTo=null){
     </div>
     ${extra}
     <div class="acts">
-      ${STOCK_API ? `<button onclick="setStock('${key(p)}', ${stocked(p)})" ${busyKey === key(p) ? 'disabled' : ''}>${
-        busyKey === key(p) ? 'Saving…' : stocked(p) ? 'Mark sold out' : 'Back in stock'}</button>` : ''}
+      ${STOCK_API ? `<button onclick="setStock('${key(p)}', ${stocked(p)})" ${writing(key(p)) ? 'disabled' : ''}>${
+        writing(key(p)) ? 'Saving…' : stocked(p) ? 'Mark sold out' : 'Back in stock'}</button>` : ''}
       ${compareTo ? `<a href="#" onclick="openCompare('${compareTo}','${key(p)}');return false;">Compare ↔</a>` : ''}
       ${href ? `<a href="${href}" target="_blank" rel="noopener">Edit ↗</a>` : ''}
     </div>
@@ -2308,7 +2412,11 @@ async function fetchRecords(){
 // someone comes back to the tab.
 let refreshTimer = null;
 async function refresh(){
-  if (busyKey) return;                      // don't fight an in-flight write
+  // Don't fight a write that's in the air OR one still sitting in the debounce
+  // window — a refresh landing between the tap and the send would overwrite the
+  // optimistic flip with the repo's old value, and the card would visibly bounce
+  // back before saving correctly a moment later.
+  if (anyWrites()) return;
   let fresh;
   try { fresh = await fetchRecords(); } catch(e){ return; }   // offline: keep what we have
   if (!fresh || !fresh.length) return;

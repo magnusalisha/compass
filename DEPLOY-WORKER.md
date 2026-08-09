@@ -34,7 +34,7 @@ Copy the token. You'll paste it once in step 3 and never need it again.
 5. Delete everything in the editor, paste the entire contents of
    [`compass-stock-worker.js`](compass-stock-worker.js), click **Deploy**.
 
-## 3. Add the four settings (3 min)
+## 3. Add the settings (3 min)
 
 In the Worker → **Settings** → **Variables and Secrets**:
 
@@ -44,9 +44,17 @@ In the Worker → **Settings** → **Variables and Secrets**:
 | `GH_USER` | Text | `magnusalisha` |
 | `GH_REPO` | Text | `compass` |
 | `ALLOWED_ORIGIN` | Text | `https://magnusalisha.github.io` |
+| `GH_BRANCH` | Text | `main` — optional, defaults to `main` |
 
 `GH_TOKEN` **must** be added as a Secret (encrypted, not visible afterwards).
 Click **Deploy** again so the settings take effect.
+
+`GH_BRANCH` is new as of batched writes. The worker used to write one file at a
+time through the contents API, which just used the repo's default branch. A
+batch has to be committed by hand — build a tree, commit it, move the branch —
+and moving a branch means naming it. Leave it unset unless the default branch is
+called something other than `main`. The token needs no new permission: Contents:
+Read and write covers the git plumbing too.
 
 ## 4. Point Compass at it (1 min)
 
@@ -89,10 +97,17 @@ the page just doesn't offer a control that wouldn't work.
   match the site's origin. No trailing slash, no `/compass` path.
 - **"Couldn't save that — HTTP 401/403":** the token expired or lacks
   Contents: Read and write. Make a new one, update the `GH_TOKEN` secret.
-- **"record not found":** that record predates Metrc filenames, or was renamed.
+- **"record not found":** that record predates Metrc filenames, or was deleted
+  or renamed since the page loaded. In a batch it's reported on its own and the
+  other marks still commit — pull to refresh and the stale card goes away.
+- **"read branch failed":** `GH_BRANCH` names a branch that doesn't exist.
+- **"write conflict, try again":** two devices committed at the same moment. The
+  worker already retries once on the new head; a second failure means genuinely
+  simultaneous writes, and tapping again works.
 
 Nothing is ever lost either way — every change is a normal git commit, so
-`git log` shows exactly what happened and anything can be reverted.
+`git log` shows exactly what happened and anything can be reverted. A batch is a
+single commit, so `git show` on it lists every record that moved at once.
 
 ## Rotating the token
 
