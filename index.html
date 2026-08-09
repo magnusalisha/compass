@@ -130,6 +130,13 @@
   .read{margin-top:18px;padding-top:15px;border-top:1px dashed var(--line)}
   .read p{margin-bottom:10px;font-size:15px}
   .read p:last-child{margin-bottom:0}
+  /* The read is what someone came to the counter for, and it was the only body
+     line set BELOW the 15px default — 14px and muted, quieter than the strength
+     line under it. 17px sits between body (15) and the strain name (19), and
+     full-strength ink stops it reading as a caption.
+     Selector is p.says, not .says: `.read p` would otherwise win on specificity
+     and silently keep the 15px. */
+  .read p.says{font-size:17px;color:var(--ink);line-height:1.45}
   .read-faint{opacity:.88}
   .faint-flag{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em;
     text-transform:uppercase;color:var(--warn);margin-bottom:9px}
@@ -1452,7 +1459,7 @@ function card(p, extra='', compareTo=null){
         ? `<p class="faint-flag">⚠ No terpene profile on this one — the lab reported cannabinoids only</p>
            <p class="faint-explain">Beyond the THC figure there's no chemistry here to read, so Compass can't tell you anything about its character. Go by the label and your nose.</p>`
         : `${faint ? `<p class="faint-flag">⚠ Low-confidence guess — terpenes are faint here, trust your nose</p>` : ''}
-           <p style="font-size:14px;color:var(--ink2)">Can read as <b>${says(p)}</b>.</p>
+           <p class="says">Can read as <b>${says(p)}</b>.</p>
            <p class="ev">${dots(ev(p))} evidence · ${evWord(p)}</p>
            ${whyHTML(p)}
            ${unreadNote(p)}`}
