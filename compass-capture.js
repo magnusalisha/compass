@@ -283,20 +283,37 @@ const fromContent = [product.brand, product.strain, product.form].map(slug).filt
 const key = product.metrc_tag || product.batch || fromContent || ("" + Date.now());
 const filename = (key + "").replace(/[^A-Za-z0-9_-]/g, "-") + ".json";
 const path = "data/" + filename;
-const contentB64 = Data.fromString(JSON.stringify(product, null, 1)).toBase64String();
-
 try {
   const api = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${path}`;
 
   // Does this record already exist? If so we need its sha to overwrite it.
-  let sha = null;
+  let sha = null, existing = null;
   const check = new Request(api);
   check.method = "GET";
   check.headers = { "Authorization": "Bearer " + GITHUB_TOKEN, "User-Agent": "compass", "Accept": "application/vnd.github+json" };
   try {
     const ex = await check.loadJSON();
     if (ex && ex.sha) sha = ex.sha;          // exists → update
+    if (ex && ex.content) {
+      try { existing = JSON.parse(Data.fromBase64String(ex.content).toRawString()); }
+      catch (e) { /* unreadable old record — treat as new below */ }
+    }
   } catch (e) { /* 404 = new file, leave sha null */ }
+
+  // When this batch was SCANNED. The page needs it to pick which of two
+  // overlapping batches of one product to show — the newest, because that's the
+  // one still on the shelf once the older sells through. Nothing else orders the
+  // records: Metrc tags aren't chronological (five Gelato packages ran 069260,
+  // 060550, 069256, 069272, 051247) and git dates aren't visible to the page.
+  //
+  // It has to be carried over from the stored record, not from `product` —
+  // `product` is built fresh from the COA on every run and never remembers
+  // anything. A rescan corrects the chemistry of a batch that already arrived,
+  // so re-stamping it would make an old batch look like the newest one and
+  // silently swap which batch the card shows.
+  product.scanned_at = (existing && existing.scanned_at) || new Date().toISOString();
+
+  const contentB64 = Data.fromString(JSON.stringify(product, null, 1)).toBase64String();
 
   const put = new Request(api);
   put.method = "PUT";

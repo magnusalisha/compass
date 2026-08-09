@@ -1156,13 +1156,90 @@ function revertStock(k){
 // with nothing typed, Lookup's matches, the combobox dropdowns). The ranked views
 // re-sort by score/similarity on top of this, so relevance still wins where it
 // exists; alphabetical just breaks their ties. filter() copies, so DATA is never mutated.
-const pool = () => DATA.filter(p => $('#oos').checked || stocked(p))
-  .sort((x, y) => x.strain.localeCompare(y.strain, undefined, {sensitivity: 'base'}));
+// ── one product, two Metrc packages
+//
+// We stock the Florist Farms Gelato pen. It runs out, a new batch arrives, and
+// for a few days both are in inventory. Two records, two near-identical rows,
+// and the only question they raise at the counter is "did I scan this twice?"
+//
+// Two overlapping batches are NOT two choices. Nobody asks for a batch — the
+// customer asks for the Gelato pen and gets whichever package is nearer. So the
+// card's job is to stop reading as a duplicate and to let the old batch be
+// retired, NOT to help anyone choose between them.
+//
+// Identity is label metadata only: brand, strain, and the parsed pack shape.
+// Never chemistry — measured across this catalogue, identical terpenes mean the
+// same standardised blend far more often than they mean the same product, and
+// four pairs of genuinely different strains would be merged by a chemistry test.
+//
+// The strain and form STRINGS can't be compared raw. Anthem shipped the same
+// preroll as both "Northern Lights / Infused Preroll 0.5g (5-pack, 2.5g total)"
+// and "Northern Lights - Pack / Preroll 2.5g Infused 5-Pack" — different text,
+// one product. So the strain drops a trailing "- Pack" and the form goes through
+// parseSize, which reads both of those as 0.5g ×5 infused.
+const STRAIN_PACK = /\s*\b(pack|pk|multipack|singles?)\b\s*$/;
+const idNorm = s => String(s || '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+const productId = p => {
+  const z = parseSize(p);
+  return [idNorm(p.brand), idNorm(p.strain).replace(STRAIN_PACK, '').trim(),
+          category(p), z ? z.per : '?', z ? z.count : '?', isInfused(p) ? 'inf' : ''].join('|');
+};
+
+// Which batch the card shows: the newest, because it is the one still on the
+// shelf after the older one sells through. `scanned_at` is stamped at capture;
+// records from before that field existed fall back to the Metrc tag, which is
+// not chronological but IS stable — and a card that silently swapped batches
+// between renders would be worse than one showing an arbitrary-but-fixed pick.
+const newestBatch = ps => ps.slice().sort((x, y) =>
+  String(y.scanned_at || '').localeCompare(String(x.scanned_at || '')) ||
+  String(key(y)).localeCompare(String(key(x))))[0];
+
+// Collapse in-stock batches of one product to a single card.
+//
+// Only in-stock records collapse. A sold-out record already says "out of stock"
+// wherever it is listed, so it never reads as a duplicate of a live one, and
+// leaving it alone keeps the archive honest for Find similar's source picker.
+//
+// The chosen record is COPIED before annotation — DATA is shared by every view
+// and must never carry per-view state. The copy keeps _key, so "Mark sold out"
+// retires exactly the batch on screen and the next render shows the other one.
+function collapseBatches(list){
+  const groups = new Map();
+  for (const p of list){
+    if (!stocked(p)) continue;
+    const k = productId(p);
+    if (!groups.has(k)) groups.set(k, []);
+    groups.get(k).push(p);
+  }
+  const chosen = new Map();
+  for (const [k, ps] of groups){
+    if (ps.length < 2) continue;
+    // Do the batches actually say the same thing? Where they don't, it is
+    // because the profile is too faint for "biggest terpene" to mean anything —
+    // so the card says that instead of pretending one batch speaks for both.
+    const differ = new Set(ps.map(says)).size > 1;
+    chosen.set(k, Object.assign({}, newestBatch(ps), {_batches: ps.length, _batchesDiffer: differ}));
+  }
+  if (!chosen.size) return list;
+  const seen = new Set(), out = [];
+  for (const p of list){
+    if (!stocked(p)){ out.push(p); continue; }
+    const k = productId(p);
+    if (!chosen.has(k)){ out.push(p); continue; }
+    if (seen.has(k)) continue;
+    seen.add(k);
+    out.push(chosen.get(k));
+  }
+  return out;
+}
+
+const pool = () => collapseBatches(DATA.filter(p => $('#oos').checked || stocked(p))
+  .sort((x, y) => x.strain.localeCompare(y.strain, undefined, {sensitivity: 'base'})));
 // The sellable shelf — in-stock only, alphabetical. Used by the tabs that
 // recommend something to hand a customer (effect, similar), which hide the
 // out-of-stock toggle and so must never consult it.
-const inStock = () => DATA.filter(p => stocked(p))
-  .sort((x, y) => x.strain.localeCompare(y.strain, undefined, {sensitivity: 'base'}));
+const inStock = () => collapseBatches(DATA.filter(p => stocked(p))
+  .sort((x, y) => x.strain.localeCompare(y.strain, undefined, {sensitivity: 'base'})));
 
 function vec(p){ const t = p.total_terpenes || 1, o = {};
   for (const [k,v] of Object.entries(p.terpenes||{})) o[k] = v/t; return o; }
@@ -1603,15 +1680,54 @@ function card(p, extra='', compareTo=null){
             for it, so nothing became harder to find; this only changes which
             one the eye lands on first inside the read. */''}
       ${thcNote(p)}
+      ${batchNote(p)}
     </div>
     ${extra}
     <div class="acts">
       ${STOCK_API ? `<button onclick="setStock('${key(p)}', ${stocked(p)})" ${writing(key(p)) ? 'disabled' : ''}>${
-        writing(key(p)) ? 'Saving…' : stocked(p) ? 'Mark sold out' : 'Back in stock'}</button>` : ''}
+        writing(key(p)) ? 'Saving…' : !stocked(p) ? 'Back in stock'
+          : batchInfo(p) ? 'Mark this batch sold out' : 'Mark sold out'}</button>` : ''}
       ${compareTo ? `<a href="#" onclick="openCompare('${compareTo}','${key(p)}');return false;">Compare ↔</a>` : ''}
       ${href ? `<a href="${href}" target="_blank" rel="noopener">Edit ↗</a>` : ''}
     </div>
   </div>`;
+}
+
+// One line when a product has more than one batch on the shelf, and nothing at
+// all otherwise — which is almost always.
+//
+// It exists to answer the two questions overlapping batches actually raise:
+// "is this a duplicate?" (no) and "why is it still here after I marked it sold
+// out?" (you retired one batch, the other is still on the shelf). Every number
+// on the card above belongs to ONE real COA — nothing here is averaged across
+// batches, because an average is a profile no package in the shop can match.
+//
+// The percentages themselves go unmentioned by design. Across the Gelato lots
+// the batch-to-batch read is identical and the profiles match at 99.8%, so the
+// difference is real but not something a customer has ever raised.
+// Counted from DATA, NOT from the annotation collapseBatches leaves on list
+// entries. A card can be reached without passing through a list at all — Lookup
+// resolves a row to a record by key, Find similar renders its source the same
+// way — and those cards were silently missing the line and showing the plain
+// "Mark sold out" label. Asking DATA directly makes the card right however it
+// was opened.
+function batchInfo(p){
+  if (!p || !stocked(p)) return null;
+  const id = productId(p);
+  const sibs = DATA.filter(x => stocked(x) && productId(x) === id);
+  if (sibs.length < 2) return null;
+  return {n: sibs.length, differ: new Set(sibs.map(says)).size > 1};
+}
+
+function batchNote(p){
+  const info = batchInfo(p);
+  if (!info) return '';
+  // Reads disagreeing means the profile is too faint for "biggest terpene" to
+  // be meaningful — the honest move is to say so rather than let the newest
+  // batch speak for a batch that reads differently.
+  if (info.differ)
+    return `<p class="ev">${info.n} batches on the shelf — they read differently, and the profile is too faint to tell them apart. Trust the package and your nose.</p>`;
+  return `<p class="ev">${info.n} batches on the shelf · showing one — they read the same</p>`;
 }
 
 // ── the read: honest about what it can and can't call
@@ -1979,8 +2095,11 @@ function render(){
     // hasProfile: a record with no terpene data scores 0 against everything, so
     // it would sit at the bottom of the list as a meaningless "0% match" — it
     // isn't a candidate for a chemistry match at all.
-    const candidates = DATA.filter(x => key(x) !== key(p) && stocked(x) && hasProfile(x)
-      && (simCat === 'All' || category(x) === simCat));
+    // collapseBatches here too, or a product with two batches on the shelf
+    // returns two matches a fraction of a percent apart — which reads as the
+    // tool padding the list rather than as one substitute you can hand over.
+    const candidates = collapseBatches(DATA.filter(x => key(x) !== key(p) && stocked(x) && hasProfile(x)
+      && (simCat === 'All' || category(x) === simCat)));
     if (!candidates.length){
       // Now that the filter auto-follows the source, the likeliest way to land
       // here is a thin category rather than an empty catalogue — so say which
