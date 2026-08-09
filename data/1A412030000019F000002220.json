@@ -8,7 +8,7 @@
  "total_terpenes": 4.7,
  "lean": "lifting",
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Sativa",
  "reported": [
   "Durban Poison",
@@ -38,5 +38,6 @@
   "Farnesene": 0.06,
   "alpha-Bisabolol": 0.06,
   "Guaiol": 0.04
- }
+ },
+ "sold_out_at": "2026-08-09T16:37:48.446Z"
 }
