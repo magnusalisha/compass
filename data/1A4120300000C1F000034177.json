@@ -39,6 +39,7 @@
  "form": "Flower 3.5g",
  "strain": "Silver Surfer",
  "lean": "settling",
- "in_stock": true,
- "thc": 24.0372
+ "in_stock": false,
+ "thc": 24.0372,
+ "sold_out_at": "2026-08-09T18:12:41.980Z"
 }
