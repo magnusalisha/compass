@@ -138,7 +138,12 @@
   .warnbox{background:#F6E3D3;border:1px solid #E0B99A;color:#7A3A1C;border-radius:10px;
     padding:12px 13px;margin-top:13px;font-size:13.5px;line-height:1.45}
   .ev{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--ink2);margin-top:7px;letter-spacing:.04em}
-  .why{margin-top:9px;font-size:12.5px;color:var(--ink2)}
+  /* Bottom margin matches the top. It was absent because nothing used to follow
+     the WHY panel; Strength now does, and with the global *{margin:0} reset the
+     two sat flush against each other. Collapses with .unread's 8px, so a card
+     carrying both doesn't get a double gap. */
+  .why{margin-top:9px;margin-bottom:9px;font-size:12.5px;color:var(--ink2)}
+  .why:last-child{margin-bottom:0}
   .why summary{cursor:pointer;color:var(--ink2);font-family:'IBM Plex Mono',monospace;font-size:11px;
     text-transform:uppercase;letter-spacing:.06em;list-style:none}
   .why summary::-webkit-details-marker{display:none}
@@ -1443,7 +1448,6 @@ function card(p, extra='', compareTo=null){
     </div>
     ${stack(p)}
     <div class="read${cautious ? ' read-faint' : ''}" style="border-top:none;padding-top:12px;margin-top:12px">
-      ${thcNote(p)}
       ${bare
         ? `<p class="faint-flag">⚠ No terpene profile on this one — the lab reported cannabinoids only</p>
            <p class="faint-explain">Beyond the THC figure there's no chemistry here to read, so Compass can't tell you anything about its character. Go by the label and your nose.</p>`
@@ -1452,6 +1456,13 @@ function card(p, extra='', compareTo=null){
            <p class="ev">${dots(ev(p))} evidence · ${evWord(p)}</p>
            ${whyHTML(p)}
            ${unreadNote(p)}`}
+      ${/* Strength sits LAST, not first. People come to the counter asking what
+            something feels like, not how strong it is — so the read answers the
+            question that was asked and the number closes rather than opens.
+            The big THC figure is still in the card header for anyone scanning
+            for it, so nothing became harder to find; this only changes which
+            one the eye lands on first inside the read. */''}
+      ${thcNote(p)}
     </div>
     ${extra}
     <div class="acts">
