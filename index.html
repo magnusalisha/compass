@@ -1530,10 +1530,10 @@ function read(x, y){
   else
     h += `<p><b>${xn}</b> reads <b>${says(x)}</b>. <b>${yn}</b> reads <b>${says(y)}</b>.</p>`;
 
-  const gaps = [...new Set([...domTerps(x).slice(0,3), ...domTerps(y).slice(0,3)])]
+  const ranked = [...new Set([...domTerps(x).slice(0,3), ...domTerps(y).slice(0,3)])]
     .map(k => [k, (x.terpenes[k]||0) - (y.terpenes[k]||0)])
-    .filter(([,d]) => Math.abs(d) >= 0.1)
-    .sort((p,q) => Math.abs(q[1]) - Math.abs(p[1])).slice(0,2);
+    .sort((p,q) => Math.abs(q[1]) - Math.abs(p[1]));
+  const gaps = ranked.filter(([,d]) => Math.abs(d) >= 0.1).slice(0,2);
   const gapKeys = gaps.map(g => g[0]);
   // Both gaps favour the SAME product on 14,670 of 21,945 pairs — two thirds of
   // every comparison — so the product's name was opening two consecutive lines
@@ -1553,7 +1553,30 @@ function read(x, y){
     h += `<p>${lead} ${termName(k, gapKeys).toLowerCase()} (${hi.terpenes[k]||0}% vs ${lo.terpenes[k]||0}%) — ${REPORTED[k]?REPORTED[k][0]:'a character difference'} <span class="ev">${REPORTED[k]?dots(REPORTED[k][1]):''}</span></p>`;
     prevHi = hi;
   }
-  if (!gaps.length) h += `<p>The profiles are close enough that I'd sell on smell or price.</p>`;
+  // "Close enough that I'd sell on smell or price" was the tool giving up, and it
+  // gave up too readily. On 231 of the 290 pairs that reach here — 80% — one
+  // product still carries at least 25% MORE of something than the other.
+  // Sherbanger 3 vs ADL 2 is the case that showed it: 0.34% vs 0.27% limonene, a
+  // quarter more, and the card said nothing at all.
+  //
+  // The 0.1 threshold above stays. It's the bar for a CLAIM, it's absolute, and
+  // being absolute is what stops a faint profile's noise getting through. But
+  // when nothing clears it, naming the largest real difference beats silence —
+  // hedged, because measurable and noticeable are not the same thing.
+  //
+  // Floor of 0.04 is the labs' own reporting limit: below it a difference isn't a
+  // difference, and the old line is the honest answer.
+  if (!gaps.length){
+    const [k, d] = ranked[0] || [];
+    if (k && Math.abs(d) >= 0.04){
+      const [hi, lo] = d > 0 ? [x,y] : [y,x];
+      h += `<p>Very close. The clearest difference is ${termName(k, [k]).toLowerCase()} — <b>${nm(hi)}</b> ${hi.terpenes[k]||0}% against ${lo.terpenes[k]||0}%${
+        REPORTED[k] ? ` — ${REPORTED[k][0]} <span class="ev">${dots(REPORTED[k][1])}</span>` : ''
+      }. Small enough that smell or price may decide it better than chemistry.</p>`;
+    } else {
+      h += `<p>The profiles are close enough that I'd sell on smell or price.</p>`;
+    }
+  }
   if (x.thc != null && y.thc != null && Math.abs(x.thc - y.thc) >= 3){
     const [hi, lo] = x.thc >= y.thc ? [x,y] : [y,x];
     h += `<p><b>${nm(hi)}</b> is meaningfully stronger (${thc1(hi.thc)} THC vs ${thc1(lo.thc)}) — that'll drive the experience more than any terpene here.</p>`;
