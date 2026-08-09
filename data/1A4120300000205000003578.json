@@ -8,7 +8,7 @@
  "total_terpenes": 2.1696,
  "lean": "settling",
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Hybrid",
  "reported": [
   "Spicy",
@@ -43,5 +43,6 @@
   "Terpinolene": 0.0222,
   "Borneol": 0.0134,
   "Camphene": 0.0123
- }
+ },
+ "sold_out_at": "2026-08-09T18:13:07.454Z"
 }
