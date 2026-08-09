@@ -198,17 +198,14 @@ try {
   }
 }
 
-// ---- 2c. confirm the two things only the package can tell you -------------
-// The COA carries chemistry. It does NOT carry sativa/indica, and it usually
-// doesn't carry pack structure — both are printed on the package you are
-// holding at the moment you scan. So ask, once, instead of leaving a cleanup
-// job for later.
-//
-// SHELF TAG. The prompt still forbids the model from guessing this, and that
-// stays: the whole label-vs-chemistry question is only answerable because the
-// tag comes from a human looking at the package. This just moves that human
-// from "some evening, going through the Unverified list" to "now, with the jar
-// in hand". Cancel still writes Unverified, so nothing is ever worse than before.
+// ---- 2c. confirm the three things only the package can tell you -----------
+// The COA carries chemistry and nothing else that matters here. It does NOT
+// carry sativa/indica, it usually doesn't carry pack structure, and the name it
+// prints is the licence holder rather than the brand — all three are on the
+// package in your hand at the moment you scan. So ask, once, instead of leaving
+// a cleanup job for later. Each of the three has already cost a correction pass:
+// Curaleaf NY on seven Anthem prerolls, "Preroll 2g" on five-packs, and a
+// hundred-odd records sitting Unverified for weeks.
 //
 // PACK STRUCTURE. Miss Grass prints "2g" on a tube holding five 0.4g joints, so
 // the model wrote `Preroll 2g` and the page read it as one 2g joint — wrong on
@@ -229,24 +226,33 @@ const CANON = (() => {
   return { head: head || "Preroll", per: w ? w[1] : "", count: pk ? pk[1] : "1" };
 })();
 
+// Two dialogs, not one. Brand, quantity and shelf tag all need checking against
+// the package, and an Alert carrying three text fields AND six tag buttons is a
+// wall nobody reads. So: details first (typed, prefilled), then the tag (tapped).
+//
+// BRAND is here because the COA prints the LICENSEE, not the brand. Anthem's
+// prerolls came back as "Curaleaf NY" in three different spellings and had to be
+// corrected by hand afterwards; Green Wells Farms arrived as "Green Wells
+// Venture LLC". The model can't know the difference — the package can.
 {
   const a = new Alert();
-  a.title = `${product.strain || "?"} · ${product.brand || "?"}`;
+  a.title = `${product.strain || "?"} · check the package`;
   a.message = `${product.form || "?"}\n${product.thc ?? "?"}% THC · ${product.total_terpenes ?? "?"}% terps\n\n`
-            + `Check the package: per-joint size, how many, and what it says.`;
+            + `Brand as PRINTED on the package, not the licence holder. Then the size of one and how many.`;
+  a.addTextField("brand", product.brand || "");
   // Leading "." is what a label prints and what a person types (".75g"), but the
   // page's size regex needs a digit before the point, so normalise on the way in.
   a.addTextField("size of ONE, in g", CANON.per);
   a.addTextField("how many in the pack", CANON.count);
-  a.addAction("Sativa"); a.addAction("Indica"); a.addAction("Hybrid");
-  a.addCancelAction("Skip (leave Unverified)");
+  a.addAction("Next");
+  a.addCancelAction("Keep what was read");
 
-  const choice = await a.presentAlert();
-  if (choice >= 0) {
-    product.shelf_tag = ["Sativa", "Indica", "Hybrid"][choice];
+  if (await a.presentAlert() === 0) {
+    const brand = String(a.textFieldValue(0)).trim();
+    if (brand) product.brand = brand;      // blank keeps the model's read
 
-    const per = parseFloat(String(a.textFieldValue(0)).trim().replace(/^\./, "0."));
-    const n   = parseInt(String(a.textFieldValue(1)).trim(), 10);
+    const per = parseFloat(String(a.textFieldValue(1)).trim().replace(/^\./, "0."));
+    const n   = parseInt(String(a.textFieldValue(2)).trim(), 10);
     // Only rewrite `form` on sane input. A typo must not turn a good record into
     // "Preroll NaNg" — leaving the model's original string is the safe failure.
     if (per > 0 && n >= 1) {
@@ -256,6 +262,27 @@ const CANON = (() => {
         : `${CANON.head} ${g(per)}`;
     }
   }
+}
+
+// SHELF TAG. The extraction prompt still forbids the model from guessing this,
+// and that stays: the whole label-vs-chemistry question is only answerable
+// because the tag comes from a human looking at the package. This just moves
+// that human from "some evening, working through the Unverified list" to "now,
+// with the jar in hand". Cancel writes Unverified, so it is never worse.
+//
+// All five values, in shelf order. The list is compass-manage.js's vocabulary
+// verbatim — the page maps "Sativa-leaning Hybrid" and "Indica-leaning Hybrid"
+// to a direction already, so a tag set here behaves identically to one set in
+// the back office. Any other spelling would display but silently assert nothing.
+{
+  const t = new Alert();
+  t.title = "What does the package say?";
+  t.message = `${product.strain || "?"} · ${product.brand || "?"}\n${product.form || "?"}`;
+  const TAGS = ["Sativa", "Sativa-leaning Hybrid", "Hybrid", "Indica-leaning Hybrid", "Indica"];
+  for (const tag of TAGS) t.addAction(tag);
+  t.addCancelAction("Skip (leave Unverified)");
+  const choice = await t.presentAlert();
+  if (choice >= 0) product.shelf_tag = TAGS[choice];
 }
 
 // ---- 3. write it to GitHub -----------------------------------------------
