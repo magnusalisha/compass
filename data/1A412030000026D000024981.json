@@ -8,7 +8,7 @@
  "total_terpenes": 1.32,
  "lean": "lifting",
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Hybrid",
  "reported": [
   "Hybrid",
@@ -39,5 +39,6 @@
   "Fenchol": 0.02,
   "Camphene": 0.01,
   "alpha-Bisabolol": 0.01
- }
+ },
+ "sold_out_at": "2026-08-10T01:49:39.409Z"
 }
