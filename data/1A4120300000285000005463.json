@@ -8,7 +8,7 @@
  "total_terpenes": 3.124,
  "lean": "lifting",
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Sativa",
  "reported": [
   "citrusy lime",
@@ -41,5 +41,6 @@
   "alpha-Phellandrene": 0.0471,
   "alpha-Humulene": 0.0391,
   "3-Carene": 0.0349
- }
+ },
+ "sold_out_at": "2026-08-10T20:18:42.146Z"
 }
