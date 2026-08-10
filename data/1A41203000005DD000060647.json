@@ -1,0 +1,45 @@
+{
+ "id": "465b269410",
+ "metrc_tag": "1A41203000005DD000060647",
+ "brand": "Ayrloom",
+ "strain": "Lychee Dream",
+ "form": "Vape 1g",
+ "thc": 85.41,
+ "total_terpenes": 4.7882,
+ "lean": "settling",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Hybrid",
+ "reported": [],
+ "dominant": [
+  "beta-Caryophyllene",
+  "Linalool",
+  "Limonene"
+ ],
+ "aroma": [
+  "spicy",
+  "peppery",
+  "floral",
+  "citrus",
+  "earthy"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 1.1429,
+  "Linalool": 0.85,
+  "Limonene": 0.7195,
+  "beta-Myrcene": 0.523,
+  "Farnesene": 0.4746,
+  "alpha-Humulene": 0.4163,
+  "alpha-Bisabolol": 0.1149,
+  "beta-Pinene": 0.0923,
+  "Caryophyllene Oxide": 0.0842,
+  "Nerolidol": 0.0842,
+  "Terpinolene": 0.0698,
+  "alpha-Phellandrene": 0.0693,
+  "Geraniol": 0.0607,
+  "Terpineol": 0.0543,
+  "Fenchol": 0.0477,
+  "alpha-Pinene": 0.0454
+ },
+ "scanned_at": "2026-08-10T16:29:18.962Z"
+}
