@@ -31,6 +31,7 @@
  "form": "Flower 3.5g",
  "strain": "Empire OG",
  "lean": "settling",
- "in_stock": true,
- "thc": 30.625
+ "in_stock": false,
+ "thc": 30.625,
+ "sold_out_at": "2026-08-10T19:10:57.504Z"
 }
