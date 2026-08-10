@@ -1,0 +1,46 @@
+{
+ "id": "b9dffcd0b4",
+ "metrc_tag": "1A412030000019E000135338",
+ "brand": "Florist Farms",
+ "strain": "Northern Lights",
+ "form": "Vape 1g Disposable",
+ "thc": 77.53,
+ "total_terpenes": 4.89,
+ "lean": "lifting",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Indica",
+ "reported": [],
+ "dominant": [
+  "Terpinolene",
+  "Ocimene",
+  "beta-Myrcene"
+ ],
+ "aroma": [
+  "fruity",
+  "herbal",
+  "sweet",
+  "earthy",
+  "musky"
+ ],
+ "terpenes": {
+  "Terpinolene": 2.3,
+  "Ocimene": 0.8,
+  "beta-Myrcene": 0.45,
+  "beta-Caryophyllene": 0.33,
+  "Limonene": 0.26,
+  "alpha-Pinene": 0.18,
+  "beta-Pinene": 0.15,
+  "alpha-Humulene": 0.1,
+  "Linalool": 0.08,
+  "alpha-Phellandrene": 0.08,
+  "alpha-Terpinene": 0.06,
+  "alpha-Bisabolol": 0.02,
+  "Fenchol": 0.02,
+  "Terpineol": 0.02,
+  "Camphene": 0.01,
+  "Caryophyllene Oxide": 0.01,
+  "Guaiol": 0.01
+ },
+ "scanned_at": "2026-08-10T17:20:14.666Z"
+}

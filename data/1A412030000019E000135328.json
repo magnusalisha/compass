@@ -1,0 +1,45 @@
+{
+ "id": "c32eb2b0d0",
+ "metrc_tag": "1A412030000019E000135328",
+ "brand": "Florist Farms",
+ "strain": "Blue Dream",
+ "form": "Vape 1g Disposable",
+ "thc": 76.388,
+ "total_terpenes": 4.43,
+ "lean": "lifting",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Sativa",
+ "reported": [],
+ "dominant": [
+  "alpha-Pinene",
+  "beta-Myrcene",
+  "Limonene"
+ ],
+ "aroma": [
+  "pine",
+  "earthy",
+  "musky",
+  "citrus",
+  "spicy"
+ ],
+ "terpenes": {
+  "alpha-Pinene": 1.33,
+  "beta-Myrcene": 0.9,
+  "Limonene": 0.63,
+  "beta-Pinene": 0.37,
+  "beta-Caryophyllene": 0.34,
+  "Ocimene": 0.26,
+  "Terpinolene": 0.17,
+  "alpha-Humulene": 0.14,
+  "Linalool": 0.12,
+  "Camphene": 0.04,
+  "alpha-Bisabolol": 0.04,
+  "Fenchol": 0.04,
+  "Terpineol": 0.02,
+  "alpha-Terpinene": 0.01,
+  "alpha-Phellandrene": 0.01,
+  "Valencene": 0.01
+ },
+ "scanned_at": "2026-08-10T17:20:14.666Z"
+}
