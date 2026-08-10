@@ -8,7 +8,7 @@
  "total_terpenes": 6.321,
  "lean": "lifting",
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Hybrid",
  "reported": [
   "beta-Myrcene dominant",
@@ -43,5 +43,6 @@
   "gamma-Terpinene": 0.0417,
   "alpha-Terpineol": 0.0301,
   "Fenchol": 0.0258
- }
+ },
+ "sold_out_at": "2026-08-10T14:00:01.710Z"
 }
