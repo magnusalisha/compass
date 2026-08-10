@@ -8,7 +8,7 @@
  "total_terpenes": 0.68,
  "lean": "lifting",
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Hybrid",
  "reported": [
   "Wedding Crashers",
@@ -30,5 +30,6 @@
   "Terpinolene": 0.42,
   "beta-Myrcene": 0.14,
   "Limonene": 0.13
- }
+ },
+ "sold_out_at": "2026-08-10T13:59:13.489Z"
 }
