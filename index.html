@@ -1417,12 +1417,45 @@ const OPPOSED = (a, b) => (a === 'lift' && b === 'settle') || (a === 'settle' &&
 function says(p){
   const ranked = rankedTerps(p);
   if (!ranked.length) return 'hard to call from the terpenes alone';
-  const top = ranked[0], topDir = CHAR[top[0]][2];
-  const opp = ranked.find(([k]) => CHAR[k][2] !== topDir);
-  if (!opp) return CHAR[top[0]][0];
-  if (top[1] / opp[1] <= EVEN_T) return `${CHAR[top[0]][1]} and ${CHAR[opp[0]][1]} in equal measure`;
+
+  // Sum each DIRECTION. The old version compared the single biggest terpene
+  // against the first opposing one and ignored everything below them, so Hudson
+  // Blue Dream — myrcene 0.73 settling against terpinolene 0.67 AND pinene 0.54
+  // lifting — read "heavy and buzzy in equal measure" while the card printed the
+  // two lifting terpenes one line above. The read contradicted its own evidence.
+  // Measured over 268 records, summing takes agreement between the read's lead
+  // and the direction carrying the most terpene mass from 90% to 99%.
+  const tot = {}, best = {};
+  for (const [k, v] of ranked){
+    const dir = CHAR[k][2];
+    tot[dir] = (tot[dir] || 0) + v;
+    if (!best[dir]) best[dir] = [k, v];   // ranked is descending, so first wins
+  }
+  const dirs = Object.entries(tot).sort((x, y) => y[1] - x[1]);
+  const lead = best[dirs[0][0]];
+
+  // The contrast is NOT simply the runner-up direction. `settle` and `body` both
+  // speak in calm words, so pairing them says the same thing twice — 107 of the
+  // old reads did exactly that ("body-calm, with a cozy undertone"). Summing
+  // alone made it worse (125). Lift is the only real opposite in this
+  // vocabulary, so when a calm direction leads, contrast against lift; when lift
+  // leads, contrast against whichever calm direction is larger. That leaves 13.
+  const dir0 = dirs[0][0];
+  const pick = dir0 === 'lift'
+    ? (best.settle && best.body ? (tot.settle >= tot.body ? 'settle' : 'body')
+                                : (best.settle ? 'settle' : best.body ? 'body' : null))
+    : (best.lift ? 'lift'
+       : dir0 === 'settle' ? (best.body ? 'body' : null)
+                           : (best.settle ? 'settle' : null));
+  // Nothing to contrast with — 17 records carry no lifting terpene at all, and a
+  // bare lead is the honest answer there rather than an invented tension.
+  if (!pick) return CHAR[lead[0]][0];
+
+  const opp = best[pick];
+  const ratio = dirs[0][1] / tot[pick];
+  if (ratio <= EVEN_T) return `${CHAR[lead[0]][1]} and ${CHAR[opp[0]][1]} in equal measure`;
   // The lead genuinely leads — undertone if the other is still meaningful.
-  return top[1] / opp[1] <= 5 ? undertone(top, opp) : CHAR[top[0]][0];
+  return ratio <= 5 ? undertone(lead, opp) : CHAR[lead[0]][0];
 }
 // How good is the evidence behind THIS product's read?
 //
