@@ -8,7 +8,7 @@
  "total_terpenes": 3.796,
  "lean": "lifting",
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Hybrid",
  "reported": [
   "stonefruit",
@@ -39,5 +39,6 @@
   "alpha-Phellandrene": 0.1107,
   "Camphor": 0.1232,
   "alpha-Humulene": 0.129
- }
+ },
+ "sold_out_at": "2026-08-10T14:00:14.639Z"
 }
