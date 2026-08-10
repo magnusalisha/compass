@@ -1,0 +1,46 @@
+{
+ "id": "7dd8712a64",
+ "metrc_tag": "1A412030000019E000135337",
+ "brand": "Hudson Cannabis",
+ "strain": "Super Lemon Haze",
+ "form": "Vape 1g Cartridge",
+ "thc": 82.16,
+ "total_terpenes": 3.9492,
+ "lean": "lifting",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Sativa",
+ "reported": [],
+ "dominant": [
+  "Delta-Terpinene",
+  "Terpinolene",
+  "Limonene"
+ ],
+ "aroma": [
+  "fruity",
+  "herbal",
+  "citrus",
+  "spicy",
+  "peppery"
+ ],
+ "terpenes": {
+  "Delta-Terpinene": 0.9544,
+  "Terpinolene": 0.9544,
+  "Limonene": 0.5063,
+  "beta-Caryophyllene": 0.4219,
+  "beta-Myrcene": 0.3613,
+  "alpha-Pinene": 0.1259,
+  "beta-Pinene": 0.1202,
+  "Caryophyllene Oxide": 0.1,
+  "Linalool": 0.0771,
+  "alpha-Bisabolol": 0.0611,
+  "Terpineol": 0.055,
+  "alpha-Phellandrene": 0.0461,
+  "Carene": 0.0439,
+  "Nerolidol": 0.0389,
+  "alpha-Humulene": 0.0349,
+  "Borneol": 0.0256,
+  "Fenchol": 0.0189
+ },
+ "scanned_at": "2026-08-10T16:15:23.056Z"
+}

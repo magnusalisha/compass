@@ -1,0 +1,41 @@
+{
+ "id": "7f23181a3c",
+ "metrc_tag": "1A412030000019E000135335",
+ "brand": "Hudson Cannabis",
+ "strain": "Blue Dream",
+ "form": "Vape 0.5g Cartridge",
+ "thc": 80.2117,
+ "total_terpenes": 3.14,
+ "lean": "lifting",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Sativa",
+ "reported": [],
+ "dominant": [
+  "beta-Myrcene",
+  "Terpinolene",
+  "alpha-Pinene"
+ ],
+ "aroma": [
+  "earthy",
+  "musky",
+  "fruity",
+  "herbal",
+  "pine"
+ ],
+ "terpenes": {
+  "beta-Myrcene": 0.73,
+  "Terpinolene": 0.67,
+  "alpha-Pinene": 0.54,
+  "Limonene": 0.32,
+  "beta-Caryophyllene": 0.23,
+  "beta-Pinene": 0.23,
+  "alpha-Humulene": 0.1,
+  "alpha-Bisabolol": 0.09,
+  "Geraniol": 0.09,
+  "Fenchol": 0.05,
+  "Guaiol": 0.05,
+  "Caryophyllene Oxide": 0.04
+ },
+ "scanned_at": "2026-08-10T16:15:23.059Z"
+}
