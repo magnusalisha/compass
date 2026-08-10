@@ -8,7 +8,7 @@
  "total_terpenes": 5.868,
  "lean": "lifting",
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Indica",
  "reported": [
   "energizing",
@@ -49,5 +49,6 @@
   "Borneol": 0.0157,
   "alpha-Phellandrene": 0.0175,
   "3-Carene": 0.0197
- }
+ },
+ "sold_out_at": "2026-08-10T14:00:09.544Z"
 }
