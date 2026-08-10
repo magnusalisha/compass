@@ -8,7 +8,7 @@
  "total_terpenes": 1.09,
  "lean": "settling",
  "confidence": "moderate",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Sativa",
  "reported": [
   "beta-Caryophyllene dominant",
@@ -32,5 +32,6 @@
   "Farnesene": 0.15,
   "alpha-Bisabolol": 0.08,
   "Caryophyllene Oxide": 0.05
- }
+ },
+ "sold_out_at": "2026-08-10T16:02:34.225Z"
 }
