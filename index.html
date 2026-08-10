@@ -986,7 +986,8 @@ let DATA = [
   "in_stock": true
  }
 ], tab = 'effect', a = null, b = null, sel = null, flash = '', effCat = 'All', simCat = 'All',
-  lookupQ = '', lookupSel = null, effSize = 'any', effLean = 'any', effInfused = 'any', unreadable = 0;
+  lookupQ = '', lookupSel = null, lookupCat = 'All',
+  effSize = 'any', effLean = 'any', effInfused = 'any', unreadable = 0;
 
 // Which "Why?" panels are expanded, by product key. A "Why?" is a native
 // <details>, so any re-render (the 60s refresh, the 4s flash-clear after a
@@ -2158,7 +2159,7 @@ function render(){
     P.innerHTML = banner + `<div class="searchwrap">
         <input type="text" id="lookupQ" placeholder="Type a strain or brand…" value="${lookupQ.replace(/"/g,'&quot;')}">
         <button type="button" class="clearbtn${lookupQ ? ' show' : ''}" data-clear="lookupQ" aria-label="Clear search">&times;</button>
-      </div>`;
+      </div>` + categoryButtons('lookupCat', lookupCat);
     return renderLookupResults();
   }
 
@@ -2325,12 +2326,19 @@ function renderLookupResults(){
   }
   const q = lookupQ.trim().toLowerCase();
   if (!q){ O.innerHTML = `<div class="empty">Type a strain or brand to look it up.</div>`; return foot(); }
-  const matches = pool().filter(p => (p.strain + ' ' + p.brand).toLowerCase().includes(q));
+  // Category first, then text. Searching a brand used to return everything it
+  // makes — Dank alone is 14 records across flower, prerolls and packs — and the
+  // list gave no way to get to the one shelf you were standing at.
+  const matches = pool()
+    .filter(p => lookupCat === 'All' || category(p) === lookupCat)
+    .filter(p => (p.strain + ' ' + p.brand).toLowerCase().includes(q));
   O.innerHTML = matches.length
     ? `<div class="lookup-list">${matches.map(p => `<button type="button" class="lookup-row" data-lookup-id="${key(p)}">
          <span class="lookup-left"><span class="lookup-strain">${p.strain}</span><span class="lookup-form">${formLabel(p)}</span></span><span class="lookup-brand">${p.brand}${stocked(p)?'':' · out of stock'}</span>
        </button>`).join('')}</div>`
-    : `<div class="empty">Nothing scanned matches that.<br><span style="font-size:13px">It may be on the shelf but not in Compass yet.</span></div>`;
+    : `<div class="empty">${lookupCat === 'All'
+          ? 'Nothing scanned matches that.'
+          : `No ${lookupCat.toLowerCase()} matches that — tap All to search every category.`}<br><span style="font-size:13px">It may be on the shelf but not in Compass yet.</span></div>`;
   return foot();
 }
 function foot(){
@@ -2360,6 +2368,7 @@ document.addEventListener('click', e => {
     const catKey = c.closest('.catseg').dataset.catkey;
     if (catKey === 'effCat') effCat = c.dataset.cat;
     if (catKey === 'simCat') simCat = c.dataset.cat;
+    if (catKey === 'lookupCat'){ lookupCat = c.dataset.cat; lookupSel = null; }   // a new shelf means a new search, not the card you had open
     render();
     return;
   }
