@@ -48,6 +48,15 @@
     background-position:calc(100% - 20px) calc(50% - 2px),calc(100% - 15px) calc(50% - 2px);
     background-size:5px 5px,5px 5px;background-repeat:no-repeat}
   input:focus,select:focus{outline:2px solid var(--gold);outline-offset:2px}
+  /* A set filter must LOOK set. Every dropdown rendered identically whether it
+     said "Any type" or "Indica", so the only way to notice a filter left on from
+     the last customer was to read the words — and a forgotten one hides most of
+     the shelf: Indica alone hides 73% of what's in stock, Flower and Indica
+     together hide 92%. Gold because that is already the active colour on the
+     tabs and the category segment, so it needs no explaining.
+     Focus keeps its OUTLINE, which sits outside the border and offset from it,
+     so a focused-but-unset dropdown never passes for a set one. */
+  select[data-set]{border:1px solid var(--gold);color:var(--ink);font-weight:600}
   /* Two per row fits a 375px phone. The effect tab shows a third (infusion) on
      All/Preroll only — at three, 110px each would truncate "Non-infused", so
      let it wrap to a second line rather than cramp. */
@@ -2035,17 +2044,17 @@ function render(){
     // sits at the bottom, below the dropdowns.
     P.innerHTML = banner + categoryButtons('effCat', effCat)
       + `<div class="pair">
-           <select id="effLean" aria-label="Sativa / Indica / Hybrid">
+           <select id="effLean" aria-label="Sativa / Indica / Hybrid"${effLean!=='any'?' data-set':''}>
              <option value="any"${effLean==='any'?' selected':''}>Any type</option>
              <option value="Sativa"${effLean==='Sativa'?' selected':''}>Sativa</option>
              <option value="Indica"${effLean==='Indica'?' selected':''}>Indica</option>
              <option value="Hybrid"${effLean==='Hybrid'?' selected':''}>Hybrid</option>
            </select>
-           <select id="effSize" aria-label="Size">
+           <select id="effSize" aria-label="Size"${effSize!=='any'?' data-set':''}>
              <option value="any"${effSize==='any'?' selected':''}>Any size</option>
              ${sizeOpts.map(s => `<option value="${s}"${effSize===s?' selected':''}>${s}</option>`).join('')}
            </select>
-           ${infusedApplies ? `<select id="effInfused" aria-label="Infused or non-infused">
+           ${infusedApplies ? `<select id="effInfused" aria-label="Infused or non-infused"${effInfused!=='any'?' data-set':''}>
              <option value="any"${effInfused==='any'?' selected':''}>Any infusion</option>
              <option value="yes"${effInfused==='yes'?' selected':''}>Infused</option>
              <option value="no"${effInfused==='no'?' selected':''}>Non-infused</option>
@@ -2360,7 +2369,23 @@ document.addEventListener('click', e => {
     const id = clr.dataset.clear;
     const inp = document.getElementById(id);
     if (inp) inp.value = '';                 // direct write; the node stays mounted
-    if (id === 'q'){ window._q = ''; renderEffectResults(); }
+    if (id === 'q'){
+      // The x means "next customer", so it clears the FILTERS as well as the
+      // text. Leaving them set is how a search silently answers from a fraction
+      // of the shelf. The category segment is deliberately left alone: it is
+      // visibly lit, so nobody loses track of it the way they do a dropdown —
+      // this only resets the state that was invisible.
+      window._q = '';
+      effLean = 'any'; effSize = 'any'; effInfused = 'any';
+      // A full render(), not renderEffectResults(): the dropdowns themselves
+      // have to be redrawn to drop their gold `data-set` edge. That replaces the
+      // input node, so `inp` below is stale — re-query and focus here, then
+      // return, exactly as the combo branch does.
+      render();
+      const back = document.getElementById(id);
+      if (back){ toggleClear(id); back.focus(); }
+      return;
+    }
     else if (id.startsWith('combo-')){
       // Clearing a picker drops the SELECTION, not just the typed text —
       // otherwise the box looks empty while the results below still show the
