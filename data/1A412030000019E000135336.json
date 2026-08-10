@@ -1,0 +1,49 @@
+{
+ "id": "9e85239681",
+ "metrc_tag": "1A412030000019E000135336",
+ "brand": "Hudson Cannabis",
+ "strain": "Grape Pie",
+ "form": "Vape 0.5g Cartridge",
+ "thc": 79.17,
+ "total_terpenes": 3.1034,
+ "lean": "settling",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Indica",
+ "reported": [],
+ "dominant": [
+  "beta-Caryophyllene",
+  "Limonene",
+  "Linalool"
+ ],
+ "aroma": [
+  "spicy",
+  "peppery",
+  "citrus",
+  "floral",
+  "woody"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.7338,
+  "Limonene": 0.3668,
+  "Linalool": 0.3103,
+  "Nerolidol": 0.2617,
+  "beta-Myrcene": 0.2147,
+  "alpha-Bisabolol": 0.1395,
+  "Terpineol": 0.1395,
+  "alpha-Humulene": 0.1262,
+  "Borneol": 0.1016,
+  "Delta-Terpinene": 0.0895,
+  "Terpinolene": 0.0895,
+  "alpha-Pinene": 0.0845,
+  "beta-Pinene": 0.0808,
+  "Valencene": 0.0727,
+  "Geraniol": 0.0611,
+  "alpha-Phellandrene": 0.0468,
+  "Delta-3 Carene": 0.0463,
+  "Fenchol": 0.0253,
+  "Caryophyllene Oxide": 0.0249,
+  "Camphene": 0.0061
+ },
+ "scanned_at": "2026-08-10T16:12:39.660Z"
+}
