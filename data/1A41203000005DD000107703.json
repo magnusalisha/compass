@@ -1,0 +1,44 @@
+{
+ "id": "2e913d6832",
+ "metrc_tag": "1A41203000005DD000107703",
+ "brand": "Ayrloom",
+ "strain": "Blue Widow",
+ "form": "Vape 2g",
+ "thc": 87.64,
+ "total_terpenes": 2.8633,
+ "lean": "settling",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Hybrid",
+ "reported": [],
+ "dominant": [
+  "Terpineol",
+  "beta-Caryophyllene",
+  "Limonene"
+ ],
+ "aroma": [
+  "floral",
+  "lilac",
+  "spicy",
+  "peppery",
+  "citrus"
+ ],
+ "terpenes": {
+  "Terpineol": 0.6159,
+  "beta-Caryophyllene": 0.6026,
+  "Limonene": 0.3886,
+  "Terpinolene": 0.2284,
+  "beta-Myrcene": 0.2146,
+  "alpha-Humulene": 0.1421,
+  "beta-Pinene": 0.1244,
+  "alpha-Pinene": 0.1226,
+  "Isopulegol": 0.1226,
+  "Linalool": 0.068,
+  "Fenchol": 0.0626,
+  "alpha-Bisabolol": 0.0609,
+  "alpha-Phellandrene": 0.025,
+  "Carene": 0.0209,
+  "Caryophyllene Oxide": 0.0198
+ },
+ "scanned_at": "2026-08-10T16:51:53.939Z"
+}
