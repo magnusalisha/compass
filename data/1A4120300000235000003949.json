@@ -8,7 +8,7 @@
  "total_terpenes": 1.45,
  "lean": "lifting",
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Sativa",
  "reported": [
   "Blue Dream smalls",
@@ -33,5 +33,6 @@
   "beta-Pinene": 0.1,
   "alpha-Humulene": 0.09,
   "Limonene": 0.09
- }
+ },
+ "sold_out_at": "2026-08-10T18:26:04.979Z"
 }
