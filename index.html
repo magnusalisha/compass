@@ -174,6 +174,9 @@
   .acts button,.acts a{background:none;border:none;padding:0;color:var(--ink2);font:500 13.5px Inter,sans-serif;cursor:pointer;text-decoration:none}
   .acts button:hover,.acts a:hover{color:var(--ink);text-decoration:underline}
   .empty{color:var(--dim);text-align:center;padding:34px 14px;font-size:15px}
+  .terphead{color:var(--dim);font-family:'IBM Plex Mono',monospace;font-size:11.5px;
+    line-height:1.6;margin:0 0 12px;letter-spacing:.02em}
+  .terphead b{color:var(--pale)}
   .lookup-list{display:flex;flex-direction:column;gap:8px}
   /* effect search: "right terps, wrong size" pivots — dimmed but readable */
   .pivot-head{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;
@@ -273,7 +276,24 @@ const REPORTED = {
   // The lesson isn't that the call was wrong; it's that "inert" was a fact about
   // one week's inventory, not about the compound. Anything retired for being
   // small needs re-checking as the catalogue grows.
-  'Terpineol':['mellow',1,'Folklore.']
+  'Terpineol':['mellow',1,'Folklore.'],
+  // Added 2026-08-10. These three were silent not because they're better or
+  // worse evidenced than the rest of this table, but because the strain
+  // databases never invented a story about them — fenchol is in 70% of this
+  // shelf and had no word while ocimene, in fewer products, did. That split was
+  // popularity, not evidence, and every entry here except caryophyllene is
+  // folklore anyway. So: grade them the same and show them the same.
+  //
+  // Fenchol was considered and LEFT OUT. In 183 of the 185 products carrying it
+  // it's third-largest or lower (median 0.05%), so a word would put an invented
+  // character on 70% of the shelf to describe one jar correctly — and on Mixed
+  // Sativa it took a real sentence down to the single word "even" off 0.08% of a
+  // 0.18% profile. Caryophyllene oxide is out too, for a different reason: it's
+  // what caryophyllene turns INTO as it oxidises, so an effect word would be
+  // actively wrong. Both are still findable by name in the terpene search.
+  'Nerolidol':['soothing',1,'Sedative in rodent models — the same species of evidence as linalool, and thinner. Not shown at inhaled doses.'],
+  'Valencene':['bright, citrusy',1,'Anti-inflammatory in vitro and in skin models. The "uplifting" claim is strain-database folklore.'],
+  'Guaiol':['dry',1,'Folklore. Very little published either way.']
 };
 const dots = n => '●'.repeat(n) + '○'.repeat(3-n);
 
@@ -1305,7 +1325,14 @@ const CHAR = {
   // linalool, which was harmless while terpineol never reached a card and is not
   // any more: it now leads three. Left as it was rather than invented anew,
   // because a sharper word would be a claim, and terpineol is 1-of-3 folklore.
-  'Terpineol':          ['mellow','mellow','settle']
+  'Terpineol':          ['mellow','mellow','settle'],
+  // See the note in REPORTED. Single-word phrases on purpose: the two-word forms
+  // above ("cozy and low-key") pair two effect words, and for these three there
+  // isn't a second honest word to reach for. Farnesene already sets that
+  // precedent with ['settled','settled','settle'].
+  'Nerolidol':          ['soothing','soothing','settle'],
+  'Valencene':          ['bright','bright','lift'],
+  'Guaiol':             ['dry','dry','settle']
 };
 // ── DO NOT derive `lean` by summing this table. Tried 2026-07-30, reverted the
 // same day; the numbers are in PLAN.md §1 so nobody repeats it.
@@ -2268,6 +2295,55 @@ function render(){
 // Must never touch #q or the category buttons' DOM nodes wholesale — only
 // toggle their .active class and rewrite #out. (Root cause of round-3 bugs
 // #1/#2/#3: rebuilding an input on every keystroke kills focus mid-type.)
+// ── terpene-name search
+//
+// Rare at the counter, but it is the one search here that asserts NOTHING: it
+// reports what the lab measured and ranks by it. That also makes it the honest
+// answer for a terpene with no character word — valencene, fenchol and
+// caryophyllene oxide become findable without anyone inventing an effect for
+// them. The index covers every terpene present in the data, not just the ones
+// CHAR knows about.
+//
+// README has listed "limonene" as an example query since the beginning and it
+// never worked; PREMISE has it as designed-but-not-built. This is that.
+let _terpIdx = null;
+function terpIndex(){
+  if (_terpIdx && _terpIdx.n === DATA.length) return _terpIdx.map;
+  // Strip to letters and digits so "β-Caryophyllene", "beta-caryophyllene" and
+  // "Beta Caryophyllene" all land on one string, and the greek-letter form
+  // collapses onto the bare name for free.
+  const norm = s => String(s || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+  const map = new Map();
+  const put = (s, k) => {
+    const n = norm(s);
+    if (n.length < 4) return;              // "pine" must never reach "pinene"
+    if (!map.has(n)) map.set(n, new Set());
+    map.get(n).add(k);
+  };
+  const keys = new Set(Object.keys(CHAR));
+  DATA.forEach(p => Object.keys(p.terpenes || {}).forEach(k => keys.add(k)));
+  keys.forEach(k => {
+    put(k, k);
+    put(short(k), k);
+    // Bare form, so "pinene" finds BOTH pinenes rather than whichever was
+    // indexed last — that's why the map holds a Set per name.
+    put(String(k).replace(/^(alpha|beta|gamma|delta|cis|trans)[- ]?/i, ''), k);
+  });
+  // A record may still hold a pre-alias spelling; keep those searchable.
+  Object.entries(TERP_ALIAS).forEach(([from, to]) => { put(from, to); put(short(from), to); });
+  _terpIdx = { n: DATA.length, map };
+  return map;
+}
+// Longest match wins, so "beta-caryophyllene" beats the bare "caryophyllene".
+function matchTerpQuery(q){
+  const n = String(q || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+  if (n.length < 4) return null;
+  let best = null;
+  for (const [name, keys] of terpIndex())
+    if (n.includes(name) && (!best || name.length > best.name.length)) best = { name, keys: [...keys] };
+  return best ? { keys: best.keys, label: short(best.keys[0]).toLowerCase() } : null;
+}
+
 function renderEffectResults(){
   const O = $('#out');
   const rawQ = (window._q||'').toLowerCase().trim();
@@ -2316,6 +2392,28 @@ function renderEffectResults(){
 
   // strip a recognized category word so it doesn't get parsed as an effect keyword
   const qClean = detected ? rawQ.replace(CATEGORY_WORDS.find(([re]) => re.test(rawQ))[0], ' ').replace(/\s+/g,' ').trim() : rawQ;
+
+  // A terpene named directly short-circuits the keyword parse. Someone asking
+  // for limonene wants limonene — not the effect words limonene happens to carry,
+  // and not products that merely score well on "upbeat".
+  const tq = matchTerpQuery(qClean);
+  if (tq){
+    const amt = p => tq.keys.reduce((s, k) => s + (p.terpenes[k] || 0), 0);
+    const ranked = scoped.map(p => [p, amt(p)]).filter(([, v]) => v > 0).sort((a, b) => b[1] - a[1]);
+    if (!ranked.length){
+      // Distinguish "we've never seen it" from "it's just sold out" — those send
+      // a budtender in completely different directions.
+      const seen = DATA.filter(p => hasProfile(p) && amt(p) > 0).length;
+      O.innerHTML = `<div class="empty">Nothing in stock carries <b>${tq.label}</b>.${
+        seen ? ` ${seen} scanned record${seen > 1 ? 's do' : ' does'}, but not on the shelf right now.` : ''}</div>`;
+      return foot();
+    }
+    O.innerHTML = `<div class="terphead">Ranked by measured <b>${tq.label}</b> — what the lab found, not a claim about how it feels.${
+      REPORTED[tq.keys[0]] ? '' : `<br>Nothing evidenced about ${tq.label}'s character, so there's no read to go with it.`
+    }</div>` + ranked.map(([p, v]) =>
+      card(p, `<div class="match">${tq.label} ${+v.toFixed(2)}%</div>`)).join('');
+    return foot();
+  }
 
   const [pos, neg] = [[], []];
   qClean.split(/\bbut\b|,|\band\b/).forEach(part => {
