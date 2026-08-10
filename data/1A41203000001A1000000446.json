@@ -35,6 +35,7 @@
  "form": "Disposable Vape 0.5g",
  "strain": "Papaya Mimosa",
  "lean": "settling",
- "in_stock": true,
- "thc": 71.043
+ "in_stock": false,
+ "thc": 71.043,
+ "sold_out_at": "2026-08-10T13:59:26.444Z"
 }
