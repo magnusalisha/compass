@@ -1,0 +1,33 @@
+{
+ "id": "e507e15268",
+ "metrc_tag": "1A41203000000529000036386",
+ "brand": "Cru",
+ "strain": "Blue Dream",
+ "form": "Infused Preroll 0.5g",
+ "thc": 28.775,
+ "total_terpenes": 1.2,
+ "lean": "settling",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Hybrid",
+ "reported": [],
+ "dominant": [
+  "beta-Caryophyllene",
+  "alpha-Humulene",
+  "beta-Myrcene"
+ ],
+ "aroma": [
+  "spicy",
+  "peppery",
+  "woody",
+  "herbal",
+  "earthy"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.56,
+  "alpha-Humulene": 0.28,
+  "beta-Myrcene": 0.22,
+  "alpha-Pinene": 0.14
+ },
+ "scanned_at": "2026-08-10T17:45:04.432Z"
+}

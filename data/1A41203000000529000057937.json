@@ -1,0 +1,32 @@
+{
+ "id": "b121f1b9ce",
+ "metrc_tag": "1A41203000000529000057937",
+ "brand": "Cru",
+ "strain": "Headband",
+ "form": "Infused Preroll 0.5g",
+ "thc": 31.16,
+ "total_terpenes": 1.46,
+ "lean": "settling",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Hybrid",
+ "reported": [],
+ "dominant": [
+  "beta-Caryophyllene",
+  "Limonene",
+  "alpha-Humulene"
+ ],
+ "aroma": [
+  "spicy",
+  "peppery",
+  "citrus",
+  "woody",
+  "herbal"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.72,
+  "Limonene": 0.39,
+  "alpha-Humulene": 0.36
+ },
+ "scanned_at": "2026-08-10T17:45:04.432Z"
+}

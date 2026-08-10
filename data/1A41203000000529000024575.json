@@ -1,31 +1,29 @@
 {
- "id": "a3f7c2e901",
- "metrc_tag": "1A4120300000235000002037",
+ "id": "6448a3d14a",
+ "metrc_tag": "1A41203000000529000024575",
  "brand": "Cru",
  "strain": "Bubba Kush",
- "form": "Infused Preroll 0.5g",
+ "form": "Infused Preroll 0.5g (6-pack, 3g total)",
  "thc": 25.576,
  "total_terpenes": 0.74,
  "lean": "settling",
  "confidence": "faint",
  "in_stock": true,
  "shelf_tag": "Indica",
- "reported": [
-  "beta-Caryophyllene dominant",
-  "alpha-Humulene present"
- ],
+ "reported": [],
  "dominant": [
   "beta-Caryophyllene",
   "alpha-Humulene"
  ],
  "aroma": [
-  "earthy",
   "spicy",
+  "peppery",
   "woody",
   "herbal"
  ],
  "terpenes": {
   "beta-Caryophyllene": 0.49,
   "alpha-Humulene": 0.25
- }
+ },
+ "scanned_at": "2026-08-10T17:45:04.430Z"
 }
