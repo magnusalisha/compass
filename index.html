@@ -2051,7 +2051,16 @@ function render(){
     // Infusion is a preroll question — 27 of 67 in-stock prerolls are infused,
     // against 1 flower and 0 vapes. So the picker only appears where it can do
     // something, and resets when you leave.
-    const infusedApplies = effCat === 'All' || effCat === 'Preroll';
+    // The infusion dropdown used to be hard-coded to All and Preroll, on the
+    // assumption that only prerolls come infused. Moonrocks broke that: Lobo
+    // sells infused FLOWER, and at 50.8% and 57.0% THC against a 27.9% flower
+    // median it is the single case where a customer most needs to know. So ask
+    // the shelf instead of asserting — the control appears wherever an infused
+    // product actually exists in the current category, and disappears when the
+    // last one sells out. No vape form says "infused" (concentrate by
+    // definition), so this doesn't put a meaningless control on that tab.
+    const infusedApplies = inStock().some(p =>
+      (effCat === 'All' || category(p) === effCat) && isInfused(p));
     if (!infusedApplies) effInfused = 'any';
     // Funnel order, top to bottom: category → type → size → effect. The effect
     // box is the last, finest filter ("flower › indica › 3.5g › heavy"), so it
