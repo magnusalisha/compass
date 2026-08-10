@@ -1728,18 +1728,29 @@ function batchInfo(p){
   const id = productId(p);
   const sibs = DATA.filter(x => stocked(x) && productId(x) === id);
   if (sibs.length < 2) return null;
-  return {n: sibs.length, differ: new Set(sibs.map(says)).size > 1};
+  return {n: sibs.length, differ: new Set(sibs.map(says)).size > 1,
+          faint: sibs.some(x => x.confidence === 'faint')};
 }
 
 function batchNote(p){
   const info = batchInfo(p);
   if (!info) return '';
-  // Reads disagreeing means the profile is too faint for "biggest terpene" to
-  // be meaningful — the honest move is to say so rather than let the newest
-  // batch speak for a batch that reads differently.
-  if (info.differ)
-    return `<p class="ev">${info.n} batches on the shelf — they read differently, and the profile is too faint to tell them apart. Trust the package and your nose.</p>`;
-  return `<p class="ev">${info.n} batches on the shelf · showing one — they read the same</p>`;
+  if (!info.differ)
+    return `<p class="ev">${info.n} batches on the shelf · showing one — they read the same</p>`;
+  // Batches CAN disagree for two different reasons, and the first version of
+  // this line asserted only one of them: "too faint to tell them apart". That
+  // was generalised from a single case (Anthem Northern Lights, 0.4% against
+  // 0.6%) and it is simply false for the other kind — Ayrloom shipped two
+  // Lychee Dream carts at 4.79% and 1.66%, both `strong`, 50% similar. Saying
+  // "too faint" there would be a claim the numbers contradict.
+  //
+  // So name the reason that actually applies. Faintness is worth calling out
+  // because it means the ranking itself is noise; two solid but different lots
+  // are a real difference the budtender should know about, not a measurement
+  // problem.
+  return info.faint
+    ? `<p class="ev">${info.n} batches on the shelf, reading differently — but both profiles are faint, so the difference may be noise. Trust the package and your nose.</p>`
+    : `<p class="ev">${info.n} batches on the shelf and they genuinely differ — showing the newest. Worth a look at the other if this read doesn't fit.</p>`;
 }
 
 // ── the read: honest about what it can and can't call
