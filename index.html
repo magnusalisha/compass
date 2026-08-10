@@ -177,6 +177,13 @@
   .terphead{color:var(--dim);font-family:'IBM Plex Mono',monospace;font-size:11.5px;
     line-height:1.6;margin:0 0 12px;letter-spacing:.02em}
   .terphead b{color:var(--pale)}
+  .morerow{color:var(--dim);font-family:'IBM Plex Mono',monospace;font-size:11.5px;
+    line-height:1.6;margin:14px 0 0;letter-spacing:.02em}
+  .morerow b{color:var(--pale)}
+  .morerow button{display:block;margin-top:8px;font-family:'IBM Plex Mono',monospace;
+    font-size:11.5px;letter-spacing:.02em;color:var(--gold);background:none;
+    border:1px solid var(--gold);border-radius:999px;padding:7px 14px;cursor:pointer}
+  .morerow button:hover{background:rgba(200,163,74,.12)}
   .lookup-list{display:flex;flex-direction:column;gap:8px}
   /* effect search: "right terps, wrong size" pivots — dimmed but readable */
   .pivot-head{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;
@@ -1011,7 +1018,10 @@ let DATA = [
  }
 ], tab = 'effect', a = null, b = null, sel = null, flash = '', effCat = 'All', simCat = 'All',
   lookupQ = '', lookupSel = null, lookupCat = 'All',
-  effSize = 'any', effLean = 'any', effInfused = 'any', unreadable = 0;
+  effSize = 'any', effLean = 'any', effInfused = 'any', unreadable = 0,
+  // Effect results are a ranked shortlist, not a filtered set — see EFF_TOP.
+  // Reset whenever the query changes so a new question starts short again.
+  effShowAll = false;
 
 // Which "Why?" panels are expanded, by product key. A "Why?" is a native
 // <details>, so any re-render (the 60s refresh, the 4s flash-clear after a
@@ -2295,6 +2305,22 @@ function render(){
 // Must never touch #q or the category buttons' DOM nodes wholesale — only
 // toggle their .active class and rewrite #out. (Root cause of round-3 bugs
 // #1/#2/#3: rebuilding an input on every keystroke kills focus mid-type.)
+// ── how many effect results to show, and why it's a shortlist
+//
+// The score is a RANKING, not a filter. The > 0.02 cut barely cuts: "relaxing"
+// clears it on 186 of 191 in-stock products, "not too heavy" on 189 — because
+// nearly everything carries some of any given terpene. So there is no natural
+// cutoff, and showing everything would just be the whole case in score order.
+//
+// A cap is therefore right. What was wrong is that it was SILENT: it stopped at
+// six with nothing to say there were 180 more, so a budtender scrolling for
+// options couldn't tell a shortlist from the end of the shelf. Now it says the
+// count and offers the rest.
+const EFF_TOP = 6;
+const moreRow = total => total <= EFF_TOP ? '' : (effShowAll
+  ? `<div class="morerow">All ${total} shown, strongest first. <button type="button" data-effmore="0">Show top ${EFF_TOP}</button></div>`
+  : `<div class="morerow">Showing the ${EFF_TOP} strongest of <b>${total}</b> that match at all — the rest carry less of what you asked for. <button type="button" data-effmore="1">Show all ${total}</button></div>`);
+
 // ── terpene-name search
 //
 // Rare at the counter, but it is the one search here that asserts NOTHING: it
@@ -2334,14 +2360,80 @@ function terpIndex(){
   _terpIdx = { n: DATA.length, map };
   return map;
 }
-// Longest match wins, so "beta-caryophyllene" beats the bare "caryophyllene".
+// Levenshtein, abandoned as soon as it exceeds `max` — we only ever ask "is this
+// within two edits", never how far apart two unrelated words are.
+function editDist(a, b, max){
+  if (Math.abs(a.length - b.length) > max) return max + 1;
+  let prev = Array.from({ length: b.length + 1 }, (_, i) => i);
+  for (let i = 1; i <= a.length; i++){
+    const cur = [i];
+    let best = i;
+    for (let j = 1; j <= b.length; j++){
+      cur[j] = Math.min(prev[j] + 1, cur[j-1] + 1, prev[j-1] + (a[i-1] === b[j-1] ? 0 : 1));
+      if (cur[j] < best) best = cur[j];
+    }
+    if (best > max) return max + 1;      // whole row already too far; stop
+    prev = cur;
+  }
+  return prev[b.length];
+}
+
+// Nobody spells these reliably, so match on WORDS and allow near-misses.
+//
+// Raw substring matching — the first version of this — is actively dangerous
+// here: "nerolidal" contains "nerol", which is a different compound, so a
+// misspelling of nerolidol silently returned the wrong terpene. Matching whole
+// words and ranking by edit distance puts nerolidol (1 edit) ahead of nerol (4).
+//
+// Candidates are each word plus each adjacent PAIR joined, so "caryophyllene
+// oxide" beats the bare "caryophyllene" on length, and a sentence like
+// "something with limonene" still finds limonene — which a ratio test against
+// the whole query could not do.
 function matchTerpQuery(q){
-  const n = String(q || '').toLowerCase().replace(/[^a-z0-9]/g, '');
-  if (n.length < 4) return null;
-  let best = null;
-  for (const [name, keys] of terpIndex())
-    if (n.includes(name) && (!best || name.length > best.name.length)) best = { name, keys: [...keys] };
-  return best ? { keys: best.keys, label: short(best.keys[0]).toLowerCase() } : null;
+  const words = String(q || '').toLowerCase().split(/[^a-z0-9]+/).filter(w => w.length > 1);
+  if (!words.length) return null;
+  const cands = [...words];
+  for (let i = 0; i < words.length - 1; i++) cands.push(words[i] + words[i+1]);
+  const map = terpIndex();
+
+  // 1. spelled right — longest candidate wins
+  let exact = null;
+  cands.forEach(c => { if (c.length >= 4 && map.has(c) && (!exact || c.length > exact.length)) exact = c; });
+  if (exact) return finish(map.get(exact), null);
+
+  // 2. spelled close — nearest name within two edits
+  let bestD = 3, near = new Set();
+  cands.forEach(c => {
+    if (c.length < 5) return;            // too short to guess safely from
+    for (const [name, keys] of map){
+      const d = editDist(c, name, 2);
+      if (d < bestD){ bestD = d; near = new Set(keys); }
+      else if (d === bestD && d < 3) keys.forEach(k => near.add(k));
+    }
+  });
+  if (near.size) return finish(near, true);
+
+  // 3. started it right — "caryo", "myrc", "bisab", "terpin"
+  const pre = new Set();
+  cands.forEach(c => { if (c.length < 4) return;
+    for (const [name, keys] of map) if (name.startsWith(c)) keys.forEach(k => pre.add(k)); });
+  if (pre.size) return finish(pre, true);
+  return null;
+
+  // Two different terpenes is a question, not a guess — "terpin" is equally
+  // terpinolene and terpineol, and picking one silently would be a coin flip
+  // dressed up as an answer.
+  function finish(keys, guessed){
+    const groups = new Map();
+    [...keys].forEach(k => {
+      const g = short(k).toLowerCase();
+      if (!groups.has(g)) groups.set(g, []);
+      groups.get(g).push(k);
+    });
+    if (groups.size > 1) return { ambiguous: [...groups.keys()].sort() };
+    const [label, ks] = [...groups.entries()][0];
+    return { keys: ks, label, guessed };
+  }
 }
 
 function renderEffectResults(){
@@ -2397,6 +2489,15 @@ function renderEffectResults(){
   // for limonene wants limonene — not the effect words limonene happens to carry,
   // and not products that merely score well on "upbeat".
   const tq = matchTerpQuery(qClean);
+  if (tq && tq.ambiguous){
+    const a = tq.ambiguous;
+    const list = a.length > 2
+      ? a.slice(0, -1).map(s => `<b>${s}</b>`).join(', ') + ` or <b>${a[a.length-1]}</b>`
+      : a.map(s => `<b>${s}</b>`).join(' or ');
+    O.innerHTML = `<div class="empty">Did you mean ${list}?<br>
+      <span style="font-size:13px">${a.length} different terpenes start that way, so I'd rather ask than guess.</span></div>`;
+    return foot();
+  }
   if (tq){
     const amt = p => tq.keys.reduce((s, k) => s + (p.terpenes[k] || 0), 0);
     const ranked = scoped.map(p => [p, amt(p)]).filter(([, v]) => v > 0).sort((a, b) => b[1] - a[1]);
@@ -2408,10 +2509,11 @@ function renderEffectResults(){
         seen ? ` ${seen} scanned record${seen > 1 ? 's do' : ' does'}, but not on the shelf right now.` : ''}</div>`;
       return foot();
     }
-    O.innerHTML = `<div class="terphead">Ranked by measured <b>${tq.label}</b> — what the lab found, not a claim about how it feels.${
+    O.innerHTML = `<div class="terphead">${tq.guessed ? `Reading that as <b>${tq.label}</b>. ` : ''}Ranked by measured <b>${tq.label}</b> — what the lab found, not a claim about how it feels.${
       REPORTED[tq.keys[0]] ? '' : `<br>Nothing evidenced about ${tq.label}'s character, so there's no read to go with it.`
-    }</div>` + ranked.map(([p, v]) =>
-      card(p, `<div class="match">${tq.label} ${+v.toFixed(2)}%</div>`)).join('');
+    }</div>` + ranked.slice(0, effShowAll ? ranked.length : EFF_TOP).map(([p, v]) =>
+      card(p, `<div class="match">${tq.label} ${+v.toFixed(2)}%</div>`)).join('')
+      + moreRow(ranked.length);
     return foot();
   }
 
@@ -2457,7 +2559,8 @@ function renderEffectResults(){
   if (!scored.length){ O.innerHTML = noFit; return foot(); }
 
   if (effSize === 'any'){
-    O.innerHTML = scored.slice(0,6).map(([,p]) => card(p)).join('');
+    O.innerHTML = scored.slice(0, effShowAll ? scored.length : EFF_TOP).map(([,p]) => card(p)).join('')
+      + moreRow(scored.length);
     return foot();
   }
   // a size is chosen: the desired size ranks full; strong matches in other
@@ -2466,7 +2569,7 @@ function renderEffectResults(){
   const other  = scored.filter(([,p]) => weightOnly(p) !== effSize);
   O.innerHTML =
     (inSize.length
-      ? inSize.slice(0,6).map(([,p]) => card(p)).join('')
+      ? inSize.slice(0, effShowAll ? inSize.length : EFF_TOP).map(([,p]) => card(p)).join('') + moreRow(inSize.length)
       : `<div class="empty">Nothing in ${effSize} fits that${other.length ? ' — but these other sizes are close' : '.'}.</div>`)
     + (other.length
       ? `<div class="pivot-head">Great match, other sizes — worth a pivot</div>`
@@ -2536,6 +2639,9 @@ function foot(){
 }
 
 document.addEventListener('click', e => {
+  const more = e.target.closest('[data-effmore]');
+  if (more){ effShowAll = more.dataset.effmore === '1'; renderEffectResults(); return; }
+
   const t = e.target.closest('.tabs button');
   if (t){ tab = t.dataset.tab; render(); return; }
 
@@ -2626,7 +2732,7 @@ function toggleClear(inputId){
 document.addEventListener('input', e => {
   // Each of these updates ONLY the results below its input — the input node
   // itself is never touched, so focus and cursor position are never at risk.
-  if (e.target.id === 'q'){ window._q = e.target.value; toggleClear('q'); renderEffectResults(); return; }
+  if (e.target.id === 'q'){ window._q = e.target.value; effShowAll = false; toggleClear('q'); renderEffectResults(); return; }
   if (e.target.id === 'lookupQ'){ lookupQ = e.target.value; lookupSel = null; toggleClear('lookupQ'); renderLookupResults(); return; }
   const inp = e.target.closest('.combo-input');
   if (inp){
