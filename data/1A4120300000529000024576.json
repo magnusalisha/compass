@@ -1,32 +1,29 @@
 {
- "id": "5efa4bb361",
- "metrc_tag": "1A41203000000529000024574",
+ "id": "b13b0f23d2",
+ "metrc_tag": "1A4120300000529000024576",
  "brand": "Cru",
- "strain": "Amnesia Haze",
+ "strain": "Chemdawg",
  "form": "Infused Preroll 0.5g (6-pack, 3g total)",
- "thc": 30.169,
- "total_terpenes": 1.48,
+ "thc": 31.886,
+ "total_terpenes": 0.66,
  "lean": "settling",
- "confidence": "strong",
+ "confidence": "faint",
  "in_stock": true,
- "shelf_tag": "Sativa",
+ "shelf_tag": "Hybrid",
  "reported": [],
  "dominant": [
   "beta-Caryophyllene",
-  "Limonene",
   "alpha-Humulene"
  ],
  "aroma": [
   "spicy",
   "peppery",
-  "citrus",
   "woody",
   "herbal"
  ],
  "terpenes": {
-  "beta-Caryophyllene": 0.69,
-  "Limonene": 0.44,
-  "alpha-Humulene": 0.34
+  "beta-Caryophyllene": 0.47,
+  "alpha-Humulene": 0.19
  },
  "scanned_at": "2026-08-10T17:45:04.431Z"
 }

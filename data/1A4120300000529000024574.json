@@ -1,29 +1,32 @@
 {
- "id": "850506fb1b",
- "metrc_tag": "1A41203000000529000024577",
+ "id": "b42145e93b",
+ "metrc_tag": "1A4120300000529000024574",
  "brand": "Cru",
- "strain": "Headband",
+ "strain": "Amnesia Haze",
  "form": "Infused Preroll 0.5g (6-pack, 3g total)",
- "thc": 24.876,
- "total_terpenes": 0.74,
+ "thc": 30.169,
+ "total_terpenes": 1.48,
  "lean": "settling",
- "confidence": "faint",
+ "confidence": "strong",
  "in_stock": true,
- "shelf_tag": "Hybrid",
+ "shelf_tag": "Sativa",
  "reported": [],
  "dominant": [
   "beta-Caryophyllene",
+  "Limonene",
   "alpha-Humulene"
  ],
  "aroma": [
   "spicy",
   "peppery",
+  "citrus",
   "woody",
   "herbal"
  ],
  "terpenes": {
-  "beta-Caryophyllene": 0.5,
-  "alpha-Humulene": 0.24
+  "beta-Caryophyllene": 0.69,
+  "Limonene": 0.44,
+  "alpha-Humulene": 0.34
  },
  "scanned_at": "2026-08-10T17:45:04.431Z"
 }
