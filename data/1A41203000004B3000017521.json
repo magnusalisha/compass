@@ -1,0 +1,45 @@
+{
+ "id": "c1557d9638",
+ "metrc_tag": "1A41203000004B3000017521",
+ "brand": "Alchemy Pure",
+ "strain": "Dirty Laundry",
+ "form": "Vape 0.5g Live Rosin Cartridge",
+ "thc": 78.93,
+ "total_terpenes": 8.7265,
+ "lean": "settling",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Indica",
+ "reported": [],
+ "dominant": [
+  "beta-Myrcene",
+  "beta-Caryophyllene",
+  "Limonene"
+ ],
+ "aroma": [
+  "earthy",
+  "musky",
+  "spicy",
+  "peppery",
+  "citrus"
+ ],
+ "terpenes": {
+  "beta-Myrcene": 2.1226,
+  "beta-Caryophyllene": 2.0076,
+  "Limonene": 1.9124,
+  "alpha-Humulene": 0.6783,
+  "alpha-Bisabolol": 0.4329,
+  "Nerolidol": 0.3846,
+  "Linalool": 0.2265,
+  "beta-Pinene": 0.2169,
+  "Farnesene": 0.1675,
+  "alpha-Pinene": 0.158,
+  "Fenchol": 0.1378,
+  "Terpineol": 0.1243,
+  "Caryophyllene Oxide": 0.0601,
+  "Camphene": 0.0396,
+  "Borneol": 0.035,
+  "Terpinolene": 0.0226
+ },
+ "scanned_at": "2026-08-10T17:28:41.694Z"
+}

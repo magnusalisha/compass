@@ -1,0 +1,46 @@
+{
+ "id": "3c0a70f111",
+ "metrc_tag": "1A41203000004B3000017522",
+ "brand": "Alchemy Pure",
+ "strain": "Grape Bubblegum",
+ "form": "Vape 0.5g Live Rosin Cartridge",
+ "thc": 76.44,
+ "total_terpenes": 9.0267,
+ "lean": "settling",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Hybrid",
+ "reported": [],
+ "dominant": [
+  "beta-Caryophyllene",
+  "Limonene",
+  "Farnesene"
+ ],
+ "aroma": [
+  "spicy",
+  "peppery",
+  "citrus",
+  "green",
+  "apple"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 2.5768,
+  "Limonene": 1.8552,
+  "Farnesene": 1.1951,
+  "alpha-Humulene": 0.7102,
+  "Linalool": 0.4764,
+  "Nerolidol": 0.4443,
+  "beta-Myrcene": 0.3471,
+  "Valencene": 0.2925,
+  "alpha-Bisabolol": 0.2054,
+  "Fenchol": 0.1934,
+  "alpha-Pinene": 0.1794,
+  "beta-Pinene": 0.1495,
+  "Terpineol": 0.1118,
+  "Caryophyllene Oxide": 0.0402,
+  "Camphene": 0.0374,
+  "Borneol": 0.0308,
+  "Terpinolene": 0.0203
+ },
+ "scanned_at": "2026-08-10T17:28:41.695Z"
+}

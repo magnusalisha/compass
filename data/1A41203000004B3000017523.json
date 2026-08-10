@@ -1,0 +1,44 @@
+{
+ "id": "1adcde0a40",
+ "metrc_tag": "1A41203000004B3000017523",
+ "brand": "Alchemy Pure",
+ "strain": "Key Lime Tart",
+ "form": "Vape 0.5g Live Rosin Cartridge",
+ "thc": 74.67,
+ "total_terpenes": 10.6111,
+ "lean": "settling",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Indica",
+ "reported": [],
+ "dominant": [
+  "beta-Caryophyllene",
+  "Farnesene",
+  "alpha-Humulene"
+ ],
+ "aroma": [
+  "spicy",
+  "peppery",
+  "green",
+  "apple",
+  "woody"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 3.4424,
+  "Farnesene": 2.7346,
+  "alpha-Humulene": 1.1743,
+  "Limonene": 1.0467,
+  "beta-Myrcene": 0.6461,
+  "Nerolidol": 0.3933,
+  "alpha-Bisabolol": 0.337,
+  "Linalool": 0.2797,
+  "beta-Pinene": 0.1338,
+  "Caryophyllene Oxide": 0.111,
+  "Fenchol": 0.0946,
+  "alpha-Pinene": 0.0871,
+  "Terpineol": 0.085,
+  "Camphene": 0.0235,
+  "Borneol": 0.022
+ },
+ "scanned_at": "2026-08-10T17:28:41.691Z"
+}
