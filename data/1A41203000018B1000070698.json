@@ -1,0 +1,43 @@
+{
+ "id": "68d5b046f2",
+ "metrc_tag": "1A41203000018B1000070698",
+ "brand": "Dank",
+ "strain": "Gary Payton",
+ "form": "Preroll 1g",
+ "thc": 28.8131,
+ "total_terpenes": 1.06,
+ "lean": "settling",
+ "confidence": "moderate",
+ "in_stock": true,
+ "shelf_tag": "Hybrid",
+ "reported": [],
+ "dominant": [
+  "beta-Caryophyllene",
+  "Linalool",
+  "alpha-Humulene"
+ ],
+ "aroma": [
+  "spicy",
+  "peppery",
+  "floral",
+  "woody",
+  "herbal"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.37,
+  "Linalool": 0.27,
+  "alpha-Humulene": 0.12,
+  "alpha-Bisabolol": 0.06,
+  "Limonene": 0.05,
+  "Terpineol": 0.05,
+  "Fenchol": 0.04,
+  "beta-Myrcene": 0.02,
+  "Geraniol": 0.02,
+  "Valencene": 0.02,
+  "alpha-Pinene": 0.01,
+  "beta-Pinene": 0.01,
+  "Caryophyllene Oxide": 0.01,
+  "Guaiol": 0.01
+ },
+ "scanned_at": "2026-08-10T16:00:09.683Z"
+}

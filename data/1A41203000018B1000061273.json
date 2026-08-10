@@ -1,0 +1,33 @@
+{
+ "id": "360fb05e09",
+ "metrc_tag": "1A41203000018B1000061273",
+ "brand": "Dank",
+ "strain": "Chocolate Thai",
+ "form": "Preroll 1g",
+ "thc": 28.8887,
+ "total_terpenes": 0.23,
+ "lean": "settling",
+ "confidence": "faint",
+ "in_stock": true,
+ "shelf_tag": "Sativa",
+ "reported": [],
+ "dominant": [
+  "beta-Caryophyllene",
+  "Farnesene",
+  "Guaiol"
+ ],
+ "aroma": [
+  "spicy",
+  "peppery",
+  "green",
+  "apple",
+  "woody"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.09,
+  "Farnesene": 0.05,
+  "Guaiol": 0.05,
+  "alpha-Humulene": 0.04
+ },
+ "scanned_at": "2026-08-10T15:56:19.868Z"
+}

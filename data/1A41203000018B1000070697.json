@@ -1,0 +1,42 @@
+{
+ "id": "7991d38e97",
+ "metrc_tag": "1A41203000018B1000070697",
+ "brand": "Dank",
+ "strain": "Chocolate Diesel",
+ "form": "Preroll 1g",
+ "thc": 29.5827,
+ "total_terpenes": 0.28,
+ "lean": "settling",
+ "confidence": "faint",
+ "in_stock": true,
+ "shelf_tag": "Hybrid",
+ "reported": [],
+ "dominant": [
+  "beta-Caryophyllene",
+  "Guaiol",
+  "alpha-Humulene"
+ ],
+ "aroma": [
+  "spicy",
+  "peppery",
+  "woody",
+  "herbal",
+  "earthy"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.07,
+  "Guaiol": 0.04,
+  "alpha-Humulene": 0.03,
+  "beta-Myrcene": 0.03,
+  "Caryophyllene Oxide": 0.02,
+  "Linalool": 0.02,
+  "alpha-Bisabolol": 0.01,
+  "alpha-Pinene": 0.01,
+  "beta-Pinene": 0.01,
+  "Fenchol": 0.01,
+  "Limonene": 0.01,
+  "Ocimene": 0.01,
+  "Terpineol": 0.01
+ },
+ "scanned_at": "2026-08-10T16:00:09.680Z"
+}
