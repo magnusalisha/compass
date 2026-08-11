@@ -8,7 +8,7 @@
  "total_terpenes": 2.64,
  "lean": "settling",
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Indica",
  "reported": [
   "high THC",
@@ -42,5 +42,6 @@
   "Camphene": 0.01,
   "Geraniol": 0.01,
   "Valencene": 0.01
- }
+ },
+ "sold_out_at": "2026-08-11T18:08:44.440Z"
 }
