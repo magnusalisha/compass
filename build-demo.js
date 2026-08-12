@@ -90,9 +90,11 @@ sub(/  render\(\);\n  startAutoRefresh\(\);/,
 sub(/\$\{STOCK_API \? `<button onclick="setStock\('\$\{key\(p\)\}', \$\{stocked\(p\)\}\)"/,
     '${(STOCK_API || DEMO) ? `<button onclick="setStock(\'${key(p)}\', ${stocked(p)})"',
     'show stock button in demo');
-sub(/async function setStock\(k, soldOut\)\{\n  if \(!STOCK_API \|\| busyKey\) return;\n  const p = DATA\.find\(x => key\(x\) === k\);\n  if \(!p\) return;/,
-`async function setStock(k, soldOut){
-  if (busyKey) return;
+// setStock is no longer async and no longer holds a busyKey — writes are queued
+// and flushed in a batch. The demo intercepts before any of that: flip the flag
+// on screen and return, so nothing is queued and nothing is ever flushed.
+sub(/function setStock\(k, soldOut\)\{\n  if \(!STOCK_API\) return;\n  const p = DATA\.find\(x => key\(x\) === k\);\n  if \(!p\) return;/,
+`function setStock(k, soldOut){
   const p = DATA.find(x => key(x) === k);
   if (!p) return;
   if (DEMO){                      // frozen copy: flip it on screen, save nothing
