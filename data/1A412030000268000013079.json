@@ -8,7 +8,7 @@
  "total_terpenes": 2.4043,
  "lean": "lifting",
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Sativa",
  "reported": [
   "Sativa"
@@ -40,5 +40,6 @@
   "alpha-Terpinene": 0.0278,
   "Fenchol": 0.0268,
   "alpha-Bisabolol": 0.0202
- }
+ },
+ "sold_out_at": "2026-08-12T16:14:14.965Z"
 }
