@@ -8,7 +8,7 @@
  "total_terpenes": 1.39,
  "lean": "settling",
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Hybrid",
  "reported": [
   "high-THC",
@@ -41,5 +41,6 @@
   "Valencene": 0.01,
   "alpha-Bisabolol": 0.01,
   "alpha-Pinene": 0.01
- }
+ },
+ "sold_out_at": "2026-08-12T14:09:42.270Z"
 }
