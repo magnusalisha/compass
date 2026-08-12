@@ -8,7 +8,7 @@
  "total_terpenes": 2.6124,
  "lean": "lifting",
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Sativa",
  "reported": [
   "citrus-forward",
@@ -44,5 +44,6 @@
   "Terpinolene": 0.0126,
   "Borneol": 0.0121,
   "trans-Nerolidol": 0.0084
- }
+ },
+ "sold_out_at": "2026-08-12T16:14:26.191Z"
 }
