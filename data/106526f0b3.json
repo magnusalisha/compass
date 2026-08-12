@@ -48,6 +48,7 @@
  "form": "Preroll 1g 4-pack",
  "strain": "Honey Banana Face",
  "lean": "settling",
- "in_stock": true,
- "thc": 15.5366
+ "in_stock": false,
+ "thc": 15.5366,
+ "sold_out_at": "2026-08-12T14:19:09.530Z"
 }
