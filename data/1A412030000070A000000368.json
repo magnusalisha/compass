@@ -8,7 +8,7 @@
  "total_terpenes": 1.25,
  "lean": "settling",
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Hybrid",
  "reported": [
   "beta-Caryophyllene dominant",
@@ -33,5 +33,6 @@
   "Farnesene": 0.12,
   "Caryophyllene Oxide": 0.05,
   "Terpinolene": 0.04
- }
+ },
+ "sold_out_at": "2026-08-12T17:40:22.553Z"
 }
