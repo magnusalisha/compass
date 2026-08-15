@@ -8,7 +8,7 @@
  "total_terpenes": 1.12,
  "lean": "mixed",
  "confidence": "moderate",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Indica",
  "reported": [
   "27.9% Total THC",
@@ -40,5 +40,6 @@
   "beta-Pinene": 0.03,
   "Caryophyllene Oxide": 0.01,
   "Valencene": 0.01
- }
+ },
+ "sold_out_at": "2026-08-15T18:53:49.964Z"
 }
