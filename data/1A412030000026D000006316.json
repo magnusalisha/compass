@@ -8,7 +8,7 @@
  "total_terpenes": 1.26,
  "lean": "lifting",
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Hybrid",
  "reported": [
   "Total THC 25.93%",
@@ -42,5 +42,6 @@
   "Camphene": 0.01,
   "Valencene": 0.01,
   "alpha-Bisabolol": 0.01
- }
+ },
+ "sold_out_at": "2026-08-15T19:25:19.273Z"
 }
