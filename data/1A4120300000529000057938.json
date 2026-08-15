@@ -8,7 +8,7 @@
  "total_terpenes": 0.87,
  "lean": "settling",
  "confidence": "moderate",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Sativa",
  "reported": [],
  "dominant": [
@@ -28,5 +28,6 @@
   "alpha-Humulene": 0.25,
   "beta-Myrcene": 0.17
  },
- "scanned_at": "2026-08-10T17:45:04.432Z"
+ "scanned_at": "2026-08-10T17:45:04.432Z",
+ "sold_out_at": "2026-08-15T19:43:15.485Z"
 }
