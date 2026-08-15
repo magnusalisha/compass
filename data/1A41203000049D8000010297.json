@@ -1,0 +1,40 @@
+{
+ "id": "ef52ab1117",
+ "metrc_tag": "1A41203000049D8000010297",
+ "brand": "Fernway",
+ "strain": "Stonefruit",
+ "form": "Vape 2g Disposable",
+ "thc": 84.929,
+ "total_terpenes": 3.9869,
+ "lean": "settling",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Hybrid",
+ "reported": [],
+ "dominant": [
+  "beta-Myrcene",
+  "beta-Caryophyllene",
+  "alpha-Pinene"
+ ],
+ "aroma": [
+  "earthy",
+  "musky",
+  "spicy",
+  "peppery",
+  "pine"
+ ],
+ "terpenes": {
+  "beta-Myrcene": 1.2385,
+  "beta-Caryophyllene": 0.4141,
+  "alpha-Pinene": 0.3545,
+  "Limonene": 0.2569,
+  "Linalool": 0.1886,
+  "beta-Pinene": 0.1496,
+  "alpha-Humulene": 0.1405,
+  "alpha-Bisabolol": 0.1194,
+  "alpha-Phellandrene": 0.116,
+  "Terpineol": 0.027,
+  "Nerolidol": 0.0013
+ },
+ "scanned_at": "2026-08-15T16:47:37.492Z"
+}

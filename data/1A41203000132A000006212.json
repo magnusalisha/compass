@@ -1,0 +1,44 @@
+{
+ "id": "589eeaf395",
+ "metrc_tag": "1A41203000132A000006212",
+ "brand": "Lobo",
+ "strain": "Gruntz",
+ "form": "Infused Preroll 0.5g (5-pack, 2.5g total)",
+ "thc": 34.6225,
+ "total_terpenes": 0.51,
+ "lean": "settling",
+ "confidence": "faint",
+ "in_stock": true,
+ "shelf_tag": "Hybrid",
+ "reported": [],
+ "dominant": [
+  "beta-Caryophyllene",
+  "alpha-Humulene",
+  "Linalool"
+ ],
+ "aroma": [
+  "spicy",
+  "peppery",
+  "woody",
+  "herbal",
+  "floral"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.19,
+  "alpha-Humulene": 0.08,
+  "Linalool": 0.06,
+  "alpha-Bisabolol": 0.05,
+  "Farnesene": 0.0374,
+  "Caryophyllene Oxide": 0.02,
+  "Terpineol": 0.02,
+  "Guaiol": 0.02,
+  "Fenchol": 0.01,
+  "alpha-Pinene": 0.01,
+  "beta-Myrcene": 0.01,
+  "beta-Pinene": 0.01,
+  "Limonene": 0.01,
+  "Valencene": 0.01,
+  "Terpinolene": 0.01
+ },
+ "scanned_at": "2026-08-15T16:47:37.492Z"
+}

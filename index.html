@@ -313,7 +313,10 @@ const dots = n => '●'.repeat(n) + '○'.repeat(3-n);
 // ones under Flower.
 const CATEGORY_RULES = [
   [/\b(vapes?|carts?|cartridges?|disposables?|pods?)\b/i, 'Vape'],
-  [/pre[\s-]?rolls?/i, 'Preroll'],
+  // Blunts are prerolls. Lobo's "Infused Blunt 1g" is the first one to arrive
+  // and without this it falls through to Flower, which would put a rolled
+  // product on the flower shelf and out of the preroll size filter entirely.
+  [/pre[\s-]?rolls?|\bblunts?\b/i, 'Preroll'],
 ];
 const category = p => (CATEGORY_RULES.find(([re]) => re.test(p.form)) || [,'Flower'])[1];
 const CATEGORIES = ['All', 'Flower', 'Preroll', 'Vape'];

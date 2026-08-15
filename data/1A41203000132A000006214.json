@@ -1,0 +1,36 @@
+{
+ "id": "a8bb1c9904",
+ "metrc_tag": "1A41203000132A000006214",
+ "brand": "Lobo",
+ "strain": "Blue Dream Fuerte",
+ "form": "Infused Preroll 1g",
+ "thc": 38.46,
+ "total_terpenes": 1.431,
+ "lean": "settling",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Sativa",
+ "reported": [],
+ "dominant": [
+  "beta-Caryophyllene",
+  "Farnesene",
+  "alpha-Humulene"
+ ],
+ "aroma": [
+  "spicy",
+  "peppery",
+  "green",
+  "apple",
+  "woody"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.505,
+  "Farnesene": 0.2243,
+  "alpha-Humulene": 0.1599,
+  "Valencene": 0.1433,
+  "Limonene": 0.1388,
+  "Linalool": 0.132,
+  "beta-Myrcene": 0.1281
+ },
+ "scanned_at": "2026-08-15T16:47:37.493Z"
+}

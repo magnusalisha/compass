@@ -1,0 +1,37 @@
+{
+ "id": "04958854c4",
+ "metrc_tag": "1A41203000049D8000010294",
+ "brand": "Fernway",
+ "strain": "Pumpkin Spice",
+ "form": "Vape 1g Disposable",
+ "thc": 83.8,
+ "total_terpenes": 2.5182,
+ "lean": "settling",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Hybrid",
+ "reported": [],
+ "dominant": [
+  "beta-Caryophyllene",
+  "alpha-Humulene",
+  "Limonene"
+ ],
+ "aroma": [
+  "spicy",
+  "peppery",
+  "woody",
+  "herbal",
+  "citrus"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 1.15,
+  "alpha-Humulene": 0.6254,
+  "Limonene": 0.3288,
+  "beta-Myrcene": 0.3237,
+  "alpha-Bisabolol": 0.0614,
+  "Carene": 0.0159,
+  "alpha-Phellandrene": 0.0117,
+  "Nerolidol": 0.0013
+ },
+ "scanned_at": "2026-08-15T16:47:37.491Z"
+}
