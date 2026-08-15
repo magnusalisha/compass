@@ -8,7 +8,7 @@
  "total_terpenes": 1.09,
  "lean": "settling",
  "confidence": "moderate",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Sativa",
  "reported": [],
  "dominant": [
@@ -44,5 +44,6 @@
   "Terpinolene": 0.01,
   "Valencene": 0.01
  },
- "scanned_at": "2026-08-10T15:42:10.388Z"
+ "scanned_at": "2026-08-10T15:42:10.388Z",
+ "sold_out_at": "2026-08-15T19:15:31.873Z"
 }
