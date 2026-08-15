@@ -1,0 +1,35 @@
+{
+ "id": "9157a0a480",
+ "metrc_tag": "1A4120300001AA1000016955",
+ "brand": "Revert",
+ "strain": "Super Diesel",
+ "form": "Flower 14g",
+ "thc": 27.384,
+ "total_terpenes": 1.34,
+ "lean": "settling",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Sativa",
+ "reported": [],
+ "dominant": [
+  "beta-Caryophyllene",
+  "Limonene",
+  "Linalool"
+ ],
+ "aroma": [
+  "spicy",
+  "peppery",
+  "citrus",
+  "floral",
+  "earthy"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.39,
+  "Limonene": 0.3,
+  "Linalool": 0.21,
+  "beta-Myrcene": 0.18,
+  "alpha-Humulene": 0.13,
+  "Farnesene": 0.09
+ },
+ "scanned_at": "2026-08-15T17:14:37.971Z"
+}
