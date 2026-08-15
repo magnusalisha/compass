@@ -1,0 +1,44 @@
+{
+ "id": "9b29a2446a",
+ "metrc_tag": "1A412030000070B000051776",
+ "brand": "Ruby Farms",
+ "strain": "White Widow",
+ "form": "Preroll 0.7g (7-pack, 4.9g total)",
+ "thc": 27.2555,
+ "total_terpenes": 1.7,
+ "lean": "settling",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Sativa",
+ "reported": [],
+ "dominant": [
+  "beta-Caryophyllene",
+  "alpha-Humulene",
+  "alpha-Bisabolol"
+ ],
+ "aroma": [
+  "spicy",
+  "peppery",
+  "woody",
+  "herbal",
+  "floral"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.78,
+  "alpha-Humulene": 0.26,
+  "alpha-Bisabolol": 0.17,
+  "Farnesene": 0.14,
+  "beta-Myrcene": 0.09,
+  "Limonene": 0.08,
+  "Caryophyllene Oxide": 0.05,
+  "Terpinolene": 0.05,
+  "Linalool": 0.02,
+  "alpha-Pinene": 0.01,
+  "beta-Pinene": 0.01,
+  "Terpineol": 0.01,
+  "Fenchol": 0.01,
+  "Valencene": 0.01,
+  "Geraniol": 0.01
+ },
+ "scanned_at": "2026-08-15T17:00:39.447Z"
+}

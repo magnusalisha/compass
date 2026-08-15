@@ -1,0 +1,43 @@
+{
+ "id": "6a49db27b1",
+ "metrc_tag": "1A412030000070B000051777",
+ "brand": "Ruby Farms",
+ "strain": "Blue Dream",
+ "form": "Preroll 0.5g (2-pack, 1g total)",
+ "thc": 30.9337,
+ "total_terpenes": 1.84,
+ "lean": "settling",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Hybrid",
+ "reported": [],
+ "dominant": [
+  "beta-Caryophyllene",
+  "alpha-Humulene",
+  "Farnesene"
+ ],
+ "aroma": [
+  "spicy",
+  "peppery",
+  "woody",
+  "herbal",
+  "green"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.84,
+  "alpha-Humulene": 0.32,
+  "Farnesene": 0.22,
+  "Limonene": 0.14,
+  "alpha-Bisabolol": 0.08,
+  "beta-Myrcene": 0.05,
+  "Linalool": 0.05,
+  "Caryophyllene Oxide": 0.05,
+  "Fenchol": 0.02,
+  "beta-Pinene": 0.02,
+  "Terpineol": 0.02,
+  "alpha-Pinene": 0.01,
+  "Terpinolene": 0.01,
+  "Valencene": 0.01
+ },
+ "scanned_at": "2026-08-15T17:00:39.448Z"
+}

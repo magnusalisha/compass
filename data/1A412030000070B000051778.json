@@ -1,0 +1,43 @@
+{
+ "id": "015a00d3d7",
+ "metrc_tag": "1A412030000070B000051778",
+ "brand": "Ruby Farms",
+ "strain": "Purple Hindu Kush",
+ "form": "Preroll 0.5g (2-pack, 1g total)",
+ "thc": 27.1944,
+ "total_terpenes": 1.47,
+ "lean": "settling",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Indica",
+ "reported": [],
+ "dominant": [
+  "beta-Caryophyllene",
+  "alpha-Humulene",
+  "Farnesene"
+ ],
+ "aroma": [
+  "spicy",
+  "peppery",
+  "woody",
+  "herbal",
+  "green"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.65,
+  "alpha-Humulene": 0.23,
+  "Farnesene": 0.15,
+  "Linalool": 0.1,
+  "alpha-Bisabolol": 0.07,
+  "Limonene": 0.06,
+  "Caryophyllene Oxide": 0.06,
+  "Terpineol": 0.04,
+  "Fenchol": 0.04,
+  "Guaiol": 0.03,
+  "beta-Pinene": 0.01,
+  "beta-Myrcene": 0.01,
+  "Terpinolene": 0.01,
+  "Valencene": 0.01
+ },
+ "scanned_at": "2026-08-15T17:00:39.448Z"
+}

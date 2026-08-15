@@ -1,0 +1,45 @@
+{
+ "id": "1fc4649340",
+ "metrc_tag": "1A412030000070B000051775",
+ "brand": "Ruby Farms",
+ "strain": "Tangie",
+ "form": "Preroll 0.7g (7-pack, 4.9g total)",
+ "thc": 21.1639,
+ "total_terpenes": 0.89,
+ "lean": "settling",
+ "confidence": "moderate",
+ "in_stock": true,
+ "shelf_tag": "Sativa",
+ "reported": [],
+ "dominant": [
+  "beta-Caryophyllene",
+  "alpha-Humulene",
+  "alpha-Bisabolol"
+ ],
+ "aroma": [
+  "spicy",
+  "peppery",
+  "woody",
+  "herbal",
+  "floral"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.39,
+  "alpha-Humulene": 0.17,
+  "alpha-Bisabolol": 0.06,
+  "Farnesene": 0.06,
+  "Terpineol": 0.05,
+  "Fenchol": 0.04,
+  "Limonene": 0.02,
+  "Valencene": 0.02,
+  "alpha-Pinene": 0.01,
+  "beta-Myrcene": 0.01,
+  "beta-Pinene": 0.01,
+  "Caryophyllene Oxide": 0.01,
+  "Geraniol": 0.01,
+  "Linalool": 0.01,
+  "Ocimene": 0.01,
+  "Terpinolene": 0.01
+ },
+ "scanned_at": "2026-08-15T17:00:39.447Z"
+}
