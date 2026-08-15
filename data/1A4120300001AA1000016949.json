@@ -1,0 +1,25 @@
+{
+ "id": "fb707e8b74",
+ "metrc_tag": "1A4120300001AA1000016949",
+ "brand": "Revert",
+ "strain": "Black Widow",
+ "form": "Flower 14g Infused Pre-Ground",
+ "thc": 25.169,
+ "total_terpenes": 0.43,
+ "lean": "settling",
+ "confidence": "faint",
+ "in_stock": true,
+ "shelf_tag": "Hybrid",
+ "reported": [],
+ "dominant": [
+  "beta-Caryophyllene"
+ ],
+ "aroma": [
+  "spicy",
+  "peppery"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.43
+ },
+ "scanned_at": "2026-08-15T17:10:29.519Z"
+}

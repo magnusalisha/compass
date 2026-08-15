@@ -1,0 +1,33 @@
+{
+ "id": "8d5535c36c",
+ "metrc_tag": "1A4120300001AA1000016951",
+ "brand": "Revert",
+ "strain": "Green Goblin",
+ "form": "Flower 14g Infused Pre-Ground",
+ "thc": 29.547,
+ "total_terpenes": 1.06,
+ "lean": "settling",
+ "confidence": "moderate",
+ "in_stock": true,
+ "shelf_tag": "Sativa",
+ "reported": [],
+ "dominant": [
+  "beta-Caryophyllene",
+  "alpha-Humulene",
+  "Linalool"
+ ],
+ "aroma": [
+  "spicy",
+  "peppery",
+  "woody",
+  "herbal",
+  "floral"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.54,
+  "alpha-Humulene": 0.18,
+  "Linalool": 0.18,
+  "Limonene": 0.16
+ },
+ "scanned_at": "2026-08-15T17:10:29.520Z"
+}

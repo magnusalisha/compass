@@ -1,0 +1,33 @@
+{
+ "id": "2ad68f04b2",
+ "metrc_tag": "1A4120300001AA1000016947",
+ "brand": "Revert",
+ "strain": "Lemon Drop",
+ "form": "Preroll 0.5g",
+ "thc": 30.852,
+ "total_terpenes": 0.94,
+ "lean": "settling",
+ "confidence": "moderate",
+ "in_stock": true,
+ "shelf_tag": "Hybrid",
+ "reported": [],
+ "dominant": [
+  "beta-Caryophyllene",
+  "alpha-Humulene",
+  "Farnesene"
+ ],
+ "aroma": [
+  "spicy",
+  "peppery",
+  "woody",
+  "herbal",
+  "green"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.47,
+  "alpha-Humulene": 0.18,
+  "Farnesene": 0.18,
+  "Linalool": 0.12
+ },
+ "scanned_at": "2026-08-15T17:10:29.521Z"
+}

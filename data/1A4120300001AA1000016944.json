@@ -1,0 +1,25 @@
+{
+ "id": "ff82e83fb0",
+ "metrc_tag": "1A4120300001AA1000016944",
+ "brand": "Revert",
+ "strain": "Green Crack",
+ "form": "Infused Preroll 0.75g (2-pack, 1.5g total)",
+ "thc": 41.635,
+ "total_terpenes": 0.35,
+ "lean": "settling",
+ "confidence": "faint",
+ "in_stock": true,
+ "shelf_tag": "Sativa",
+ "reported": [],
+ "dominant": [
+  "beta-Caryophyllene"
+ ],
+ "aroma": [
+  "spicy",
+  "peppery"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.35
+ },
+ "scanned_at": "2026-08-15T17:10:29.521Z"
+}

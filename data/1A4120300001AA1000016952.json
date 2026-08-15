@@ -1,0 +1,32 @@
+{
+ "id": "f817f1116d",
+ "metrc_tag": "1A4120300001AA1000016952",
+ "brand": "Revert",
+ "strain": "Hawaiian Haze",
+ "form": "Flower 14g Infused Pre-Ground",
+ "thc": 25.725,
+ "total_terpenes": 0.78,
+ "lean": "settling",
+ "confidence": "faint",
+ "in_stock": true,
+ "shelf_tag": "Sativa",
+ "reported": [],
+ "dominant": [
+  "beta-Caryophyllene",
+  "alpha-Humulene",
+  "Linalool"
+ ],
+ "aroma": [
+  "spicy",
+  "peppery",
+  "woody",
+  "herbal",
+  "floral"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.46,
+  "alpha-Humulene": 0.16,
+  "Linalool": 0.16
+ },
+ "scanned_at": "2026-08-15T17:10:29.520Z"
+}

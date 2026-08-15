@@ -1,0 +1,33 @@
+{
+ "id": "a16ea12c0d",
+ "metrc_tag": "1A4120300001AA1000016946",
+ "brand": "Revert",
+ "strain": "Pineapple Haze",
+ "form": "Preroll 0.5g",
+ "thc": 25.908,
+ "total_terpenes": 1.09,
+ "lean": "settling",
+ "confidence": "moderate",
+ "in_stock": true,
+ "shelf_tag": "Sativa",
+ "reported": [],
+ "dominant": [
+  "beta-Caryophyllene",
+  "alpha-Humulene",
+  "Farnesene"
+ ],
+ "aroma": [
+  "spicy",
+  "peppery",
+  "woody",
+  "herbal",
+  "green"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.49,
+  "alpha-Humulene": 0.2,
+  "Farnesene": 0.18,
+  "Linalool": 0.13
+ },
+ "scanned_at": "2026-08-15T17:10:29.521Z"
+}

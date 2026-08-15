@@ -1,0 +1,32 @@
+{
+ "id": "dfb0ef7ab2",
+ "metrc_tag": "1A4120300001AA1000016950",
+ "brand": "Revert",
+ "strain": "Granddaddy Purp",
+ "form": "Flower 14g Infused Pre-Ground",
+ "thc": 26.18,
+ "total_terpenes": 0.86,
+ "lean": "settling",
+ "confidence": "moderate",
+ "in_stock": true,
+ "shelf_tag": "Indica",
+ "reported": [],
+ "dominant": [
+  "beta-Caryophyllene",
+  "alpha-Humulene",
+  "Linalool"
+ ],
+ "aroma": [
+  "spicy",
+  "peppery",
+  "woody",
+  "herbal",
+  "floral"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.52,
+  "alpha-Humulene": 0.17,
+  "Linalool": 0.17
+ },
+ "scanned_at": "2026-08-15T17:10:29.520Z"
+}

@@ -1,0 +1,33 @@
+{
+ "id": "2f4335f240",
+ "metrc_tag": "1A4120300001AA1000016948",
+ "brand": "Revert",
+ "strain": "Forbidden Kush",
+ "form": "Preroll 0.5g",
+ "thc": 24.483,
+ "total_terpenes": 1.14,
+ "lean": "settling",
+ "confidence": "moderate",
+ "in_stock": true,
+ "shelf_tag": "Indica",
+ "reported": [],
+ "dominant": [
+  "beta-Caryophyllene",
+  "alpha-Humulene",
+  "Farnesene"
+ ],
+ "aroma": [
+  "spicy",
+  "peppery",
+  "woody",
+  "herbal",
+  "green"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.53,
+  "alpha-Humulene": 0.2,
+  "Farnesene": 0.19,
+  "Linalool": 0.13
+ },
+ "scanned_at": "2026-08-15T17:10:29.518Z"
+}
