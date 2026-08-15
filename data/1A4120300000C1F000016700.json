@@ -33,6 +33,7 @@
  "form": "Flower 3.5g",
  "strain": "Rain Drops",
  "lean": "lifting",
- "in_stock": true,
- "thc": 22.1707
+ "in_stock": false,
+ "thc": 22.1707,
+ "sold_out_at": "2026-08-15T19:19:35.404Z"
 }
