@@ -1,0 +1,43 @@
+{
+ "id": "1f61ff2641",
+ "metrc_tag": "1A412030000132A000006218",
+ "brand": "Lobo",
+ "strain": "Papaya Punch Fuerte",
+ "form": "Infused Preroll 1g",
+ "thc": 34.4635,
+ "total_terpenes": 0.8,
+ "lean": "settling",
+ "confidence": "moderate",
+ "in_stock": true,
+ "shelf_tag": "Hybrid",
+ "reported": [],
+ "dominant": [
+  "beta-Caryophyllene",
+  "Valencene",
+  "alpha-Humulene"
+ ],
+ "aroma": [
+  "spicy",
+  "peppery",
+  "citrus",
+  "woody",
+  "herbal"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.2,
+  "Valencene": 0.101,
+  "alpha-Humulene": 0.1,
+  "Limonene": 0.0741,
+  "alpha-Bisabolol": 0.06,
+  "Linalool": 0.0589,
+  "Farnesene": 0.0553,
+  "Fenchol": 0.0526,
+  "beta-Myrcene": 0.0493,
+  "Guaiol": 0.04,
+  "Terpineol": 0.0345,
+  "Caryophyllene Oxide": 0.0331,
+  "beta-Pinene": 0.0181,
+  "alpha-Pinene": 0.0147
+ },
+ "scanned_at": "2026-08-15T16:54:30.780Z"
+}

@@ -1,15 +1,15 @@
 {
- "id": "589eeaf395",
- "metrc_tag": "1A41203000132A000006212",
+ "id": "ae778d8958",
+ "metrc_tag": "1A412030000132A000006219",
  "brand": "Lobo",
- "strain": "Gruntz",
+ "strain": "Blue Dream",
  "form": "Infused Preroll 0.5g (5-pack, 2.5g total)",
- "thc": 34.6225,
- "total_terpenes": 0.51,
+ "thc": 32.8452,
+ "total_terpenes": 0.61,
  "lean": "settling",
  "confidence": "faint",
  "in_stock": true,
- "shelf_tag": "Hybrid",
+ "shelf_tag": "Sativa",
  "reported": [],
  "dominant": [
   "beta-Caryophyllene",
@@ -24,21 +24,22 @@
   "floral"
  ],
  "terpenes": {
-  "beta-Caryophyllene": 0.19,
-  "alpha-Humulene": 0.08,
+  "beta-Caryophyllene": 0.22,
+  "alpha-Humulene": 0.09,
   "Linalool": 0.06,
   "alpha-Bisabolol": 0.05,
-  "Farnesene": 0.0374,
-  "Caryophyllene Oxide": 0.02,
-  "Terpineol": 0.02,
+  "Farnesene": 0.0382,
+  "beta-Myrcene": 0.03,
+  "Limonene": 0.03,
   "Guaiol": 0.02,
-  "Fenchol": 0.01,
-  "alpha-Pinene": 0.01,
-  "beta-Myrcene": 0.01,
+  "Caryophyllene Oxide": 0.02,
+  "Fenchol": 0.02,
+  "Terpineol": 0.02,
   "beta-Pinene": 0.01,
-  "Limonene": 0.01,
-  "Valencene": 0.01,
-  "Terpinolene": 0.01
+  "Ocimene": 0.01,
+  "Terpinolene": 0.01,
+  "alpha-Pinene": 0.01,
+  "Valencene": 0.01
  },
- "scanned_at": "2026-08-15T16:47:37.492Z"
+ "scanned_at": "2026-08-15T16:54:30.781Z"
 }

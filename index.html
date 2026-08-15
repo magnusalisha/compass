@@ -1226,10 +1226,17 @@ function revertStock(k){
 // parseSize, which reads both of those as 0.5g ×5 infused.
 const STRAIN_PACK = /\s*\b(pack|pk|multipack|singles?)\b\s*$/;
 const idNorm = s => String(s || '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+// A blunt is a preroll for shelving, but it is NOT the same product as a joint
+// of the same weight — the customer is choosing between them. Lobo ships Gruntz
+// as both an "Infused Blunt 1g" and a "Preroll 1g Infused" off the same lot, and
+// without this they share an identity and collapse into one card the moment both
+// are in stock.
+const rollFormat = p => /\bblunts?\b/i.test(p.form || '') ? 'blunt' : '';
 const productId = p => {
   const z = parseSize(p);
   return [idNorm(p.brand), idNorm(p.strain).replace(STRAIN_PACK, '').trim(),
-          category(p), z ? z.per : '?', z ? z.count : '?', isInfused(p) ? 'inf' : ''].join('|');
+          category(p), z ? z.per : '?', z ? z.count : '?', isInfused(p) ? 'inf' : '',
+          rollFormat(p)].join('|');
 };
 
 // Which batch the card shows: the newest, because it is the one still on the
