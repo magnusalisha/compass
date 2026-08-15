@@ -1556,7 +1556,13 @@ const TERP_ALIAS = {
   // δ-terpinene is an older name for terpinolene, and Alleaves prints BOTH on
   // the same panel with the same figure. See the duplicate guard in normTerps —
   // this one must not be summed.
-  'Delta-Terpinene':     'Terpinolene'
+  'Delta-Terpinene':     'Terpinolene',
+  // Same trick, different compound: Y-terpinene is gamma-terpinene with the
+  // Greek letter transliterated, and Fernway's Night Cap arrives carrying
+  // "Gamma Terpinene" and "Y-Terpinene" both at 0.037. Routing them to one key
+  // lets the duplicate guard drop the repeat.
+  'Gamma Terpinene':     'gamma-Terpinene',
+  'Y-Terpinene':         'gamma-Terpinene'
 };
 // Rewrites p.terpenes in place, at the two points records enter the page, so
 // every reader downstream (vec, rankedTerps, domTerps, stack, search) sees

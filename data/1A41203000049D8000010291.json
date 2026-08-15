@@ -1,0 +1,45 @@
+{
+ "id": "139764a0f2",
+ "metrc_tag": "1A41203000049D8000010291",
+ "brand": "Fernway",
+ "strain": "Night Cap",
+ "form": "Vape 1g Cartridge",
+ "thc": 80.16,
+ "total_terpenes": 5.5195,
+ "lean": "lifting",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Indica",
+ "reported": [],
+ "dominant": [
+  "Terpinolene",
+  "beta-Myrcene",
+  "Limonene"
+ ],
+ "aroma": [
+  "fruity",
+  "herbal",
+  "earthy",
+  "musky",
+  "citrus"
+ ],
+ "terpenes": {
+  "Terpinolene": 1.7757,
+  "beta-Myrcene": 1.2817,
+  "Limonene": 0.5504,
+  "beta-Caryophyllene": 0.4162,
+  "alpha-Pinene": 0.2525,
+  "Ocimene": 0.2217,
+  "beta-Pinene": 0.181,
+  "alpha-Phellandrene": 0.1451,
+  "alpha-Humulene": 0.0827,
+  "alpha-Bisabolol": 0.0792,
+  "Carene": 0.0601,
+  "alpha-Terpinene": 0.0546,
+  "gamma-Terpinene": 0.037,
+  "Fenchol": 0.0357,
+  "Terpineol": 0.0268,
+  "Nerolidol": 0.0013
+ },
+ "scanned_at": "2026-08-15T16:40:06.584Z"
+}

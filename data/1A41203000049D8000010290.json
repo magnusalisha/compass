@@ -1,0 +1,39 @@
+{
+ "id": "2317162a11",
+ "metrc_tag": "1A41203000049D8000010290",
+ "brand": "Fernway",
+ "strain": "Honeycrisp",
+ "form": "Vape 2g",
+ "thc": 81.251,
+ "total_terpenes": 2.6928,
+ "lean": "lifting",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Sativa",
+ "reported": [],
+ "dominant": [
+  "Limonene",
+  "beta-Caryophyllene",
+  "alpha-Humulene"
+ ],
+ "aroma": [
+  "citrus",
+  "spicy",
+  "peppery",
+  "woody",
+  "herbal"
+ ],
+ "terpenes": {
+  "Limonene": 1.7886,
+  "beta-Caryophyllene": 0.4145,
+  "alpha-Humulene": 0.1073,
+  "Nerolidol": 0.104,
+  "alpha-Bisabolol": 0.094,
+  "Linalool": 0.0466,
+  "Valencene": 0.0431,
+  "Terpineol": 0.0257,
+  "beta-Myrcene": 0.0217,
+  "alpha-Pinene": 0.0153
+ },
+ "scanned_at": "2026-08-15T16:40:06.585Z"
+}

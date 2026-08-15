@@ -1,0 +1,45 @@
+{
+ "id": "07076479a2",
+ "metrc_tag": "1A41203000049D8000010288",
+ "brand": "Fernway",
+ "strain": "Cuban Black Haze",
+ "form": "Vape 1g",
+ "thc": 82.39,
+ "total_terpenes": 5.6957,
+ "lean": "lifting",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Sativa",
+ "reported": [],
+ "dominant": [
+  "Limonene",
+  "Farnesene",
+  "beta-Caryophyllene"
+ ],
+ "aroma": [
+  "citrus",
+  "green",
+  "apple",
+  "spicy",
+  "peppery"
+ ],
+ "terpenes": {
+  "Limonene": 1.3718,
+  "Farnesene": 0.9591,
+  "beta-Caryophyllene": 0.9553,
+  "Ocimene": 0.4502,
+  "alpha-Pinene": 0.3512,
+  "alpha-Humulene": 0.316,
+  "beta-Myrcene": 0.2738,
+  "Linalool": 0.1938,
+  "beta-Pinene": 0.1526,
+  "Fenchol": 0.1025,
+  "Terpinolene": 0.0937,
+  "Terpineol": 0.0474,
+  "alpha-Bisabolol": 0.0439,
+  "Camphene": 0.0307,
+  "Borneol": 0.0147,
+  "Nerolidol": 0.0013
+ },
+ "scanned_at": "2026-08-15T16:40:06.584Z"
+}
