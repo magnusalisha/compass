@@ -8,7 +8,7 @@
  "total_terpenes": 1.72,
  "lean": "settling",
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Hybrid",
  "reported": [
   "high THC",
@@ -35,5 +35,6 @@
   "beta-Pinene": 0.11,
   "Fenchol": 0.08,
   "Terpineol": 0.07
- }
+ },
+ "sold_out_at": "2026-08-16T16:16:53.045Z"
 }
