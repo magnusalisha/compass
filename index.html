@@ -392,11 +392,20 @@ const weightOnly = p => { const s = parseSize(p); return s ? gstr(s.per) : ''; }
 // both kinds actually exist, and Flower and Vape look exactly as they did.
 const isPackForm = p => { const s = parseSize(p); return !!s && s.count > 1; };
 const sizeKey = p => { const w = weightOnly(p); return w ? (isPackForm(p) ? 'p|' : 's|') + w : ''; };
-const sizeMatches = (p, sel) => sel === 'any' || sizeKey(p) === sel;
-// "0.5g singles" / "0.5g packs", for the empty states that name the filter.
+// "s|*" and "p|*" are the whole group regardless of weight — a customer asks for
+// "a pack of prerolls", not for 0.5g multipacks, and picking a size to get there
+// meant guessing which sizes even come in packs.
+const sizeMatches = (p, sel) => {
+  if (sel === 'any') return true;
+  const k = sizeKey(p);
+  if (!k) return false;
+  return sel.endsWith('|*') ? k[0] === sel[0] : k === sel;
+};
+// Names the filter for the empty states: "0.5g packs", "multipacks", "singles".
 const sizeLabel = sel => {
   if (!sel || sel === 'any') return '';
   const [kind, size] = sel.split('|');
+  if (size === '*') return kind === 'p' ? 'multipacks' : 'singles';
   return `${size} ${kind === 'p' ? 'packs' : 'singles'}`;
 };
 // vape sub-type — the package distinction a budtender needs
@@ -2188,7 +2197,12 @@ function render(){
       .sort((a,b) => parseFloat(a.slice(2)) - parseFloat(b.slice(2)));
     const sizeSingles = sizeKeys.filter(k => k[0] === 's');
     const sizePacks   = sizeKeys.filter(k => k[0] === 'p');
-    if (effSize !== 'any' && !sizeKeys.includes(effSize)) effSize = 'any';   // category changed out from under it
+    // The group-wide options are only offered when the category actually has
+    // both kinds, so they have to be allowed here too or picking one and then
+    // switching category would silently drop the selection.
+    const sizeValid = ['any', ...sizeKeys]
+      .concat(sizePacks.length && sizeSingles.length ? ['s|*', 'p|*'] : []);
+    if (!sizeValid.includes(effSize)) effSize = 'any';   // category changed out from under it
     // Infusion is a preroll question — 27 of 67 in-stock prerolls are infused,
     // against 1 flower and 0 vapes. So the picker only appears where it can do
     // something, and resets when you leave.
@@ -2221,9 +2235,14 @@ function render(){
                // Only group when there is something to group against. With no
                // packs in the category (Flower, Vape) a lone "Singles" heading
                // would be a distinction the shelf doesn't make.
+               // Each group leads with an all-of-this-kind option: the ask at the
+               // counter is "a pack of prerolls", and reaching that by size meant
+               // knowing which sizes even come in packs (0.6g, 0.7g and 0.9g are
+               // packs only; 1g is 25 singles against 1 pack).
+               const all = (k, label) => `<option value="${k}"${effSize===k?' selected':''}>${label}</option>`;
                return sizePacks.length && sizeSingles.length
-                 ? `<optgroup label="Singles">${sizeSingles.map(opt).join('')}</optgroup>`
-                   + `<optgroup label="Multipacks">${sizePacks.map(opt).join('')}</optgroup>`
+                 ? `<optgroup label="Singles">${all('s|*','All singles')}${sizeSingles.map(opt).join('')}</optgroup>`
+                   + `<optgroup label="Multipacks">${all('p|*','All multipacks')}${sizePacks.map(opt).join('')}</optgroup>`
                  : sizeKeys.map(k => `<option value="${k}"${effSize===k?' selected':''}>${k.slice(2)}${k[0]==='p'?' pack':''}</option>`).join('');
              })()}
            </select>
