@@ -107,6 +107,10 @@
   .card h2{font-family:Fraunces,serif;font-size:19px;font-weight:700;letter-spacing:-.01em;line-height:1.25}
   .thc{font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:19px;text-align:right;white-space:nowrap}
   .thc small{display:block;font-size:10px;color:var(--ink2);font-weight:400;letter-spacing:.08em}
+  /* Sits under the THC so the card's two headline numbers are together, the same
+     pairing Compare already shows. Normal letter-spacing — the .08em above is for
+     the all-caps "THC" label and looks stretched on a mixed-case string. */
+  .thc .terp-total{margin-top:7px;letter-spacing:.01em;font-size:10.5px}
   .top{display:flex;justify-content:space-between;gap:14px;align-items:flex-start}
   .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
   .tag{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;
@@ -1782,7 +1786,12 @@ function card(p, extra='', compareTo=null){
           <span class="tag tag-${tag === 'Unverified' ? 'unset' : 'shelf'}">${tag}</span>
         </div>
         <div style="font-size:13px;color:var(--ink2);margin-top:6px">${p.brand}${stocked(p)?'':` · sold out${soldOutWhen(p)}`}</div></div>
-      <div class="thc">${thcText(p)}<small>THC</small></div>
+      <div class="thc">${thcText(p)}<small>THC</small>${
+        // Only when there's a profile to total. A bare record would read "— terps",
+        // which says nothing the "no terpene profile" line below doesn't already.
+        hasProfile(p) && p.total_terpenes > 0
+          ? `<small class="terp-total">${tpct(p.total_terpenes)}% terps</small>` : ''
+      }</div>
     </div>
     ${stack(p)}
     <div class="read${cautious ? ' read-faint' : ''}" style="border-top:none;padding-top:12px;margin-top:12px">
