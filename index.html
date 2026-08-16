@@ -379,6 +379,26 @@ const weightText = p => { const s = parseSize(p); if (!s) return '';
   return s.count > 1 ? `${gstr(s.per)} ×${s.count} · ${gstr(s.total)} total` : gstr(s.per); };
 // per-unit weight for grouping in the size dropdown — the TRUE per-joint size
 const weightOnly = p => { const s = parseSize(p); return s ? gstr(s.per) : ''; };
+// ── the size filter carries pack-vs-single, not just the weight
+//
+// "0.5g" alone was quietly ambiguous: in stock right now that's 5 single joints
+// against 28 that come in packs of 2, 5, 6 or 7 — so filtering to 0.5g and
+// handing someone the first result was a coin flip on whether they got one joint
+// or seven. Worse, 0.6g, 0.7g and 0.9g exist ONLY as multipacks, so those three
+// options could never return a single and never said so.
+//
+// Values are "s|0.5g" / "p|0.5g". Packs are a preroll thing — every flower and
+// vape on the shelf is a single — so the grouped dropdown only appears where
+// both kinds actually exist, and Flower and Vape look exactly as they did.
+const isPackForm = p => { const s = parseSize(p); return !!s && s.count > 1; };
+const sizeKey = p => { const w = weightOnly(p); return w ? (isPackForm(p) ? 'p|' : 's|') + w : ''; };
+const sizeMatches = (p, sel) => sel === 'any' || sizeKey(p) === sel;
+// "0.5g singles" / "0.5g packs", for the empty states that name the filter.
+const sizeLabel = sel => {
+  if (!sel || sel === 'any') return '';
+  const [kind, size] = sel.split('|');
+  return `${size} ${kind === 'p' ? 'packs' : 'singles'}`;
+};
 // vape sub-type — the package distinction a budtender needs
 const vapeType = p => /cart/i.test(p.form) ? 'Cart' : /dispos/i.test(p.form) ? 'Disposable' : '';
 // Infused means concentrate was added, and it moves the number a lot: infused
@@ -2162,10 +2182,13 @@ function render(){
     // mount the shell ONCE per render(); typing updates results only, via
     // renderEffectResults() — never touches this <input> node (see combo comment above)
     // sizes available in the current category, for the dropdown
-    const sizeOpts = [...new Set(inStock()
+    const sizeKeys = [...new Set(inStock()
       .filter(p => effCat === 'All' || category(p) === effCat)
-      .map(weightOnly).filter(Boolean))].sort((a,b) => parseFloat(a) - parseFloat(b));
-    if (effSize !== 'any' && !sizeOpts.includes(effSize)) effSize = 'any';   // category changed out from under it
+      .map(sizeKey).filter(Boolean))]
+      .sort((a,b) => parseFloat(a.slice(2)) - parseFloat(b.slice(2)));
+    const sizeSingles = sizeKeys.filter(k => k[0] === 's');
+    const sizePacks   = sizeKeys.filter(k => k[0] === 'p');
+    if (effSize !== 'any' && !sizeKeys.includes(effSize)) effSize = 'any';   // category changed out from under it
     // Infusion is a preroll question — 27 of 67 in-stock prerolls are infused,
     // against 1 flower and 0 vapes. So the picker only appears where it can do
     // something, and resets when you leave.
@@ -2193,7 +2216,16 @@ function render(){
            </select>
            <select id="effSize" aria-label="Size"${effSize!=='any'?' data-set':''}>
              <option value="any"${effSize==='any'?' selected':''}>Any size</option>
-             ${sizeOpts.map(s => `<option value="${s}"${effSize===s?' selected':''}>${s}</option>`).join('')}
+             ${(() => {
+               const opt = k => `<option value="${k}"${effSize===k?' selected':''}>${k.slice(2)}</option>`;
+               // Only group when there is something to group against. With no
+               // packs in the category (Flower, Vape) a lone "Singles" heading
+               // would be a distinction the shelf doesn't make.
+               return sizePacks.length && sizeSingles.length
+                 ? `<optgroup label="Singles">${sizeSingles.map(opt).join('')}</optgroup>`
+                   + `<optgroup label="Multipacks">${sizePacks.map(opt).join('')}</optgroup>`
+                 : sizeKeys.map(k => `<option value="${k}"${effSize===k?' selected':''}>${k.slice(2)}${k[0]==='p'?' pack':''}</option>`).join('');
+             })()}
            </select>
            ${infusedApplies ? `<select id="effInfused" aria-label="Infused or non-infused"${effInfused!=='any'?' data-set':''}>
              <option value="any"${effInfused==='any'?' selected':''}>Any infusion</option>
@@ -2505,9 +2537,11 @@ function renderEffectResults(){
       return foot();
     }
     // browsing: the size dropdown just narrows, like the category buttons
-    const shown = effSize === 'any' ? scoped : scoped.filter(p => weightOnly(p) === effSize);
+    const shown = scoped.filter(p => sizeMatches(p, effSize));
     O.innerHTML = shown.length ? shown.map(p => card(p)).join('')
-      : `<div class="empty">No ${effSize === 'any' ? (activeCat === 'All' ? '' : activeCat.toLowerCase()+' ') : effSize+' '}records scanned yet.</div>`;
+      : `<div class="empty">No ${effSize === 'any'
+          ? (activeCat === 'All' ? '' : activeCat.toLowerCase()+' ') + 'records'
+          : sizeLabel(effSize)} scanned yet.</div>`;
     return foot();
   }
 
@@ -2594,12 +2628,12 @@ function renderEffectResults(){
   }
   // a size is chosen: the desired size ranks full; strong matches in other
   // sizes drop below, dimmed but readable — you might still pivot to one.
-  const inSize = scored.filter(([,p]) => weightOnly(p) === effSize);
-  const other  = scored.filter(([,p]) => weightOnly(p) !== effSize);
+  const inSize = scored.filter(([,p]) => sizeMatches(p, effSize));
+  const other  = scored.filter(([,p]) => !sizeMatches(p, effSize));
   O.innerHTML =
     (inSize.length
       ? inSize.slice(0, effShowAll ? inSize.length : EFF_TOP).map(([,p]) => card(p)).join('') + moreRow(inSize.length)
-      : `<div class="empty">Nothing in ${effSize} fits that${other.length ? ' — but these other sizes are close' : '.'}.</div>`)
+      : `<div class="empty">Nothing in ${sizeLabel(effSize)} fits that${other.length ? ' — but these other sizes are close' : '.'}.</div>`)
     + (other.length
       ? `<div class="pivot-head">Great match, other sizes — worth a pivot</div>`
         + other.slice(0,4).map(([,p]) => pivotRow(p)).join('')
