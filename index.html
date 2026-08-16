@@ -2353,10 +2353,42 @@ function render(){
     // the pivot section below (never mixed in). If the source has no parseable
     // weight (vape carts etc.), or nothing else in its size was scanned, fall
     // back to ranking every size — better than an empty screen.
-    const srcW = weightOnly(p);
-    const same  = srcW ? ranked.filter(([,x]) => weightOnly(x) === srcW) : ranked;
-    const other = srcW ? ranked.filter(([,x]) => weightOnly(x) !== srcW) : [];
+    //
+    // Infusion joins size as a primary criterion, and arguably matters more:
+    // infused prerolls here run a median 37.2% THC against 27.1% for plain ones,
+    // so handing a plain-preroll customer an infused substitute is a bigger
+    // change to their evening than handing them a different weight. It isn't
+    // special-cased to prerolls — no vape form says "infused" so the split is a
+    // no-op there, and Lobo's infused FLOWER gets separated correctly for free.
+    //
+    // Requiring both still leaves room: across the 124 preroll sources the median
+    // candidate pool goes 26 -> 13, and exactly one source ends up with no
+    // same-size-same-infusion match at all. `primary` already falls back to the
+    // whole ranking when the strict set is empty, so that one degrades rather
+    // than breaking.
+    const srcW = weightOnly(p), srcInf = isInfused(p);
+    const fits = ([,x]) => (!srcW || weightOnly(x) === srcW) && isInfused(x) === srcInf;
+    const same  = ranked.filter(fits);
+    const other = ranked.filter(r => !fits(r));
     const primary = same.length ? same : ranked;
+    // Name whichever way the pivot actually differs. "Other sizes" was the only
+    // heading before, and once infusion joined the split it became wrong on 64
+    // sources: a dimmed card could be the SAME weight and differ only by being
+    // infused, while the heading told the budtender it was a different size.
+    //
+    // Judged on the four that are rendered, not on the whole `other` list — the
+    // heading describes what's under it. An earlier version tested every item in
+    // `other` and so good as never fired, because that list nearly always mixes
+    // both kinds of mismatch.
+    const pivotShown = other.slice(0, 4);
+    const diffSize = !!srcW && pivotShown.some(([,x]) => weightOnly(x) !== srcW);
+    const diffInf  = pivotShown.some(([,x]) => isInfused(x) !== srcInf);
+    const pivotWhy = diffSize && diffInf
+      ? 'Closest otherwise — a different size or infusion'
+      : diffInf
+        ? (srcInf ? 'Closest non-infused — milder than what they liked'
+                  : 'Closest infused — stronger than what they liked')
+        : 'Closest in other sizes — worth a pivot';
     O.innerHTML = faintSrcNote + (ranked[0][0] < 0.5
         ? `<div class="card"><div class="warnbox" style="margin:0">Nothing <b>scanned</b> is close to <b>${p.strain}</b> — its profile is ${domTerps(p).slice(0,2).map(k=>short(k).toLowerCase()).join('/')}-led and nothing else in here looks like that. <b>Say so. Don't substitute.</b> Worth a look at the shelf too, in case something isn't scanned yet.</div></div>`
         : '')
@@ -2367,7 +2399,7 @@ function render(){
       // all there, so pivoting is a decision you can actually make rather than
       // a name you then have to go look up.
       + (same.length && other.length && other[0][0] >= 0.5
-          ? `<div class="pivot-head">Closest in other sizes — worth a pivot</div>`
+          ? `<div class="pivot-head">${pivotWhy}</div>`
             + other.slice(0,4).map(([s,x]) =>
                 `<div class="card-dim">${card(x, matchNote(p, x, s), key(p))}</div>`).join('')
           : '');
