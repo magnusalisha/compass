@@ -8,7 +8,7 @@
  "total_terpenes": 1.3991,
  "lean": "settling",
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Sativa",
  "reported": [
   "Live Resin Infused",
@@ -39,5 +39,6 @@
   "Farnesene": 0.0254,
   "Fenchol": 0.0252,
   "beta-Pinene": 0.0171
- }
+ },
+ "sold_out_at": "2026-08-16T23:08:58.252Z"
 }
