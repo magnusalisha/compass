@@ -2342,9 +2342,13 @@ function render(){
 // options couldn't tell a shortlist from the end of the shelf. Now it says the
 // count and offers the rest.
 const EFF_TOP = 6;
-const moreRow = total => total <= EFF_TOP ? '' : (effShowAll
-  ? `<div class="morerow">All ${total} shown, strongest first. <button type="button" data-effmore="0">Show top ${EFF_TOP}</button></div>`
-  : `<div class="morerow">Showing the ${EFF_TOP} strongest of <b>${total}</b> that match at all — the rest carry less of what you asked for. <button type="button" data-effmore="1">Show all ${total}</button></div>`);
+// `what` describes the set being counted. An effect query and a terpene search
+// are counting different things, and one phrase for both misdescribes whichever
+// it wasn't written for.
+const moreRow = (total, what = 'that match at all — the rest carry less of what you asked for') =>
+  total <= EFF_TOP ? '' : (effShowAll
+    ? `<div class="morerow">All ${total} shown, in order. <button type="button" data-effmore="0">Show top ${EFF_TOP}</button></div>`
+    : `<div class="morerow">Showing ${EFF_TOP} of <b>${total}</b> ${what}. <button type="button" data-effmore="1">Show all ${total}</button></div>`);
 
 // ── terpene-name search
 //
@@ -2538,7 +2542,7 @@ function renderEffectResults(){
       REPORTED[tq.keys[0]] ? '' : `<br>Nothing evidenced about ${tq.label}'s character, so there's no read to go with it.`
     }</div>` + ranked.slice(0, effShowAll ? ranked.length : EFF_TOP).map(([p, v]) =>
       card(p, `<div class="match">${tq.label} ${+v.toFixed(2)}%</div>`)).join('')
-      + moreRow(ranked.length);
+      + moreRow(ranked.length, `carrying ${tq.label}, most first`);
     return foot();
   }
 
