@@ -8,7 +8,7 @@
  "total_terpenes": 6.0904,
  "lean": "mixed",
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Indica",
  "reported": [
   "Citrus",
@@ -46,5 +46,6 @@
   "alpha-Cedrene": 0.0265,
   "Terpinolene": 0.0239,
   "Cedrol": 0.0197
- }
+ },
+ "sold_out_at": "2026-08-17T20:59:08.003Z"
 }
