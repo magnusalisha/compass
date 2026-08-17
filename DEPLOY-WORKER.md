@@ -106,8 +106,11 @@ No settings change. Nothing to touch on the page.
 ### Check it worked
 
 ```bash
-curl -sI "https://compass-stock.magnus-alisha.workers.dev/data?t=$(date +%s)" | grep -i x-compass
+curl -s -D - -o /dev/null "https://compass-stock.magnus-alisha.workers.dev/data?t=$(date +%s)" | grep -i x-compass
 ```
+
+(`-I` will *not* work here — it sends a HEAD request, which the Worker doesn't
+answer, so you get a 405 and no headers at all.)
 
 You want to see:
 
@@ -124,10 +127,10 @@ slowly:
 | header | what it means |
 |---|---|
 | `shape: records` | working as intended |
-| `shape: index-fallback` | GitHub's GraphQL API refused; `x-compass-error` says why. Retry in a few minutes. |
-| `shape: index-too-many` | over ~2,000 records. Raise `CHUNK` in the Worker. |
+| `shape: index-fallback` | GitHub wouldn't hand over the archive; `x-compass-error` says why. Compass still works, just slowly. |
 | `skipped: 1` or more | that many records were unreadable and left out — usually a hand-edit that broke a file's JSON. |
-| no `x-compass-*` at all | the old Worker is still deployed. Paste again. |
+| HTTP 502 | both routes are down. Rare; the page keeps whatever it already had. |
+| no `x-compass-*` at all | an older Worker is still deployed. Paste again. |
 
 ### Why this exists
 
@@ -139,27 +142,31 @@ cache those files for five minutes.
 
 The reason it was built that way is real: Cloudflare's free plan caps a Worker
 at **50 subrequests per invocation**, and reading every record one-by-one needs
-307. It actually broke exactly this way at 80 records. The fix is to read many
-files per subrequest, which GitHub's GraphQL API can do and the REST API can't —
-so it's now 1 listing + 7 bulk reads = **8 subrequests**, and one response to the
-page instead of 307.
+307. It actually broke exactly this way at 80 records.
 
-Three details worth knowing if you ever edit this part.
+Now the Worker asks GitHub for the whole repo as one gzipped tar and reads the
+records out of it: **2 subrequests**, one response to the page, ~30 KB on the
+wire. The count of records stops mattering — 306 or 3,000 is the same two
+requests.
 
-**Ask for all 306 in one query and GitHub gets flaky.** Over five tries it
-answered twice with a 503 and took about 4 seconds the three times it worked.
-Seven queries of 50 are both faster and reliable.
+### Two dead ends, recorded so nobody repeats them
 
-**The seven queries must go out together.** The first version of this waited for
-each one before starting the next, and a real load took **14.7 seconds** —
-slower than the problem it replaced. Sent at the same time they finish in about
-one second. There's a test that deadlocks on purpose if anyone makes them
-sequential again.
+**Fetching each record inside the Worker.** The obvious version. Needs one
+subrequest per record, so it dies at the 50 cap — which it did, at 80 records.
 
-**The Worker never parses the records**, it splices them together as text.
-Parsing 306 records just to re-print them would burn CPU that the free plan
-budgets tightly, and it's the one cost that would grow every time you scan a
-new product.
+**GraphQL.** Genuinely clever: one query can carry 50 aliased file reads, and
+seven of those assembled the catalogue in about a second. It shipped, and it
+failed within minutes of going live. Under sustained use GitHub throttles it
+with a 503 — **16 of 20 consecutive queries failed**, while the rate limiter
+still showed 4,878 of 5,000 allowance remaining, so it isn't a quota, it's a
+burst throttle that clears after a pause. That's the worst possible shape for a
+shop tool: fine when you test it, broken when you lean on it. The same
+20-attempt test against the tarball passed 20 of 20.
+
+If you ever change this part: the Worker deliberately never parses the records,
+it splices them together as text. Parsing 306 records just to re-print them
+would burn CPU the free plan budgets tightly, and it's the one cost that grows
+every time you scan a new product.
 
 ## If something goes wrong
 

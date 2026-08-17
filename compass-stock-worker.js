@@ -119,31 +119,28 @@ function cacheDrop(key, ctx) {
 // can only hold them five minutes — meaning an open register tab re-checked all
 // 306 every five minutes, all shift.
 //
-// So the fan-out was never acceptable in either place. What makes it go away is
-// reading many files per subrequest, which REST cannot do and GraphQL can: one
-// query carrying N aliased `object(expression: "main:data/x.json")` blobs. At
-// CHUNK=50 that is 1 listing + ceil(n/50) queries = 8 subrequests for 306
-// records, and it scales to ~2,400 before the cap is in sight again.
+// So the fan-out was never acceptable in either place. What removes it is
+// reading the whole data directory in one shot, which the REST contents API
+// cannot do at all and GraphQL can only do unreliably. GitHub will hand over a
+// gzipped tar of the entire repo in a single request, so that is what this does:
+// 2 subrequests total, no chunking, no per-record anything.
 //
-// Chunk size and parallelism were both measured, and both matter.
+// GraphQL was the first version of this and it is worth recording why it lost.
+// One query carrying N aliased `object(expression:"main:data/x.json")` blobs
+// works, and 7 queries of 50 aliases assembled the catalogue in ~1s. But under
+// sustained use GitHub throttles it with 503 "no server is currently available":
+// 16 of 20 consecutive 50-alias queries failed, with the rate limiter reporting
+// 4,878 of 5,000 points still available, so it is not a quota — it is a burst
+// throttle. It recovers after a pause, which makes it exactly the wrong shape
+// for a shop's shelf: it works when you test it and fails when you lean on it.
+// Alisha hit the fallback within minutes of deploying it.
 //
-// One aliased query for ALL 306 records is the obvious shape and it is the wrong
-// one: over five attempts it returned 200 three times and 503 ("no server is
-// currently available") twice, taking ~4s when it did work. Intermittently
-// failing is worse than reliably chunking.
+// The same 20-attempt test against the tarball: 20 of 20, no failures.
 //
-// Latency per query scales sub-linearly with size — 25 aliases 0.67s, 50 1.16s,
-// 100 1.87s, 306 3.88s — so many small queries beat one big one, but only if
-// they run TOGETHER. The first version of this awaited each chunk in a loop and
-// a real cache miss took 14.7 seconds on the live site, seven queries queueing
-// behind each other. Issued in parallel the same seven finish in ~1s.
-const CHUNK = 50;
-// Leaves comfortable headroom under the 50-subrequest cap while still covering
-// far more records than this shop will hold. Past it, fall back to the index.
-const MAX_CHUNKS = 40;
-
-// Records are written by this worker under filenames it validates, so anything
-// outside this shape is not ours and has no business in a GraphQL expression.
+// Cost of the swap is that this worker now decompresses and walks a tar archive
+// instead of reading JSON. That is real work, and the free plan caps CPU per
+// invocation, but it measured 12ms for the whole 306-record archive and it does
+// not grow per record the way a request-per-record does.
 const SAFE_NAME = /^[A-Za-z0-9_-]{1,64}\.json$/;
 
 async function listData(env, H) {
@@ -166,83 +163,101 @@ async function listData(env, H) {
   return { files };
 }
 
-// Read every record's text and splice them into one JSON array.
+// Fetch the repo as a gzipped tar.
 //
-// Deliberately never calls JSON.parse. The free plan also caps CPU per
-// invocation, and parsing 306 records only to re-serialise them is the one part
-// of this that scales with catalogue size for no benefit. Each record's text
-// goes out exactly as it sits in the repo, with `_key` spliced into the opening
-// brace as a string operation.
+// The API answers 302 with a pre-signed codeload.github.com URL. That second
+// request deliberately carries NO Authorization header: the URL is already
+// signed, and the shop's write token has no business being sent to a different
+// host than the one it was issued for.
+async function fetchArchive(env) {
+  const branch = env.GH_BRANCH || "main";
+  const meta = await fetch(
+    `https://api.github.com/repos/${env.GH_USER}/${env.GH_REPO}/tarball/${branch}`,
+    {
+      headers: { Authorization: `Bearer ${env.GH_TOKEN}`, "User-Agent": "compass-stock" },
+      redirect: "manual",
+      cf: { cacheTtl: 0, cacheEverything: false },
+    }
+  );
+  if (meta.status >= 300 && meta.status < 400) {
+    const loc = meta.headers.get("location");
+    if (!loc) throw new Error("tarball redirect without location");
+    const res = await fetch(loc, { headers: { "User-Agent": "compass-stock" } });
+    if (!res.ok) throw new Error("archive " + res.status);
+    return res;
+  }
+  if (!meta.ok) throw new Error("tarball " + meta.status);
+  return meta;   // some deployments answer 200 directly
+}
+
+// Decompress a gzip stream into one Uint8Array. DecompressionStream is native to
+// the runtime, so the gunzip itself is not JS work.
+async function gunzip(body) {
+  const reader = body.pipeThrough(new DecompressionStream("gzip")).getReader();
+  const chunks = [];
+  let total = 0;
+  for (;;) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    chunks.push(value);
+    total += value.length;
+  }
+  const out = new Uint8Array(total);
+  let at = 0;
+  for (const c of chunks) { out.set(c, at); at += c.length; }
+  return out;
+}
+
+// Read every record out of the archive and splice them into one JSON array.
+//
+// Deliberately never calls JSON.parse. Parsing 306 records only to re-serialise
+// them is the one cost here that grows with the catalogue for no benefit, and
+// CPU per invocation is capped. Each record's text goes out exactly as it sits
+// in the repo, with `_key` spliced into the opening brace as a string op.
 //
 // `_key` has to come from here because the page needs it to write stock back and
 // the repo filename is the only unique handle on a record — the `id` field is
-// duplicated across 43 of them. On the old index path the page derived it from
-// the file listing; on this path there is no listing in the browser.
-async function readRecords(env, files) {
-  const H = {
-    Authorization: `Bearer ${env.GH_TOKEN}`,
-    "User-Agent": "compass-stock",
-    "Content-Type": "application/json",
-  };
-  const usable = files.filter((f) => SAFE_NAME.test(f.name));
-  let skipped = files.length - usable.length;
+// duplicated across 43 of them. On the index path the page derived it from the
+// file listing; on this path there is no listing in the browser.
+//
+// Tar layout: 512-byte header block, then the file's bytes padded up to the next
+// multiple of 512. Archive paths are `<repo>-<sha>/data/<name>.json`, so only
+// one directory level is stripped and the name is still checked against
+// SAFE_NAME — a crafted path in the archive must not become a record.
+async function readRecords(env) {
+  const archive = await fetchArchive(env);
+  if (!archive.body) throw new Error("archive has no body");
+  const bytes = await gunzip(archive.body);
 
-  const batches = [];
-  for (let i = 0; i < usable.length; i += CHUNK) batches.push(usable.slice(i, i + CHUNK));
-
-  // All chunks at once. See the note on CHUNK — awaiting them one at a time is
-  // what made a cache miss take 14.7s in production.
-  const results = await Promise.all(batches.map((b) => readChunk(env, H, b)));
+  const dec = new TextDecoder();
+  const str = (off, len) => dec.decode(bytes.subarray(off, off + len)).replace(/\0[\s\S]*$/, "").trim();
 
   const parts = [];
-  for (const r of results) {
-    for (const p of r.parts) parts.push(p);
-    skipped += r.skipped;
+  let skipped = 0;
+  let p = 0;
+  while (p + 512 <= bytes.length) {
+    const path = str(p, 100);
+    if (!path) { p += 512; continue; }          // zero block: end of archive, or padding
+    const size = parseInt(str(p + 124, 12), 8) || 0;
+    const type = String.fromCharCode(bytes[p + 156] || 48);
+    const body = p + 512;
+    p = body + Math.ceil(size / 512) * 512;
+
+    if (type !== "0" && type !== "\0") continue;   // not a regular file
+    const m = /^[^/]+\/data\/([^/]+)$/.exec(path);
+    if (!m) continue;                              // not one of ours — index.html, docs, demo/
+    if (!SAFE_NAME.test(m[1])) { skipped++; continue; }
+
+    const text = dec.decode(bytes.subarray(body, body + size));
+    // Requires at least one existing field, or the splice would produce
+    // `{"_key":"x",}` — invalid JSON.
+    if (!/^\s*\{\s*"/.test(text)) { skipped++; continue; }
+    const key = JSON.stringify(m[1].replace(/\.json$/, ""));
+    parts.push(text.replace(/^\s*\{/, `{"_key":${key},`));
   }
 
   if (!parts.length) throw new Error("no readable records");
   return { body: "[" + parts.join(",") + "]", skipped, count: parts.length };
-}
-
-// One GraphQL query for up to CHUNK records.
-async function readChunk(env, H, batch) {
-    const parts = [];
-    let skipped = 0;
-    const query =
-      `query{repository(owner:${JSON.stringify(env.GH_USER)},name:${JSON.stringify(env.GH_REPO)}){` +
-      batch
-        .map((f, k) => `f${k}:object(expression:${JSON.stringify("main:data/" + f.name)})` +
-                       `{... on Blob{text isTruncated}}`)
-        .join(" ") +
-      `}}`;
-
-    const res = await fetch("https://api.github.com/graphql", {
-      method: "POST",
-      headers: H,
-      body: JSON.stringify({ query }),
-      cf: { cacheTtl: 0, cacheEverything: false },
-    });
-    // A failed chunk is not recoverable into a partial answer — 50 missing
-    // records would look to the page like 50 products going out of stock.
-    if (!res.ok) throw new Error("graphql " + res.status);
-    const payload = await res.json();
-    const repo = payload && payload.data && payload.data.repository;
-    if (!repo) throw new Error("graphql shape");
-
-    batch.forEach((f, k) => {
-      const blob = repo["f" + k];
-      // Missing or truncated is per-record and survivable: skip it, count it,
-      // and let the rest through. A hand-edit that broke one file's JSON must
-      // not take the shelf down with it.
-      if (!blob || typeof blob.text !== "string" || blob.isTruncated) { skipped++; return; }
-      // Splice `_key` into the opening brace. Requires at least one existing
-      // field, or the result would be `{"_key":"x",}` — invalid JSON.
-      if (!/^\s*\{\s*"/.test(blob.text)) { skipped++; return; }
-      const key = JSON.stringify(f.name.replace(/\.json$/, ""));
-      parts.push(blob.text.replace(/^\s*\{/, `{"_key":${key},`));
-    });
-
-    return { parts, skipped };
 }
 
 function dataResponse(bodyText, extraHeaders, ctx) {
@@ -262,31 +277,30 @@ async function serveData(env, ctx) {
   const hit = await cacheGet(dataCacheKey());
   if (hit) return hit;
 
-  const H = {
-    Authorization: `Bearer ${env.GH_TOKEN}`,
-    "User-Agent": "compass-stock",
-    Accept: "application/vnd.github+json",
-  };
-
-  const listed = await listData(env, H);
-  if (listed.error) return j(listed, 502);
-  const { files } = listed;
-
-  // Every failure below falls back to the file index. The page accepts both
-  // shapes, so the worst case is the old slow load rather than an empty shelf —
-  // and that is the whole reason the index shape stays supported.
-  if (Math.ceil(files.length / CHUNK) > MAX_CHUNKS)
-    return dataResponse(JSON.stringify(files), { "X-Compass-Shape": "index-too-many" }, ctx);
-
+  // The archive read needs no listing, so the happy path is 2 subrequests and
+  // never touches the contents API. The listing is only fetched if the archive
+  // read fails, to build the fallback.
   try {
-    const { body, skipped, count } = await readRecords(env, files);
+    const { body, skipped, count } = await readRecords(env);
     return dataResponse(body, {
       "X-Compass-Shape": "records",
       "X-Compass-Count": String(count),
       "X-Compass-Skipped": String(skipped),
     }, ctx);
   } catch (err) {
-    return dataResponse(JSON.stringify(files), {
+    // Fall back to the file index. The page accepts both shapes, so the worst
+    // case is the old one-request-per-record load rather than an empty shelf —
+    // which is the whole reason the index shape stays supported.
+    const H = {
+      Authorization: `Bearer ${env.GH_TOKEN}`,
+      "User-Agent": "compass-stock",
+      Accept: "application/vnd.github+json",
+    };
+    const listed = await listData(env, H);
+    // Both routes are down. Say so rather than caching an error as if it were
+    // data — the page keeps whatever it already had and retries in a minute.
+    if (listed.error) return j({ ...listed, archive: String((err && err.message) || err) }, 502);
+    return dataResponse(JSON.stringify(listed.files), {
       "X-Compass-Shape": "index-fallback",
       "X-Compass-Error": String((err && err.message) || err).slice(0, 100),
     }, ctx);
