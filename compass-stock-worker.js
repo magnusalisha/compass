@@ -266,6 +266,11 @@ function dataResponse(bodyText, extraHeaders, ctx) {
       "Content-Type": "application/json",
       "Cache-Control": "public, max-age=30",
       "Access-Control-Allow-Origin": "*",
+      // Without this the browser hides every X-Compass-* header from page JS.
+      // Allow-Origin only governs whether the RESPONSE is readable; custom
+      // headers stay invisible unless named here, and the page needs
+      // X-Compass-Skipped to tell the shelf that a record was dropped.
+      "Access-Control-Expose-Headers": "X-Compass-Shape, X-Compass-Count, X-Compass-Skipped",
       ...extraHeaders,
     },
   });

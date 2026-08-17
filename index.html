@@ -3080,7 +3080,26 @@ async function fetchRecords(){
         // Delta-Terpinene would double Terpinolene on every Alleaves panel that
         // prints both. `_key` arrives from the Worker, which is the only place
         // that knows the repo filename on this path.
-        if (body[0] && body[0].strain) return body.map(p => normTerps(p));
+        if (body[0] && body[0].strain){
+          // The worker drops records it can't read and reports how many in
+          // X-Compass-Skipped. Carry that into the footer, because on this path
+          // the page never sees the individual records fail — recordsFromIndex,
+          // which is where `unreadable` is otherwise set, isn't called at all.
+          // Without this a record with a hand-edit typo simply vanishes from the
+          // shelf with nothing said, which is the exact failure the unreadable
+          // count exists to prevent.
+          //
+          // Always assigned, never conditionally: a poll that comes back clean
+          // has to clear a count left over from the previous one.
+          //
+          // 'data' because on this path there is no per-record network failure to
+          // confuse it with — the archive either arrives or the worker falls back
+          // to the index. Skipped here always means the file itself is wrong.
+          const dropped = Number(res.headers.get('X-Compass-Skipped')) || 0;
+          unreadable = dropped;
+          unreadableKind = dropped ? 'data' : '';
+          return body.map(p => normTerps(p));
+        }
       }
       throw new Error('unrecognised response');
     } catch(e){
