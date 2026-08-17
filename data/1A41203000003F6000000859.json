@@ -37,6 +37,7 @@
  "form": "Flower 3.5g",
  "strain": "Georgia Z",
  "lean": "mixed",
- "in_stock": true,
- "thc": 28.638
+ "in_stock": false,
+ "thc": 28.638,
+ "sold_out_at": "2026-08-17T15:14:20.001Z"
 }
