@@ -1075,7 +1075,7 @@ let DATA = [
  }
 ], tab = 'effect', a = null, b = null, sel = null, flash = '', effCat = 'All', simCat = 'All',
   lookupQ = '', lookupSel = null, lookupCat = 'All',
-  effSize = 'any', effLean = 'any', effInfused = 'any', unreadable = 0,
+  effSize = 'any', effLean = 'any', effInfused = 'any', effHardware = 'any', unreadable = 0,
   // Effect results are a ranked shortlist, not a filtered set — see EFF_TOP.
   // Reset whenever the query changes so a new question starts short again.
   effShowAll = false;
@@ -2254,6 +2254,18 @@ function render(){
     const infusedApplies = inStock().some(p =>
       (effCat === 'All' || category(p) === effCat) && isInfused(p));
     if (!infusedApplies) effInfused = 'any';
+    // Cart vs disposable, on the Vape tab only. Deliberately NOT on All: setting
+    // it there would hide every flower and preroll on the shelf, which is not
+    // what "carts" means to someone asking. Vape-only costs a customer at All
+    // one extra tap and can never silently empty the case.
+    const hardwareApplies = effCat === 'Vape';
+    if (!hardwareApplies) effHardware = 'any';
+    // Every vape names its hardware today, so this option stays hidden. It
+    // appears by itself the moment a capture lands without one, because the
+    // alternative is a set filter quietly dropping records that match neither
+    // value — the failure the shelf-derived infusion control was built to avoid.
+    const hardwareUnset = hardwareApplies
+      && inStock().some(p => category(p) === 'Vape' && !vapeType(p));
     // Funnel order, top to bottom: category → type → size → effect. The effect
     // box is the last, finest filter ("flower › indica › 3.5g › heavy"), so it
     // sits at the bottom, below the dropdowns.
@@ -2287,6 +2299,12 @@ function render(){
              <option value="any"${effInfused==='any'?' selected':''}>Any infusion</option>
              <option value="yes"${effInfused==='yes'?' selected':''}>Infused</option>
              <option value="no"${effInfused==='no'?' selected':''}>Non-infused</option>
+           </select>` : ''}
+           ${hardwareApplies ? `<select id="effHardware" aria-label="Cartridge or disposable"${effHardware!=='any'?' data-set':''}>
+             <option value="any"${effHardware==='any'?' selected':''}>Any hardware</option>
+             <option value="Cart"${effHardware==='Cart'?' selected':''}>Cart</option>
+             <option value="Disposable"${effHardware==='Disposable'?' selected':''}>Disposable</option>
+             ${hardwareUnset ? `<option value="none"${effHardware==='none'?' selected':''}>Not specified</option>` : ''}
            </select>` : ''}
          </div>
          <div class="searchwrap">
@@ -2621,7 +2639,9 @@ function renderEffectResults(){
   const list = inStock();   // effect recommends what to sell — in-stock only, and the OOS toggle is hidden here
   const scoped = list.filter(p => (activeCat === 'All' || category(p) === activeCat)
     && (effLean === 'any' || filterLean(p) === LEAN_OF[effLean])   // chemistry where it's readable, the package where it isn't
-    && (effInfused === 'any' || isInfused(p) === (effInfused === 'yes')));
+    && (effInfused === 'any' || isInfused(p) === (effInfused === 'yes'))
+    && (effHardware === 'any'
+        || (effHardware === 'none' ? !vapeType(p) : vapeType(p) === effHardware)));
   if (!rawQ){
     // Nothing typed AND nothing narrowed: say what the box is for instead of
     // dumping the whole case. 149 cards is a scroll, not an answer, and it
@@ -2839,7 +2859,7 @@ document.addEventListener('click', e => {
       // visibly lit, so nobody loses track of it the way they do a dropdown —
       // this only resets the state that was invisible.
       window._q = '';
-      effLean = 'any'; effSize = 'any'; effInfused = 'any';
+      effLean = 'any'; effSize = 'any'; effInfused = 'any'; effHardware = 'any';
       // A full render(), not renderEffectResults(): the dropdowns themselves
       // have to be redrawn to drop their gold `data-set` edge. That replaces the
       // input node, so `inp` below is stale — re-query and focus here, then
@@ -2888,9 +2908,24 @@ document.addEventListener('toggle', e => {
 }, true);
 document.addEventListener('change', e => {
   if (e.target.id === 'oos') render();
-  if (e.target.id === 'effSize'){ effSize = e.target.value; renderEffectResults(); }
-  if (e.target.id === 'effLean'){ effLean = e.target.value; renderEffectResults(); }
-  if (e.target.id === 'effInfused'){ effInfused = e.target.value; renderEffectResults(); }
+  // Paint the gold "this filter is set" edge on the live element.
+  //
+  // It used to be applied only in the markup, which meant it never appeared when
+  // you actually changed a dropdown: renderEffectResults() rewrites #out and the
+  // category buttons, and never touches the .pair row, so the select kept the
+  // attribute state it was born with. Verified in the browser — selecting Indica
+  // left data-set absent and the border on --ink. The one control whose whole job
+  // is making a forgotten filter visible was invisible in the only case that
+  // matters, and a forgotten Indica hides 73% of the shelf.
+  //
+  // Toggled on the mounted node rather than re-rendering, same rule as
+  // toggleClear(): a re-render would replace the select mid-interaction and drop
+  // focus, which on a phone closes the picker you just used.
+  const markSet = el => el.toggleAttribute('data-set', el.value !== 'any');
+  if (e.target.id === 'effSize'){ effSize = e.target.value; markSet(e.target); renderEffectResults(); }
+  if (e.target.id === 'effLean'){ effLean = e.target.value; markSet(e.target); renderEffectResults(); }
+  if (e.target.id === 'effInfused'){ effInfused = e.target.value; markSet(e.target); renderEffectResults(); }
+  if (e.target.id === 'effHardware'){ effHardware = e.target.value; markSet(e.target); renderEffectResults(); }
 });
 // Show the × only when there's something to clear. Toggles a class on the
 // button that's already mounted — never re-renders the input, same rule as
