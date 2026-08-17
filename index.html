@@ -2366,41 +2366,54 @@ function render(){
     // same-size-same-infusion match at all. `primary` already falls back to the
     // whole ranking when the strict set is empty, so that one degrades rather
     // than breaking.
-    const srcW = weightOnly(p), srcInf = isInfused(p);
-    const fits = ([,x]) => (!srcW || weightOnly(x) === srcW) && isInfused(x) === srcInf;
-    const same  = ranked.filter(fits);
-    const other = ranked.filter(r => !fits(r));
-    const primary = same.length ? same : ranked;
-    // Name whichever way the pivot actually differs. "Other sizes" was the only
-    // heading before, and once infusion joined the split it became wrong on 64
-    // sources: a dimmed card could be the SAME weight and differ only by being
-    // infused, while the heading told the budtender it was a different size.
+    // The two kinds of mismatch are NOT the same kind of thing, and dimming both
+    // said they were. A different size is a compromise — they wanted an eighth
+    // and this is an ounce. A different infusion isn't worse, it's a different
+    // product: same weight, same profile, and it will hit differently. That's
+    // something to offer plainly and say out loud, not to grey out.
     //
-    // Judged on the four that are rendered, not on the whole `other` list — the
-    // heading describes what's under it. An earlier version tested every item in
-    // `other` and so good as never fired, because that list nearly always mixes
-    // both kinds of mismatch.
-    const pivotShown = other.slice(0, 4);
-    const diffSize = !!srcW && pivotShown.some(([,x]) => weightOnly(x) !== srcW);
-    const diffInf  = pivotShown.some(([,x]) => isInfused(x) !== srcInf);
-    const pivotWhy = diffSize && diffInf
-      ? 'Closest otherwise — a different size or infusion'
-      : diffInf
-        ? (srcInf ? 'Closest non-infused — milder than what they liked'
-                  : 'Closest infused — stronger than what they liked')
-        : 'Closest in other sizes — worth a pivot';
+    //   tier 1  same size, same infusion   full cards — the direct answer
+    //   tier 2  same size, other infusion  full cards, own heading, NOT dimmed
+    //   tier 3  a different size           dimmed, as the pivot always was
+    //
+    // Tier 2 carries real content most of the time: 99 of 124 preroll sources
+    // have a strong one, and 65 of 92 flower sources do — the flower cases being
+    // Lobo's Moonrocks, which at 50-57% THC against a 27.9% median is exactly the
+    // swap a customer most needs warning about. No vape form says "infused", so
+    // the section never appears there.
+    const srcW = weightOnly(p), srcInf = isInfused(p);
+    const sameSize = ([,x]) => !srcW || weightOnly(x) === srcW;
+    const tier1 = ranked.filter(r => sameSize(r) && isInfused(r[1]) === srcInf);
+    const tier2 = ranked.filter(r => sameSize(r) && isInfused(r[1]) !== srcInf);
+    const tier3 = srcW ? ranked.filter(r => !sameSize(r)) : [];
+    // One source on the shelf — the only 0.9g x5 — has no tier 1 at all. It falls
+    // back to the whole ranking, and the two sections below are suppressed so the
+    // same cards don't appear twice under contradictory headings.
+    const fellBack = !tier1.length;
+    const primary = fellBack ? ranked : tier1;
+    // Two, not four: this is an alternative to consider, not a second list to
+    // work through. The THC and total terps now sit on every card, so "stronger"
+    // doesn't need asserting in the heading — it's legible on the card itself.
+    const altHead = srcInf ? 'Also close, but not infused' : 'Also close, but infused';
     O.innerHTML = faintSrcNote + (ranked[0][0] < 0.5
         ? `<div class="card"><div class="warnbox" style="margin:0">Nothing <b>scanned</b> is close to <b>${p.strain}</b> — its profile is ${domTerps(p).slice(0,2).map(k=>short(k).toLowerCase()).join('/')}-led and nothing else in here looks like that. <b>Say so. Don't substitute.</b> Worth a look at the shelf too, in case something isn't scanned yet.</div></div>`
         : '')
       + primary.slice(0,4).map(([s,x]) => card(x, matchNote(p, x, s), key(p))).join('')
-      // Other sizes get the SAME full card, just dimmed — a compact teaser you
-      // can't act on is the wrong shape here. The dimming still says "this isn't
-      // the size you asked for", but the read, the terpenes and Compare ↔ are
-      // all there, so pivoting is a decision you can actually make rather than
-      // a name you then have to go look up.
-      + (same.length && other.length && other[0][0] >= 0.5
-          ? `<div class="pivot-head">${pivotWhy}</div>`
-            + other.slice(0,4).map(([s,x]) =>
+      // Tier 2 — full brightness on purpose. It's the same weight and a close
+      // profile; the only difference is one the heading names outright. Dimming
+      // it would say "settle for this", which is the wrong thing to say about a
+      // product that may be exactly what they want once they know it's infused.
+      + (!fellBack && tier2.length && tier2[0][0] >= 0.5
+          ? `<div class="pivot-head">${altHead}</div>`
+            + tier2.slice(0,2).map(([s,x]) => card(x, matchNote(p, x, s), key(p))).join('')
+          : '')
+      // Tier 3 keeps the dimming, because a different size IS a compromise. Same
+      // full card though — a compact teaser you can't act on is the wrong shape
+      // here. The read, the terpenes and Compare ↔ are all there, so pivoting is
+      // a decision you can make rather than a name to go look up.
+      + (!fellBack && tier3.length && tier3[0][0] >= 0.5
+          ? `<div class="pivot-head">Closest in other sizes — worth a pivot</div>`
+            + tier3.slice(0,4).map(([s,x]) =>
                 `<div class="card-dim">${card(x, matchNote(p, x, s), key(p))}</div>`).join('')
           : '');
     return foot();
