@@ -8,7 +8,7 @@
  "total_terpenes": 5.6775,
  "lean": "settling",
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Indica",
  "reported": [
   "Spicy",
@@ -45,5 +45,6 @@
   "Borneol": 0.0519,
   "Terpinolene": 0.0291,
   "Geraniol": 0.0236
- }
+ },
+ "sold_out_at": "2026-08-17T16:29:17.902Z"
 }
