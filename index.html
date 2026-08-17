@@ -3009,10 +3009,19 @@ async function fetchRecords(){
       if (!res.ok) throw new Error('worker ' + res.status);
       const body = await res.json();
       if (Array.isArray(body) && body.length){
-        // Current Worker returns a file index; an older one returned whole
-        // records. Accept either so a redeploy can happen in any order.
+        // Two shapes, both live. Whole records is the fast path — one request
+        // for the catalogue instead of one per record. The file index is what
+        // an older Worker returns, and what the current one falls back to if
+        // its bulk read fails, so a redeploy can happen in either order and a
+        // GraphQL outage degrades to slow rather than to an empty shelf.
         if (body[0] && body[0].url && body[0].sha) return recordsFromIndex(body);
-        if (body[0] && body[0].strain) return body;
+        // normTerps has to run on this path too. recordsFromIndex does it for
+        // the other one, and skipping it here would undo TERP_ALIAS entirely:
+        // Y-Terpinene would count separately from gamma-terpinene, and
+        // Delta-Terpinene would double Terpinolene on every Alleaves panel that
+        // prints both. `_key` arrives from the Worker, which is the only place
+        // that knows the repo filename on this path.
+        if (body[0] && body[0].strain) return body.map(p => normTerps(p));
       }
       throw new Error('unrecognised response');
     } catch(e){

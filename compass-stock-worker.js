@@ -103,20 +103,137 @@ function cacheDrop(key, ctx) {
   try { ctx.waitUntil(caches.default.delete(key)); } catch (e) { /* nothing to drop */ }
 }
 
-// Return the FILE INDEX, not the file contents.
+// ── GET /data — every record in ONE response.
 //
-// Cloudflare's free plan caps a Worker at 50 subrequests per invocation, and
-// reading 80 records meant 81 — so this endpoint died with "Too many
-// subrequests" as soon as it went live. It also got worse with every product
-// scanned, which makes fetching-all-files the wrong shape regardless of plan.
+// History matters here, because the obvious version of this endpoint is the one
+// that broke. Cloudflare's free plan caps a Worker at 50 subrequests per
+// invocation. The first implementation read every record itself, which meant
+// n+1 subrequests, and it died with "Too many subrequests" at 80 records.
 //
-// So the Worker makes exactly ONE subrequest (the listing, which needs the
-// token's authenticated quota) and hands the browser a list of raw URLs plus
-// each file's git sha. The browser fetches those itself: raw.githubusercontent
-// has no 60/hour API limit, and a sha-pinned URL is immutable, so unchanged
-// files come straight from the browser cache and only genuinely-changed records
-// cross the network.
-async function serveIndex(env, ctx) {
+// The fix at the time was to stop reading the files and hand the browser a list
+// of raw URLs plus each file's git sha, letting it fetch them itself. That
+// worked, but it moved the fan-out to the page: opening Compass at 306 records
+// meant 306 requests to raw.githubusercontent. Measured cold, that took 42
+// seconds wall-clock with a p99 of 14.6s per record, because Fastly evicts 306
+// small objects between visits. And raw serves `max-age=300`, so the browser
+// can only hold them five minutes — meaning an open register tab re-checked all
+// 306 every five minutes, all shift.
+//
+// So the fan-out was never acceptable in either place. What makes it go away is
+// reading many files per subrequest, which REST cannot do and GraphQL can: one
+// query carrying N aliased `object(expression: "main:data/x.json")` blobs. At
+// CHUNK=50 that is 1 listing + ceil(n/50) queries = 8 subrequests for 306
+// records, and it scales to ~2,400 before the cap is in sight again.
+//
+// One aliased query for ALL 306 does not work — GitHub answers 503 ("no server
+// is currently available"), reproducibly. The chunking is load-bearing, not
+// tidiness.
+const CHUNK = 50;
+// Leaves comfortable headroom under the 50-subrequest cap while still covering
+// far more records than this shop will hold. Past it, fall back to the index.
+const MAX_CHUNKS = 40;
+
+// Records are written by this worker under filenames it validates, so anything
+// outside this shape is not ours and has no business in a GraphQL expression.
+const SAFE_NAME = /^[A-Za-z0-9_-]{1,64}\.json$/;
+
+async function listData(env, H) {
+  // Bypass Cloudflare's subrequest cache. GitHub serves this listing with
+  // max-age=60, and a stale listing means stale shas — which would point the
+  // browser's cache-busted URLs at old content and silently undo a write.
+  const listRes = await fetch(
+    `https://api.github.com/repos/${env.GH_USER}/${env.GH_REPO}/contents/data`,
+    { headers: H, cf: { cacheTtl: 0, cacheEverything: false } }
+  );
+  if (!listRes.ok) return { error: "list failed", status: listRes.status };
+
+  const listing = await listRes.json();
+  if (!Array.isArray(listing)) return { error: "unexpected listing" };
+
+  const files = listing
+    .filter((f) => f.name.endsWith(".json"))
+    .map((f) => ({ name: f.name, sha: f.sha, url: f.download_url }));
+  if (!files.length) return { error: "no records" };
+  return { files };
+}
+
+// Read every record's text and splice them into one JSON array.
+//
+// Deliberately never calls JSON.parse. The free plan also caps CPU per
+// invocation, and parsing 306 records only to re-serialise them is the one part
+// of this that scales with catalogue size for no benefit. Each record's text
+// goes out exactly as it sits in the repo, with `_key` spliced into the opening
+// brace as a string operation.
+//
+// `_key` has to come from here because the page needs it to write stock back and
+// the repo filename is the only unique handle on a record — the `id` field is
+// duplicated across 43 of them. On the old index path the page derived it from
+// the file listing; on this path there is no listing in the browser.
+async function readRecords(env, files) {
+  const H = {
+    Authorization: `Bearer ${env.GH_TOKEN}`,
+    "User-Agent": "compass-stock",
+    "Content-Type": "application/json",
+  };
+  const usable = files.filter((f) => SAFE_NAME.test(f.name));
+  const parts = [];
+  let skipped = files.length - usable.length;
+
+  for (let i = 0; i < usable.length; i += CHUNK) {
+    const batch = usable.slice(i, i + CHUNK);
+    const query =
+      `query{repository(owner:${JSON.stringify(env.GH_USER)},name:${JSON.stringify(env.GH_REPO)}){` +
+      batch
+        .map((f, k) => `f${k}:object(expression:${JSON.stringify("main:data/" + f.name)})` +
+                       `{... on Blob{text isTruncated}}`)
+        .join(" ") +
+      `}}`;
+
+    const res = await fetch("https://api.github.com/graphql", {
+      method: "POST",
+      headers: H,
+      body: JSON.stringify({ query }),
+      cf: { cacheTtl: 0, cacheEverything: false },
+    });
+    // A failed chunk is not recoverable into a partial answer — 50 missing
+    // records would look to the page like 50 products going out of stock.
+    if (!res.ok) throw new Error("graphql " + res.status);
+    const payload = await res.json();
+    const repo = payload && payload.data && payload.data.repository;
+    if (!repo) throw new Error("graphql shape");
+
+    batch.forEach((f, k) => {
+      const blob = repo["f" + k];
+      // Missing or truncated is per-record and survivable: skip it, count it,
+      // and let the rest through. A hand-edit that broke one file's JSON must
+      // not take the shelf down with it.
+      if (!blob || typeof blob.text !== "string" || blob.isTruncated) { skipped++; return; }
+      // Splice `_key` into the opening brace. Requires at least one existing
+      // field, or the result would be `{"_key":"x",}` — invalid JSON.
+      if (!/^\s*\{\s*"/.test(blob.text)) { skipped++; return; }
+      const key = JSON.stringify(f.name.replace(/\.json$/, ""));
+      parts.push(blob.text.replace(/^\s*\{/, `{"_key":${key},`));
+    });
+  }
+
+  if (!parts.length) throw new Error("no readable records");
+  return { body: "[" + parts.join(",") + "]", skipped, count: parts.length };
+}
+
+function dataResponse(bodyText, extraHeaders, ctx) {
+  const res = new Response(bodyText, {
+    headers: {
+      "Content-Type": "application/json",
+      "Cache-Control": "public, max-age=30",
+      "Access-Control-Allow-Origin": "*",
+      ...extraHeaders,
+    },
+  });
+  cacheSet(dataCacheKey(), res, ctx);
+  return res;
+}
+
+async function serveData(env, ctx) {
   const hit = await cacheGet(dataCacheKey());
   if (hit) return hit;
 
@@ -126,32 +243,29 @@ async function serveIndex(env, ctx) {
     Accept: "application/vnd.github+json",
   };
 
-  // Bypass Cloudflare's subrequest cache. GitHub serves this listing with
-  // max-age=60, and a stale listing means stale shas — which would point the
-  // browser's cache-busted URLs at old content and silently undo a write.
-  const listRes = await fetch(
-    `https://api.github.com/repos/${env.GH_USER}/${env.GH_REPO}/contents/data`,
-    { headers: H, cf: { cacheTtl: 0, cacheEverything: false } }
-  );
-  if (!listRes.ok) return j({ error: "list failed", status: listRes.status }, 502);
+  const listed = await listData(env, H);
+  if (listed.error) return j(listed, 502);
+  const { files } = listed;
 
-  const listing = await listRes.json();
-  if (!Array.isArray(listing)) return j({ error: "unexpected listing" }, 502);
+  // Every failure below falls back to the file index. The page accepts both
+  // shapes, so the worst case is the old slow load rather than an empty shelf —
+  // and that is the whole reason the index shape stays supported.
+  if (Math.ceil(files.length / CHUNK) > MAX_CHUNKS)
+    return dataResponse(JSON.stringify(files), { "X-Compass-Shape": "index-too-many" }, ctx);
 
-  const files = listing
-    .filter((f) => f.name.endsWith(".json"))
-    .map((f) => ({ name: f.name, sha: f.sha, url: f.download_url }));
-  if (!files.length) return j({ error: "no records" }, 502);
-
-  const res = new Response(JSON.stringify(files), {
-    headers: {
-      "Content-Type": "application/json",
-      "Cache-Control": "public, max-age=30",
-      "Access-Control-Allow-Origin": "*",
-    },
-  });
-  cacheSet(dataCacheKey(), res, ctx);
-  return res;
+  try {
+    const { body, skipped, count } = await readRecords(env, files);
+    return dataResponse(body, {
+      "X-Compass-Shape": "records",
+      "X-Compass-Count": String(count),
+      "X-Compass-Skipped": String(skipped),
+    }, ctx);
+  } catch (err) {
+    return dataResponse(JSON.stringify(files), {
+      "X-Compass-Shape": "index-fallback",
+      "X-Compass-Error": String((err && err.message) || err).slice(0, 100),
+    }, ctx);
+  }
 }
 
 export default {
@@ -181,7 +295,7 @@ async function handle(request, env, ctx) {
     // Reading is public — the repo is public, so there is nothing to gate here,
     // and leaving it open means the page can fetch data before anyone signs in
     // to anything. Only writes are origin-checked.
-    if (request.method === "GET") return serveIndex(env, ctx);
+    if (request.method === "GET") return serveData(env, ctx);
 
     if (request.method !== "POST")
       return withCORS(j({ error: "POST or GET only" }, 405), allowed);

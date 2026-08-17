@@ -90,6 +90,66 @@ on the next shift.
 Until `STOCK_API` is filled in, the buttons simply don't appear. Nothing breaks;
 the page just doesn't offer a control that wouldn't work.
 
+---
+
+## Updating the Worker (one paste, ~2 minutes)
+
+Do this whenever `compass-stock-worker.js` changes in the repo.
+
+1. Cloudflare → **Workers & Pages** → `compass-stock` → **Edit code**
+2. Select all, delete, paste the whole current
+   [`compass-stock-worker.js`](compass-stock-worker.js)
+3. **Deploy**
+
+No settings change. Nothing to touch on the page.
+
+### Check it worked
+
+```bash
+curl -sI "https://compass-stock.magnus-alisha.workers.dev/data?t=$(date +%s)" | grep -i x-compass
+```
+
+You want to see:
+
+```
+x-compass-shape: records
+x-compass-count: 306
+x-compass-skipped: 0
+```
+
+`shape: records` means the fast path is live — the whole catalogue arrives in
+one response. Anything else means it fell back, and Compass still works, just
+slowly:
+
+| header | what it means |
+|---|---|
+| `shape: records` | working as intended |
+| `shape: index-fallback` | GitHub's GraphQL API refused; `x-compass-error` says why. Retry in a few minutes. |
+| `shape: index-too-many` | over ~2,000 records. Raise `CHUNK` in the Worker. |
+| `skipped: 1` or more | that many records were unreadable and left out — usually a hand-edit that broke a file's JSON. |
+| no `x-compass-*` at all | the old Worker is still deployed. Paste again. |
+
+### Why this exists
+
+Before it, the Worker sent the page a *list* of records and the browser fetched
+each one itself — 306 separate requests to open Compass. Cold, that measured 42
+seconds, with the slowest single record taking 15. It also re-checked all 306
+every five minutes on every open device, because GitHub only lets a browser
+cache those files for five minutes.
+
+The reason it was built that way is real: Cloudflare's free plan caps a Worker
+at **50 subrequests per invocation**, and reading every record one-by-one needs
+307. It actually broke exactly this way at 80 records. The fix is to read many
+files per subrequest, which GitHub's GraphQL API can do and the REST API can't —
+so it's now 1 listing + 7 bulk reads = **8 subrequests**, and one response to the
+page instead of 307.
+
+Two details worth knowing if you ever edit this part: all 306 in a single GraphQL
+query does **not** work (GitHub answers 503, reproducibly — the chunking is
+required), and the Worker deliberately never parses the records, it splices them
+together as text, because parsing 306 records would burn CPU the free plan
+budgets tightly.
+
 ## If something goes wrong
 
 - **Buttons don't appear:** `STOCK_API` is still empty, or Pages hasn't rebuilt.
