@@ -1076,6 +1076,9 @@ let DATA = [
 ], tab = 'effect', a = null, b = null, sel = null, flash = '', effCat = 'All', simCat = 'All',
   lookupQ = '', lookupSel = null, lookupCat = 'All',
   effSize = 'any', effLean = 'any', effInfused = 'any', effHardware = 'any', unreadable = 0,
+  // 'data' (a broken record — edit the file) | 'net' (didn't load — refresh) |
+  // 'mixed'. See recordsFromIndex: the footer has to name the right remedy.
+  unreadableKind = '',
   // Effect results are a ranked shortlist, not a filtered set — see EFF_TOP.
   // Reset whenever the query changes so a new question starts short again.
   effShowAll = false;
@@ -2822,7 +2825,10 @@ function foot(){
   // capture script, which is not the same as what is on the shelf. Every empty
   // state says so too; this keeps the scope visible even when results look full.
   $('#foot').innerHTML = `${DATA.length} scanned · ${DATA.filter(stocked).length} in stock${
-    unreadable ? ` · <b style="color:var(--warn)">${unreadable} unreadable (a data typo?)</b>` : ''}${
+    unreadable ? ` · <b style="color:var(--warn)">${unreadable} ${
+      unreadableKind === 'data' ? `unreadable — ${unreadable > 1 ? 'those records have' : 'that record has'} a typo`
+      : unreadableKind === 'net' ? "didn't load — try refreshing"
+      : "missing — some didn't load, some are unreadable"}</b>` : ''}${
     unverified ? ` · <b>${unverified} shelf tag${unverified>1?'s':''} unverified</b> — tap Edit on a card to set one` : ''}${
     unread ? ` · <b>${unread} with a major terpene I can't describe</b>` : ''}<br>
     ●●● real receptor mechanism · ●●○ some human data · ●○○ folklore<br>
@@ -3018,15 +3024,33 @@ async function recordsFromIndex(files){
   // `"thc": 26.07%`, invalid JSON) must never sink the whole load. Skip the bad
   // ones, keep the rest, and surface the count in the footer so the break is
   // visible instead of silent. Only a total wipeout falls back to the caller.
+  //
+  // The two ways a record can fail here are NOT the same problem and must not be
+  // reported as one. A rejected fetch is the network — most often a 429, which is
+  // what a per-record burst against raw.githubusercontent used to produce at this
+  // catalogue size, and the fix for that is to refresh or wait. A rejected .json()
+  // is a genuinely broken record, and the fix is to edit the file. Blaming the
+  // data for a rate limit sends whoever investigates hunting for a typo that
+  // isn't there — which is exactly what happened.
   const settled = await Promise.allSettled(files.map(async f => {
-    const p = await fetch(`${f.url}?v=${f.sha}`).then(r=>r.json());
+    let r;
+    try { r = await fetch(`${f.url}?v=${f.sha}`); }
+    catch (e) { throw Object.assign(new Error('unreachable'), {kind: 'net'}); }
+    if (!r.ok) throw Object.assign(new Error('http ' + r.status), {kind: 'net', status: r.status});
+    let p;
+    try { p = await r.json(); }
+    catch (e) { throw Object.assign(new Error('invalid json'), {kind: 'data'}); }
     p._key = f.name.replace(/\.json$/, '');   // repo filename is unique by construction; the record's own `id` isn't
     return normTerps(p);   // synonyms resolved once, here — see TERP_ALIAS
   }));
   const ok = settled.filter(s => s.status === 'fulfilled').map(s => s.value);
-  const bad = files.filter((f,i) => settled[i].status === 'rejected').map(f => f.name);
+  const rejects = settled.map((s,i) => [s, files[i]]).filter(([s]) => s.status === 'rejected');
+  const bad = rejects.map(([,f]) => f.name);
+  const kinds = new Set(rejects.map(([s]) => (s.reason && s.reason.kind) || 'net'));
   unreadable = bad.length;
-  if (bad.length) console.warn('Compass: skipped ' + bad.length + ' unreadable record(s):', bad);
+  unreadableKind = kinds.size > 1 ? 'mixed' : [...kinds][0] || '';
+  if (bad.length) console.warn(`Compass: skipped ${bad.length} record(s) [${[...kinds].join('+')}]:`,
+    bad, rejects.map(([s]) => s.reason && s.reason.message));
   if (!ok.length) throw new Error('no readable records');   // truly nothing — let the caller fall back
   return ok;
 }
