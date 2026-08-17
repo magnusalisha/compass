@@ -1797,6 +1797,15 @@ const tpct = v => {
   if (!isFinite(n) || n <= 0) return '—';
   return n < 0.005 ? '<0.01' : n.toFixed(2);
 };
+// tpct returns an em dash when there is nothing to report, so every caller that
+// appended "%" to it was printing "—%". In the Compare read that landed on 43.8%
+// of all pairs — "carries more terpinolene (1.41% vs —%)" — because a gap is
+// usually widest exactly when one side has none of the terpene at all.
+//
+// A dash is right in the terpene TABLE, where the column header supplies the
+// unit and a bare "—" reads as "not detected". It's wrong mid-sentence, where
+// the word is what carries the meaning.
+const pctOr = (v, none = 'none') => { const s = tpct(v); return s === '—' ? none : s + '%'; };
 
 function stack(p){
   // Each chip carries its plain-English word: "caryophyllene 1.19% · calm".
@@ -1990,7 +1999,7 @@ function read(x, y){
   for (const [k, d] of gaps){
     const [hi, lo] = d > 0 ? [x,y] : [y,x];
     const lead = hi === prevHi ? '…and more' : `<b>${nm(hi)}</b> carries more`;
-    h += `<p>${lead} ${termName(k, gapKeys).toLowerCase()} (${tpct(hi.terpenes[k])}% vs ${tpct(lo.terpenes[k])}%) — ${REPORTED[k]?REPORTED[k][0]:'a character difference'} <span class="ev">${REPORTED[k]?dots(REPORTED[k][1]):''}</span></p>`;
+    h += `<p>${lead} ${termName(k, gapKeys).toLowerCase()} (${pctOr(hi.terpenes[k])} vs ${pctOr(lo.terpenes[k])}) — ${REPORTED[k]?REPORTED[k][0]:'a character difference'} <span class="ev">${REPORTED[k]?dots(REPORTED[k][1]):''}</span></p>`;
     prevHi = hi;
   }
   // "Close enough that I'd sell on smell or price" was the tool giving up, and it
@@ -2010,7 +2019,7 @@ function read(x, y){
     const [k, d] = ranked[0] || [];
     if (k && Math.abs(d) >= 0.04){
       const [hi, lo] = d > 0 ? [x,y] : [y,x];
-      h += `<p>Very close. The clearest difference is ${termName(k, [k]).toLowerCase()} — <b>${nm(hi)}</b> ${tpct(hi.terpenes[k])}% against ${tpct(lo.terpenes[k])}%${
+      h += `<p>Very close. The clearest difference is ${termName(k, [k]).toLowerCase()} — <b>${nm(hi)}</b> ${pctOr(hi.terpenes[k])} against ${pctOr(lo.terpenes[k])}${
         REPORTED[k] ? ` — ${REPORTED[k][0]} <span class="ev">${dots(REPORTED[k][1])}</span>` : ''
       }. Small enough that smell or price may decide it better than chemistry.</p>`;
     } else {
@@ -2067,8 +2076,8 @@ function compare(x, y){
   const max = Math.max(...keys.map(k => Math.max(x.terpenes[k]||0, y.terpenes[k]||0)), 0.01);
   return `<div class="card">
     <div class="top">
-      <div><h2>${nameVs(x,y)}</h2><div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink2);margin-top:4px">${formLabel(x)}<br>THC ${thcText(x)} · terps ${tpct(x.total_terpenes)}%</div>${cmpShelf(x,'left')}</div>
-      <div style="text-align:right"><h2>${nameVs(y,x)}</h2><div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink2);margin-top:4px">${formLabel(y)}<br>THC ${thcText(y)} · terps ${tpct(y.total_terpenes)}%</div>${cmpShelf(y,'right')}</div>
+      <div><h2>${nameVs(x,y)}</h2><div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink2);margin-top:4px">${formLabel(x)}<br>THC ${thcText(x)} · terps ${pctOr(x.total_terpenes, '—')}</div>${cmpShelf(x,'left')}</div>
+      <div style="text-align:right"><h2>${nameVs(y,x)}</h2><div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink2);margin-top:4px">${formLabel(y)}<br>THC ${thcText(y)} · terps ${pctOr(y.total_terpenes, '—')}</div>${cmpShelf(y,'right')}</div>
     </div>
     <div class="read" style="margin-top:15px"><div class="eyebrow" style="color:var(--ink2);margin-bottom:10px">The read</div>${read(x,y)}</div>
     <div class="read"><div class="eyebrow" style="color:var(--ink2);margin-bottom:12px">Terpenes</div>
