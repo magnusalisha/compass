@@ -125,9 +125,18 @@ function cacheDrop(key, ctx) {
 // CHUNK=50 that is 1 listing + ceil(n/50) queries = 8 subrequests for 306
 // records, and it scales to ~2,400 before the cap is in sight again.
 //
-// One aliased query for ALL 306 does not work — GitHub answers 503 ("no server
-// is currently available"), reproducibly. The chunking is load-bearing, not
-// tidiness.
+// Chunk size and parallelism were both measured, and both matter.
+//
+// One aliased query for ALL 306 records is the obvious shape and it is the wrong
+// one: over five attempts it returned 200 three times and 503 ("no server is
+// currently available") twice, taking ~4s when it did work. Intermittently
+// failing is worse than reliably chunking.
+//
+// Latency per query scales sub-linearly with size — 25 aliases 0.67s, 50 1.16s,
+// 100 1.87s, 306 3.88s — so many small queries beat one big one, but only if
+// they run TOGETHER. The first version of this awaited each chunk in a loop and
+// a real cache miss took 14.7 seconds on the live site, seven queries queueing
+// behind each other. Issued in parallel the same seven finish in ~1s.
 const CHUNK = 50;
 // Leaves comfortable headroom under the 50-subrequest cap while still covering
 // far more records than this shop will hold. Past it, fall back to the index.
@@ -176,11 +185,29 @@ async function readRecords(env, files) {
     "Content-Type": "application/json",
   };
   const usable = files.filter((f) => SAFE_NAME.test(f.name));
-  const parts = [];
   let skipped = files.length - usable.length;
 
-  for (let i = 0; i < usable.length; i += CHUNK) {
-    const batch = usable.slice(i, i + CHUNK);
+  const batches = [];
+  for (let i = 0; i < usable.length; i += CHUNK) batches.push(usable.slice(i, i + CHUNK));
+
+  // All chunks at once. See the note on CHUNK — awaiting them one at a time is
+  // what made a cache miss take 14.7s in production.
+  const results = await Promise.all(batches.map((b) => readChunk(env, H, b)));
+
+  const parts = [];
+  for (const r of results) {
+    for (const p of r.parts) parts.push(p);
+    skipped += r.skipped;
+  }
+
+  if (!parts.length) throw new Error("no readable records");
+  return { body: "[" + parts.join(",") + "]", skipped, count: parts.length };
+}
+
+// One GraphQL query for up to CHUNK records.
+async function readChunk(env, H, batch) {
+    const parts = [];
+    let skipped = 0;
     const query =
       `query{repository(owner:${JSON.stringify(env.GH_USER)},name:${JSON.stringify(env.GH_REPO)}){` +
       batch
@@ -214,10 +241,8 @@ async function readRecords(env, files) {
       const key = JSON.stringify(f.name.replace(/\.json$/, ""));
       parts.push(blob.text.replace(/^\s*\{/, `{"_key":${key},`));
     });
-  }
 
-  if (!parts.length) throw new Error("no readable records");
-  return { body: "[" + parts.join(",") + "]", skipped, count: parts.length };
+    return { parts, skipped };
 }
 
 function dataResponse(bodyText, extraHeaders, ctx) {

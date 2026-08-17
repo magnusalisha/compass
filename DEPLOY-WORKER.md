@@ -144,11 +144,22 @@ files per subrequest, which GitHub's GraphQL API can do and the REST API can't �
 so it's now 1 listing + 7 bulk reads = **8 subrequests**, and one response to the
 page instead of 307.
 
-Two details worth knowing if you ever edit this part: all 306 in a single GraphQL
-query does **not** work (GitHub answers 503, reproducibly — the chunking is
-required), and the Worker deliberately never parses the records, it splices them
-together as text, because parsing 306 records would burn CPU the free plan
-budgets tightly.
+Three details worth knowing if you ever edit this part.
+
+**Ask for all 306 in one query and GitHub gets flaky.** Over five tries it
+answered twice with a 503 and took about 4 seconds the three times it worked.
+Seven queries of 50 are both faster and reliable.
+
+**The seven queries must go out together.** The first version of this waited for
+each one before starting the next, and a real load took **14.7 seconds** —
+slower than the problem it replaced. Sent at the same time they finish in about
+one second. There's a test that deadlocks on purpose if anyone makes them
+sequential again.
+
+**The Worker never parses the records**, it splices them together as text.
+Parsing 306 records just to re-print them would burn CPU that the free plan
+budgets tightly, and it's the one cost that would grow every time you scan a
+new product.
 
 ## If something goes wrong
 
