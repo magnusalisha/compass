@@ -8,7 +8,7 @@
  "total_terpenes": 2.7424,
  "lean": "lifting",
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Hybrid",
  "reported": [
   "Citrus",
@@ -37,5 +37,6 @@
   "Terpinolene": 0.0293,
   "Camphene": 0.0251,
   "Caryophyllene Oxide": 0.0165
- }
+ },
+ "sold_out_at": "2026-08-19T14:12:29.484Z"
 }
