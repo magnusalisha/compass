@@ -1,0 +1,38 @@
+{
+ "id": "a3f8c2e1d9",
+ "metrc_tag": "1A412030000022C000000554",
+ "brand": "Melo",
+ "strain": "Sunset Sessions",
+ "form": "Flower 3.5g",
+ "thc": 30.471,
+ "total_terpenes": 2.23,
+ "lean": "lifting",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Sativa",
+ "reported": [
+  "30.47% Total THC",
+  "2.23% Total Terpenes"
+ ],
+ "dominant": [
+  "beta-Myrcene",
+  "alpha-Pinene",
+  "Limonene"
+ ],
+ "aroma": [
+  "earthy",
+  "herbal",
+  "citrus",
+  "piney",
+  "spicy"
+ ],
+ "terpenes": {
+  "beta-Myrcene": 1.36,
+  "alpha-Pinene": 0.25,
+  "Limonene": 0.22,
+  "beta-Caryophyllene": 0.18,
+  "beta-Pinene": 0.15,
+  "alpha-Humulene": 0.07
+ },
+ "scanned_at": "2026-08-19T14:18:08.555Z"
+}
