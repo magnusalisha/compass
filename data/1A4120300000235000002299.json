@@ -8,7 +8,7 @@
  "total_terpenes": 1.48,
  "lean": "settling",
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Sativa",
  "reported": [
   "beta-Caryophyllene dominant",
@@ -33,5 +33,6 @@
   "Limonene": 0.12,
   "Terpinolene": 0.11,
   "Nerolidol": 0.08
- }
+ },
+ "sold_out_at": "2026-08-19T14:14:29.204Z"
 }
