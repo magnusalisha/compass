@@ -8,7 +8,7 @@
  "total_terpenes": 2.19,
  "lean": "lifting",
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Sativa",
  "reported": [
   "Solar Haze",
@@ -42,5 +42,6 @@
   "Caryophyllene Oxide": 0.01,
   "Terpinolene": 0.01,
   "Valencene": 0.01
- }
+ },
+ "sold_out_at": "2026-08-19T14:40:06.454Z"
 }
