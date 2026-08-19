@@ -1722,27 +1722,23 @@ function normTerps(p){
   p.terpenes = out;
   return p;
 }
-// The terpene the read is ACTUALLY written from — the biggest one in the
-// leading direction, which is exactly what says() puts first. Not simply the
-// biggest terpene on the card.
+// The biggest terpene that has a character word — skipping any that doesn't,
+// because a terpene the read is forbidden to mention cannot be what the read
+// leans on. Without the skip, All Gas credited valencene in the badge while the
+// sentence above it was written from humulene. One card today; it will be more
+// as terpenes arrive that have evidence recorded but no defensible word.
 //
-// Those were the same thing when the badge was written, and stopped being the
-// same when says() moved to summing directions. The drift was invisible because
-// nothing compared them: 86 of 215 in-stock cards named a terpene in the badge
-// that the sentence above it doesn't lean on — Afghani reads "cozy and low-key"
-// off humulene while the badge credited caryophyllene, sitting in a direction
-// the read didn't pick. It is the same defect the badge was introduced to fix
-// (grading a molecule the read isn't using), one level down.
-//
-// 77 badges change tier as a result, nearly all downward, because caryophyllene
-// is the only tier-3 entry and it was lending its ●●● to reads built on
-// folklore-tier terpenes. That is the badge starting to tell the truth, not a
-// regression: every one of those cards leads with humulene, farnesene or
-// linalool, and the WHY panel directly below already explains that terpene.
-const evLead = p => {
-  const { best, dirs } = dirTotals(p);
-  return dirs.length ? best[dirs[0][0]][0] : null;
-};
+// KNOWN, NOT FIXED HERE: this grades the biggest terpene, while says() leads
+// with the biggest terpene in the leading DIRECTION. Those were the same thing
+// when the badge was written and drifted apart when says() moved to summing
+// directions, so 86 of 215 in-stock cards name a terpene in the badge that the
+// sentence above doesn't lean on — Afghani reads "cozy and low-key" off humulene
+// while the badge credits caryophyllene. Correcting it takes cards claiming a
+// real receptor mechanism from 123 to 51 of 215 (57% -> 24%), because
+// caryophyllene is the only tier-3 entry and lends its badge to reads built on
+// folklore-tier terpenes. That is a shelf-wide change to how confident Compass
+// looks, held back deliberately as a separate decision.
+const evLead = p => domTerps(p).find(k => CHAR[k]) || null;
 function ev(p){
   const k = evLead(p);
   return k ? REPORTED[k][1] : 1;
