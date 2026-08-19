@@ -1532,6 +1532,40 @@ const undertone = (leadPhrase, oppPair) => {
 // changes which direction leads, only whether that direction is named by its
 // biggest terpene or by itself, and a card either side of the line reads
 // defensibly both ways. 0.40 -> 0.50 moves 30 cards.
+// ── What a budtender would actually SAY, out loud, to someone deciding.
+//
+// The card used to print a label — "heavy and relaxed, with an upbeat lift on
+// top". Accurate, and nobody talks like that. Standing with a customer you say
+// "this one can feel body heavy while still putting you in a good mood", so
+// that is what the card should hand you.
+//
+// Two forms per word, because the connectors need different grammar. ADJ sits
+// after "can feel ___" and after "mostly ___"; ING sits after "while still
+// ___". Mixing them is what broke the first draft: "in a good mood" is a
+// prepositional phrase, so "with some in a good mood" is not English.
+//
+// Same character words, same evidence, same directions — only the surface
+// changes. Nothing here invents an effect that CHAR did not already claim.
+const SAY = {
+  //  word       adjective                gerund
+  heavy:    ['body heavy',             'weighing you down'],
+  calm:     ['loose in the body',      'easing the body'],
+  mellow:   ['soft round the edges',   'softening the edges'],
+  cozy:     ['low-key',                'keeping things low-key'],
+  gentle:   ['easy',                   'keeping it easy'],
+  settled:  ['settled',                'settling you'],
+  soothing: ['soothing',               'soothing you'],
+  upbeat:   ['upbeat',                 'putting you in a good mood'],
+  buzzy:    ['heady and alert',        'keeping you alert'],
+  clear:    ['clear-headed',           'keeping your head clear'],
+  breezy:   ['light',                  'keeping it light'],
+};
+// The broad phrases in the same two forms — see BROAD_T below.
+const BROAD_SAY = {
+  settle: ['calm all over',   'keeping you calm all over'],
+  lift:   ['lifted all over', 'keeping you lifted all over'],
+};
+
 const BROAD_T = 0.45;
 // Body holds only caryophyllene, so a body lead is never broad — it is always
 // exactly one terpene at 100% of its direction, and needs no phrase here.
@@ -1639,33 +1673,52 @@ function says(p){
   // Does the biggest terpene in the leading direction speak for the whole of it?
   // See BROAD_T. When it doesn't, the direction names itself.
   const broad = broadLead(p);
-  const leadPhrase = broad || CHAR[lead[0]][0];
-  const leadWord   = broad || CHAR[lead[0]][1];
+  const leadSay = broad ? BROAD_SAY[dir0] : SAY[CHAR[lead[0]][1]];
 
   // Nothing to contrast with — 17 records carry no lifting terpene at all, and a
   // bare lead is the honest answer there rather than an invented tension.
-  if (!pick) return leadPhrase;
+  if (!pick) return leadSay[0];
 
   const opp = best[pick];
+  const oppSay = SAY[CHAR[opp[0]][1]];
+  // How big the SECOND side is, as a share of the first. This is the number the
+  // sentence grades itself on, and it is the useful one at the counter: not how
+  // confident the ranking is, but how much of the other thing is in there.
+  const oppShare = tot[pick] / dirs[0][1];
   const ratio = dirs[0][1] / tot[pick];
-  // Even. What was measured is that neither direction wins — an ABSENCE of a
-  // signal. "X and Y in equal measure" reported that as a blended sensation,
-  // promising the customer they'd feel both at once, which is a claim no
-  // terpene reading can make. It also read as a contradiction on the cards it
-  // fires on most: "buzzy and heavy in equal measure" is a sentence a budtender
-  // has to explain away. Naming the two words and then saying neither takes
-  // over states the position instead, which is what the numbers actually found,
-  // and answers the customer who wants something middle-of-the-road.
+  // A ladder on HOW BIG THE SECOND SIDE IS, not on how the two rank.
   //
-  // Phrasing is constrained: this string lands in "Can read as ___",
-  // "described as ___" and "reads ___", so it has to work as a complement.
-  // "Neither X nor Y takes over" is a full clause and breaks all three.
-  if (ratio <= EVEN_T)
-    return PULLS_APART(dir0, pick)
-      ? `${leadWord} and ${CHAR[opp[0]][1]}, with neither taking over`
-      : leadPhrase;
-  // The lead genuinely leads — undertone if the other is still meaningful.
-  return ratio <= 5 ? undertone(leadPhrase, opp) : leadPhrase;
+  // "X, with an upbeat lift on top" and "X, with a heavy undertone" were the
+  // same fact — more X than Y — dressed as a layered experience. Top notes and
+  // undertones are perfume vocabulary; nothing in a lab report says one thing
+  // sits above another, or arrives first. Same overclaim as "in equal measure"
+  // before it, and the third time this file has had to take one out.
+  //
+  // Each rung below is just the share, said plainly. Measured over 215 in-stock
+  // cards the bands are 34 / 54 / 57 / 38 / 25, so every rung earns its place.
+  //
+  // Phrasing is constrained: this lands after "Can feel ___", "described as
+  // ___" and "reads ___", so it has to work as a complement. A full clause
+  // ("neither X nor Y takes over") breaks all three — tried, reverted.
+  // Both halves use the gerund rather than the adjective wherever they join, so
+  // the sentence survives multi-word entries. "X and Y in equal parts" gave
+  // Millionaire "heady and alert and body heavy in equal parts" — a double
+  // "and" — and "with a little Y" gave "with a little body heavy", which needs
+  // a noun it doesn't have. "as much as" and an adverb fix both without asking
+  // every word for a third form.
+  // The pair has to pull apart before the second half is worth saying at all.
+  // This guard used to sit only on the even rung, which let 14 cards say the
+  // same thing twice — "soft round the edges while still easing the body",
+  // "loose in the body while still keeping things low-key". Settle and body are
+  // both calm, so there is no "while still" between them; it reads as a contrast
+  // where none exists. Those cards now just state the lead.
+  if (!PULLS_APART(dir0, pick)) return leadSay[0];
+
+  if (oppShare >= 0.8)  return `${leadSay[0]} as much as ${oppSay[0]}`;
+  if (oppShare >= 0.5)  return `${leadSay[0]} while still ${oppSay[1]}`;
+  if (oppShare >= 0.33) return `mostly ${leadSay[0]}, but still ${oppSay[1]}`;
+  if (oppShare >= 0.2)  return `${leadSay[0]}, only slightly ${oppSay[1]}`;
+  return leadSay[0];
 }
 // How good is the evidence behind THIS product's read?
 //
@@ -1998,7 +2051,7 @@ function card(p, extra='', compareTo=null){
         ? `<p class="faint-flag">⚠ No terpene profile on this one — the lab reported cannabinoids only</p>
            <p class="faint-explain">Beyond the THC figure there's no chemistry here to read, so Compass can't tell you anything about its character. Go by the label and your nose.</p>`
         : `${faint ? `<p class="faint-flag">⚠ Low-confidence guess — terpenes are faint here, trust your nose</p>` : ''}
-           <p class="says">Can read as <b>${says(p)}</b>.</p>
+           <p class="says">Can feel <b>${says(p)}</b>.</p>
            <p class="ev">${dots(ev(p))} evidence · ${evWord(p)}</p>
            ${whyHTML(p)}
            ${unreadNote(p)}`}
@@ -2113,11 +2166,15 @@ function read(x, y){
   // even. Was branching on `lean`, which the read no longer consults.
   const [xd, yd] = [netDir(x), netDir(y)];
   if (OPPOSED(xd, yd))
-    h += `<p>These pull in opposite directions. People tend to describe <b>${xn}</b> as <b>${says(x)}</b>; <b>${yn}</b> more <b>${says(y)}</b>.</p>`;
+    // "; Y more <read>" was written when a read was one adjective. It has been
+    // clumsy since the reads grew ("Zourz more upbeat and social, with a heavy
+    // undertone") and breaks outright now that a read can itself begin with
+    // "mostly" — "Zourz more mostly body heavy". Parallel "as" instead.
+    h += `<p>These pull in opposite directions. People tend to describe <b>${xn}</b> as <b>${says(x)}</b>, and <b>${yn}</b> as <b>${says(y)}</b>.</p>`;
   else if (domTerps(x)[0] === domTerps(y)[0])
-    h += `<p>Both lead with <b>${short(domTerps(x)[0]).toLowerCase()}</b>, so they're close cousins — both usually described as <b>${says(x)}</b>. The difference is underneath.</p>`;
+    h += `<p>Both lead with <b>${short(domTerps(x)[0]).toLowerCase()}</b>, so they're close cousins — both can feel <b>${says(x)}</b>. The difference is underneath.</p>`;
   else
-    h += `<p><b>${xn}</b> reads <b>${says(x)}</b>. <b>${yn}</b> reads <b>${says(y)}</b>.</p>`;
+    h += `<p><b>${xn}</b> can feel <b>${says(x)}</b>. <b>${yn}</b> can feel <b>${says(y)}</b>.</p>`;
 
   const ranked = [...new Set([...domTerps(x).slice(0,3), ...domTerps(y).slice(0,3)])]
     .map(k => [k, (x.terpenes[k]||0) - (y.terpenes[k]||0)])
