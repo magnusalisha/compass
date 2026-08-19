@@ -1,5 +1,5 @@
 {
- "id": "a3f7c2e091",
+ "id": "a3f82c19de",
  "metrc_tag": "1A412030000026D000018069",
  "brand": "Anthem",
  "strain": "Rocket Glare",
@@ -8,11 +8,11 @@
  "total_terpenes": 1.1,
  "lean": "mixed",
  "confidence": "moderate",
- "in_stock": false,
+ "in_stock": true,
  "shelf_tag": "Hybrid",
  "reported": [
-  "Enhanced Pre-roll (Medical Use)",
-  "Hybrid"
+  "47.56% Total THC",
+  "1.10% Total Terpenes"
  ],
  "dominant": [
   "beta-Caryophyllene",
@@ -23,8 +23,8 @@
   "spicy",
   "citrus",
   "piney",
-  "earthy",
-  "woody"
+  "woody",
+  "earthy"
  ],
  "terpenes": {
   "beta-Caryophyllene": 0.2,
@@ -39,5 +39,5 @@
   "Fenchol": 0.04,
   "alpha-Bisabolol": 0.04
  },
- "sold_out_at": "2026-08-05T14:19:18.137Z"
+ "scanned_at": "2026-08-19T14:38:49.038Z"
 }
