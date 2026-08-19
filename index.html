@@ -1470,8 +1470,8 @@ const filterLean = p => SHELF_LEAN[String(p.shelf_tag || '').trim().toLowerCase(
 // How close the two sides have to be before the card will call them even.
 //
 // 1.25x, not the 1.5x this started at. Once the read stopped picking its lead by
-// direction, far more cards found their top two genuinely close and "in equal
-// measure" jumped from 14 cards to 43 — a quarter of the shelf sharing one
+// direction, far more cards found their top two genuinely close and the even
+// phrasing jumped from 14 cards to 43 — a quarter of the shelf sharing one
 // phrase, which is how the evidence badge became meaningless. Every one of the
 // 43 was accurate; that isn't the same as useful. At 1.25x it lands on 26.
 // Measured alternatives: 1.15x → 12 cards, 1.35x → 32, 1.5x → 43.
@@ -1490,16 +1490,41 @@ const undertone = (leadPair, oppPair) => {
 const rankedTerps = p => Object.entries(p.terpenes||{})
   .filter(([k,v]) => v>0 && CHAR[k]).sort((a,b)=>b[1]-a[1]);
 
-// Does this profile have a direction worth naming at all? Null when the top two
-// are close enough that the read calls them even — the same test says() applies,
-// so anything reading "X and Y in equal measure" is never also described as
-// pulling one way. Used by Compare.
+// Lift against calm is the only pairing where calling a product even says
+// anything. `settle` and `body` both speak in calm words — cozy, low-key,
+// body-calm — so a settle/body pair isn't balanced between two things, it's the
+// same thing measured twice. Four in-stock cards read "calm and cozy in equal
+// measure", which contrasts nothing and tells a budtender nothing.
+const PULLS_APART = (a, b) => (a === 'lift') !== (b === 'lift');
+
+// Each character axis summed, biggest first, plus the biggest single terpene in
+// each. says() and netDir both read from this, so the card and Compare cannot
+// disagree about which way a product leans.
+const dirTotals = p => {
+  const tot = {}, best = {};
+  for (const [k, v] of rankedTerps(p)){
+    const dir = CHAR[k][2];
+    tot[dir] = (tot[dir] || 0) + v;
+    if (!best[dir]) best[dir] = [k, v];   // ranked is descending, so first wins
+  }
+  return { tot, best, dirs: Object.entries(tot).sort((x, y) => y[1] - x[1]) };
+};
+
+// Does this profile have a direction worth naming at all? Null when a pulling-
+// apart pair is close enough that the read calls them even, so anything the card
+// calls even is never also described by Compare as pulling one way. Used by
+// Compare.
+//
+// This used to compare the single biggest terpene against the first one on any
+// other axis, while says() compared direction SUMS — so the two disagreed. Blue
+// Widow's card said neither direction took over while Compare was willing to say
+// it pulled against a lifting product. Both now run the same test.
 const netDir = p => {
-  const r = rankedTerps(p);
-  if (!r.length) return null;
-  const top = r[0], td = CHAR[top[0]][2];
-  const opp = r.find(([k]) => CHAR[k][2] !== td);
-  return (opp && top[1] / opp[1] <= EVEN_T) ? null : td;
+  const { tot, dirs } = dirTotals(p);
+  if (!dirs.length) return null;
+  const dir0 = dirs[0][0];
+  const opp = dirs.slice(1).find(([d]) => PULLS_APART(d, dir0));
+  return (opp && dirs[0][1] / tot[opp[0]] <= EVEN_T) ? null : dir0;
 };
 // Only lift and settle are opposites. 'body' is a third character, not a third
 // end of the same line — a caryophyllene-led product and a myrcene-led one are
@@ -1534,13 +1559,7 @@ function says(p){
   // two lifting terpenes one line above. The read contradicted its own evidence.
   // Measured over 268 records, summing takes agreement between the read's lead
   // and the direction carrying the most terpene mass from 90% to 99%.
-  const tot = {}, best = {};
-  for (const [k, v] of ranked){
-    const dir = CHAR[k][2];
-    tot[dir] = (tot[dir] || 0) + v;
-    if (!best[dir]) best[dir] = [k, v];   // ranked is descending, so first wins
-  }
-  const dirs = Object.entries(tot).sort((x, y) => y[1] - x[1]);
+  const { tot, best, dirs } = dirTotals(p);
   const lead = best[dirs[0][0]];
 
   // The contrast is NOT simply the runner-up direction. `settle` and `body` both
@@ -1562,7 +1581,22 @@ function says(p){
 
   const opp = best[pick];
   const ratio = dirs[0][1] / tot[pick];
-  if (ratio <= EVEN_T) return `${CHAR[lead[0]][1]} and ${CHAR[opp[0]][1]} in equal measure`;
+  // Even. What was measured is that neither direction wins — an ABSENCE of a
+  // signal. "X and Y in equal measure" reported that as a blended sensation,
+  // promising the customer they'd feel both at once, which is a claim no
+  // terpene reading can make. It also read as a contradiction on the cards it
+  // fires on most: "buzzy and heavy in equal measure" is a sentence a budtender
+  // has to explain away. Naming the two words and then saying neither takes
+  // over states the position instead, which is what the numbers actually found,
+  // and answers the customer who wants something middle-of-the-road.
+  //
+  // Phrasing is constrained: this string lands in "Can read as ___",
+  // "described as ___" and "reads ___", so it has to work as a complement.
+  // "Neither X nor Y takes over" is a full clause and breaks all three.
+  if (ratio <= EVEN_T)
+    return PULLS_APART(dir0, pick)
+      ? `${CHAR[lead[0]][1]} and ${CHAR[opp[0]][1]}, with neither taking over`
+      : CHAR[lead[0]][0];
   // The lead genuinely leads — undertone if the other is still meaningful.
   return ratio <= 5 ? undertone(lead, opp) : CHAR[lead[0]][0];
 }
