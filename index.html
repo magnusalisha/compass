@@ -1404,12 +1404,36 @@ const CHAR = {
   // because a sharper word would be a claim, and terpineol is 1-of-3 folklore.
   'Terpineol':          ['mellow','mellow','settle'],
   // See the note in REPORTED. Single-word phrases on purpose: the two-word forms
-  // above ("cozy and low-key") pair two effect words, and for these three there
+  // above ("cozy and low-key") pair two effect words, and for nerolidol there
   // isn't a second honest word to reach for. Farnesene already sets that
   // precedent with ['settled','settled','settle'].
-  'Nerolidol':          ['soothing','soothing','settle'],
-  'Valencene':          ['bright','bright','lift'],
-  'Guaiol':             ['dry','dry','settle']
+  'Nerolidol':          ['soothing','soothing','settle']
+
+  // Valencene and Guaiol had words here and no longer do.
+  //
+  // Every other word in this table comes from a claim about how something FEELS
+  // — "heady, alert, buzzy", "heavy and relaxed", "lifts mood", "body calm,
+  // eases tension". Those two came from claims about how something SMELLS:
+  // valencene's recorded claim is "bright, citrusy" (it is the orange-peel
+  // terpene) and guaiol's is "dry". Put on the same line as a feel word, they
+  // don't read as a weaker claim, they read as a category error — All Gas said
+  // "bright, with a cozy undertone", which is a smell and a feeling joined by a
+  // comma, and Mandarin Cookies was described entirely as "dry" off 0.06%.
+  //
+  // Neither has an effect word to fall back to. Valencene's only real evidence
+  // is anti-inflammatory in vitro and in skin models, which is not evidence for
+  // a felt body effect at inhaled doses, and the table above already records the
+  // uplifting claim as folklore. Guaiol is folklore with very little published
+  // either way. Inventing a feel word for either is the "folklore on demand"
+  // this file refuses elsewhere, so the read leaves them out and unreadNote()
+  // says so when they are large enough to matter.
+  //
+  // They keep their REPORTED entries: the chip still prints "valencene 0.70%"
+  // and the WHY panel still cites the evidence. What they lose is the ability to
+  // put a word in the read. Measured: 14 cards change, none for the worse — All
+  // Gas [Indica] goes from "bright, with a cozy undertone" to "cozy and low-key,
+  // with a breezy lift on top", and six cards stop claiming an "upbeat lift on
+  // top" that rested on 0.01-0.02% valencene.
 };
 // ── DO NOT derive `lean` by summing this table. Tried 2026-07-30, reverted the
 // same day; the numbers are in PLAN.md §1 so nobody repeats it.
@@ -1698,7 +1722,27 @@ function normTerps(p){
   p.terpenes = out;
   return p;
 }
-const evLead = p => domTerps(p)[0] || null;
+// The terpene the read is ACTUALLY written from — the biggest one in the
+// leading direction, which is exactly what says() puts first. Not simply the
+// biggest terpene on the card.
+//
+// Those were the same thing when the badge was written, and stopped being the
+// same when says() moved to summing directions. The drift was invisible because
+// nothing compared them: 86 of 215 in-stock cards named a terpene in the badge
+// that the sentence above it doesn't lean on — Afghani reads "cozy and low-key"
+// off humulene while the badge credited caryophyllene, sitting in a direction
+// the read didn't pick. It is the same defect the badge was introduced to fix
+// (grading a molecule the read isn't using), one level down.
+//
+// 77 badges change tier as a result, nearly all downward, because caryophyllene
+// is the only tier-3 entry and it was lending its ●●● to reads built on
+// folklore-tier terpenes. That is the badge starting to tell the truth, not a
+// regression: every one of those cards leads with humulene, farnesene or
+// linalool, and the WHY panel directly below already explains that terpene.
+const evLead = p => {
+  const { best, dirs } = dirTotals(p);
+  return dirs.length ? best[dirs[0][0]][0] : null;
+};
 function ev(p){
   const k = evLead(p);
   return k ? REPORTED[k][1] : 1;
@@ -1781,11 +1825,18 @@ function thcNote(p){
 // quiet about caryophyllene oxide at 0.06% on a 0.06% profile — there the faint
 // flag already says the whole thing is unreadable, and a second warning would
 // just be noise. 7 products today, 6 of them in stock.
+// Keyed on CHAR, not REPORTED. The two tables held the same 15 keys for a long
+// time, which hid the fact that they answer different questions: REPORTED asks
+// "is anything recorded about this terpene", CHAR asks "is there a defensible
+// word the read can use". This note exists because the read left something out,
+// so CHAR is the one it has to ask. They diverged the moment valencene and
+// guaiol kept their evidence entries and lost their words — keyed on REPORTED,
+// All Gas would have quietly ignored its own largest terpene.
 const UNREAD_FLOOR = 0.1;
 function unreadTerps(p){
   const ranked = Object.entries(p.terpenes || {})
     .filter(([, v]) => v > 0).sort((a, b) => b[1] - a[1]);
-  const hits = ranked.slice(0, 3).filter(([k, v]) => !REPORTED[k] && v >= UNREAD_FLOOR);
+  const hits = ranked.slice(0, 3).filter(([k, v]) => !CHAR[k] && v >= UNREAD_FLOOR);
   return {hits, leads: !!hits.length && !!ranked[0] && hits[0][0] === ranked[0][0]};
 }
 function unreadNote(p){
