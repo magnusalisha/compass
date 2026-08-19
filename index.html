@@ -1503,11 +1503,47 @@ const EVEN_T = 1.25;
 // Lead phrase plus the opposing terpene as an undertone. Shared by both branches
 // so a skewed "mixed" reads exactly like any other lead-with-undertone product,
 // which is what it is.
-const undertone = (leadPair, oppPair) => {
-  const lead = CHAR[leadPair[0]], on = CHAR[oppPair[0]];
+// Takes the lead PHRASE rather than the lead terpene, because the phrase is not
+// always a terpene's — see BROAD_PHRASE below.
+const undertone = (leadPhrase, oppPair) => {
+  const on = CHAR[oppPair[0]];
   return on[2] === 'lift'
-    ? `${lead[0]}, with ${/^[aeiou]/i.test(on[1])?'an':'a'} ${on[1]} lift on top`
-    : `${lead[0]}, with a ${on[1]} undertone`;
+    ? `${leadPhrase}, with ${/^[aeiou]/i.test(on[1])?'an':'a'} ${on[1]} lift on top`
+    : `${leadPhrase}, with a ${on[1]} undertone`;
+};
+
+// A word borrowed from one terpene can only speak for a direction when that
+// terpene is most of it. Agent Orange's settle total is seven terpenes —
+// myrcene 0.23 + linalool 0.20 + humulene 0.06 + terpineol 0.05 + farnesene
+// 0.05 + nerolidol 0.05 + bisabolol 0.04 — and myrcene holds 34%. Printing
+// "heavy" there is myrcene speaking for six others, four of them folklore-tier
+// under 0.06%. 72 of 214 in-stock cards are shaped that way.
+//
+// So when nothing holds at least this share of its own direction, the read
+// names the DIRECTION instead of borrowing a terpene's word. That is a real
+// fact and a useful one at the counter: a spiky profile has a character, a
+// broad one is rounded with nothing standing out.
+//
+// 0.45 is a judgement call — the distribution is smooth, with no natural gap —
+// but a mild one, and NOT the same kind of dial as a floor on the values
+// themselves. That was tried and rejected: a floor changed which DIRECTION won
+// on 56% of cards depending where it sat, and Agent Orange's answer oscillated
+// in and out of correctness three times across the range. This threshold never
+// changes which direction leads, only whether that direction is named by its
+// biggest terpene or by itself, and a card either side of the line reads
+// defensibly both ways. 0.40 -> 0.50 moves 30 cards.
+const BROAD_T = 0.45;
+// Body holds only caryophyllene, so a body lead is never broad — it is always
+// exactly one terpene at 100% of its direction, and needs no phrase here.
+const BROAD_PHRASE = { settle: 'calm overall', lift: 'bright overall' };
+// The direction phrase this product's read leads with, or null when one terpene
+// speaks for its direction and lends its own word. says() and the evidence badge
+// both ask, so a card can never print "calm overall" over "leans on myrcene".
+const broadLead = p => {
+  const { tot, best, dirs } = dirTotals(p);
+  if (!dirs.length) return null;
+  const d0 = dirs[0][0];
+  return best[d0][1] / tot[d0] < BROAD_T ? (BROAD_PHRASE[d0] || null) : null;
 };
 // Terpenes that have a character word, biggest first. The read is built from the
 // top of this list and nothing else.
@@ -1599,9 +1635,16 @@ function says(p){
     : (best.lift ? 'lift'
        : dir0 === 'settle' ? (best.body ? 'body' : null)
                            : (best.settle ? 'settle' : null));
+
+  // Does the biggest terpene in the leading direction speak for the whole of it?
+  // See BROAD_T. When it doesn't, the direction names itself.
+  const broad = broadLead(p);
+  const leadPhrase = broad || CHAR[lead[0]][0];
+  const leadWord   = broad || CHAR[lead[0]][1];
+
   // Nothing to contrast with — 17 records carry no lifting terpene at all, and a
   // bare lead is the honest answer there rather than an invented tension.
-  if (!pick) return CHAR[lead[0]][0];
+  if (!pick) return leadPhrase;
 
   const opp = best[pick];
   const ratio = dirs[0][1] / tot[pick];
@@ -1619,10 +1662,10 @@ function says(p){
   // "Neither X nor Y takes over" is a full clause and breaks all three.
   if (ratio <= EVEN_T)
     return PULLS_APART(dir0, pick)
-      ? `${CHAR[lead[0]][1]} and ${CHAR[opp[0]][1]}, with neither taking over`
-      : CHAR[lead[0]][0];
+      ? `${leadWord} and ${CHAR[opp[0]][1]}, with neither taking over`
+      : leadPhrase;
   // The lead genuinely leads — undertone if the other is still meaningful.
-  return ratio <= 5 ? undertone(lead, opp) : CHAR[lead[0]][0];
+  return ratio <= 5 ? undertone(leadPhrase, opp) : leadPhrase;
 }
 // How good is the evidence behind THIS product's read?
 //
@@ -1746,9 +1789,22 @@ function ev(p){
 // Name the terpene the badge is grading. It makes the claim checkable against
 // the WHY? panel directly below, which explains that same terpene — and it
 // teaches the chemistry instead of asking anyone to trust three dots.
+//
+// A broad read has no single terpene to name, so it says so rather than picking
+// one. Without this a card could print "calm overall" above "leans on myrcene",
+// which is the contradiction the whole change exists to remove.
+//
+// KNOWN, HELD BACK: the TIER is still graded on the card's biggest terpene, not
+// on the direction the sentence describes. On 65 of the 72 broad cards those
+// differ — Garlic Bud reads "calm overall" off a settle pile led by farnesene
+// (folklore) while the badge grades caryophyllene (real mechanism) sitting in a
+// direction the sentence never touches. Grading the direction instead is the
+// correct fix and takes ●●● from 123 to 70 of 215. That is the same shelf-wide
+// badge decision recorded above evLead, deliberately not taken here.
 function evWord(p){
   const n = ev(p), k = evLead(p);
-  const on = k ? ` — leans on ${short(k).toLowerCase()}` : '';
+  const on = broadLead(p) ? ' — several small terpenes'
+           : k ? ` — leans on ${short(k).toLowerCase()}` : '';
   return n === 3 ? `real mechanism${on}`
        : n === 2 ? `some human data${on}`
        : `folklore${on}, trust your nose over this`;
