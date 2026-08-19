@@ -8,7 +8,7 @@
  "total_terpenes": 6.438,
  "lean": "lifting",
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Sativa",
  "reported": [
   "Floral",
@@ -48,5 +48,6 @@
   "p-Cymene": 0.0185,
   "alpha-Bisabolol": 0.037,
   "Cedrol": 0.0379
- }
+ },
+ "sold_out_at": "2026-08-19T14:13:41.116Z"
 }
