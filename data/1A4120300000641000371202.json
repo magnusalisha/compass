@@ -1,0 +1,43 @@
+{
+ "id": "8a326ec9aa",
+ "metrc_tag": "1A4120300000641000371202",
+ "brand": "The Botanist",
+ "strain": "Zourz",
+ "form": "Flower 14g",
+ "thc": 22.653,
+ "total_terpenes": 1.0853,
+ "lean": "settling",
+ "confidence": "moderate",
+ "in_stock": true,
+ "shelf_tag": "Indica",
+ "reported": [],
+ "dominant": [
+  "Limonene",
+  "beta-Caryophyllene",
+  "Linalool"
+ ],
+ "aroma": [
+  "citrus",
+  "spicy",
+  "peppery",
+  "floral",
+  "earthy"
+ ],
+ "terpenes": {
+  "Limonene": 0.2319,
+  "beta-Caryophyllene": 0.2217,
+  "Linalool": 0.1509,
+  "beta-Myrcene": 0.0854,
+  "Terpineol": 0.0779,
+  "Fenchol": 0.0618,
+  "alpha-Humulene": 0.0617,
+  "beta-Pinene": 0.0513,
+  "alpha-Pinene": 0.0495,
+  "alpha-Bisabolol": 0.029,
+  "Farnesene": 0.0225,
+  "Borneol": 0.0155,
+  "Ocimene": 0.0134,
+  "Caryophyllene Oxide": 0.0131
+ },
+ "scanned_at": "2026-08-19T19:44:45.475Z"
+}

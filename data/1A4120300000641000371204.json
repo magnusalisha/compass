@@ -1,0 +1,47 @@
+{
+ "id": "d49cb1aa7f",
+ "metrc_tag": "1A4120300000641000371204",
+ "brand": "The Botanist",
+ "strain": "Millionaire",
+ "form": "Flower 14g",
+ "thc": 25.063,
+ "total_terpenes": 2.3425,
+ "lean": "lifting",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Sativa",
+ "reported": [],
+ "dominant": [
+  "Terpinolene",
+  "beta-Myrcene",
+  "beta-Caryophyllene"
+ ],
+ "aroma": [
+  "fruity",
+  "herbal",
+  "earthy",
+  "musky",
+  "spicy"
+ ],
+ "terpenes": {
+  "Terpinolene": 0.9422,
+  "beta-Myrcene": 0.4007,
+  "beta-Caryophyllene": 0.2327,
+  "Linalool": 0.1097,
+  "Nerolidol": 0.0862,
+  "Limonene": 0.0823,
+  "beta-Pinene": 0.0775,
+  "alpha-Humulene": 0.0704,
+  "alpha-Bisabolol": 0.0694,
+  "alpha-Pinene": 0.042,
+  "Terpineol": 0.0393,
+  "alpha-Terpinene": 0.0376,
+  "alpha-Phellandrene": 0.0371,
+  "Carene": 0.0276,
+  "Farnesene": 0.0203,
+  "gamma-Terpinene": 0.0197,
+  "Ocimene": 0.0195,
+  "Fenchol": 0.0118
+ },
+ "scanned_at": "2026-08-19T19:44:45.475Z"
+}

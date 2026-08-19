@@ -1,0 +1,44 @@
+{
+ "id": "e8f3a33090",
+ "metrc_tag": "1A4120300000641000371199",
+ "brand": "The Botanist",
+ "strain": "Zourz",
+ "form": "Flower 3.5g",
+ "thc": 21.797,
+ "total_terpenes": 1.1406,
+ "lean": "settling",
+ "confidence": "moderate",
+ "in_stock": true,
+ "shelf_tag": "Indica",
+ "reported": [],
+ "dominant": [
+  "Limonene",
+  "beta-Caryophyllene",
+  "Linalool"
+ ],
+ "aroma": [
+  "citrus",
+  "spicy",
+  "peppery",
+  "floral",
+  "earthy"
+ ],
+ "terpenes": {
+  "Limonene": 0.2791,
+  "beta-Caryophyllene": 0.2,
+  "Linalool": 0.1486,
+  "beta-Myrcene": 0.117,
+  "Terpineol": 0.072,
+  "alpha-Pinene": 0.0607,
+  "beta-Pinene": 0.0596,
+  "Fenchol": 0.0568,
+  "alpha-Humulene": 0.0554,
+  "alpha-Bisabolol": 0.0241,
+  "Farnesene": 0.0173,
+  "Ocimene": 0.016,
+  "Borneol": 0.0145,
+  "Caryophyllene Oxide": 0.0107,
+  "Camphene": 0.0089
+ },
+ "scanned_at": "2026-08-19T19:44:45.475Z"
+}

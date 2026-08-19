@@ -1,0 +1,42 @@
+{
+ "id": "dd8f852123",
+ "metrc_tag": "1A4120300000641000371200",
+ "brand": "The Botanist",
+ "strain": "OG Chem Haze",
+ "form": "Flower 3.5g",
+ "thc": 29.201,
+ "total_terpenes": 3.0205,
+ "lean": "settling",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Hybrid",
+ "reported": [],
+ "dominant": [
+  "beta-Myrcene",
+  "Ocimene",
+  "Farnesene"
+ ],
+ "aroma": [
+  "earthy",
+  "musky",
+  "sweet",
+  "herbal",
+  "green"
+ ],
+ "terpenes": {
+  "beta-Myrcene": 1.6232,
+  "Ocimene": 0.5314,
+  "Farnesene": 0.1652,
+  "beta-Caryophyllene": 0.1614,
+  "Limonene": 0.1014,
+  "Nerolidol": 0.1013,
+  "Linalool": 0.0916,
+  "alpha-Pinene": 0.0824,
+  "alpha-Humulene": 0.0603,
+  "beta-Pinene": 0.0536,
+  "alpha-Bisabolol": 0.0205,
+  "Terpineol": 0.017,
+  "Fenchol": 0.0111
+ },
+ "scanned_at": "2026-08-19T19:44:45.475Z"
+}

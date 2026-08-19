@@ -1,0 +1,46 @@
+{
+ "id": "61158c0331",
+ "metrc_tag": "1A4120300000641000371201",
+ "brand": "The Botanist",
+ "strain": "LA Pop Rockz",
+ "form": "Flower 3.5g",
+ "thc": 26.95,
+ "total_terpenes": 2.2622,
+ "lean": "settling",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Hybrid",
+ "reported": [],
+ "dominant": [
+  "beta-Caryophyllene",
+  "beta-Myrcene",
+  "Limonene"
+ ],
+ "aroma": [
+  "spicy",
+  "peppery",
+  "earthy",
+  "musky",
+  "citrus"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.4813,
+  "beta-Myrcene": 0.4409,
+  "Limonene": 0.3764,
+  "Linalool": 0.2161,
+  "Farnesene": 0.1579,
+  "alpha-Humulene": 0.1263,
+  "Nerolidol": 0.0845,
+  "beta-Pinene": 0.0792,
+  "alpha-Pinene": 0.0697,
+  "Ocimene": 0.0582,
+  "Terpineol": 0.0568,
+  "Fenchol": 0.0451,
+  "Guaiol": 0.03,
+  "Terpinolene": 0.0113,
+  "Borneol": 0.0106,
+  "Caryophyllene Oxide": 0.0094,
+  "Camphene": 0.0085
+ },
+ "scanned_at": "2026-08-19T19:44:45.475Z"
+}

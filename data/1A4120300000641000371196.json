@@ -1,0 +1,42 @@
+{
+ "id": "a529a328cf",
+ "metrc_tag": "1A4120300000641000371196",
+ "brand": "The Botanist",
+ "strain": "Billionaire",
+ "form": "Flower 3.5g",
+ "thc": 31.246,
+ "total_terpenes": 1.4948,
+ "lean": "settling",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Sativa",
+ "reported": [],
+ "dominant": [
+  "beta-Caryophyllene",
+  "Linalool",
+  "Limonene"
+ ],
+ "aroma": [
+  "spicy",
+  "peppery",
+  "floral",
+  "citrus",
+  "woody"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.4263,
+  "Linalool": 0.3122,
+  "Limonene": 0.2152,
+  "alpha-Humulene": 0.1185,
+  "Guaiol": 0.1006,
+  "beta-Myrcene": 0.0961,
+  "alpha-Bisabolol": 0.0665,
+  "beta-Pinene": 0.0406,
+  "Terpineol": 0.0357,
+  "Fenchol": 0.0302,
+  "alpha-Pinene": 0.0224,
+  "Nerolidol": 0.0162,
+  "Farnesene": 0.0145
+ },
+ "scanned_at": "2026-08-19T19:44:45.471Z"
+}

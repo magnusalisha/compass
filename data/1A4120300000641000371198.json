@@ -1,0 +1,44 @@
+{
+ "id": "4b21397a77",
+ "metrc_tag": "1A4120300000641000371198",
+ "brand": "The Botanist",
+ "strain": "Agent Orange",
+ "form": "Flower 3.5g",
+ "thc": 26.054,
+ "total_terpenes": 1.571,
+ "lean": "settling",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Sativa",
+ "reported": [],
+ "dominant": [
+  "Limonene",
+  "beta-Caryophyllene",
+  "beta-Myrcene"
+ ],
+ "aroma": [
+  "citrus",
+  "spicy",
+  "peppery",
+  "earthy",
+  "musky"
+ ],
+ "terpenes": {
+  "Limonene": 0.3912,
+  "beta-Caryophyllene": 0.2351,
+  "beta-Myrcene": 0.2322,
+  "Linalool": 0.2049,
+  "alpha-Pinene": 0.0855,
+  "beta-Pinene": 0.0832,
+  "alpha-Humulene": 0.0644,
+  "Terpineol": 0.0511,
+  "Farnesene": 0.0496,
+  "Nerolidol": 0.0491,
+  "Fenchol": 0.0438,
+  "alpha-Bisabolol": 0.0379,
+  "Ocimene": 0.0217,
+  "Borneol": 0.0115,
+  "Camphene": 0.0096
+ },
+ "scanned_at": "2026-08-19T19:44:45.474Z"
+}
