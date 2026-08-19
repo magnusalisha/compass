@@ -1,18 +1,18 @@
 {
- "id": "a3f9c21b7e",
+ "id": "a3f9c2b847",
  "metrc_tag": "1A412030000026D000018864",
  "brand": "Anthem",
  "strain": "Jack Herer",
- "form": "Infused Preroll 1g",
+ "form": "Preroll 1g",
  "thc": 48.6295,
  "total_terpenes": 1.07,
  "lean": "mixed",
  "confidence": "moderate",
- "in_stock": false,
+ "in_stock": true,
  "shelf_tag": "Sativa",
  "reported": [
-  "Total THC 48.63%",
-  "Total Terpenes 1.07%"
+  "Anthem Bold",
+  "Sativa"
  ],
  "dominant": [
   "beta-Caryophyllene",
@@ -21,10 +21,10 @@
  ],
  "aroma": [
   "spicy",
-  "woody",
-  "floral",
+  "herbal",
   "citrus",
-  "herbal"
+  "floral",
+  "woody"
  ],
  "terpenes": {
   "beta-Caryophyllene": 0.38,
@@ -42,5 +42,5 @@
   "alpha-Pinene": 0.01,
   "beta-Pinene": 0.01
  },
- "sold_out_at": "2026-07-23T14:12:54.860Z"
+ "scanned_at": "2026-08-19T14:37:33.564Z"
 }
