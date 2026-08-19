@@ -8,7 +8,7 @@
  "total_terpenes": 6.0245,
  "lean": "lifting",
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Sativa",
  "reported": [
   "Spicy",
@@ -45,5 +45,6 @@
   "Camphene": 0.0361,
   "Geraniol": 0.0252,
   "Guaiol": 0.02
- }
+ },
+ "sold_out_at": "2026-08-19T14:13:26.394Z"
 }
