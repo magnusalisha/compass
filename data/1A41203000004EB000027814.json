@@ -1,0 +1,34 @@
+{
+ "id": "32e137655a",
+ "metrc_tag": "1A41203000004EB000027814",
+ "brand": "Preferred",
+ "strain": "Blue Caviar",
+ "form": "Flower 3.5g",
+ "thc": 31.683,
+ "total_terpenes": 0.73,
+ "lean": "settling",
+ "confidence": "faint",
+ "in_stock": true,
+ "shelf_tag": "Indica",
+ "reported": [],
+ "dominant": [
+  "Linalool",
+  "Limonene",
+  "beta-Caryophyllene"
+ ],
+ "aroma": [
+  "floral",
+  "citrus",
+  "spicy",
+  "peppery",
+  "green"
+ ],
+ "terpenes": {
+  "Linalool": 0.27,
+  "Limonene": 0.15,
+  "beta-Caryophyllene": 0.13,
+  "Farnesene": 0.08,
+  "beta-Myrcene": 0.07
+ },
+ "scanned_at": "2026-08-19T19:09:57.978Z"
+}

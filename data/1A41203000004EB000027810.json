@@ -1,0 +1,38 @@
+{
+ "id": "16c4caa1d0",
+ "metrc_tag": "1A41203000004EB000027810",
+ "brand": "Smartbud",
+ "strain": "Super Sour Diesel",
+ "form": "Flower 3.5g",
+ "thc": 29.664,
+ "total_terpenes": 2.03,
+ "lean": "settling",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Sativa",
+ "reported": [],
+ "dominant": [
+  "Linalool",
+  "Limonene",
+  "beta-Caryophyllene"
+ ],
+ "aroma": [
+  "floral",
+  "citrus",
+  "spicy",
+  "peppery",
+  "earthy"
+ ],
+ "terpenes": {
+  "Linalool": 0.5,
+  "Limonene": 0.4,
+  "beta-Caryophyllene": 0.33,
+  "beta-Myrcene": 0.28,
+  "Farnesene": 0.15,
+  "alpha-Humulene": 0.11,
+  "beta-Pinene": 0.09,
+  "Terpineol": 0.09,
+  "Fenchol": 0.08
+ },
+ "scanned_at": "2026-08-19T19:09:57.977Z"
+}

@@ -1,0 +1,35 @@
+{
+ "id": "e31b435097",
+ "metrc_tag": "1A41203000004EB000027811",
+ "brand": "Preferred",
+ "strain": "Gelato 41",
+ "form": "Flower 3.5g",
+ "thc": 29.333,
+ "total_terpenes": 1.1,
+ "lean": "settling",
+ "confidence": "moderate",
+ "in_stock": true,
+ "shelf_tag": "Indica",
+ "reported": [],
+ "dominant": [
+  "Linalool",
+  "beta-Caryophyllene",
+  "Limonene"
+ ],
+ "aroma": [
+  "floral",
+  "spicy",
+  "peppery",
+  "citrus",
+  "earthy"
+ ],
+ "terpenes": {
+  "Linalool": 0.41,
+  "beta-Caryophyllene": 0.2,
+  "Limonene": 0.18,
+  "beta-Myrcene": 0.12,
+  "Farnesene": 0.1,
+  "Terpineol": 0.08
+ },
+ "scanned_at": "2026-08-19T19:09:57.978Z"
+}

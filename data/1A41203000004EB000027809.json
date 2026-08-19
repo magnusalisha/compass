@@ -1,0 +1,38 @@
+{
+ "id": "0c65098c53",
+ "metrc_tag": "1A41203000004EB000027809",
+ "brand": "Smartbud",
+ "strain": "Blue Dream",
+ "form": "Flower 3.5g",
+ "thc": 27.388,
+ "total_terpenes": 1.75,
+ "lean": "settling",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Sativa",
+ "reported": [],
+ "dominant": [
+  "Linalool",
+  "Limonene",
+  "beta-Caryophyllene"
+ ],
+ "aroma": [
+  "floral",
+  "citrus",
+  "spicy",
+  "peppery",
+  "earthy"
+ ],
+ "terpenes": {
+  "Linalool": 0.43,
+  "Limonene": 0.34,
+  "beta-Caryophyllene": 0.28,
+  "beta-Myrcene": 0.23,
+  "Farnesene": 0.13,
+  "alpha-Humulene": 0.09,
+  "Terpineol": 0.09,
+  "beta-Pinene": 0.08,
+  "Fenchol": 0.08
+ },
+ "scanned_at": "2026-08-19T19:09:57.974Z"
+}

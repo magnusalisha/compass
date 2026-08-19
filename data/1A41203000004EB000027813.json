@@ -1,0 +1,34 @@
+{
+ "id": "4d687edd69",
+ "metrc_tag": "1A41203000004EB000027813",
+ "brand": "Preferred",
+ "strain": "Durban",
+ "form": "Flower 3.5g",
+ "thc": 29.614,
+ "total_terpenes": 1.5,
+ "lean": "settling",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Sativa",
+ "reported": [],
+ "dominant": [
+  "beta-Caryophyllene",
+  "beta-Myrcene",
+  "Limonene"
+ ],
+ "aroma": [
+  "spicy",
+  "peppery",
+  "earthy",
+  "musky",
+  "citrus"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.6,
+  "beta-Myrcene": 0.29,
+  "Limonene": 0.22,
+  "alpha-Humulene": 0.21,
+  "Linalool": 0.18
+ },
+ "scanned_at": "2026-08-19T19:09:57.978Z"
+}
