@@ -265,6 +265,12 @@ const GH_USER = "magnusalisha", GH_REPO = "compass";
 // byte-identical in both places and a change can move either direction without
 // an edit. Only the GH_REPO/STOCK_API constants differ between environments.
 const SANDBOX = /sandbox/i.test(GH_REPO);
+// Tell the two apart in the tab bar, not just on the page. With both open at
+// once — which is the normal way to compare a change against live — the titles
+// were identical and the only way to tell which was which was to switch to it.
+// Derived from SANDBOX rather than written into <title>, so index.html stays
+// byte-identical between the two repos and this can ship to prod inert.
+if (SANDBOX) document.title = 'Compass SANDBOX';
 // ── the Cloudflare Worker that writes stock changes back to the repo.
 // Paste your Worker URL here after deploying it (see DEPLOY-WORKER.md).
 // Left empty, the page still works — it just hides the sold-out buttons
@@ -1899,8 +1905,10 @@ function thcNote(p){
   // The figure itself still sits at the top of the card; it just stops being
   // dressed up as a finding.
   if (c === 'Vape') return '';
-  // Too few peers to call anything typical — state the number and stop.
-  if (peers.length < 8) return `<p>Strength: <b>${thc1(p.thc)} THC</b>.</p>`;
+  // Too few peers to call anything typical, and the figure is already at the top
+  // of the card — so there is nothing left to say. Fires on 0 cards today; kept
+  // as a guard for a category that arrives with only a handful of products.
+  if (peers.length < 8) return '';
   const below = peers.filter(v => v < p.thc).length;
   const pct = below / peers.length;
   const med = peers[Math.floor(peers.length / 2)];
@@ -1910,7 +1918,13 @@ function thcNote(p){
               : pct >  0.30 ? `about typical for ${cat} here`
               : pct >  0.10 ? `on the lighter side for ${cat} here`
               :               `among the lightest ${cat} here`;
-  return `<p>Strength: <b>${thc1(p.thc)} THC</b> — ${where} (typical is ${thc1(med)}).</p>`;
+  // The THC figure is printed at the top of every card already. Repeating it here
+  // and then explaining it read as two facts when it is one, so the line now
+  // carries only the part the card cannot show on its own: where this sits
+  // against the rest of the category. 159 cards, and 92 of them say something
+  // other than "about typical" — Hashtag Honey's prerolls come in at 15.7%
+  // against a 29.5% median, which the bare number can't tell you.
+  return `<p>Strength: <b>${where}</b> (typical is ${thc1(med)}).</p>`;
 }
 // ── terpenes the read cannot speak to
 //
