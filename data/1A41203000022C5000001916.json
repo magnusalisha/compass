@@ -8,7 +8,7 @@
  "total_terpenes": 2.09,
  "lean": "lifting",
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Sativa-leaning Hybrid",
  "reported": [
   "high CBGA at 5.098%",
@@ -41,5 +41,6 @@
  "test_date": "2026-07-09",
  "test_lab": "Green Analytics NY, LLC",
  "date_expire": "2027-06-23",
- "scanned_at": "2026-08-20T23:38:59.398Z"
+ "scanned_at": "2026-08-20T23:38:59.398Z",
+ "sold_out_at": "2026-08-21T21:33:36.467Z"
 }
