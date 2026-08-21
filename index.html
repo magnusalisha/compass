@@ -1522,17 +1522,6 @@ const filterLean = p => SHELF_LEAN[String(p.shelf_tag || '').trim().toLowerCase(
 // 43 was accurate; that isn't the same as useful. At 1.25x it lands on 26.
 // Measured alternatives: 1.15x → 12 cards, 1.35x → 32, 1.5x → 43.
 const EVEN_T = 1.25;
-// Lead phrase plus the opposing terpene as an undertone. Shared by both branches
-// so a skewed "mixed" reads exactly like any other lead-with-undertone product,
-// which is what it is.
-// Takes the lead PHRASE rather than the lead terpene, because the phrase is not
-// always a terpene's — see BROAD_PHRASE below.
-const undertone = (leadPhrase, oppPair) => {
-  const on = CHAR[oppPair[0]];
-  return on[2] === 'lift'
-    ? `${leadPhrase}, with ${/^[aeiou]/i.test(on[1])?'an':'a'} ${on[1]} lift on top`
-    : `${leadPhrase}, with a ${on[1]} undertone`;
-};
 
 // A word borrowed from one terpene can only speak for a direction when that
 // terpene is most of it. Agent Orange's settle total is seven terpenes —
