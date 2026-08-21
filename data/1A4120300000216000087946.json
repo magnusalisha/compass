@@ -1,0 +1,48 @@
+{
+ "id": "a3f82c1d9e",
+ "metrc_tag": "1A4120300000216000087946",
+ "brand": "Anthem",
+ "strain": "Jack Herer",
+ "form": "Preroll glass tip, infused 0.5g (5-pack, 2.5g total)",
+ "thc": 47.1968,
+ "total_terpenes": 0.83,
+ "lean": "settling",
+ "confidence": "faint",
+ "in_stock": true,
+ "shelf_tag": "Sativa",
+ "reported": [
+  "47.2% Total THC",
+  "Enhanced infused preroll with glass tip"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "alpha-Humulene",
+  "Linalool"
+ ],
+ "aroma": [
+  "spicy",
+  "woody",
+  "floral",
+  "citrus",
+  "piney"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.32,
+  "alpha-Humulene": 0.15,
+  "Linalool": 0.08,
+  "Fenchol": 0.05,
+  "Limonene": 0.05,
+  "Terpinolene": 0.05,
+  "Terpineol": 0.04,
+  "alpha-Bisabolol": 0.02,
+  "Caryophyllene Oxide": 0.02,
+  "Valencene": 0.02,
+  "alpha-Pinene": 0.01,
+  "beta-Myrcene": 0.01,
+  "beta-Pinene": 0.01
+ },
+ "test_date": "2026-05-21",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-05-14",
+ "scanned_at": "2026-08-20T23:39:11.588Z"
+}

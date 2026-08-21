@@ -1,0 +1,56 @@
+{
+ "id": "a3f8c12e9b",
+ "metrc_tag": "1A4120300001CF7000029216",
+ "brand": "Jaunty",
+ "strain": "Lemon Fresh",
+ "form": "Preroll Infused 1g",
+ "thc": 37.705,
+ "total_terpenes": 2.9129,
+ "lean": "mixed",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Sativa",
+ "reported": [
+  "Spicy",
+  "Earthy"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "Terpinolene",
+  "Farnesene"
+ ],
+ "aroma": [
+  "spicy",
+  "earthy",
+  "floral",
+  "herbal",
+  "woody"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.84,
+  "Terpinolene": 0.3455,
+  "Farnesene": 0.3195,
+  "alpha-Humulene": 0.2598,
+  "Limonene": 0.2413,
+  "beta-Myrcene": 0.1366,
+  "alpha-Bisabolol": 0.1337,
+  "Linalool": 0.1125,
+  "Guaiol": 0.0752,
+  "Terpineol": 0.0694,
+  "Valencene": 0.0588,
+  "beta-Pinene": 0.0575,
+  "Caryophyllene Oxide": 0.0568,
+  "alpha-Pinene": 0.0451,
+  "Fenchol": 0.0406,
+  "Nerolidol": 0.0255,
+  "alpha-Terpinene": 0.0139,
+  "Borneol": 0.0127,
+  "gamma-Terpinene": 0.0116,
+  "alpha-Phellandrene": 0.0114,
+  "Carene": 0.011,
+  "Eucalyptol": 0.0106
+ },
+ "test_date": "2026-07-06",
+ "test_lab": "ACT Laboratories of New York, LLC",
+ "scanned_at": "2026-08-20T23:39:04.015Z"
+}

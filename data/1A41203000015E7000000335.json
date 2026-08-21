@@ -5,7 +5,7 @@
  "strain": "Gas Runtz",
  "form": "Preroll 1g Infused",
  "thc": 35.2,
- "total_terpenes": 1.9535,
+ "total_terpenes": 2.0169,
  "lean": "settling",
  "confidence": "strong",
  "in_stock": true,
@@ -41,5 +41,9 @@
   "alpha-Pinene": 0.0234,
   "Terpinolene": 0.0148,
   "Guaiol": 0.0143
- }
+ },
+ "test_date": "2026-02-08",
+ "test_lab": "Analytical Testing Center of Central New York",
+ "date_expire": "2026-09-03",
+ "scanned_at": "2026-08-20T23:38:44.395Z"
 }

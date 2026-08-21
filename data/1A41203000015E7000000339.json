@@ -1,0 +1,47 @@
+{
+ "id": "a3f7c2e901",
+ "metrc_tag": "1A41203000015E7000000339",
+ "brand": "JusBud",
+ "strain": "OG Kush",
+ "form": "Preroll 1g 2-Pack",
+ "thc": 21.2,
+ "total_terpenes": 1.1406,
+ "lean": "settling",
+ "confidence": "moderate",
+ "in_stock": true,
+ "shelf_tag": "Indica",
+ "reported": [
+  "relaxing",
+  "earthy"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "Linalool",
+  "alpha-Humulene"
+ ],
+ "aroma": [
+  "earthy",
+  "floral",
+  "woody",
+  "spicy",
+  "herbal"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.3512,
+  "Linalool": 0.1763,
+  "alpha-Humulene": 0.1392,
+  "Limonene": 0.1325,
+  "beta-Myrcene": 0.0785,
+  "Terpineol": 0.0585,
+  "alpha-Bisabolol": 0.0568,
+  "Fenchol": 0.0486,
+  "Caryophyllene Oxide": 0.047,
+  "Farnesene": 0.021,
+  "Geraniol": 0.0168,
+  "beta-Pinene": 0.0142
+ },
+ "test_date": "2026-03-05",
+ "test_lab": "Analytical Testing Center of Central New York",
+ "date_expire": "2026-12-01",
+ "scanned_at": "2026-08-20T23:38:45.362Z"
+}

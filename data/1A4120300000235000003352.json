@@ -8,7 +8,7 @@
  "total_terpenes": 2.01,
  "lean": "settling",
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Hybrid",
  "reported": [
   "36.7% Total THC",
@@ -34,5 +34,6 @@
   "Terpinolene": 0.18,
   "Caryophyllene oxide": 0.17,
   "beta-Myrcene": 0.14
- }
+ },
+ "sold_out_at": "2026-08-20T23:39:35.129Z"
 }

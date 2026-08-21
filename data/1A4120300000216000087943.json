@@ -1,0 +1,47 @@
+{
+ "id": "a3f8c2e1d9",
+ "metrc_tag": "1A4120300000216000087943",
+ "brand": "Anthem",
+ "strain": "King Louis XIII",
+ "form": "Infused Preroll 0.5g (5-pack, 2.5g total)",
+ "thc": 46.5719,
+ "total_terpenes": 0.57,
+ "lean": "settling",
+ "confidence": "faint",
+ "in_stock": true,
+ "shelf_tag": "Indica",
+ "reported": [
+  "Glass tip infused pre-roll",
+  "Enhanced pre-roll for medical use"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "Limonene",
+  "Linalool"
+ ],
+ "aroma": [
+  "earthy",
+  "spicy",
+  "citrus",
+  "floral",
+  "woody"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.18,
+  "Limonene": 0.08,
+  "Linalool": 0.08,
+  "alpha-Bisabolol": 0.04,
+  "beta-Myrcene": 0.04,
+  "Fenchol": 0.04,
+  "Terpineol": 0.04,
+  "alpha-Humulene": 0.03,
+  "beta-Pinene": 0.01,
+  "Caryophyllene Oxide": 0.01,
+  "Geraniol": 0.01,
+  "Valencene": 0.01
+ },
+ "test_date": "2026-02-18",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-02-10",
+ "scanned_at": "2026-08-20T23:39:10.445Z"
+}

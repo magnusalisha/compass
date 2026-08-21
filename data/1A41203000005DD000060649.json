@@ -31,10 +31,13 @@
   "beta-Pinene": 0.1556,
   "alpha-Pinene": 0.1517,
   "alpha-Phellandrene": 0.1473,
+  "alpha-Bisabolol": 0.1374,
   "Terpinolene": 0.0985,
   "alpha-Humulene": 0.0946,
-  "alpha-Bisabolol": 0.063,
   "Valencene": 0.0483
  },
- "scanned_at": "2026-08-10T16:38:43.698Z"
+ "scanned_at": "2026-08-20T23:38:54.146Z",
+ "test_date": "2026-03-21",
+ "test_lab": "ACT Laboratories of New York, LLC",
+ "date_expire": "2027-03-12"
 }

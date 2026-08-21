@@ -8,7 +8,7 @@
  "total_terpenes": 4.0599,
  "lean": "settling",
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Sativa",
  "reported": [],
  "dominant": [
@@ -35,5 +35,6 @@
   "Caryophyllene Oxide": 0.0167,
   "beta-Pinene": 0.0161
  },
- "scanned_at": "2026-08-10T16:38:43.700Z"
+ "scanned_at": "2026-08-10T16:38:43.700Z",
+ "sold_out_at": "2026-08-20T23:39:35.132Z"
 }

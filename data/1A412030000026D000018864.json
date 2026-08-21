@@ -8,7 +8,7 @@
  "total_terpenes": 1.07,
  "lean": "mixed",
  "confidence": "moderate",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Sativa",
  "reported": [
   "Anthem Bold",
@@ -42,5 +42,6 @@
   "alpha-Pinene": 0.01,
   "beta-Pinene": 0.01
  },
- "scanned_at": "2026-08-19T14:37:33.564Z"
+ "scanned_at": "2026-08-19T14:37:33.564Z",
+ "sold_out_at": "2026-08-20T23:39:35.131Z"
 }

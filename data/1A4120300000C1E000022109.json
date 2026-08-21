@@ -1,0 +1,29 @@
+{
+ "id": "9140274a19",
+ "metrc_tag": "1A4120300000C1E000022109",
+ "brand": "Hi*AF",
+ "strain": "Peaches & Cream",
+ "form": "Vapes 0.5g",
+ "lean": null,
+ "confidence": "strong",
+ "shelf_tag": "Hybrid",
+ "reported": [],
+ "dominant": [],
+ "aroma": [],
+ "terpenes": {
+  "Limonene": 0.4379,
+  "beta-Caryophyllene": 0.2388,
+  "beta-Myrcene": 0.2011,
+  "Linalool": 0.1652,
+  "beta-Pinene": 0.0744,
+  "alpha-Bisabolol": 0.0534,
+  "Fenchol": 0.0427,
+  "alpha-Pinene": 0.0371
+ },
+ "scanned_at": "2026-08-20T23:38:38.557Z",
+ "thc": 79.96,
+ "total_terpenes": 1.2863,
+ "in_stock": true,
+ "test_date": "2025-10-28",
+ "test_lab": "ACT Laboratories of New York, LLC"
+}

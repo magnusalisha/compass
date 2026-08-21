@@ -1,0 +1,39 @@
+{
+ "id": "93abfa4f3d",
+ "shelf_tag": "Sativa",
+ "confidence": "faint",
+ "dominant": [
+  "beta-Caryophyllene",
+  "Linalool",
+  "Limonene"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.25,
+  "Linalool": 0.22,
+  "Limonene": 0.17,
+  "Guaiol": 0.11,
+  "alpha-Humulene": 0.08
+ },
+ "brand": "Canna Cure",
+ "total_terpenes": 0.89,
+ "metrc_tag": "1A41203000016B4000001704",
+ "reported": [
+  "~28% Total THC",
+  "0.89% Total Terpenes"
+ ],
+ "aroma": [
+  "floral",
+  "citrus",
+  "spicy",
+  "woody",
+  "herbal"
+ ],
+ "form": "Flower 1g",
+ "strain": "Pineapple Express",
+ "lean": "settling",
+ "in_stock": true,
+ "thc": 28.056,
+ "test_date": "2026-03-16",
+ "test_lab": "Green Analytics NY, LLC",
+ "scanned_at": "2026-08-20T23:38:41.788Z"
+}

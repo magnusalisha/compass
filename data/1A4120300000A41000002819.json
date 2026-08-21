@@ -8,7 +8,7 @@
  "total_terpenes": 2.03,
  "lean": "mixed",
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Indica",
  "reported": [
   "lab tested and regulated by NY OCM",
@@ -34,5 +34,6 @@
   "Linalool": 0.11,
   "beta-Pinene": 0.09,
   "Farnesene": 0.08
- }
+ },
+ "sold_out_at": "2026-08-20T23:39:35.133Z"
 }

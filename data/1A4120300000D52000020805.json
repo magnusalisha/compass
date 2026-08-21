@@ -1,0 +1,30 @@
+{
+ "id": "cd9d10aa4e",
+ "metrc_tag": "1A4120300000D52000020805",
+ "brand": "MFNY",
+ "strain": "Candy Rain Live Resin",
+ "form": "Vapes 1g",
+ "lean": null,
+ "confidence": "strong",
+ "shelf_tag": "Indica",
+ "reported": [],
+ "dominant": [],
+ "aroma": [],
+ "terpenes": {
+  "beta-Caryophyllene": 4.762,
+  "Valencene": 1.821,
+  "Limonene": 1.421,
+  "alpha-Humulene": 1.121,
+  "alpha-Bisabolol": 0.688,
+  "Linalool": 0.6057,
+  "alpha-Pinene": 0.165,
+  "Terpineol": 0.1372
+ },
+ "scanned_at": "2026-08-20T23:38:42.516Z",
+ "thc": 72.88,
+ "total_terpenes": 10.721,
+ "in_stock": true,
+ "test_date": "2026-01-12",
+ "test_lab": "Keystone State Testing, LLC",
+ "date_expire": "2027-01-06"
+}

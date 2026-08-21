@@ -1,0 +1,53 @@
+{
+ "id": "a3f7c2e891",
+ "metrc_tag": "1A412030000019E000135331",
+ "brand": "Florist Farms",
+ "strain": "Iced Sangria",
+ "form": "Preroll 0.5g (7-pack, 3.5g total)",
+ "thc": 19.1823,
+ "total_terpenes": 3.52,
+ "lean": "settling",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Hybrid",
+ "reported": [
+  "Spicy",
+  "Earthy"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "alpha-Humulene",
+  "Limonene"
+ ],
+ "aroma": [
+  "spicy",
+  "earthy",
+  "citrus",
+  "floral",
+  "herbal"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 2.8109,
+  "alpha-Humulene": 0.9446,
+  "Limonene": 0.6035,
+  "alpha-Bisabolol": 0.4113,
+  "Farnesene": 0.2596,
+  "beta-Myrcene": 0.1867,
+  "Linalool": 0.1356,
+  "Ocimene": 0.0978,
+  "Guaiol": 0.0956,
+  "beta-Pinene": 0.0889,
+  "alpha-Pinene": 0.0674,
+  "Caryophyllene Oxide": 0.0637,
+  "Terpineol": 0.0592,
+  "Fenchol": 0.0531,
+  "Nerolidol": 0.0133,
+  "Valencene": 0.01,
+  "Terpinolene": 0.01,
+  "Camphene": 0.01
+ },
+ "test_date": "2026-02-04",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-06-30",
+ "scanned_at": "2026-08-20T23:39:18.366Z"
+}

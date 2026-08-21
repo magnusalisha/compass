@@ -26,10 +26,13 @@
  "terpenes": {
   "Limonene": 0.7416,
   "beta-Myrcene": 0.5096,
-  "alpha-Bisabolol": 0.106,
+  "alpha-Bisabolol": 0.1399,
   "Nerolidol": 0.0932,
   "Geraniol": 0.0641,
-  "Caryophyllene Oxide": 0.0187
+  "Caryophyllene Oxide": 0.0375
  },
- "scanned_at": "2026-08-10T16:38:43.700Z"
+ "scanned_at": "2026-08-20T23:39:08.190Z",
+ "test_date": "2026-04-20",
+ "test_lab": "ACT Laboratories of New York, LLC",
+ "date_expire": "2027-04-09"
 }

@@ -1,0 +1,40 @@
+{
+ "id": "a3f9c12e4b",
+ "metrc_tag": "1A4120300000283000052502",
+ "brand": "Stay Melo",
+ "strain": "Madison Sq Garlic",
+ "form": "Flower 3.5g",
+ "thc": 33.16,
+ "total_terpenes": 1.66,
+ "lean": "mixed",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Indica",
+ "reported": [
+  "Relax",
+  "Indica"
+ ],
+ "dominant": [
+  "beta-Myrcene",
+  "alpha-Pinene",
+  "Limonene"
+ ],
+ "aroma": [
+  "earthy",
+  "pungent",
+  "piney",
+  "citrus",
+  "spicy"
+ ],
+ "terpenes": {
+  "beta-Myrcene": 1.05,
+  "alpha-Pinene": 0.18,
+  "Limonene": 0.17,
+  "beta-Caryophyllene": 0.16,
+  "beta-Pinene": 0.11
+ },
+ "scanned_at": "2026-08-20T23:39:30.437Z",
+ "test_date": "2026-08-07",
+ "test_lab": "Green Analytics NY, LLC",
+ "date_expire": "2027-08-03"
+}

@@ -8,7 +8,7 @@
  "total_terpenes": 1.02,
  "lean": "settling",
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Hybrid",
  "reported": [
   "Moonrocks: Blueberry Diesel",
@@ -42,5 +42,6 @@
   "Camphene": 0.01,
   "Guaiol": 0.01,
   "beta-Pinene": 0.01
- }
+ },
+ "sold_out_at": "2026-08-20T23:39:35.134Z"
 }

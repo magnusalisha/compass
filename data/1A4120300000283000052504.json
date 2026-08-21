@@ -1,0 +1,41 @@
+{
+ "id": "a3f9c12e84",
+ "metrc_tag": "1A4120300000283000052504",
+ "brand": "Stay Melo",
+ "strain": "Sour Melo",
+ "form": "Flower 3.5g",
+ "thc": 28.317,
+ "total_terpenes": 1.73,
+ "lean": "lifting",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Sativa",
+ "reported": [
+  "Special Edition",
+  "Sour Melo"
+ ],
+ "dominant": [
+  "Limonene",
+  "beta-Myrcene",
+  "beta-Caryophyllene"
+ ],
+ "aroma": [
+  "citrus",
+  "fruity",
+  "earthy",
+  "spicy",
+  "herbal"
+ ],
+ "terpenes": {
+  "Limonene": 0.68,
+  "beta-Myrcene": 0.43,
+  "beta-Caryophyllene": 0.22,
+  "Linalool": 0.21,
+  "alpha-Humulene": 0.1,
+  "beta-Pinene": 0.09
+ },
+ "scanned_at": "2026-08-20T23:39:30.892Z",
+ "test_date": "2026-06-17",
+ "test_lab": "Green Analytics NY, LLC",
+ "date_expire": "2027-06-01"
+}

@@ -1,0 +1,44 @@
+{
+ "id": "5d93d1fa8f",
+ "shelf_tag": "Hybrid",
+ "confidence": "strong",
+ "dominant": [
+  "Linalool",
+  "Limonene",
+  "beta-Caryophyllene"
+ ],
+ "note": null,
+ "terpenes": {
+  "Linalool": 0.44,
+  "Limonene": 0.33,
+  "beta-Caryophyllene": 0.28,
+  "alpha-Humulene": 0.1,
+  "Fenchol": 0.05,
+  "Terpineol": 0.05,
+  "alpha-Bisabolol": 0.04
+ },
+ "brand": "Rolling Green",
+ "total_terpenes": 1.29,
+ "balance": -0.41,
+ "reported": [
+  "mellow and soft",
+  "bright and talkative"
+ ],
+ "aroma": [
+  "floral",
+  "lavender",
+  "citrus",
+  "lemon",
+  "bright"
+ ],
+ "form": "Flower 3.5g",
+ "strain": "Apple Banana Flambe",
+ "lean": "settling",
+ "in_stock": true,
+ "thc": 28.2499,
+ "metrc_tag": "1A412030000038D000018010",
+ "test_date": "2026-05-28",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-06-15",
+ "scanned_at": "2026-08-20T23:38:46.565Z"
+}

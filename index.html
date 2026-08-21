@@ -518,6 +518,22 @@ const editURL = p => (GH_USER && GH_REPO && p._key)
 // lets "social preroll" in the effect box auto-apply the Preroll filter
 const CATEGORY_WORDS = [[/\b(vapes?|carts?)\b/, 'Vape'], [/\bpre[\s-]?rolls?\b/, 'Preroll'], [/\bflowers?\b/, 'Flower']];
 const detectCategoryWord = q => (CATEGORY_WORDS.find(([re]) => re.test(q)) || [])[1] || null;
+// ── search normalisation ──────────────────────────────────────────────────
+// Mirrors loose() in the Alleaves sync, and for the same reason: one product is
+// spelled several ways by the shop, the brand and the POS, and a literal
+// substring match makes the reader guess which one this record used. "smart bud"
+// could not find SmartBud; "lorange" could not find L'Orange; "kings and queens"
+// could not find Kings & Queens, and typing the ampersand could not find it
+// spelled out. Whichever spelling won, the other failed.
+//
+// Applied to BOTH sides, so punctuation, spacing, case and accents stop
+// mattering and a record can be named after the package — which is the rule
+// everywhere else in Compass — without costing anyone the ability to find it.
+const searchNorm = s => String(s || '')
+  .normalize('NFKD').replace(/[\u0300-\u036f]/g, '')
+  .replace(/&/g, ' and ')
+  .toLowerCase().replace(/[^a-z0-9]/g, '');
+const searchable = p => searchNorm(p.strain + ' ' + p.brand);
 
 // "relaxing but not sleepy" — how customers actually talk.
 const WANT = {
@@ -2353,7 +2369,7 @@ function comboListHTML(id, list){
   const q = (st.query || '').toLowerCase().trim();
   // plain case-insensitive substring match on strain + brand — no fuzzy scoring,
   // no fallback to a stale/previous result. Zero matches means "no matches," full stop.
-  const filtered = list.filter(p => (p.strain + ' ' + p.brand).toLowerCase().includes(q));
+  const filtered = list.filter(p => searchable(p).includes(searchNorm(q)));
   st.filtered = filtered;
   if (!filtered.length) return `<ul class="combo-list"><li class="combo-empty">No matches found</li></ul>`;
   return `<ul class="combo-list">${filtered.map((p,i) => `<li data-id="${key(p)}" class="${i===st.highlight?'hl':''}">${p.strain} <span>${comboForm(p)} · ${p.brand}${stocked(p)?'':' · sold out'}</span></li>`).join('')}</ul>`;
@@ -3006,7 +3022,7 @@ function renderLookupResults(){
   // list gave no way to get to the one shelf you were standing at.
   const matches = pool()
     .filter(p => lookupCat === 'All' || category(p) === lookupCat)
-    .filter(p => (p.strain + ' ' + p.brand).toLowerCase().includes(q));
+    .filter(p => searchable(p).includes(searchNorm(q)));
   O.innerHTML = matches.length
     ? `<div class="lookup-list">${matches.map(p => `<button type="button" class="lookup-row" data-lookup-id="${key(p)}">
          <span class="lookup-left"><span class="lookup-strain">${p.strain}</span><span class="lookup-form">${formLabel(p)}</span></span><span class="lookup-right"><span class="lookup-brand">${p.brand}${stocked(p)?'':' · out of stock'}</span><span class="lookup-nums">${

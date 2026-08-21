@@ -8,7 +8,7 @@
  "total_terpenes": 2.46,
  "lean": "mixed",
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Sativa",
  "reported": [
   "Blueberry Pancakes flavor",
@@ -34,5 +34,6 @@
   "beta-Myrcene": 0.21,
   "Caryophyllene oxide": 0.19,
   "Limonene": 0.32
- }
+ },
+ "sold_out_at": "2026-08-20T23:39:35.129Z"
 }

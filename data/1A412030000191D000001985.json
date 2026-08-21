@@ -39,6 +39,7 @@
  "form": "Preroll 0.4g",
  "strain": "Cookies N Cream",
  "lean": "settling",
- "in_stock": true,
- "thc": 27.9512
+ "in_stock": false,
+ "thc": 27.9512,
+ "sold_out_at": "2026-08-20T23:39:35.135Z"
 }

@@ -1,0 +1,39 @@
+{
+ "id": "da961bea65",
+ "shelf_tag": "Sativa",
+ "confidence": "moderate",
+ "dominant": [
+  "beta-Caryophyllene",
+  "alpha-Humulene",
+  "Limonene"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.59,
+  "alpha-Humulene": 0.22,
+  "Limonene": 0.11,
+  "beta-Myrcene": 0.1,
+  "Linalool": 0.1
+ },
+ "brand": "Canna Cure",
+ "total_terpenes": 1.13,
+ "metrc_tag": "1A41203000016B4000001705",
+ "reported": [
+  "Strawberry Diesel Dime Bag",
+  "TestPassed"
+ ],
+ "aroma": [
+  "spicy",
+  "earthy",
+  "citrus",
+  "floral",
+  "herbal"
+ ],
+ "form": "Flower 1g",
+ "strain": "Strawberry Diesel",
+ "lean": "settling",
+ "in_stock": true,
+ "thc": 22.307,
+ "test_date": "2026-02-16",
+ "test_lab": "Green Analytics NY, LLC",
+ "scanned_at": "2026-08-20T23:38:42.042Z"
+}

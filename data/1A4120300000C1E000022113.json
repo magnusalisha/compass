@@ -1,0 +1,33 @@
+{
+ "id": "fc8c5a22a7",
+ "metrc_tag": "1A4120300000C1E000022113",
+ "brand": "Hi*AF",
+ "strain": "Rainbow Sherbert",
+ "form": "Vapes 0.5g",
+ "lean": null,
+ "confidence": "strong",
+ "shelf_tag": "Hybrid",
+ "reported": [],
+ "dominant": [],
+ "aroma": [],
+ "terpenes": {
+  "Limonene": 0.9719,
+  "beta-Myrcene": 0.5478,
+  "beta-Caryophyllene": 0.4944,
+  "beta-Pinene": 0.4242,
+  "Linalool": 0.2479,
+  "alpha-Bisabolol": 0.1194,
+  "alpha-Pinene": 0.1089,
+  "Fenchol": 0.1043,
+  "Terpinolene": 0.068,
+  "Camphene": 0.0236,
+  "alpha-Humulene": 0.023,
+  "Farnesene": 0.0177
+ },
+ "scanned_at": "2026-08-20T23:38:39.016Z",
+ "thc": 85.2,
+ "total_terpenes": 3.308,
+ "in_stock": true,
+ "test_date": "2025-10-28",
+ "test_lab": "ACT Laboratories of New York, LLC"
+}

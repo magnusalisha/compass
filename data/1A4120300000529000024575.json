@@ -1,7 +1,7 @@
 {
  "id": "07ab6caff7",
  "metrc_tag": "1A4120300000529000024575",
- "brand": "Cru",
+ "brand": "CRU",
  "strain": "Bubba Kush",
  "form": "Infused Preroll 0.5g (6-pack, 3g total)",
  "thc": 25.576,
@@ -25,5 +25,8 @@
   "beta-Caryophyllene": 0.49,
   "alpha-Humulene": 0.25
  },
- "scanned_at": "2026-08-10T17:45:04.430Z"
+ "scanned_at": "2026-08-20T23:38:39.516Z",
+ "test_date": "2026-03-05",
+ "test_lab": "Green Analytics NY, LLC",
+ "date_expire": "2027-02-25"
 }

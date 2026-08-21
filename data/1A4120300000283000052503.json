@@ -1,0 +1,28 @@
+{
+ "id": "1ecf30b89e",
+ "metrc_tag": "1A4120300000283000052503",
+ "brand": "Stay Melo",
+ "strain": "Sunrise Sessions",
+ "form": "Flower 3.5g",
+ "lean": null,
+ "confidence": "strong",
+ "shelf_tag": "Sativa",
+ "reported": [],
+ "dominant": [],
+ "aroma": [],
+ "terpenes": {
+  "beta-Myrcene": 1.36,
+  "alpha-Pinene": 0.25,
+  "Limonene": 0.22,
+  "beta-Caryophyllene": 0.18,
+  "beta-Pinene": 0.15,
+  "alpha-Humulene": 0.07
+ },
+ "scanned_at": "2026-08-20T23:39:30.663Z",
+ "thc": 30.471,
+ "total_terpenes": 2.23,
+ "in_stock": true,
+ "test_date": "2026-06-16",
+ "test_lab": "Green Analytics NY, LLC",
+ "date_expire": "2027-06-01"
+}

@@ -1,0 +1,48 @@
+{
+ "id": "a3f8c21d90",
+ "metrc_tag": "1A41203000018B1000070704",
+ "brand": "Ghost",
+ "strain": "Black Mamba",
+ "form": "Vape 2g Disposable",
+ "thc": 87.236,
+ "total_terpenes": 4.46,
+ "lean": "settling",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Indica",
+ "reported": [
+  "Black Mamba",
+  "Ghost Vape"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "alpha-Pinene",
+  "Linalool"
+ ],
+ "aroma": [
+  "spicy",
+  "woody",
+  "floral",
+  "herbal",
+  "earthy"
+ ],
+ "terpenes": {
+  "Limonene": 1.4,
+  "beta-Myrcene": 1.11,
+  "beta-Caryophyllene": 0.39,
+  "beta-Pinene": 0.33,
+  "Terpinolene": 0.33,
+  "alpha-Pinene": 0.29,
+  "Linalool": 0.24,
+  "alpha-Bisabolol": 0.08,
+  "alpha-Humulene": 0.08,
+  "Fenchol": 0.07,
+  "Terpineol": 0.06,
+  "Caryophyllene Oxide": 0.04,
+  "Farnesene": 0.04
+ },
+ "test_date": "2026-07-08",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-06-26",
+ "scanned_at": "2026-08-20T23:38:43.399Z"
+}

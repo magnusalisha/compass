@@ -1,7 +1,7 @@
 {
  "id": "0c65098c53",
  "metrc_tag": "1A41203000004EB000027809",
- "brand": "SmartBud",
+ "brand": "Smart Bud",
  "strain": "Blue Dream",
  "form": "Flower 3.5g",
  "thc": 27.388,
@@ -34,5 +34,8 @@
   "beta-Pinene": 0.08,
   "Fenchol": 0.08
  },
- "scanned_at": "2026-08-19T19:09:57.974Z"
+ "scanned_at": "2026-08-20T23:39:31.113Z",
+ "test_date": "2026-07-31",
+ "test_lab": "Green Analytics NY, LLC",
+ "date_expire": "2027-07-24"
 }

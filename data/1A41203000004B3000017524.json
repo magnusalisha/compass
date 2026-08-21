@@ -1,0 +1,50 @@
+{
+ "id": "a3f7c2e91b",
+ "metrc_tag": "1A41203000004B3000017524",
+ "brand": "Alchemy Pure",
+ "strain": "Carnival",
+ "form": "Preroll 0.75g Hash Infused",
+ "thc": 32.66,
+ "total_terpenes": 2.7703,
+ "lean": "settling",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Indica",
+ "reported": [
+  "Hash infused preroll",
+  "High total cannabinoids 295mg/unit"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "Farnesene",
+  "Limonene"
+ ],
+ "aroma": [
+  "spicy",
+  "earthy",
+  "citrus",
+  "floral",
+  "herbal"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.8155,
+  "Farnesene": 0.5235,
+  "Limonene": 0.4307,
+  "alpha-Humulene": 0.2607,
+  "beta-Myrcene": 0.1745,
+  "Linalool": 0.1361,
+  "Nerolidol": 0.1101,
+  "alpha-Bisabolol": 0.0768,
+  "beta-Pinene": 0.0589,
+  "Fenchol": 0.0468,
+  "Terpineol": 0.0432,
+  "Caryophyllene Oxide": 0.0339,
+  "alpha-Pinene": 0.0317,
+  "Ocimene": 0.0156,
+  "Borneol": 0.0122
+ },
+ "test_date": "2026-06-11",
+ "test_lab": "ACT Laboratories of New York, LLC",
+ "date_expire": "2027-06-03",
+ "scanned_at": "2026-08-20T23:39:02.565Z"
+}

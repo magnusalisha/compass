@@ -1,0 +1,37 @@
+{
+ "id": "a3f8c2e1b9",
+ "metrc_tag": "1A4120300000216000087941",
+ "brand": "Anthem",
+ "strain": "Tangie Dream",
+ "form": "Preroll 1g Infused",
+ "thc": 56.2031,
+ "total_terpenes": 0.16,
+ "lean": "settling",
+ "confidence": "moderate",
+ "in_stock": true,
+ "shelf_tag": "Sativa",
+ "reported": [
+  "Bold",
+  "Glass Tip"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "Linalool",
+  "Guaiol"
+ ],
+ "aroma": [
+  "floral",
+  "earthy",
+  "spicy",
+  "herbal",
+  "woody"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.11,
+  "Caryophyllene Oxide": 0.05
+ },
+ "test_date": "2026-06-22",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-06-08",
+ "scanned_at": "2026-08-20T23:39:09.941Z"
+}

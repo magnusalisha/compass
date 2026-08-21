@@ -5,7 +5,7 @@
  "strain": "Grape Gas",
  "form": "Preroll 1g Infused",
  "thc": 44.8,
- "total_terpenes": 1.919,
+ "total_terpenes": 1.8995,
  "lean": "settling",
  "confidence": "strong",
  "in_stock": true,
@@ -42,5 +42,9 @@
   "Guaiol": 0.0165,
   "Geraniol": 0.0115,
   "Terpinolene": 0.0102
- }
+ },
+ "test_date": "2026-02-07",
+ "test_lab": "Analytical Testing Center of Central New York",
+ "date_expire": "2026-09-03",
+ "scanned_at": "2026-08-20T23:38:44.636Z"
 }

@@ -1,0 +1,46 @@
+{
+ "id": "a3f7c2e814",
+ "shelf_tag": "Indica",
+ "confidence": "strong",
+ "dominant": [
+  "Limonene",
+  "Linalool",
+  "beta-Caryophyllene"
+ ],
+ "terpenes": {
+  "Limonene": 0.46,
+  "Linalool": 0.29,
+  "beta-Caryophyllene": 0.23,
+  "beta-Myrcene": 0.11,
+  "alpha-Humulene": 0.08,
+  "Guaiol": 0.08,
+  "beta-Pinene": 0.05,
+  "Fenchol": 0.05,
+  "Terpineol": 0.04,
+  "alpha-Pinene": 0.03,
+  "Camphene": 0.01
+ },
+ "brand": "1937",
+ "total_terpenes": 1.43,
+ "metrc_tag": "1A4120300000C1E000048473",
+ "reported": [
+  "27.1% Total THC",
+  "1.43% Total Terpenes"
+ ],
+ "aroma": [
+  "citrus",
+  "floral",
+  "spicy",
+  "herbal",
+  "piney"
+ ],
+ "form": "Flower 3.5g",
+ "strain": "Banana Power",
+ "lean": "lifting",
+ "in_stock": true,
+ "thc": 27.1027,
+ "test_date": "2026-06-23",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-05-29",
+ "scanned_at": "2026-08-20T23:38:55.343Z"
+}

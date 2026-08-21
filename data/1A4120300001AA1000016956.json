@@ -1,0 +1,49 @@
+{
+ "id": "34073ae3b5",
+ "metrc_tag": "1A4120300001AA1000016956",
+ "brand": "Revert",
+ "strain": "Northern Lights",
+ "form": "Flower 14g",
+ "thc": 26.85,
+ "total_terpenes": 2.6124,
+ "lean": "settling",
+ "confidence": "moderate",
+ "in_stock": true,
+ "shelf_tag": "Indica",
+ "reported": [],
+ "dominant": [
+  "beta-Caryophyllene",
+  "Limonene",
+  "alpha-Humulene"
+ ],
+ "aroma": [
+  "spicy",
+  "peppery",
+  "citrus",
+  "woody",
+  "herbal"
+ ],
+ "terpenes": {
+  "Limonene": 0.9272,
+  "beta-Caryophyllene": 0.9168,
+  "alpha-Humulene": 0.4283,
+  "beta-Myrcene": 0.3719,
+  "alpha-Bisabolol": 0.2342,
+  "Ocimene": 0.1299,
+  "Linalool": 0.1237,
+  "beta-Pinene": 0.1097,
+  "alpha-Pinene": 0.0829,
+  "Terpineol": 0.0671,
+  "Fenchol": 0.0578,
+  "Nerolidol": 0.0319,
+  "Caryophyllene Oxide": 0.0286,
+  "Farnesene": 0.019,
+  "Camphene": 0.0158,
+  "Terpinolene": 0.0126,
+  "Borneol": 0.0121
+ },
+ "scanned_at": "2026-08-20T23:39:29.989Z",
+ "test_date": "2026-05-06",
+ "test_lab": "Green Analytics NY, LLC",
+ "date_expire": "2027-04-02"
+}

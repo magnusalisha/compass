@@ -8,7 +8,7 @@
  "total_terpenes": 1.7,
  "lean": "lifting",
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Hybrid",
  "reported": [
   "27.55% Total THC",
@@ -41,5 +41,6 @@
   "Camphene": 0.01,
   "Caryophyllene Oxide": 0.01,
   "alpha-Bisabolol": 0.01
- }
+ },
+ "sold_out_at": "2026-08-20T23:39:35.130Z"
 }

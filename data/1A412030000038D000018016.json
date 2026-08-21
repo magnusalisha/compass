@@ -1,0 +1,43 @@
+{
+ "id": "eed9775a79",
+ "shelf_tag": "Hybrid",
+ "confidence": "strong",
+ "dominant": [
+  "beta-Caryophyllene",
+  "Limonene",
+  "Linalool"
+ ],
+ "note": null,
+ "terpenes": {
+  "beta-Caryophyllene": 0.38,
+  "Limonene": 0.33,
+  "Linalool": 0.29,
+  "alpha-Humulene": 0.12,
+  "beta-Myrcene": 0.12,
+  "Fenchol": 0.04,
+  "Terpineol": 0.04
+ },
+ "brand": "Rolling Green",
+ "total_terpenes": 1.32,
+ "balance": -0.44,
+ "reported": [
+  "calm in the body",
+  "bright and talkative"
+ ],
+ "aroma": [
+  "pepper",
+  "spice",
+  "woody",
+  "citrus",
+  "lemon"
+ ],
+ "form": "Flower 3.5g",
+ "strain": "Glitter Bomb",
+ "lean": "settling",
+ "in_stock": true,
+ "thc": 26.5995,
+ "metrc_tag": "1A412030000038D000018016",
+ "test_date": "2026-05-11",
+ "test_lab": "Kaycha Labs NY",
+ "scanned_at": "2026-08-20T23:38:46.795Z"
+}

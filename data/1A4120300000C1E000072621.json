@@ -1,0 +1,45 @@
+{
+ "id": "a3f82c1d9e",
+ "metrc_tag": "1A4120300000C1E000072621",
+ "brand": "1937",
+ "strain": "OZ Kush",
+ "form": "Flower 3.5g",
+ "thc": 25.1307,
+ "total_terpenes": 1.21,
+ "lean": "settling",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Hybrid",
+ "reported": [
+  "OZ Kush",
+  "Mixed Bud"
+ ],
+ "dominant": [
+  "Linalool",
+  "beta-Caryophyllene",
+  "Limonene"
+ ],
+ "aroma": [
+  "floral",
+  "spicy",
+  "citrus",
+  "herbal",
+  "piney"
+ ],
+ "terpenes": {
+  "Linalool": 0.31,
+  "beta-Caryophyllene": 0.24,
+  "Limonene": 0.24,
+  "beta-Myrcene": 0.1,
+  "alpha-Humulene": 0.09,
+  "Farnesene": 0.08,
+  "Terpineol": 0.05,
+  "beta-Pinene": 0.04,
+  "Fenchol": 0.04,
+  "alpha-Pinene": 0.02
+ },
+ "test_date": "2026-06-22",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-06-07",
+ "scanned_at": "2026-08-20T23:39:06.387Z"
+}

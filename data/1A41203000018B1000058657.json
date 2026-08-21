@@ -1,0 +1,48 @@
+{
+ "id": "a3f82c1d9e",
+ "metrc_tag": "1A41203000018B1000058657",
+ "brand": "Ghost",
+ "strain": "Strawberry Shortcake",
+ "form": "Vape 2g Disposable",
+ "thc": 89.9236,
+ "total_terpenes": 4.94,
+ "lean": "lifting",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Indica",
+ "reported": [
+  "Strawberry Shortcake flavor",
+  "Ethanol production method"
+ ],
+ "dominant": [
+  "Limonene",
+  "beta-Myrcene",
+  "alpha-Pinene"
+ ],
+ "aroma": [
+  "citrus",
+  "fruity",
+  "piney",
+  "herbal",
+  "earthy"
+ ],
+ "terpenes": {
+  "Limonene": 2.45,
+  "beta-Myrcene": 0.92,
+  "alpha-Pinene": 0.51,
+  "beta-Pinene": 0.32,
+  "Ocimene": 0.3,
+  "Camphene": 0.13,
+  "Linalool": 0.09,
+  "beta-Caryophyllene": 0.08,
+  "alpha-Phellandrene": 0.05,
+  "Terpinolene": 0.04,
+  "Fenchol": 0.03,
+  "Caryophyllene Oxide": 0.01,
+  "Terpineol": 0.01
+ },
+ "test_date": "2026-06-22",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-06-10",
+ "scanned_at": "2026-08-20T23:38:48.629Z"
+}

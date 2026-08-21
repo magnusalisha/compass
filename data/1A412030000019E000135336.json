@@ -33,17 +33,18 @@
   "Terpineol": 0.1395,
   "alpha-Humulene": 0.1262,
   "Borneol": 0.1016,
-  "Delta-Terpinene": 0.0895,
   "Terpinolene": 0.0895,
   "alpha-Pinene": 0.0845,
   "beta-Pinene": 0.0808,
   "Valencene": 0.0727,
   "Geraniol": 0.0611,
   "alpha-Phellandrene": 0.0468,
-  "Delta-3 Carene": 0.0463,
+  "Carene": 0.0463,
   "Fenchol": 0.0253,
   "Caryophyllene Oxide": 0.0249,
   "Camphene": 0.0061
  },
- "scanned_at": "2026-08-10T16:12:39.660Z"
+ "scanned_at": "2026-08-20T23:39:19.629Z",
+ "test_date": "2026-03-20",
+ "test_lab": "Smithers CTS New York, LLC"
 }

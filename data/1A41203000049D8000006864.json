@@ -1,0 +1,40 @@
+{
+ "id": "a3f82c1e9b",
+ "metrc_tag": "1A41203000049D8000006864",
+ "brand": "Fernway",
+ "strain": "Americano",
+ "form": "Vape 1g Cartridge",
+ "thc": 86.96,
+ "total_terpenes": 2.6259,
+ "lean": "settling",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Sativa",
+ "reported": [
+  "high-THC concentrate",
+  "510 cartridge"
+ ],
+ "dominant": [
+  "Farnesene",
+  "trans-Nerolidol",
+  "cis-Nerolidol"
+ ],
+ "aroma": [
+  "earthy",
+  "floral",
+  "woody",
+  "herbal",
+  "musky"
+ ],
+ "terpenes": {
+  "Nerolidol": 1.4356,
+  "Farnesene": 0.5425,
+  "beta-Caryophyllene": 0.0972,
+  "alpha-Bisabolol": 0.0669,
+  "alpha-Humulene": 0.0217
+ },
+ "test_date": "2026-05-29",
+ "test_lab": "Smithers CTS New York, LLC",
+ "date_expire": "2027-05-29",
+ "scanned_at": "2026-08-20T23:38:43.870Z"
+}

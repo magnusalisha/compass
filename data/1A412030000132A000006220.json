@@ -1,0 +1,52 @@
+{
+ "id": "a3f82c1d9e",
+ "metrc_tag": "1A412030000132A000006220",
+ "brand": "Lobo",
+ "strain": "Blue Dream",
+ "form": "Preroll 1g Infused",
+ "thc": 22.6,
+ "total_terpenes": 0.9207,
+ "lean": "settling",
+ "confidence": "faint",
+ "in_stock": true,
+ "shelf_tag": "Hybrid",
+ "reported": [
+  "Blue Dream",
+  "Bold 1g Pre-Roll"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "alpha-Humulene",
+  "alpha-Bisabolol"
+ ],
+ "aroma": [
+  "earthy",
+  "spicy",
+  "woody",
+  "floral",
+  "herbal"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.5053,
+  "Farnesene": 0.2755,
+  "alpha-Humulene": 0.1947,
+  "Linalool": 0.1091,
+  "Valencene": 0.1042,
+  "alpha-Bisabolol": 0.1018,
+  "beta-Myrcene": 0.0949,
+  "Limonene": 0.0813,
+  "Fenchol": 0.0527,
+  "Terpineol": 0.0487,
+  "Caryophyllene Oxide": 0.0452,
+  "Terpinolene": 0.03,
+  "beta-Pinene": 0.0287,
+  "alpha-Pinene": 0.0268,
+  "Ocimene": 0.02,
+  "Guaiol": 0.02
+ },
+ "sold_out_at": "2026-07-26T13:58:55.039Z",
+ "test_date": "2026-03-22",
+ "test_lab": "Analytical Testing Center of Central New York",
+ "date_expire": "2027-04-01",
+ "scanned_at": "2026-08-20T23:39:24.627Z"
+}

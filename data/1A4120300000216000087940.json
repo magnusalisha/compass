@@ -1,0 +1,46 @@
+{
+ "id": "a3f82c19de",
+ "metrc_tag": "1A4120300000216000087940",
+ "brand": "Anthem",
+ "strain": "Rocket Glare",
+ "form": "Infused Preroll 1g",
+ "thc": 47.5632,
+ "total_terpenes": 1.1,
+ "lean": "mixed",
+ "confidence": "moderate",
+ "in_stock": true,
+ "shelf_tag": "Hybrid",
+ "reported": [
+  "47.56% Total THC",
+  "1.10% Total Terpenes"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "Limonene",
+  "alpha-Pinene"
+ ],
+ "aroma": [
+  "spicy",
+  "citrus",
+  "piney",
+  "woody",
+  "earthy"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.2,
+  "Limonene": 0.17,
+  "alpha-Pinene": 0.14,
+  "alpha-Humulene": 0.13,
+  "beta-Myrcene": 0.12,
+  "beta-Pinene": 0.1,
+  "Guaiol": 0.06,
+  "Terpineol": 0.05,
+  "Terpinolene": 0.05,
+  "alpha-Bisabolol": 0.04,
+  "Fenchol": 0.04
+ },
+ "scanned_at": "2026-08-20T23:39:09.663Z",
+ "test_date": "2026-06-08",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-06-01"
+}

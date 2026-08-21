@@ -1,0 +1,50 @@
+{
+ "id": "a3f7c2e914",
+ "metrc_tag": "1A4120300000641000389423",
+ "brand": "Jetty",
+ "strain": "Italian Soda",
+ "form": "Vape 1g AIO Disposable",
+ "thc": 68.2,
+ "total_terpenes": 8.4579,
+ "lean": "lifting",
+ "confidence": "strong",
+ "in_stock": false,
+ "shelf_tag": "Sativa",
+ "reported": [
+  "Citrus",
+  "Spicy"
+ ],
+ "dominant": [
+  "Limonene",
+  "beta-Caryophyllene",
+  "beta-Myrcene"
+ ],
+ "aroma": [
+  "citrus",
+  "spicy",
+  "herbal",
+  "piney",
+  "hoppy"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 5.2174,
+  "Limonene": 3.1375,
+  "beta-Myrcene": 1.8578,
+  "alpha-Humulene": 1.5169,
+  "beta-Pinene": 0.5294,
+  "alpha-Bisabolol": 0.4748,
+  "Linalool": 0.4489,
+  "Farnesene": 0.4267,
+  "alpha-Pinene": 0.3618,
+  "Caryophyllene Oxide": 0.2203,
+  "Ocimene": 0.2164,
+  "Fenchol": 0.2019,
+  "Terpineol": 0.1334,
+  "Camphene": 0.0791
+ },
+ "test_date": "2026-05-28",
+ "test_lab": "Certified Testing and Data NY, LLC",
+ "date_expire": "2027-06-23",
+ "scanned_at": "2026-08-20T23:39:06.161Z",
+ "sold_out_at": "2026-08-21T15:44:23.247Z"
+}

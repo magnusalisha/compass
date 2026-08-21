@@ -1,0 +1,45 @@
+{
+ "id": "a3f9c2b847",
+ "metrc_tag": "1A4120300000216000087942",
+ "brand": "Anthem",
+ "strain": "Acapulco Gold",
+ "form": "Infused Preroll 0.5g (5-pack, 2.5g total)",
+ "thc": 41.4733,
+ "total_terpenes": 0.34,
+ "lean": "settling",
+ "confidence": "faint",
+ "in_stock": true,
+ "shelf_tag": "Sativa",
+ "reported": [
+  "Glass tip infused pre-roll pack",
+  "41.47% Total THC"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "Linalool",
+  "alpha-Humulene"
+ ],
+ "aroma": [
+  "spicy",
+  "floral",
+  "earthy",
+  "citrus",
+  "woody"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.1,
+  "Linalool": 0.07,
+  "alpha-Humulene": 0.04,
+  "Caryophyllene Oxide": 0.03,
+  "Limonene": 0.03,
+  "alpha-Bisabolol": 0.02,
+  "beta-Myrcene": 0.02,
+  "Fenchol": 0.01,
+  "Terpineol": 0.01,
+  "Valencene": 0.01
+ },
+ "test_date": "2026-02-11",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-01-30",
+ "scanned_at": "2026-08-20T23:39:10.212Z"
+}

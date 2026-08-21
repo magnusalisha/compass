@@ -1,0 +1,46 @@
+{
+ "id": "a3f7c912be",
+ "metrc_tag": "1A4120300000216000087293",
+ "brand": "Find",
+ "strain": "True OG",
+ "form": "Flower 3.5g",
+ "thc": 27.2073,
+ "total_terpenes": 1.08,
+ "lean": "settling",
+ "confidence": "moderate",
+ "in_stock": true,
+ "shelf_tag": "Indica",
+ "reported": [
+  "True OG",
+  "Find."
+ ],
+ "dominant": [
+  "beta-Myrcene",
+  "beta-Caryophyllene",
+  "Limonene"
+ ],
+ "aroma": [
+  "earthy",
+  "herbal",
+  "spicy",
+  "citrus",
+  "floral"
+ ],
+ "terpenes": {
+  "beta-Myrcene": 0.57,
+  "beta-Caryophyllene": 0.2,
+  "Limonene": 0.08,
+  "alpha-Humulene": 0.07,
+  "Linalool": 0.07,
+  "alpha-Bisabolol": 0.04,
+  "beta-Pinene": 0.01,
+  "Caryophyllene Oxide": 0.01,
+  "Fenchol": 0.01,
+  "Terpineol": 0.01,
+  "Valencene": 0.01
+ },
+ "test_date": "2026-02-09",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2026-10-16",
+ "scanned_at": "2026-08-20T23:39:00.201Z"
+}

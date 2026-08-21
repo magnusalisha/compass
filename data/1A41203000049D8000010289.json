@@ -10,7 +10,10 @@
  "confidence": "strong",
  "in_stock": true,
  "shelf_tag": "Indica",
- "reported": [],
+ "reported": [
+  "alpha-Pinene forward",
+  "beta-Myrcene body"
+ ],
  "dominant": [
   "alpha-Pinene",
   "beta-Myrcene",
@@ -39,5 +42,8 @@
   "Borneol": 0.0094,
   "Nerolidol": 0.0013
  },
- "scanned_at": "2026-08-15T16:40:06.584Z"
+ "scanned_at": "2026-08-20T23:39:20.808Z",
+ "test_date": "2026-07-10",
+ "test_lab": "Smithers CTS New York, LLC",
+ "date_expire": "2027-07-10"
 }

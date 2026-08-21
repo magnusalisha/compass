@@ -1,0 +1,27 @@
+{
+ "id": "7f6123b17b",
+ "metrc_tag": "1A4120300000529000057942",
+ "brand": "Jetpacks",
+ "strain": "Pink Lemonade",
+ "form": "Pre-Roll 3g",
+ "lean": null,
+ "confidence": "moderate",
+ "shelf_tag": "Sativa",
+ "reported": [],
+ "dominant": [],
+ "aroma": [],
+ "terpenes": {
+  "beta-Caryophyllene": 0.87,
+  "Limonene": 0.36,
+  "alpha-Humulene": 0.33,
+  "Linalool": 0.12,
+  "beta-Myrcene": 0.07
+ },
+ "scanned_at": "2026-08-20T23:38:57.749Z",
+ "thc": 35.244,
+ "total_terpenes": 1.16,
+ "in_stock": true,
+ "test_date": "2026-03-05",
+ "test_lab": "Green Analytics NY, LLC",
+ "date_expire": "2027-02-25"
+}

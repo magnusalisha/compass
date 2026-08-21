@@ -24,7 +24,6 @@
   "peppery"
  ],
  "terpenes": {
-  "Delta-Terpinene": 0.9544,
   "Terpinolene": 0.9544,
   "Limonene": 0.5063,
   "beta-Caryophyllene": 0.4219,
@@ -42,5 +41,7 @@
   "Borneol": 0.0256,
   "Fenchol": 0.0189
  },
- "scanned_at": "2026-08-10T16:15:23.056Z"
+ "scanned_at": "2026-08-20T23:39:19.867Z",
+ "test_date": "2026-03-20",
+ "test_lab": "Smithers CTS New York, LLC"
 }

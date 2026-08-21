@@ -24,21 +24,28 @@
   "citrus"
  ],
  "terpenes": {
-  "Terpineol": 0.6159,
-  "beta-Caryophyllene": 0.6026,
-  "Limonene": 0.3886,
+  "beta-Caryophyllene": 2.6552,
+  "alpha-Humulene": 0.8067,
+  "Terpineol": 0.7341,
+  "alpha-Bisabolol": 0.6252,
+  "Limonene": 0.4803,
+  "Farnesene": 0.4012,
+  "Nerolidol": 0.2688,
   "Terpinolene": 0.2284,
+  "Guaiol": 0.2273,
   "beta-Myrcene": 0.2146,
-  "alpha-Humulene": 0.1421,
+  "Linalool": 0.197,
+  "Fenchol": 0.1563,
   "beta-Pinene": 0.1244,
-  "alpha-Pinene": 0.1226,
+  "Caryophyllene Oxide": 0.1228,
   "Isopulegol": 0.1226,
-  "Linalool": 0.068,
-  "Fenchol": 0.0626,
-  "alpha-Bisabolol": 0.0609,
+  "alpha-Pinene": 0.1226,
   "alpha-Phellandrene": 0.025,
-  "Carene": 0.0209,
-  "Caryophyllene Oxide": 0.0198
+  "Borneol": 0.0248,
+  "Carene": 0.0209
  },
- "scanned_at": "2026-08-10T16:51:53.939Z"
+ "scanned_at": "2026-08-20T23:39:08.428Z",
+ "test_date": "2026-04-30",
+ "test_lab": "ACT Laboratories of New York, LLC",
+ "date_expire": "2027-04-22"
 }

@@ -32,15 +32,18 @@
   "alpha-Pinene": 0.18,
   "beta-Pinene": 0.15,
   "alpha-Humulene": 0.1,
-  "Linalool": 0.08,
   "alpha-Phellandrene": 0.08,
+  "Linalool": 0.08,
   "alpha-Terpinene": 0.06,
   "alpha-Bisabolol": 0.02,
   "Fenchol": 0.02,
   "Terpineol": 0.02,
   "Camphene": 0.01,
   "Caryophyllene Oxide": 0.01,
-  "Guaiol": 0.01
+  "Guaiol": 0.01,
+  "Valencene": 0.01
  },
- "scanned_at": "2026-08-10T17:20:14.666Z"
+ "scanned_at": "2026-08-20T23:39:20.072Z",
+ "test_date": "2026-04-28",
+ "test_lab": "Kaycha Labs NY"
 }

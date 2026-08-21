@@ -1,0 +1,44 @@
+{
+ "id": "28822d1e81",
+ "shelf_tag": "Sativa",
+ "confidence": "strong",
+ "dominant": [
+  "beta-Myrcene",
+  "alpha-Pinene",
+  "Ocimene"
+ ],
+ "terpenes": {
+  "beta-Myrcene": 0.82,
+  "Ocimene": 0.28,
+  "alpha-Pinene": 0.25,
+  "Linalool": 0.14,
+  "beta-Caryophyllene": 0.09,
+  "Limonene": 0.08,
+  "beta-Pinene": 0.05,
+  "alpha-Humulene": 0.02,
+  "Valencene": 0.01
+ },
+ "brand": "Bouket",
+ "total_terpenes": 1.74,
+ "metrc_tag": "1A4120300000C1E000072628",
+ "reported": [
+  "Indoor Large Bud",
+  "Cured Flower"
+ ],
+ "aroma": [
+  "earthy",
+  "herbal",
+  "piney",
+  "floral",
+  "citrus"
+ ],
+ "form": "Flower 3.5g",
+ "strain": "Rose Gold Runtz",
+ "lean": "lifting",
+ "in_stock": true,
+ "thc": 26.9992,
+ "test_date": "2026-06-22",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-06-12",
+ "scanned_at": "2026-08-20T23:39:07.132Z"
+}

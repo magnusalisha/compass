@@ -1,0 +1,32 @@
+{
+ "id": "f99dac02d3",
+ "metrc_tag": "1A4120300000484000009890",
+ "brand": "NYCE",
+ "strain": "Donny Burger",
+ "form": "Vapes 0.5g",
+ "lean": null,
+ "confidence": "strong",
+ "shelf_tag": "Indica",
+ "reported": [],
+ "dominant": [],
+ "aroma": [],
+ "terpenes": {
+  "beta-Caryophyllene": 2.6825,
+  "Limonene": 1.1812,
+  "alpha-Humulene": 1.1148,
+  "alpha-Bisabolol": 0.4115,
+  "Linalool": 0.3998,
+  "alpha-Pinene": 0.1143,
+  "Terpineol": 0.1019,
+  "beta-Pinene": 0.0911,
+  "Camphene": 0.0175,
+  "Terpinolene": 0.0149
+ },
+ "scanned_at": "2026-08-20T23:39:34.416Z",
+ "thc": 87.57,
+ "total_terpenes": 6.1295,
+ "in_stock": true,
+ "test_date": "2026-06-16",
+ "test_lab": "Reliable Labs, Inc.",
+ "date_expire": "2027-06-04"
+}

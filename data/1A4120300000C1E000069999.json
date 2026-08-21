@@ -1,0 +1,51 @@
+{
+ "id": "a3f9c12e74",
+ "shelf_tag": "Indica",
+ "confidence": "moderate",
+ "dominant": [
+  "Limonene",
+  "beta-Myrcene",
+  "Linalool"
+ ],
+ "terpenes": {
+  "Limonene": 0.25,
+  "beta-Myrcene": 0.23,
+  "Linalool": 0.18,
+  "beta-Caryophyllene": 0.13,
+  "alpha-Humulene": 0.06,
+  "beta-Pinene": 0.05,
+  "Guaiol": 0.05,
+  "alpha-Bisabolol": 0.04,
+  "Farnesene": 0.04,
+  "alpha-Pinene": 0.03,
+  "Fenchol": 0.03,
+  "Terpineol": 0.03,
+  "Caryophyllene Oxide": 0.02,
+  "Valencene": 0.02,
+  "Camphene": 0.01,
+  "Ocimene": 0.01,
+  "Terpinolene": 0.01
+ },
+ "brand": "1937",
+ "total_terpenes": 1.19,
+ "metrc_tag": "1A4120300000C1E000069999",
+ "reported": [
+  "Mixed Bud",
+  "Cured Flower"
+ ],
+ "aroma": [
+  "citrus",
+  "fruity",
+  "floral",
+  "herbal",
+  "earthy"
+ ],
+ "form": "Flower 3.5g",
+ "strain": "ChemD x I95",
+ "lean": "lifting",
+ "in_stock": true,
+ "thc": 25.1455,
+ "test_date": "2026-05-08",
+ "test_lab": "Kaycha Labs NY",
+ "scanned_at": "2026-08-20T23:38:55.586Z"
+}

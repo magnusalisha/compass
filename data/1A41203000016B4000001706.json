@@ -1,0 +1,40 @@
+{
+ "id": "a3f8c1d9e2",
+ "shelf_tag": "Indica",
+ "confidence": "strong",
+ "dominant": [
+  "beta-Caryophyllene",
+  "Limonene",
+  "Linalool"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.34,
+  "Limonene": 0.29,
+  "Linalool": 0.29,
+  "Guaiol": 0.16,
+  "alpha-Humulene": 0.11,
+  "beta-Myrcene": 0.08
+ },
+ "brand": "Canna Cure",
+ "total_terpenes": 1.26,
+ "metrc_tag": "1A41203000016B4000001706",
+ "reported": [
+  "Lab tested and state regulated",
+  "Manufactured by Canna Cure Farms, LLC"
+ ],
+ "aroma": [
+  "spicy",
+  "citrus",
+  "floral",
+  "earthy",
+  "woody"
+ ],
+ "form": "Flower 1g",
+ "strain": "Purple Zkittlez",
+ "lean": "mixed",
+ "in_stock": true,
+ "thc": 25.013,
+ "test_date": "2026-02-16",
+ "test_lab": "Green Analytics NY, LLC",
+ "scanned_at": "2026-08-20T23:38:42.282Z"
+}

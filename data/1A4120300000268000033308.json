@@ -1,0 +1,52 @@
+{
+ "id": "a3f9c21b4e",
+ "metrc_tag": "1A4120300000268000033308",
+ "brand": "Rythm",
+ "strain": "Creamsicle Sunset",
+ "form": "Flower 7g",
+ "thc": 20.09,
+ "total_terpenes": 1.7736,
+ "lean": "settling",
+ "confidence": "strong",
+ "in_stock": false,
+ "shelf_tag": "Hybrid",
+ "reported": [
+  "Spicy",
+  "Citrus"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "Limonene",
+  "alpha-Humulene"
+ ],
+ "aroma": [
+  "spicy",
+  "citrus",
+  "earthy",
+  "floral",
+  "herbal"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.5282,
+  "Limonene": 0.4333,
+  "alpha-Humulene": 0.1733,
+  "Linalool": 0.1238,
+  "Farnesene": 0.1118,
+  "beta-Myrcene": 0.1099,
+  "beta-Pinene": 0.0623,
+  "alpha-Bisabolol": 0.0424,
+  "Terpineol": 0.0377,
+  "Fenchol": 0.0342,
+  "alpha-Pinene": 0.0329,
+  "Nerolidol": 0.0276,
+  "Caryophyllene Oxide": 0.0229,
+  "Terpinolene": 0.0138,
+  "Borneol": 0.0107,
+  "Camphene": 0.0089
+ },
+ "test_date": "2026-01-22",
+ "test_lab": "ACT Laboratories of New York, LLC",
+ "date_expire": "2027-01-20",
+ "scanned_at": "2026-08-20T23:38:52.235Z",
+ "sold_out_at": "2026-08-21T15:05:13.958Z"
+}

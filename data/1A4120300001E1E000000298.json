@@ -1,0 +1,41 @@
+{
+ "id": "a3f8c21d94",
+ "shelf_tag": "Hybrid",
+ "confidence": "strong",
+ "dominant": [
+  "beta-Myrcene",
+  "alpha-Pinene",
+  "Ocimene"
+ ],
+ "terpenes": {
+  "beta-Myrcene": 1.32,
+  "alpha-Pinene": 0.26,
+  "Ocimene": 0.16,
+  "beta-Caryophyllene": 0.15,
+  "Linalool": 0.1,
+  "beta-Pinene": 0.08,
+  "Limonene": 0.08
+ },
+ "brand": "Royal Genetics",
+ "total_terpenes": 2.16,
+ "metrc_tag": "1A4120300001E1E000000298",
+ "reported": [
+  "Total THC 26.559% w/w",
+  "Total Terpenes 2.16% w/w"
+ ],
+ "aroma": [
+  "earthy",
+  "herbal",
+  "piney",
+  "citrus",
+  "floral"
+ ],
+ "form": "Flower 3.5g",
+ "strain": "Pie Scream",
+ "lean": "lifting",
+ "in_stock": true,
+ "thc": 26.559,
+ "test_date": "2026-04-02",
+ "test_lab": "Green Analytics NY, LLC",
+ "scanned_at": "2026-08-20T23:38:42.916Z"
+}

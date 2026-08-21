@@ -34,6 +34,7 @@
  "form": "Preroll 0.75g 2-Pack",
  "strain": "Sherbanger 3",
  "lean": "settling",
- "in_stock": true,
- "thc": 30.072
+ "in_stock": false,
+ "thc": 30.072,
+ "sold_out_at": "2026-08-20T23:39:35.131Z"
 }

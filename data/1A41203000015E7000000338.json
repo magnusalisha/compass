@@ -5,7 +5,7 @@
  "strain": "Nerd Runtz",
  "form": "Preroll 1g Infused",
  "thc": 43.3,
- "total_terpenes": 2.2598,
+ "total_terpenes": 2.1852,
  "lean": "settling",
  "confidence": "strong",
  "in_stock": true,
@@ -42,5 +42,9 @@
   "alpha-Pinene": 0.0201,
   "Guaiol": 0.0144,
   "Terpinolene": 0.013
- }
+ },
+ "test_date": "2026-02-08",
+ "test_lab": "Analytical Testing Center of Central New York",
+ "date_expire": "2026-09-03",
+ "scanned_at": "2026-08-20T23:38:45.097Z"
 }

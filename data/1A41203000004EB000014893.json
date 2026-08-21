@@ -1,0 +1,30 @@
+{
+ "id": "3ffea6b7d6",
+ "metrc_tag": "1A41203000004EB000014893",
+ "brand": "Runtz",
+ "strain": "SherBanger",
+ "form": "Pre-Roll 1.5g",
+ "lean": null,
+ "confidence": "strong",
+ "shelf_tag": "Hybrid",
+ "reported": [],
+ "dominant": [],
+ "aroma": [],
+ "terpenes": {
+  "Linalool": 0.47,
+  "Limonene": 0.27,
+  "beta-Caryophyllene": 0.26,
+  "beta-Myrcene": 0.13,
+  "Farnesene": 0.11,
+  "alpha-Humulene": 0.09,
+  "Terpineol": 0.08,
+  "Fenchol": 0.07
+ },
+ "scanned_at": "2026-08-20T23:38:49.847Z",
+ "thc": 30.072,
+ "total_terpenes": 1.47,
+ "in_stock": true,
+ "test_date": "2026-05-26",
+ "test_lab": "Green Analytics NY, LLC",
+ "date_expire": "2027-05-19"
+}

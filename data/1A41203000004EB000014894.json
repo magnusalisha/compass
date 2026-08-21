@@ -1,0 +1,43 @@
+{
+ "id": "a3f9c12b7e",
+ "shelf_tag": "Hybrid",
+ "confidence": "strong",
+ "dominant": [
+  "Linalool",
+  "Limonene",
+  "beta-Caryophyllene"
+ ],
+ "terpenes": {
+  "Linalool": 0.48,
+  "Limonene": 0.34,
+  "beta-Caryophyllene": 0.26,
+  "beta-Myrcene": 0.18,
+  "Farnesene": 0.11,
+  "alpha-Humulene": 0.09,
+  "Fenchol": 0.08,
+  "Terpineol": 0.08
+ },
+ "brand": "Runtz",
+ "total_terpenes": 1.62,
+ "metrc_tag": "1A41203000004EB000014894",
+ "reported": [
+  "~30% Total THC",
+  "1.62% Total Terpenes"
+ ],
+ "aroma": [
+  "floral",
+  "citrus",
+  "spice",
+  "earthy",
+  "herbal"
+ ],
+ "form": "Preroll 0.75g 2-Pack",
+ "strain": "Amaretto Di Lemon",
+ "lean": "mixed",
+ "in_stock": true,
+ "thc": 30.377,
+ "test_date": "2026-05-26",
+ "test_lab": "Green Analytics NY, LLC",
+ "date_expire": "2027-05-19",
+ "scanned_at": "2026-08-20T23:38:50.079Z"
+}

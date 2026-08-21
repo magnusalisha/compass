@@ -1,0 +1,48 @@
+{
+ "id": "a3f82c1d9e",
+ "metrc_tag": "1A41203000018B1000070707",
+ "brand": "Miss Grass",
+ "strain": "Khalifa Kush",
+ "form": "Preroll 0.4g (5-pack, 2g total)",
+ "thc": 27.319,
+ "total_terpenes": 1.06,
+ "lean": "settling",
+ "confidence": "moderate",
+ "in_stock": true,
+ "shelf_tag": "Indica",
+ "reported": [
+  "27.3% Total THC",
+  "1.06% Total Terpenes"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "alpha-Humulene",
+  "Limonene"
+ ],
+ "aroma": [
+  "spicy",
+  "woody",
+  "citrus",
+  "floral",
+  "herbal"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.38,
+  "alpha-Humulene": 0.17,
+  "Limonene": 0.12,
+  "Linalool": 0.08,
+  "Fenchol": 0.06,
+  "Terpineol": 0.06,
+  "alpha-Bisabolol": 0.05,
+  "beta-Myrcene": 0.04,
+  "Guaiol": 0.03,
+  "alpha-Pinene": 0.02,
+  "beta-Pinene": 0.02,
+  "Valencene": 0.02,
+  "Caryophyllene Oxide": 0.01
+ },
+ "test_date": "2026-07-09",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-06-26",
+ "scanned_at": "2026-08-20T23:39:15.761Z"
+}

@@ -1,0 +1,47 @@
+{
+ "id": "a3f82c1d9e",
+ "metrc_tag": "1A41203000018B1000058658",
+ "brand": "Ghost",
+ "strain": "Guava",
+ "form": "Vape 2g Disposable",
+ "thc": 88.2151,
+ "total_terpenes": 3.67,
+ "lean": "lifting",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Sativa",
+ "reported": [
+  "Guava flavor",
+  "high potency"
+ ],
+ "dominant": [
+  "Limonene",
+  "beta-Myrcene",
+  "alpha-Pinene"
+ ],
+ "aroma": [
+  "citrus",
+  "tropical",
+  "pine",
+  "herbal",
+  "earthy"
+ ],
+ "terpenes": {
+  "Limonene": 1.96,
+  "beta-Myrcene": 0.7,
+  "alpha-Pinene": 0.34,
+  "beta-Pinene": 0.2,
+  "Ocimene": 0.19,
+  "Camphene": 0.09,
+  "beta-Caryophyllene": 0.05,
+  "Linalool": 0.05,
+  "alpha-Phellandrene": 0.03,
+  "Terpinolene": 0.03,
+  "Caryophyllene Oxide": 0.02,
+  "Fenchol": 0.01
+ },
+ "test_date": "2026-06-22",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-06-10",
+ "scanned_at": "2026-08-20T23:38:48.873Z"
+}

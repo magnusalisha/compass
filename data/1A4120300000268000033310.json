@@ -1,0 +1,48 @@
+{
+ "id": "a3f8c12e90",
+ "metrc_tag": "1A4120300000268000033310",
+ "brand": "Rythm",
+ "strain": "LOrange",
+ "form": "Flower 28g",
+ "thc": 21.1,
+ "total_terpenes": 1.5959,
+ "lean": "lifting",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Hybrid",
+ "reported": [
+  "citrusy aroma",
+  "sativa dominant"
+ ],
+ "dominant": [
+  "Limonene",
+  "beta-Caryophyllene",
+  "Linalool"
+ ],
+ "aroma": [
+  "citrus",
+  "floral",
+  "spicy",
+  "earthy",
+  "herbal"
+ ],
+ "terpenes": {
+  "Limonene": 0.4181,
+  "beta-Caryophyllene": 0.2871,
+  "Linalool": 0.2517,
+  "beta-Myrcene": 0.2235,
+  "alpha-Humulene": 0.0869,
+  "Nerolidol": 0.0714,
+  "beta-Pinene": 0.0658,
+  "Terpineol": 0.0508,
+  "Fenchol": 0.0503,
+  "alpha-Pinene": 0.0322,
+  "alpha-Bisabolol": 0.0267,
+  "Borneol": 0.011,
+  "Camphene": 0.0106,
+  "Farnesene": 0.0097
+ },
+ "test_date": "2026-01-29",
+ "test_lab": "ACT Laboratories of New York, LLC",
+ "scanned_at": "2026-08-20T23:38:52.711Z"
+}

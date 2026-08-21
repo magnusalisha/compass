@@ -1,0 +1,46 @@
+{
+ "id": "4993fe138d",
+ "shelf_tag": "Sativa",
+ "confidence": "strong",
+ "dominant": [
+  "beta-Caryophyllene",
+  "alpha-Humulene",
+  "Limonene"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.57,
+  "beta-Myrcene": 0.39,
+  "alpha-Humulene": 0.23,
+  "Limonene": 0.21,
+  "Linalool": 0.08,
+  "alpha-Bisabolol": 0.05,
+  "beta-Pinene": 0.04,
+  "Fenchol": 0.03,
+  "alpha-Pinene": 0.02,
+  "Terpineol": 0.02,
+  "Caryophyllene Oxide": 0.01
+ },
+ "brand": "Bouket",
+ "total_terpenes": 1.65,
+ "metrc_tag": "1A4120300000C1E000072627",
+ "reported": [
+  "Indoor grown",
+  "Large Bud"
+ ],
+ "aroma": [
+  "earthy",
+  "spicy",
+  "citrus",
+  "herbal",
+  "floral"
+ ],
+ "form": "Flower 3.5g",
+ "strain": "Sky Fire OG",
+ "lean": "settling",
+ "in_stock": true,
+ "thc": 22.7604,
+ "test_date": "2026-06-22",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-06-08",
+ "scanned_at": "2026-08-20T23:39:06.899Z"
+}

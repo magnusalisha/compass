@@ -1,0 +1,40 @@
+{
+ "id": "a3f7c2e891",
+ "metrc_tag": "1A4120300000529000057941",
+ "brand": "Jetpacks",
+ "strain": "Passion Fruit",
+ "form": "Infused Preroll 0.6g 5pk",
+ "thc": 33.935,
+ "total_terpenes": 1.15,
+ "lean": "mixed",
+ "confidence": "faint",
+ "in_stock": true,
+ "shelf_tag": "Hybrid",
+ "reported": [
+  "Passion Fruit flavor",
+  "infused preroll"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "Limonene",
+  "Linalool"
+ ],
+ "aroma": [
+  "tropical",
+  "floral",
+  "spicy",
+  "citrus",
+  "herbal"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.7,
+  "Limonene": 0.38,
+  "Linalool": 0.33,
+  "alpha-Humulene": 0.26,
+  "beta-Myrcene": 0.07
+ },
+ "test_date": "2026-03-05",
+ "test_lab": "Green Analytics NY, LLC",
+ "date_expire": "2027-02-25",
+ "scanned_at": "2026-08-20T23:38:57.518Z"
+}

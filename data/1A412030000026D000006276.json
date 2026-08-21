@@ -8,7 +8,7 @@
  "total_terpenes": 1.65,
  "lean": "settling",
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Indica",
  "reported": [
   "True OG",
@@ -39,5 +39,6 @@
   "Caryophyllene Oxide": 0.01,
   "Fenchol": 0.01,
   "alpha-Pinene": 0.01
- }
+ },
+ "sold_out_at": "2026-08-20T23:39:35.130Z"
 }

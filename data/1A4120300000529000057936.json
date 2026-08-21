@@ -1,7 +1,7 @@
 {
  "id": "3118fcc941",
  "metrc_tag": "1A4120300000529000057936",
- "brand": "Cru",
+ "brand": "CRU",
  "strain": "Bubba Kush",
  "form": "Infused Preroll 0.5g",
  "thc": 25.869,
@@ -28,5 +28,8 @@
   "alpha-Humulene": 0.23,
   "Limonene": 0.19
  },
- "scanned_at": "2026-08-10T17:45:04.431Z"
+ "scanned_at": "2026-08-20T23:38:57.064Z",
+ "test_date": "2026-03-04",
+ "test_lab": "Green Analytics NY, LLC",
+ "date_expire": "2027-02-25"
 }

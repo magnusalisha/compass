@@ -24,12 +24,26 @@
   "earthy"
  ],
  "terpenes": {
-  "beta-Caryophyllene": 0.39,
-  "Limonene": 0.3,
-  "Linalool": 0.21,
-  "beta-Myrcene": 0.18,
-  "alpha-Humulene": 0.13,
-  "Farnesene": 0.09
+  "Limonene": 1.0072,
+  "beta-Caryophyllene": 0.9168,
+  "beta-Myrcene": 0.5519,
+  "alpha-Humulene": 0.3683,
+  "Linalool": 0.2737,
+  "alpha-Bisabolol": 0.1442,
+  "Ocimene": 0.1299,
+  "beta-Pinene": 0.1097,
+  "Farnesene": 0.09,
+  "alpha-Pinene": 0.0829,
+  "Terpineol": 0.0671,
+  "Fenchol": 0.0578,
+  "Nerolidol": 0.0319,
+  "Caryophyllene Oxide": 0.0286,
+  "Camphene": 0.0158,
+  "Terpinolene": 0.0126,
+  "Borneol": 0.0121
  },
- "scanned_at": "2026-08-15T17:14:37.971Z"
+ "scanned_at": "2026-08-20T23:39:29.754Z",
+ "test_date": "2026-02-17",
+ "test_lab": "ACT Laboratories of New York, LLC",
+ "date_expire": "2027-09-01"
 }

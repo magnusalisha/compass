@@ -1,0 +1,45 @@
+{
+ "id": "a3f9c12e84",
+ "metrc_tag": "1A4120300000216000087297",
+ "brand": "Find",
+ "strain": "Diesel Peelz",
+ "form": "Flower 3.5g",
+ "thc": 29.8163,
+ "total_terpenes": 1.33,
+ "lean": "settling",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Sativa",
+ "reported": [
+  "lifting",
+  "sativa"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "Limonene",
+  "Linalool"
+ ],
+ "aroma": [
+  "diesel",
+  "spicy",
+  "citrus",
+  "floral",
+  "herbal"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.37,
+  "Limonene": 0.32,
+  "alpha-Humulene": 0.16,
+  "Linalool": 0.16,
+  "beta-Myrcene": 0.1,
+  "alpha-Pinene": 0.06,
+  "beta-Pinene": 0.05,
+  "Fenchol": 0.04,
+  "Terpineol": 0.04,
+  "alpha-Bisabolol": 0.03
+ },
+ "test_date": "2026-06-26",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-06-26",
+ "scanned_at": "2026-08-20T23:39:00.878Z"
+}

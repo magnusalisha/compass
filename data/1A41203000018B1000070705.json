@@ -1,0 +1,48 @@
+{
+ "id": "a3f82c9d1e",
+ "metrc_tag": "1A41203000018B1000070705",
+ "brand": "Miss Grass",
+ "strain": "Cookies N Cream",
+ "form": "Preroll 0.4g (5-pack, 2g total)",
+ "thc": 28.5317,
+ "total_terpenes": 1.4,
+ "lean": "settling",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Hybrid",
+ "reported": [
+  "Total THC 28.53%",
+  "Total Terpenes 1.40%"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "alpha-Humulene",
+  "Limonene"
+ ],
+ "aroma": [
+  "spicy",
+  "earthy",
+  "citrus",
+  "floral",
+  "herbal"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.71,
+  "alpha-Humulene": 0.3,
+  "Limonene": 0.1,
+  "alpha-Bisabolol": 0.09,
+  "Farnesene": 0.05,
+  "Caryophyllene Oxide": 0.03,
+  "beta-Myrcene": 0.02,
+  "beta-Pinene": 0.02,
+  "Fenchol": 0.02,
+  "Linalool": 0.02,
+  "Terpineol": 0.02,
+  "alpha-Pinene": 0.01,
+  "Valencene": 0.01
+ },
+ "test_date": "2026-05-23",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-05-18",
+ "scanned_at": "2026-08-20T23:39:15.228Z"
+}

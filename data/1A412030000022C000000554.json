@@ -1,14 +1,14 @@
 {
  "id": "a3f8c2e1d9",
  "metrc_tag": "1A412030000022C000000554",
- "brand": "Melo",
+ "brand": "Stay Melo",
  "strain": "Sunset Sessions",
  "form": "Flower 3.5g",
  "thc": 30.471,
  "total_terpenes": 2.23,
  "lean": "lifting",
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Sativa",
  "reported": [
   "30.47% Total THC",
@@ -34,5 +34,6 @@
   "beta-Pinene": 0.15,
   "alpha-Humulene": 0.07
  },
- "scanned_at": "2026-08-19T14:18:08.555Z"
+ "scanned_at": "2026-08-19T14:18:08.555Z",
+ "sold_out_at": "2026-08-20T23:39:35.128Z"
 }

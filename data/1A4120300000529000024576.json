@@ -1,7 +1,7 @@
 {
  "id": "b13b0f23d2",
  "metrc_tag": "1A4120300000529000024576",
- "brand": "Cru",
+ "brand": "CRU",
  "strain": "Chemdawg",
  "form": "Infused Preroll 0.5g (6-pack, 3g total)",
  "thc": 31.886,
@@ -25,5 +25,7 @@
   "beta-Caryophyllene": 0.47,
   "alpha-Humulene": 0.19
  },
- "scanned_at": "2026-08-10T17:45:04.431Z"
+ "scanned_at": "2026-08-20T23:38:39.755Z",
+ "test_date": "2025-09-03",
+ "test_lab": "Green Analytics NY, LLC"
 }

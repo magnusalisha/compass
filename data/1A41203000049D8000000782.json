@@ -1,0 +1,52 @@
+{
+ "id": "a3f8c12e9b",
+ "metrc_tag": "1A41203000049D8000000782",
+ "brand": "Fernway",
+ "strain": "Red Headed Stranger",
+ "form": "Vape 1g Cartridge",
+ "thc": 85.48,
+ "total_terpenes": 6.5604,
+ "lean": "settling",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Sativa",
+ "reported": [
+  "trans-Caryophyllene dominant",
+  "Limonene forward"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "Limonene",
+  "alpha-Humulene"
+ ],
+ "aroma": [
+  "spicy",
+  "citrus",
+  "herbal",
+  "woody",
+  "floral"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 2.2689,
+  "Limonene": 1.5771,
+  "alpha-Humulene": 0.7268,
+  "Linalool": 0.2969,
+  "beta-Myrcene": 0.2888,
+  "Farnesene": 0.2582,
+  "beta-Pinene": 0.1279,
+  "Fenchol": 0.1279,
+  "Nerolidol": 0.1265,
+  "alpha-Pinene": 0.1113,
+  "alpha-Bisabolol": 0.1037,
+  "Terpineol": 0.0847,
+  "Caryophyllene Oxide": 0.0722,
+  "Guaiol": 0.0673,
+  "Eucalyptol": 0.0343,
+  "Camphene": 0.0245,
+  "Borneol": 0.0231
+ },
+ "test_date": "2026-05-04",
+ "test_lab": "Smithers CTS New York, LLC",
+ "date_expire": "2027-05-04",
+ "scanned_at": "2026-08-20T23:38:44.160Z"
+}

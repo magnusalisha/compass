@@ -1,0 +1,28 @@
+{
+ "id": "8e32502450",
+ "metrc_tag": "1A4120300000484000005468",
+ "brand": "NYCE",
+ "strain": "Pink Runtz",
+ "form": "Vapes 0.5g",
+ "lean": null,
+ "confidence": "strong",
+ "shelf_tag": "Hybrid",
+ "reported": [],
+ "dominant": [],
+ "aroma": [],
+ "terpenes": {
+  "Limonene": 1.1552,
+  "Terpineol": 0.9455,
+  "alpha-Terpinene": 0.6146,
+  "alpha-Pinene": 0.261,
+  "Terpinolene": 0.2009,
+  "Ocimene": 0.1428,
+  "Linalool": 0.0572
+ },
+ "scanned_at": "2026-08-20T23:39:35.123Z",
+ "thc": 78.91,
+ "total_terpenes": 3.3772,
+ "in_stock": true,
+ "test_date": "2026-04-09",
+ "test_lab": "Reliable Labs, Inc."
+}

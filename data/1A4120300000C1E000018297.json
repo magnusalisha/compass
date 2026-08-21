@@ -1,0 +1,43 @@
+{
+ "id": "565b657ea2",
+ "shelf_tag": "Sativa",
+ "confidence": "strong",
+ "dominant": [
+  "Terpinolene",
+  "beta-Pinene",
+  "beta-Myrcene"
+ ],
+ "note": null,
+ "terpenes": {
+  "Terpinolene": 1.3725,
+  "beta-Pinene": 0.1515,
+  "beta-Myrcene": 0.1473,
+  "Limonene": 0.0939,
+  "alpha-Terpinene": 0.0414,
+  "alpha-Humulene": 0.0406,
+  "alpha-Pinene": 0.0318
+ },
+ "brand": "Operator",
+ "total_terpenes": 1.879,
+ "balance": 0.8,
+ "reported": [
+  "heady and alert",
+  "clear-headed"
+ ],
+ "aroma": [
+  "sharp",
+  "piney",
+  "herbal",
+  "fresh",
+  "pine"
+ ],
+ "form": "Flower 3.5g",
+ "strain": "Fresh Powder",
+ "lean": "lifting",
+ "in_stock": true,
+ "thc": 20.5,
+ "metrc_tag": "1A4120300000C1E000018297",
+ "test_date": "2026-02-09",
+ "test_lab": "Reliable Labs, Inc.",
+ "scanned_at": "2026-08-20T23:38:38.107Z"
+}

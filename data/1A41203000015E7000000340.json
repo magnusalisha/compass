@@ -1,0 +1,45 @@
+{
+ "id": "a3f9c12b4e",
+ "metrc_tag": "1A41203000015E7000000340",
+ "brand": "JusBud",
+ "strain": "Sour Diesel",
+ "form": "Preroll 1g 2-Pack",
+ "thc": 19.9,
+ "total_terpenes": 1.1484,
+ "lean": "settling",
+ "confidence": "moderate",
+ "in_stock": true,
+ "shelf_tag": "Sativa",
+ "reported": [
+  "Sour Diesel",
+  "Adult Use Flower"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "alpha-Humulene",
+  "Limonene"
+ ],
+ "aroma": [
+  "diesel",
+  "earthy",
+  "spicy",
+  "floral",
+  "citrus"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.3882,
+  "alpha-Humulene": 0.2906,
+  "Limonene": 0.1044,
+  "Linalool": 0.1026,
+  "alpha-Bisabolol": 0.0873,
+  "beta-Myrcene": 0.0412,
+  "Fenchol": 0.0353,
+  "Caryophyllene Oxide": 0.0329,
+  "Terpineol": 0.0228,
+  "beta-Pinene": 0.0134
+ },
+ "test_date": "2026-03-05",
+ "test_lab": "Analytical Testing Center of Central New York",
+ "date_expire": "2026-12-01",
+ "scanned_at": "2026-08-20T23:38:45.614Z"
+}

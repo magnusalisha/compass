@@ -1,0 +1,50 @@
+{
+ "id": "a3f8c12e94",
+ "metrc_tag": "1A41203000018B1000058663",
+ "brand": "Ghost",
+ "strain": "Grape Goddess",
+ "form": "Vape 2g Disposable",
+ "thc": 89.8157,
+ "total_terpenes": 4.21,
+ "lean": "lifting",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Hybrid",
+ "reported": [
+  "Grape Goddess",
+  "Ghost Vape"
+ ],
+ "dominant": [
+  "Limonene",
+  "beta-Caryophyllene",
+  "beta-Myrcene"
+ ],
+ "aroma": [
+  "citrus",
+  "grape",
+  "spice",
+  "floral",
+  "pine"
+ ],
+ "terpenes": {
+  "Limonene": 1.42,
+  "beta-Caryophyllene": 0.75,
+  "beta-Myrcene": 0.74,
+  "Linalool": 0.29,
+  "beta-Pinene": 0.23,
+  "alpha-Pinene": 0.2,
+  "Terpinolene": 0.15,
+  "Fenchol": 0.14,
+  "Terpineol": 0.1,
+  "Ocimene": 0.05,
+  "Camphene": 0.04,
+  "Caryophyllene Oxide": 0.04,
+  "alpha-Phellandrene": 0.03,
+  "alpha-Humulene": 0.02,
+  "Valencene": 0.01
+ },
+ "test_date": "2026-06-22",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-06-23",
+ "scanned_at": "2026-08-20T23:38:49.138Z"
+}

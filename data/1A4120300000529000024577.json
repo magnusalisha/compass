@@ -1,7 +1,7 @@
 {
  "id": "ce99cbbd0f",
  "metrc_tag": "1A4120300000529000024577",
- "brand": "Cru",
+ "brand": "CRU",
  "strain": "Headband",
  "form": "Infused Preroll 0.5g (6-pack, 3g total)",
  "thc": 24.876,
@@ -25,5 +25,8 @@
   "beta-Caryophyllene": 0.5,
   "alpha-Humulene": 0.24
  },
- "scanned_at": "2026-08-10T17:45:04.431Z"
+ "scanned_at": "2026-08-20T23:38:39.983Z",
+ "test_date": "2026-03-05",
+ "test_lab": "Green Analytics NY, LLC",
+ "date_expire": "2027-02-25"
 }

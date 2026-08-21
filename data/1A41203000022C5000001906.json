@@ -1,0 +1,45 @@
+{
+ "id": "a3f8c21e90",
+ "metrc_tag": "1A41203000022C5000001906",
+ "brand": "Major",
+ "strain": "Blue Lobster",
+ "form": "Flower 3.5g",
+ "thc": 27.97,
+ "total_terpenes": 1.87,
+ "lean": "lifting",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Hybrid",
+ "reported": [
+  "citrusy and floral",
+  "bright and aromatic"
+ ],
+ "dominant": [
+  "Limonene",
+  "Linalool",
+  "beta-Caryophyllene"
+ ],
+ "aroma": [
+  "citrus",
+  "floral",
+  "herbal",
+  "spicy",
+  "piney"
+ ],
+ "terpenes": {
+  "Limonene": 0.45,
+  "Linalool": 0.34,
+  "beta-Caryophyllene": 0.32,
+  "Ocimene": 0.18,
+  "beta-Myrcene": 0.17,
+  "alpha-Humulene": 0.1,
+  "beta-Pinene": 0.09,
+  "Terpineol": 0.09,
+  "Fenchol": 0.07,
+  "Farnesene": 0.06
+ },
+ "test_date": "2026-07-09",
+ "test_lab": "Green Analytics NY, LLC",
+ "date_expire": "2027-07-01",
+ "scanned_at": "2026-08-20T23:38:58.473Z"
+}

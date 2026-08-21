@@ -1,0 +1,50 @@
+{
+ "id": "a3f9c2e871",
+ "metrc_tag": "1A41203000018B1000070693",
+ "brand": "Dank",
+ "strain": "Lemon Berry Diesel",
+ "form": "Flower 3.5g",
+ "thc": 31.616,
+ "total_terpenes": 1.17,
+ "lean": "mixed",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Sativa",
+ "reported": [
+  "Total THC 31.6%",
+  "Total Terpenes 1.17%"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "Limonene",
+  "Linalool"
+ ],
+ "aroma": [
+  "citrus",
+  "floral",
+  "spicy",
+  "earthy",
+  "piney"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.27,
+  "Limonene": 0.22,
+  "Linalool": 0.14,
+  "beta-Myrcene": 0.09,
+  "alpha-Humulene": 0.08,
+  "Guaiol": 0.08,
+  "beta-Pinene": 0.05,
+  "Fenchol": 0.05,
+  "Terpineol": 0.05,
+  "Farnesene": 0.04,
+  "alpha-Bisabolol": 0.03,
+  "alpha-Pinene": 0.03,
+  "Camphene": 0.01,
+  "Caryophyllene Oxide": 0.01,
+  "Ocimene": 0.01,
+  "Terpinolene": 0.01
+ },
+ "test_date": "2026-04-28",
+ "test_lab": "Kaycha Labs NY",
+ "scanned_at": "2026-08-20T23:39:12.350Z"
+}

@@ -1,0 +1,46 @@
+{
+ "id": "a3f7c2e915",
+ "metrc_tag": "1A41203000018B1000070709",
+ "brand": "Miss Grass",
+ "strain": "Tangie",
+ "form": "Preroll 0.4g",
+ "thc": 22.3818,
+ "total_terpenes": 0.82,
+ "lean": "settling",
+ "confidence": "faint",
+ "in_stock": true,
+ "shelf_tag": "Sativa",
+ "reported": [
+  "Total THC 22.38%",
+  "Total Terpenes 0.82%"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "alpha-Humulene",
+  "Linalool"
+ ],
+ "aroma": [
+  "spicy",
+  "herbal",
+  "floral",
+  "citrus",
+  "woody"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.47,
+  "alpha-Humulene": 0.17,
+  "Linalool": 0.05,
+  "Limonene": 0.04,
+  "Caryophyllene Oxide": 0.02,
+  "Valencene": 0.02,
+  "alpha-Pinene": 0.01,
+  "beta-Myrcene": 0.01,
+  "beta-Pinene": 0.01,
+  "Fenchol": 0.01,
+  "Terpineol": 0.01
+ },
+ "test_date": "2026-07-09",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-06-26",
+ "scanned_at": "2026-08-20T23:39:16.400Z"
+}
