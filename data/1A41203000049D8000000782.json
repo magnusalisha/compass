@@ -8,7 +8,7 @@
  "total_terpenes": 6.5604,
  "lean": "settling",
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Sativa",
  "reported": [
   "trans-Caryophyllene dominant",
@@ -48,5 +48,6 @@
  "test_date": "2026-05-04",
  "test_lab": "Smithers CTS New York, LLC",
  "date_expire": "2027-05-04",
- "scanned_at": "2026-08-20T23:38:44.160Z"
+ "scanned_at": "2026-08-20T23:38:44.160Z",
+ "sold_out_at": "2026-08-21T20:44:05.452Z"
 }
