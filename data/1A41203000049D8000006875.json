@@ -8,7 +8,7 @@
  "total_terpenes": 5.8696,
  "lean": "lifting",
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Indica",
  "reported": [
   "energizing",
@@ -50,5 +50,6 @@
  "test_date": "2026-05-04",
  "test_lab": "Smithers CTS New York, LLC",
  "date_expire": "2027-05-04",
- "scanned_at": "2026-08-20T23:38:55.096Z"
+ "scanned_at": "2026-08-20T23:38:55.096Z",
+ "sold_out_at": "2026-08-22T16:36:47.110Z"
 }
