@@ -1,6 +1,6 @@
 {
  "id": "a3f8c12e9b",
- "metrc_tag": "1A4120300000235000003351",
+ "metrc_tag": "1A4120300000529000048756",
  "brand": "Jetpacks",
  "strain": "Blueberry Pancakes",
  "form": "Infused Preroll 0.6g 5pk",
@@ -29,10 +29,14 @@
  "terpenes": {
   "beta-Caryophyllene": 0.75,
   "alpha-Humulene": 0.5,
+  "Limonene": 0.32,
   "Terpinolene": 0.28,
   "Linalool": 0.23,
   "beta-Myrcene": 0.21,
-  "Caryophyllene oxide": 0.19,
-  "Limonene": 0.32
- }
+  "Caryophyllene Oxide": 0.19
+ },
+ "test_date": "2026-04-04",
+ "test_lab": "Green Analytics NY, LLC",
+ "date_expire": "2026-12-12",
+ "scanned_at": "2026-08-22T17:22:46.027Z"
 }
