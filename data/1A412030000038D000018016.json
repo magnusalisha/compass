@@ -34,10 +34,11 @@
  "form": "Flower 3.5g",
  "strain": "Glitter Bomb",
  "lean": "settling",
- "in_stock": true,
+ "in_stock": false,
  "thc": 26.5995,
  "metrc_tag": "1A412030000038D000018016",
  "test_date": "2026-05-11",
  "test_lab": "Kaycha Labs NY",
- "scanned_at": "2026-08-20T23:38:46.795Z"
+ "scanned_at": "2026-08-20T23:38:46.795Z",
+ "sold_out_at": "2026-08-23T16:43:44.173Z"
 }
