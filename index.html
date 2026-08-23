@@ -1948,6 +1948,22 @@ function stack(p){
 // compareTo: a source product key. Only Find similar passes it — it turns on a
 // "Compare ↔" action that jumps straight into the Compare tab with the source
 // and this result pre-filled, so you don't re-pick a pair you've already found.
+//
+// Every OTHER card gets a one-sided version instead, which fills this product in
+// on the left and puts the cursor in the empty box. Match by effect and Lookup
+// both used to end at a card whose only action was Edit — you'd found the thing
+// you wanted to weigh against something, and the way to do it was to remember
+// its name, switch tabs, and type it back in.
+//
+// Both read "Compare ↔", deliberately. They fill a different number of boxes,
+// but that is a fact about what was already known when you tapped, not about
+// what you asked for — and the two can never appear on the same card, so there
+// is nothing to tell apart. Naming them separately would make one idea look
+// like two.
+//
+// Find similar's version is the better one where it applies: there the pair IS
+// the question, so both sides are known and pre-filling one would be throwing
+// away half of what you'd already told it.
 function card(p, extra='', compareTo=null){
   const bare = !hasProfile(p);              // no terpene data at all
   const faint = p.confidence === 'faint' && !bare;
@@ -1990,7 +2006,9 @@ function card(p, extra='', compareTo=null){
     </div>
     ${extra}
     <div class="acts">
-      ${compareTo ? `<a href="#" onclick="openCompare('${compareTo}','${key(p)}');return false;">Compare ↔</a>` : ''}
+      ${compareTo
+        ? `<a href="#" onclick="openCompare('${compareTo}','${key(p)}');return false;">Compare ↔</a>`
+        : `<a href="#" onclick="openCompare('${key(p)}',null,'b');return false;">Compare ↔</a>`}
       ${href ? `<a href="${href}" target="_blank" rel="noopener">Edit ↗</a>` : ''}
     </div>
   </div>`;
@@ -2258,7 +2276,18 @@ function comboListHTML(id, list){
   const q = (st.query || '').toLowerCase().trim();
   // plain case-insensitive substring match on strain + brand — no fuzzy scoring,
   // no fallback to a stale/previous result. Zero matches means "no matches," full stop.
-  const filtered = list.filter(p => searchable(p).includes(searchNorm(q)));
+  // Never offer the product the OTHER box already holds. Picking it leaves both
+  // boxes visibly full while the page still says "Pick a second product to
+  // compare against" — you did, and it's telling you to do it again. Compare
+  // needs two DIFFERENT products (see the x !== y test in render), so the honest
+  // place to say so is the list that offered the choice, not a message after it.
+  //
+  // Compare-from-a-card is what made this worth fixing: it lands you with one
+  // side filled and this list open, so the duplicate is sitting right there
+  // under the name you just came from.
+  const taken = id === 'a' ? b : id === 'b' ? a : null;
+  const filtered = list.filter(p => searchable(p).includes(searchNorm(q))
+    && !(taken && key(p) === taken));
   st.filtered = filtered;
   if (!filtered.length) return `<ul class="combo-list"><li class="combo-empty">No matches found</li></ul>`;
   return `<ul class="combo-list">${filtered.map((p,i) => `<li data-id="${key(p)}" class="${i===st.highlight?'hl':''}">${p.strain} <span>${comboForm(p)} · ${p.brand}${stocked(p)?'':' · sold out'}</span></li>`).join('')}</ul>`;
@@ -2312,12 +2341,41 @@ function comboChoose(id, productId){
 // looking at (source on the left, the result you tapped on the right) so the
 // full side-by-side is one click away instead of two hand-picks. Clearing any
 // typed combo text means the pickers show the new selection, not stale input.
-function openCompare(leftKey, rightKey){
+// `focusId` is for the card version, which arrives with only ONE side filled and
+// has to leave the other to you — cursor in the empty box, picker already open,
+// exactly as if you had tapped it.
+//
+// It opens that picker EXPLICITLY rather than letting focus() trigger the
+// focusin handler below. Tempting, since that handler does precisely this — but
+// a programmatic focus() does not reliably dispatch focusin (an unfocused or
+// background window swallows it), and when it doesn't you land on an empty box
+// with no list, which reads as the shortcut half-working. Measured: focus()
+// alone left the picker shut every time.
+//
+// The two paths can't double up: focusin returns early when the picker is
+// already open, so a real focus event after this one is a no-op rather than a
+// reset of what you just started typing.
+//
+// It deliberately does NOT guess the second product. Compare used to default to
+// the first two products in the list, and the note in render() explains why that
+// went: it was a confident-looking answer to a question nobody asked. Filling
+// one side is a shortcut; filling both would be an opinion.
+function openCompare(leftKey, rightKey, focusId = null){
   tab = 'compare'; a = leftKey; b = rightKey;
   if (COMBO.a) COMBO.a.query = null;
   if (COMBO.b) COMBO.b.query = null;
   render();
   window.scrollTo({ top: 0, behavior: 'smooth' });
+  if (focusId){
+    const box = document.getElementById('combo-' + focusId);
+    if (box){
+      const st = comboState(focusId);
+      st.open = true; st.query = ''; st.highlight = -1;
+      box.value = '';               // direct DOM write, same as focusin does
+      updateComboList(focusId);
+      box.focus();
+    }
+  }
 }
 
 function render(){
