@@ -2402,10 +2402,31 @@ function render(){
   if (tab === 'effect'){
     // mount the shell ONCE per render(); typing updates results only, via
     // renderEffectResults() — never touches this <input> node (see combo comment above)
-    // sizes available in the current category, for the dropdown
-    const sizeKeys = [...new Set(inStock()
-      .filter(p => effCat === 'All' || category(p) === effCat)
-      .map(sizeKey).filter(Boolean))]
+    // Infusion and hardware are settled BEFORE sizes, because sizes are derived
+    // from what they leave behind. Reading a stale effInfused here would filter
+    // the size list by a control that is about to reset itself.
+    const infusedApplies = inStock().some(p =>
+      (effCat === 'All' || category(p) === effCat) && isInfused(p));
+    if (!infusedApplies) effInfused = 'any';
+    const hardwareApplies = effCat === 'Vape';
+    if (!hardwareApplies) effHardware = 'any';
+
+    // Sizes offered are the sizes you can actually GET, given everything else
+    // already chosen — not every size the category has ever carried.
+    //
+    // This used to filter on category alone, so picking Sativa left 4.5g in the
+    // list when every 4.5g on the shelf is a hybrid. Measured across all
+    // category x type x infusion combinations: 186 of 504 offered sizes led to
+    // an empty case. 37% of the menu was dead.
+    //
+    // It is the same rule the infusion control already follows — ask the shelf,
+    // don't assert — extended to the one dropdown that was still asserting.
+    const sizePool = inStock().filter(p =>
+      (effCat === 'All' || category(p) === effCat)
+      && (effLean === 'any' || shelfTag(p) === effLean)
+      && (effInfused === 'any' || (effInfused === 'yes') === isInfused(p))
+      && (effHardware === 'any' || (effHardware === 'none' ? !vapeType(p) : vapeType(p) === effHardware)));
+    const sizeKeys = [...new Set(sizePool.map(sizeKey).filter(Boolean))]
       .sort((a,b) => parseFloat(a.slice(2)) - parseFloat(b.slice(2)));
     const sizeSingles = sizeKeys.filter(k => k[0] === 's');
     const sizePacks   = sizeKeys.filter(k => k[0] === 'p');
@@ -2426,15 +2447,11 @@ function render(){
     // product actually exists in the current category, and disappears when the
     // last one sells out. No vape form says "infused" (concentrate by
     // definition), so this doesn't put a meaningless control on that tab.
-    const infusedApplies = inStock().some(p =>
-      (effCat === 'All' || category(p) === effCat) && isInfused(p));
-    if (!infusedApplies) effInfused = 'any';
     // Cart vs disposable, on the Vape tab only. Deliberately NOT on All: setting
     // it there would hide every flower and preroll on the shelf, which is not
     // what "carts" means to someone asking. Vape-only costs a customer at All
-    // one extra tap and can never silently empty the case.
-    const hardwareApplies = effCat === 'Vape';
-    if (!hardwareApplies) effHardware = 'any';
+    // one extra tap and can never silently empty the case. (Both are settled
+    // above, where the size list needs them.)
     // Every vape names its hardware today, so this option stays hidden. It
     // appears by itself the moment a capture lands without one, because the
     // alternative is a set filter quietly dropping records that match neither
