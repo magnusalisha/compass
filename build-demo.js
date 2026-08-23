@@ -86,26 +86,11 @@ sub(/  render\(\);\n  startAutoRefresh\(\);/,
     '  render();\n  if (GH_USER && GH_REPO) startAutoRefresh();   // frozen: nothing to poll',
     'guard startAutoRefresh');
 
-// 3. let the stock button work locally, so the feature is demoable
-sub(/\$\{STOCK_API \? `<button onclick="setStock\('\$\{key\(p\)\}', \$\{stocked\(p\)\}\)"/,
-    '${(STOCK_API || DEMO) ? `<button onclick="setStock(\'${key(p)}\', ${stocked(p)})"',
-    'show stock button in demo');
-// setStock is no longer async and no longer holds a busyKey — writes are queued
-// and flushed in a batch. The demo intercepts before any of that: flip the flag
-// on screen and return, so nothing is queued and nothing is ever flushed.
-sub(/function setStock\(k, soldOut\)\{\n  if \(!STOCK_API\) return;\n  const p = DATA\.find\(x => key\(x\) === k\);\n  if \(!p\) return;/,
-`function setStock(k, soldOut){
-  const p = DATA.find(x => key(x) === k);
-  if (!p) return;
-  if (DEMO){                      // frozen copy: flip it on screen, save nothing
-    p.in_stock = !soldOut;
-    flash = \`\${p.strain} — \${soldOut ? 'marked sold out' : 'back in stock'}. Demo only — nothing is saved.\`;
-    render();
-    setTimeout(() => { flash = ''; render(); }, 4000);
-    return;
-  }
-  if (!STOCK_API) return;`,
-    'local-only setStock');
+// 3. (was: make the stock button work locally, so the feature was demoable.)
+//    "Mark sold out" was removed from the page on 2026-08-23 — the Alleaves
+//    sync writes stock now — so there is no button to demo and no setStock to
+//    intercept. The demo was already frozen; it is now frozen in the same shape
+//    the real page has.
 
 // 4. swap the embedded seed for the frozen catalogue
 sub(/let DATA = \[[\s\S]*?\n\], tab = 'effect'/, `let DATA = ${blob}, tab = 'effect'`,

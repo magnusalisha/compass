@@ -1,13 +1,28 @@
-# Turning on shared stock (one-time setup, ~10 minutes)
+# Serving the catalogue (one-time setup, ~10 minutes)
+
+> **The Worker stopped writing on 2026-08-23.** It used to accept *"mark record X
+> sold out"* from the page. That button is gone — the Alleaves sync writes stock
+> now, over git, from the private sandbox repo — so the write half was deleted
+> rather than left standing unused.
+>
+> What the Worker does today is **one thing: serve the whole catalogue on GET
+> /data.** The page reads it; nothing writes to it.
+>
+> **If you set this up before that date, do two things:** re-paste
+> `compass-stock-worker.js` (step 2), and **downgrade `GH_TOKEN` to Contents:
+> Read** (step 1). The code no longer writes, but the token is what actually
+> grants it — a read-only worker holding a write token is still a write token
+> sitting in the shop's infrastructure. You can also delete `ALLOWED_ORIGIN`.
 
 Compass shows the same stock for everyone because `in_stock` lives in this repo,
-not on anyone's phone. But the page is **public**, so it can never hold a GitHub
-token — a public page with a write token *is* a public write token.
+not on anyone's phone. The page is **public**, so it can never hold a GitHub
+token — a public page with a token *is* a public token.
 
 So one tiny piece of infrastructure holds the token instead: a Cloudflare Worker
-that accepts exactly one instruction, *"mark record X sold out."* It cannot
-create records, delete records, or change any other field. Worst case if someone
-finds the URL: stock flags get flipped, which is visible and recoverable from git.
+that reads the repo on the page's behalf. It exists because GitHub's API allows
+only 60 unauthenticated requests an hour per IP, shared by every device on the
+shop's wifi; the Worker's requests are authenticated, so that limit stops
+mattering and the page can poll at all.
 
 You only do this once. No terminal — everything below is clicking in a browser.
 
@@ -19,7 +34,7 @@ github.com → your avatar → **Settings** → **Developer settings** →
 **Personal access tokens** → **Fine-grained tokens** → **Generate new token**
 
 - **Repository access:** Only select repositories → **compass**
-- **Permissions** → Repository permissions → **Contents: Read and write**
+- **Permissions** → Repository permissions → **Contents: Read**
 - Nothing else. Not "all repositories."
 
 Copy the token. You'll paste it once in step 3 and never need it again.
@@ -43,18 +58,14 @@ In the Worker → **Settings** → **Variables and Secrets**:
 | `GH_TOKEN` | **Secret** | the token from step 1 |
 | `GH_USER` | Text | `magnusalisha` |
 | `GH_REPO` | Text | `compass` |
-| `ALLOWED_ORIGIN` | Text | `https://magnusalisha.github.io` |
-| `GH_BRANCH` | Text | `main` — optional, defaults to `main` |
+
 
 `GH_TOKEN` **must** be added as a Secret (encrypted, not visible afterwards).
 Click **Deploy** again so the settings take effect.
 
-`GH_BRANCH` is new as of batched writes. The worker used to write one file at a
-time through the contents API, which just used the repo's default branch. A
-batch has to be committed by hand — build a tree, commit it, move the branch —
-and moving a branch means naming it. Leave it unset unless the default branch is
-called something other than `main`. The token needs no new permission: Contents:
-Read and write covers the git plumbing too.
+`ALLOWED_ORIGIN` and `GH_BRANCH` are no longer read by the Worker — both
+belonged to the write half. If they are still set from an earlier setup, delete
+them; leaving them does no harm beyond suggesting a gate that isn't there.
 
 ## 4. Point Compass at it (1 min)
 
@@ -83,12 +94,12 @@ Commit. Wait a minute for GitHub Pages to rebuild.
 
 ## That's it
 
-"Mark sold out" now appears on every card, for everyone, on every device. One
-tap. It's true for the whole shop within a minute — including whoever comes in
-on the next shift.
+Every device now loads the whole catalogue in one request, and sees the same
+stock as everyone else — including whoever comes in on the next shift.
 
-Until `STOCK_API` is filled in, the buttons simply don't appear. Nothing breaks;
-the page just doesn't offer a control that wouldn't work.
+Until `STOCK_API` is filled in, the page falls back to its embedded seed: nine
+products instead of the full case. Nothing breaks, but it looks enough like
+success to be worth checking — if you see nine, this isn't wired up yet.
 
 ---
 
@@ -170,25 +181,23 @@ every time you scan a new product.
 
 ## If something goes wrong
 
-- **Buttons don't appear:** `STOCK_API` is still empty, or Pages hasn't rebuilt.
-- **"Couldn't save that — origin not allowed":** `ALLOWED_ORIGIN` doesn't exactly
-  match the site's origin. No trailing slash, no `/compass` path.
-- **"Couldn't save that — HTTP 401/403":** the token expired or lacks
-  Contents: Read and write. Make a new one, update the `GH_TOKEN` secret.
-- **"record not found":** that record predates Metrc filenames, or was deleted
-  or renamed since the page loaded. In a batch it's reported on its own and the
-  other marks still commit — pull to refresh and the stale card goes away.
-- **"read branch failed":** `GH_BRANCH` names a branch that doesn't exist.
-- **"write conflict, try again":** two devices committed at the same moment. The
-  worker already retries once on the new head; a second failure means genuinely
-  simultaneous writes, and tapping again works.
-
-Nothing is ever lost either way — every change is a normal git commit, so
-`git log` shows exactly what happened and anything can be reverted. A batch is a
-single commit, so `git show` on it lists every record that moved at once.
+- **Only 9 products show up:** the page fell back to its embedded seed, which
+  means `/data` didn't answer. Check `STOCK_API` is set and the Worker is
+  deployed.
+- **HTTP 401/403 from the Worker:** the token expired or lacks Contents: Read.
+  Make a new one, update the `GH_TOKEN` secret.
+- **`{"error":"GET only"}` on a POST:** expected. The write half was removed on
+  2026-08-23; nothing should be posting here.
+- **Stock looks out of date:** that is the sync's job now, not the Worker's. The
+  scheduled run flips `in_stock` every ten minutes through trading hours; if it
+  has stopped, look at the Action in the sandbox repo.
 
 ## Rotating the token
 
 If a phone goes missing or someone leaves, you don't have to touch any device.
 Delete the token on GitHub, make a new one, update the `GH_TOKEN` secret in
 Cloudflare. That's the whole rotation — the token was never on anyone's phone.
+
+Note this token is separate from `PROD_PUSH_TOKEN`, the one the stock Action
+uses to push. That one does have write access, and it lives in the sandbox
+repo's Actions secrets, not in Cloudflare.
