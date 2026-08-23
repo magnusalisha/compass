@@ -8,7 +8,7 @@
  "total_terpenes": 1.15,
  "lean": "mixed",
  "confidence": "moderate",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Hybrid",
  "reported": [
   "Passion Fruit flavor",
@@ -35,5 +35,6 @@
  "test_date": "2026-03-05",
  "test_lab": "Green Analytics NY, LLC",
  "date_expire": "2027-02-25",
- "scanned_at": "2026-08-23T16:38:22.917Z"
+ "scanned_at": "2026-08-23T16:38:22.917Z",
+ "sold_out_at": "2026-08-23T22:09:05.284Z"
 }
