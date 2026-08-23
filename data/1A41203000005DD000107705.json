@@ -29,13 +29,13 @@
   "Limonene": 0.5326,
   "beta-Myrcene": 0.5111,
   "alpha-Pinene": 0.4009,
-  "alpha-Bisabolol": 0.0599,
   "Geraniol": 0.0579,
   "Linalool": 0.0578,
-  "Caryophyllene Oxide": 0.0384,
-  "alpha-Humulene": 0.023
+  "alpha-Bisabolol": 0.0308,
+  "alpha-Humulene": 0.023,
+  "Caryophyllene Oxide": 0.0212
  },
- "scanned_at": "2026-08-20T23:39:08.723Z",
+ "scanned_at": "2026-08-23T16:38:33.359Z",
  "test_date": "2026-04-24",
  "test_lab": "ACT Laboratories of New York, LLC",
  "date_expire": "2027-04-16"

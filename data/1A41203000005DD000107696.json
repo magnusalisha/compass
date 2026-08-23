@@ -28,13 +28,13 @@
   "alpha-Pinene": 0.5676,
   "beta-Myrcene": 0.3222,
   "Limonene": 0.2057,
-  "alpha-Bisabolol": 0.1438,
   "beta-Caryophyllene": 0.1057,
+  "alpha-Bisabolol": 0.0751,
   "Terpinolene": 0.0743,
   "alpha-Humulene": 0.0465,
   "alpha-Phellandrene": 0.022
  },
- "scanned_at": "2026-08-20T23:39:07.644Z",
+ "scanned_at": "2026-08-23T16:38:32.235Z",
  "test_date": "2026-06-03",
  "test_lab": "ACT Laboratories of New York, LLC",
  "date_expire": "2027-05-27"

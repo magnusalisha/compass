@@ -1,6 +1,6 @@
 {
  "id": "6e25d59342",
- "metrc_tag": "1A41203000005DD000060646",
+ "metrc_tag": "1A41203000005DD000107698",
  "brand": "Ayrloom",
  "strain": "Cereal Milk",
  "form": "Vape 1g Disposable",
@@ -24,26 +24,16 @@
   "floral"
  ],
  "terpenes": {
-  "beta-Caryophyllene": 2.0526,
-  "Limonene": 1.173,
-  "alpha-Humulene": 0.6646,
-  "alpha-Bisabolol": 0.6188,
+  "Limonene": 1.0813,
   "beta-Myrcene": 0.5108,
-  "Linalool": 0.4678,
   "beta-Pinene": 0.4121,
-  "Farnesene": 0.4012,
   "alpha-Pinene": 0.3577,
-  "Nerolidol": 0.2688,
-  "Guaiol": 0.2273,
-  "Terpineol": 0.1182,
-  "Caryophyllene Oxide": 0.103,
-  "Fenchol": 0.0937,
-  "gamma-Terpinene": 0.0526,
+  "Linalool": 0.3388,
+  "alpha-Bisabolol": 0.0545,
   "Terpinolene": 0.028,
-  "Camphene": 0.0255,
-  "Borneol": 0.0248
+  "Camphene": 0.0255
  },
- "scanned_at": "2026-08-20T23:38:53.905Z",
+ "scanned_at": "2026-08-23T16:38:20.491Z",
  "test_date": "2026-05-09",
  "test_lab": "ACT Laboratories of New York, LLC",
  "date_expire": "2027-04-29"

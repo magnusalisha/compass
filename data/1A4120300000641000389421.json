@@ -5,7 +5,7 @@
  "strain": "Pink Meridian",
  "form": "Vape 1g Disposable",
  "thc": 83.4,
- "total_terpenes": 7.0561,
+ "total_terpenes": 6.7353,
  "lean": "lifting",
  "confidence": "strong",
  "in_stock": true,
@@ -27,23 +27,21 @@
   "woody"
  ],
  "terpenes": {
-  "Limonene": 4.655,
-  "beta-Caryophyllene": 3.3416,
-  "beta-Myrcene": 2.1427,
+  "Limonene": 2.3098,
+  "beta-Caryophyllene": 1.6243,
+  "beta-Myrcene": 1.0673,
   "alpha-Humulene": 0.4247,
   "beta-Pinene": 0.3514,
   "Linalool": 0.2671,
-  "Fenchol": 0.2641,
   "alpha-Pinene": 0.2596,
   "Ocimene": 0.1264,
-  "Farnesene": 0.1199,
+  "Fenchol": 0.1171,
   "Terpineol": 0.066,
-  "Valencene": 0.0558,
   "Camphene": 0.051,
   "alpha-Bisabolol": 0.0493,
   "Guaiol": 0.0213
  },
  "test_date": "2026-06-17",
  "test_lab": "Certified Testing and Data NY, LLC",
- "scanned_at": "2026-08-20T23:39:05.608Z"
+ "scanned_at": "2026-08-23T16:38:30.455Z"
 }

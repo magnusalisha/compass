@@ -4,8 +4,8 @@
  "brand": "Golden Garden",
  "strain": "Melted Strawberries",
  "form": "Preroll 1g",
- "thc": 21.1,
- "total_terpenes": 1.248,
+ "thc": 25.716,
+ "total_terpenes": 1.11,
  "lean": "settling",
  "confidence": "moderate",
  "in_stock": false,
@@ -24,12 +24,11 @@
   "floral"
  ],
  "terpenes": {
-  "beta-Caryophyllene": 1.0591,
-  "alpha-Humulene": 0.3988,
-  "Limonene": 0.3591,
-  "alpha-Bisabolol": 0.24,
-  "Valencene": 0.2115,
+  "beta-Caryophyllene": 0.48,
+  "alpha-Humulene": 0.16,
   "Linalool": 0.15,
+  "Limonene": 0.12,
+  "alpha-Bisabolol": 0.1,
   "Guaiol": 0.08
  },
  "scanned_at": "2026-08-20T23:39:29.283Z",

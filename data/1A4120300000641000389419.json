@@ -4,8 +4,8 @@
  "brand": "Jetty",
  "strain": "Gaslight Sundae",
  "form": "Vape 1g Disposable",
- "thc": 68.2,
- "total_terpenes": 8.4579,
+ "thc": 83.7,
+ "total_terpenes": 6.1188,
  "lean": "settling",
  "confidence": "strong",
  "in_stock": true,
@@ -27,22 +27,20 @@
   "hoppy"
  ],
  "terpenes": {
-  "beta-Caryophyllene": 5.7834,
-  "Limonene": 2.709,
-  "alpha-Humulene": 1.6385,
-  "beta-Myrcene": 1.5898,
-  "beta-Pinene": 0.4887,
-  "alpha-Bisabolol": 0.4836,
-  "Linalool": 0.4617,
-  "Farnesene": 0.3258,
-  "alpha-Pinene": 0.3113,
-  "Caryophyllene Oxide": 0.2203,
-  "Fenchol": 0.2166,
-  "Ocimene": 0.1434,
-  "Terpineol": 0.1293,
-  "Camphene": 0.0753
+  "beta-Caryophyllene": 2.0255,
+  "Limonene": 1.6807,
+  "beta-Myrcene": 0.7536,
+  "alpha-Humulene": 0.5497,
+  "beta-Pinene": 0.2928,
+  "Linalool": 0.2735,
+  "alpha-Pinene": 0.1883,
+  "Fenchol": 0.1351,
+  "alpha-Bisabolol": 0.069,
+  "Terpineol": 0.0643,
+  "Camphene": 0.0448,
+  "Ocimene": 0.0415
  },
  "test_date": "2026-05-28",
  "test_lab": "Certified Testing and Data NY, LLC",
- "scanned_at": "2026-08-20T23:39:05.137Z"
+ "scanned_at": "2026-08-23T16:38:29.923Z"
 }
