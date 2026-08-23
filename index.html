@@ -2581,12 +2581,32 @@ function render(){
     // Tier 2 carries real content most of the time: 99 of 124 preroll sources
     // have a strong one, and 65 of 92 flower sources do — the flower cases being
     // Lobo's Moonrocks, which at 50-57% THC against a 27.9% median is exactly the
-    // swap a customer most needs warning about. No vape form says "infused", so
-    // the section never appears there.
-    const srcW = weightOnly(p), srcInf = isInfused(p);
+    // swap a customer most needs warning about.
+    //
+    // HARDWARE IS THE VAPE'S VERSION OF INFUSION. No vape form says "infused",
+    // so the tier-2 split used to be a no-op for every vape source — a whole
+    // category with no secondary criterion at all. But a disposable and a
+    // cartridge are not interchangeable in the way the split exists to capture:
+    // a customer holding a disposable may own no battery, so handing them a cart
+    // is not a near-miss, it is a product they cannot use tonight. Same shape as
+    // infusion — same size, same profile, different thing in the hand — so it is
+    // the same tier, not a dimmed one. (Alisha, 23 Aug.)
+    //
+    // It only separates when BOTH sides state their hardware. Twelve vapes on
+    // the shelf name none, and an unstated one is not evidence of disagreement —
+    // treating it as its own class would strand those twelve in a tier of
+    // stragglers, which is worse than saying nothing. So unknown stays put.
+    const hwOf = x => category(x) === 'Vape' ? vapeType(x) : '';
+    const srcW = weightOnly(p), srcInf = isInfused(p), srcHw = hwOf(p);
     const sameSize = ([,x]) => !srcW || weightOnly(x) === srcW;
-    const tier1 = ranked.filter(r => sameSize(r) && isInfused(r[1]) === srcInf);
-    const tier2 = ranked.filter(r => sameSize(r) && isInfused(r[1]) !== srcInf);
+    // Either axis can send a candidate to tier 2; for any given source only one
+    // of them can fire, since no vape is infused and no preroll has hardware.
+    const kindDiffers = x => {
+      const hw = hwOf(x);
+      return isInfused(x) !== srcInf || (!!srcHw && !!hw && hw !== srcHw);
+    };
+    const tier1 = ranked.filter(r => sameSize(r) && !kindDiffers(r[1]));
+    const tier2 = ranked.filter(r => sameSize(r) && kindDiffers(r[1]));
     const tier3 = srcW ? ranked.filter(r => !sameSize(r)) : [];
     // One source on the shelf — the only 0.9g x5 — has no tier 1 at all. It falls
     // back to the whole ranking, and the two sections below are suppressed so the
@@ -2596,7 +2616,9 @@ function render(){
     // Two, not four: this is an alternative to consider, not a second list to
     // work through. The THC and total terps now sit on every card, so "stronger"
     // doesn't need asserting in the heading — it's legible on the card itself.
-    const altHead = srcInf ? 'Also close, but not infused' : 'Also close, but infused';
+    const altHead = srcHw
+      ? (srcHw === 'Disposable' ? 'Also close, but a cartridge' : 'Also close, but a disposable')
+      : srcInf ? 'Also close, but not infused' : 'Also close, but infused';
     O.innerHTML = faintSrcNote + (ranked[0][0] < 0.5
         ? `<div class="card"><div class="warnbox" style="margin:0">Nothing <b>scanned</b> is close to <b>${p.strain}</b> — its profile is ${domTerps(p).slice(0,2).map(k=>short(k).toLowerCase()).join('/')}-led and nothing else in here looks like that. <b>Say so. Don't substitute.</b> Worth a look at the shelf too, in case something isn't scanned yet.</div></div>`
         : '')
