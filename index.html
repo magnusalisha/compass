@@ -3275,13 +3275,29 @@ async function recordsFromIndex(files){
 async function fetchRecords(){
   if (STOCK_API){
     try {
-      // The cache-buster is deliberate. `cache: 'no-store'` only governs the
-      // browser's own cache — Cloudflare's edge cache sits in front of it, and
-      // it once pinned a 500 from a broken deploy so hard that the fix looked
-      // like it hadn't worked. A unique URL each time cannot be served stale.
-      // The Worker still collapses its GitHub calls internally, under its own
-      // fixed cache key, so this costs nothing.
-      const res = await fetch(STOCK_API.replace(/\/+$/, '') + '/data?t=' + Date.now(), {cache: 'no-store'});
+      // ASK WHETHER IT CHANGED, don't demand it again.
+      //
+      // This used to append `?t=<now>` and pass `cache: 'no-store'` — a unique
+      // URL every time, so nothing anywhere could answer from a cache. That was
+      // aimed at a real failure: Cloudflare's edge once pinned a 500 from a
+      // broken deploy so hard the fix looked like it hadn't worked. But the fix
+      // for THAT now lives at the source — every error response carries
+      // no-store (see `j()` in the worker), so a failure cannot be cached in the
+      // first place, and the buster was left defeating the cache on the success
+      // path too.
+      //
+      // The cost was quiet and grows with the shelf: a register polls once a
+      // minute and got the entire catalogue back every time, ~290KB at 340
+      // records, when stock moves a few times an HOUR. Four registers over a
+      // twelve-hour day is about 0.8GB of shop wifi to re-send bytes that were
+      // almost always identical.
+      //
+      // A plain fetch does the right thing by itself. The response carries an
+      // ETag and max-age=30, so the browser revalidates on each 60s poll,
+      // sends If-None-Match, and gets a bodiless 304 whenever nothing moved —
+      // then hands this code the copy it already had. No 304 handling is needed
+      // here: as far as this function is concerned it still just got the data.
+      const res = await fetch(STOCK_API.replace(/\/+$/, '') + '/data');
       if (!res.ok) throw new Error('worker ' + res.status);
       const body = await res.json();
       if (Array.isArray(body) && body.length){

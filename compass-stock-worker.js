@@ -53,7 +53,7 @@ function withCORS(res) {
   const h = new Headers(res.headers);
   h.set("Access-Control-Allow-Origin", "*");
   h.set("Access-Control-Allow-Methods", "GET, OPTIONS");
-  h.set("Access-Control-Allow-Headers", "Content-Type");
+  h.set("Access-Control-Allow-Headers", "Content-Type, If-None-Match");
   h.set("Cache-Control", "no-store");
   return new Response(res.body, { status: res.status, headers: h });
 }
@@ -240,6 +240,28 @@ async function readRecords(env) {
   return { body: "[" + parts.join(",") + "]", skipped, count: parts.length };
 }
 
+// A validator for the assembled catalogue, so a page that already has the
+// current copy can be told "unchanged" instead of being sent all of it again.
+//
+// Every open register asks for the whole catalogue once a minute, and it is
+// identical to the last answer nearly every time — stock moves a few times an
+// hour, not a few times a minute. At 340 records that is ~290KB per device per
+// minute; the shelf grows, so it only gets worse.
+//
+// FNV-1a over the body, plus the length. Not a cryptographic hash and does not
+// need to be: it answers "is this byte-for-byte what I already sent", where the
+// only cost of a collision is one stale minute, and length has to match too.
+// Cheap enough to run on a cache MISS only — a hit reads the ETag back off the
+// cached response, so the common path hashes nothing.
+function etagFor(bodyText) {
+  let h = 0x811c9dc5;
+  for (let i = 0; i < bodyText.length; i++) {
+    h ^= bodyText.charCodeAt(i);
+    h = Math.imul(h, 0x01000193) >>> 0;
+  }
+  return `"${bodyText.length.toString(36)}-${h.toString(36)}"`;
+}
+
 function dataResponse(bodyText, extraHeaders, ctx) {
   const res = new Response(bodyText, {
     headers: {
@@ -250,7 +272,8 @@ function dataResponse(bodyText, extraHeaders, ctx) {
       // Allow-Origin only governs whether the RESPONSE is readable; custom
       // headers stay invisible unless named here, and the page needs
       // X-Compass-Skipped to tell the shelf that a record was dropped.
-      "Access-Control-Expose-Headers": "X-Compass-Shape, X-Compass-Count, X-Compass-Skipped",
+      "ETag": etagFor(bodyText),
+      "Access-Control-Expose-Headers": "ETag, X-Compass-Shape, X-Compass-Count, X-Compass-Skipped",
       ...extraHeaders,
     },
   });
@@ -258,20 +281,41 @@ function dataResponse(bodyText, extraHeaders, ctx) {
   return res;
 }
 
-async function serveData(env, ctx) {
+// `inm` is the request's If-None-Match. A match means the caller already holds
+// this exact catalogue, so the answer is 304 and no body at all.
+async function serveData(env, ctx, inm) {
+  const notModified = tag => new Response(null, {
+    status: 304,
+    headers: {
+      "ETag": tag,
+      "Cache-Control": "public, max-age=30",
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Expose-Headers": "ETag",
+    },
+  });
+
   const hit = await cacheGet(dataCacheKey());
-  if (hit) return hit;
+  if (hit) {
+    const tag = hit.headers.get("ETag");
+    // Reading the tag off the cached response is why the hash never runs here.
+    if (tag && inm && inm === tag) return notModified(tag);
+    return hit;
+  }
 
   // The archive read needs no listing, so the happy path is 2 subrequests and
   // never touches the contents API. The listing is only fetched if the archive
   // read fails, to build the fallback.
   try {
     const { body, skipped, count } = await readRecords(env);
-    return dataResponse(body, {
+    // The cache expiring does not mean the DATA changed. Thirty seconds pass far
+    // more often than a record does, so this is the branch that saves the most.
+    const fresh = dataResponse(body, {
       "X-Compass-Shape": "records",
       "X-Compass-Count": String(count),
       "X-Compass-Skipped": String(skipped),
     }, ctx);
+    const tag = fresh.headers.get("ETag");
+    return (tag && inm && inm === tag) ? notModified(tag) : fresh;
   } catch (err) {
     // Fall back to the file index. The page accepts both shapes, so the worst
     // case is the old one-request-per-record load rather than an empty shelf —
@@ -316,7 +360,8 @@ async function handle(request, env, ctx) {
     // Reading is public — the repo is public, so there is nothing to gate here,
     // and leaving it open means the page can fetch data before anyone signs in
     // to anything.
-    if (request.method === "GET") return serveData(env, ctx);
+    if (request.method === "GET")
+      return serveData(env, ctx, request.headers.get("If-None-Match"));
 
     // Every other verb, POST included. This used to be the write path.
     return withCORS(j({ error: "GET only" }, 405));
