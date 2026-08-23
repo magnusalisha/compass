@@ -8,7 +8,7 @@
  "total_terpenes": 2.2149,
  "lean": "lifting",
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Hybrid",
  "reported": [
   "Creamsicle Sunset hybrid flower",
@@ -43,5 +43,6 @@
  },
  "test_date": "2025-12-11",
  "test_lab": "ACT Laboratories of New York, LLC",
- "scanned_at": "2026-08-20T23:38:51.572Z"
+ "scanned_at": "2026-08-20T23:38:51.572Z",
+ "sold_out_at": "2026-08-23T18:20:51.351Z"
 }
