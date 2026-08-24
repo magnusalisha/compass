@@ -37,10 +37,11 @@
  "form": "Flower 3.5g",
  "strain": "Banana Kush",
  "lean": "lifting",
- "in_stock": true,
+ "in_stock": false,
  "thc": 29.3616,
  "test_date": "2026-06-01",
  "test_lab": "Kaycha Labs NY",
  "date_expire": "2027-05-21",
- "scanned_at": "2026-08-20T23:38:48.408Z"
+ "scanned_at": "2026-08-20T23:38:48.408Z",
+ "sold_out_at": "2026-08-24T00:38:42.601Z"
 }
