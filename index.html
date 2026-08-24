@@ -2314,6 +2314,28 @@ function comboListHTML(id, list){
   // side filled and this list open, so the duplicate is sitting right there
   // under the name you just came from.
   const taken = id === 'a' ? b : id === 'b' ? a : null;
+  // NOTHING UNTIL YOU HAVE TYPED TWO CHARACTERS.
+  //
+  // Focusing the box used to drop the whole pool open — 340 products for Find
+  // similar, 200 for Compare — which is not a menu anyone scrolls, it is the
+  // catalogue with a scrollbar. (Alisha, 24 Aug: "the list is too large to even
+  // scroll through to find what you're looking for".)
+  //
+  // Two, not one, because one barely helps: measured across every first letter
+  // in the archive, one character leaves a median of 161 matches and as many as
+  // 300 — the same wall of names, marginally shorter. Two takes the median to 22
+  // and three to 3.
+  //
+  // One character still answers, with a line rather than a list, because a
+  // picker that goes silent while you type reads as broken. The input's own
+  // placeholder carries the instruction before that.
+  if (q.length < 2){
+    st.filtered = [];
+    st.highlight = -1;
+    return q.length === 0 ? ''
+      : `<ul class="combo-list"><li class="combo-empty">Keep typing…</li></ul>`;
+  }
+
   const filtered = list.filter(p => searchable(p).includes(searchNorm(q))
     && !(taken && key(p) === taken));
   st.filtered = filtered;
