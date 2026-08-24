@@ -254,6 +254,33 @@
     .lookup-row{flex-direction:column;align-items:stretch;gap:7px}
     .lookup-right{flex-direction:row;align-items:baseline;justify-content:space-between;width:100%}
   }
+  /* Back to top. Browsing a category is 24 screens on a POS display and 42 on a
+     phone, and the only reason to return is to change a filter — so this is the
+     cheap half of that problem. The expensive half is that the layout caps at
+     680px and never uses a wide screen; see the handoff.
+
+     Styled as an unselected tab rather than in gold: gold means "this is the
+     one you picked", and a utility that is always present must not claim it.
+     Opaque background because it floats over cards, which are light. */
+  #totop{position:fixed;right:16px;z-index:40;
+    bottom:calc(16px + env(safe-area-inset-bottom));
+    padding:11px 16px;border-radius:999px;border:1px solid var(--dim);
+    background:var(--bg);color:var(--pale);font:600 13.5px Inter,sans-serif;
+    cursor:pointer;
+    /* Two shadows doing different jobs. The inset is a flat fill lifted slightly
+       off --bg: on a phone this floats over light CARDS, where an opaque dark
+       pill reads fine, but on a POS display the column is only 680px of a
+       1920px screen so it floats over the BACKGROUND — the same colour as
+       itself, leaving a 1px border to do all the work. The outer shadow
+       separates it from the light cards. */
+    box-shadow:inset 0 0 0 999px rgba(201,214,196,.07), 0 2px 10px rgba(0,0,0,.4);
+    opacity:0;transform:translateY(6px);transition:opacity .18s,transform .18s}
+  #totop.show{opacity:1;transform:none}
+  #totop:hover{border-color:var(--pale);color:#fff}
+  /* 44px is the smallest reliable touch target, and this is used on a counter
+     with a customer waiting. */
+  @media(max-width:440px){ #totop{padding:13px 18px} }
+
   .lookup-back{background:none;border:none;color:var(--pale);font:600 13.5px Inter,sans-serif;
     cursor:pointer;padding:0;margin-bottom:12px;display:block}
   .lookup-back:hover{color:#fff}
@@ -279,6 +306,7 @@
 <div id="panel"></div>
 <div id="out"></div>
 <div class="foot" id="foot"></div>
+<button id="totop" type="button" aria-label="Back to top" hidden>↑ Top</button>
 
 <script>
 // ── point at your repo once it exists
@@ -3378,6 +3406,40 @@ async function refresh(){
   const typing = el && (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA');
   if (!typing) render();
 }
+// Appears only once the page is genuinely long — three screens, past every
+// short flow. Six results is 2.6 screens on a POS display, so the common case
+// never sees it; browsing a category is 24, which is what it exists for.
+//
+// `hidden` is removed on first show rather than set at load, so a page that is
+// never scrolled never puts the control in the accessibility tree at all.
+(() => {
+  const btn = document.getElementById('totop');
+  if (!btn) return;
+  const THRESHOLD = () => window.innerHeight * 3;
+  let shown = false;
+  const sync = () => {
+    const want = window.scrollY > THRESHOLD();
+    if (want === shown) return;
+    shown = want;
+    if (want) btn.hidden = false;
+    btn.classList.toggle('show', want);
+  };
+  // passive: this fires on every scroll frame and must never block it.
+  addEventListener('scroll', sync, {passive: true});
+  addEventListener('resize', sync);
+  btn.addEventListener('click', () => {
+    // Matches openCompare, and honours the same reduced-motion preference the
+    // stylesheet does — a long smooth scroll is exactly what that setting is for.
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({top: 0, behavior: reduce ? 'auto' : 'smooth'});
+    // Send focus back to the controls, not just the pixels. A keyboard or
+    // screen-reader user who taps this wants to be AT the top, not looking at it.
+    const first = document.querySelector('.tabs button');
+    if (first) first.focus({preventScroll: true});
+  });
+  sync();
+})();
+
 function startAutoRefresh(){
   if (refreshTimer) clearInterval(refreshTimer);
   refreshTimer = setInterval(() => { if (!document.hidden) refresh(); }, 60000);
