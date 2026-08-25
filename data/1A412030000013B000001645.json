@@ -34,7 +34,8 @@
  "scanned_at": "2026-08-20T23:38:41.304Z",
  "thc": 87.19,
  "total_terpenes": 4.956,
- "in_stock": true,
+ "in_stock": false,
  "test_date": "2025-10-09",
- "test_lab": "Smithers CTS New York, LLC"
+ "test_lab": "Smithers CTS New York, LLC",
+ "sold_out_at": "2026-08-25T16:49:48.577Z"
 }
