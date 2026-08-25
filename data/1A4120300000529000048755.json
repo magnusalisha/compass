@@ -8,7 +8,7 @@
  "total_terpenes": 1.63,
  "lean": "settling",
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Indica",
  "reported": [
   "Beta-Caryophyllene dominant",
@@ -35,5 +35,6 @@
  "test_date": "2026-04-04",
  "test_lab": "Green Analytics NY, LLC",
  "date_expire": "2026-12-12",
- "scanned_at": "2026-08-20T23:38:47.252Z"
+ "scanned_at": "2026-08-20T23:38:47.252Z",
+ "sold_out_at": "2026-08-25T19:53:36.001Z"
 }
