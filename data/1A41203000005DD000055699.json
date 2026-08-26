@@ -1,0 +1,42 @@
+{
+ "id": "37bad782b4",
+ "metrc_tag": "1A41203000005DD000055699",
+ "brand": "Ayrloom",
+ "strain": "Alaskan Thunder Fuck",
+ "form": "Vape 2g Disposable",
+ "thc": 89,
+ "total_terpenes": 4.0773,
+ "lean": "settling",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Sativa",
+ "reported": [],
+ "dominant": [
+  "Linalool",
+  "alpha-Pinene",
+  "beta-Myrcene"
+ ],
+ "aroma": [
+  "floral",
+  "pine",
+  "earthy",
+  "musky",
+  "citrus"
+ ],
+ "terpenes": {
+  "Linalool": 2.6656,
+  "alpha-Pinene": 0.5659,
+  "beta-Myrcene": 0.3342,
+  "Limonene": 0.2067,
+  "beta-Caryophyllene": 0.1052,
+  "Terpinolene": 0.0791,
+  "alpha-Bisabolol": 0.0545,
+  "alpha-Humulene": 0.0473,
+  "beta-Pinene": 0.0187
+ },
+ "scanned_at": "2026-08-26T18:51:58.371Z",
+ "sold_out_at": "2026-08-20T23:39:35.132Z",
+ "test_date": "2026-05-13",
+ "test_lab": "ACT Laboratories of New York, LLC",
+ "date_expire": "2027-05-05"
+}
