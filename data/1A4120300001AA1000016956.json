@@ -8,7 +8,7 @@
  "total_terpenes": 2.6124,
  "lean": "settling",
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Indica",
  "reported": [],
  "dominant": [
@@ -45,5 +45,6 @@
  "scanned_at": "2026-08-20T23:39:29.989Z",
  "test_date": "2026-05-06",
  "test_lab": "Green Analytics NY, LLC",
- "date_expire": "2027-04-02"
+ "date_expire": "2027-04-02",
+ "sold_out_at": "2026-08-27T00:48:13.568Z"
 }

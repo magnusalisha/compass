@@ -13,6 +13,7 @@
  "terpenes": {},
  "scanned_at": "2026-08-21T15:44:14.653Z",
  "thc": 49.3,
- "in_stock": true,
- "date_expire": "2027-04-01"
+ "in_stock": false,
+ "date_expire": "2027-04-01",
+ "sold_out_at": "2026-08-27T00:48:13.568Z"
 }

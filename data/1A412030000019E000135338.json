@@ -8,7 +8,7 @@
  "total_terpenes": 4.89,
  "lean": "lifting",
  "confidence": "strong",
- "in_stock": false,
+ "in_stock": true,
  "shelf_tag": "Indica",
  "reported": [],
  "dominant": [
@@ -45,6 +45,5 @@
  },
  "scanned_at": "2026-08-20T23:39:20.072Z",
  "test_date": "2026-04-28",
- "test_lab": "Kaycha Labs NY",
- "sold_out_at": "2026-08-25T19:26:26.505Z"
+ "test_lab": "Kaycha Labs NY"
 }
