@@ -11,19 +11,9 @@
  "dominant": [],
  "aroma": [],
  "terpenes": {
-  "beta-Caryophyllene": 1.3233,
-  "alpha-Humulene": 0.526,
-  "alpha-Bisabolol": 0.3467,
-  "Limonene": 0.2541,
-  "Nerolidol": 0.1572,
-  "beta-Myrcene": 0.1005,
-  "Linalool": 0.0534,
-  "beta-Pinene": 0.0396,
-  "Fenchol": 0.0382,
-  "Caryophyllene Oxide": 0.0218,
-  "Farnesene": 0.0218,
-  "alpha-Pinene": 0.0175,
-  "Terpineol": 0.0162
+  "beta-Caryophyllene": 0.597,
+  "alpha-Humulene": 0.259,
+  "alpha-Bisabolol": 0.177
  },
  "scanned_at": "2026-08-26T14:11:52.373Z",
  "thc": 33.1887,
