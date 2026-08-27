@@ -8,7 +8,7 @@
  "total_terpenes": 2.7642,
  "lean": "settling",
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Sativa-leaning Hybrid",
  "reported": [
   "Spicy",
@@ -48,5 +48,6 @@
  "test_date": "2026-07-06",
  "test_lab": "ACT Laboratories of New York, LLC",
  "date_expire": "2027-07-01",
- "scanned_at": "2026-08-20T23:39:03.293Z"
+ "scanned_at": "2026-08-20T23:39:03.293Z",
+ "sold_out_at": "2026-08-27T21:50:10.583Z"
 }
