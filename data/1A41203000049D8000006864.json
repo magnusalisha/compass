@@ -36,5 +36,10 @@
  "test_date": "2026-05-29",
  "test_lab": "Smithers CTS New York, LLC",
  "date_expire": "2027-05-29",
- "scanned_at": "2026-08-20T23:38:43.870Z"
+ "scanned_at": "2026-08-27T01:07:41.980Z",
+ "thc_range": [
+  84.48,
+  86.96
+ ],
+ "batches": 2
 }

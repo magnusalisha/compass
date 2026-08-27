@@ -1,11 +1,11 @@
 {
  "id": "1ecf2e5ffd",
- "metrc_tag": "1A41203000005DD000055697",
+ "metrc_tag": "1A41203000005DD000107697",
  "brand": "Ayrloom",
  "strain": "Blue Widow",
  "form": "Vape 1g Disposable",
- "thc": 88.27,
- "total_terpenes": 2.9459,
+ "thc": 85.44,
+ "total_terpenes": 3.0067,
  "lean": "mixed",
  "confidence": "strong",
  "in_stock": true,
@@ -24,24 +24,29 @@
   "citrus"
  ],
  "terpenes": {
-  "Terpineol": 0.6158,
-  "beta-Caryophyllene": 0.6149,
-  "Limonene": 0.3998,
-  "Terpinolene": 0.2427,
-  "beta-Myrcene": 0.2275,
-  "alpha-Humulene": 0.1483,
-  "beta-Pinene": 0.1284,
-  "alpha-Pinene": 0.1277,
-  "Isopulegol": 0.12,
-  "alpha-Bisabolol": 0.0753,
-  "Linalool": 0.0667,
-  "Fenchol": 0.0653,
-  "alpha-Phellandrene": 0.0251,
-  "Carene": 0.0224,
-  "Caryophyllene Oxide": 0.0195
+  "Terpineol": 0.6278,
+  "beta-Caryophyllene": 0.6033,
+  "Limonene": 0.4185,
+  "Terpinolene": 0.3102,
+  "beta-Myrcene": 0.2128,
+  "alpha-Humulene": 0.143,
+  "beta-Pinene": 0.1298,
+  "alpha-Pinene": 0.1238,
+  "Isopulegol": 0.1208,
+  "alpha-Bisabolol": 0.0739,
+  "Fenchol": 0.067,
+  "Linalool": 0.0655,
+  "Caryophyllene Oxide": 0.0229,
+  "alpha-Phellandrene": 0.0228,
+  "Carene": 0.021
  },
- "scanned_at": "2026-08-26T18:51:58.357Z",
- "test_date": "2026-05-09",
+ "scanned_at": "2026-08-27T01:07:41.995Z",
+ "test_date": "2026-03-25",
  "test_lab": "ACT Laboratories of New York, LLC",
- "date_expire": "2027-04-30"
+ "date_expire": "2027-03-17",
+ "thc_range": [
+  85.44,
+  88.27
+ ],
+ "batches": 2
 }
