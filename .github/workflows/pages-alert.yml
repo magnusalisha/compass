@@ -47,7 +47,11 @@ jobs:
   tell:
     # Only failures. A successful deploy is the normal case and says nothing
     # worth interrupting anyone for.
-    if: github.event.workflow_run.conclusion == 'failure'
+    # TEMPORARY — reverted in the very next commit. Fires on ANY completion so
+    # the whole chain can be proven once: workflow_run triggering off a
+    # GitHub-generated workflow, the name matching, the secret resolving, jq,
+    # and delivery. An untested alarm is the thing this file exists to prevent.
+    if: always()
     runs-on: ubuntu-latest
     steps:
       - name: Discord — the shop page did not deploy
@@ -66,7 +70,7 @@ jobs:
               --arg u "$RUN" \
               --arg s "$(printf '%s' "$SHA" | cut -c1-7)" \
               --arg m "$(printf '%s' "$MSG" | head -1)" \
-              '{content: ("🚨 **the shop page did not deploy**\n`" + $s + "`  " + $m + "\n" + $u)}' \
+              '{content: ("🚨 **TEST — pages-alert wiring check**\n`" + $s + "`  " + $m + "\n" + $u)}' \
               | curl -sS -X POST -H 'Content-Type: application/json' -d @- "$HOOK" || true
           fi
           # Never fail the alert job itself. A Discord outage must not add a
