@@ -1339,6 +1339,12 @@ const CHAR = {
   // directly above it — and it sat one letter from "heavy", its own opposite, in
   // the same sentence on 10 cards ("heavy and heady in equal measure"). Buzzy is
   // already this terpene's own descriptor in REPORTED and collides with nothing.
+  //
+  // THE LINE BELOW IS NOT WHERE THAT IS DECIDED. Nothing reads CHAR[k][0]; the
+  // card takes CHAR[k][1] and looks it up in SAY, so this entry's first field
+  // was changed and the sentence carried on saying "heady" for months. Fixed at
+  // SAY.buzzy — see the note there. Left as a warning: a phrase edited here is
+  // an edit to a field with no reader.
   'Terpinolene':        ['alert and buzzy','buzzy','lift'],
   'Limonene':           ['upbeat and social','upbeat','lift'],
   'alpha-Pinene':       ['clear-headed','clear','lift'],
@@ -1513,7 +1519,14 @@ const SAY = {
   settled:  ['settled',                'settling you'],
   soothing: ['soothing',               'soothing you'],
   upbeat:   ['upbeat',                 'putting you in a good mood'],
-  buzzy:    ['heady and alert',        'keeping you alert'],
+  // "alert and buzzy", not "heady and alert" — and THIS is the line that decides
+  // it. CHAR's first field was changed to "alert and buzzy" on the same grounds
+  // and the comment there was written as though that settled it; nothing reads
+  // CHAR[k][0]. says() builds the sentence from SAY[CHAR[k][1]], so the card
+  // went on saying "heady" for nine in-stock products, including The Botanist's
+  // Millionaire — "heady and alert as much as body heavy" — which is the exact
+  // heavy/heady collision the earlier note claimed to have removed.
+  buzzy:    ['alert and buzzy',        'keeping you alert'],
   clear:    ['clear-headed',           'keeping your head clear'],
   breezy:   ['light',                  'keeping it light'],
 };
@@ -2202,6 +2215,57 @@ function read(x, y){
 // the brief, THC drives the experience more than any terpene — how the strength
 // compares to what the customer actually had. `src` is the product they asked
 // about; `x` is the in-stock suggestion.
+// WHEN SEVERAL MATCHES ARE TIED, DON'T LEAD WITH THE ONE THAT STARTS AN ARGUMENT.
+//
+// The shelf tag is NOT part of the similarity score and must not become part of
+// it: guessing a product's tag from its terpene balance is right 61% of the
+// time against a 59% baseline of always saying "Sativa", so the label carries
+// almost no information about how something feels. Ranking on it would re-teach
+// the folklore the evidence dots exist to argue against.
+//
+// But the customer is holding a jar that says Sativa, and on this shelf the best
+// chemical match carries a different tag 118 times out of 188 — 40 of them
+// outright Sativa/Indica flips. That is a conversation at the counter, not an
+// edge case.
+//
+// What makes the fix nearly free is how tightly the scores cluster: 18 products
+// sat within 5 points of the best match for Boogie Wuggie, because caryophyllene
+// leads 106 of 188 in stock and most profiles therefore look alike. Inside that
+// noise the ranking is choosing on rounding, so choosing on the package instead
+// costs nothing real.
+//
+// So: among candidates within 2 points of the top of their own tier, the ones
+// that are not the outright opposite come first. Measured across the shelf, that
+// takes opposite-tag leads from 40 to 10 for an average of 1 point of similarity
+// and 1.9 at worst. Exact tag matching was tested and rejected — it reaches 164
+// of 188 but spends up to 4.5 points doing it, which is buying the folklore.
+//
+// Hybrid is deliberately NOT an opposite. It is the honest answer when the
+// chemistry disagrees with the label, and forcing an exact match would skip past
+// it for something worse.
+//
+// The 10 that survive are the real ones: Northern Lights and Super Lemon Haze
+// match at 99.1% with nothing non-opposite within 3.3 points. Those get named on
+// the card instead of hidden — see matchNote.
+const OPPOSITE_SHELF = (a, b) =>
+  (a === 'Sativa' && b === 'Indica') || (a === 'Indica' && b === 'Sativa');
+const SHELF_TIEBREAK = 0.02;
+
+function preferSameShelf(ranked, src){
+  if (ranked.length < 2) return ranked;
+  const srcTag = shelfTag(src);
+  if (!/^(Sativa|Indica)$/.test(srcTag)) return ranked;   // nothing to be opposite to
+  const best = ranked[0][0];
+  const near = [], rest = [];
+  // Each tier gets its own window, because the tier is what the reader sees —
+  // a global window computed off a tier-3 leader would reorder tier 1 by a
+  // score no card on screen is showing.
+  for (const e of ranked) (e[0] >= best - SHELF_TIEBREAK ? near : rest).push(e);
+  const ok  = near.filter(e => !OPPOSITE_SHELF(srcTag, shelfTag(e[1])));
+  const opp = near.filter(e =>  OPPOSITE_SHELF(srcTag, shelfTag(e[1])));
+  return [...ok, ...opp, ...rest];   // filter is stable, so score order survives
+}
+
 function matchNote(src, x, s){
   let why = '';
   // a faint source has unreliable dominants, so don't assert a shared lead off it
@@ -2219,7 +2283,17 @@ function matchNote(src, x, s){
     : Math.abs(d) >= 3
       ? `${d > 0 ? 'stronger' : 'lighter'} — ${thc1(x.thc)} THC vs the ${thc1(src.thc)} you had`
       : `${thc1(x.thc)} THC, about the same strength`;
-  return `<div class="match">${Math.round(s*100)}% match${why ? ' · ' + why : ''}<br>${thc}</div>`;
+  // Say the label clash out loud rather than let the customer find it. This only
+  // fires where preferSameShelf could not avoid an opposite — nothing within 2
+  // points wore a different tag — so it marks the cases where the chemistry
+  // genuinely disagrees with the package, not the ones the tiebreak handled.
+  // Ten on the shelf as of 27 Aug, and they are worth naming: Northern Lights
+  // and Super Lemon Haze match at 99.1%.
+  const srcTag = shelfTag(src), xTag = shelfTag(x);
+  const clash = OPPOSITE_SHELF(srcTag, xTag)
+    ? `<br>Package says <b>${xTag}</b>, yours said ${srcTag} — the chemistry still matches.`
+    : '';
+  return `<div class="match">${Math.round(s*100)}% match${why ? ' · ' + why : ''}<br>${thc}${clash}</div>`;
 }
 
 // What the package claims, sized for the Compare header. It used to carry the
@@ -2673,9 +2747,9 @@ function render(){
       const hw = hwOf(x);
       return isInfused(x) !== srcInf || (!!srcHw && !!hw && hw !== srcHw);
     };
-    const tier1 = ranked.filter(r => sameSize(r) && !kindDiffers(r[1]));
-    const tier2 = ranked.filter(r => sameSize(r) && kindDiffers(r[1]));
-    const tier3 = srcW ? ranked.filter(r => !sameSize(r)) : [];
+    const tier1 = preferSameShelf(ranked.filter(r => sameSize(r) && !kindDiffers(r[1])), p);
+    const tier2 = preferSameShelf(ranked.filter(r => sameSize(r) && kindDiffers(r[1])), p);
+    const tier3 = srcW ? preferSameShelf(ranked.filter(r => !sameSize(r)), p) : [];
     // One source on the shelf — the only 0.9g x5 — has no tier 1 at all. It falls
     // back to the whole ranking, and the two sections below are suppressed so the
     // same cards don't appear twice under contradictory headings.
