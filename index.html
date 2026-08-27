@@ -690,7 +690,19 @@ const nameVs = (p, other) => p.strain === other.strain ? `${p.strain} (${p.brand
 // One decimal everywhere a THC figure is PRINTED; comparisons still run on the
 // stored value.
 const thc1 = v => v == null ? '—' : (+(+v).toFixed(1)) + '%';
-const thcText = p => thc1(p.thc);
+// A SPAN, not a figure, when two live packages of this product disagree.
+//
+// Fulfillment happens in the back and nobody picks the jar, so a single number
+// here is a claim about which package the customer is handed — one Compass
+// cannot make. `thc_range` is written by the sync only when the ends actually
+// differ, so a product with one live package, or two carrying the same lab
+// result, still prints one number exactly as before.
+//
+// One % sign, on the end. `thc1` drops trailing zeros, so Ayrloom's Alaskan
+// Thunder Fuck reads "89–91%" and costs no more width than a plain "91.2%".
+const thcText = p => Array.isArray(p.thc_range) && p.thc_range.length === 2
+  ? thc1(p.thc_range[0]).replace('%', '') + '–' + thc1(p.thc_range[1])
+  : thc1(p.thc);
 const col = t => COLOR[t] ? `var(${COLOR[t]})` : 'var(--etc)';
 // The extraction step asks the model for "10 random hex chars" as `id` — in
 // practice that's low-entropy and collides a lot at real scale (two totally
@@ -1279,11 +1291,12 @@ function collapseBatches(list){
   const chosen = new Map();
   for (const [k, ps] of groups){
     if (ps.length < 2) continue;
-    // Do the batches actually say the same thing? Where they don't, it is
-    // because the profile is too faint for "biggest terpene" to mean anything —
-    // so the card says that instead of pretending one batch speaks for both.
-    const differ = new Set(ps.map(says)).size > 1;
-    chosen.set(k, Object.assign({}, newestBatch(ps), {_batches: ps.length, _batchesDiffer: differ}));
+    // Collapsing only. The `_batches` / `_batchesDiffer` annotation that used to
+    // ride along here was never read by anything — batchNote asks the record —
+    // and the test behind it compared the two read sentences AS STRINGS, which
+    // reports a difference whenever wording moves without the direction moving.
+    // See batchNote for the measurement that retired it.
+    chosen.set(k, Object.assign({}, newestBatch(ps)));
   }
   if (!chosen.size) return list;
   const seen = new Set(), out = [];
@@ -2045,48 +2058,36 @@ function card(p, extra='', compareTo=null){
 // One line when a product has more than one batch on the shelf, and nothing at
 // all otherwise — which is almost always.
 //
-// It exists to answer the two questions overlapping batches actually raise:
-// "is this a duplicate?" (no) and "why is it still here after I marked it sold
-// out?" (you retired one batch, the other is still on the shelf). Every number
-// on the card above belongs to ONE real COA — nothing here is averaged across
-// batches, because an average is a profile no package in the shop can match.
+// Read off the RECORD, which is the only thing that knows. The sync sees every
+// live package; the page sees one record per product and cannot count them.
+// `batches` and `thc_range` are written together and removed together, so the
+// line and the header span can never disagree.
 //
-// The percentages themselves go unmentioned by design. Across the Gelato lots
-// the batch-to-batch read is identical and the profiles match at 99.8%, so the
-// difference is real but not something a customer has ever raised.
-// Counted from DATA, NOT from the annotation collapseBatches leaves on list
-// entries. A card can be reached without passing through a list at all — Lookup
-// resolves a row to a record by key, Find similar renders its source the same
-// way — and those cards were silently missing the batch line entirely. Asking
-// DATA directly makes the card right however it was opened.
-function batchInfo(p){
-  if (!p || !stocked(p)) return null;
-  const id = productId(p);
-  const sibs = DATA.filter(x => stocked(x) && productId(x) === id);
-  if (sibs.length < 2) return null;
-  return {n: sibs.length, differ: new Set(sibs.map(says)).size > 1,
-          faint: sibs.some(x => x.confidence === 'faint')};
-}
-
+// It fires only when the ends of the range differ, which is what makes it quiet:
+// of the seven products with two live packages on 26 Aug, three carried one lab
+// result recorded under two labels and say nothing at all.
+//
+// EARLIER VERSIONS OF THIS LINE ANNOUNCED A DIFFERENCE IN THE READ. They were
+// wrong, and the way they were wrong is worth keeping: the test was
+// `new Set(sibs.map(says)).size > 1` — the two sentences compared AS STRINGS.
+// says() changes wording when the margin between the lead direction and its
+// contrast moves, so it fires on batches that describe the identical thing.
+// Measured across all seven pairs, NO batch changed the direction the card
+// describes. Pineapple Express swaps its top terpene from pinene to myrcene and
+// still reads lift-against-settle in both; Blue Widow reads settle-against-lift
+// in both, its top two terpenes tied to within 0.001. Only the adverb moved.
+//
+// The terpene total is left out for the same reason: its only job is to set
+// strong/moderate/faint, the largest gap between two live batches is 0.18pp,
+// and the nearest band edge is 0.46pp away — so zero of the seven change
+// rating. Which batch is which is left out too: fulfillment happens in the back
+// of the store, so a budtender cannot know which jar is going in the bag, and
+// naming the dates would be information nobody can act on.
 function batchNote(p){
-  const info = batchInfo(p);
-  if (!info) return '';
-  if (!info.differ)
-    return `<p class="ev">${info.n} batches on the shelf · showing one — they read the same</p>`;
-  // Batches CAN disagree for two different reasons, and the first version of
-  // this line asserted only one of them: "too faint to tell them apart". That
-  // was generalised from a single case (Anthem Northern Lights, 0.4% against
-  // 0.6%) and it is simply false for the other kind — Ayrloom shipped two
-  // Lychee Dream carts at 4.79% and 1.66%, both `strong`, 50% similar. Saying
-  // "too faint" there would be a claim the numbers contradict.
-  //
-  // So name the reason that actually applies. Faintness is worth calling out
-  // because it means the ranking itself is noise; two solid but different lots
-  // are a real difference the budtender should know about, not a measurement
-  // problem.
-  return info.faint
-    ? `<p class="ev">${info.n} batches on the shelf, reading differently — but both profiles are faint, so the difference may be noise. Trust the package and your nose.</p>`
-    : `<p class="ev">${info.n} batches on the shelf and they genuinely differ — showing the newest. Worth a look at the other if this read doesn't fit.</p>`;
+  if (!p || !stocked(p)) return '';
+  if (!Array.isArray(p.thc_range) || p.thc_range.length !== 2) return '';
+  const n = p.batches > 1 ? p.batches : 2;
+  return `<p class="ev">${n} batches on the shelf, so the THC is a range.</p>`;
 }
 
 // ── the read: honest about what it can and can't call
@@ -3072,7 +3073,10 @@ function renderLookupResults(){
            // experience; terps follow because they're what the card is built on.
            // Either can be missing — a bare record has no profile, and a few have
            // no THC on the COA — so each is dropped rather than printed as "—".
-           [p.thc != null ? `<b>${thc1(p.thc)}</b> THC` : '',
+           // thcText, not thc1, so a product with two live packages shows the
+           // same span the card does. A row that promised one figure and a card
+           // that showed a range would read as a bug in whichever you saw second.
+           [p.thc != null ? `<b>${thcText(p)}</b> THC` : '',
             hasProfile(p) && p.total_terpenes > 0 ? `${tpct(p.total_terpenes)}% terps` : '']
              .filter(Boolean).join(' · ')
          }</span></span>
