@@ -2834,7 +2834,13 @@ function render(){
     // back to the whole ranking, and the two sections below are suppressed so the
     // same cards don't appear twice under contradictory headings.
     const fellBack = !tier1.length;
-    const primary = fellBack ? ranked : tier1;
+    // preferSameShelf on the fallback too. It was applied to the three tiers and
+    // not to `ranked`, so for exactly the sources that have no same-size match —
+    // the 0.9g x5 named above, and any other product alone in its form — the
+    // tiebreak silently did not apply and Find similar still led with an
+    // outright opposite shelf tag. The window is per-list by design, so this is
+    // its own call rather than one hoisted above the tiers.
+    const primary = fellBack ? preferSameShelf(ranked, p) : tier1;
     // Two, not four: this is an alternative to consider, not a second list to
     // work through. The THC and total terps now sit on every card, so "stronger"
     // doesn't need asserting in the heading — it's legible on the card itself.
@@ -3118,6 +3124,34 @@ function renderEffectResults(){
       card(p, `<div class="match">${tq.label} ${+v.toFixed(2)}%</div>`)).join('')
       + moreRow(ranked.length, `carrying ${tq.label}, most first`);
     return foot();
+  }
+
+  // A PRODUCT NAME TYPED INTO THE EFFECT BOX IS A WRONG-TAB MISTAKE, NOT A QUERY.
+  //
+  // WANT is matched with `includes`, so any effect word sitting inside a name on
+  // the shelf fires on it and returns a confident ranking about something else
+  // entirely. "Northern Lights" contains `light`, which steers AWAY from myrcene
+  // — the opposite of what Northern Lights is. "Golden Garden" contains `garden`,
+  // "Dirty Laundry" contains `laundry`, "LA Confidential" contains `confiden`.
+  //
+  // Matched on the WHOLE name, never a substring of it, and that is the part
+  // that makes this safe: "chill" must keep working as an effect even though
+  // Cactus Chiller contains it, and "garden" must keep working even though
+  // Golden Garden does. Only a query that IS a name — normalised the same way
+  // Lookup normalises, so spelling and punctuation don't decide it — is treated
+  // as a wrong turn.
+  //
+  // It points rather than guesses. Lookup is one tap away and answers exactly
+  // this question, so there is nothing to be gained by ranking the shelf against
+  // a word the customer never meant as a feeling.
+  const asName = searchNorm(rawQ);
+  if (asName.length > 2){
+    const named = DATA.find(p => searchNorm(p.strain) === asName || searchNorm(p.brand) === asName);
+    if (named){
+      O.innerHTML = `<div class="empty">“${rawQ}” is a ${searchNorm(named.strain) === asName ? 'product' : 'brand'} name, not a feeling.<br>
+        <span style="font-size:13px">Try <b>Lookup</b> for that — this tab searches by how something feels.</span></div>`;
+      return foot();
+    }
   }
 
   const [pos, neg] = [[], []];
