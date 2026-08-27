@@ -73,7 +73,10 @@ jobs:
               --arg u "$RUN" \
               --arg s "$(printf '%s' "$SHA" | cut -c1-7)" \
               --arg m "$(printf '%s' "$MSG" | head -1)" \
-              '{content: ("🚨 **the shop page did not deploy**\n`" + $s + "`  " + $m + "\n" + $u)}' \
+              # Angle brackets stop Discord unfurling the run URL into a repo
+              # card — contributors, stars, description — which buries a
+              # one-line alert under a block of decoration. Still clickable.
+              '{content: ("🚨 **the shop page did not deploy**\n`" + $s + "`  " + $m + "\n<" + $u + ">")}' \
               | curl -sS -X POST -H 'Content-Type: application/json' -d @- "$HOOK" || true
           fi
           # Never fail the alert job itself. A Discord outage must not add a
