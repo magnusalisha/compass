@@ -620,6 +620,84 @@ const WANT = {
   // were left out on purpose: they'd substring-match sedate / window / rewind.)
   stress:['beta-Caryophyllene','Linalool','alpha-Bisabolol'], unwind:['Linalool','alpha-Humulene'],
 
+  // ── round-6, 27 Aug. Tested 118 plausible counter phrasings against this map;
+  // 73 returned "nothing matched". What follows closes the ones with an honest
+  // mapping. Everything here routes to a terpene already in the map, so a new
+  // word still cannot overclaim — the evidence dots on the card do the talking.
+  //
+  // FIRST, THE WORDS COMPASS ITSELF PRINTS. SAY holds eleven phrases the read
+  // can put on a card, and six of them were not searchable: someone reading
+  // "alert and buzzy" off a card and typing "buzzy" back got nothing. A tool
+  // that won't accept its own vocabulary is the worst kind of dead end, because
+  // the customer has evidence it should have worked.
+  buzzy:['Terpinolene'], cozy:['beta-Myrcene','Linalool'], gentle:['Linalool','alpha-Bisabolol'],
+  settl:['beta-Myrcene','Linalool'], sooth:['Linalool','alpha-Bisabolol'], breez:['Ocimene','Limonene'],
+
+  // Feelings. Each is a synonym for something already here, filed with it.
+  motivat:['alpha-Pinene','Limonene'], inspir:['Terpinolene','Limonene'],
+  confiden:['Limonene'], refresh:['Limonene','alpha-Pinene'], recharg:['Limonene','alpha-Pinene'],
+  peace:['beta-Caryophyllene','Linalool','alpha-Bisabolol'], zen:['beta-Caryophyllene','Linalool'],
+  grounded:['beta-Caryophyllene','Linalool'], centered:['beta-Caryophyllene','Linalool'],
+  chatt:['Limonene'], funny:['Limonene'], silly:['Limonene'], playful:['Limonene','Terpinolene'],
+  sensual:['Limonene'], romant:['Limonene'], comfort:['Linalool','beta-Caryophyllene'],
+  floaty:['beta-Myrcene','Linalool'], dreamy:['beta-Myrcene','Linalool'],
+  spacey:['beta-Myrcene'], introspect:['Linalool','beta-Myrcene'],
+
+  // Activities. Same want/avoid shape as the block below — an activity that
+  // needs you upright carries the avoid, one done on a couch does not.
+  danc:     {want:['Limonene','Ocimene','Terpinolene'],      avoid:['beta-Myrcene']},
+  karaoke:  {want:['Limonene','Ocimene','Terpinolene'],      avoid:['beta-Myrcene']},
+  bowling:  {want:['Limonene','Terpinolene'],                avoid:['beta-Myrcene']},
+  sport:    {want:['Terpinolene','Limonene','alpha-Pinene'], avoid:['beta-Myrcene']},
+  running:  {want:['Terpinolene','alpha-Pinene'],            avoid:['beta-Myrcene']},
+  jog:      {want:['Terpinolene','alpha-Pinene'],            avoid:['beta-Myrcene']},
+  bik:      {want:['Terpinolene','alpha-Pinene','Limonene'], avoid:['beta-Myrcene']},
+  skiing:   {want:['Terpinolene','alpha-Pinene'],            avoid:['beta-Myrcene']},
+  surfing:  {want:['Limonene','Ocimene','Terpinolene'],      avoid:['beta-Myrcene']},
+  golf:     {want:['alpha-Pinene','Limonene']},
+  shop:     {want:['alpha-Pinene','Limonene'],               avoid:['beta-Myrcene']},
+  laundry:  {want:['alpha-Pinene','Limonene','Terpinolene'], avoid:['beta-Myrcene']},
+  'meal prep': {want:['Limonene','alpha-Pinene'],            avoid:['beta-Myrcene']},
+  hosting:  {want:['Limonene','Ocimene'],                    avoid:['beta-Myrcene']},
+  brunch:   {want:['Limonene','Ocimene']},
+  comedy:   {want:['Limonene']},
+  garden:   {want:['alpha-Pinene','Limonene','Ocimene']},
+  camp:     {want:['Terpinolene','alpha-Pinene']},
+  fishing:  {want:['alpha-Pinene','Linalool']},
+  museum:   {want:['alpha-Pinene','Limonene']},
+  travel:   {want:['Limonene','alpha-Pinene']},
+  craft:    {want:['Terpinolene','Limonene']},
+  knit:     {want:['Linalool','beta-Caryophyllene']},
+  journal:  {want:['alpha-Pinene','Terpinolene']},
+  reading:  {want:['alpha-Pinene','Linalool']},
+  music:    {want:['Limonene','Ocimene']},
+  podcast:  {want:['Linalool','beta-Caryophyllene']},
+  stretch:  {want:['Linalool','beta-Caryophyllene','alpha-Pinene']},
+  massage:  {want:['Linalool','beta-Caryophyllene']},
+  sauna:    {want:['Linalool','beta-Caryophyllene']},
+  sex:      {want:['Limonene']},
+  // "date night" spelled out: bare "date" was left out on purpose because it
+  // sits inside "sedate", and that reasoning still holds.
+  'date night': {want:['Limonene','beta-Caryophyllene']},
+  // Times of day. `morning` and `bed` were the only two, so everything between
+  // them returned nothing. Bare "night" is NOT a key — it sits inside "tonight",
+  // which is ordinary counter language that carries no direction at all.
+  // `wake`, not `wake and bake`. A KEY CANNOT CONTAIN "and", "but" OR A COMMA:
+  // the query is split on those before any key is tested, so "wake and bake"
+  // arrives as "wake " and " bake" and the full phrase can never match. `wake`
+  // catches both halves' intent and doubles up harmlessly with `awake`, which
+  // already points at the same terpenes. ('date night' and 'meal prep' are safe
+  // — no splitter token in either.)
+  wake:     {want:['alpha-Pinene','Limonene','Terpinolene'], avoid:['beta-Myrcene']},
+  daytime:  {want:['alpha-Pinene','Limonene','Terpinolene'], avoid:['beta-Myrcene']},
+  afternoon:{want:['Limonene','alpha-Pinene']},
+  evening:  {want:['Linalool','beta-Caryophyllene']},
+  nighttime:{want:['beta-Myrcene','Linalool']},
+  // "nap" carries the same substring risk as the words left out above — it sits
+  // inside "snap" and "kidnap" — and is kept anyway: neither is a thing anyone
+  // types into "what are they after?", and "a nap" is.
+  nap:      {want:['beta-Myrcene','Linalool']},
+
   // ── activities. Customers often don't name a feeling at all — they name what
   // they're about to go do, and leave the feeling implied. These translate the
   // plan into the same terpene targets every other word uses, so an activity
@@ -641,7 +719,9 @@ const WANT = {
   work:     {want:['alpha-Pinene','Limonene'],               avoid:['beta-Myrcene']},
   study:    {want:['alpha-Pinene','Terpinolene'],            avoid:['beta-Myrcene']},
   morning:  {want:['alpha-Pinene','Limonene','Terpinolene'], avoid:['beta-Myrcene']},
-  game:     {want:['Terpinolene','alpha-Pinene','Limonene'], avoid:['beta-Myrcene']},
+  // `gam`, not `game`: "games" and "gamer" matched, "gaming" did not — and
+  // gaming is the form people actually type.
+  gam:      {want:['Terpinolene','alpha-Pinene','Limonene'], avoid:['beta-Myrcene']},
   walk:     {want:['Limonene','alpha-Pinene','Ocimene']},
   beach:    {want:['Limonene','Ocimene']},
   writ:     {want:['alpha-Pinene','Terpinolene']},
