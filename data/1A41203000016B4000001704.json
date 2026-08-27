@@ -31,9 +31,10 @@
  "form": "Flower 1g",
  "strain": "Pineapple Express",
  "lean": "settling",
- "in_stock": true,
+ "in_stock": false,
  "thc": 28.056,
  "test_date": "2026-03-16",
  "test_lab": "Green Analytics NY, LLC",
- "scanned_at": "2026-08-20T23:38:41.788Z"
+ "scanned_at": "2026-08-20T23:38:41.788Z",
+ "sold_out_at": "2026-08-27T16:58:39.093Z"
 }

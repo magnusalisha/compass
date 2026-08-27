@@ -8,7 +8,7 @@
  "total_terpenes": 1.59,
  "lean": "mixed",
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Hybrid",
  "reported": [
   "Fruity Loopz",
@@ -44,5 +44,6 @@
  "test_date": "2026-07-22",
  "test_lab": "Kaycha Labs NY",
  "date_expire": "2027-07-16",
- "scanned_at": "2026-08-20T23:39:06.623Z"
+ "scanned_at": "2026-08-20T23:39:06.623Z",
+ "sold_out_at": "2026-08-27T16:58:39.091Z"
 }

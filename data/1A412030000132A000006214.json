@@ -8,7 +8,7 @@
  "total_terpenes": 1.431,
  "lean": "settling",
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Sativa",
  "reported": [],
  "dominant": [
@@ -35,5 +35,6 @@
  "scanned_at": "2026-08-20T23:39:23.194Z",
  "test_date": "2025-09-30",
  "test_lab": "Keystone State Testing, LLC",
- "date_expire": "2026-12-26"
+ "date_expire": "2026-12-26",
+ "sold_out_at": "2026-08-27T16:58:39.092Z"
 }
