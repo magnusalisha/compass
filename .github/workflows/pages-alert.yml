@@ -1,0 +1,73 @@
+# ==========================================================================
+# PAGES ALERT — say something when the shop page fails to deploy
+#
+# On 2026-08-23 every GitHub Pages build failed for ELEVEN HOURS — about a
+# dozen of them — and the live page sat frozen at its morning state while four
+# separate changes were merged and pushed. Nothing surfaced it in the repo, in
+# the sync, or on the page. The only signal was the failure emails, and nobody
+# reads those in the middle of a shift.
+#
+# The cause then was a recursive symlink (data/data pointing at its own parent)
+# that Jekyll followed until it gave up. The cause next time will be something
+# else; what matters is that a dead deploy stops being silent.
+#
+# WHY THIS ONE IS NOT HOSTAGE TO THE STOCK ACTION'S PROBLEM. Every other alert
+# Compass has is sent by the stock workflow in the sandbox repo, on a cron
+# schedule GitHub delivers erratically — 6 runs some days against 72 asked for.
+# This fires on `workflow_run`, which is triggered by the Pages build finishing,
+# not by a clock. If a deploy fails, this runs. There is no schedule to drop.
+#
+# THE WORKFLOW NAME BELOW MUST MATCH EXACTLY, and it is not what the Actions
+# tab shows you. The run list displays "pages build and deployment"; the
+# workflow's actual name is `pages-build-deployment`. Matching the display text
+# produces a workflow that is valid, active, and never fires — the precise
+# failure mode this file exists to prevent. Check with:
+#
+#   gh api repos/magnusalisha/compass/actions/workflows --jq '.workflows[].name'
+#
+# ON KEEPING A SECRET IN A PUBLIC REPO. The handoff says credentials must not
+# sit in the settings of a public repo, and that rule was written about
+# ALLEAVES_PASS and PROD_PUSH_TOKEN, where a leak is catastrophic. A Discord
+# webhook is a different weight: the worst it grants is posting to one channel,
+# and the remedy is deleting the webhook and making another. Use a SECOND
+# webhook URL here rather than the sandbox's, so revoking this one cannot
+# silence the stock alerts.
+# ==========================================================================
+name: pages-alert
+
+on:
+  workflow_run:
+    workflows: ["pages-build-deployment"]
+    types: [completed]
+
+permissions:
+  contents: read
+
+jobs:
+  tell:
+    # Only failures. A successful deploy is the normal case and says nothing
+    # worth interrupting anyone for.
+    if: github.event.workflow_run.conclusion == 'failure'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Discord — the shop page did not deploy
+        env:
+          HOOK: ${{ secrets.DISCORD_WEBHOOK }}
+          RUN:  ${{ github.event.workflow_run.html_url }}
+          SHA:  ${{ github.event.workflow_run.head_sha }}
+          MSG:  ${{ github.event.workflow_run.head_commit.message }}
+        run: |
+          # An `if`, not `[ -z "$HOOK" ] && exit 0` — when the secret IS set that
+          # test is false, becomes the step's last command, and fails the step.
+          if [ -n "$HOOK" ]; then
+            # jq builds the JSON so a commit subject containing a quote or an
+            # apostrophe cannot produce a malformed body and a silent 400.
+            jq -n \
+              --arg u "$RUN" \
+              --arg s "$(printf '%s' "$SHA" | cut -c1-7)" \
+              --arg m "$(printf '%s' "$MSG" | head -1)" \
+              '{content: ("🚨 **the shop page did not deploy**\n`" + $s + "`  " + $m + "\n" + $u)}' \
+              | curl -sS -X POST -H 'Content-Type: application/json' -d @- "$HOOK" || true
+          fi
+          # Never fail the alert job itself. A Discord outage must not add a
+          # second red run on top of the one being reported.
