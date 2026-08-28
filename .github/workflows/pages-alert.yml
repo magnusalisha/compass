@@ -69,13 +69,21 @@ jobs:
           if [ -n "$HOOK" ]; then
             # jq builds the JSON so a commit subject containing a quote or an
             # apostrophe cannot produce a malformed body and a silent 400.
+            # The <angle brackets> around the URL stop Discord unfurling it into
+            # a repo card — contributors, stars, description — which buries a
+            # one-line alert under a block of decoration. Still clickable.
+            #
+            # THIS COMMENT LIVES ABOVE THE COMMAND, NOT INSIDE IT. It was briefly
+            # placed between `--arg m … \` and the filter, which silently broke
+            # the whole alert: a `\` continuation followed by a comment makes the
+            # comment the rest of the command, so jq ran with NO filter and the
+            # filter line became a command that does not exist. With `|| true` on
+            # the end the step still reported success — the exact silent failure
+            # this file exists to prevent, in the file that exists to prevent it.
             jq -n \
               --arg u "$RUN" \
               --arg s "$(printf '%s' "$SHA" | cut -c1-7)" \
               --arg m "$(printf '%s' "$MSG" | head -1)" \
-              # Angle brackets stop Discord unfurling the run URL into a repo
-              # card — contributors, stars, description — which buries a
-              # one-line alert under a block of decoration. Still clickable.
               '{content: ("🚨 **the shop page did not deploy**\n`" + $s + "`  " + $m + "\n<" + $u + ">")}' \
               | curl -sS -X POST -H 'Content-Type: application/json' -d @- "$HOOK" || true
           fi
