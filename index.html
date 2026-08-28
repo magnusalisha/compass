@@ -2396,7 +2396,19 @@ function matchNote(src, x, s){
   // WITHIN a format the comparison stands, moonrocks included — a coated eighth
   // really is stronger to smoke than a plain one. It is only the % across
   // formats that measures different things.
-  const crossFormat = category(x) !== category(src);
+  // NOT category — SCALE. A preroll is flower, rolled: measured 28 Aug on this
+  // shelf, flower runs 20.0-57.0 and prerolls 14.7-50.9, overlapping by 31
+  // points with medians 27.3 and 30.9. Telling someone holding a 22% eighth
+  // that a 31% preroll is stronger is both true and useful. Vapes overlap
+  // either by ZERO points — 70.9-91.2 — because the number is measuring
+  // concentrate, not flower.
+  //
+  // The first version of this keyed on category and silenced flower-to-preroll
+  // too, which is the one cross-format substitution people actually make.
+  // (Alisha: "the only way i can see that backfiring is preroll vs flower. most
+  // people who want a vape will get another vape.")
+  const thcScale = q => category(q) === 'Vape' ? 'concentrate' : 'flower';
+  const crossFormat = thcScale(x) !== thcScale(src);
   const thc = x.thc == null ? 'THC not recorded'
     : crossFormat ? `${thc1(x.thc)} THC — different format, so the % doesn't compare`
     : d == null ? `${thc1(x.thc)} THC`
