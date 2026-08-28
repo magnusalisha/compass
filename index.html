@@ -1251,6 +1251,9 @@ let DATA = [
   // 'data' (a broken record — edit the file) | 'net' (didn't load — refresh) |
   // 'mixed'. See recordsFromIndex: the footer has to name the right remedy.
   unreadableKind = '',
+  // Response metadata, not product data. The Worker keeps credentials and the
+  // live snapshot server-side; the page only learns when stock last succeeded.
+  stockCheckedAt = null, stockStale = false,
   // Effect results are a ranked shortlist, not a filtered set — see EFF_TOP.
   // Reset whenever the query changes so a new question starts short again.
   effShowAll = false;
@@ -3290,6 +3293,7 @@ function foot(){
       : "missing — some didn't load, some are unreadable"}</b>` : ''}${
     unverified ? ` · <b>${unverified} shelf tag${unverified>1?'s':''} unverified</b> — tap Edit on a card to set one` : ''}${
     unread ? ` · <b>${unread} with a major terpene I can't describe</b>` : ''}<br>
+    ${stockStale && stockCheckedAt ? `<span style="color:var(--warn)">Stock last checked ${Math.max(1, Math.floor((Date.now()-new Date(stockCheckedAt))/60000))} minutes ago.</span><br>` : ''}
     ●●● real receptor mechanism · ●●○ some human data · ●○○ folklore<br>
     Only caryophyllene has a mechanism (CB2). The rest is inherited from strain databases.<br>
     <b>THC is the one number on the COA that reliably drives the experience.</b>`;
@@ -3541,6 +3545,16 @@ async function fetchRecords(){
       // here: as far as this function is concerned it still just got the data.
       const res = await fetch(STOCK_API.replace(/\/+$/, '') + '/data');
       if (!res.ok) throw new Error('worker ' + res.status);
+      const checked = res.headers.get('X-Compass-Stock-Checked-At');
+      if (checked){
+        stockCheckedAt = checked;
+        stockStale = res.headers.get('X-Compass-Stock-Stale') === 'true' ||
+          Date.now() - new Date(checked) > 10 * 60 * 1000;
+      } else if (stockCheckedAt) {
+        // A transient live-overlay failure serves committed Git stock. Retain
+        // the previous success time so a prolonged outage eventually surfaces.
+        stockStale = Date.now() - new Date(stockCheckedAt) > 10 * 60 * 1000;
+      }
       const body = await res.json();
       if (Array.isArray(body) && body.length){
         // Two shapes, both live. Whole records is the fast path — one request

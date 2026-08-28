@@ -29,6 +29,10 @@
 //   GH_TOKEN       (secret)  fine-grained PAT, Contents: Read, compass only
 //   GH_USER        (var)     e.g. magnusalisha
 //   GH_REPO        (var)     compass
+//   ALLEAVES_USER  (secret)  read-only Alleaves login
+//   ALLEAVES_PASS  (secret)  read-only Alleaves password
+//   DISCORD_WEBHOOK (secret)  optional new-stock/full-sync alerts
+//   STOCK_COORDINATOR (Durable Object binding) class StockCoordinator
 // ==========================================================================
 
 
@@ -64,6 +68,9 @@ function withCORS(res) {
 // way this endpoint can blow up with a bare 1101 and no explanation.
 const DATA_CACHE_URL = "https://compass-internal.example.com/data";
 const dataCacheKey = () => new Request(DATA_CACHE_URL, { method: "GET" });
+const STOCK_OBJECT_URL = "https://compass-internal.example.com/stock";
+const STOCK_FRESH_MS = 60_000;
+const STOCK_STALE_WARNING_MS = 10 * 60_000;
 
 // Assemble every record into one response.
 //
@@ -273,12 +280,78 @@ function dataResponse(bodyText, extraHeaders, ctx) {
       // headers stay invisible unless named here, and the page needs
       // X-Compass-Skipped to tell the shelf that a record was dropped.
       "ETag": etagFor(bodyText),
-      "Access-Control-Expose-Headers": "ETag, X-Compass-Shape, X-Compass-Count, X-Compass-Skipped",
+      "Access-Control-Expose-Headers": "ETag, X-Compass-Shape, X-Compass-Count, X-Compass-Skipped, X-Compass-Stock-Checked-At, X-Compass-Stock-Stale",
       ...extraHeaders,
     },
   });
   cacheSet(dataCacheKey(), res, ctx);
   return res;
+}
+
+// Availability is matched only by Metrc package label. Names are useful history
+// context, never identity: two brands can sell the same strain and a spelling
+// can change while the package label cannot.
+export function overlayAvailability(bodyText, snapshot) {
+  if (!snapshot || !Array.isArray(snapshot.tags) || !snapshot.checkedAt)
+    throw new Error("invalid stock snapshot");
+  const live = new Set(snapshot.tags);
+  const records = JSON.parse(bodyText);
+  if (!Array.isArray(records) || !records.length) throw new Error("invalid catalogue");
+
+  const idCounts = new Map();
+  for (const rec of records) {
+    if (rec && rec.id != null) idCounts.set(String(rec.id), (idCounts.get(String(rec.id)) || 0) + 1);
+  }
+  const observations = [];
+  let matched = 0;
+  for (const rec of records) {
+    if (!rec || typeof rec !== "object") continue;
+    const tag = typeof rec.metrc_tag === "string" ? rec.metrc_tag.trim() : "";
+    if (!tag) continue; // no stable upstream identifier: preserve committed stock
+    rec.in_stock = live.has(tag);
+    matched++;
+    const ownId = rec.id == null ? "" : String(rec.id);
+    const stableProductId = ownId && idCounts.get(ownId) === 1 ? ownId : tag;
+    observations.push({
+      stableProductId,
+      identifierType: stableProductId === tag ? "metrc_package_label" : "catalogue_id",
+      metrcTag: tag,
+      name: typeof rec.strain === "string" ? rec.strain.slice(0, 160) : null,
+      available: rec.in_stock,
+    });
+  }
+  if (!matched) throw new Error("catalogue has no stable stock identifiers");
+  return { body: JSON.stringify(records), observations, matched };
+}
+
+async function liveStock(env) {
+  if (!env.STOCK_COORDINATOR) return null;
+  const stub = env.STOCK_COORDINATOR.getByName
+    ? env.STOCK_COORDINATOR.getByName("global")
+    : env.STOCK_COORDINATOR.get(env.STOCK_COORDINATOR.idFromName("global"));
+  const res = await stub.fetch(STOCK_OBJECT_URL);
+  if (!res.ok) throw new Error("stock coordinator " + res.status);
+  const snapshot = await res.json();
+  return { snapshot, stub };
+}
+
+function stockHeaders(snapshot) {
+  if (!snapshot || !snapshot.checkedAt) return {};
+  const age = Date.now() - Date.parse(snapshot.checkedAt);
+  return {
+    "X-Compass-Stock-Checked-At": snapshot.checkedAt,
+    ...(age > STOCK_STALE_WARNING_MS ? { "X-Compass-Stock-Stale": "true" } : {}),
+  };
+}
+
+function recordObservations(stub, observations, checkedAt, ctx) {
+  if (!stub || !observations.length) return;
+  const req = new Request(STOCK_OBJECT_URL + "/observe", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ checkedAt, observations }),
+  });
+  try { ctx.waitUntil(stub.fetch(req)); } catch (_) { /* history cannot break /data */ }
 }
 
 // `inm` is the request's If-None-Match. A match means the caller already holds
@@ -306,13 +379,31 @@ async function serveData(env, ctx, inm) {
   // never touches the contents API. The listing is only fetched if the archive
   // read fails, to build the fallback.
   try {
-    const { body, skipped, count } = await readRecords(env);
+    let { body, skipped, count } = await readRecords(env);
+    let stock = null;
+    try {
+      stock = await liveStock(env);
+      if (stock) {
+        const overlaid = overlayAvailability(body, stock.snapshot);
+        body = overlaid.body;
+        recordObservations(stock.stub, overlaid.observations, stock.snapshot.checkedAt, ctx);
+      }
+    } catch (err) {
+      // Never turn auth, latency, malformed JSON or an empty upstream answer
+      // into stock. The committed catalogue is a safe fallback; the Durable
+      // Object retains the last successful snapshot for the next request.
+      stock = null;
+      console.warn("Compass stock refresh unavailable", {
+        kind: String((err && err.message) || err).slice(0, 100),
+      });
+    }
     // The cache expiring does not mean the DATA changed. Thirty seconds pass far
     // more often than a record does, so this is the branch that saves the most.
     const fresh = dataResponse(body, {
       "X-Compass-Shape": "records",
       "X-Compass-Count": String(count),
       "X-Compass-Skipped": String(skipped),
+      ...stockHeaders(stock && stock.snapshot),
     }, ctx);
     const tag = fresh.headers.get("ETag");
     return (tag && inm && inm === tag) ? notModified(tag) : fresh;
@@ -333,6 +424,225 @@ async function serveData(env, ctx, inm) {
       "X-Compass-Shape": "index-fallback",
       "X-Compass-Error": String((err && err.message) || err).slice(0, 100),
     }, ctx);
+  }
+}
+
+// One named instance ("global") is the authoritative refresh coordinator.
+// Durable Objects serialize requests at one location; `refreshing` also
+// coalesces requests that overlap while fetch() is awaiting Alleaves.
+export class StockCoordinator {
+  constructor(state, env) {
+    this.state = state;
+    this.env = env;
+    this.refreshing = null;
+    this.token = null;
+  }
+
+  async fetch(request) {
+    const url = new URL(request.url);
+    if (request.method === "POST" && url.pathname === "/stock/observe")
+      return this.observe(request);
+    if (request.method !== "GET") return j({ error: "GET only" }, 405);
+
+    const saved = await this.state.storage.get("stock:snapshot");
+    const age = saved ? Date.now() - Date.parse(saved.checkedAt) : Infinity;
+    if (saved && age <= STOCK_FRESH_MS) return j(saved);
+
+    if (saved) {
+      // Stale-while-revalidate: after a quiet period the first caller receives
+      // the LKG immediately. The refresh is global and runs once in background.
+      this.state.waitUntil(this.refresh().catch(err =>
+        console.warn("Compass stock background refresh failed", { kind: err.message.slice(0, 100) })));
+      return j({ ...saved, stale: true });
+    }
+
+    // No successful snapshot has ever existed. Block briefly for the first one;
+    // failure returns 503 and the outer Worker serves committed Git stock.
+    try { return j(await this.refresh()); }
+    catch (err) { return j({ error: "stock unavailable" }, 503); }
+  }
+
+  async refresh() {
+    if (this.refreshing) return this.refreshing;
+    this.refreshing = this.fetchAlleaves().then(async snapshot => {
+      await this.state.storage.put("stock:snapshot", snapshot);
+      return snapshot;
+    }).finally(() => { this.refreshing = null; });
+    return this.refreshing;
+  }
+
+  async timedFetch(url, init = {}) {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), Number(this.env.ALLEAVES_TIMEOUT_MS || 5000));
+    try { return await fetch(url, { ...init, signal: controller.signal }); }
+    finally { clearTimeout(timeout); }
+  }
+
+  async authenticate() {
+    if (!this.env.ALLEAVES_USER || !this.env.ALLEAVES_PASS)
+      throw new Error("Alleaves credentials missing");
+    const basic = btoa(`${this.env.ALLEAVES_USER}:${this.env.ALLEAVES_PASS}`);
+    const res = await this.timedFetch(`${this.env.ALLEAVES_HOST || "https://app.alleaves.com"}/api/auth`, {
+      method: "POST",
+      headers: {
+        Authorization: `Basic ${basic}`,
+        Accept: "application/json",
+        ...(this.env.ALLEAVES_LOCATION ? { "X-Location-Id": this.env.ALLEAVES_LOCATION } : {}),
+      },
+    });
+    if (!res.ok) throw new Error("Alleaves auth " + res.status);
+    let body;
+    try { body = await res.json(); } catch (_) { throw new Error("Alleaves auth malformed"); }
+    if (!body || typeof body.token !== "string" || body.token.length < 8)
+      throw new Error("Alleaves auth missing token");
+    this.token = body.token; // isolate memory only; never storage, response or log
+    return this.token;
+  }
+
+  async search(token, skip) {
+    return this.timedFetch(`${this.env.ALLEAVES_HOST || "https://app.alleaves.com"}/api/inventory/search`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        ...(this.env.ALLEAVES_LOCATION ? { "X-Location-Id": this.env.ALLEAVES_LOCATION } : {}),
+      },
+      body: JSON.stringify({ skip, take: 500, filter: { logic: "and", filters: [
+        { field: "has_available_inventory", value: true, operator: "eq" },
+        { field: "is_cannabis", value: true, operator: "eq" },
+      ] } }),
+    });
+  }
+
+  async fetchAlleaves() {
+    let token = this.token || await this.authenticate();
+    const rows = [];
+    for (let page = 0; page < 5; page++) {
+      let res = await this.search(token, page * 500);
+      if ((res.status === 401 || res.status === 403) && this.token) {
+        this.token = null;
+        token = await this.authenticate();
+        res = await this.search(token, page * 500);
+      }
+      if (!res.ok) throw new Error("Alleaves inventory " + res.status);
+      let body;
+      try { body = await res.json(); } catch (_) { throw new Error("Alleaves inventory malformed"); }
+      const pageRows = Array.isArray(body) ? body : body && body.data;
+      if (!Array.isArray(pageRows)) throw new Error("Alleaves inventory wrong shape");
+      rows.push(...pageRows);
+      if (pageRows.length < 500) break;
+      if (page === 4) throw new Error("Alleaves inventory pagination exceeded");
+    }
+
+    const minimum = Number(this.env.ALLEAVES_MIN_ROWS || 50);
+    if (rows.length < minimum) throw new Error("Alleaves inventory implausibly empty");
+    if (!rows.some(row => row && row.on_hand != null))
+      throw new Error("Alleaves inventory missing on_hand");
+    // Match the sync's scope exactly. Available inventory also includes the
+    // vault and quarantine; treating either as customer-facing stock would put
+    // products on the public catalogue before they reached the sales floor.
+    const scoped = rows.filter(row => /^retail$/i.test(String(row && row.area_type || "")))
+      .filter(row => /^(Flower|Pre-?Roll|Vapes?)\b/i.test(String(row && row.category || "")));
+    const tags = [...new Set(scoped
+      .filter(row => Number(row && row.on_hand) > 0)
+      .map(row => typeof row.metrc_package_label === "string" ? row.metrc_package_label.trim() : "")
+      .filter(Boolean))];
+    if (tags.length < minimum) throw new Error("Alleaves inventory missing package labels");
+    const items = [];
+    const seen = new Set();
+    for (const row of scoped) {
+      const tag = typeof row.metrc_package_label === "string" ? row.metrc_package_label.trim() : "";
+      if (!tag || Number(row.on_hand) <= 0 || seen.has(tag)) continue;
+      seen.add(tag);
+      items.push({
+        tag,
+        name: String(row.item || row.strain || "Unnamed package").slice(0, 180),
+        category: String(row.category || "").slice(0, 80),
+      });
+    }
+    return { version: 1, checkedAt: new Date().toISOString(), tags, items,
+      rowCount: rows.length, scopedRowCount: scoped.length };
+  }
+
+  async observe(request) {
+    let body;
+    try { body = await request.json(); } catch (_) { return j({ error: "bad observations" }, 400); }
+    if (!body || !Array.isArray(body.observations) || !body.checkedAt)
+      return j({ error: "bad observations" }, 400);
+
+    const snapshot = await this.state.storage.get("stock:snapshot");
+    const catalogueTags = new Set(body.observations
+      .map(obs => obs && obs.metrcTag).filter(tag => typeof tag === "string" && tag));
+    const missing = snapshot && Array.isArray(snapshot.items)
+      ? snapshot.items.filter(item => item && item.tag && !catalogueTags.has(item.tag)) : [];
+    const previousMissing = await this.state.storage.get("alerts:missing-tags");
+    const previousSet = new Set(Array.isArray(previousMissing) ? previousMissing : []);
+    const newlyMissing = missing.filter(item => !previousSet.has(item.tag));
+
+    // Baseline silently on the first observation so deploying Route 2 cannot
+    // announce the whole existing shelf. Every later unknown package is a new
+    // product or restock that needs the human full-sync path.
+    await this.state.storage.put("alerts:missing-tags", missing.map(item => item.tag));
+    if (Array.isArray(previousMissing) && newlyMissing.length && this.env.DISCORD_WEBHOOK)
+      this.state.waitUntil(this.alertNewStock(newlyMissing));
+
+    const writes = {};
+    for (const obs of body.observations) {
+      if (!obs || typeof obs.stableProductId !== "string" || typeof obs.available !== "boolean") continue;
+      const id = obs.stableProductId.slice(0, 160);
+      const stateKey = "history:state:" + id;
+      const previous = await this.state.storage.get(stateKey);
+      const next = {
+        stableProductId: id,
+        identifierType: obs.identifierType,
+        metrcTag: obs.metrcTag,
+        name: obs.name,
+        availability: obs.available,
+        firstObservedAt: previous ? previous.firstObservedAt : body.checkedAt,
+        lastObservedAt: body.checkedAt,
+        becameAvailableAt: obs.available
+          ? (!previous || !previous.availability ? body.checkedAt : previous.becameAvailableAt)
+          : previous && previous.becameAvailableAt,
+        becameUnavailableAt: !obs.available
+          ? (!previous || previous.availability ? body.checkedAt : previous.becameUnavailableAt)
+          : previous && previous.becameUnavailableAt,
+      };
+      writes[stateKey] = next;
+      if (!previous || previous.availability !== obs.available) {
+        const eventKey = `history:event:${body.checkedAt}:${id}`;
+        writes[eventKey] = {
+          stableProductId: id,
+          metrcTag: obs.metrcTag,
+          name: obs.name,
+          previousAvailability: previous ? previous.availability : null,
+          newAvailability: obs.available,
+          observedAt: body.checkedAt,
+        };
+      }
+      if (Object.keys(writes).length >= 100) {
+        await this.state.storage.put(writes);
+        for (const key of Object.keys(writes)) delete writes[key];
+      }
+    }
+    if (Object.keys(writes).length) await this.state.storage.put(writes);
+    return j({ ok: true });
+  }
+
+  async alertNewStock(items) {
+    const shown = items.slice(0, 20).map(item => `• ${item.name}`).join("\n");
+    const more = items.length > 20 ? `\n…and ${items.length - 20} more` : "";
+    const content = `⚠️ **new stock needs a full sync**\n${shown}${more}`;
+    try {
+      const res = await this.timedFetch(this.env.DISCORD_WEBHOOK, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ content }),
+      });
+      if (!res.ok) console.warn("Compass new-stock alert failed", { status: res.status });
+    } catch (err) {
+      console.warn("Compass new-stock alert failed", { kind: String(err && err.name || "network") });
+    }
   }
 }
 
