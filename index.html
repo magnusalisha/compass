@@ -2916,7 +2916,23 @@ function render(){
       // here. The read, the terpenes and Compare ↔ are all there, so pivoting is
       // a decision you can make rather than a name to go look up.
       + (!fellBack && tier3.length && tier3[0][0] >= 0.5
-          ? `<div class="pivot-head">Closest in other sizes — worth a pivot</div>`
+          // "elsewhere on the shelf", not "in other sizes". Tier 3 is chosen on
+          // ONE test — the weight differs — and with All tapped that catches other
+          // product types too, so the old heading called a preroll a size. Real
+          // case, 28 Aug: Green Goblin's tier 3 held two 1g flowers AND two
+          // prerolls, all at 96-97% match, under a heading saying "sizes".
+          //
+          // The alternatives all named the axis — "formats or sizes", "types or
+          // sizes" — and every one then needs a conditional, or it announces
+          // formats above a list of plain sizes. This phrasing is true whatever
+          // the group holds, so it cannot be wrong and needs no branch. It is
+          // vaguer; each card below states its own form, which is where the
+          // reader gets the specific answer.
+          //
+          // "format" was rejected as brand-deck vocabulary, "form" as the data
+          // field's own name leaking onto the screen. (Alisha, 28 Aug: "I'm
+          // wondering if 'format' is a good word for a budtender".)
+          ? `<div class="pivot-head">Closest elsewhere on the shelf — worth a pivot</div>`
             + tier3.slice(0,4).map(([s,x]) =>
                 `<div class="card-dim">${card(x, matchNote(p, x, s), key(p))}</div>`).join('')
           : '');
