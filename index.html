@@ -2381,8 +2381,25 @@ function matchNote(src, x, s){
   }
   // THC can be missing on either side — don't invent a comparison from a null
   const d = (x.thc != null && src.thc != null) ? x.thc - src.thc : null;
-  const thc = d == null
-    ? (x.thc == null ? 'THC not recorded' : `${thc1(x.thc)} THC`)
+  // ACROSS FORMATS THE SUBTRACTION MEANS NOTHING, so it must not be spoken as
+  // strength. Vapes run 70-95% and flower 15-35%, so every flower is "lighter"
+  // than every vape whatever it actually is — from a 91.2% vape this line called
+  // a 57% moonrock "lighter", which is arithmetically true and the opposite of
+  // useful, that moonrock being the strongest thing in the shop that is not a
+  // vape. Find similar defaults to the source's own format, so this only fires
+  // when someone taps All; that is exactly when they are least able to spot it.
+  //
+  // Same mistake the THC ranking made with coated flower, one panel over: the
+  // page states that THC is the one number that reliably drives the experience,
+  // so a strength claim it puts in front of a budtender will be believed.
+  //
+  // WITHIN a format the comparison stands, moonrocks included — a coated eighth
+  // really is stronger to smoke than a plain one. It is only the % across
+  // formats that measures different things.
+  const crossFormat = category(x) !== category(src);
+  const thc = x.thc == null ? 'THC not recorded'
+    : crossFormat ? `${thc1(x.thc)} THC — different format, so the % doesn't compare`
+    : d == null ? `${thc1(x.thc)} THC`
     : Math.abs(d) >= 3
       ? `${d > 0 ? 'stronger' : 'lighter'} — ${thc1(x.thc)} THC vs the ${thc1(src.thc)} you had`
       : `${thc1(x.thc)} THC, about the same strength`;
