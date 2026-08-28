@@ -1929,18 +1929,41 @@ function evWord(p){
 // Cached against the DATA array itself, which is REPLACED (not mutated) when
 // records load or a stock write lands — so an identity check invalidates exactly
 // when the underlying numbers change.
+//
+// COATED FLOWER IS NOT ORDINARY FLOWER, and ranking them together grades real
+// flower on a curve. Moonrocks, kief-infused and infused pre-ground all carry
+// added concentrate: two of them read 50-57% where this shelf's actual flower
+// tops out at 35.4%. Sitting in the same peer group they occupied the top of
+// the ranking and pushed Chermoya — 6th of 58, genuinely excellent flower —
+// down from "among the strongest" to "on the strong side".
+//
+// Same principle the page already applies to vapes, which are excluded from THC
+// ranking entirely: a class whose range is not comparable cannot be a peer.
+// Measured 28 Aug: 58 in-stock flower splits 52 plain / 6 enhanced.
+//
+// They get their own class rather than being discarded, so if the shop ever
+// carries enough to rank they band against each other. Below eight the existing
+// peers.length guard says nothing at all, which is the right answer.
+const ENHANCED_FLOWER = /moonrock|infus|kief/i;
+const thcClass = p => {
+  const c = category(p);
+  return c === 'Flower' && ENHANCED_FLOWER.test(String(p.form || '')) ? 'Flower+' : c;
+};
+// NOTE: this keys off `form`, so a coated product whose form does not say so
+// stays in the plain group. OG Chem [Lobo] is one — 52% on a form reading only
+// "Flower 3.5g". Fix the record, not this regex.
 let _thcPeersFor = null, _thcPeers = {};
 const thcPeers = c => {
   if (_thcPeersFor !== DATA){ _thcPeersFor = DATA; _thcPeers = {}; }
   return _thcPeers[c] || (_thcPeers[c] =
-    DATA.filter(p => category(p) === c && typeof p.thc === 'number' && isFinite(p.thc))
+    DATA.filter(p => thcClass(p) === c && typeof p.thc === 'number' && isFinite(p.thc))
         .map(p => p.thc).sort((a,b) => a-b));
 };
 function thcNote(p){
   // Not just null: a hand-edited `"thc": 26.07%` parses as a STRING, which is
   // != null and would print "NaN% THC". Say nothing rather than say nonsense.
   if (typeof p.thc !== 'number' || !isFinite(p.thc)) return '';
-  const c = category(p), peers = thcPeers(c);
+  const c = thcClass(p), peers = thcPeers(c);
   // Vapes are all strong and all strong to about the same degree: p10 to p90 is
   // 75.6-90.5%, a spread of 17% of the median, against 90% for prerolls. Sorting
   // that into five bands invented a distinction nobody chooses on — 18 vapes read
@@ -1955,7 +1978,7 @@ function thcNote(p){
   const below = peers.filter(v => v < p.thc).length;
   const pct = below / peers.length;
   const med = peers[Math.floor(peers.length / 2)];
-  const cat = c.toLowerCase() + 's';
+  const cat = (c === 'Flower+' ? 'infused flower' : c.toLowerCase()) + 's';
   const where = pct >= 0.90 ? `among the strongest ${cat} here`
               : pct >= 0.70 ? `on the strong side for ${cat} here`
               : pct >  0.30 ? `about typical for ${cat} here`
