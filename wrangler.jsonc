@@ -1,0 +1,26 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "compass-stock",
+  "main": "compass-stock-worker.js",
+  "compatibility_date": "2026-08-28",
+  "vars": {
+    "ALLOWED_ORIGIN": "https://magnusalisha.github.io",
+    "GH_BRANCH": "main",
+    "GH_REPO": "compass",
+    "GH_USER": "magnusalisha"
+  },
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "STOCK_COORDINATOR",
+        "class_name": "StockCoordinator"
+      }
+    ]
+  },
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_sqlite_classes": ["StockCoordinator"]
+    }
+  ]
+}
