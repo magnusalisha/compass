@@ -54,7 +54,10 @@ jobs:
     # created and correctly SKIPPED on a successful deploy, and with it wide the
     # step ran and posted. So the trigger fires off a GitHub-generated workflow,
     # the workflow name matches, the secret resolves, and the payload lands.
-    if: github.event.workflow_run.conclusion == 'failure'
+    # TEMPORARY — reverted in the very next commit. Second end-to-end proof,
+    # because the first one predated the angle-bracket edit that silently broke
+    # this file. A test that predates an edit is not a test of what shipped.
+    if: always()
     runs-on: ubuntu-latest
     steps:
       - name: Discord — the shop page did not deploy
@@ -84,7 +87,7 @@ jobs:
               --arg u "$RUN" \
               --arg s "$(printf '%s' "$SHA" | cut -c1-7)" \
               --arg m "$(printf '%s' "$MSG" | head -1)" \
-              '{content: ("🚨 **the shop page did not deploy**\n`" + $s + "`  " + $m + "\n<" + $u + ">")}' \
+              '{content: ("🚨 **TEST 2 — pages-alert re-check**\n`" + $s + "`  " + $m + "\n<" + $u + ">")}' \
               | curl -sS -X POST -H 'Content-Type: application/json' -d @- "$HOOK" || true
           fi
           # Never fail the alert job itself. A Discord outage must not add a
