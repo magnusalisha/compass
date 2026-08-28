@@ -8,7 +8,7 @@
  "total_terpenes": 0.23,
  "lean": "settling",
  "confidence": "faint",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Sativa",
  "reported": [],
  "dominant": [
@@ -31,5 +31,6 @@
  },
  "scanned_at": "2026-08-20T23:38:50.299Z",
  "test_date": "2026-04-27",
- "test_lab": "Kaycha Labs NY"
+ "test_lab": "Kaycha Labs NY",
+ "sold_out_at": "2026-08-28T00:46:33.273Z"
 }
