@@ -8,7 +8,7 @@
  "total_terpenes": 0.94,
  "lean": "settling",
  "confidence": "moderate",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Hybrid",
  "reported": [],
  "dominant": [
@@ -31,5 +31,6 @@
  },
  "scanned_at": "2026-08-20T23:39:27.910Z",
  "test_date": "2026-05-06",
- "test_lab": "Green Analytics NY, LLC"
+ "test_lab": "Green Analytics NY, LLC",
+ "sold_out_at": "2026-08-28T23:16:01.021Z"
 }

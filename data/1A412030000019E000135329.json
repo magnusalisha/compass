@@ -8,7 +8,7 @@
  "total_terpenes": 2.0402,
  "lean": "mixed",
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Indica",
  "reported": [
   "150.51 mg Total THC per preroll",
@@ -44,5 +44,6 @@
  },
  "test_date": "2026-02-01",
  "test_lab": "Kaycha Labs NY",
- "scanned_at": "2026-08-23T16:38:41.158Z"
+ "scanned_at": "2026-08-23T16:38:41.158Z",
+ "sold_out_at": "2026-08-28T23:16:01.017Z"
 }
