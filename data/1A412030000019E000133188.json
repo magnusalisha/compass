@@ -8,7 +8,7 @@
  "total_terpenes": 2.3242,
  "lean": "settling",
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Indica",
  "reported": [
   "Live Resin Infused",
@@ -46,5 +46,6 @@
  "test_date": "2026-06-18",
  "test_lab": "ACT Laboratories of New York, LLC",
  "date_expire": "2027-05-26",
- "scanned_at": "2026-08-20T23:38:56.831Z"
+ "scanned_at": "2026-08-20T23:38:56.831Z",
+ "sold_out_at": "2026-08-29T01:15:58.463Z"
 }
