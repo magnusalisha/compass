@@ -8,7 +8,7 @@
  "total_terpenes": 1.01,
  "lean": "settling",
  "confidence": "moderate",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Hybrid",
  "reported": [],
  "dominant": [
@@ -40,5 +40,6 @@
  },
  "scanned_at": "2026-08-20T23:38:50.543Z",
  "test_date": "2026-01-29",
- "test_lab": "Kaycha Labs NY"
+ "test_lab": "Kaycha Labs NY",
+ "sold_out_at": "2026-08-29T23:30:59.950Z"
 }
