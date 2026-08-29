@@ -8,7 +8,7 @@
  "total_terpenes": 2.61,
  "lean": "lifting",
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Hybrid",
  "reported": [
   "Limonene-forward",
@@ -47,5 +47,6 @@
  },
  "test_date": "2025-12-12",
  "test_lab": "Kaycha Labs NY",
- "scanned_at": "2026-08-20T23:38:43.638Z"
+ "scanned_at": "2026-08-20T23:38:43.638Z",
+ "sold_out_at": "2026-08-29T23:34:46.807Z"
 }
