@@ -8,7 +8,7 @@
  "total_terpenes": 5.7908,
  "lean": "mixed",
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Sativa",
  "reported": [
   "Spicy",
@@ -45,5 +45,6 @@
  "test_date": "2026-06-15",
  "test_lab": "Certified Testing and Data NY, LLC",
  "date_expire": "2027-05-22",
- "scanned_at": "2026-08-20T23:39:05.362Z"
+ "scanned_at": "2026-08-20T23:39:05.362Z",
+ "sold_out_at": "2026-08-29T15:16:01.660Z"
 }
