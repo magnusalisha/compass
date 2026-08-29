@@ -38,8 +38,7 @@
  "form": "Flower 3.5g",
  "strain": "Kilimanjaro",
  "lean": "lifting",
- "in_stock": false,
+ "in_stock": true,
  "thc": 25.9,
- "scanned_at": "2026-08-21T15:43:30.294Z",
- "sold_out_at": "2026-08-26T21:14:55.356Z"
+ "scanned_at": "2026-08-21T15:43:30.294Z"
 }
