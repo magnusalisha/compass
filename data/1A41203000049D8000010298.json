@@ -8,7 +8,7 @@
  "total_terpenes": 5.5348,
  "lean": "lifting",
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Hybrid",
  "reported": [],
  "dominant": [
@@ -48,5 +48,6 @@
  "scanned_at": "2026-08-20T23:39:22.452Z",
  "test_date": "2026-07-10",
  "test_lab": "Smithers CTS New York, LLC",
- "date_expire": "2027-07-10"
+ "date_expire": "2027-07-10",
+ "sold_out_at": "2026-08-29T16:46:01.949Z"
 }
