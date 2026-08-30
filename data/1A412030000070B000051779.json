@@ -8,7 +8,7 @@
  "total_terpenes": 1.09,
  "lean": "settling",
  "confidence": "moderate",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Sativa",
  "reported": [
   "beta-Caryophyllene dominant",
@@ -35,5 +35,6 @@
  },
  "scanned_at": "2026-08-20T23:39:26.533Z",
  "test_date": "2026-05-04",
- "test_lab": "Kaycha Labs NY"
+ "test_lab": "Kaycha Labs NY",
+ "sold_out_at": "2026-08-30T18:01:02.002Z"
 }
