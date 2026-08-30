@@ -8,7 +8,7 @@
  "total_terpenes": 1.11,
  "lean": "settling",
  "confidence": "moderate",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Indica-leaning Hybrid",
  "reported": [
   "Grape Gas",
@@ -43,5 +43,6 @@
  "test_date": "2026-06-17",
  "test_lab": "Green Analytics NY, LLC",
  "date_expire": "2027-04-15",
- "scanned_at": "2026-08-20T23:38:58.701Z"
+ "scanned_at": "2026-08-20T23:38:58.701Z",
+ "sold_out_at": "2026-08-30T14:31:00.044Z"
 }
