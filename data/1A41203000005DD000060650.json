@@ -8,7 +8,7 @@
  "total_terpenes": 3.4901,
  "lean": "mixed",
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Sativa",
  "reported": [],
  "dominant": [
@@ -39,5 +39,6 @@
  },
  "scanned_at": "2026-08-20T23:38:54.367Z",
  "test_date": "2025-10-13",
- "test_lab": "ACT Laboratories of New York, LLC"
+ "test_lab": "ACT Laboratories of New York, LLC",
+ "sold_out_at": "2026-08-30T20:01:00.972Z"
 }
