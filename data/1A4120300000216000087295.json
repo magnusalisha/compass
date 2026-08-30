@@ -8,7 +8,7 @@
  "total_terpenes": 1.69,
  "lean": "lifting",
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Sativa",
  "reported": [
   "Limonene-forward",
@@ -47,5 +47,6 @@
  "test_date": "2026-05-21",
  "test_lab": "Kaycha Labs NY",
  "date_expire": "2027-05-21",
- "scanned_at": "2026-08-20T23:39:00.411Z"
+ "scanned_at": "2026-08-20T23:39:00.411Z",
+ "sold_out_at": "2026-08-30T15:16:07.898Z"
 }
