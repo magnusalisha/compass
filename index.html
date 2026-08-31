@@ -2305,15 +2305,38 @@ function read(x, y){
   //
   // Floor of 0.04 is the labs' own reporting limit: below it a difference isn't a
   // difference, and the old line is the honest answer.
+    // SMELL IS ONLY REAL ADVICE FOR FLOWER. The shop has smell jars — glass,
+    // pump top — so "sell on smell" is something a budtender can actually do
+    // with an eighth. A preroll and a vape are sealed; you cannot smell either,
+    // and telling someone to is telling them to do the impossible.
+    //
+    // This is not a rare corner. Measured 31 Aug over every same-category pair
+    // in stock, 83% of the pairs that reach one of these two lines are prerolls
+    // or vapes — the advice was wrongest exactly where it was given most:
+    //
+    //     Flower   1596 pairs   1.6% reach a line
+    //     Preroll  2016 pairs   6.1%          <- nearly 4x, mostly blends
+    //     Vape     1378 pairs   0.2%
+    //
+    // Both sides must be flower before smell is offered — a flower/preroll pair
+    // can only be smelled by half.
+    //
+    // The replacement is what Alisha actually does, in her words: "I defer to
+    // the customer. maybe there's a brand they prefer or they might want the
+    // cheaper one". Not a chemistry claim dressed up — the honest end of the
+    // road.
+    const canSmell = category(x) === 'Flower' && category(y) === 'Flower';
   if (!gaps.length){
     const [k, d] = ranked[0] || [];
     if (k && Math.abs(d) >= 0.04){
       const [hi, lo] = d > 0 ? [x,y] : [y,x];
       h += `<p>Very close. The clearest difference is ${termName(k, [k]).toLowerCase()} — <b>${nm(hi)}</b> ${pctOr(hi.terpenes[k])} against ${pctOr(lo.terpenes[k])}${
         REPORTED[k] ? ` — ${REPORTED[k][0]} <span class="ev">${dots(REPORTED[k][1])}</span>` : ''
-      }. Small enough that smell or price may decide it better than chemistry.</p>`;
+      }. Small enough that ${canSmell ? 'smell' : 'brand'} or price may decide it better than chemistry.</p>`;
     } else {
-      h += `<p>The profiles are close enough that I'd sell on smell or price.</p>`;
+        h += canSmell
+          ? `<p>The profiles are close enough that I'd sell on smell or price.</p>`
+          : `<p>The profiles are close enough that it's the customer's call — brand or price.</p>`;
     }
   }
   if (x.thc != null && y.thc != null && Math.abs(x.thc - y.thc) >= 3){
