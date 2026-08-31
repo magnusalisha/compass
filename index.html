@@ -2255,7 +2255,17 @@ function read(x, y){
     // "mostly" — "Zourz more mostly body heavy". Parallel "as" instead.
     h += `<p>These pull in opposite directions. People tend to describe <b>${xn}</b> as <b>${says(x)}</b>, and <b>${yn}</b> as <b>${says(y)}</b>.</p>`;
   else if (domTerps(x)[0] === domTerps(y)[0])
-    h += `<p>Both lead with <b>${short(domTerps(x)[0]).toLowerCase()}</b>, so they're close cousins — both can feel <b>${says(x)}</b>. The difference is underneath.</p>`;
+    // Trimmed 31 Aug. "so they're close cousins" is decoration, and "The
+    // difference is underneath" announces what the next two paragraphs are about
+    // to do anyway — three sentences to deliver one fact.
+    //
+    // NOTE the read here is x's, applied to both. That holds because this branch
+    // only fires when the two share a lead terpene, and the lead is what the
+    // first half of says() is built from. The second half comes from whatever
+    // opposes it, which is where the pair CAN differ — so the sentence is at its
+    // weakest in that tail. Kept for now; if it ever reads wrong the fix is the
+    // lead half alone, not a longer sentence.
+    h += `<p>Both lead with <b>${short(domTerps(x)[0]).toLowerCase()}</b> — both can feel <b>${says(x)}</b>.</p>`;
   else
     h += `<p><b>${xn}</b> can feel <b>${says(x)}</b>. <b>${yn}</b> can feel <b>${says(y)}</b>.</p>`;
 
