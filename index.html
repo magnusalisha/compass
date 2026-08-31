@@ -184,6 +184,11 @@
      two sat flush against each other. Collapses with .unread's 8px, so a card
      carrying both doesn't get a double gap. */
   .why{margin-top:9px;margin-bottom:9px;font-size:12.5px;color:var(--ink2)}
+  /* dots and Why? share a line; the open panel still drops below full-width */
+  .evrow{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-top:7px}
+  .evrow .ev{margin-top:0}
+  .evrow .why{margin-top:0;margin-bottom:0}
+  .evrow .why[open]{flex:1 0 100%;margin-top:6px}
   .why:last-child{margin-bottom:0}
   .why summary{cursor:pointer;color:var(--ink2);font-family:'IBM Plex Mono',monospace;font-size:11px;
     text-transform:uppercase;letter-spacing:.06em;list-style:none}
@@ -2002,7 +2007,6 @@ function thcNote(p){
   if (peers.length < 8) return '';
   const below = peers.filter(v => v < p.thc).length;
   const pct = below / peers.length;
-  const med = peers[Math.floor(peers.length / 2)];
   const cat = (c === 'Flower+' ? 'infused flower' : c.toLowerCase()) + 's';
   const where = pct >= 0.90 ? `among the strongest ${cat} here`
               : pct >= 0.70 ? `on the strong side for ${cat} here`
@@ -2015,7 +2019,12 @@ function thcNote(p){
   // against the rest of the category. 159 cards, and 92 of them say something
   // other than "about typical" — Hashtag Honey's prerolls come in at 15.7%
   // against a 29.5% median, which the bare number can't tell you.
-  return `<p>Strength: <b>${where}</b> (typical is ${thc1(med)}).</p>`;
+  // NO "(typical is X)". It was the MEDIAN of everything in this class in stock,
+  // so it drifted as the shelf turned over — 30.1% on 28 Aug and 31.9% four days
+  // later, with nothing about the product having changed. A number on a card
+  // that moves because OTHER products sold can only confuse someone comparing
+  // two cards on different days. The band already says where this one sits.
+  return `<p>Strength: <b>${where}</b>.</p>`;
 }
 // ── terpenes the read cannot speak to
 //
@@ -2174,8 +2183,18 @@ function card(p, extra='', compareTo=null){
            <p class="faint-explain">Beyond the THC figure there's no chemistry here to read, so Compass can't tell you anything about its character. ${smellable(p) ? 'Go by the label and your nose.' : 'Go by brand or price.'}</p>`
         : `${faint ? `<p class="faint-flag">⚠ Low-confidence guess — terpenes are faint here, ${smellable(p) ? 'trust your nose' : 'go by brand or price'}</p>` : ''}
            <p class="says">Can feel <b>${says(p)}</b>.</p>
-           <p class="ev">${dots(ev(p))} evidence · ${evWord(p)}</p>
-           ${whyHTML(p)}
+           ${/* ONE ROW, not two. The dots grade a single named terpene and Why?
+                 explains that same terpene — they were already a pair, on
+                 separate lines. The word "evidence" goes with them: the footer
+                 legend already says what the dots mean.
+
+                 NOT moved to the bottom of the card, which was the other idea.
+                 Across 174 in-stock cards the dots read 56% / 25% / 20%, so one
+                 card in five says "folklore, trust your nose over this" — a
+                 warning about the sentence directly above it. Below the strength
+                 line and the match note it would arrive after the claim had been
+                 read and acted on. */''}
+           <div class="evrow"><span class="ev">${dots(ev(p))} ${evWord(p)}</span>${whyHTML(p)}</div>
            ${unreadNote(p)}`}
       ${/* Strength sits LAST, not first. People come to the counter asking what
             something feels like, not how strong it is — so the read answers the
@@ -2467,12 +2486,18 @@ function matchNote(src, x, s){
   // people who want a vape will get another vape.")
   const thcScale = q => category(q) === 'Vape' ? 'concentrate' : 'flower';
   const crossFormat = thcScale(x) !== thcScale(src);
+  // THIS PRODUCT'S figure is not repeated here — it is in the card header, in
+  // bold, a couple of centimetres above. What the header cannot show is the
+  // COMPARISON, so that is all this line carries. The source's number stays for
+  // the same reason: it belongs to the product you came from, and is nowhere
+  // else on this card. Where there is nothing to compare, the line says nothing
+  // rather than restating the header.
   const thc = x.thc == null ? 'THC not recorded'
-    : crossFormat ? `${thc1(x.thc)} THC — different format, so the % doesn't compare`
-    : d == null ? `${thc1(x.thc)} THC`
+    : crossFormat ? `different format, so the % doesn't compare`
+    : d == null ? ''
     : Math.abs(d) >= 3
-      ? `${d > 0 ? 'stronger' : 'lighter'} — ${thc1(x.thc)} THC vs the ${thc1(src.thc)} you had`
-      : `${thc1(x.thc)} THC, about the same strength`;
+      ? `${d > 0 ? 'stronger' : 'lighter'} than the ${thc1(src.thc)} you had`
+      : 'about the same strength';
   // Say the label clash out loud rather than let the customer find it. This only
   // fires where preferSameShelf could not avoid an opposite — nothing within 2
   // points wore a different tag — so it marks the cases where the chemistry
@@ -2483,7 +2508,7 @@ function matchNote(src, x, s){
   const clash = OPPOSITE_SHELF(srcTag, xTag)
     ? `<br>Package says <b>${xTag}</b>, yours said ${srcTag} — the chemistry still matches.`
     : '';
-  return `<div class="match">${Math.round(s*100)}% match${why ? ' · ' + why : ''}<br>${thc}${clash}</div>`;
+  return `<div class="match">${Math.round(s*100)}% match${why ? ' · ' + why : ''}${thc ? '<br>' + thc : ''}${clash}</div>`;
 }
 
 // What the package claims, sized for the Compare header. It used to carry the
