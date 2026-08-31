@@ -404,6 +404,31 @@ const CATEGORIES = ['All', 'Flower', 'Preroll', 'Vape'];
 // not a UI filter category (yet) — just enough to pick honest fallback copy below
 const isEdible = p => /gummy|edible|chocolate|beverage|tincture|capsule/i.test(p.form);
 
+// ── CAN THE CUSTOMER SMELL THIS? ─────────────────────────────────────────────
+//
+// Only flower. The shop has smell jars — glass, pump top — so "trust your nose"
+// is a real instruction for an eighth. A preroll is in a sealed tube and a vape
+// is a sealed cartridge; telling someone to smell either is telling them to do
+// something they physically cannot.
+//
+// Measured 31 Aug: of the 70 in-stock cards that told someone to use their nose,
+// 45 were sealed — 64%. Prerolls were worst (23 of 69 on the faint path, since
+// so many are blends with weak profiles) and every one of the 16 vape cards
+// reading "folklore, trust your nose over this" was a sealed cartridge.
+//
+// WHAT REPLACES IT, and why it is not "go by the label": the card second-guesses
+// the label two lines further down ("Package says Indica, yours said Sativa"),
+// and the shop's own website disagrees with Compass on 50 products. Pointing at
+// the label while distrusting it is worse than saying nothing.
+//
+// Brand or price instead — the same answer Compare reaches when the chemistry
+// does not separate two products. It is what actually decides the sale.
+// (Alisha, 31 Aug: "customers put a lot of weight into our recommendations.
+// imho, i think quality is subjective. people like Dank and their weed sucks".)
+// Compass reports chemistry; when the chemistry is thin it defers to what the
+// customer already values rather than inventing a quality judgement.
+const smellable = p => category(p) === 'Flower';
+
 // A customer's "sativa / indica / hybrid" is a request in the vocabulary the
 // package is written in, so it's answered from the package — see filterLean()
 // below for the measurements behind that, which reversed an earlier decision to
@@ -1910,7 +1935,7 @@ function evWord(p){
            : k ? ` — leans on ${short(k).toLowerCase()}` : '';
   return n === 3 ? `real mechanism${on}`
        : n === 2 ? `some human data${on}`
-       : `folklore${on}, trust your nose over this`;
+       : `folklore${on}, ${smellable(p) ? 'trust your nose over this' : 'go by brand or price'}`;
 }
 // ── THC in the read.
 //
@@ -2032,7 +2057,7 @@ function unreadNote(p){
   // Percentages are rounded here even though the chips print raw — nerolidol
   // stores as 0.9853000000000001 and that is not a thing to show a customer.
   const names = hits.map(([k, v]) => `<b>${short(k).toLowerCase()} (${(+v).toFixed(2)}%)</b>`).join(' and ');
-  return `<p class="unread">${names} ${many ? 'are' : 'is'} ${leads ? 'the largest terpene here' : 'among the largest here'} and ${many ? 'have' : 'has'} no evidenced character — so the read above leaves ${many ? 'them' : 'it'} out. Trust your nose on that part.</p>`;
+  return `<p class="unread">${names} ${many ? 'are' : 'is'} ${leads ? 'the largest terpene here' : 'among the largest here'} and ${many ? 'have' : 'has'} no evidenced character — so the read above leaves ${many ? 'them' : 'it'} out. ${smellable(p) ? 'Trust your nose on that part.' : 'Go by brand or price on that part.'}</p>`;
 }
 // the explanation: which dominant terpenes drive the read, and what that rests on
 function whyHTML(p){
@@ -2146,8 +2171,8 @@ function card(p, extra='', compareTo=null){
     <div class="read${cautious ? ' read-faint' : ''}" style="border-top:none;padding-top:12px;margin-top:12px">
       ${bare
         ? `<p class="faint-flag">⚠ No terpene profile on this one — the lab reported cannabinoids only</p>
-           <p class="faint-explain">Beyond the THC figure there's no chemistry here to read, so Compass can't tell you anything about its character. Go by the label and your nose.</p>`
-        : `${faint ? `<p class="faint-flag">⚠ Low-confidence guess — terpenes are faint here, trust your nose</p>` : ''}
+           <p class="faint-explain">Beyond the THC figure there's no chemistry here to read, so Compass can't tell you anything about its character. ${smellable(p) ? 'Go by the label and your nose.' : 'Go by brand or price.'}</p>`
+        : `${faint ? `<p class="faint-flag">⚠ Low-confidence guess — terpenes are faint here, ${smellable(p) ? 'trust your nose' : 'go by brand or price'}</p>` : ''}
            <p class="says">Can feel <b>${says(p)}</b>.</p>
            <p class="ev">${dots(ev(p))} evidence · ${evWord(p)}</p>
            ${whyHTML(p)}
@@ -2325,7 +2350,7 @@ function read(x, y){
     // the customer. maybe there's a brand they prefer or they might want the
     // cheaper one". Not a chemistry claim dressed up — the honest end of the
     // road.
-    const canSmell = category(x) === 'Flower' && category(y) === 'Flower';
+    const canSmell = smellable(x) && smellable(y);
   if (!gaps.length){
     const [k, d] = ranked[0] || [];
     if (k && Math.abs(d) >= 0.04){
@@ -2854,7 +2879,7 @@ function render(){
     // confident 96% off an unreliable source without saying so. ~a third of the
     // catalogue is faint, so this fires often.
     const faintSrcNote = p.confidence === 'faint'
-      ? `<div class="warnbox" style="margin:0 0 12px">⚠ <b>${p.strain}</b>'s own profile is faint, so these matches are approximate — they mostly share the heavy terpenes that survive in everything. Lean on the package and your nose here.</div>`
+      ? `<div class="warnbox" style="margin:0 0 12px">⚠ <b>${p.strain}</b>'s own profile is faint, so these matches are approximate — they mostly share the heavy terpenes that survive in everything. ${smellable(p) ? 'Lean on the package and your nose here.' : 'Lean on brand or price here.'}</div>`
       : '';
     // Same weight first. A 3.5g and a 28g of one strain test differently, and a
     // customer holding an eighth doesn't want an ounce in the list — so matches
