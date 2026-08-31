@@ -8,7 +8,7 @@
  "total_terpenes": 3.9492,
  "lean": "lifting",
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Sativa",
  "reported": [],
  "dominant": [
@@ -43,5 +43,6 @@
  },
  "scanned_at": "2026-08-20T23:39:19.867Z",
  "test_date": "2026-03-20",
- "test_lab": "Smithers CTS New York, LLC"
+ "test_lab": "Smithers CTS New York, LLC",
+ "sold_out_at": "2026-08-31T00:16:07.812Z"
 }
