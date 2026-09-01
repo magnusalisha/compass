@@ -8,7 +8,7 @@
  "total_terpenes": 1.06,
  "lean": "settling",
  "confidence": "moderate",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Sativa",
  "reported": [],
  "dominant": [
@@ -32,5 +32,6 @@
  "scanned_at": "2026-08-20T23:39:28.825Z",
  "test_date": "2026-04-10",
  "test_lab": "Green Analytics NY, LLC",
- "date_expire": "2027-04-02"
+ "date_expire": "2027-04-02",
+ "sold_out_at": "2026-09-01T21:01:04.412Z"
 }
