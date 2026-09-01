@@ -1,0 +1,26 @@
+{
+ "id": "48fcb87c7d",
+ "metrc_tag": "1A4120300000A42000012132",
+ "brand": "High Falls Canna",
+ "strain": "MAC",
+ "form": "Flower 3.5g",
+ "lean": null,
+ "confidence": "strong",
+ "shelf_tag": "Hybrid",
+ "reported": [],
+ "dominant": [],
+ "aroma": [],
+ "terpenes": {
+  "beta-Myrcene": 0.92,
+  "Limonene": 0.24,
+  "beta-Caryophyllene": 0.22,
+  "alpha-Pinene": 0.08
+ },
+ "scanned_at": "2026-09-01T00:23:04.867Z",
+ "thc": 22.479,
+ "total_terpenes": 1.46,
+ "in_stock": true,
+ "test_date": "2025-10-17",
+ "test_lab": "Green Analytics NY, LLC",
+ "date_expire": "2027-03-10"
+}

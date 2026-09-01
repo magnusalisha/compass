@@ -1,0 +1,27 @@
+{
+ "id": "579ca72426",
+ "metrc_tag": "1A4120300000A42000012131",
+ "brand": "High Falls Canna",
+ "strain": "Zskittles",
+ "form": "Flower 3.5g",
+ "lean": null,
+ "confidence": "moderate",
+ "shelf_tag": "Hybrid",
+ "reported": [],
+ "dominant": [],
+ "aroma": [],
+ "terpenes": {
+  "beta-Caryophyllene": 0.52,
+  "alpha-Humulene": 0.23,
+  "Limonene": 0.21,
+  "beta-Myrcene": 0.1,
+  "Linalool": 0.08
+ },
+ "scanned_at": "2026-09-01T00:23:04.671Z",
+ "thc": 19.58,
+ "total_terpenes": 1.06,
+ "in_stock": true,
+ "test_date": "2026-04-02",
+ "test_lab": "Green Analytics NY, LLC",
+ "date_expire": "2027-04-22"
+}

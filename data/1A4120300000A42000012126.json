@@ -1,0 +1,28 @@
+{
+ "id": "cad7fa3db2",
+ "metrc_tag": "1A4120300000A42000012126",
+ "brand": "High Falls Canna",
+ "strain": "G13",
+ "form": "Flower 14g",
+ "lean": null,
+ "confidence": "strong",
+ "shelf_tag": "Indica",
+ "reported": [],
+ "dominant": [],
+ "aroma": [],
+ "terpenes": {
+  "beta-Caryophyllene": 0.42,
+  "beta-Myrcene": 0.38,
+  "Limonene": 0.23,
+  "alpha-Humulene": 0.17,
+  "Linalool": 0.09,
+  "Farnesene": 0.08
+ },
+ "scanned_at": "2026-09-01T00:23:04.239Z",
+ "thc": 26.551,
+ "total_terpenes": 1.36,
+ "in_stock": true,
+ "test_date": "2026-03-06",
+ "test_lab": "Green Analytics NY, LLC",
+ "date_expire": "2027-03-09"
+}

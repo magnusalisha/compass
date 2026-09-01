@@ -1,0 +1,31 @@
+{
+ "id": "5777524f80",
+ "metrc_tag": "1A4120300000A42000012130",
+ "brand": "High Falls Canna",
+ "strain": "G13 Genius",
+ "form": "Flower 7g",
+ "lean": null,
+ "confidence": "strong",
+ "shelf_tag": "Hybrid",
+ "reported": [],
+ "dominant": [],
+ "aroma": [],
+ "terpenes": {
+  "beta-Myrcene": 0.46,
+  "beta-Caryophyllene": 0.38,
+  "alpha-Pinene": 0.27,
+  "Limonene": 0.16,
+  "alpha-Humulene": 0.15,
+  "beta-Pinene": 0.1,
+  "Farnesene": 0.09,
+  "Guaiol": 0.09,
+  "Ocimene": 0.06
+ },
+ "scanned_at": "2026-09-01T00:23:04.453Z",
+ "thc": 20.371,
+ "total_terpenes": 1.77,
+ "in_stock": true,
+ "test_date": "2026-03-06",
+ "test_lab": "Green Analytics NY, LLC",
+ "date_expire": "2027-06-12"
+}

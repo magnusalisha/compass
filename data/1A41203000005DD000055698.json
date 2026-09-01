@@ -1,11 +1,11 @@
 {
  "id": "39fd71a3b9",
- "metrc_tag": "1A41203000005DD000107699",
+ "metrc_tag": "1A41203000005DD000055698",
  "brand": "Ayrloom",
  "strain": "Lychee Dream",
  "form": "Vape 1g Disposable",
- "thc": 88.42,
- "total_terpenes": 1.6559,
+ "thc": 88.74,
+ "total_terpenes": 1.8184,
  "lean": "mixed",
  "confidence": "strong",
  "in_stock": true,
@@ -24,20 +24,14 @@
   "sweet"
  ],
  "terpenes": {
-  "Limonene": 0.7416,
-  "beta-Myrcene": 0.5096,
-  "alpha-Bisabolol": 0.106,
-  "Nerolidol": 0.0932,
-  "Geraniol": 0.0641,
-  "Caryophyllene Oxide": 0.0187
+  "Limonene": 0.8571,
+  "beta-Myrcene": 0.58,
+  "alpha-Bisabolol": 0.1087,
+  "Geraniol": 0.0784,
+  "Guaiol": 0.0281
  },
- "scanned_at": "2026-08-27T01:07:41.996Z",
- "test_date": "2026-04-20",
+ "scanned_at": "2026-09-01T00:23:03.618Z",
+ "test_date": "2025-10-23",
  "test_lab": "ACT Laboratories of New York, LLC",
- "date_expire": "2027-04-09",
- "thc_range": [
-  88.42,
-  88.74
- ],
- "batches": 2
+ "date_expire": "2026-10-16"
 }
