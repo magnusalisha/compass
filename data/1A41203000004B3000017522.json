@@ -8,7 +8,7 @@
  "total_terpenes": 9.0267,
  "lean": "settling",
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Hybrid",
  "reported": [],
  "dominant": [
@@ -45,5 +45,6 @@
  "scanned_at": "2026-08-20T23:39:02.079Z",
  "test_date": "2026-06-12",
  "test_lab": "ACT Laboratories of New York, LLC",
- "date_expire": "2027-06-17"
+ "date_expire": "2027-06-17",
+ "sold_out_at": "2026-09-01T22:16:03.150Z"
 }
