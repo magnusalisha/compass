@@ -1,0 +1,52 @@
+{
+ "id": "a3f8c12e9b",
+ "metrc_tag": "1A412030000019E000155354",
+ "brand": "Florist Farms",
+ "strain": "Gelato",
+ "form": "Vape 1g Cartridge",
+ "thc": 75.7601,
+ "total_terpenes": 3.96,
+ "lean": "lifting",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Hybrid",
+ "reported": [
+  "Gelato flavor",
+  "Inhalable concentrate"
+ ],
+ "dominant": [
+  "Limonene",
+  "beta-Myrcene",
+  "alpha-Pinene"
+ ],
+ "aroma": [
+  "citrus",
+  "earthy",
+  "piney",
+  "herbal",
+  "floral"
+ ],
+ "terpenes": {
+  "Limonene": 0.89,
+  "beta-Myrcene": 0.69,
+  "alpha-Pinene": 0.67,
+  "beta-Caryophyllene": 0.52,
+  "Ocimene": 0.28,
+  "alpha-Humulene": 0.23,
+  "beta-Pinene": 0.22,
+  "Linalool": 0.14,
+  "Terpinolene": 0.09,
+  "Farnesene": 0.08,
+  "Fenchol": 0.05,
+  "Camphene": 0.03,
+  "Caryophyllene Oxide": 0.02,
+  "Terpineol": 0.02,
+  "alpha-Bisabolol": 0.01,
+  "alpha-Phellandrene": 0.01,
+  "Valencene": 0.01
+ },
+ "sold_out_at": "2026-08-05T14:20:38.775Z",
+ "test_date": "2026-04-28",
+ "test_lab": "Kaycha Labs NY",
+ "scanned_at": "2026-09-01T18:28:40.379Z"
+}

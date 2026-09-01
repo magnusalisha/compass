@@ -1,0 +1,51 @@
+{
+ "id": "a9bf1a0313",
+ "metrc_tag": "1A412030000019E000155349",
+ "brand": "Florist Farms",
+ "strain": "Pineapple Express",
+ "form": "Vape 1g Disposable",
+ "thc": 86.142,
+ "total_terpenes": 6.23,
+ "lean": "lifting",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Hybrid",
+ "reported": [],
+ "dominant": [
+  "Limonene",
+  "Ocimene",
+  "beta-Caryophyllene"
+ ],
+ "aroma": [
+  "citrus",
+  "sweet",
+  "herbal",
+  "spicy",
+  "peppery"
+ ],
+ "terpenes": {
+  "Limonene": 1.34,
+  "Ocimene": 1.01,
+  "beta-Caryophyllene": 0.84,
+  "alpha-Pinene": 0.56,
+  "beta-Myrcene": 0.48,
+  "alpha-Humulene": 0.32,
+  "beta-Pinene": 0.29,
+  "Linalool": 0.25,
+  "Terpinolene": 0.21,
+  "alpha-Bisabolol": 0.13,
+  "Fenchol": 0.13,
+  "Farnesene": 0.11,
+  "Terpineol": 0.1,
+  "Caryophyllene Oxide": 0.09,
+  "Guaiol": 0.09,
+  "Valencene": 0.09,
+  "Camphene": 0.07,
+  "alpha-Phellandrene": 0.06,
+  "alpha-Terpinene": 0.06
+ },
+ "scanned_at": "2026-09-01T18:28:39.181Z",
+ "test_date": "2026-05-01",
+ "test_lab": "Kaycha Labs NY",
+ "sold_out_at": "2026-08-23T00:39:39.796Z"
+}

@@ -1,0 +1,49 @@
+{
+ "id": "3d6b14da22",
+ "metrc_tag": "1A412030000019E000155350",
+ "brand": "Florist Farms",
+ "strain": "Gelato",
+ "form": "Vape 1g Disposable",
+ "thc": 74.019,
+ "total_terpenes": 4.17,
+ "lean": "lifting",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Hybrid",
+ "reported": [],
+ "dominant": [
+  "Limonene",
+  "beta-Myrcene",
+  "alpha-Pinene"
+ ],
+ "aroma": [
+  "citrus",
+  "earthy",
+  "musky",
+  "pine",
+  "spicy"
+ ],
+ "terpenes": {
+  "Limonene": 0.91,
+  "beta-Myrcene": 0.73,
+  "alpha-Pinene": 0.69,
+  "beta-Caryophyllene": 0.56,
+  "Ocimene": 0.29,
+  "alpha-Humulene": 0.24,
+  "beta-Pinene": 0.23,
+  "Linalool": 0.15,
+  "Farnesene": 0.09,
+  "Terpinolene": 0.09,
+  "Fenchol": 0.06,
+  "Camphene": 0.03,
+  "Terpineol": 0.03,
+  "Valencene": 0.03,
+  "Caryophyllene Oxide": 0.02,
+  "alpha-Bisabolol": 0.01,
+  "alpha-Phellandrene": 0.01
+ },
+ "scanned_at": "2026-09-01T18:28:39.382Z",
+ "test_date": "2026-04-28",
+ "test_lab": "Kaycha Labs NY",
+ "sold_out_at": "2026-08-23T22:52:52.262Z"
+}

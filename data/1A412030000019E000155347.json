@@ -1,0 +1,47 @@
+{
+ "id": "d4fddb4dff",
+ "metrc_tag": "1A412030000019E000155347",
+ "brand": "Florist Farms",
+ "strain": "Super Sour Diesel",
+ "form": "Vape 1g Disposable",
+ "thc": 81.3335,
+ "total_terpenes": 5.25,
+ "lean": "settling",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Sativa",
+ "reported": [],
+ "dominant": [
+  "beta-Caryophyllene",
+  "Linalool",
+  "alpha-Pinene"
+ ],
+ "aroma": [
+  "spicy",
+  "peppery",
+  "floral",
+  "pine",
+  "lilac"
+ ],
+ "terpenes": {
+  "Limonene": 1.46,
+  "beta-Caryophyllene": 1.06,
+  "beta-Myrcene": 0.58,
+  "alpha-Humulene": 0.43,
+  "Linalool": 0.3,
+  "Ocimene": 0.28,
+  "alpha-Pinene": 0.25,
+  "beta-Pinene": 0.22,
+  "Terpinolene": 0.15,
+  "Fenchol": 0.13,
+  "Farnesene": 0.1,
+  "Caryophyllene Oxide": 0.08,
+  "Terpineol": 0.08,
+  "alpha-Bisabolol": 0.07,
+  "Guaiol": 0.06
+ },
+ "scanned_at": "2026-09-01T18:28:38.655Z",
+ "sold_out_at": "2026-08-20T23:39:35.126Z",
+ "test_date": "2026-04-18",
+ "test_lab": "Kaycha Labs NY"
+}
