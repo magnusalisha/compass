@@ -1,0 +1,25 @@
+{
+ "id": "1c9179b977",
+ "metrc_tag": "1A4120300000A42000012127",
+ "brand": "High Falls Canna",
+ "strain": "Mac x OG Kush",
+ "form": "Flower 14g",
+ "lean": null,
+ "confidence": "moderate",
+ "shelf_tag": "Hybrid",
+ "reported": [],
+ "dominant": [],
+ "aroma": [],
+ "terpenes": {
+  "beta-Myrcene": 0.44,
+  "beta-Caryophyllene": 0.22,
+  "Limonene": 0.21,
+  "alpha-Humulene": 0.09
+ },
+ "scanned_at": "2026-09-01T15:24:49.756Z",
+ "thc": 21.296,
+ "total_terpenes": 0.95,
+ "in_stock": true,
+ "test_date": "2026-04-25",
+ "test_lab": "Green Analytics NY, LLC"
+}
