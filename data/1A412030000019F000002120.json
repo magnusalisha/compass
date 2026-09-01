@@ -8,7 +8,7 @@
  "total_terpenes": 1.8725,
  "lean": "mixed",
  "confidence": "strong",
- "in_stock": false,
+ "in_stock": true,
  "shelf_tag": "Sativa",
  "reported": [
   "Live Resin Infused",
@@ -41,6 +41,5 @@
   "alpha-Pinene": 0.047,
   "Camphene": 0.0117,
   "Carene": 0.0103
- },
- "sold_out_at": "2026-08-01T19:52:28.215Z"
+ }
 }

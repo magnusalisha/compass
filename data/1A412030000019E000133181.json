@@ -8,7 +8,7 @@
  "total_terpenes": 4.4,
  "lean": "lifting",
  "confidence": "strong",
- "in_stock": false,
+ "in_stock": true,
  "shelf_tag": "Sativa",
  "reported": [],
  "dominant": [
@@ -35,6 +35,5 @@
   "Farnesene": 0.07,
   "Fenchol": 0.04
  },
- "scanned_at": "2026-08-10T17:20:14.662Z",
- "sold_out_at": "2026-08-20T23:39:35.126Z"
+ "scanned_at": "2026-08-10T17:20:14.662Z"
 }
