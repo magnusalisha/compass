@@ -8,7 +8,7 @@
  "total_terpenes": 4.4,
  "lean": "lifting",
  "confidence": "strong",
- "in_stock": false,
+ "in_stock": true,
  "shelf_tag": "Sativa",
  "reported": [
   "energizing",
@@ -37,6 +37,5 @@
   "alpha-Humulene": 0.12,
   "Farnesene": 0.07,
   "Fenchol": 0.04
- },
- "sold_out_at": "2026-08-09T16:37:55.799Z"
+ }
 }

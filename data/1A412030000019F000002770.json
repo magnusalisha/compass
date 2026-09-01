@@ -8,7 +8,7 @@
  "total_terpenes": 5.22,
  "lean": "lifting",
  "confidence": "strong",
- "in_stock": false,
+ "in_stock": true,
  "shelf_tag": "Hybrid",
  "reported": [
   "Gelato flavor",
@@ -42,6 +42,5 @@
   "Terpineol": 0.07,
   "Caryophyllene Oxide": 0.06,
   "Guaiol": 0.06
- },
- "sold_out_at": "2026-08-05T14:20:38.775Z"
+ }
 }
