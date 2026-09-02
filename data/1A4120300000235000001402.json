@@ -8,11 +8,10 @@
  "total_terpenes": 0,
  "lean": "mixed",
  "confidence": null,
- "in_stock": false,
+ "in_stock": true,
  "shelf_tag": "Sativa",
  "reported": [],
  "dominant": [],
  "aroma": [],
- "terpenes": {},
- "sold_out_at": "2026-08-12T14:52:38.559Z"
+ "terpenes": {}
 }

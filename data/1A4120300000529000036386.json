@@ -8,7 +8,7 @@
  "total_terpenes": 1.2,
  "lean": "settling",
  "confidence": "strong",
- "in_stock": false,
+ "in_stock": true,
  "shelf_tag": "Hybrid",
  "reported": [],
  "dominant": [
@@ -29,6 +29,5 @@
   "beta-Myrcene": 0.22,
   "alpha-Pinene": 0.14
  },
- "scanned_at": "2026-08-10T17:45:04.432Z",
- "sold_out_at": "2026-08-15T19:42:42.404Z"
+ "scanned_at": "2026-08-10T17:45:04.432Z"
 }

@@ -8,7 +8,7 @@
  "total_terpenes": 1.52,
  "lean": "lifting",
  "confidence": "strong",
- "in_stock": false,
+ "in_stock": true,
  "shelf_tag": "Sativa",
  "reported": [
   "Pink Guava",
@@ -30,6 +30,5 @@
   "Limonene": 0.95,
   "beta-Myrcene": 0.33,
   "beta-Caryophyllene": 0.24
- },
- "sold_out_at": "2026-07-31T19:56:47.812Z"
+ }
 }
