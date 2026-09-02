@@ -8,7 +8,7 @@
  "total_terpenes": 0.66,
  "lean": "settling",
  "confidence": "faint",
- "in_stock": false,
+ "in_stock": true,
  "shelf_tag": "Hybrid",
  "reported": [
   "Blue Dream",
@@ -44,7 +44,6 @@
   "beta-Pinene": 0.01,
   "alpha-Pinene": 0.01
  },
- "sold_out_at": "2026-09-02T14:01:08.278Z",
  "test_date": "2026-03-22",
  "test_lab": "Analytical Testing Center of Central New York",
  "date_expire": "2027-04-01",
