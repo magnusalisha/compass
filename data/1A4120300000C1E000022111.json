@@ -30,7 +30,8 @@
  "scanned_at": "2026-08-20T23:38:38.794Z",
  "thc": 84.11,
  "total_terpenes": 3.1956,
- "in_stock": true,
+ "in_stock": false,
  "test_date": "2025-10-28",
- "test_lab": "ACT Laboratories of New York, LLC"
+ "test_lab": "ACT Laboratories of New York, LLC",
+ "sold_out_at": "2026-09-02T19:30:59.985Z"
 }
