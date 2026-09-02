@@ -1,10 +1,10 @@
 {
  "id": "a3f7c2e891",
- "metrc_tag": "1A4120300000235000001402",
+ "metrc_tag": "1A4120300000529000069112",
  "brand": "High Garden",
  "strain": "Super Lemon Haze",
  "form": "Vape 1g Cartridge",
- "thc": 91.273,
+ "thc": 90.95,
  "total_terpenes": 0,
  "lean": "mixed",
  "confidence": null,
@@ -13,5 +13,9 @@
  "reported": [],
  "dominant": [],
  "aroma": [],
- "terpenes": {}
+ "terpenes": {},
+ "test_date": "2026-06-18",
+ "test_lab": "Green Analytics NY, LLC",
+ "date_expire": "2027-07-31",
+ "scanned_at": "2026-09-02T20:45:19.223Z"
 }

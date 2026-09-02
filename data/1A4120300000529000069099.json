@@ -1,6 +1,6 @@
 {
  "id": "7ee7ebe9c4",
- "metrc_tag": "1A4120300000529000057938",
+ "metrc_tag": "1A4120300000529000069099",
  "brand": "CRU",
  "strain": "Pink Guava",
  "form": "Infused Preroll 0.5g",
@@ -28,5 +28,8 @@
   "alpha-Humulene": 0.25,
   "beta-Myrcene": 0.17
  },
- "scanned_at": "2026-08-10T17:45:04.432Z"
+ "scanned_at": "2026-09-02T20:45:19.219Z",
+ "test_date": "2026-03-26",
+ "test_lab": "Green Analytics NY, LLC",
+ "date_expire": "2027-03-16"
 }

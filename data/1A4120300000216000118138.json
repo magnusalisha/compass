@@ -1,0 +1,24 @@
+{
+ "id": "2798078b6b",
+ "metrc_tag": "1A4120300000216000118138",
+ "brand": "Anthem",
+ "strain": "Tangie Dream",
+ "form": "Infused Preroll 0.5g (5-pack, 2.5g total)",
+ "lean": null,
+ "confidence": "faint",
+ "shelf_tag": "Hybrid",
+ "reported": [],
+ "dominant": [],
+ "aroma": [],
+ "terpenes": {
+  "beta-Caryophyllene": 0.15,
+  "Linalool": 0.103
+ },
+ "scanned_at": "2026-09-02T20:45:19.217Z",
+ "thc": 43.0851,
+ "total_terpenes": 0.443,
+ "in_stock": true,
+ "test_date": "2026-08-14",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-08-06"
+}

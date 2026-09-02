@@ -1,0 +1,25 @@
+{
+ "id": "cf876936b2",
+ "metrc_tag": "1A4120300000529000069103",
+ "brand": "CRU",
+ "strain": "Wedding Crashers",
+ "form": "Infused Preroll 0.5g",
+ "lean": null,
+ "confidence": "moderate",
+ "shelf_tag": "Hybrid",
+ "reported": [],
+ "dominant": [],
+ "aroma": [],
+ "terpenes": {
+  "beta-Caryophyllene": 0.47,
+  "alpha-Humulene": 0.25,
+  "beta-Myrcene": 0.18
+ },
+ "scanned_at": "2026-09-02T20:45:19.220Z",
+ "thc": 26.26,
+ "total_terpenes": 0.9,
+ "in_stock": true,
+ "test_date": "2026-03-26",
+ "test_lab": "Green Analytics NY, LLC",
+ "date_expire": "2027-03-16"
+}

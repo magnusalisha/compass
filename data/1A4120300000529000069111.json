@@ -1,0 +1,42 @@
+{
+ "id": "a3f9c21b4e",
+ "metrc_tag": "1A4120300000529000069111",
+ "brand": "Untitled",
+ "strain": "Baja Breeze",
+ "form": "Vape 1g Cartridge",
+ "thc": 90.473,
+ "total_terpenes": 3.1,
+ "lean": "settling",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Sativa",
+ "reported": [
+  "alpha-Humulene dominant",
+  "light terpene profile"
+ ],
+ "dominant": [
+  "alpha-Humulene",
+  "Linalool"
+ ],
+ "aroma": [
+  "herbal",
+  "floral",
+  "earthy"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.79,
+  "beta-Myrcene": 0.6,
+  "Limonene": 0.47,
+  "Linalool": 0.41,
+  "alpha-Humulene": 0.4,
+  "Farnesene": 0.25,
+  "Fenchol": 0.18,
+  "alpha-Bisabolol": 0.14,
+  "Guaiol": 0.11,
+  "beta-Pinene": 0.09
+ },
+ "test_date": "2026-06-17",
+ "test_lab": "Green Analytics NY, LLC",
+ "date_expire": "2027-08-10",
+ "scanned_at": "2026-09-02T20:45:19.223Z"
+}

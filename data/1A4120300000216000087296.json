@@ -33,5 +33,10 @@
  },
  "test_date": "2026-05-29",
  "test_lab": "Kaycha Labs NY",
- "scanned_at": "2026-08-20T23:39:00.643Z"
+ "scanned_at": "2026-09-02T20:45:19.191Z",
+ "thc_range": [
+  24.5516,
+  29.5184
+ ],
+ "batches": 2
 }

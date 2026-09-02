@@ -1,0 +1,44 @@
+{
+ "id": "a3f9c12e7b",
+ "metrc_tag": "1A4120300000216000118139",
+ "brand": "Anthem",
+ "strain": "Berry Gelato",
+ "form": "Preroll 1g Infused",
+ "thc": 51.335,
+ "total_terpenes": 1.682,
+ "lean": "settling",
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Indica",
+ "reported": [
+  "Bold Berry",
+  "Gelato"
+ ],
+ "dominant": [
+  "beta-Caryophyllene",
+  "Linalool",
+  "Limonene"
+ ],
+ "aroma": [
+  "berry",
+  "floral",
+  "citrus",
+  "spice",
+  "earthy"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.696,
+  "Linalool": 0.213,
+  "alpha-Humulene": 0.209,
+  "Limonene": 0.169,
+  "Terpineol": 0.065,
+  "Fenchol": 0.061,
+  "Caryophyllene Oxide": 0.049,
+  "Farnesene": 0.045,
+  "alpha-Bisabolol": 0.044
+ },
+ "test_date": "2026-08-17",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-08-10",
+ "scanned_at": "2026-09-02T20:45:19.217Z"
+}

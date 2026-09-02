@@ -1,0 +1,30 @@
+{
+ "id": "d1c93f47ed",
+ "metrc_tag": "1A4120300000216000118137",
+ "brand": "Anthem",
+ "strain": "Watermelon Z",
+ "form": "Infused Preroll 0.5g (5-pack, 2.5g total)",
+ "lean": null,
+ "confidence": "strong",
+ "shelf_tag": "Hybrid",
+ "reported": [],
+ "dominant": [],
+ "aroma": [],
+ "terpenes": {
+  "beta-Caryophyllene": 0.645,
+  "alpha-Humulene": 0.254,
+  "Linalool": 0.197,
+  "alpha-Bisabolol": 0.073,
+  "Farnesene": 0.069,
+  "Caryophyllene Oxide": 0.063,
+  "Terpineol": 0.053,
+  "Fenchol": 0.051
+ },
+ "scanned_at": "2026-09-02T20:45:19.216Z",
+ "thc": 46.214,
+ "total_terpenes": 1.504,
+ "in_stock": true,
+ "test_date": "2026-08-14",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-08-07"
+}

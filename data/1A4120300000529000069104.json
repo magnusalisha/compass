@@ -1,25 +1,23 @@
 {
  "id": "7f6123b17b",
- "metrc_tag": "1A4120300000529000057942",
+ "metrc_tag": "1A4120300000529000069104",
  "brand": "Jetpacks",
  "strain": "Pink Lemonade",
  "form": "Infused Preroll 0.6g (5-pack, 3g total)",
  "lean": null,
- "confidence": "moderate",
+ "confidence": "faint",
  "shelf_tag": "Sativa",
  "reported": [],
  "dominant": [],
  "aroma": [],
  "terpenes": {
-  "beta-Caryophyllene": 0.67,
-  "alpha-Humulene": 0.26,
-  "Limonene": 0.23
+  "beta-Caryophyllene": 0.42
  },
- "scanned_at": "2026-08-23T16:38:23.150Z",
- "thc": 35.244,
- "total_terpenes": 1.16,
+ "scanned_at": "2026-09-02T20:45:19.220Z",
+ "thc": 35.576,
+ "total_terpenes": 0.42,
  "in_stock": true,
- "test_date": "2026-03-05",
+ "test_date": "2025-07-20",
  "test_lab": "Green Analytics NY, LLC",
- "date_expire": "2027-02-25"
+ "date_expire": "2027-05-11"
 }

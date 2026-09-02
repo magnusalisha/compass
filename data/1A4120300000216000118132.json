@@ -1,0 +1,28 @@
+{
+ "id": "9c7e5491be",
+ "metrc_tag": "1A4120300000216000118132",
+ "brand": "Find",
+ "strain": "Muffin Bomb",
+ "form": "Flower 3.5g",
+ "lean": null,
+ "confidence": "moderate",
+ "shelf_tag": "Hybrid",
+ "reported": [],
+ "dominant": [],
+ "aroma": [],
+ "terpenes": {
+  "Limonene": 0.42,
+  "beta-Myrcene": 0.26,
+  "beta-Caryophyllene": 0.18,
+  "Linalool": 0.12,
+  "alpha-Humulene": 0.06,
+  "Guaiol": 0.06
+ },
+ "scanned_at": "2026-09-02T20:45:19.215Z",
+ "thc": 25.8395,
+ "total_terpenes": 1.1,
+ "in_stock": true,
+ "test_date": "2026-07-27",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-07-27"
+}

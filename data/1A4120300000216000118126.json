@@ -1,0 +1,37 @@
+{
+ "id": "a3f82c1d9e",
+ "metrc_tag": "1A4120300000216000118126",
+ "brand": "Anthem",
+ "strain": "Tahoe OG",
+ "form": "Preroll infused glass tip 0.5g (5-pack, 2.5g total)",
+ "thc": 51.6807,
+ "total_terpenes": 0.57,
+ "lean": "settling",
+ "confidence": "faint",
+ "in_stock": true,
+ "shelf_tag": "Indica",
+ "reported": [],
+ "dominant": [
+  "beta-Caryophyllene",
+  "Linalool",
+  "alpha-Bisabolol"
+ ],
+ "aroma": [
+  "earthy",
+  "floral",
+  "spicy",
+  "woody",
+  "herbal"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.21,
+  "Linalool": 0.15,
+  "Fenchol": 0.08,
+  "Terpineol": 0.07,
+  "alpha-Humulene": 0.06
+ },
+ "test_date": "2026-06-01",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-05-22",
+ "scanned_at": "2026-09-02T20:45:19.212Z"
+}

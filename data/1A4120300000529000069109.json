@@ -1,6 +1,6 @@
 {
  "id": "a3f7c2e841",
- "metrc_tag": "1A4120300000235000003672",
+ "metrc_tag": "1A4120300000529000069109",
  "brand": "Untitled",
  "strain": "Strawnana",
  "form": "Vape 1g Cartridge",
@@ -13,5 +13,9 @@
  "reported": [],
  "dominant": [],
  "aroma": [],
- "terpenes": {}
+ "terpenes": {},
+ "test_date": "2026-04-20",
+ "test_lab": "Green Analytics NY, LLC",
+ "date_expire": "2027-07-29",
+ "scanned_at": "2026-09-02T20:45:19.222Z"
 }

@@ -1,13 +1,13 @@
 {
  "id": "a3f9c2e17b",
- "metrc_tag": "1A4120300000529000048755",
+ "metrc_tag": "1A4120300000529000069101",
  "brand": "Jetpacks",
  "strain": "Blueberry Kush",
  "form": "Infused Preroll 0.6g (5-pack, 3g total)",
- "thc": 35.678,
- "total_terpenes": 1.63,
+ "thc": 39.193,
+ "total_terpenes": 0.11,
  "lean": "settling",
- "confidence": "strong",
+ "confidence": "faint",
  "in_stock": true,
  "shelf_tag": "Indica",
  "reported": [
@@ -27,13 +27,12 @@
   "woody"
  ],
  "terpenes": {
-  "beta-Caryophyllene": 0.75,
-  "alpha-Humulene": 0.33,
-  "Linalool": 0.33,
-  "Limonene": 0.22
+  "beta-Caryophyllene": 0.06,
+  "alpha-Humulene": 0.02,
+  "Linalool": 0.02
  },
- "test_date": "2026-04-04",
+ "test_date": "2026-06-12",
  "test_lab": "Green Analytics NY, LLC",
- "date_expire": "2026-12-12",
- "scanned_at": "2026-08-20T23:38:47.252Z"
+ "date_expire": "2027-06-03",
+ "scanned_at": "2026-09-02T20:45:19.219Z"
 }

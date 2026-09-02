@@ -1,0 +1,32 @@
+{
+ "id": "24b54d805a",
+ "metrc_tag": "1A4120300000216000118131",
+ "brand": "Find",
+ "strain": "Hickory Hash",
+ "form": "Flower 3.5g",
+ "lean": null,
+ "confidence": "strong",
+ "shelf_tag": "Hybrid",
+ "reported": [],
+ "dominant": [],
+ "aroma": [],
+ "terpenes": {
+  "Limonene": 0.58,
+  "beta-Caryophyllene": 0.24,
+  "beta-Myrcene": 0.21,
+  "Linalool": 0.2,
+  "alpha-Humulene": 0.1,
+  "Farnesene": 0.07,
+  "Guaiol": 0.07,
+  "Fenchol": 0.06,
+  "Terpineol": 0.05,
+  "alpha-Bisabolol": 0.04
+ },
+ "scanned_at": "2026-09-02T20:45:19.214Z",
+ "thc": 34.7444,
+ "total_terpenes": 1.62,
+ "in_stock": true,
+ "test_date": "2026-07-27",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-07-27"
+}

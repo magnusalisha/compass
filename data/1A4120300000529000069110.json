@@ -1,27 +1,30 @@
 {
- "id": "a3f9c21b4e",
- "metrc_tag": "1A4120300000235000004256",
+ "id": "a3f7c2e891",
+ "metrc_tag": "1A4120300000529000069110",
  "brand": "Untitled",
- "strain": "Baja Breeze",
+ "strain": "Pink Guava",
  "form": "Vape 1g Cartridge",
- "thc": 89.577,
+ "thc": 89.256,
  "total_terpenes": 3.1,
- "lean": "settling",
+ "lean": "lifting",
  "confidence": "strong",
  "in_stock": true,
  "shelf_tag": "Sativa",
  "reported": [
-  "alpha-Humulene dominant",
-  "light terpene profile"
+  "Pink Guava",
+  "Vape Cartridge"
  ],
  "dominant": [
-  "alpha-Humulene",
-  "Linalool"
+  "Limonene",
+  "beta-Myrcene",
+  "beta-Caryophyllene"
  ],
  "aroma": [
+  "citrus",
+  "tropical",
+  "fruity",
   "herbal",
-  "floral",
-  "earthy"
+  "spice"
  ],
  "terpenes": {
   "beta-Caryophyllene": 0.79,
@@ -34,5 +37,9 @@
   "alpha-Bisabolol": 0.14,
   "Guaiol": 0.11,
   "beta-Pinene": 0.09
- }
+ },
+ "test_date": "2025-09-09",
+ "test_lab": "Green Analytics NY, LLC",
+ "date_expire": "2027-08-18",
+ "scanned_at": "2026-09-02T20:45:19.223Z"
 }
