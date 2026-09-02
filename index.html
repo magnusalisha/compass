@@ -2893,7 +2893,7 @@ function render(){
       // here is a thin category rather than an empty catalogue — so say which
       // one is the constraint and point at the way out.
       O.innerHTML = simCat === 'All'
-        ? `<div class="empty">No records scanned to compare against.</div>`
+        ? `<div class="empty">No products to compare against.</div>`
         : `<div class="empty">Nothing else in stock under ${simCat}.<br><span style="font-size:13px">Tap All above to match across every category.</span></div>`;
       return foot();
     }
@@ -2983,7 +2983,7 @@ function render(){
       ? (srcHw === 'Disposable' ? 'Also close, but a cartridge' : 'Also close, but a disposable')
       : srcInf ? 'Also close, but not infused' : 'Also close, but infused';
     O.innerHTML = faintSrcNote + (ranked[0][0] < 0.5
-        ? `<div class="card"><div class="warnbox" style="margin:0">Nothing <b>scanned</b> is close to <b>${p.strain}</b> — its profile is ${domTerps(p).slice(0,2).map(k=>short(k).toLowerCase()).join('/')}-led and nothing else in here looks like that. <b>Say so. Don't substitute.</b> Worth a look at the shelf too, in case something isn't scanned yet.</div></div>`
+        ? `<div class="card"><div class="warnbox" style="margin:0">Nothing <b>in Compass</b> is close to <b>${p.strain}</b> — its profile is ${domTerps(p).slice(0,2).map(k=>short(k).toLowerCase()).join('/')}-led and nothing else in here looks like that. <b>Say so. Don't substitute.</b> Worth a look at the shelf too, in case something isn't in Compass yet.</div></div>`
         : '')
       + primary.slice(0,4).map(([s,x]) => card(x, matchNote(p, x, s), key(p))).join('')
       // Tier 2 — full brightness on purpose. It's the same weight and a close
@@ -3237,8 +3237,8 @@ function renderEffectResults(){
     const shown = scoped.filter(p => sizeMatches(p, effSize));
     O.innerHTML = shown.length ? shown.map(p => card(p)).join('')
       : `<div class="empty">No ${effSize === 'any'
-          ? (activeCat === 'All' ? '' : activeCat.toLowerCase()+' ') + 'records'
-          : sizeLabel(effSize)} scanned yet.</div>`;
+          ? (activeCat === 'All' ? '' : activeCat.toLowerCase()+' ') + 'products'
+          : sizeLabel(effSize)} in Compass yet.</div>`;
     return foot();
   }
 
@@ -3266,7 +3266,7 @@ function renderEffectResults(){
       // a budtender in completely different directions.
       const seen = DATA.filter(p => hasProfile(p) && amt(p) > 0).length;
       O.innerHTML = `<div class="empty">Nothing in stock carries <b>${tq.label}</b>.${
-        seen ? ` ${seen} scanned record${seen > 1 ? 's do' : ' does'}, but not on the shelf right now.` : ''}</div>`;
+        seen ? ` ${seen} product${seen > 1 ? 's do' : ' does'}, but not on the shelf right now.` : ''}</div>`;
       return foot();
     }
     O.innerHTML = `<div class="terphead">${tq.guessed ? `Reading that as <b>${tq.label}</b>. ` : ''}Ranked by measured <b>${tq.label}</b> — what the lab found, not a claim about how it feels.${
@@ -3343,7 +3343,7 @@ function renderEffectResults(){
           return [neg.reduce((t,k) => t + (v[k]||0), 0), p];
         }).sort((m,n) => (m[1].confidence === 'faint') - (n[1].confidence === 'faint') || m[0]-n[0]);
 
-  const noFit = `<div class="empty">Nothing scanned fits that. Saying so is better than a bad substitution — but check the shelf for anything not scanned yet.</div>`;
+  const noFit = `<div class="empty">Nothing in Compass fits that. Saying so is better than a bad substitution — but check the shelf for anything not in Compass yet.</div>`;
   if (!scored.length){ O.innerHTML = noFit; return foot(); }
 
   if (effSize === 'any'){
@@ -3421,7 +3421,7 @@ function renderLookupResults(){
          }</span></span>
        </button>`).join('')}</div>`
     : `<div class="empty">${lookupCat === 'All'
-          ? 'Nothing scanned matches that.'
+          ? 'Nothing in Compass matches that.'
           : `No ${lookupCat.toLowerCase()} matches that — tap All to search every category.`}<br><span style="font-size:13px">It may be on the shelf but not in Compass yet.</span></div>`;
   return foot();
 }
@@ -3431,10 +3431,13 @@ function foot(){
   // noticed at the counter. All Gas and Americano were both found by smelling
   // the jar; nothing in the tool had flagged either one.
   const unread = DATA.filter(p => hasProfile(p) && unreadTerps(p).hits.length).length;
-  // "scanned", not "products" — the catalogue is whatever has been through the
-  // capture script, which is not the same as what is on the shelf. Every empty
-  // state says so too; this keeps the scope visible even when results look full.
-  $('#foot').innerHTML = `${DATA.length} scanned · ${DATA.filter(stocked).length} in stock${
+  // "products", not "scanned". The catalogue used to be whatever had been put
+  // through the capture script by hand, so "scanned" named the real limit and
+  // every empty state repeated it. The sync reads the shop's inventory now, so
+  // the count is simply what Compass knows — including products that have sold
+  // through, which is deliberate: Compare and Find similar search the whole
+  // archive on purpose, so a customer can be matched off something we had.
+  $('#foot').innerHTML = `${DATA.length} products · ${DATA.filter(stocked).length} in stock${
     unreadable ? ` · <b style="color:var(--warn)">${unreadable} ${
       unreadableKind === 'data' ? `unreadable — ${unreadable > 1 ? 'those records have' : 'that record has'} a typo`
       : unreadableKind === 'net' ? "didn't load — try refreshing"
