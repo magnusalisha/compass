@@ -935,7 +935,18 @@ function soldOutWhen(p){
 // one product. So the strain drops a trailing "- Pack" and the form goes through
 // parseSize, which reads both of those as 0.5g ×5 infused.
 const STRAIN_PACK = /\s*\b(pack|pk|multipack|singles?)\b\s*$/;
-const idNorm = s => String(s || '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+// Folds the same things searchNorm does — accents and "&" — because otherwise
+// "Boukét" normalises to "bouk t", where the accent becomes a WORD GAP rather
+// than a letter, and a record spelled with the accent gets a different identity
+// from one spelled without. The sync's matcher treats those two as one product;
+// this would have drawn two cards for it.
+//
+// Word gaps are KEPT, unlike searchNorm, which strips them entirely: STRAIN_PACK
+// below matches a trailing "- Pack" on a word boundary and needs the spaces.
+const idNorm = s => String(s || '')
+  .normalize('NFKD').replace(/[\u0300-\u036f]/g, '')
+  .replace(/&/g, ' and ')
+  .toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
 // A blunt is a preroll for shelving, but it is NOT the same product as a joint
 // of the same weight — the customer is choosing between them. Lobo ships Gruntz
 // as both an "Infused Blunt 1g" and a "Preroll 1g Infused" off the same lot, and
@@ -2237,8 +2248,22 @@ function comboShellHTML(id, list, selectedId){
 // answer, so the discontinued product has to be selectable. Compare's two
 // pickers stay on the in-stock pool. (Recommendations are filtered separately;
 // only in-stock items are ever suggested.)
+// Cached on DATA identity, the same way thcPeers is, and for the same reason:
+// DATA is REPLACED on every refresh and never mutated, so an identity check
+// invalidates exactly when it should and never when it should not.
+//
+// This runs once per KEYSTROKE in a picker, and the sort is the expensive half —
+// Intl collation over ~390 records measures ~4.4ms against ~0.1ms for the search
+// normalisation beside it. Typing "blue dream" re-sorted the whole archive ten
+// times for a list whose order cannot have changed. A POS tablet is several
+// times slower than the machine that was measured on.
+let _archiveFor = null, _archiveSorted = null;
+const sortedArchive = () => {
+  if (_archiveFor !== DATA){ _archiveFor = DATA; _archiveSorted = DATA.slice().sort(byStrain); }
+  return _archiveSorted;
+};
 const comboSource = id => id === 'similar'
-  ? DATA.slice().sort(byStrain)
+  ? sortedArchive()
   : pool();
 function updateComboList(id){
   const holder = document.querySelector(`[data-combo="${id}"] .combo-list-holder`);
