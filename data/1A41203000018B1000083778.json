@@ -1,0 +1,30 @@
+{
+ "id": "d48c913d8c",
+ "metrc_tag": "1A41203000018B1000083778",
+ "brand": "ZIPS",
+ "strain": "Green Crack",
+ "form": "Flower 14g",
+ "lean": null,
+ "confidence": "strong",
+ "shelf_tag": "Sativa",
+ "reported": [],
+ "dominant": [],
+ "aroma": [],
+ "terpenes": {
+  "beta-Caryophyllene": 0.431,
+  "beta-Myrcene": 0.334,
+  "Limonene": 0.246,
+  "alpha-Humulene": 0.208,
+  "Linalool": 0.179,
+  "alpha-Bisabolol": 0.09,
+  "Fenchol": 0.046,
+  "Terpineol": 0.043
+ },
+ "scanned_at": "2026-09-03T19:58:01.810Z",
+ "thc": 29.015,
+ "total_terpenes": 1.577,
+ "in_stock": true,
+ "test_date": "2026-07-13",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-07-24"
+}

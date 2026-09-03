@@ -1,0 +1,30 @@
+{
+ "id": "47c304e37b",
+ "metrc_tag": "1A41203000018B1000083779",
+ "brand": "ZIPS",
+ "strain": "Gary Payton",
+ "form": "Flower 14g",
+ "lean": null,
+ "confidence": "strong",
+ "shelf_tag": "Hybrid",
+ "reported": [],
+ "dominant": [],
+ "aroma": [],
+ "terpenes": {
+  "beta-Caryophyllene": 0.477,
+  "alpha-Humulene": 0.207,
+  "Limonene": 0.198,
+  "beta-Myrcene": 0.186,
+  "Linalool": 0.13,
+  "alpha-Bisabolol": 0.117,
+  "Fenchol": 0.049,
+  "Terpineol": 0.048
+ },
+ "scanned_at": "2026-09-03T19:58:01.810Z",
+ "thc": 28.1957,
+ "total_terpenes": 1.412,
+ "in_stock": true,
+ "test_date": "2026-07-13",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-08-03"
+}

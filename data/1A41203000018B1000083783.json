@@ -1,0 +1,32 @@
+{
+ "id": "408b5a33c5",
+ "metrc_tag": "1A41203000018B1000083783",
+ "brand": "ZIPS",
+ "strain": "Super Lemon Haze",
+ "form": "Flower 28g",
+ "lean": null,
+ "confidence": "strong",
+ "shelf_tag": "Hybrid",
+ "reported": [],
+ "dominant": [],
+ "aroma": [],
+ "terpenes": {
+  "Limonene": 0.45,
+  "beta-Caryophyllene": 0.237,
+  "beta-Myrcene": 0.204,
+  "Linalool": 0.195,
+  "alpha-Humulene": 0.096,
+  "Guaiol": 0.084,
+  "Farnesene": 0.071,
+  "Fenchol": 0.055,
+  "Terpineol": 0.054,
+  "alpha-Bisabolol": 0.049
+ },
+ "scanned_at": "2026-09-03T19:58:01.812Z",
+ "thc": 33.785,
+ "total_terpenes": 1.495,
+ "in_stock": true,
+ "test_date": "2026-07-12",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-07-24"
+}

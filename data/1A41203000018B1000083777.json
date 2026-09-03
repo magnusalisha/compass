@@ -1,0 +1,28 @@
+{
+ "id": "ada4cbe7ac",
+ "metrc_tag": "1A41203000018B1000083777",
+ "brand": "ZIPS",
+ "strain": "Sour Tangie",
+ "form": "Flower 14g",
+ "lean": null,
+ "confidence": "moderate",
+ "shelf_tag": "Sativa",
+ "reported": [],
+ "dominant": [],
+ "aroma": [],
+ "terpenes": {
+  "beta-Myrcene": 0.443,
+  "beta-Caryophyllene": 0.187,
+  "alpha-Bisabolol": 0.139,
+  "Linalool": 0.103,
+  "Guaiol": 0.077,
+  "alpha-Humulene": 0.064
+ },
+ "scanned_at": "2026-09-03T19:58:01.809Z",
+ "thc": 28.985,
+ "total_terpenes": 1.013,
+ "in_stock": true,
+ "test_date": "2026-07-13",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-07-21"
+}

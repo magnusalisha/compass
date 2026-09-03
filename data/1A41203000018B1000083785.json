@@ -1,0 +1,32 @@
+{
+ "id": "ddea51bdb3",
+ "metrc_tag": "1A41203000018B1000083785",
+ "brand": "ZIPS",
+ "strain": "Sour Diesel",
+ "form": "Vape 2g",
+ "lean": null,
+ "confidence": "strong",
+ "shelf_tag": "Sativa",
+ "reported": [],
+ "dominant": [],
+ "aroma": [],
+ "terpenes": {
+  "Limonene": 0.73,
+  "beta-Myrcene": 0.52,
+  "beta-Pinene": 0.13,
+  "alpha-Pinene": 0.12,
+  "beta-Caryophyllene": 0.07,
+  "alpha-Bisabolol": 0.06,
+  "alpha-Phellandrene": 0.04,
+  "Camphene": 0.04,
+  "Caryophyllene Oxide": 0.04,
+  "Terpinolene": 0.02
+ },
+ "scanned_at": "2026-09-03T19:58:01.813Z",
+ "thc": 90.4135,
+ "total_terpenes": 1.77,
+ "in_stock": true,
+ "test_date": "2026-07-30",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-07-24"
+}

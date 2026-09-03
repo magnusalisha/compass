@@ -1,0 +1,33 @@
+{
+ "id": "b1dd63ad32",
+ "metrc_tag": "1A41203000018B1000083794",
+ "brand": "Dank",
+ "strain": "Purple Sunset",
+ "form": "Preroll 1g",
+ "lean": null,
+ "confidence": "strong",
+ "shelf_tag": "Indica",
+ "reported": [],
+ "dominant": [],
+ "aroma": [],
+ "terpenes": {
+  "Linalool": 0.38,
+  "beta-Caryophyllene": 0.27,
+  "Limonene": 0.17,
+  "alpha-Humulene": 0.09,
+  "Terpineol": 0.07,
+  "Fenchol": 0.06,
+  "alpha-Bisabolol": 0.05,
+  "beta-Myrcene": 0.05,
+  "beta-Pinene": 0.02,
+  "Caryophyllene Oxide": 0.02,
+  "alpha-Pinene": 0.01
+ },
+ "scanned_at": "2026-09-03T19:58:01.817Z",
+ "thc": 31.8923,
+ "total_terpenes": 1.22,
+ "in_stock": true,
+ "test_date": "2026-08-11",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-08-04"
+}

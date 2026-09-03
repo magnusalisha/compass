@@ -1,0 +1,33 @@
+{
+ "id": "ebae80f5f3",
+ "metrc_tag": "1A41203000018B1000083795",
+ "brand": "Dank",
+ "strain": "Garlic Breath",
+ "form": "Preroll 1g",
+ "lean": null,
+ "confidence": "strong",
+ "shelf_tag": "Hybrid",
+ "reported": [],
+ "dominant": [],
+ "aroma": [],
+ "terpenes": {
+  "Linalool": 0.37,
+  "beta-Caryophyllene": 0.28,
+  "Limonene": 0.17,
+  "alpha-Humulene": 0.09,
+  "Fenchol": 0.06,
+  "Terpineol": 0.06,
+  "alpha-Bisabolol": 0.05,
+  "beta-Myrcene": 0.05,
+  "beta-Pinene": 0.02,
+  "alpha-Pinene": 0.01,
+  "Caryophyllene Oxide": 0.01
+ },
+ "scanned_at": "2026-09-03T19:58:01.818Z",
+ "thc": 31.7549,
+ "total_terpenes": 1.2,
+ "in_stock": true,
+ "test_date": "2026-08-10",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-06-15"
+}

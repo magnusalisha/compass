@@ -1,0 +1,25 @@
+{
+ "id": "30c8cac719",
+ "metrc_tag": "1A41203000018B1000083799",
+ "brand": "Drew Martin",
+ "strain": "Sativa Be Bright",
+ "form": "Preroll 0.75g (6-pack, 4.5g total)",
+ "lean": null,
+ "confidence": "faint",
+ "shelf_tag": null,
+ "reported": [],
+ "dominant": [],
+ "aroma": [],
+ "terpenes": {
+  "beta-Caryophyllene": 0.05,
+  "alpha-Bisabolol": 0.03,
+  "alpha-Humulene": 0.01
+ },
+ "scanned_at": "2026-09-03T19:58:01.819Z",
+ "thc": 16.1601,
+ "total_terpenes": 0.1,
+ "in_stock": true,
+ "test_date": "2026-08-13",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-08-04"
+}

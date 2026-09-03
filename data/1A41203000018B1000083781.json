@@ -1,0 +1,32 @@
+{
+ "id": "315bd7c2c6",
+ "metrc_tag": "1A41203000018B1000083781",
+ "brand": "ZIPS",
+ "strain": "Pineapple Express",
+ "form": "Flower 28g",
+ "lean": null,
+ "confidence": "strong",
+ "shelf_tag": "Sativa",
+ "reported": [],
+ "dominant": [],
+ "aroma": [],
+ "terpenes": {
+  "Limonene": 0.463,
+  "beta-Caryophyllene": 0.424,
+  "Linalool": 0.213,
+  "beta-Myrcene": 0.207,
+  "Guaiol": 0.136,
+  "alpha-Humulene": 0.128,
+  "Farnesene": 0.082,
+  "Terpineol": 0.063,
+  "Fenchol": 0.059,
+  "alpha-Bisabolol": 0.042
+ },
+ "scanned_at": "2026-09-03T19:58:01.811Z",
+ "thc": 34.4343,
+ "total_terpenes": 1.817,
+ "in_stock": true,
+ "test_date": "2026-07-13",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-07-27"
+}

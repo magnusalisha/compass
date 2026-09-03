@@ -1,0 +1,29 @@
+{
+ "id": "ac5c7aeeac",
+ "metrc_tag": "1A41203000018B1000083802",
+ "brand": "ZIPS",
+ "strain": "Animal Cookies",
+ "form": "Flower 28g",
+ "lean": null,
+ "confidence": "strong",
+ "shelf_tag": "Hybrid",
+ "reported": [],
+ "dominant": [],
+ "aroma": [],
+ "terpenes": {
+  "beta-Caryophyllene": 0.454,
+  "Limonene": 0.414,
+  "Linalool": 0.181,
+  "Farnesene": 0.179,
+  "alpha-Humulene": 0.132,
+  "Fenchol": 0.056,
+  "Terpineol": 0.053
+ },
+ "scanned_at": "2026-09-03T19:58:01.820Z",
+ "thc": 32.2056,
+ "total_terpenes": 1.469,
+ "in_stock": true,
+ "test_date": "2026-07-13",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-07-24"
+}
