@@ -2833,11 +2833,38 @@ function renderEffectResults(){
         seen ? ` ${seen} product${seen > 1 ? 's do' : ' does'}, but not on the shelf right now.` : ''}</div>`;
       return foot();
     }
-    O.innerHTML = `<div class="terphead">${tq.guessed ? `Reading that as <b>${tq.label}</b>. ` : ''}Ranked by measured <b>${tq.label}</b> — what the lab found, not a claim about how it feels.${
+    const terpHead = `<div class="terphead">${tq.guessed ? `Reading that as <b>${tq.label}</b>. ` : ''}Ranked by measured <b>${tq.label}</b> — what the lab found, not a claim about how it feels.${
       REPORTED[tq.keys[0]] ? '' : `<br>Nothing evidenced about ${tq.label}'s character, so there's no read to go with it.`
-    }</div>` + ranked.slice(0, effShowAll ? ranked.length : EFF_TOP).map(([p, v]) =>
-      card(p, `<div class="match">${tq.label} ${+v.toFixed(2)}%</div>`)).join('')
-      + moreRow(ranked.length, `carrying ${tq.label}, most first`);
+    }</div>`;
+    const terpCard = ([p, v]) => card(p, `<div class="match">${tq.label} ${+v.toFixed(2)}%</div>`);
+    if (effSize === 'any'){
+      O.innerHTML = terpHead + ranked.slice(0, effShowAll ? ranked.length : EFF_TOP).map(terpCard).join('')
+        + moreRow(ranked.length, `carrying ${tq.label}, most first`);
+      return foot();
+    }
+    // THE SIZE FILTER APPLIES HERE TOO.
+    //
+    // It did not until 3 Sept: this branch ranked `scoped`, which carries the
+    // category and in-stock scoping but NOT the size, so searching a terpene
+    // with 3.5g selected returned 28g jars ranked as though they were 3.5g.
+    // The dropdown said one thing and the results said another, on the tab a
+    // budtender uses with a customer standing there.
+    //
+    // Same shape as the effect path below, deliberately: the chosen size ranks
+    // full, and strong matches in other sizes drop beneath it as dimmed pivot
+    // rows. Someone asking for limonene in 3.5g may well take the 28g — but
+    // that is their decision to make knowingly, not a filter quietly ignored.
+    const inSize = ranked.filter(([p]) => sizeMatches(p, effSize));
+    const other  = ranked.filter(([p]) => !sizeMatches(p, effSize));
+    O.innerHTML = terpHead
+      + (inSize.length
+        ? inSize.slice(0, effShowAll ? inSize.length : EFF_TOP).map(terpCard).join('')
+          + moreRow(inSize.length, `carrying ${tq.label} in ${sizeLabel(effSize)}, most first`)
+        : `<div class="empty">Nothing in ${sizeLabel(effSize)} carries <b>${tq.label}</b>${other.length ? ' — but these other sizes do' : '.'}.</div>`)
+      + (other.length
+        ? `<div class="pivot-head">Carries ${tq.label}, other sizes — worth a pivot</div>`
+          + other.slice(0,4).map(([p]) => pivotRow(p)).join('')
+        : '');
     return foot();
   }
 
