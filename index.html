@@ -3232,7 +3232,15 @@ async function recordsFromIndex(files){
   return ok;
 }
 
+// Which path the last fetch took. The Worker serves the whole catalogue in one
+// request and has no quota worth worrying about; the GitHub fallback is capped
+// at 60 unauthenticated calls an hour per IP, and a 60-second tick spends
+// exactly that — so a Worker outage would degrade gracefully for an hour and
+// then stop working entirely. See refresh().
+let usedFallback = false;
+
 async function fetchRecords(){
+  usedFallback = false;
   if (STOCK_API){
     try {
       // ASK WHETHER IT CHANGED, don't demand it again.
@@ -3309,6 +3317,7 @@ async function fetchRecords(){
       // dropping everyone to the 9-record embedded seed.
     }
   }
+  usedFallback = true;
   const idx = await fetch(`https://api.github.com/repos/${GH_USER}/${GH_REPO}/contents/data`,
     {cache: 'no-store'}).then(r=>r.json());
   if (!Array.isArray(idx)) throw new Error('rate limited');   // caller keeps the seed
@@ -3336,8 +3345,21 @@ async function fetchRecords(){
 // was true when the page was opened — which would defeat the entire point of
 // stock being shared. Refresh on a timer while visible, and immediately when
 // someone comes back to the tab.
-let refreshTimer = null;
+let refreshTimer = null, lastFetchAt = 0;
+// A minute is right for the Worker: one request, no quota pressure, and stock
+// that is a minute stale is stock nobody can act on wrongly.
+//
+// On the GitHub fallback it is exactly wrong. 60 calls an hour is the whole
+// unauthenticated budget, so the backup would run for an hour and then refuse,
+// taking the shop from degraded to dark. Five minutes there spends 12 an hour
+// and leaves headroom for a second device — the shop shares one IP.
+//
+// Throttled HERE rather than in the timer because visibilitychange calls this
+// directly, and someone switching tabs is the cheapest way to burn a quota.
+const REFRESH_MS = () => usedFallback ? 300000 : 60000;
 async function refresh(){
+  if (Date.now() - lastFetchAt < REFRESH_MS()) return;
+  lastFetchAt = Date.now();
   let fresh;
   try { fresh = await fetchRecords(); } catch(e){ return; }   // offline: keep what we have
   if (!fresh || !fresh.length) return;
