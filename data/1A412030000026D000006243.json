@@ -2,11 +2,6 @@
  "id": "9a95fee28d",
  "shelf_tag": "Indica",
  "confidence": "strong",
- "dominant": [
-  "beta-Caryophyllene",
-  "Limonene",
-  "Linalool"
- ],
  "terpenes": {
   "Limonene": 0.4,
   "Linalool": 0.29,
@@ -40,7 +35,6 @@
  ],
  "form": "Flower 3.5g",
  "strain": "Boogie Wuggie",
- "lean": "settling",
  "in_stock": false,
  "thc": 34.1222,
  "sold_out_at": "2026-07-20T20:26:06.666Z"

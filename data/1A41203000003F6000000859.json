@@ -2,11 +2,6 @@
  "id": "a3f9c2b7e1",
  "shelf_tag": "Hybrid",
  "confidence": "strong",
- "dominant": [
-  "Linalool",
-  "Limonene",
-  "beta-Caryophyllene"
- ],
  "terpenes": {
   "beta-Caryophyllene": 0.31,
   "beta-Myrcene": 0.23,
@@ -36,7 +31,6 @@
  ],
  "form": "Flower 3.5g",
  "strain": "Georgia Z",
- "lean": "mixed",
  "in_stock": false,
  "thc": 28.638,
  "sold_out_at": "2026-08-17T15:14:20.001Z"

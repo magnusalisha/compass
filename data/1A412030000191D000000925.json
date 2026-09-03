@@ -2,11 +2,6 @@
  "id": "a3f7c2e1b9",
  "shelf_tag": "Hybrid",
  "confidence": "faint",
- "dominant": [
-  "beta-Caryophyllene",
-  "Guaiol",
-  "alpha-Humulene"
- ],
  "terpenes": {
   "Ocimene": 0.01,
   "Linalool": 0.03,
@@ -38,7 +33,6 @@
  ],
  "form": "Preroll 3.5g 7-Pack",
  "strain": "Grease Monkey",
- "lean": "settling",
  "in_stock": false,
  "thc": 29.4485,
  "sold_out_at": "2026-08-05T14:22:02.346Z"

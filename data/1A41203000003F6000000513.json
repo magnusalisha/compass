@@ -2,11 +2,6 @@
  "id": "a3f92c1b4e",
  "shelf_tag": "Hybrid",
  "confidence": "strong",
- "dominant": [
-  "Linalool",
-  "beta-Caryophyllene",
-  "Limonene"
- ],
  "terpenes": {
   "Limonene": 0.27,
   "beta-Myrcene": 0.17,
@@ -36,7 +31,6 @@
  ],
  "form": "Flower 3.5g",
  "strain": "Crunch Berries",
- "lean": "mixed",
  "in_stock": false,
  "thc": 28.552,
  "sold_out_at": "2026-07-20T16:34:52.378Z"

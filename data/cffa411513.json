@@ -2,11 +2,6 @@
  "id": "cffa411513",
  "shelf_tag": "Sativa",
  "confidence": "moderate",
- "dominant": [
-  "beta-Myrcene",
-  "beta-Caryophyllene",
-  "Limonene"
- ],
  "note": null,
  "terpenes": {
   "alpha-Pinene": 0,
@@ -47,7 +42,6 @@
  ],
  "form": "Flower 3.5g",
  "strain": "Slingria",
- "lean": "settling",
  "in_stock": false,
  "thc": 31.9792,
  "sold_out_at": "2026-08-03T13:59:57.862Z"

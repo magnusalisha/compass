@@ -2,11 +2,6 @@
  "id": "18e2bd2153",
  "shelf_tag": "Hybrid",
  "confidence": "strong",
- "dominant": [
-  "Linalool",
-  "Limonene",
-  "beta-Caryophyllene"
- ],
  "terpenes": {
   "beta-Caryophyllene": 0.26,
   "beta-Myrcene": 0.13,
@@ -33,7 +28,6 @@
  ],
  "form": "Preroll 0.75g 2-Pack",
  "strain": "Sherbanger 3",
- "lean": "settling",
  "in_stock": false,
  "thc": 30.072,
  "sold_out_at": "2026-08-20T23:39:35.131Z"

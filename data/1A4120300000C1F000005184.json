@@ -2,11 +2,6 @@
  "id": "4dcf124255",
  "shelf_tag": "Hybrid",
  "confidence": "moderate",
- "dominant": [
-  "beta-Caryophyllene",
-  "Limonene",
-  "beta-Myrcene"
- ],
  "terpenes": {
   "Valencene": 0.01,
   "Linalool": 0.07,
@@ -38,7 +33,6 @@
  ],
  "form": "Flower 3.5g",
  "strain": "Honeymoon Diesel",
- "lean": "mixed",
  "in_stock": false,
  "thc": 22.4296,
  "sold_out_at": "2026-07-27T13:57:42.108Z"

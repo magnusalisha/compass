@@ -2,11 +2,6 @@
  "id": "da961bea65",
  "shelf_tag": "Sativa",
  "confidence": "moderate",
- "dominant": [
-  "beta-Caryophyllene",
-  "alpha-Humulene",
-  "Limonene"
- ],
  "terpenes": {
   "beta-Caryophyllene": 0.59,
   "alpha-Humulene": 0.22,
@@ -30,7 +25,6 @@
  ],
  "form": "Flower 1g",
  "strain": "Strawberry Diesel",
- "lean": "settling",
  "in_stock": true,
  "thc": 22.307,
  "test_date": "2026-02-16",

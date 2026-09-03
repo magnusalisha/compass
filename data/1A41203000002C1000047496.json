@@ -2,9 +2,6 @@
  "id": "a3f7c2e891",
  "shelf_tag": "Sativa-leaning Hybrid",
  "confidence": "faint",
- "dominant": [
-  "Caryophyllene Oxide"
- ],
  "terpenes": {
   "Caryophyllene Oxide": 0.0613
  },
@@ -22,7 +19,6 @@
  ],
  "form": "Flower 3.5g",
  "strain": "Permafrost",
- "lean": "settling",
  "in_stock": true,
  "thc": 28.59,
  "test_date": "2026-04-06",

@@ -2,11 +2,6 @@
  "id": "a3f8c21d94",
  "shelf_tag": "Hybrid",
  "confidence": "strong",
- "dominant": [
-  "beta-Myrcene",
-  "alpha-Pinene",
-  "Ocimene"
- ],
  "terpenes": {
   "beta-Myrcene": 1.32,
   "alpha-Pinene": 0.26,
@@ -32,7 +27,6 @@
  ],
  "form": "Flower 3.5g",
  "strain": "Pie Scream",
- "lean": "lifting",
  "in_stock": true,
  "thc": 26.559,
  "test_date": "2026-04-02",

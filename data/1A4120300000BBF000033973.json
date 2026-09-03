@@ -2,9 +2,6 @@
  "id": "a3f92c1d4e",
  "shelf_tag": "Sativa",
  "confidence": "faint",
- "dominant": [
-  "beta-Caryophyllene"
- ],
  "terpenes": {
   "beta-Caryophyllene": 0.07
  },
@@ -22,7 +19,6 @@
  ],
  "form": "Preroll 0.9g (5-pack, 4.5g total)",
  "strain": "Wedding Cookies Lights",
- "lean": "settling",
  "in_stock": true,
  "thc": 15.709,
  "test_date": "2026-03-13",

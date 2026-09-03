@@ -2,11 +2,6 @@
  "id": "e6ca57c44c",
  "shelf_tag": "Sativa",
  "confidence": "faint",
- "dominant": [
-  "beta-Caryophyllene",
-  "beta-Myrcene",
-  "alpha-Humulene"
- ],
  "note": "Low total terpenes and mostly heavy sesquiterpenes — the volatile ones have likely evaporated. Read the label, not this profile.",
  "terpenes": {
   "alpha-Pinene": 0.04,
@@ -47,7 +42,6 @@
  ],
  "form": "Preroll 1g 4-pack",
  "strain": "Honey Dream",
- "lean": "settling",
  "in_stock": false,
  "thc": 16.7113,
  "sold_out_at": "2026-08-05T14:19:39.340Z"

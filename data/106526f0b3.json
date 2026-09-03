@@ -2,11 +2,6 @@
  "id": "106526f0b3",
  "shelf_tag": "Sativa",
  "confidence": "faint",
- "dominant": [
-  "beta-Caryophyllene",
-  "Limonene",
-  "alpha-Humulene"
- ],
  "note": "Low total terpenes and mostly heavy sesquiterpenes — the volatile ones have likely evaporated. Read the label, not this profile.",
  "terpenes": {
   "alpha-Pinene": 0.01,
@@ -47,7 +42,6 @@
  ],
  "form": "Preroll 1g 4-pack",
  "strain": "Honey Banana Face",
- "lean": "settling",
  "in_stock": false,
  "thc": 15.5366,
  "sold_out_at": "2026-08-12T14:19:09.530Z"

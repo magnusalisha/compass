@@ -2,11 +2,6 @@
  "id": "5d93d1fa8f",
  "shelf_tag": "Hybrid",
  "confidence": "strong",
- "dominant": [
-  "Linalool",
-  "Limonene",
-  "beta-Caryophyllene"
- ],
  "note": null,
  "terpenes": {
   "Linalool": 0.44,
@@ -33,7 +28,6 @@
  ],
  "form": "Flower 3.5g",
  "strain": "Apple Banana Flambe",
- "lean": "settling",
  "in_stock": true,
  "thc": 28.2499,
  "metrc_tag": "1A412030000038D000018010",

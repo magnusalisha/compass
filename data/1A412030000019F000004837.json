@@ -2,11 +2,6 @@
  "id": "678d63e522",
  "shelf_tag": "Indica",
  "confidence": "strong",
- "dominant": [
-  "beta-Caryophyllene",
-  "Limonene",
-  "alpha-Humulene"
- ],
  "terpenes": {
   "Linalool": 0.1467,
   "Fenchol": 0.0852,
@@ -42,7 +37,6 @@
  ],
  "form": "Infused Preroll 0.5g 5pk",
  "strain": "GMO Bomb",
- "lean": "settling",
  "in_stock": false,
  "thc": 37.61,
  "sold_out_at": "2026-07-20T17:34:58.864Z"

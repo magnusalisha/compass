@@ -2,11 +2,6 @@
  "id": "93abfa4f3d",
  "shelf_tag": "Sativa",
  "confidence": "moderate",
- "dominant": [
-  "beta-Caryophyllene",
-  "Linalool",
-  "Limonene"
- ],
  "terpenes": {
   "beta-Caryophyllene": 0.25,
   "Linalool": 0.22,
@@ -30,7 +25,6 @@
  ],
  "form": "Flower 1g",
  "strain": "Pineapple Express",
- "lean": "settling",
  "in_stock": false,
  "thc": 28.056,
  "test_date": "2026-03-16",

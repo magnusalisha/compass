@@ -2,11 +2,6 @@
  "id": "a3f8c12e9b",
  "shelf_tag": "Sativa",
  "confidence": "strong",
- "dominant": [
-  "beta-Myrcene",
-  "Caryophyllene Oxide",
-  "alpha-Phellandrene"
- ],
  "terpenes": {
   "Ocimene": 0.04,
   "Linalool": 0.07,
@@ -38,7 +33,6 @@
  ],
  "form": "Flower 3.5g",
  "strain": "PuffinZ",
- "lean": "mixed",
  "in_stock": false,
  "thc": 22.26,
  "sold_out_at": "2026-07-26T14:37:09.679Z"

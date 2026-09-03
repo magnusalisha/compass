@@ -2,11 +2,6 @@
  "id": "a3f9c2e817",
  "shelf_tag": "Hybrid",
  "confidence": "strong",
- "dominant": [
-  "beta-Myrcene",
-  "alpha-Pinene",
-  "beta-Caryophyllene"
- ],
  "terpenes": {
   "Ocimene": 0.0984,
   "Terpinolene": 0.0106,
@@ -41,7 +36,6 @@
  ],
  "form": "Flower 7g",
  "strain": "Tasty Trees #9",
- "lean": "settling",
  "in_stock": false,
  "thc": 26.74,
  "sold_out_at": "2026-08-12T16:21:12.679Z"

@@ -2,11 +2,6 @@
  "id": "a3f9c2e814",
  "shelf_tag": "Indica",
  "confidence": "strong",
- "dominant": [
-  "Linalool",
-  "Limonene",
-  "beta-Caryophyllene"
- ],
  "terpenes": {
   "beta-Caryophyllene": 0.32,
   "beta-Myrcene": 0.22,
@@ -36,7 +31,6 @@
  ],
  "form": "Flower 3.5g",
  "strain": "Girl Scout Cookies",
- "lean": "settling",
  "in_stock": false,
  "thc": 27.922,
  "sold_out_at": "2026-08-02T13:59:06.880Z"

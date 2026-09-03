@@ -2,11 +2,6 @@
  "id": "a3f8c21d9e",
  "shelf_tag": "Sativa",
  "confidence": "strong",
- "dominant": [
-  "Limonene",
-  "beta-Caryophyllene",
-  "Linalool"
- ],
  "terpenes": {
   "beta-Caryophyllene": 0.53,
   "Ocimene": 0.17,
@@ -35,7 +30,6 @@
  ],
  "form": "Flower 3.5g",
  "strain": "Pinyatti",
- "lean": "mixed",
  "in_stock": false,
  "thc": 28.4165,
  "sold_out_at": "2026-07-23T14:17:16.479Z"

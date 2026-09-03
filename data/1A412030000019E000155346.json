@@ -2,11 +2,6 @@
  "id": "a3f82c1e9d",
  "shelf_tag": "Hybrid",
  "confidence": "strong",
- "dominant": [
-  "beta-Caryophyllene",
-  "Limonene",
-  "alpha-Humulene"
- ],
  "terpenes": {
   "beta-Caryophyllene": 0.7133,
   "Limonene": 0.4634,
@@ -40,7 +35,6 @@
  ],
  "form": "Preroll 0.5g (7pk)",
  "strain": "Headband",
- "lean": "settling",
  "in_stock": true,
  "thc": 29.844,
  "sold_out_at": "2026-07-20T17:34:35.255Z",

@@ -2,11 +2,6 @@
  "id": "a3f8c2e1b9",
  "shelf_tag": "Sativa",
  "confidence": "strong",
- "dominant": [
-  "beta-Myrcene",
-  "beta-Caryophyllene",
-  "Limonene"
- ],
  "terpenes": {
   "Linalool": 0.06,
   "Fenchol": 0.02,
@@ -38,7 +33,6 @@
  ],
  "form": "Flower 3.5g",
  "strain": "Silver Surfer",
- "lean": "settling",
  "in_stock": false,
  "thc": 24.0372,
  "sold_out_at": "2026-08-09T18:12:41.980Z"

@@ -2,11 +2,6 @@
  "id": "eed9775a79",
  "shelf_tag": "Hybrid",
  "confidence": "strong",
- "dominant": [
-  "beta-Caryophyllene",
-  "Limonene",
-  "Linalool"
- ],
  "note": null,
  "terpenes": {
   "beta-Caryophyllene": 0.38,
@@ -33,7 +28,6 @@
  ],
  "form": "Flower 3.5g",
  "strain": "Glitter Bomb",
- "lean": "settling",
  "in_stock": false,
  "thc": 26.5995,
  "metrc_tag": "1A412030000038D000018016",

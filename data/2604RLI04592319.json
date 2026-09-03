@@ -2,11 +2,6 @@
  "id": "a3f8c21d9e",
  "shelf_tag": "Indica",
  "confidence": "strong",
- "dominant": [
-  "beta-Caryophyllene",
-  "Fenchol",
-  "Limonene"
- ],
  "terpenes": {
   "Linalool": 0.15,
   "Fenchol": 0.62,
@@ -37,7 +32,6 @@
  ],
  "form": "Flower 3.5g",
  "strain": "Animal Cookies",
- "lean": "mixed",
  "in_stock": false,
  "thc": 29.86,
  "sold_out_at": "2026-08-17T14:05:31.050Z"

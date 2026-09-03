@@ -2,11 +2,6 @@
  "id": "a3f7c2b901",
  "shelf_tag": "Sativa",
  "confidence": "faint",
- "dominant": [
-  "beta-Caryophyllene",
-  "Guaiol",
-  "Caryophyllene Oxide"
- ],
  "terpenes": {
   "Farnesene": 0.04,
   "Caryophyllene Oxide": 0.04,
@@ -30,7 +25,6 @@
  ],
  "form": "Preroll 1g",
  "strain": "Acapulco Gold",
- "lean": "settling",
  "in_stock": false,
  "thc": 30.349,
  "sold_out_at": "2026-08-02T16:00:18.596Z"

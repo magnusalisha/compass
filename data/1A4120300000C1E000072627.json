@@ -2,11 +2,6 @@
  "id": "4993fe138d",
  "shelf_tag": "Sativa",
  "confidence": "strong",
- "dominant": [
-  "beta-Caryophyllene",
-  "alpha-Humulene",
-  "Limonene"
- ],
  "terpenes": {
   "beta-Caryophyllene": 0.57,
   "beta-Myrcene": 0.39,
@@ -36,7 +31,6 @@
  ],
  "form": "Flower 3.5g",
  "strain": "Sky Fire OG",
- "lean": "settling",
  "in_stock": true,
  "thc": 22.7604,
  "test_date": "2026-06-22",

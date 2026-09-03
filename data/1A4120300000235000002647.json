@@ -2,11 +2,6 @@
  "id": "a3f9c12e74",
  "shelf_tag": "Sativa-leaning Hybrid",
  "confidence": "moderate",
- "dominant": [
-  "beta-Caryophyllene",
-  "alpha-Humulene",
-  "beta-Myrcene"
- ],
  "terpenes": {
   "beta-Caryophyllene": 0.45,
   "alpha-Humulene": 0.25,
@@ -29,7 +24,6 @@
  "sold_out_at": "2026-07-20T16:51:55.449Z",
  "form": "Infused Preroll 0.5g",
  "strain": "Pink Guava",
- "lean": "settling",
  "in_stock": false,
  "thc": 26.04
 }

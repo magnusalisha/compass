@@ -2,11 +2,6 @@
  "id": "a3f7c2e91b",
  "shelf_tag": "Indica-leaning Hybrid",
  "confidence": "strong",
- "dominant": [
-  "Linalool",
-  "Limonene",
-  "beta-Caryophyllene"
- ],
  "terpenes": {
   "beta-Caryophyllene": 0.25,
   "beta-Myrcene": 0.23,
@@ -34,7 +29,6 @@
  ],
  "form": "Flower 3.5g",
  "strain": "Gorilla Glue",
- "lean": "mixed",
  "in_stock": false,
  "thc": 29.21,
  "sold_out_at": "2026-08-02T13:59:20.667Z"

@@ -2,9 +2,6 @@
  "id": "a3f8c2e1b9",
  "shelf_tag": "Sativa-leaning Hybrid",
  "confidence": "faint",
- "dominant": [
-  "beta-Caryophyllene"
- ],
  "terpenes": {
   "beta-Caryophyllene": 0.1
  },
@@ -22,7 +19,6 @@
  ],
  "form": "Preroll 0.9g (5-pack, 4.5g total)",
  "strain": "White Cherry Guava Lights",
- "lean": "settling",
  "in_stock": true,
  "thc": 15.809,
  "test_date": "2026-03-14",

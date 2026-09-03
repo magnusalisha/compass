@@ -2,11 +2,6 @@
  "id": "a3f82c1d09",
  "shelf_tag": "Sativa",
  "confidence": "moderate",
- "dominant": [
-  "beta-Caryophyllene",
-  "alpha-Humulene",
-  "alpha-Bisabolol"
- ],
  "terpenes": {
   "Limonene": 0.05,
   "Valencene": 0.01,
@@ -36,7 +31,6 @@
  ],
  "form": "Preroll 0.4g",
  "strain": "Super Lemon Haze",
- "lean": "settling",
  "in_stock": false,
  "thc": 25.5561,
  "sold_out_at": "2026-07-31T19:57:49.289Z"

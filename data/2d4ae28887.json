@@ -2,11 +2,6 @@
  "id": "2d4ae28887",
  "shelf_tag": "Hybrid",
  "confidence": "strong",
- "dominant": [
-  "Limonene",
-  "Linalool",
-  "beta-Myrcene"
- ],
  "note": null,
  "terpenes": {
   "alpha-Pinene": 0,
@@ -47,7 +42,6 @@
  ],
  "form": "Flower 3.5g",
  "strain": "Banana Cream Gelato",
- "lean": "mixed",
  "in_stock": false,
  "thc": 32.4044,
  "sold_out_at": "2026-08-02T13:57:19.609Z"

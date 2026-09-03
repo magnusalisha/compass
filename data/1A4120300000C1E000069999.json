@@ -2,11 +2,6 @@
  "id": "a3f9c12e74",
  "shelf_tag": "Indica",
  "confidence": "moderate",
- "dominant": [
-  "Limonene",
-  "beta-Myrcene",
-  "Linalool"
- ],
  "terpenes": {
   "Limonene": 0.25,
   "beta-Myrcene": 0.23,
@@ -42,7 +37,6 @@
  ],
  "form": "Flower 3.5g",
  "strain": "ChemD x I95",
- "lean": "lifting",
  "in_stock": true,
  "thc": 25.1455,
  "test_date": "2026-05-08",

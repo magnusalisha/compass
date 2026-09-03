@@ -2,11 +2,6 @@
  "id": "a3f8c1d9e2",
  "shelf_tag": "Indica",
  "confidence": "strong",
- "dominant": [
-  "beta-Caryophyllene",
-  "Limonene",
-  "Linalool"
- ],
  "terpenes": {
   "beta-Caryophyllene": 0.34,
   "Limonene": 0.29,
@@ -31,7 +26,6 @@
  ],
  "form": "Flower 1g",
  "strain": "Purple Zkittlez",
- "lean": "mixed",
  "in_stock": true,
  "thc": 25.013,
  "test_date": "2026-02-16",
