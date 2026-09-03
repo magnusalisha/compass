@@ -7,7 +7,7 @@
  "thc": 35.2683,
  "total_terpenes": 0.66,
  "confidence": "faint",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Hybrid",
  "reported": [
   "Blue Dream",
@@ -41,5 +41,6 @@
  "test_date": "2026-03-22",
  "test_lab": "Analytical Testing Center of Central New York",
  "date_expire": "2027-04-01",
- "scanned_at": "2026-08-23T16:38:47.903Z"
+ "scanned_at": "2026-08-23T16:38:47.903Z",
+ "sold_out_at": "2026-09-03T23:00:18.241Z"
 }
