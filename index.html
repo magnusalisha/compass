@@ -867,9 +867,23 @@ const stocked = p => p.in_stock !== false;
 // When something was marked sold out. Shown because stock accuracy depends on
 // people remembering to mark things — same discipline the jar labels need. A
 // visible date makes drift obvious instead of invisible.
+// NEW YORK CALENDAR DAYS, not 24-hour blocks.
+//
+// sold_out_at is a UTC instant. Flooring the elapsed milliseconds meant a
+// product the sweep retired at 21:00 on Monday still read "sold out today" at
+// the counter on Tuesday morning, and still read "yesterday" at 10:00 on
+// Wednesday — 37 hours later. The card says "today" and "yesterday" to somebody
+// standing in a New York shop, so it has to mean New York days.
+const nyDayNumber = d => {
+  const ymd = new Intl.DateTimeFormat('en-CA',
+    {timeZone: 'America/New_York', year: 'numeric', month: '2-digit', day: '2-digit'}).format(d);
+  return Math.round(Date.parse(ymd + 'T00:00:00Z') / 86400000);
+};
 function soldOutWhen(p){
   if (!p.sold_out_at) return '';
-  const days = Math.floor((Date.now() - new Date(p.sold_out_at)) / 86400000);
+  const then = new Date(p.sold_out_at);
+  if (isNaN(then)) return '';
+  const days = nyDayNumber(new Date()) - nyDayNumber(then);
   if (isNaN(days)) return '';
   return days <= 0 ? ' today' : days === 1 ? ' yesterday' : ` ${days} days ago`;
 }
@@ -985,13 +999,21 @@ function collapseBatches(list){
   return out;
 }
 
+// Sorting by name must survive a record that has none. index.html used to call
+// x.strain.localeCompare directly in three places, and null.localeCompare throws
+// — one nameless record in data/ and render() died before drawing anything, so
+// every register went blank on its next refresh. The sync no longer writes such
+// a record (it holds and reports it), but the page must not be one bad file away
+// from showing nothing at all.
+const byStrain = (x, y) =>
+  String(x.strain || '\uffff').localeCompare(String(y.strain || '\uffff'), undefined, {sensitivity: 'base'});
 const pool = () => collapseBatches(DATA.filter(p => $('#oos').checked || stocked(p))
-  .sort((x, y) => x.strain.localeCompare(y.strain, undefined, {sensitivity: 'base'})));
+  .sort(byStrain));
 // The sellable shelf — in-stock only, alphabetical. Used by the tabs that
 // recommend something to hand a customer (effect, similar), which hide the
 // out-of-stock toggle and so must never consult it.
 const inStock = () => collapseBatches(DATA.filter(p => stocked(p))
-  .sort((x, y) => x.strain.localeCompare(y.strain, undefined, {sensitivity: 'base'})));
+  .sort(byStrain));
 
 function vec(p){ const t = p.total_terpenes || 1, o = {};
   for (const [k,v] of Object.entries(p.terpenes||{})) o[k] = v/t; return o; }
@@ -2216,7 +2238,7 @@ function comboShellHTML(id, list, selectedId){
 // pickers stay on the in-stock pool. (Recommendations are filtered separately;
 // only in-stock items are ever suggested.)
 const comboSource = id => id === 'similar'
-  ? DATA.slice().sort((x, y) => x.strain.localeCompare(y.strain, undefined, {sensitivity: 'base'}))
+  ? DATA.slice().sort(byStrain)
   : pool();
 function updateComboList(id){
   const holder = document.querySelector(`[data-combo="${id}"] .combo-list-holder`);
@@ -2327,7 +2349,14 @@ function render(){
     // don't assert — extended to the one dropdown that was still asserting.
     const sizePool = inStock().filter(p =>
       (effCat === 'All' || category(p) === effCat)
-      && (effLean === 'any' || shelfTag(p) === effLean)
+      // filterLean, NOT shelfTag: the RESULTS below match on derived lean, so a
+      // "Sativa-leaning Hybrid" is in them when Sativa is picked. Comparing the
+      // raw tag string here excluded exactly those products from the size menu,
+      // so a size only they offer never appeared — and picking Sativa with that
+      // size already selected silently reset it to "any" via sizeValid, widening
+      // the results with no visible change to the dropdown. Five products carry
+      // a "-leaning Hybrid" tag on the shelf today.
+      && (effLean === 'any' || filterLean(p) === LEAN_OF[effLean])
       && (effInfused === 'any' || (effInfused === 'yes') === isInfused(p))
       && (effHardware === 'any' || (effHardware === 'none' ? !vapeType(p) : vapeType(p) === effHardware)));
     const sizeKeys = [...new Set(sizePool.map(sizeKey).filter(Boolean))]
@@ -3240,7 +3269,19 @@ async function recordsFromIndex(files){
   // is a genuinely broken record, and the fix is to edit the file. Blaming the
   // data for a rate limit sends whoever investigates hunting for a typo that
   // isn't there — which is exactly what happened.
-  const settled = await Promise.allSettled(files.map(async f => {
+  // AT MOST 8 IN FLIGHT, not all 390 at once.
+  //
+  // files.map() over the whole catalogue opened one request per record
+  // simultaneously — the exact burst the paragraph above says already produced
+  // 429s at this size. And it fires on the path that only runs when the Worker
+  // is unreachable, so the moment the page has no other source it asks for
+  // everything at once and gets a share of it refused.
+  //
+  // A pool moves the same bytes and the same total time on a warm cache (most
+  // records are unchanged and served from the browser's own store), without the
+  // spike. Eight is well under any sane per-host limit and still saturates a
+  // shop connection.
+  const one = async f => {
     let r;
     try { r = await fetch(`${f.url}?v=${f.sha}`); }
     catch (e) { throw Object.assign(new Error('unreachable'), {kind: 'net'}); }
@@ -3250,6 +3291,15 @@ async function recordsFromIndex(files){
     catch (e) { throw Object.assign(new Error('invalid json'), {kind: 'data'}); }
     p._key = f.name.replace(/\.json$/, '');   // repo filename is unique by construction; the record's own `id` isn't
     return normTerps(p);   // synonyms resolved once, here — see TERP_ALIAS
+  };
+  const settled = new Array(files.length);
+  let next = 0;
+  await Promise.all(Array.from({length: Math.min(8, files.length)}, async () => {
+    while (next < files.length){
+      const i = next++;
+      try { settled[i] = {status: 'fulfilled', value: await one(files[i])}; }
+      catch (reason) { settled[i] = {status: 'rejected', reason}; }
+    }
   }));
   const ok = settled.filter(s => s.status === 'fulfilled').map(s => s.value);
   const rejects = settled.map((s,i) => [s, files[i]]).filter(([s]) => s.status === 'rejected');
@@ -3260,6 +3310,21 @@ async function recordsFromIndex(files){
   if (bad.length) console.warn(`Compass: skipped ${bad.length} record(s) [${[...kinds].join('+')}]:`,
     bad, rejects.map(([s]) => s.reason && s.reason.message));
   if (!ok.length) throw new Error('no readable records');   // truly nothing — let the caller fall back
+  // A MOSTLY-FAILED LOAD IS A FAILED LOAD.
+  //
+  // Returning whatever arrived looks generous and is not: refresh() assigns it
+  // over a complete DATA, so a rate-limited fetch that got 120 of 390 leaves
+  // Lookup, Compare and Find similar all saying "nothing matches" for products
+  // physically on the shelf — the one failure Compass exists to prevent. The
+  // footer's count was the only hint.
+  //
+  // NET failures only. A `data` rejection is a genuinely broken record: it is
+  // persistent, it will not come back on a retry, and the footer names it. A
+  // net rejection is a rate limit or a dropped connection, where the right move
+  // is to keep the last good catalogue and try again.
+  const netBad = rejects.filter(([s]) => (s.reason && s.reason.kind) === 'net').length;
+  if (netBad > files.length * 0.1)
+    throw Object.assign(new Error(`partial load: ${netBad}/${files.length} unreachable`), {kind: 'net'});
   return ok;
 }
 
