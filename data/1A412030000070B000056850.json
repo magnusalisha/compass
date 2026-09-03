@@ -1,6 +1,6 @@
 {
  "id": "86f21c1872",
- "metrc_tag": "1A412030000070B000051779",
+ "metrc_tag": "1A412030000070B000056850",
  "brand": "Ruby Farms",
  "strain": "Super Silver Haze",
  "form": "Preroll 0.5g (2-pack, 1g total)",
@@ -33,7 +33,9 @@
   "alpha-Bisabolol": 0.08,
   "Caryophyllene Oxide": 0.05
  },
- "scanned_at": "2026-08-20T23:39:26.533Z",
+ "scanned_at": "2026-09-03T18:31:34.368Z",
  "test_date": "2026-05-04",
- "test_lab": "Kaycha Labs NY"
+ "test_lab": "Kaycha Labs NY",
+ "sold_out_at": "2026-08-30T18:01:02.002Z",
+ "date_expire": "2027-09-30"
 }

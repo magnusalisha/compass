@@ -1,6 +1,6 @@
 {
  "id": "1fc4649340",
- "metrc_tag": "1A412030000070B000051775",
+ "metrc_tag": "1A412030000070B000056847",
  "brand": "Ruby Farms",
  "strain": "Tangie",
  "form": "Preroll 0.7g (7-pack, 4.9g total)",
@@ -44,7 +44,9 @@
   "Ocimene": 0.01,
   "Terpinolene": 0.01
  },
- "scanned_at": "2026-08-20T23:39:25.598Z",
+ "scanned_at": "2026-09-03T18:31:34.367Z",
  "test_date": "2026-01-15",
- "test_lab": "Kaycha Labs NY"
+ "test_lab": "Kaycha Labs NY",
+ "sold_out_at": "2026-09-01T01:46:01.053Z",
+ "date_expire": "2027-07-31"
 }

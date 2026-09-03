@@ -1,6 +1,6 @@
 {
  "id": "a3f9c12e7b",
- "metrc_tag": "1A412030000070A000000395",
+ "metrc_tag": "1A412030000070B000056846",
  "brand": "Ruby Farms",
  "strain": "Jack Herer",
  "form": "Preroll 5g (7-pack)",
@@ -32,5 +32,10 @@
   "alpha-Bisabolol": 0.19,
   "Farnesene": 0.122,
   "Caryophyllene Oxide": 0.068
- }
+ },
+ "sold_out_at": "2026-08-20T23:39:35.133Z",
+ "test_date": "2026-06-25",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-11-01",
+ "scanned_at": "2026-09-03T18:31:34.367Z"
 }

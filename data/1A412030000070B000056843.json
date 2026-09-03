@@ -1,6 +1,6 @@
 {
  "id": "3d3316599f",
- "metrc_tag": "1A412030000070B000051773",
+ "metrc_tag": "1A412030000070B000056843",
  "brand": "Ruby Farms",
  "strain": "Pineapple Express",
  "form": "Preroll 0.7g (7-pack, 4.9g total)",
@@ -30,8 +30,9 @@
   "Farnesene": 0.133,
   "Caryophyllene Oxide": 0.071
  },
- "scanned_at": "2026-08-20T23:39:25.120Z",
+ "scanned_at": "2026-09-03T18:31:34.366Z",
  "test_date": "2026-06-25",
  "test_lab": "Kaycha Labs NY",
- "date_expire": "2027-06-12"
+ "date_expire": "2027-11-01",
+ "sold_out_at": "2026-08-26T16:03:39.140Z"
 }
