@@ -1,0 +1,30 @@
+{
+ "id": "bbf7d3428a",
+ "metrc_tag": "1A41203000004CC000014513",
+ "brand": "House of Sacci",
+ "strain": "White Diamonds",
+ "form": "Flower 3.5g",
+ "confidence": "strong",
+ "shelf_tag": "Sativa",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "beta-Caryophyllene": 0.495,
+  "Limonene": 0.4702,
+  "alpha-Humulene": 0.2344,
+  "beta-Pinene": 0.0914,
+  "beta-Myrcene": 0.0905,
+  "Linalool": 0.0769,
+  "alpha-Bisabolol": 0.0562,
+  "alpha-Pinene": 0.052,
+  "Valencene": 0.0484,
+  "Camphene": 0.0166
+ },
+ "scanned_at": "2026-09-04T20:29:27.721Z",
+ "thc": 26.21,
+ "total_terpenes": 1.6313,
+ "in_stock": true,
+ "test_date": "2026-08-17",
+ "test_lab": "Reliable Labs, Inc.",
+ "date_expire": "2028-02-07"
+}

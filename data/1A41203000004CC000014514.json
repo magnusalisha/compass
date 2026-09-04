@@ -1,0 +1,33 @@
+{
+ "id": "1682632a7e",
+ "metrc_tag": "1A41203000004CC000014514",
+ "brand": "House of Sacci",
+ "strain": "Puffin-Z",
+ "form": "Flower 3.5g",
+ "confidence": "strong",
+ "shelf_tag": "Sativa",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "beta-Myrcene": 0.3573,
+  "Caryophyllene Oxide": 0.3261,
+  "alpha-Phellandrene": 0.1094,
+  "beta-Caryophyllene": 0.0958,
+  "alpha-Humulene": 0.0745,
+  "Terpinolene": 0.0715,
+  "Linalool": 0.0673,
+  "alpha-Bisabolol": 0.0532,
+  "Ocimene": 0.0449,
+  "alpha-Terpinene": 0.0407,
+  "Farnesene": 0.039,
+  "Fenchol": 0.021,
+  "Terpineol": 0.0181
+ },
+ "scanned_at": "2026-09-04T20:29:27.722Z",
+ "thc": 22.26,
+ "total_terpenes": 1.3189,
+ "in_stock": true,
+ "test_date": "2026-03-30",
+ "test_lab": "Reliable Labs, Inc.",
+ "date_expire": "2027-08-17"
+}

@@ -1,0 +1,27 @@
+{
+ "id": "2041371c94",
+ "metrc_tag": "1A41203000002C1000060883",
+ "brand": "Nanticoke",
+ "strain": "Mac Nilla",
+ "form": "Flower 3.5g",
+ "confidence": "strong",
+ "shelf_tag": "Sativa",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "Ocimene": 0.4244,
+  "alpha-Humulene": 0.2901,
+  "alpha-Terpinene": 0.2607,
+  "Terpinolene": 0.2152,
+  "beta-Caryophyllene": 0.1977,
+  "Terpineol": 0.1464,
+  "alpha-Pinene": 0.0586
+ },
+ "scanned_at": "2026-09-04T20:29:27.719Z",
+ "thc": 23.54,
+ "total_terpenes": 1.593,
+ "in_stock": true,
+ "test_date": "2026-04-14",
+ "test_lab": "Reliable Labs, Inc.",
+ "date_expire": "2027-04-14"
+}

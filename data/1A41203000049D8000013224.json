@@ -1,0 +1,45 @@
+{
+ "id": "f1b5ab0efb",
+ "metrc_tag": "1A41203000049D8000013224",
+ "brand": "Fernway",
+ "strain": "Pineapple Express",
+ "form": "Vape 1g Disposable",
+ "thc": 82.23,
+ "total_terpenes": 4.1039,
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Hybrid",
+ "reported": [
+  "84.26% Total THC",
+  "5.455% Total Terpenes"
+ ],
+ "aroma": [
+  "fruity",
+  "herbal",
+  "earthy",
+  "musky",
+  "spicy"
+ ],
+ "terpenes": {
+  "Terpinolene": 1.9774,
+  "beta-Myrcene": 0.6905,
+  "beta-Caryophyllene": 0.3097,
+  "Ocimene": 0.1852,
+  "beta-Pinene": 0.125,
+  "alpha-Pinene": 0.1152,
+  "Linalool": 0.0974,
+  "alpha-Humulene": 0.0844,
+  "alpha-Phellandrene": 0.0734,
+  "alpha-Bisabolol": 0.0732,
+  "alpha-Terpinene": 0.0632,
+  "Carene": 0.047,
+  "Fenchol": 0.0367,
+  "Terpineol": 0.0344,
+  "gamma-Terpinene": 0.0303,
+  "Nerolidol": 0.0013
+ },
+ "scanned_at": "2026-09-04T20:29:27.717Z",
+ "test_date": "2026-08-05",
+ "test_lab": "Smithers CTS New York, LLC",
+ "date_expire": "2027-08-05"
+}

@@ -1,0 +1,42 @@
+{
+ "id": "a3f7c2e190",
+ "metrc_tag": "1A41203000049D8000013219",
+ "brand": "Fernway",
+ "strain": "Elderflower",
+ "form": "Vape 1g Cart",
+ "thc": 85.11,
+ "total_terpenes": 3.0858,
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Hybrid",
+ "reported": [
+  "citrusy",
+  "floral"
+ ],
+ "aroma": [
+  "citrus",
+  "floral",
+  "herbal",
+  "sweet",
+  "fresh"
+ ],
+ "terpenes": {
+  "Limonene": 0.8216,
+  "beta-Myrcene": 0.3248,
+  "alpha-Bisabolol": 0.27,
+  "Terpineol": 0.1356,
+  "Valencene": 0.1197,
+  "alpha-Pinene": 0.0975,
+  "Linalool": 0.092,
+  "Geraniol": 0.0312,
+  "Carene": 0.0251,
+  "beta-Pinene": 0.0195,
+  "Camphene": 0.0176,
+  "alpha-Phellandrene": 0.0167,
+  "Nerolidol": 0.0013
+ },
+ "test_date": "2026-08-05",
+ "test_lab": "Smithers CTS New York, LLC",
+ "date_expire": "2027-08-05",
+ "scanned_at": "2026-09-04T20:29:27.716Z"
+}

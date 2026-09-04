@@ -1,0 +1,29 @@
+{
+ "id": "aff08060df",
+ "metrc_tag": "1A41203000049D8000013223",
+ "brand": "Fernway",
+ "strain": "Mandarin Orange",
+ "form": "Vape 2g",
+ "confidence": "strong",
+ "shelf_tag": "Sativa",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "Limonene": 2.5932,
+  "alpha-Bisabolol": 0.0723,
+  "Valencene": 0.0658,
+  "beta-Myrcene": 0.0486,
+  "Geraniol": 0.0362,
+  "beta-Pinene": 0.0259,
+  "alpha-Pinene": 0.0199,
+  "Borneol": 0.011,
+  "Nerolidol": 0.0013
+ },
+ "scanned_at": "2026-09-04T20:29:27.717Z",
+ "thc": 81.804,
+ "total_terpenes": 2.9225,
+ "in_stock": true,
+ "test_date": "2026-07-30",
+ "test_lab": "Smithers CTS New York, LLC",
+ "date_expire": "2027-07-30"
+}

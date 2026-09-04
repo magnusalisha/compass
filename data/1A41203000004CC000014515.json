@@ -1,0 +1,31 @@
+{
+ "id": "afd33e2908",
+ "metrc_tag": "1A41203000004CC000014515",
+ "brand": "House of Sacci",
+ "strain": "Biscotti Pancakes",
+ "form": "Flower 3.5g",
+ "confidence": "strong",
+ "shelf_tag": "Sativa",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "beta-Caryophyllene": 0.6216,
+  "Limonene": 0.5219,
+  "Linalool": 0.2232,
+  "alpha-Humulene": 0.1761,
+  "Valencene": 0.1203,
+  "alpha-Bisabolol": 0.1088,
+  "beta-Pinene": 0.0843,
+  "beta-Myrcene": 0.0819,
+  "Terpineol": 0.0746,
+  "alpha-Pinene": 0.0649,
+  "Camphene": 0.0177
+ },
+ "scanned_at": "2026-09-04T20:29:27.722Z",
+ "thc": 25.54,
+ "total_terpenes": 2.0955,
+ "in_stock": true,
+ "test_date": "2026-07-02",
+ "test_lab": "Reliable Labs, Inc.",
+ "date_expire": "2027-12-23"
+}

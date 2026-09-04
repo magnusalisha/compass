@@ -1,0 +1,32 @@
+{
+ "id": "8a1acf9855",
+ "metrc_tag": "1A41203000002C1000060889",
+ "brand": "Nanticoke",
+ "strain": "All Gas",
+ "form": "Preroll 0.5g",
+ "confidence": "strong",
+ "shelf_tag": "Indica",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "beta-Caryophyllene": 0.6414,
+  "alpha-Humulene": 0.2753,
+  "Limonene": 0.2639,
+  "Valencene": 0.1647,
+  "Linalool": 0.1517,
+  "beta-Myrcene": 0.1376,
+  "Farnesene": 0.0729,
+  "alpha-Bisabolol": 0.0627,
+  "beta-Pinene": 0.0402,
+  "Fenchol": 0.0399,
+  "Terpineol": 0.035,
+  "alpha-Pinene": 0.0272,
+  "Caryophyllene Oxide": 0.0255
+ },
+ "scanned_at": "2026-09-04T20:29:27.721Z",
+ "thc": 23.5,
+ "total_terpenes": 1.938,
+ "in_stock": true,
+ "test_date": "2026-04-15",
+ "test_lab": "Analytical Testing Center of Central New York"
+}

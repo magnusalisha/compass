@@ -1,0 +1,42 @@
+{
+ "id": "a3f7c2e819",
+ "metrc_tag": "1A41203000002C1000060881",
+ "brand": "Nanticoke",
+ "strain": "All Gas",
+ "form": "Flower 3.5g",
+ "thc": 32.29,
+ "total_terpenes": 2.1625,
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Indica",
+ "reported": [
+  "28.71% Total THC",
+  "2.73% Total Terpenes"
+ ],
+ "aroma": [
+  "orange",
+  "hops",
+  "lavender",
+  "earthy",
+  "cinnamon"
+ ],
+ "terpenes": {
+  "Limonene": 0.5511,
+  "Linalool": 0.3823,
+  "beta-Caryophyllene": 0.3147,
+  "Fenchol": 0.3105,
+  "beta-Myrcene": 0.1381,
+  "beta-Pinene": 0.1286,
+  "alpha-Humulene": 0.0929,
+  "alpha-Pinene": 0.0828,
+  "Farnesene": 0.0546,
+  "alpha-Bisabolol": 0.0423,
+  "Caryophyllene Oxide": 0.025,
+  "Camphene": 0.0202,
+  "Terpinolene": 0.0195
+ },
+ "test_date": "2026-06-16",
+ "test_lab": "Reliable Labs, Inc.",
+ "date_expire": "2027-06-14",
+ "scanned_at": "2026-09-04T20:29:27.718Z"
+}

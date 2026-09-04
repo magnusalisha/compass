@@ -1,0 +1,33 @@
+{
+ "id": "f7acacb373",
+ "metrc_tag": "1A41203000002C1000060888",
+ "brand": "Nanticoke",
+ "strain": "Durban Poison",
+ "form": "Preroll 0.5g",
+ "confidence": "moderate",
+ "shelf_tag": "Sativa",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "alpha-Pinene": 0.2435,
+  "beta-Caryophyllene": 0.1846,
+  "beta-Pinene": 0.132,
+  "beta-Myrcene": 0.1294,
+  "Limonene": 0.0878,
+  "Linalool": 0.0853,
+  "alpha-Humulene": 0.0735,
+  "Fenchol": 0.0647,
+  "Farnesene": 0.0414,
+  "Guaiol": 0.0362,
+  "Caryophyllene Oxide": 0.0299,
+  "alpha-Bisabolol": 0.0294,
+  "Terpinolene": 0.014
+ },
+ "scanned_at": "2026-09-04T20:29:27.720Z",
+ "thc": 27.54,
+ "total_terpenes": 1.1516,
+ "in_stock": true,
+ "test_date": "2026-06-16",
+ "test_lab": "Reliable Labs, Inc.",
+ "date_expire": "2027-06-14"
+}

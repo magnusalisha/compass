@@ -1,0 +1,28 @@
+{
+ "id": "8f11b0185f",
+ "metrc_tag": "1A41203000002C1000060886",
+ "brand": "Nanticoke",
+ "strain": "Lemon Cherry Gelato",
+ "form": "Preroll 0.5g",
+ "confidence": "moderate",
+ "shelf_tag": "Hybrid",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "beta-Caryophyllene": 0.3698,
+  "Linalool": 0.17,
+  "Limonene": 0.1189,
+  "alpha-Humulene": 0.0991,
+  "beta-Pinene": 0.0203,
+  "beta-Myrcene": 0.0195,
+  "alpha-Bisabolol": 0.0183,
+  "Terpineol": 0.0181
+ },
+ "scanned_at": "2026-09-04T20:29:27.720Z",
+ "thc": 27.61,
+ "total_terpenes": 0.8342,
+ "in_stock": true,
+ "test_date": "2026-07-09",
+ "test_lab": "Reliable Labs, Inc.",
+ "date_expire": "2027-07-07"
+}

@@ -1,0 +1,41 @@
+{
+ "id": "a3f7c2e819",
+ "metrc_tag": "1A41203000049D8000013216",
+ "brand": "Fernway",
+ "strain": "Berry Haze",
+ "form": "Vape 2g Disposable, Concentrate",
+ "thc": 80.0421,
+ "total_terpenes": 4.4313,
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Indica",
+ "reported": [
+  "berry",
+  "haze"
+ ],
+ "aroma": [
+  "berry",
+  "spicy",
+  "earthy",
+  "herbal",
+  "citrus"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.896,
+  "beta-Myrcene": 0.7704,
+  "Terpinolene": 0.7403,
+  "Limonene": 0.5458,
+  "Nerolidol": 0.2883,
+  "Linalool": 0.2018,
+  "alpha-Humulene": 0.1792,
+  "beta-Pinene": 0.1675,
+  "alpha-Pinene": 0.1553,
+  "alpha-Phellandrene": 0.103,
+  "Terpineol": 0.0403,
+  "Fenchol": 0.024
+ },
+ "test_date": "2026-08-10",
+ "test_lab": "Smithers CTS New York, LLC",
+ "date_expire": "2027-08-10",
+ "scanned_at": "2026-09-04T20:29:27.715Z"
+}

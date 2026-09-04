@@ -1,0 +1,39 @@
+{
+ "id": "a3f7c2e891",
+ "shelf_tag": "Sativa-leaning Hybrid",
+ "confidence": "strong",
+ "terpenes": {
+  "beta-Caryophyllene": 0.7854,
+  "Limonene": 0.5382,
+  "Guaiol": 0.294,
+  "alpha-Humulene": 0.2639,
+  "Linalool": 0.1764,
+  "alpha-Pinene": 0.1151,
+  "beta-Myrcene": 0.1086,
+  "beta-Pinene": 0.106,
+  "alpha-Bisabolol": 0.0686,
+  "Camphene": 0.0145
+ },
+ "brand": "Nanticoke",
+ "total_terpenes": 2.4708,
+ "metrc_tag": "1A41203000002C1000060882",
+ "reported": [
+  "Orange, cinnamon, and hop aromas",
+  "3.3% total terpenes with limonene dominant"
+ ],
+ "aroma": [
+  "orange",
+  "cinnamon",
+  "hops",
+  "lavender",
+  "basil"
+ ],
+ "form": "Flower 3.5g",
+ "strain": "Black Panther",
+ "in_stock": true,
+ "thc": 22.25,
+ "test_date": "2026-08-04",
+ "test_lab": "Reliable Labs, Inc.",
+ "date_expire": "2027-07-23",
+ "scanned_at": "2026-09-04T20:29:27.719Z"
+}

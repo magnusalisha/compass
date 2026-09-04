@@ -1,0 +1,30 @@
+{
+ "id": "a11b1c0bea",
+ "metrc_tag": "1A41203000004CC000014516",
+ "brand": "House of Sacci",
+ "strain": "Permanent Marker",
+ "form": "Flower 3.5g",
+ "confidence": "strong",
+ "shelf_tag": "Indica",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "Limonene": 1.1093,
+  "beta-Caryophyllene": 0.4312,
+  "alpha-Pinene": 0.389,
+  "beta-Pinene": 0.2371,
+  "Linalool": 0.2295,
+  "alpha-Humulene": 0.1053,
+  "beta-Myrcene": 0.0598,
+  "Camphene": 0.0368,
+  "alpha-Bisabolol": 0.0242,
+  "Terpinolene": 0.0131
+ },
+ "scanned_at": "2026-09-04T20:29:27.722Z",
+ "thc": 24.23,
+ "total_terpenes": 2.6354,
+ "in_stock": true,
+ "test_date": "2026-01-15",
+ "test_lab": "Reliable Labs, Inc.",
+ "date_expire": "2027-04-30"
+}

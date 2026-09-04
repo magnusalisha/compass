@@ -1,0 +1,26 @@
+{
+ "id": "4a15f4c85d",
+ "metrc_tag": "1A41203000049D8000013215",
+ "brand": "Fernway",
+ "strain": "Alpine Strawberry",
+ "form": "Vape 2g",
+ "confidence": "strong",
+ "shelf_tag": "Sativa",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "Limonene": 1.8313,
+  "Linalool": 0.1437,
+  "beta-Myrcene": 0.0746,
+  "alpha-Pinene": 0.0221,
+  "alpha-Humulene": 0.0144,
+  "Nerolidol": 0.0013
+ },
+ "scanned_at": "2026-09-04T20:29:27.715Z",
+ "thc": 82.8894,
+ "total_terpenes": 2.0874,
+ "in_stock": true,
+ "test_date": "2026-08-07",
+ "test_lab": "Smithers CTS New York, LLC",
+ "date_expire": "2027-08-07"
+}

@@ -1,0 +1,37 @@
+{
+ "id": "a3f8c21d9e",
+ "shelf_tag": "Indica",
+ "confidence": "strong",
+ "terpenes": {
+  "beta-Caryophyllene": 0.554,
+  "Limonene": 0.2624,
+  "alpha-Humulene": 0.1533,
+  "alpha-Pinene": 0.1174,
+  "Linalool": 0.1143,
+  "beta-Pinene": 0.0828,
+  "beta-Myrcene": 0.0811,
+  "alpha-Bisabolol": 0.0308
+ },
+ "brand": "Nanticoke",
+ "total_terpenes": 1.396,
+ "metrc_tag": "1A41203000002C1000060880",
+ "reported": [
+  "29.86% Total THC",
+  "2.97% Total Terpenes"
+ ],
+ "aroma": [
+  "cinnamon",
+  "basil",
+  "orange",
+  "hops",
+  "lavender"
+ ],
+ "form": "Flower 3.5g",
+ "strain": "Animal Cookies",
+ "in_stock": true,
+ "thc": 24.57,
+ "test_date": "2026-07-21",
+ "test_lab": "Reliable Labs, Inc.",
+ "date_expire": "2027-06-25",
+ "scanned_at": "2026-09-04T20:29:27.718Z"
+}
