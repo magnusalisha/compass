@@ -7,7 +7,7 @@
  "thc": 35.521,
  "total_terpenes": 2.6932,
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Indica-leaning Hybrid",
  "reported": [
   "Spicy",
@@ -41,5 +41,6 @@
  },
  "test_date": "2026-07-06",
  "test_lab": "ACT Laboratories of New York, LLC",
- "scanned_at": "2026-08-20T23:39:03.048Z"
+ "scanned_at": "2026-08-20T23:39:03.048Z",
+ "sold_out_at": "2026-09-04T21:00:18.778Z"
 }
