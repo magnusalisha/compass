@@ -7,7 +7,7 @@
  "thc": 31.32,
  "total_terpenes": 0.9099,
  "confidence": "moderate",
- "in_stock": false,
+ "in_stock": true,
  "shelf_tag": "Sativa",
  "reported": [
   "Pine",
@@ -30,6 +30,5 @@
   "Linalool": 0.04,
   "Terpineol": 0.03,
   "Camphene": 0.02
- },
- "sold_out_at": "2026-07-30T18:05:41.521Z"
+ }
 }

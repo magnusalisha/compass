@@ -32,7 +32,6 @@
  ],
  "form": "Flower 3.5g",
  "strain": "Animal Cookies",
- "in_stock": false,
- "thc": 29.86,
- "sold_out_at": "2026-08-17T14:05:31.050Z"
+ "in_stock": true,
+ "thc": 29.86
 }
