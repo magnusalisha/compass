@@ -7,7 +7,7 @@
  "thc": 83.7,
  "total_terpenes": 6.1188,
  "confidence": "strong",
- "in_stock": false,
+ "in_stock": true,
  "shelf_tag": "Hybrid",
  "reported": [
   "Spicy",
@@ -36,6 +36,5 @@
  },
  "test_date": "2026-05-28",
  "test_lab": "Certified Testing and Data NY, LLC",
- "scanned_at": "2026-08-23T16:38:29.923Z",
- "sold_out_at": "2026-09-05T16:30:19.032Z"
+ "scanned_at": "2026-08-23T16:38:29.923Z"
 }
