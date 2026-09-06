@@ -7,7 +7,7 @@
  "thc": 34.6,
  "total_terpenes": 1.9466,
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Sativa",
  "reported": [
   "spicy and earthy",
@@ -40,5 +40,6 @@
  "test_date": "2026-02-07",
  "test_lab": "Analytical Testing Center of Central New York",
  "date_expire": "2026-09-03",
- "scanned_at": "2026-08-20T23:38:44.869Z"
+ "scanned_at": "2026-08-20T23:38:44.869Z",
+ "sold_out_at": "2026-09-06T01:15:22.709Z"
 }
