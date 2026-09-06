@@ -7,7 +7,7 @@
  "thc": 34.321,
  "total_terpenes": 2.7955,
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Hybrid",
  "reported": [
   "Live Resin Infused",
@@ -39,5 +39,6 @@
  },
  "test_date": "2026-02-01",
  "test_lab": "Kaycha Labs NY",
- "scanned_at": "2026-08-23T16:38:42.223Z"
+ "scanned_at": "2026-08-23T16:38:42.223Z",
+ "sold_out_at": "2026-09-06T20:00:18.769Z"
 }
