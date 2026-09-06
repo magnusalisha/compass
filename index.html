@@ -102,7 +102,31 @@
     box-shadow:0 8px 24px rgba(0,0,0,.35)}
   .combo-list li{padding:12px 16px;font:500 15px Inter,sans-serif;color:var(--ink);cursor:pointer;
     display:flex;gap:8px;align-items:baseline}
-  .combo-list li span{color:var(--ink2);font-size:13px}
+  /* Both text parts are named rather than styled as a bare `span`: that selector
+     also matched the shelf-tag chip and outranked .tag/.tag-sm, rendering it at
+     13px in grey — the colour scale silently gone. */
+  .combo-list li .combo-meta{color:var(--ink2);font-size:13px}
+  /* One row, one line — both parts ellipsis rather than wrap. */
+  /* The strain does not shrink at all — it is capped instead. Weighted shrink
+     was the wrong tool: flex divides overflow in PROPORTION, so even at 100:1
+     the name still gave up a fraction of a pixel, and a fraction is all an
+     ellipsis needs. "Permanent Mark…" appeared next to a brand that still had
+     ten characters showing. A hard cap lets the name take up to 58% of the row
+     and truncate only when it genuinely is that long; the brand absorbs every
+     other pixel of overflow. That is the cascade comboLabel describes: lose the
+     brand, keep the name. */
+  .combo-list li .combo-strain{flex:0 0 auto;max-width:58%}
+  .combo-list li .combo-meta{flex:0 1 auto}
+  .combo-list li .combo-strain,.combo-list li .combo-meta{
+    min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  /* Right-aligned AND one fixed width, so the tags form a straight column rather
+     than a ragged one. 42px is sized off the widest short form (I·H); the letter
+     sits a touch larger than the full-word chip because there is no word around
+     it to give it weight, and normal tracking because .1em on two glyphs reads
+     as a gap rather than as a label. */
+  .combo-list li .tag{margin-left:auto;flex:none;align-self:center}
+  .combo-list li .tag-fix{width:42px;padding:3px 0;text-align:center;
+    font-size:10.5px;font-weight:600;letter-spacing:.02em}
   .combo-list li:hover,.combo-list li.hl{background:var(--card2)}
   .combo-list li.combo-empty{color:var(--ink2);cursor:default;font-size:13.5px}
   .combo-list li.combo-empty:hover{background:none}
@@ -289,9 +313,28 @@
   .lookup-back{background:none;border:none;color:var(--pale);font:600 13.5px Inter,sans-serif;
     cursor:pointer;padding:0;margin-bottom:12px;display:block}
   .lookup-back:hover{color:#fff}
+  /* A quiet line, not a card — it sits above the results it's talking about and
+     must not compete with them. */
+  .searchtip{color:var(--dim);font-size:13px;line-height:1.5;margin-bottom:12px;
+    padding-left:11px;border-left:2px solid var(--gold)}
+  .searchtip b{color:var(--pale);font-weight:500}
+  .searchtip code{font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--pale);
+    background:rgba(201,214,196,.09);padding:2px 6px;border-radius:4px;white-space:nowrap}
   .foot{margin-top:26px;color:var(--dim);font-family:'IBM Plex Mono',monospace;font-size:11px;line-height:1.6}
   .flash{background:#33473A;border:1px solid #48604F;color:var(--pale);border-radius:10px;
     padding:11px 13px;margin-bottom:14px;font-size:13px}
+  /* ── A little more room on a desktop screen (the shop POS is 1366x768).
+     NOT a two-column layout: one card per row still, because two cards side by
+     side read as "compare these" and a ranked list makes no such claim.
+     860 is sized off the picker rows, not by eye. A Compare row wants a median
+     of 357px and 418px at the 90th percentile once it carries a shelf tag; the
+     two pickers sit side by side, so (418 x 2) + 9px gap + 36px padding is
+     where 860 comes from. At 680 each picker got 318px and even the median row
+     wrapped to two lines. */
+  @media (min-width:900px){
+    body{max-width:860px}
+  }
+
   @media(prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
@@ -550,6 +593,23 @@ const TAG_STEP = {
   'indica-leaning hybrid':'s4', 'indica':'s5'
 };
 const tagStep = t => TAG_STEP[String(t || '').trim().toLowerCase()] || null;
+// Short forms for the picker rows ONLY. The list is dense and space there is
+// taken from the brand name, so the chip shortens; the card and the Lookup row
+// still carry the full words, and the colour is identical in all three, so the
+// tint keeps meaning one thing everywhere.
+//
+// The lean is abbreviated, NOT dropped. Collapsing "Sativa-leaning Hybrid" to a
+// bare H would have the chip say Hybrid where the package says otherwise — 13
+// records, 5 of them in stock. Compass quotes the package; shortening its words
+// is fair, contradicting them is not.
+//
+// An unrecognised value falls through to its full text rather than an invented
+// letter, the same way tagStep falls through to the neutral .tag-shelf chip.
+const TAG_SHORT = {
+  'sativa':'S', 'sativa-leaning hybrid':'S·H', 'hybrid':'H',
+  'indica-leaning hybrid':'I·H', 'indica':'I'
+};
+const tagShort = t => TAG_SHORT[String(t || '').trim().toLowerCase()] || t;
 const shelfTag = p => {
   const v = String(p.shelf_tag || '').trim();
   return (!v || v.toLowerCase() === 'unverified') ? 'Unverified' : v;
@@ -621,7 +681,45 @@ const searchNorm = s => String(s || '')
   .normalize('NFKD').replace(/[\u0300-\u036f]/g, '')
   .replace(/&/g, ' and ')
   .toLowerCase().replace(/[^a-z0-9]/g, '');
-const searchable = p => searchNorm(p.strain + ' ' + p.brand);
+// Strain and brand are kept APART. Gluing them and normalising the join away
+// made every substring that straddled the seam a match: "Blue Dream" + "Anthem"
+// became "bluedreamanthem", so searching `man` returned it — the m from Dream
+// and the an from Anthem, a word present in neither field. Across the catalogue
+// 2,014 query-to-product matches existed only across that seam.
+const searchFields = p => [searchNorm(p.strain), searchNorm(p.brand)];
+
+// Every word you type has to land somewhere, but they don't have to land in the
+// same field or in a set order. Gluing used to allow strain-then-brand by
+// accident ("blue dream anthem") while refusing brand-then-strain ("anthem blue
+// dream"); splitting on spaces first makes both work and costs the seam bug.
+// Normalising happens per WORD, after the split, because searchNorm strips
+// spaces — normalising the whole query first would glue it back together.
+// The same normalisation as searchNorm, but CUT on punctuation instead of
+// swallowing it — "Hi*AF" becomes hi + af, "Puffin-Z" becomes puffin + z,
+// "Kings & Queens" becomes kings + and + queens. Those chunks are word starts to
+// a reader even though no space separates them.
+const searchTokens = s => String(s || '')
+  .normalize('NFKD').replace(/[\u0300-\u036f]/g, '')
+  .replace(/&/g, ' and ')
+  .toLowerCase().split(/[^a-z0-9]+/).filter(Boolean);
+
+// A typed word has to START something, not merely appear inside one. Matching
+// anywhere meant a single letter matched nearly everything: `garlic d` returned
+// Madison Sq Garlic, because the d is the third letter of Madison. Tested across
+// every in-stock product, nothing real is lost — whole words, the first three
+// letters of a word, the whole name with its spaces removed, and both fields in
+// either order all still match. What goes is typing from the middle of a word,
+// which is not how anyone searches a shelf.
+//
+// The glued whole-field forms are still accepted as a start, so "bluedream"
+// typed without the space finds Blue Dream.
+const matchesQuery = (p, q) => {
+  const words = String(q || '').trim().split(/\s+/).map(searchNorm).filter(Boolean);
+  if (!words.length) return false;
+  const parts  = searchTokens(p.strain).concat(searchTokens(p.brand));
+  const glued  = searchFields(p);
+  return words.every(w => parts.some(t => t.startsWith(w)) || glued.some(f => f.startsWith(w)));
+};
 
 // "relaxing but not sleepy" — how customers actually talk.
 const WANT = {
@@ -2223,11 +2321,23 @@ function comboListHTML(id, list){
       : `<ul class="combo-list"><li class="combo-empty">Keep typing…</li></ul>`;
   }
 
-  const filtered = list.filter(p => searchable(p).includes(searchNorm(q))
+  const filtered = list.filter(p => matchesQuery(p, q)
     && !(taken && key(p) === taken));
   st.filtered = filtered;
   if (!filtered.length) return `<ul class="combo-list"><li class="combo-empty">No matches found</li></ul>`;
-  return `<ul class="combo-list">${filtered.map((p,i) => `<li data-id="${key(p)}" class="${i===st.highlight?'hl':''}">${p.strain} <span>${comboForm(p)} · ${p.brand}${stocked(p)?'':' · sold out'}</span></li>`).join('')}</ul>`;
+  // The shelf tag rides along in the row. "What's the difference between these
+  // two sativas?" is a question asked at the picker, and the picker was the one
+  // place the type wasn't written down — you had to already know it, or pick and
+  // read it off the card. Same five-step colour as the card and the Lookup row,
+  // so the tint means one thing everywhere; only the WORDING shortens here (see
+  // TAG_SHORT), because this list is dense and every pixel the chip takes comes
+  // out of the brand name. The full wording stays reachable on the element, and
+  // the card still spells it out.
+  return `<ul class="combo-list">${filtered.map((p,i) => {
+    const t = shelfTag(p);
+    const chip = `<span class="tag tag-sm tag-fix tag-${t === 'Unverified' ? 'unset' : (tagStep(t) || 'shelf')}" title="${t}" aria-label="${t}">${tagShort(t)}</span>`;
+    return `<li data-id="${key(p)}" class="${i===st.highlight?'hl':''}"><span class="combo-strain">${p.strain}</span><span class="combo-meta">${comboForm(p)} · ${p.brand}${stocked(p)?'':' · sold out'}</span>${chip}</li>`;
+  }).join('')}</ul>`;
 }
 function comboShellHTML(id, list, selectedId){
   const st = comboState(id);
@@ -3039,15 +3149,40 @@ function renderLookupResults(){
     lookupSel = null;
   }
   const q = lookupQ.trim().toLowerCase();
-  if (!q){ O.innerHTML = `<div class="empty">Type a strain or brand to look it up.</div>`; return foot(); }
+  if (!q){ O.innerHTML = `<div class="empty">Type a strain or brand to look it up.<br>
+    <span style="font-size:13px">Or both at once, in any order — for example, <code>blue dream anthem</code>.</span></div>`; return foot(); }
   // Category first, then text. Searching a brand used to return everything it
   // makes — Dank alone is 14 records across flower, prerolls and packs — and the
   // list gave no way to get to the one shelf you were standing at.
   const matches = pool()
     .filter(p => lookupCat === 'All' || category(p) === lookupCat)
-    .filter(p => searchable(p).includes(searchNorm(q)));
+    .filter(p => matchesQuery(p, q));
+
+  // One strain name spread over several products is the case where typing MORE
+  // of the name does nothing — the name is already the thing they all share.
+  // Blue Dream is on six. So the tip only appears when that is actually true of
+  // the list on screen, and it names the strain and a brand from the results
+  // rather than a generic example. Word order is called out because the old glued
+  // search only accepted strain-then-brand, so anyone who tried it the other way
+  // round has already learned that it doesn't work.
+  const byStrain = {};
+  matches.forEach(m => (byStrain[m.strain] = (byStrain[m.strain] || 0) + 1));
+  const dupe = Object.entries(byStrain).sort((x,y) => y[1] - x[1])[0];
+  // A MAJORITY of the list, not merely a repeat somewhere in it. Searching a
+  // brand — "fernway", 13 results — turned up two Mandarin Oranges among them
+  // and advised adding a brand, which is what had just been typed. The tip is
+  // only true advice when the repeated name is most of what came back.
+  const tip = (dupe && dupe[1] > 1 && matches.length > 2 && dupe[1] / matches.length >= 0.5)
+    ? (() => {
+        const brand = (matches.find(m => m.strain === dupe[0]) || {}).brand || '';
+        return `<div class="searchtip"><b>${dupe[0]}</b> is on ${dupe[1]} products here.
+          Add a brand to narrow it — for example, <code>${(dupe[0] + ' ' + brand).toLowerCase()}</code>.
+          Word order doesn't matter.</div>`;
+      })()
+    : '';
+
   O.innerHTML = matches.length
-    ? `<div class="lookup-list">${matches.map(p => `<button type="button" class="lookup-row" data-lookup-id="${key(p)}">
+    ? tip + `<div class="lookup-list">${matches.map(p => `<button type="button" class="lookup-row" data-lookup-id="${key(p)}">
          <span class="lookup-left"><span class="lookup-strain">${p.strain}</span><span class="lookup-meta"><span class="lookup-form">${formLabel(p)}</span>${
            // The same chip the card carries, so the colour means one thing in both
            // places. Unverified keeps its dashed outline rather than a colour it
