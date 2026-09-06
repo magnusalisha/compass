@@ -22,10 +22,15 @@
   "Terpineol": 0.01,
   "Valencene": 0.01
  },
- "scanned_at": "2026-09-04T20:29:27.687Z",
+ "scanned_at": "2026-09-06T16:28:25.711Z",
  "thc": 14.7438,
  "total_terpenes": 0.73,
  "in_stock": true,
  "test_date": "2026-03-05",
- "test_lab": "Kaycha Labs NY"
+ "test_lab": "Kaycha Labs NY",
+ "thc_range": [
+  14.7438,
+  15.9116
+ ],
+ "batches": 2
 }
