@@ -29,7 +29,7 @@
   "alpha-Humulene": 0.023,
   "Caryophyllene Oxide": 0.0212
  },
- "scanned_at": "2026-08-27T01:07:41.997Z",
+ "scanned_at": "2026-09-06T19:27:41.331Z",
  "test_date": "2026-04-24",
  "test_lab": "ACT Laboratories of New York, LLC",
  "date_expire": "2027-04-16",
@@ -37,5 +37,9 @@
   88.66,
   91.22
  ],
- "batches": 2
+ "batches": 2,
+ "package_tags": [
+  "1A41203000005DD000055702",
+  "1A41203000005DD000107705"
+ ]
 }

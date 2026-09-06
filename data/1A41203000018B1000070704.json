@@ -38,10 +38,14 @@
  "test_date": "2026-07-08",
  "test_lab": "Kaycha Labs NY",
  "date_expire": "2027-06-26",
- "scanned_at": "2026-08-27T01:07:41.979Z",
+ "scanned_at": "2026-09-06T19:27:41.317Z",
  "thc_range": [
   86.598,
   87.236
  ],
- "batches": 2
+ "batches": 2,
+ "package_tags": [
+  "1A41203000018B1000039815",
+  "1A41203000018B1000070704"
+ ]
 }

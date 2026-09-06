@@ -36,7 +36,7 @@
   "Borneol": 0.0094,
   "Nerolidol": 0.0013
  },
- "scanned_at": "2026-09-04T20:29:27.700Z",
+ "scanned_at": "2026-09-06T19:27:41.334Z",
  "test_date": "2026-07-10",
  "test_lab": "Smithers CTS New York, LLC",
  "date_expire": "2027-07-10",
@@ -44,5 +44,9 @@
   81.67,
   82.61
  ],
- "batches": 2
+ "batches": 2,
+ "package_tags": [
+  "1A41203000049D8000010289",
+  "1A41203000049D8000013220"
+ ]
 }
