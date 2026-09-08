@@ -7,7 +7,7 @@
  "thc": 89.758,
  "total_terpenes": 5.0262,
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Sativa",
  "reported": [],
  "aroma": [
@@ -36,5 +36,6 @@
  "scanned_at": "2026-08-20T23:39:21.984Z",
  "test_date": "2026-07-14",
  "test_lab": "Smithers CTS New York, LLC",
- "date_expire": "2027-07-14"
+ "date_expire": "2027-07-14",
+ "sold_out_at": "2026-09-08T21:16:37.265Z"
 }
