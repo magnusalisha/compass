@@ -28,10 +28,11 @@
  ],
  "form": "Preroll 0.75g (2-pack, 1.5g total)",
  "strain": "Amaretto Di Lemon",
- "in_stock": true,
+ "in_stock": false,
  "thc": 30.377,
  "test_date": "2026-05-26",
  "test_lab": "Green Analytics NY, LLC",
  "date_expire": "2027-05-19",
- "scanned_at": "2026-08-20T23:38:50.079Z"
+ "scanned_at": "2026-08-20T23:38:50.079Z",
+ "sold_out_at": "2026-09-08T21:31:29.151Z"
 }
