@@ -7,7 +7,7 @@
  "thc": 41.635,
  "total_terpenes": 0.35,
  "confidence": "faint",
- "in_stock": false,
+ "in_stock": true,
  "shelf_tag": "Sativa",
  "reported": [],
  "aroma": [
@@ -20,6 +20,5 @@
  "scanned_at": "2026-08-20T23:39:27.209Z",
  "test_date": "2026-04-20",
  "test_lab": "Reliable Labs, Inc.",
- "date_expire": "2027-06-25",
- "sold_out_at": "2026-09-02T00:31:01.541Z"
+ "date_expire": "2027-06-25"
 }
