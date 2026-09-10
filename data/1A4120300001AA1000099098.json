@@ -1,0 +1,26 @@
+{
+ "id": "01722eb672",
+ "metrc_tag": "1A4120300001AA1000099098",
+ "brand": "Golden Garden",
+ "strain": "Super Boof",
+ "form": "Preroll 1g",
+ "confidence": "moderate",
+ "shelf_tag": "Sativa",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "beta-Caryophyllene": 0.5,
+  "alpha-Humulene": 0.17,
+  "Linalool": 0.16,
+  "Limonene": 0.12,
+  "alpha-Bisabolol": 0.1,
+  "Guaiol": 0.09
+ },
+ "scanned_at": "2026-09-10T00:59:41.702Z",
+ "thc": 25.121,
+ "in_stock": true,
+ "sold_out_at": "2026-08-21T21:33:36.467Z",
+ "total_terpenes": 1.14,
+ "test_date": "2026-01-29",
+ "test_lab": "Keystone State Testing, LLC"
+}

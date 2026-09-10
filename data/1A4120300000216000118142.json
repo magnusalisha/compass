@@ -1,0 +1,40 @@
+{
+ "id": "a3f9c21b7e",
+ "metrc_tag": "1A4120300000216000118142",
+ "brand": "Find",
+ "strain": "Tourist Trap",
+ "form": "Flower 3.5g",
+ "thc": 24.5516,
+ "total_terpenes": 1.92,
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Sativa",
+ "reported": [],
+ "aroma": [
+  "earthy",
+  "spicy",
+  "herbal",
+  "citrus",
+  "floral"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 0.71,
+  "alpha-Humulene": 0.29,
+  "Limonene": 0.28,
+  "Linalool": 0.26,
+  "beta-Myrcene": 0.17,
+  "Farnesene": 0.05,
+  "beta-Pinene": 0.04,
+  "alpha-Bisabolol": 0.02,
+  "alpha-Pinene": 0.02,
+  "Caryophyllene Oxide": 0.02,
+  "Fenchol": 0.02,
+  "Terpineol": 0.02,
+  "Terpinolene": 0.01,
+  "Valencene": 0.01
+ },
+ "test_date": "2026-05-15",
+ "test_lab": "Kaycha Labs NY",
+ "scanned_at": "2026-09-10T00:59:41.691Z",
+ "date_expire": "2027-05-08"
+}

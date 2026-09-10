@@ -1,6 +1,6 @@
 {
  "id": "404cd53abd",
- "metrc_tag": "1A4120300001AA1000016943",
+ "metrc_tag": "1A4120300001AA1000099099",
  "brand": "Revert",
  "strain": "Durban Poison",
  "form": "Infused Preroll 0.75g (2-pack, 1.5g total)",
@@ -9,7 +9,9 @@
  "reported": [],
  "aroma": [],
  "terpenes": {},
- "scanned_at": "2026-08-21T15:44:14.868Z",
+ "scanned_at": "2026-09-10T00:59:41.702Z",
  "thc": 45.5,
- "in_stock": true
+ "in_stock": true,
+ "sold_out_at": "2026-09-07T15:46:31.136Z",
+ "date_expire": "2027-04-01"
 }
