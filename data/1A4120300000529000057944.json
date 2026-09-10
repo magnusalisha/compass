@@ -7,7 +7,7 @@
  "thc": 32.191,
  "total_terpenes": 1.46,
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Sativa",
  "reported": [
   "Blue Dream",
@@ -31,5 +31,6 @@
  "test_date": "2026-06-12",
  "test_lab": "Green Analytics NY, LLC",
  "date_expire": "2027-06-04",
- "scanned_at": "2026-08-20T23:38:58.007Z"
+ "scanned_at": "2026-08-20T23:38:58.007Z",
+ "sold_out_at": "2026-09-10T20:46:04.037Z"
 }
