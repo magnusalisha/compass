@@ -2253,6 +2253,19 @@ function categoryButtons(catKey, current){
     `<button type="button" class="${c===current?'active':''}" data-cat="${c}">${c}</button>`).join('')}</div>`;
 }
 
+// Repaint one category segment where it stands. Needed when a keystroke changes
+// the filter but the picker above it must NOT be rebuilt — see the combo-input
+// handler, and the warning on comboState about recreating a focused input.
+const syncCatSeg = (catKey, current) => {
+  const seg = document.querySelector(`.catseg[data-catkey="${catKey}"]`);
+  if (seg) seg.querySelectorAll('button').forEach(b =>
+    b.classList.toggle('active', b.dataset.cat === current));
+};
+
+// Find similar with no source picked. Shared between render() and the keystroke
+// that drops a source, so the two can't drift into different empty states.
+const SIM_EMPTY = `<div class="empty">Start with what they liked.<br><span style="font-size:13px">Type a strain or brand above — Compass finds what's closest to it on the shelf.</span></div>`;
+
 // ── reusable searchable combobox: filters a product list by strain or brand.
 // One instance per `id` (e.g. 'a', 'b', 'similar'); state persists across re-renders.
 //
@@ -2589,9 +2602,7 @@ function render(){
     P.innerHTML = banner + comboShellHTML('similar', sources, sel) + categoryButtons('simCat', simCat);
     const p = sel ? DATA.find(x => key(x) === sel) : null;
     if (!p){
-      O.innerHTML = sources.length
-        ? `<div class="empty">Start with what they liked.<br><span style="font-size:13px">Type a strain or brand above — Compass finds what's closest to it on the shelf.</span></div>`
-        : `<div class="empty">No records yet.</div>`;
+      O.innerHTML = sources.length ? SIM_EMPTY : `<div class="empty">No records yet.</div>`;
       return foot();
     }
     // Similarity is a comparison of two terpene profiles. With no profile on the
@@ -3465,6 +3476,21 @@ document.addEventListener('input', e => {
     const st = comboState(id);
     st.query = inp.value; st.open = true; st.highlight = -1;
     toggleClear('combo-' + id);   // same rule as the other inputs: class only, never re-render
+    // Typing a new source drops the old one, the way Lookup does. The picker was
+    // the only thing on screen naming the product those matches belonged to, and
+    // the keystroke has just overwritten it — so leaving them up presents them as
+    // answers to the half-typed search instead. simCat goes with it for the same
+    // reason the clear button resets it: it was set from the product being
+    // dropped. Both are patched in place rather than through render(), because
+    // rebuilding a focused input on a keystroke is the round-3 "can't be typed
+    // into" bug. Compare is deliberately left alone — its other box still names
+    // a side, so its comparison is never left unlabelled.
+    if (id === 'similar' && sel){
+      sel = null; simCat = 'All';
+      syncCatSeg('simCat', simCat);
+      $('#out').innerHTML = SIM_EMPTY;
+      foot();
+    }
     updateComboList(id);
   }
 });
