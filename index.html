@@ -3285,7 +3285,14 @@ function renderLookupResults(){
   const tip = (dupe && dupe[1] > 1 && matches.length > 2 && dupe[1] / matches.length >= 0.5)
     ? (() => {
         const brand = (matches.find(m => m.strain === dupe[0]) || {}).brand || '';
-        return `<div class="searchtip"><b>${dupe[0]}</b> is on ${dupe[1]} products here.
+        // The count is of ONE exact name, but the list holds near-names too —
+        // "blue dream" also brings back Blue Dream Lights, so five could be
+        // announced over six rows and read as a miscount. Both numbers are named,
+        // which also explains the rows that aren't the strain being counted.
+        const head = dupe[1] === matches.length
+          ? `All ${matches.length} of these are <b>${dupe[0]}</b>.`
+          : `${dupe[1]} of these ${matches.length} are <b>${dupe[0]}</b>. The rest have other names.`;
+        return `<div class="searchtip">${head}
           Add a brand to narrow it — for example, <code>${(dupe[0] + ' ' + brand).toLowerCase()}</code>.
           Word order doesn't matter.</div>`;
       })()
