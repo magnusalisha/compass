@@ -3062,14 +3062,37 @@ function renderEffectResults(){
     }
   }
 
+  // NEGATION SCOPES TO WHAT FOLLOWS IT, not to the whole segment.
+  //
+  // One `negated` flag was computed per comma/and/but segment and applied to
+  // every keyword in it. "relaxing but not heavy" worked only because "but"
+  // happened to split it in two. Drop the "but" and the same request INVERTED:
+  // "relaxing not heavy" wanted nothing at all and steered AWAY from the four
+  // relaxation terpenes it had just been asked for. Found by an outside audit
+  // on 9 Sept and reproduced exactly.
+  //
+  // Splitting the segment at the first negation marker gives the natural
+  // reading — what comes before it is wanted, what comes after is avoided.
+  // "nothing heavy" still has an empty head and a negated tail, so the case the
+  // note below describes is unchanged.
+  //
+  // "nothing heavy" used to score as WANTING myrcene and returned the heaviest
+  // products on the shelf — \bno\b can't match inside "nothing". Contractions
+  // are matched on the suffix so isn't / doesn't / don't / won't all land.
+  const NEGWORD = /\bnot\b|\bnothing\b|\bnone\b|\bwithout\b|\bavoid\b|\bless\b|\bskip\b|\bno\b|n't/;
   const [pos, neg] = [[], []];
-  qClean.split(/\bbut\b|,|\band\b/).forEach(part => {
-    // "nothing heavy" used to score as WANTING myrcene and returned the heaviest
-    // products on the shelf — \bno\b can't match inside "nothing". Contractions
-    // are matched on the suffix so isn't / doesn't / don't / won't all land.
-    const negated = /\bnot\b|\bnothing\b|\bnone\b|\bwithout\b|\bavoid\b|\bless\b|\bskip\b|\bno\b|n't/.test(part);
+  // SUBSTRING matching is deliberate and must stay. 91 of the 129 keys are
+  // STEMS — `relax`, `energ`, `uplift`, `danc`, `hik`, `writ`, `medita` — cut
+  // short so one entry catches every inflection. The audit proposed whole-word
+  // matching to stop `head` matching inside "clear-headed"; that would silently
+  // break `relax` against "relaxing" and 90 others, which is a far worse trade
+  // than the four keys it fixes. Only `sleep`, `head`, `wake` and `work` sit
+  // inside another key, `sleep`/`sleepy` and `head`/`heady` deliberately share
+  // a target, and the dedupe below already settles the double-count.
+  const collect = (text, negated) => {
+    if (!text.trim()) return;
     Object.entries(WANT).forEach(([kw, spec]) => {
-      if (!part.includes(kw)) return;
+      if (!text.includes(kw)) return;
       // a plain array is all "want"; the object form adds terpenes to steer AWAY
       // from (see the activity words). "not for cleaning" flips both lists.
       const want  = Array.isArray(spec) ? spec : (spec.want  || []);
@@ -3077,7 +3100,47 @@ function renderEffectResults(){
       want.forEach(t => (negated ? neg : pos).push(t));
       avoid.forEach(t => (negated ? pos : neg).push(t));
     });
+  };
+  qClean.split(/\bbut\b|,|\band\b/).forEach(part => {
+    const m = part.match(NEGWORD);
+    if (!m){ collect(part, false); return; }
+    collect(part.slice(0, m.index), false);
+    collect(part.slice(m.index + m[0].length), true);
   });
+  // A TERPENE IS WANTED OR IT IS NOT — it is not wanted twice.
+  //
+  // The score sums SHARES, so a terpene listed twice counts its share twice and
+  // outweighs the rest for no reason the person expressed. "sleepy" matches both
+  // `sleep` and `sleepy`, which made a negated sleepy weigh 2.8 instead of 1.4;
+  // "workout" matches `workout` and `work`, doubling pinene and limonene. The
+  // note at `wake` calls that doubling harmless, and in a single-terpene query it
+  // is — but in a mixed one it quietly outranks everything else asked for.
+  //
+  // A terpene landing on BOTH sides is dropped from both: the request
+  // contradicted itself, and guessing which half was meant is worse than saying
+  // nothing. "energetic but not too energetic" scores on everything else.
+  const matchedSomething = pos.length || neg.length;
+  const cancelled = [];
+  {
+    const want = new Set(pos), avoid = new Set(neg);
+    for (const t of [...want]) if (avoid.has(t)){ want.delete(t); avoid.delete(t); cancelled.push(t); }
+    pos.length = 0; pos.push(...want);
+    neg.length = 0; neg.push(...avoid);
+  }
+  // A request that cancelled itself is NOT the same as one nobody understood,
+  // and saying "nothing matched" would be a lie the person can't act on. It
+  // happens because the vocabulary is coarser than the question: "sleepy" and
+  // "heavy" are both myrcene, so "sleepy but not heavy" asks Compass to split a
+  // hair it cannot see. Say that, and name the terpene, because the honest
+  // answer is that the chemistry does not carry the distinction.
+  if (!pos.length && !neg.length && matchedSomething){
+    const names = [...new Set(cancelled)].map(t => short(t).toLowerCase());
+    O.innerHTML = `<div class="empty">That asks for and rules out the same thing.<br>
+      <span style="font-size:13px">Both halves of “${rawQ}” come down to
+      ${names.join(' and ')}, so there's nothing left to sort on — the chemistry doesn't
+      separate them. Try one side or the other, or go by the package.</span></div>`;
+    return foot();
+  }
   if (!pos.length && !neg.length){ O.innerHTML = `<div class="empty">Nothing matched “${rawQ}”. Try a feeling — relaxed, energetic, focused, mellow, sleepy, social — or what they're off to do: a concert, cleaning, errands, a movie.</div>`; return foot(); }
 
   // A query can be purely negative — "not too heavy", "nothing sleepy" — which is
