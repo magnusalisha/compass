@@ -321,6 +321,10 @@
   .searchtip code{font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--pale);
     background:rgba(201,214,196,.09);padding:2px 6px;border-radius:4px;white-space:nowrap}
   .foot{margin-top:26px;color:var(--dim);font-family:'IBM Plex Mono',monospace;font-size:11px;line-height:1.6}
+  .pillrow{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:14px}
+  .pillbtn{font:inherit;font-size:14px;padding:9px 16px;min-height:40px;border-radius:999px;
+    border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+  .pillbtn:hover,.pillbtn:focus{border-color:var(--gold);color:var(--gold)}
   .flash{background:#33473A;border:1px solid #48604F;color:var(--pale);border-radius:10px;
     padding:11px 13px;margin-bottom:14px;font-size:13px}
   /* ── A little more room on a desktop screen (the shop POS is 1366x768).
@@ -2984,8 +2988,15 @@ function renderEffectResults(){
     const list = a.length > 2
       ? a.slice(0, -1).map(s => `<b>${s}</b>`).join(', ') + ` or <b>${a[a.length-1]}</b>`
       : a.map(s => `<b>${s}</b>`).join(' or ');
+    // TAPPABLE, not printed. This was bold text in a dead-end message: the only
+    // way forward was to retype the whole word correctly, on a touchscreen where
+    // coworkers tap rather than type. A question with no answerable answer is
+    // worse than a guess. Buttons carry the choice straight back into the box.
+    const btns = a.map(t =>
+      `<button type="button" class="pillbtn" onclick="pickQuery('${t.replace(/'/g, "\\'")}')">${t}</button>`).join('');
     O.innerHTML = `<div class="empty">Did you mean ${list}?<br>
-      <span style="font-size:13px">${a.length} different terpenes start that way, so I'd rather ask than guess.</span></div>`;
+      <span style="font-size:13px">${a.length} different terpenes start that way, so I'd rather ask than guess.</span>
+      <div class="pillrow">${btns}</div></div>`;
     return foot();
   }
   if (tq){
@@ -3163,21 +3174,45 @@ function renderEffectResults(){
           return [neg.reduce((t,k) => t + (v[k]||0), 0), p];
         }).sort((m,n) => (m[1].confidence === 'faint') - (n[1].confidence === 'faint') || m[0]-n[0]);
 
+  // SAY WHAT THE REQUEST WAS READ AS.
+  //
+  // Everything above turns a sentence into two lists of terpenes, and until
+  // 10 Sept none of that reached the screen — the results simply appeared and
+  // you had to trust them. Two people reviewing this independently asked for the
+  // same thing, and they were right for a reason neither said outright: when the
+  // reading is WRONG, an invisible reading is unfalsifiable. "relaxing not heavy"
+  // inverted itself for weeks and nothing on screen could have shown it.
+  //
+  // Terpene names rather than the words typed, because that is what was actually
+  // matched, and because a budtender who reads "avoiding myrcene" twice has
+  // learned something the strain name never taught them.
+  const readAs = (list) => list.map(t => short(t).toLowerCase()).join(', ');
+  const interp = `<div class="terphead">` + (pos.length
+      ? `Ranked by <b>${readAs(pos)}</b>${neg.length ? `, steering away from <b>${readAs(neg)}</b>` : ''}.`
+      : `Ranked by how little <b>${readAs(neg)}</b> each one carries — lowest first.`)
+    + `</div>`;
+
   const noFit = `<div class="empty">Nothing in Compass fits that. Saying so is better than a bad substitution — but check the shelf for anything not in Compass yet.</div>`;
   if (!scored.length){ O.innerHTML = noFit; return foot(); }
 
+  // A purely negative request is not ranked by what it "asked for", so the
+  // default wording below would describe the opposite of what happened.
+  const more = n => moreRow(n, pos.length
+    ? undefined
+    : `carrying the least ${readAs(neg)}, lowest first`);
+
   if (effSize === 'any'){
-    O.innerHTML = scored.slice(0, effShowAll ? scored.length : EFF_TOP).map(([,p]) => card(p)).join('')
-      + moreRow(scored.length);
+    O.innerHTML = interp + scored.slice(0, effShowAll ? scored.length : EFF_TOP).map(([,p]) => card(p)).join('')
+      + more(scored.length);
     return foot();
   }
   // a size is chosen: the desired size ranks full; strong matches in other
   // sizes drop below, dimmed but readable — you might still pivot to one.
   const inSize = scored.filter(([,p]) => sizeMatches(p, effSize));
   const other  = scored.filter(([,p]) => !sizeMatches(p, effSize));
-  O.innerHTML =
+  O.innerHTML = interp +
     (inSize.length
-      ? inSize.slice(0, effShowAll ? inSize.length : EFF_TOP).map(([,p]) => card(p)).join('') + moreRow(inSize.length)
+      ? inSize.slice(0, effShowAll ? inSize.length : EFF_TOP).map(([,p]) => card(p)).join('') + more(inSize.length)
       : `<div class="empty">Nothing in ${sizeLabel(effSize)} fits that${other.length ? ' — but these other sizes are close' : '.'}.</div>`)
     + (other.length
       ? `<div class="pivot-head">Great match, other sizes — worth a pivot</div>`
@@ -3201,6 +3236,18 @@ function pivotRow(p){
 // every other tab. Typing (see the #lookupQ input handler) clears lookupSel
 // so a fresh keystroke means "search again" — this function must NOT clear it
 // itself, since it also runs right after a selection is made.
+// Put a word in the effect box and search it, as though it had been typed.
+// Used by the "did you mean" buttons; keeps the input, the clear button and the
+// results in step, which setting window._q alone does not.
+function pickQuery(text){
+  window._q = text;
+  const el = document.getElementById('q');
+  if (el){ el.value = text; el.focus(); }
+  effShowAll = false;
+  toggleClear('q');
+  renderEffectResults();
+}
+
 function renderLookupResults(){
   const O = $('#out');
   if (lookupSel){
