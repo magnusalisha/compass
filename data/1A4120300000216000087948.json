@@ -1,6 +1,6 @@
 {
  "id": "a3f9c2b847",
- "metrc_tag": "1A4120300000216000087942",
+ "metrc_tag": "1A4120300000216000087948",
  "brand": "Anthem",
  "strain": "Acapulco Gold",
  "form": "Infused Preroll 0.5g (5-pack, 2.5g total)",
@@ -35,9 +35,5 @@
  "test_date": "2026-02-11",
  "test_lab": "Kaycha Labs NY",
  "date_expire": "2027-01-30",
- "scanned_at": "2026-09-06T19:27:41.332Z",
- "package_tags": [
-  "1A4120300000216000087942",
-  "1A4120300000216000087948"
- ]
+ "scanned_at": "2026-09-11T17:16:28.169Z"
 }
