@@ -1,13 +1,13 @@
 {
  "id": "e3a05ed142",
- "metrc_tag": "1A412030000132A000006216",
+ "metrc_tag": "1A412030000132A000006926",
  "brand": "Lobo",
  "strain": "Sativa Blend",
  "form": "Flower 28g Pre-Ground",
  "thc": 19.97,
  "total_terpenes": 0.451,
  "confidence": "faint",
- "in_stock": false,
+ "in_stock": true,
  "shelf_tag": "Sativa",
  "reported": [],
  "aroma": [
@@ -20,9 +20,8 @@
   "beta-Caryophyllene": 0.3355,
   "beta-Myrcene": 0.1157
  },
- "scanned_at": "2026-08-20T23:39:23.667Z",
+ "scanned_at": "2026-09-11T17:01:43.820Z",
  "test_date": "2025-09-12",
  "test_lab": "Keystone State Testing, LLC",
- "date_expire": "2026-12-25",
- "sold_out_at": "2026-09-09T19:46:31.852Z"
+ "date_expire": "2026-12-25"
 }

@@ -1,13 +1,13 @@
 {
  "id": "a3f82c1d9e",
- "metrc_tag": "1A412030000132A000006220",
+ "metrc_tag": "1A412030000132A000006917",
  "brand": "Lobo",
  "strain": "Blue Dream",
  "form": "Preroll 1g Infused",
  "thc": 35.2683,
  "total_terpenes": 0.66,
  "confidence": "faint",
- "in_stock": false,
+ "in_stock": true,
  "shelf_tag": "Hybrid",
  "reported": [
   "Blue Dream",
@@ -41,6 +41,5 @@
  "test_date": "2026-03-22",
  "test_lab": "Analytical Testing Center of Central New York",
  "date_expire": "2027-04-01",
- "scanned_at": "2026-08-23T16:38:47.903Z",
- "sold_out_at": "2026-09-03T23:00:18.241Z"
+ "scanned_at": "2026-09-11T17:01:42.337Z"
 }

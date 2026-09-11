@@ -1,13 +1,13 @@
 {
  "id": "42c40a4689",
- "metrc_tag": "1A412030000132A000006215",
+ "metrc_tag": "1A412030000132A000006924",
  "brand": "Lobo",
  "strain": "Blueberry Diesel",
  "form": "Flower 3.5g Moonrocks Infused",
  "thc": 56.9964,
  "total_terpenes": 1.02,
  "confidence": "moderate",
- "in_stock": false,
+ "in_stock": true,
  "shelf_tag": "Hybrid",
  "reported": [],
  "aroma": [
@@ -34,9 +34,8 @@
   "beta-Pinene": 0.01,
   "Guaiol": 0.01
  },
- "scanned_at": "2026-08-20T23:39:23.425Z",
+ "scanned_at": "2026-09-11T17:01:43.577Z",
  "test_date": "2026-04-24",
  "test_lab": "Kaycha Labs NY",
- "date_expire": "2026-09-23",
- "sold_out_at": "2026-09-09T01:16:30.919Z"
+ "date_expire": "2027-04-23"
 }

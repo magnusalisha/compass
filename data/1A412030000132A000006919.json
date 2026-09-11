@@ -1,13 +1,13 @@
 {
  "id": "ae778d8958",
- "metrc_tag": "1A412030000132A000006219",
+ "metrc_tag": "1A412030000132A000006919",
  "brand": "Lobo",
  "strain": "Blue Dream",
  "form": "Infused Preroll 0.5g (5-pack, 2.5g total)",
  "thc": 32.8452,
  "total_terpenes": 0.61,
  "confidence": "faint",
- "in_stock": false,
+ "in_stock": true,
  "shelf_tag": "Sativa",
  "reported": [],
  "aroma": [
@@ -35,9 +35,8 @@
   "alpha-Pinene": 0.01,
   "Valencene": 0.01
  },
- "scanned_at": "2026-08-20T23:39:24.365Z",
+ "scanned_at": "2026-09-11T17:01:42.564Z",
  "test_date": "2026-04-13",
  "test_lab": "Kaycha Labs NY",
- "date_expire": "2026-12-26",
- "sold_out_at": "2026-08-31T18:31:01.755Z"
+ "date_expire": "2026-12-26"
 }

@@ -1,13 +1,13 @@
 {
  "id": "5cdf7bfdad",
- "metrc_tag": "1A412030000132A000006213",
+ "metrc_tag": "1A412030000132A000006916",
  "brand": "Lobo",
  "strain": "Gruntz",
  "form": "Infused Blunt 1g",
  "thc": 43.677,
  "total_terpenes": 0.95,
  "confidence": "moderate",
- "in_stock": false,
+ "in_stock": true,
  "shelf_tag": "Hybrid",
  "reported": [],
  "aroma": [
@@ -23,9 +23,8 @@
   "beta-Myrcene": 0.15,
   "Limonene": 0.15
  },
- "scanned_at": "2026-08-20T23:39:22.961Z",
+ "scanned_at": "2026-09-11T17:01:42.109Z",
  "test_date": "2026-02-21",
  "test_lab": "Green Analytics NY, LLC",
- "date_expire": "2026-12-26",
- "sold_out_at": "2026-09-02T23:16:00.317Z"
+ "date_expire": "2026-12-26"
 }
