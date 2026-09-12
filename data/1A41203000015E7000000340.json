@@ -7,7 +7,7 @@
  "thc": 19.9,
  "total_terpenes": 1.1484,
  "confidence": "moderate",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Sativa",
  "reported": [
   "Sour Diesel",
@@ -35,5 +35,6 @@
  "test_date": "2026-03-05",
  "test_lab": "Analytical Testing Center of Central New York",
  "date_expire": "2026-12-01",
- "scanned_at": "2026-08-20T23:38:45.614Z"
+ "scanned_at": "2026-08-20T23:38:45.614Z",
+ "sold_out_at": "2026-09-12T18:15:27.710Z"
 }
