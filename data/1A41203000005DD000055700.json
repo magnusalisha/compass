@@ -25,8 +25,8 @@
   "beta-Myrcene": 0.2146,
   "alpha-Humulene": 0.1421,
   "beta-Pinene": 0.1244,
-  "Isopulegol": 0.1226,
   "alpha-Pinene": 0.1226,
+  "Isopulegol": 0.1226,
   "Linalool": 0.068,
   "Fenchol": 0.0626,
   "alpha-Bisabolol": 0.0609,
@@ -34,7 +34,7 @@
   "Carene": 0.0209,
   "Caryophyllene Oxide": 0.0198
  },
- "scanned_at": "2026-09-06T16:28:25.729Z",
+ "scanned_at": "2026-09-13T09:13:35.801Z",
  "test_date": "2026-04-30",
  "test_lab": "ACT Laboratories of New York, LLC",
  "date_expire": "2027-04-22"

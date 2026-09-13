@@ -26,20 +26,20 @@
   "alpha-Humulene": 0.1,
   "alpha-Bisabolol": 0.06,
   "Linalool": 0.05,
-  "Terpinolene": 0.03,
   "beta-Myrcene": 0.03,
-  "Limonene": 0.02,
-  "Terpineol": 0.02,
-  "Ocimene": 0.02,
-  "Guaiol": 0.02,
+  "Terpinolene": 0.03,
   "Caryophyllene Oxide": 0.02,
-  "Valencene": 0.01,
-  "Fenchol": 0.01,
+  "Guaiol": 0.02,
+  "Limonene": 0.02,
+  "Ocimene": 0.02,
+  "Terpineol": 0.02,
+  "alpha-Pinene": 0.01,
   "beta-Pinene": 0.01,
-  "alpha-Pinene": 0.01
+  "Fenchol": 0.01,
+  "Valencene": 0.01
  },
  "test_date": "2026-03-22",
  "test_lab": "Analytical Testing Center of Central New York",
  "date_expire": "2027-04-01",
- "scanned_at": "2026-09-11T17:01:42.337Z"
+ "scanned_at": "2026-09-13T09:14:18.881Z"
 }
