@@ -37,9 +37,10 @@
  ],
  "form": "Flower 3.5g",
  "strain": "ChemD x I95",
- "in_stock": true,
+ "in_stock": false,
  "thc": 25.1455,
  "test_date": "2026-05-08",
  "test_lab": "Kaycha Labs NY",
- "scanned_at": "2026-08-20T23:38:55.586Z"
+ "scanned_at": "2026-08-20T23:38:55.586Z",
+ "sold_out_at": "2026-09-13T17:15:50.216Z"
 }
