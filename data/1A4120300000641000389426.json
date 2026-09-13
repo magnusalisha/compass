@@ -1,13 +1,13 @@
 {
  "id": "a3f7c29b1e",
- "metrc_tag": "1A4120300000641000389418",
+ "metrc_tag": "1A4120300000641000389426",
  "brand": "Jetty",
  "strain": "Rainbow Zoap",
  "form": "Vape 1g Disposable",
  "thc": 85.0902,
  "total_terpenes": 4.14,
  "confidence": "strong",
- "in_stock": false,
+ "in_stock": true,
  "shelf_tag": "Hybrid",
  "reported": [
   "Solventless",
@@ -34,7 +34,5 @@
  },
  "test_date": "2026-06-17",
  "test_lab": "Kaycha Labs NY",
- "date_expire": "2027-06-01",
- "scanned_at": "2026-08-20T23:39:04.559Z",
- "sold_out_at": "2026-09-13T00:45:37.273Z"
+ "scanned_at": "2026-09-13T01:01:16.967Z"
 }
