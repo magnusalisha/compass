@@ -20,8 +20,12 @@
   "beta-Caryophyllene": 0.3355,
   "beta-Myrcene": 0.1157
  },
- "scanned_at": "2026-09-11T17:01:43.820Z",
+ "scanned_at": "2026-09-13T08:57:27.697Z",
  "test_date": "2025-09-12",
  "test_lab": "Keystone State Testing, LLC",
- "date_expire": "2026-12-25"
+ "date_expire": "2026-12-25",
+ "package_tags": [
+  "1A412030000132A000006216",
+  "1A412030000132A000006926"
+ ]
 }

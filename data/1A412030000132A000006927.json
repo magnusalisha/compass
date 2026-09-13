@@ -1,0 +1,22 @@
+{
+ "id": "8dfd98cc92",
+ "metrc_tag": "1A412030000132A000006927",
+ "brand": "Lobo",
+ "strain": "Sativa Blend",
+ "form": "Flower 14g",
+ "confidence": "faint",
+ "shelf_tag": null,
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "beta-Caryophyllene": 0.18,
+  "beta-Myrcene": 0.12,
+  "alpha-Humulene": 0.08
+ },
+ "scanned_at": "2026-09-13T08:58:31.351Z",
+ "thc": 16.098,
+ "total_terpenes": 0.38,
+ "in_stock": true,
+ "test_date": "2026-02-05",
+ "test_lab": "Green Analytics NY, LLC"
+}
