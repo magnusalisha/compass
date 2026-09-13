@@ -1,6 +1,6 @@
 {
  "id": "ec5e6a6dff",
- "metrc_tag": "1A412030000070B000051774",
+ "metrc_tag": "1A412030000070B000056845",
  "brand": "Ruby Farms",
  "strain": "Kosher Kush",
  "form": "Preroll 0.7g (7-pack, 4.9g total)",
@@ -24,12 +24,8 @@
   "Limonene": 0.105,
   "Farnesene": 0.085
  },
- "scanned_at": "2026-09-06T19:27:41.335Z",
+ "scanned_at": "2026-09-13T20:15:32.569Z",
  "test_date": "2026-07-13",
  "test_lab": "Kaycha Labs NY",
- "date_expire": "2027-04-04",
- "package_tags": [
-  "1A412030000070B000051774",
-  "1A412030000070B000056845"
- ]
+ "date_expire": "2027-11-01"
 }
