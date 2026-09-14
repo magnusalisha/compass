@@ -7,7 +7,7 @@
  "thc": 84.659,
  "total_terpenes": 0,
  "confidence": null,
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Indica",
  "reported": [],
  "aroma": [],
@@ -15,5 +15,6 @@
  "test_date": "2026-04-20",
  "test_lab": "Green Analytics NY, LLC",
  "date_expire": "2027-07-29",
- "scanned_at": "2026-09-02T20:45:19.222Z"
+ "scanned_at": "2026-09-02T20:45:19.222Z",
+ "sold_out_at": "2026-09-14T14:16:00.391Z"
 }
