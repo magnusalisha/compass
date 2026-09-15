@@ -1,13 +1,13 @@
 {
  "id": "a9bf1a0313",
- "metrc_tag": "1A412030000019E000155349",
+ "metrc_tag": "1A412030000019E000180833",
  "brand": "Florist Farms",
  "strain": "Pineapple Express",
  "form": "Vape 1g Disposable",
  "thc": 86.142,
  "total_terpenes": 6.23,
  "confidence": "strong",
- "in_stock": false,
+ "in_stock": true,
  "shelf_tag": "Hybrid",
  "reported": [],
  "aroma": [
@@ -38,8 +38,8 @@
   "alpha-Phellandrene": 0.06,
   "alpha-Terpinene": 0.06
  },
- "scanned_at": "2026-09-10T01:05:05.268Z",
+ "scanned_at": "2026-09-15T19:00:44.291Z",
  "test_date": "2026-05-01",
  "test_lab": "Kaycha Labs NY",
- "sold_out_at": "2026-09-11T15:15:48.854Z"
+ "date_expire": "2028-04-22"
 }
