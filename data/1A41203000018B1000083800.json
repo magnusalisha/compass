@@ -1,0 +1,26 @@
+{
+ "id": "2240c5f6c0",
+ "metrc_tag": "1A41203000018B1000083800",
+ "brand": "Drew Martin",
+ "strain": "Indica Be Still",
+ "form": "Preroll 0.75g (6-pack, 4.5g total)",
+ "confidence": "faint",
+ "shelf_tag": "Indica",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "beta-Caryophyllene": 0.08,
+  "alpha-Bisabolol": 0.03,
+  "alpha-Humulene": 0.02,
+  "Caryophyllene Oxide": 0.02,
+  "Linalool": 0.02,
+  "Geraniol": 0.01
+ },
+ "scanned_at": "2026-09-16T23:49:47.397Z",
+ "thc": 15.9116,
+ "total_terpenes": 0.19,
+ "in_stock": true,
+ "test_date": "2026-08-13",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-08-04"
+}

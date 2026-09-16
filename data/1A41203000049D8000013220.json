@@ -1,0 +1,46 @@
+{
+ "id": "e90f9bb277",
+ "metrc_tag": "1A41203000049D8000013220",
+ "brand": "Fernway",
+ "strain": "Granddaddy Purple",
+ "form": "Vape 1g Disposable",
+ "thc": 81.67,
+ "total_terpenes": 4.6842,
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Indica",
+ "reported": [
+  "alpha-Pinene forward",
+  "beta-Myrcene body"
+ ],
+ "aroma": [
+  "pine",
+  "earthy",
+  "musky",
+  "spicy",
+  "peppery"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 1.0138,
+  "Limonene": 0.9378,
+  "beta-Myrcene": 0.7495,
+  "Farnesene": 0.4956,
+  "alpha-Humulene": 0.3543,
+  "Linalool": 0.2464,
+  "alpha-Pinene": 0.2096,
+  "beta-Pinene": 0.1065,
+  "alpha-Bisabolol": 0.0987,
+  "Terpinolene": 0.0733,
+  "Fenchol": 0.0663,
+  "Caryophyllene Oxide": 0.0586,
+  "Eucalyptol": 0.0559,
+  "Terpineol": 0.0325,
+  "Camphene": 0.0198,
+  "Borneol": 0.0119,
+  "Nerolidol": 0.0013
+ },
+ "scanned_at": "2026-09-16T23:49:49.978Z",
+ "test_date": "2026-08-05",
+ "test_lab": "Smithers CTS New York, LLC",
+ "date_expire": "2027-08-05"
+}
