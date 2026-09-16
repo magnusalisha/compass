@@ -1,13 +1,13 @@
 {
  "id": "a3f7c2e910",
- "metrc_tag": "1A41203000015E7000000338",
+ "metrc_tag": "1A41203000015E7000000596",
  "brand": "Boom",
  "strain": "Nerd Runtz",
  "form": "Preroll 1g Infused",
  "thc": 43.3,
  "total_terpenes": 2.1852,
  "confidence": "strong",
- "in_stock": false,
+ "in_stock": true,
  "shelf_tag": "Hybrid",
  "reported": [
   "infused preroll",
@@ -39,7 +39,6 @@
  },
  "test_date": "2026-02-08",
  "test_lab": "Analytical Testing Center of Central New York",
- "date_expire": "2026-09-03",
- "scanned_at": "2026-08-20T23:38:45.097Z",
- "sold_out_at": "2026-09-06T01:15:22.709Z"
+ "date_expire": "2027-04-09",
+ "scanned_at": "2026-09-16T22:15:47.425Z"
 }

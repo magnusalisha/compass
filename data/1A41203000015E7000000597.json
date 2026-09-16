@@ -1,13 +1,13 @@
 {
  "id": "a3f9c2e1b7",
- "metrc_tag": "1A41203000015E7000000337",
+ "metrc_tag": "1A41203000015E7000000597",
  "brand": "Boom",
  "strain": "Luka Magic",
  "form": "Preroll 1g Infused",
  "thc": 34.6,
  "total_terpenes": 1.9466,
  "confidence": "strong",
- "in_stock": false,
+ "in_stock": true,
  "shelf_tag": "Sativa",
  "reported": [
   "spicy and earthy",
@@ -39,7 +39,6 @@
  },
  "test_date": "2026-02-07",
  "test_lab": "Analytical Testing Center of Central New York",
- "date_expire": "2026-09-03",
- "scanned_at": "2026-08-20T23:38:44.869Z",
- "sold_out_at": "2026-09-06T01:15:22.709Z"
+ "date_expire": "2027-04-09",
+ "scanned_at": "2026-09-16T22:15:47.646Z"
 }
