@@ -1,6 +1,6 @@
 {
  "id": "a3f9c12e74",
- "metrc_tag": "1A412030000019E000155341",
+ "metrc_tag": "1A412030000019E000180825",
  "brand": "Florist Farms",
  "strain": "Dutch Hawaiian",
  "form": "Preroll 0.5g (5pk, Infused)",
@@ -38,9 +38,6 @@
  },
  "test_date": "2026-03-27",
  "test_lab": "ACT Laboratories of New York, LLC",
- "scanned_at": "2026-09-16T06:05:24.922Z",
- "package_tags": [
-  "1A412030000019E000155341",
-  "1A412030000019E000180825"
- ]
+ "scanned_at": "2026-09-16T16:45:53.459Z",
+ "date_expire": "2027-03-18"
 }
