@@ -1,0 +1,26 @@
+{
+ "id": "4f199031fc",
+ "metrc_tag": "1A41203000004B7000053418",
+ "brand": "Cannabals",
+ "strain": "Strawberry Kush",
+ "form": "Vape 1g Disposable",
+ "confidence": "strong",
+ "shelf_tag": "Indica",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "Limonene": 0.65,
+  "beta-Caryophyllene": 0.58,
+  "alpha-Bisabolol": 0.2,
+  "beta-Myrcene": 0.19,
+  "alpha-Humulene": 0.18,
+  "Linalool": 0.14
+ },
+ "scanned_at": "2026-09-16T06:06:11.641Z",
+ "thc": 85.152,
+ "total_terpenes": 2,
+ "in_stock": true,
+ "test_date": "2026-08-12",
+ "test_lab": "Green Analytics NY, LLC",
+ "date_expire": "2027-08-03"
+}

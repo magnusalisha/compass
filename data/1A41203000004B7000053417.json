@@ -1,0 +1,27 @@
+{
+ "id": "6fb5f94187",
+ "metrc_tag": "1A41203000004B7000053417",
+ "brand": "Cannabals",
+ "strain": "Super Lemon Haze",
+ "form": "Vape 1g Disposable",
+ "confidence": "strong",
+ "shelf_tag": "Sativa",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "Terpinolene": 1.59,
+  "Limonene": 0.94,
+  "beta-Myrcene": 0.43,
+  "beta-Caryophyllene": 0.38,
+  "beta-Pinene": 0.23,
+  "alpha-Pinene": 0.17,
+  "Caryophyllene Oxide": 0.12
+ },
+ "scanned_at": "2026-09-16T06:06:10.536Z",
+ "thc": 85.307,
+ "total_terpenes": 3.86,
+ "in_stock": true,
+ "test_date": "2026-06-25",
+ "test_lab": "Green Analytics NY, LLC",
+ "date_expire": "2027-06-15"
+}

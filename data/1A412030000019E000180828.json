@@ -1,0 +1,44 @@
+{
+ "id": "a3f82c1e9d",
+ "shelf_tag": "Hybrid",
+ "confidence": "strong",
+ "terpenes": {
+  "beta-Caryophyllene": 0.7657,
+  "Limonene": 0.3643,
+  "alpha-Humulene": 0.2994,
+  "Linalool": 0.2168,
+  "alpha-Bisabolol": 0.1387,
+  "beta-Myrcene": 0.1049,
+  "Terpineol": 0.052,
+  "Nerolidol": 0.0503,
+  "Fenchol": 0.0437,
+  "beta-Pinene": 0.0353,
+  "Caryophyllene Oxide": 0.034,
+  "Terpinolene": 0.0286,
+  "Farnesene": 0.0249,
+  "alpha-Pinene": 0.0141,
+  "Borneol": 0.0109
+ },
+ "brand": "Florist Farms",
+ "total_terpenes": 2.1836,
+ "metrc_tag": "1A412030000019E000180828",
+ "reported": [
+  "166.71 mg/dose Total Cannabinoids",
+  "Passed all safety tests"
+ ],
+ "aroma": [
+  "spicy",
+  "citrus",
+  "earthy",
+  "floral",
+  "herbal"
+ ],
+ "form": "Preroll 0.5g (7pk)",
+ "strain": "Headband",
+ "in_stock": true,
+ "thc": 30.87,
+ "test_date": "2026-08-02",
+ "test_lab": "ACT Laboratories of New York, LLC",
+ "date_expire": "2027-07-14",
+ "scanned_at": "2026-09-16T06:06:08.961Z"
+}

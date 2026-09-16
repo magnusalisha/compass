@@ -1,0 +1,28 @@
+{
+ "id": "a64e98a6a9",
+ "metrc_tag": "1A41203000004B7000053419",
+ "brand": "Cannabals",
+ "strain": "Honeydew Haze",
+ "form": "Vape 1g Disposable",
+ "confidence": "strong",
+ "shelf_tag": "Sativa",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "beta-Myrcene": 1.03,
+  "beta-Caryophyllene": 0.76,
+  "beta-Pinene": 0.47,
+  "Limonene": 0.35,
+  "alpha-Pinene": 0.29,
+  "alpha-Humulene": 0.24,
+  "Terpinolene": 0.19,
+  "alpha-Bisabolol": 0.17
+ },
+ "scanned_at": "2026-09-16T06:06:11.996Z",
+ "thc": 84.396,
+ "total_terpenes": 3.5,
+ "in_stock": true,
+ "test_date": "2026-08-26",
+ "test_lab": "Green Analytics NY, LLC",
+ "date_expire": "2027-08-18"
+}

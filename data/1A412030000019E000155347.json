@@ -34,7 +34,11 @@
   "alpha-Bisabolol": 0.07,
   "Guaiol": 0.06
  },
- "scanned_at": "2026-09-10T01:05:05.267Z",
+ "scanned_at": "2026-09-16T06:05:27.684Z",
  "test_date": "2026-04-18",
- "test_lab": "Kaycha Labs NY"
+ "test_lab": "Kaycha Labs NY",
+ "package_tags": [
+  "1A412030000019E000155347",
+  "1A412030000019E000180834"
+ ]
 }

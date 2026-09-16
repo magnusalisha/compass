@@ -34,8 +34,12 @@
   "Carene": 0.0209,
   "Caryophyllene Oxide": 0.0198
  },
- "scanned_at": "2026-09-13T09:13:35.801Z",
+ "scanned_at": "2026-09-16T06:05:20.379Z",
  "test_date": "2026-04-30",
  "test_lab": "ACT Laboratories of New York, LLC",
- "date_expire": "2027-04-22"
+ "date_expire": "2027-04-22",
+ "package_tags": [
+  "1A41203000005DD000055700",
+  "1A41203000005DD000130979"
+ ]
 }

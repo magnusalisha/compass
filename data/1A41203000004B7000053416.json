@@ -1,0 +1,27 @@
+{
+ "id": "50eae92d22",
+ "metrc_tag": "1A41203000004B7000053416",
+ "brand": "Cannabals",
+ "strain": "Rainbow Guava",
+ "form": "Vape 1g Disposable",
+ "confidence": "strong",
+ "shelf_tag": "Indica",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "beta-Myrcene": 0.65,
+  "Limonene": 0.57,
+  "beta-Caryophyllene": 0.55,
+  "Linalool": 0.28,
+  "alpha-Humulene": 0.18,
+  "alpha-Terpinene": 0.16,
+  "Terpineol": 0.15
+ },
+ "scanned_at": "2026-09-16T06:06:11.281Z",
+ "thc": 86.291,
+ "total_terpenes": 2.62,
+ "in_stock": true,
+ "test_date": "2026-05-05",
+ "test_lab": "Green Analytics NY, LLC",
+ "date_expire": "2027-05-28"
+}

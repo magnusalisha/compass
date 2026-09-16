@@ -1,0 +1,28 @@
+{
+ "id": "6a1af03369",
+ "metrc_tag": "1A41203000004B7000052834",
+ "brand": "Cannabals",
+ "strain": "Georgia Peach",
+ "form": "Vape 1g Disposable",
+ "confidence": "strong",
+ "shelf_tag": null,
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "beta-Myrcene": 1.11,
+  "Limonene": 0.94,
+  "beta-Caryophyllene": 0.77,
+  "Linalool": 0.26,
+  "Terpineol": 0.16,
+  "beta-Pinene": 0.13,
+  "Fenchol": 0.11,
+  "alpha-Bisabolol": 0.09
+ },
+ "scanned_at": "2026-09-16T06:06:10.896Z",
+ "thc": 82.36,
+ "total_terpenes": 3.71,
+ "in_stock": true,
+ "test_date": "2025-12-18",
+ "test_lab": "Green Analytics NY, LLC",
+ "date_expire": "2026-12-02"
+}

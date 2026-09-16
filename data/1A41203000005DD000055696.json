@@ -28,8 +28,12 @@
   "alpha-Humulene": 0.0465,
   "alpha-Phellandrene": 0.022
  },
- "scanned_at": "2026-09-12T16:15:34.170Z",
+ "scanned_at": "2026-09-16T06:05:18.108Z",
  "test_date": "2026-06-03",
  "test_lab": "ACT Laboratories of New York, LLC",
- "date_expire": "2027-05-27"
+ "date_expire": "2027-05-27",
+ "package_tags": [
+  "1A41203000005DD000055696",
+  "1A41203000005DD000130975"
+ ]
 }

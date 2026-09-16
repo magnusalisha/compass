@@ -28,11 +28,15 @@
   "Nerolidol": 0.0103,
   "Linalool": 0.0092
  },
- "scanned_at": "2026-09-01T18:28:38.249Z",
+ "scanned_at": "2026-09-16T06:05:26.870Z",
  "thc": 21.688,
  "total_terpenes": 1.864,
  "in_stock": true,
  "test_date": "2026-04-01",
  "test_lab": "Kaycha Labs NY",
- "date_expire": "2027-07-14"
+ "date_expire": "2027-07-14",
+ "package_tags": [
+  "1A412030000019E000155345",
+  "1A412030000019E000180830"
+ ]
 }

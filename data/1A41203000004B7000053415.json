@@ -1,0 +1,27 @@
+{
+ "id": "3c9d5d8694",
+ "metrc_tag": "1A41203000004B7000053415",
+ "brand": "Cannabals",
+ "strain": "Grandaddy Purple",
+ "form": "Vape 6g Disposable",
+ "confidence": "strong",
+ "shelf_tag": "Indica",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "beta-Myrcene": 1.61,
+  "beta-Caryophyllene": 1.47,
+  "alpha-Pinene": 0.66,
+  "alpha-Bisabolol": 0.34,
+  "Linalool": 0.26,
+  "beta-Pinene": 0.17,
+  "Limonene": 0.17
+ },
+ "scanned_at": "2026-09-16T06:06:12.400Z",
+ "thc": 85.417,
+ "total_terpenes": 4.67,
+ "in_stock": true,
+ "test_date": "2026-09-01",
+ "test_lab": "Green Analytics NY, LLC",
+ "date_expire": "2027-08-25"
+}
