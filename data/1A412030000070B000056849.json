@@ -7,7 +7,7 @@
  "thc": 27.1944,
  "total_terpenes": 1.47,
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Indica",
  "reported": [],
  "aroma": [
@@ -36,5 +36,6 @@
  "scanned_at": "2026-09-06T16:28:25.736Z",
  "test_date": "2026-02-01",
  "test_lab": "Kaycha Labs NY",
- "date_expire": "2027-02-28"
+ "date_expire": "2027-02-28",
+ "sold_out_at": "2026-09-17T18:30:52.889Z"
 }
