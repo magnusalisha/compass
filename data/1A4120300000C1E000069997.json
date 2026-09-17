@@ -31,10 +31,11 @@
  ],
  "form": "Flower 3.5g",
  "strain": "Banana Power",
- "in_stock": true,
+ "in_stock": false,
  "thc": 27.1027,
  "test_date": "2026-06-23",
  "test_lab": "Kaycha Labs NY",
  "date_expire": "2027-05-29",
- "scanned_at": "2026-09-03T18:04:09.736Z"
+ "scanned_at": "2026-09-03T18:04:09.736Z",
+ "sold_out_at": "2026-09-17T00:45:31.667Z"
 }
