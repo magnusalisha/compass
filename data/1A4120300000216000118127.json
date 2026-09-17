@@ -7,7 +7,7 @@
  "thc": 45.525,
  "total_terpenes": 0.63,
  "confidence": "faint",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Hybrid",
  "reported": [
   "Infused preroll",
@@ -36,5 +36,6 @@
  "test_date": "2026-05-26",
  "test_lab": "Kaycha Labs NY",
  "date_expire": "2027-05-26",
- "scanned_at": "2026-09-02T20:45:19.213Z"
+ "scanned_at": "2026-09-02T20:45:19.213Z",
+ "sold_out_at": "2026-09-17T20:30:34.567Z"
 }
