@@ -1,6 +1,6 @@
 {
  "id": "a33103ae60",
- "metrc_tag": "1A412030000019E000155345",
+ "metrc_tag": "1A412030000019E000180830",
  "brand": "Florist Farms",
  "strain": "Lemon OG Haze",
  "form": "Preroll 0.5g (7-pack, 3.5g total)",
@@ -28,15 +28,11 @@
   "Nerolidol": 0.0103,
   "Linalool": 0.0092
  },
- "scanned_at": "2026-09-16T06:05:26.870Z",
+ "scanned_at": "2026-09-17T14:00:39.787Z",
  "thc": 21.688,
  "total_terpenes": 1.864,
  "in_stock": true,
  "test_date": "2026-04-01",
  "test_lab": "Kaycha Labs NY",
- "date_expire": "2027-07-14",
- "package_tags": [
-  "1A412030000019E000155345",
-  "1A412030000019E000180830"
- ]
+ "date_expire": "2027-07-14"
 }
