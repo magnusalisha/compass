@@ -1,6 +1,6 @@
 {
  "id": "83cc43fea2",
- "metrc_tag": "1A412030000019E000155348",
+ "metrc_tag": "1A412030000019E000180832",
  "brand": "Florist Farms",
  "strain": "Jack Herer",
  "form": "Vape 1g Disposable",
@@ -26,14 +26,11 @@
   "Caryophyllene Oxide": 0.04,
   "Guaiol": 0.04
  },
- "scanned_at": "2026-09-16T06:05:28.447Z",
+ "scanned_at": "2026-09-18T21:30:49.077Z",
  "thc": 74.598,
  "total_terpenes": 5.54,
  "in_stock": true,
  "test_date": "2026-04-17",
  "test_lab": "Kaycha Labs NY",
- "package_tags": [
-  "1A412030000019E000155348",
-  "1A412030000019E000180832"
- ]
+ "date_expire": "2028-04-08"
 }
