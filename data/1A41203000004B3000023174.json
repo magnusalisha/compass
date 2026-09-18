@@ -1,13 +1,13 @@
 {
  "id": "3c0a70f111",
- "metrc_tag": "1A41203000004B3000017522",
+ "metrc_tag": "1A41203000004B3000023174",
  "brand": "Alchemy Pure",
  "strain": "Grape Bubblegum",
  "form": "Vape 0.5g Live Rosin Cartridge",
  "thc": 76.44,
  "total_terpenes": 9.0267,
  "confidence": "strong",
- "in_stock": false,
+ "in_stock": true,
  "shelf_tag": "Hybrid",
  "reported": [],
  "aroma": [
@@ -36,9 +36,8 @@
   "Borneol": 0.0308,
   "Terpinolene": 0.0203
  },
- "scanned_at": "2026-08-20T23:39:02.079Z",
+ "scanned_at": "2026-09-18T20:01:10.173Z",
  "test_date": "2026-06-12",
  "test_lab": "ACT Laboratories of New York, LLC",
- "date_expire": "2027-06-17",
- "sold_out_at": "2026-09-01T22:16:03.150Z"
+ "date_expire": "2027-06-17"
 }

@@ -7,7 +7,7 @@
  "thc": 44.8,
  "total_terpenes": 1.8995,
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Hybrid",
  "reported": [
   "Grape Gas infused preroll",
@@ -40,5 +40,6 @@
  "test_date": "2026-02-07",
  "test_lab": "Analytical Testing Center of Central New York",
  "date_expire": "2026-09-29",
- "scanned_at": "2026-09-06T16:28:25.709Z"
+ "scanned_at": "2026-09-06T16:28:25.709Z",
+ "sold_out_at": "2026-09-18T20:01:10.178Z"
 }
