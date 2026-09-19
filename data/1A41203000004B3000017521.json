@@ -35,8 +35,12 @@
   "Borneol": 0.035,
   "Terpinolene": 0.0226
  },
- "scanned_at": "2026-08-20T23:39:01.831Z",
+ "scanned_at": "2026-09-19T21:03:04.151Z",
  "test_date": "2026-06-01",
  "test_lab": "ACT Laboratories of New York, LLC",
- "date_expire": "2027-06-09"
+ "date_expire": "2027-06-09",
+ "package_tags": [
+  "1A41203000004B3000017521",
+  "1A41203000004B3000023175"
+ ]
 }

@@ -1,0 +1,33 @@
+{
+ "id": "3a07241cab",
+ "metrc_tag": "1A41203000004B3000023176",
+ "brand": "Alchemy Pure",
+ "strain": "Coup Runtz Bomb",
+ "form": "Vape 0.5g Cartridge",
+ "confidence": "strong",
+ "shelf_tag": "Indica",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "beta-Caryophyllene": 3.5289,
+  "Farnesene": 3.4655,
+  "alpha-Humulene": 1.3367,
+  "Limonene": 0.9457,
+  "beta-Myrcene": 0.8237,
+  "Nerolidol": 0.4328,
+  "Caryophyllene Oxide": 0.142,
+  "beta-Pinene": 0.1235,
+  "Linalool": 0.1134,
+  "alpha-Pinene": 0.0824,
+  "Fenchol": 0.062,
+  "Terpineol": 0.0537,
+  "Camphene": 0.0201
+ },
+ "scanned_at": "2026-09-19T21:03:41.490Z",
+ "thc": 76.916,
+ "total_terpenes": 11.1306,
+ "in_stock": true,
+ "test_date": "2026-07-29",
+ "test_lab": "ACT Laboratories of New York, LLC",
+ "date_expire": "2027-08-05"
+}
