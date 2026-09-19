@@ -7,7 +7,7 @@
  "thc": 32.374,
  "total_terpenes": 1.21,
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Indica",
  "reported": [
   "32.4% Total THC",
@@ -31,5 +31,6 @@
  "test_date": "2026-07-03",
  "test_lab": "Green Analytics NY, LLC",
  "date_expire": "2027-07-14",
- "scanned_at": "2026-08-20T23:38:58.259Z"
+ "scanned_at": "2026-08-20T23:38:58.259Z",
+ "sold_out_at": "2026-09-19T17:00:47.697Z"
 }
