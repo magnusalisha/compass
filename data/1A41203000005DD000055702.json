@@ -1,6 +1,6 @@
 {
  "id": "98a2bafaf9",
- "metrc_tag": "1A41203000005DD000130981",
+ "metrc_tag": "1A41203000005DD000055702",
  "brand": "Ayrloom",
  "strain": "Pineapple Express",
  "form": "Vape 2g Disposable",
@@ -27,12 +27,8 @@
   "Geraniol": 0.0499,
   "alpha-Bisabolol": 0.0477
  },
- "scanned_at": "2026-09-16T06:05:21.933Z",
+ "scanned_at": "2026-09-20T01:45:47.595Z",
  "test_date": "2026-05-14",
  "test_lab": "ACT Laboratories of New York, LLC",
- "date_expire": "2027-05-05",
- "package_tags": [
-  "1A41203000005DD000055702",
-  "1A41203000005DD000130981"
- ]
+ "date_expire": "2027-05-05"
 }
