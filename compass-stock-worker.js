@@ -31,7 +31,8 @@
 //   GH_REPO        (var)     compass
 //   ALLEAVES_USER  (secret)  read-only Alleaves login
 //   ALLEAVES_PASS  (secret)  read-only Alleaves password
-//   DISCORD_WEBHOOK (secret)  optional new-stock/full-sync alerts
+//   (no DISCORD_WEBHOOK — this Worker stopped alerting on 20 Sept; the
+//    GitHub job says everything it used to say, and better. See `observe`.)
 //   STOCK_COORDINATOR (Durable Object binding) class StockCoordinator
 // ==========================================================================
 
@@ -280,12 +281,56 @@ function dataResponse(bodyText, extraHeaders, ctx) {
       // headers stay invisible unless named here, and the page needs
       // X-Compass-Skipped to tell the shelf that a record was dropped.
       "ETag": etagFor(bodyText),
-      "Access-Control-Expose-Headers": "ETag, X-Compass-Shape, X-Compass-Count, X-Compass-Skipped, X-Compass-Stock-Checked-At, X-Compass-Stock-Stale",
+      "Access-Control-Expose-Headers": "ETag, X-Compass-Shape, X-Compass-Count, X-Compass-Skipped, X-Compass-Stock-Checked-At, X-Compass-Stock-Stale, X-Compass-Waiting, X-Compass-Waiting-Names",
       ...extraHeaders,
     },
   });
   cacheSet(dataCacheKey(), res, ctx);
   return res;
+}
+
+// One box, several strains, one composite lab result — so the sync gives it no
+// card and neither does this. See the note where it is applied.
+// Keyed to what ALLEAVES ACTUALLY WRITES, which is not what the sync's list
+// says. The sync keys on "drewmartin|thecollection" and reaches the shelf's
+// "Collection" through HOUSE_SPELLING, which maps the title's dropped "The"
+// back. Copying that whole spelling map here to resolve two strings would be
+// worse than listing both forms, so both are listed. Same rule as the sync's:
+// named explicitly, never pattern-matched, because "collection" and "flight"
+// are ordinary enough to turn up in a real strain name one day.
+const VARIETY_PACKS = new Set([
+  "drewmartin|thecollection", "drewmartin|collection",
+  "drewmartin|flowerflight",
+]);
+const looseName = s => String(s || "").toLowerCase().replace(/[^a-z0-9]/g, "");
+function isVarietyPack(row) {
+  const item = String((row && row.item) || "");
+  const parts = item.split("|").map(p => p.trim());
+  const brand = looseName(parts[0] || (row && row.brand));
+  if (!brand) return false;
+  // Every segment plus the structured strain box: Alleaves files this one as
+  // "Drew Martin | Preroll | 6PK | Collection" with "The Collection" in the
+  // strain field, so neither source alone finds it.
+  const names = [looseName(row && row.strain), ...parts.slice(1).map(looseName)];
+  return names.some(n => n && VARIETY_PACKS.has(brand + "|" + n));
+}
+
+// ON THE SHELF, NOT IN THE CATALOGUE.
+//
+// One definition, used twice: `serveData` puts it in a header for the page's
+// freshness line, and `observe` returns it for anything that calls that endpoint
+// directly. Both compare the live shelf against the tags of the catalogue that
+// was JUST assembled or JUST posted — never against a stored copy — so this
+// cannot go stale the way the retired Discord alert did.
+export function missingFromShelf(snapshot, observations) {
+  if (!snapshot || !Array.isArray(snapshot.items)) return [];
+  const known = new Set();
+  for (const obs of observations || []) {
+    if (!obs) continue;
+    const list = Array.isArray(obs.metrcTags) ? obs.metrcTags : [obs.metrcTag];
+    for (const t of list) if (typeof t === "string" && t) known.add(t);
+  }
+  return snapshot.items.filter(item => item && item.tag && !known.has(item.tag));
 }
 
 // Availability is matched only by Metrc package label. Names are useful history
@@ -308,7 +353,28 @@ export function overlayAvailability(bodyText, snapshot) {
     if (!rec || typeof rec !== "object") continue;
     const tag = typeof rec.metrc_tag === "string" ? rec.metrc_tag.trim() : "";
     if (!tag) continue; // no stable upstream identifier: preserve committed stock
-    rec.in_stock = live.has(tag);
+    // EVERY PACKAGE OF THIS PRODUCT, not just the one the record is filed under.
+    //
+    // Compass keeps one record per product deliberately — three jars of the same
+    // OG Kush are one card — and `metrc_tag` names whichever package the record
+    // currently sits on. `package_tags` (added 6 Sept) lists the rest.
+    //
+    // This matters twice over. For STOCK: a product was read as sold out the
+    // moment its filed package emptied, even with other jars still on the floor,
+    // and stayed wrong until the next full sync moved the record. A stale tag is
+    // harmless here because `live` is the current shelf, so it simply is not in
+    // it — the check can only ever be too generous with tags, never with stock.
+    //
+    // For the ALERT below: any live tag Compass did not report was announced as
+    // "new stock needs a full sync". Measured 6 Sept, 20 of 21 such alerts were
+    // for packages of products Compass already had, and no full sync could clear
+    // them because there was nothing to do. An alert wrong twenty times out of
+    // twenty-one is one people stop reading.
+    const tags = [tag];
+    if (Array.isArray(rec.package_tags))
+      for (const t of rec.package_tags)
+        if (typeof t === "string" && t.trim() && !tags.includes(t.trim())) tags.push(t.trim());
+    rec.in_stock = tags.some(t => live.has(t));
     matched++;
     const ownId = rec.id == null ? "" : String(rec.id);
     const stableProductId = ownId && idCounts.get(ownId) === 1 ? ownId : tag;
@@ -316,6 +382,7 @@ export function overlayAvailability(bodyText, snapshot) {
       stableProductId,
       identifierType: stableProductId === tag ? "metrc_package_label" : "catalogue_id",
       metrcTag: tag,
+      metrcTags: tags,
       name: typeof rec.strain === "string" ? rec.strain.slice(0, 160) : null,
       available: rec.in_stock,
     });
@@ -381,11 +448,13 @@ async function serveData(env, ctx, inm) {
   try {
     let { body, skipped, count } = await readRecords(env);
     let stock = null;
+    let overlaidObservations = [];
     try {
       stock = await liveStock(env);
       if (stock) {
         const overlaid = overlayAvailability(body, stock.snapshot);
         body = overlaid.body;
+        overlaidObservations = overlaid.observations;
         recordObservations(stock.stub, overlaid.observations, stock.snapshot.checkedAt, ctx);
       }
     } catch (err) {
@@ -399,10 +468,24 @@ async function serveData(env, ctx, inm) {
     }
     // The cache expiring does not mean the DATA changed. Thirty seconds pass far
     // more often than a record does, so this is the branch that saves the most.
+    // WHAT THE PAGE CAN ACTUALLY SEE.
+    //
+    // The first version of this returned the waiting set from `observe` — which
+    // reaches nobody. The page never calls that endpoint; `recordObservations`
+    // below does, from inside this Worker, fire-and-forget through waitUntil. So
+    // it travels as a header on the response the page already fetches.
+    //
+    // Percent-encoded JSON: header values must be ASCII, and a strain name can
+    // carry an accent or an ampersand. Capped at twelve — the page shows what
+    // fits and says how many more.
+    const waiting = stock ? missingFromShelf(stock.snapshot, overlaidObservations) : [];
     const fresh = dataResponse(body, {
       "X-Compass-Shape": "records",
       "X-Compass-Count": String(count),
       "X-Compass-Skipped": String(skipped),
+      "X-Compass-Waiting": String(waiting.length),
+      ...(waiting.length ? { "X-Compass-Waiting-Names": encodeURIComponent(
+        JSON.stringify(waiting.slice(0, 12).map(i => i.name).filter(Boolean))) } : {}),
       ...stockHeaders(stock && stock.snapshot),
     }, ctx);
     const tag = fresh.headers.get("ETag");
@@ -542,8 +625,22 @@ export class StockCoordinator {
     // Match the sync's scope exactly. Available inventory also includes the
     // vault and quarantine; treating either as customer-facing stock would put
     // products on the public catalogue before they reached the sales floor.
+    //
+    // AND THE VARIETY PACKS, which the sync drops because one box holding
+    // several strains cannot become one card with one terpene profile. Without
+    // this the shelf looks permanently one product ahead of the catalogue:
+    // measured 20 Sept, X-Compass-Waiting sat at 1 forever, naming Drew Martin's
+    // Collection — a product Compass is never going to add. A freshness line
+    // reading "1 waiting" that never clears is the alarm-that-trains-you-to-
+    // ignore-it, which this codebase has already paid for twice.
+    //
+    // DUPLICATED FROM tools/alleaves-sync.js ON PURPOSE, and it is the only
+    // duplication between them. The sync is the source of truth; if VARIETY_PACKS
+    // changes there it must change here too, or the two scopes drift apart
+    // silently and this header starts lying again.
     const scoped = rows.filter(row => /^retail$/i.test(String(row && row.area_type || "")))
-      .filter(row => /^(Flower|Pre-?Roll|Vapes?)\b/i.test(String(row && row.category || "")));
+      .filter(row => /^(Flower|Pre-?Roll|Vapes?)\b/i.test(String(row && row.category || "")))
+      .filter(row => !isVarietyPack(row));
     const tags = [...new Set(scoped
       .filter(row => Number(row && row.on_hand) > 0)
       .map(row => typeof row.metrc_package_label === "string" ? row.metrc_package_label.trim() : "")
@@ -572,20 +669,21 @@ export class StockCoordinator {
       return j({ error: "bad observations" }, 400);
 
     const snapshot = await this.state.storage.get("stock:snapshot");
-    const catalogueTags = new Set(body.observations
-      .map(obs => obs && obs.metrcTag).filter(tag => typeof tag === "string" && tag));
-    const missing = snapshot && Array.isArray(snapshot.items)
-      ? snapshot.items.filter(item => item && item.tag && !catalogueTags.has(item.tag)) : [];
-    const previousMissing = await this.state.storage.get("alerts:missing-tags");
-    const previousSet = new Set(Array.isArray(previousMissing) ? previousMissing : []);
-    const newlyMissing = missing.filter(item => !previousSet.has(item.tag));
-
-    // Baseline silently on the first observation so deploying Route 2 cannot
-    // announce the whole existing shelf. Every later unknown package is a new
-    // product or restock that needs the human full-sync path.
-    await this.state.storage.put("alerts:missing-tags", missing.map(item => item.tag));
-    if (Array.isArray(previousMissing) && newlyMissing.length && this.env.DISCORD_WEBHOOK)
-      this.state.waitUntil(this.alertNewStock(newlyMissing));
+    // metrcTags (plural) carries every package of a product; metrcTag stays for
+    // an observation sent by an older page still in a tab somewhere.
+    const missing = missingFromShelf(snapshot, body.observations);
+    // THE DISCORD ALERT IS RETIRED — 20 Sept. What it announced, the GitHub job
+    // now says better: named products rather than raw POS titles, the sync's own
+    // verdict after matching, and an issue that closes itself. Worse, this one
+    // could not be trusted on timing — it learns what Compass knows only from
+    // open browser tabs, and the page's poll is gated on document.hidden, so
+    // backgrounded counter screens leave it hours behind. Measured 12 Sept: it
+    // announced a restock 4h51m after the job had already filed it.
+    //
+    // THE COMPUTATION STAYS. `missing` is the honest answer to "what is on the
+    // shelf that Compass has not got", and unlike the alert it is computed
+    // against the tags THIS request just sent — so it cannot go stale. It is
+    // returned below for the page's freshness line.
 
     const writes = {};
     for (const obs of body.observations) {
@@ -626,23 +724,19 @@ export class StockCoordinator {
       }
     }
     if (Object.keys(writes).length) await this.state.storage.put(writes);
-    return j({ ok: true });
-  }
-
-  async alertNewStock(items) {
-    const shown = items.slice(0, 20).map(item => `• ${item.name}`).join("\n");
-    const more = items.length > 20 ? `\n…and ${items.length - 20} more` : "";
-    const content = `⚠️ **new stock needs a full sync**\n${shown}${more}`;
-    try {
-      const res = await this.timedFetch(this.env.DISCORD_WEBHOOK, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ content }),
-      });
-      if (!res.ok) console.warn("Compass new-stock alert failed", { status: res.status });
-    } catch (err) {
-      console.warn("Compass new-stock alert failed", { kind: String(err && err.name || "network") });
-    }
+    // WHAT THE PAGE ASKED WITHOUT KNOWING IT. The observation it just posted
+    // carries its whole catalogue, so this answer is exact at the moment of the
+    // call — no snapshot of the catalogue is kept and nothing can drift.
+    //
+    // Names, not a count: a budtender's real question is "is the thing I cannot
+    // find missing from Compass, or do we just not stock it?" — three names
+    // answer that and "3 waiting" does not. Capped at twelve; the page shows
+    // what fits and says how many more.
+    return j({
+      ok: true,
+      waiting: missing.length,
+      waitingNames: missing.slice(0, 12).map(item => item.name).filter(Boolean),
+    });
   }
 }
 
