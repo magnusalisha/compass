@@ -7,7 +7,7 @@
  "thc": 25.716,
  "total_terpenes": 1.11,
  "confidence": "moderate",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Sativa",
  "reported": [],
  "aroma": [
@@ -27,5 +27,6 @@
  },
  "scanned_at": "2026-09-10T00:59:41.701Z",
  "test_date": "2026-01-29",
- "test_lab": "Keystone State Testing, LLC"
+ "test_lab": "Keystone State Testing, LLC",
+ "sold_out_at": "2026-09-20T17:45:34.343Z"
 }
