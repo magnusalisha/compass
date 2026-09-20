@@ -7,7 +7,7 @@
  "thc": 89,
  "total_terpenes": 4.0773,
  "confidence": "strong",
- "in_stock": false,
+ "in_stock": true,
  "shelf_tag": "Sativa",
  "reported": [],
  "aroma": [
@@ -40,6 +40,5 @@
  "package_tags": [
   "1A41203000005DD000055699",
   "1A41203000005DD000130978"
- ],
- "sold_out_at": "2026-09-20T15:31:08.693Z"
+ ]
 }
