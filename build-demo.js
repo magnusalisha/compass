@@ -85,6 +85,27 @@ sub(/const STOCK_API = "[^"]*";/,
     'const STOCK_API = "";                // demo: no write path\nconst DEMO = true;                   // frozen snapshot; stock toggles on screen only',
     'blank STOCK_API + add DEMO flag');
 
+// 1b. PUT THE HERO BACK. The counter page dropped the leaf, the 52px wordmark
+//     and the strapline on 20 Sept — 202px of the 452 above the first product,
+//     on a screen with ~648px to spend, spent introducing Compass to people who
+//     have used it daily since August. The demo is the opposite audience:
+//     whoever opens that link genuinely IS seeing it for the first time, and the
+//     hero does real work for them. (Alisha, 20 Sept: "leave the demo with the
+//     hero, then".)
+//
+//     Same source, two audiences — which is what this script is for.
+sub(/<h1>Compass<\/h1>\n<div class="fresh" id="fresh"><\/div>/,
+    `<div class="eyebrow">\u{1F33F} Budtender's tool</div>
+<h1>Compass</h1>
+<div class="sub">Match what's on the shelf to what a customer's actually asking for — by terpene, not by strain name.</div>`,
+    'restore the demo hero');
+sub(/  h1\{font-family:Fraunces,serif;font-size:32px;/,
+    '  h1{font-family:Fraunces,serif;font-size:52px;',
+    'restore the 52px wordmark');
+sub(/     letter-spacing:-\.02em;line-height:1;margin:0 0 9px\}/,
+    '     letter-spacing:-.02em;line-height:1;margin:12px 0 10px}',
+    'restore the wordmark margins');
+
 // 2. The refresh timer doesn't know the repo is off. Left armed it polls
 //    https://api.github.com/repos///contents/data every 60s and on every tab
 //    focus, forever, on every device the link is opened on.
@@ -160,6 +181,23 @@ sub(/(  \.sub\{[^}]*\})/,
   const before = html.split('\n').length;
   html = html.split('\n').filter(l => !/^\s*\/\//.test(l)).join('\n');
   must(html.split('\n').length < before, 'strip comments — nothing was removed');
+}
+
+// 7b. AND CSS BLOCK COMMENTS. The rule above only matches lines beginning `//`,
+//     which is every comment in the script — but not one in <style>, where the
+//     syntax is /* */. This build failed on exactly that: a CSS comment added
+//     20 Sept quoted Alisha by name and sailed straight through a stripper whose
+//     own header promises it "closes the class rather than the instance".
+//
+//     Confined to the <style> block on purpose. Out here a /* */ pattern can sit
+//     inside a template literal or a regex, and cutting those by pattern is how
+//     a build starts corrupting code it does not understand — the same reason
+//     the rule above is whole-line only.
+{
+  const m = html.match(/<style>[\s\S]*?<\/style>/);
+  must(m, 'strip CSS comments — no <style> block found');
+  const cleaned = m[0].replace(/\/\*[\s\S]*?\*\//g, '');
+  html = html.replace(m[0], () => cleaned);
 }
 
 // ── write to a SCRATCH file, verify it, and only then put it in place ──────

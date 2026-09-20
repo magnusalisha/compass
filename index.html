@@ -25,9 +25,19 @@
        line-height:1.5;padding:22px 18px calc(48px + env(safe-area-inset-bottom));max-width:680px;margin:0 auto}
   .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;
            text-transform:uppercase;color:var(--dim);display:flex;align-items:center;gap:8px}
-  h1{font-family:Fraunces,serif;font-size:52px;font-weight:700;color:#F3EFE4;
-     letter-spacing:-.02em;line-height:1;margin:12px 0 10px}
+  /* 52px and a strapline introduce Compass to someone seeing it for the first
+     time — which, at the counter, is nobody. Measured 20 Sept: the leaf, the
+     wordmark and the strapline were 202px of the 452px above the first product,
+     on a screen with about 648px to give. The demo still gets the full hero;
+     build-demo.js puts it back. (Alisha, 20 Sept: "i keep coming back to the
+     busyness of the page".) */
+  h1{font-family:Fraunces,serif;font-size:32px;font-weight:700;color:#F3EFE4;
+     letter-spacing:-.02em;line-height:1;margin:0 0 9px}
   .sub{color:var(--dim);font-size:15px;max-width:34ch;margin-bottom:22px}
+  .fresh{font-family:'IBM Plex Mono',monospace;font-size:11.5px;line-height:1.5;
+         color:var(--dim);margin-bottom:16px;min-height:17px}
+  .fresh b{color:#E8C98A;font-weight:600}
+  .fresh .sep{color:rgba(201,214,196,.3)}
 
   .tabs{display:flex;gap:9px;margin-bottom:16px}
   .tabs button{flex:1;padding:12px 8px;border-radius:999px;border:1px solid var(--dim);
@@ -344,9 +354,8 @@
 </head>
 <body>
 <div id="sandtop"></div>
-<div class="eyebrow">🌿 Budtender's tool</div>
 <h1>Compass</h1>
-<div class="sub">Match what's on the shelf to what a customer's actually asking for — by terpene, not by strain name.</div>
+<div class="fresh" id="fresh"></div>
 
 <div class="tabs" role="tablist">
   <button role="tab" data-tab="effect" aria-selected="true">Match by effect</button>
@@ -2458,6 +2467,7 @@ function openCompare(leftKey, rightKey, focusId = null){
 
 function render(){
   const P = $('#panel'), O = $('#out');
+  renderFresh();   // cheap, and this way it can never drift from the data on screen
   document.querySelectorAll('.tabs button').forEach(t => t.setAttribute('aria-selected', t.dataset.tab === tab));
   // The out-of-stock toggle only belongs where you're browsing the whole
   // archive (Compare, Lookup). Match by effect and Find similar both answer
@@ -3638,6 +3648,86 @@ async function recordsFromIndex(files){
 // then stop working entirely. See refresh().
 let usedFallback = false;
 
+// ── the freshness line ────────────────────────────────────────────────────
+//
+// Answers the question every empty state in Compass currently hedges about —
+// "it may be on the shelf but not in Compass yet". Now it either is or it isn't.
+//
+// Everything here comes from headers the Worker already sends. It works `missing`
+// out against the tags of the catalogue in that same response, so unlike the
+// Discord alert it replaced, it cannot drift behind the shelf.
+let FRESH = null;
+
+function readFreshness(h){
+  let names = [];
+  try { names = JSON.parse(decodeURIComponent(h.get('X-Compass-Waiting-Names') || '')) || []; }
+  catch (_) { names = []; }   // absent whenever nothing is waiting, which is most of the time
+  FRESH = {
+    checkedAt: h.get('X-Compass-Stock-Checked-At') || null,
+    stale:     h.get('X-Compass-Stock-Stale') === 'true',
+    waiting:   Number(h.get('X-Compass-Waiting') || 0) || 0,
+    names:     Array.isArray(names) ? names : [],
+  };
+}
+
+// Shop time, always: the counter is in Brooklyn whoever happens to be looking.
+const nyClock = iso => {
+  const d = new Date(iso);
+  return isFinite(d) ? new Intl.DateTimeFormat('en-US',
+    {timeZone:'America/New_York', hour:'numeric', minute:'2-digit'})
+    .format(d).toLowerCase().replace(/\s/g, '') : null;   // '3:45 PM' -> '3:45pm'
+};
+// These come off a header rather than the vetted catalogue, and real brands
+// carry ampersands — Kings & Queens — so they are escaped on the way in.
+const fEsc = s => String(s == null ? '' : s)
+  .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+// "Ayrloom | Vape | Cereal Milk | Hybrid | 1g" -> "Ayrloom". The first segment is
+// the company by convention, and the convention holds on 405 of 431 packages.
+const posBrand = t => String(t || '').split('|')[0].trim();
+const andList = xs => xs.length < 2 ? (xs[0] || '')
+  : xs.slice(0, -1).join(', ') + ' and ' + xs[xs.length - 1];
+
+function renderFresh(){
+  const el = document.getElementById('fresh');
+  if (!el) return;
+  // NO WORKER, NO CLAIM. The demo runs with STOCK_API blank and must say nothing
+  // rather than assert something about a shelf it cannot see.
+  if (!FRESH){ el.innerHTML = ''; return; }
+
+  const t = nyClock(FRESH.checkedAt);
+
+  if (FRESH.stale){
+    el.innerHTML = '<b>shelf not checked' + (t ? ' since ' + t : '') + '</b>'
+      + '<span class="sep"> — </span>sold-out may be out of date';
+    return;
+  }
+  if (!FRESH.waiting){
+    el.innerHTML = 'everything on the shelf is in Compass'
+      + (t ? '<span class="sep"> · </span>checked ' + t : '');
+    return;
+  }
+  // ONE PRODUCT: NAME IT. This is the case a "latest delivery" wording would
+  // overstate — with a single item, naming it is both truer and more useful.
+  // Measured 20 Sept: across the 14 arrivals since the sync went live this has
+  // not happened once, so it is the rare branch, not the common one.
+  if (FRESH.waiting === 1 && FRESH.names.length === 1){
+    const p = FRESH.names[0].split('|').map(x => x.trim()).filter(Boolean);
+    const label = p.length >= 3 ? p[0] + ' ' + p[2] : (p.join(' ') || 'something');
+    el.innerHTML = '<b>' + fEsc(label) + " isn't in Compass yet</b>";
+    return;
+  }
+  // OTHERWISE BY BRAND. Deliveries arrive by company, so sixteen packages become
+  // two or three names — and "is it the new Ayrloom?" is the question a budtender
+  // actually has. (Alisha, 20 Sept: "like 'latest Ayrloom delivery not in Compass
+  // yet'".) Past four the line stops being scannable and gives a size instead.
+  const brands = [...new Set(FRESH.names.map(posBrand).filter(Boolean))];
+  el.innerHTML =
+    brands.length === 0 ? '<b>' + FRESH.waiting + " on the shelf aren't in Compass yet</b>"
+  : brands.length === 1 ? '<b>latest ' + fEsc(brands[0]) + " delivery isn't in Compass yet</b>"
+  : brands.length <= 4  ? '<b>latest ' + fEsc(andList(brands)) + " deliveries aren't in Compass yet</b>"
+  :                       '<b>latest deliveries from ' + brands.length + " brands aren't in Compass yet</b>";
+}
+
 async function fetchRecords(){
   usedFallback = false;
   if (STOCK_API){
@@ -3675,6 +3765,11 @@ async function fetchRecords(){
       // in warning red permanently — an alarm that fires on idle tabs, not on
       // stale stock. If this is ever wanted again it has to measure the
       // Worker's own last success at render time, not this page's last fetch.
+      // THE WORKER'S OWN LAST SUCCESS, not this tab's last fetch — which is the
+      // whole difference from the line pulled on 28 Aug. Read as each response
+      // arrives, and the page refetches on visibilitychange, so what is on screen
+      // when somebody actually looks is at most one poll old.
+      readFreshness(res.headers);
       const body = await res.json();
       if (Array.isArray(body) && body.length){
         // Two shapes, both live. Whole records is the fast path — one request
