@@ -27,8 +27,12 @@
   "Geraniol": 0.0499,
   "alpha-Bisabolol": 0.0477
  },
- "scanned_at": "2026-09-20T01:45:47.595Z",
+ "scanned_at": "2026-09-20T19:22:35.063Z",
  "test_date": "2026-05-14",
  "test_lab": "ACT Laboratories of New York, LLC",
- "date_expire": "2027-05-05"
+ "date_expire": "2027-05-05",
+ "package_tags": [
+  "1A41203000005DD000055702",
+  "1A41203000005DD000130981"
+ ]
 }
