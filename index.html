@@ -1274,7 +1274,14 @@ const domTerps = p => Object.entries(p.terpenes||{})
 
 // Some records carry NO terpene profile at all — distillate carts whose COA
 // reports cannabinoids only. That is a different thing from `faint` (a real
-// reading that has degraded): there is nothing here to read, at any confidence.
+// reading that came back LOW): there is nothing here to read, at any confidence.
+//
+// Faint is a THRESHOLD, not a diagnosis. It is the bottom band of a rule that
+// looks only at the terpene total, and a low total can be a genuinely quiet
+// product, a jar that lost its volatiles, or a lab that under-reports. Compass
+// cannot tell which, and the card is careful not to: it says "terpenes are
+// faint here, trust your nose", which describes the reading and claims nothing
+// about the cause.
 // Everything the card says about chemistry has to stand down for these, or the
 // tool states a reading it does not have. This caught three vape carts that
 // were stored as confidence:"strong", lean:"mixed" with terpenes:{} — and so
