@@ -1981,6 +1981,28 @@ function batchNote(p){
   return `<p class="ev">${n} batches on the shelf, so the THC is a range.</p>`;
 }
 
+// WHICH SCALE A THC FIGURE IS ON.
+//
+// A vape's percentage measures concentrate; flower's measures flower. On this
+// shelf flower runs 20.0-57.0 and prerolls 14.7-50.9 — overlapping by 31 points,
+// medians 27.3 and 30.9 — so telling someone holding a 22% eighth that a 31%
+// preroll is stronger is both true and useful. Vapes overlap EITHER by zero:
+// 70.9-91.2. Comparing across that line is arithmetic, not advice.
+//
+// Deliberately not keyed on category. The first version silenced flower-to-
+// preroll too, which is the one cross-format substitution people actually make.
+// (Alisha: "the only way i can see that backfiring is preroll vs flower. most
+// people who want a vape will get another vape.")
+//
+// LIFTED OUT OF matchNote ON 21 SEPT so Compare can use it too. Find similar
+// had followed this rule since 31 Aug; Compare never got it, and went on saying
+// "meaningfully stronger" over an eighth and a cart. Measured across every pair
+// in the catalogue: 35,581 cross-scale pairs were getting a comparison that
+// means nothing, against 51,572 same-scale pairs where it means something.
+// One rule, one place, both tabs.
+const thcScale = q => category(q) === 'Vape' ? 'concentrate' : 'flower';
+const thcComparable = (a, b) => thcScale(a) === thcScale(b);
+
 // ── the read: honest about what it can and can't call
 function read(x, y){
   // disambiguate the two strains only when they collide (same name, diff brand)
@@ -1992,7 +2014,8 @@ function read(x, y){
   const bare = [x,y].filter(p => !hasProfile(p));
   if (bare.length){
     h += `<p><b>Can't compare these on chemistry.</b> ${bare.map(nm).join(' and ')} ${bare.length>1?'have':'has'} no terpene profile on file — the lab reported cannabinoids only. <b>Go with the package label here.</b></p>`;
-    if (x.thc != null && y.thc != null && Math.abs(x.thc - y.thc) >= 3){
+    // Only where the two numbers are on the same scale — see thcScale.
+  if (thcComparable(x, y) && x.thc != null && y.thc != null && Math.abs(x.thc - y.thc) >= 3){
       const [hi, lo] = x.thc >= y.thc ? [x,y] : [y,x];
       h += `<p>What I can say: <b>${nm(hi)}</b> is the stronger one (${thc1(hi.thc)} THC vs ${thc1(lo.thc)}).</p>`;
     }
@@ -2114,7 +2137,8 @@ function read(x, y){
           : `<p>The profiles are close enough that it's the customer's call — brand or price.</p>`;
     }
   }
-  if (x.thc != null && y.thc != null && Math.abs(x.thc - y.thc) >= 3){
+  // Only where the two numbers are on the same scale — see thcScale.
+  if (thcComparable(x, y) && x.thc != null && y.thc != null && Math.abs(x.thc - y.thc) >= 3){
     const [hi, lo] = x.thc >= y.thc ? [x,y] : [y,x];
     h += `<p><b>${nm(hi)}</b> is meaningfully stronger (${thc1(hi.thc)} THC vs ${thc1(lo.thc)}) — that'll drive the experience more than any terpene here.</p>`;
   }
@@ -2215,8 +2239,7 @@ function matchNote(src, x, s){
   // too, which is the one cross-format substitution people actually make.
   // (Alisha: "the only way i can see that backfiring is preroll vs flower. most
   // people who want a vape will get another vape.")
-  const thcScale = q => category(q) === 'Vape' ? 'concentrate' : 'flower';
-  const crossFormat = thcScale(x) !== thcScale(src);
+  const crossFormat = !thcComparable(x, src);
   // THIS PRODUCT'S figure is not repeated here — it is in the card header, in
   // bold, a couple of centimetres above. What the header cannot show is the
   // COMPARISON, so that is all this line carries. The source's number stays for
