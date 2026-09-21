@@ -1672,10 +1672,36 @@ function ev(p){
 // direction the sentence never touches. Grading the direction instead is the
 // correct fix and takes ●●● from 123 to 70 of 215. That is the same shelf-wide
 // badge decision recorded above evLead, deliberately not taken here.
+// NAME THE TERPENE, DON'T CLAIM THE SENTENCE LEANS ON IT — 21 Sept.
+//
+// This said "— leans on caryophyllene" under a sentence that was written from
+// humulene, and on 66 of 185 in-stock cards those are different terpenes. The
+// badge grades the BIGGEST terpene; says() leads with the biggest terpene in the
+// winning DIRECTION. They were the same thing when this was written and drifted
+// apart when the read started summing directions.
+//
+// So the card named the wrong terpene — not a fine distinction, just untrue
+// about where its own sentence came from. Worse, caryophyllene is the only
+// tier-3 entry on the shelf and sits in the same calm direction as humulene,
+// linalool and myrcene, so it lent its three dots to folklore-tier reads 60
+// times over.
+//
+// TWO WAYS TO FIX THAT, and the other one was measured before this was chosen:
+// grading the DIRECTION instead would have taken ●●● from 106 of 185 to 50.
+// (Alisha, 21 Sept, shown both: "I like B".)
+//
+// B is this. The dots keep grading the terpene there is most of — which is a
+// real fact, and on Witches Brew that terpene is 1.01% against humulene's 0.34,
+// three times anything else. What goes is the CLAIM that the sentence rests on
+// it. Naming the figure makes it checkable against the chips directly above,
+// where that number is already printed.
+//
+// The dots are unchanged. Nothing about how confident Compass looks moves; what
+// moves is that the card stops asserting a link it cannot support.
 function evWord(p){
   const n = ev(p), k = evLead(p);
   const on = broadLead(p) ? ' — several small terpenes'
-           : k ? ` — leans on ${short(k).toLowerCase()}` : '';
+           : k ? ` — ${short(k).toLowerCase()}, ${tpct(p.terpenes[k])}%` : '';
   return n === 3 ? `real mechanism${on}`
        : n === 2 ? `some human data${on}`
        : `folklore${on}, ${smellable(p) ? 'trust your nose over this' : 'go by brand or price'}`;
