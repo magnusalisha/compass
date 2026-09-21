@@ -4,7 +4,7 @@
  "brand": "Lobo",
  "strain": "Papaya Punch",
  "form": "Infused Preroll 0.5g (5-pack, 2.5g total)",
- "thc": 25.4,
+ "thc": 40,
  "total_terpenes": 0.9174,
  "confidence": "moderate",
  "in_stock": true,
@@ -32,7 +32,7 @@
   "beta-Pinene": 0.0177,
   "alpha-Pinene": 0.0148
  },
- "scanned_at": "2026-09-11T17:01:43.089Z",
+ "scanned_at": "2026-09-21T16:18:15.334Z",
  "test_date": "2026-03-22",
  "test_lab": "Analytical Testing Center of Central New York",
  "date_expire": "2026-12-26"
