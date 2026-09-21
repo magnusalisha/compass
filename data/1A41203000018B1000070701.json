@@ -7,7 +7,7 @@
  "thc": 27.0881,
  "total_terpenes": 0.35,
  "confidence": "faint",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Hybrid",
  "reported": [
   "Sungrown",
@@ -35,5 +35,6 @@
  },
  "test_date": "2026-05-17",
  "test_lab": "Kaycha Labs NY",
- "scanned_at": "2026-08-20T23:39:14.483Z"
+ "scanned_at": "2026-08-20T23:39:14.483Z",
+ "sold_out_at": "2026-09-21T21:30:18.507Z"
 }
