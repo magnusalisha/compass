@@ -3425,29 +3425,38 @@ function renderLookupResults(){
   return foot();
 }
 function foot(){
-  const unverified = DATA.filter(p => shelfTag(p) === 'Unverified').length;
-  // Counted in the footer so a new arrival tells YOU, instead of waiting to be
-  // noticed at the counter. All Gas and Americano were both found by smelling
-  // the jar; nothing in the tool had flagged either one.
-  const unread = DATA.filter(p => hasProfile(p) && unreadTerps(p).hits.length).length;
-  // "products", not "scanned". The catalogue used to be whatever had been put
-  // through the capture script by hand, so "scanned" named the real limit and
-  // every empty state repeated it. The sync reads the shop's inventory now, so
-  // the count is simply what Compass knows — including products that have sold
-  // through, which is deliberate: Compare and Find similar search the whole
-  // archive on purpose, so a customer can be matched off something we had.
-  $('#foot').innerHTML = `${DATA.length} products · ${DATA.filter(stocked).length} in stock${
-    unreadable ? ` · <b style="color:var(--warn)">${unreadable} ${
+  // THE COUNTS ARE GONE — 21 Sept. "418 products · 193 in stock", the unverified
+  // shelf tags and "N with a major terpene I can't describe" were diagnostics
+  // sitting where a budtender reads mid-customer. None of them could be acted on
+  // from here: the unverified line asked you to go and find cards you would have
+  // to locate first, and the terpene count cannot be fixed by tapping anything at
+  // all — it is a note about vocabulary Compass is missing.
+  //
+  // Both of those cases are already handled where they belong. A card with no
+  // shelf tag shows an Unverified chip and an Edit control ON the card. A card
+  // carrying an undescribed terpene prints unreadNote(): "geraniol (0.15%) is
+  // among the largest here and has no evidenced character — so the read above
+  // leaves it out." That note is better than the count ever was, because it names
+  // the product, the terpene and the amount, and says what to do instead.
+  //
+  // (Alisha, 21 Sept: "those numbers aren't useful to a budtender." The place
+  // they DO belong is an operator's dashboard — pinned, not built.)
+  //
+  // WHAT STAYS, and why each one earns its line:
+  //   - the unreadable warning. Not a statistic, a failure state: records that
+  //     did not load, or carry a typo. It is the only thing here that means
+  //     something is wrong right now.
+  //   - the dots legend, which is what makes ●●● on a card mean anything.
+  //   - the THC line, which is the single most load-bearing sentence in the tool.
+  $('#foot').innerHTML = `${
+    unreadable ? `<b style="color:var(--warn)">${unreadable} ${
       unreadableKind === 'data' ? `unreadable — ${unreadable > 1 ? 'those records have' : 'that record has'} a typo`
       : unreadableKind === 'net' ? "didn't load — try refreshing"
-      : "missing — some didn't load, some are unreadable"}</b>` : ''}${
-    unverified ? ` · <b>${unverified} shelf tag${unverified>1?'s':''} unverified</b> — tap Edit on a card to set one` : ''}${
-    unread ? ` · <b>${unread} with a major terpene I can't describe</b>` : ''}<br>
-    ●●● real receptor mechanism · ●●○ some human data · ●○○ folklore<br>
+      : "missing — some didn't load, some are unreadable"}</b><br>` : ''
+    }●●● real receptor mechanism · ●●○ some human data · ●○○ folklore<br>
     Only caryophyllene has a mechanism (CB2). The rest is inherited from strain databases.<br>
     <b>THC is the one number on the COA that reliably drives the experience.</b>`;
 }
-
 document.addEventListener('click', e => {
   const more = e.target.closest('[data-effmore]');
   if (more){ effShowAll = more.dataset.effmore === '1'; renderEffectResults(); return; }
