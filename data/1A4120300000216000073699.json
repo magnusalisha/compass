@@ -7,7 +7,7 @@
  "thc": 41.1594,
  "total_terpenes": 0.37,
  "confidence": "faint",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Sativa",
  "reported": [
   "Infused Preroll",
@@ -38,5 +38,6 @@
  "test_date": "2026-04-24",
  "test_lab": "Kaycha Labs NY",
  "date_expire": "2027-04-15",
- "scanned_at": "2026-09-13T09:13:08.055Z"
+ "scanned_at": "2026-09-13T09:13:08.055Z",
+ "sold_out_at": "2026-09-21T15:30:19.191Z"
 }
