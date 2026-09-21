@@ -1,6 +1,6 @@
 {
  "id": "c1557d9638",
- "metrc_tag": "1A41203000004B3000017521",
+ "metrc_tag": "1A41203000004B3000023175",
  "brand": "Alchemy Pure",
  "strain": "Dirty Laundry",
  "form": "Vape 0.5g Live Rosin Cartridge",
@@ -35,12 +35,8 @@
   "Borneol": 0.035,
   "Terpinolene": 0.0226
  },
- "scanned_at": "2026-09-19T21:03:04.151Z",
+ "scanned_at": "2026-09-21T22:30:22.317Z",
  "test_date": "2026-06-01",
  "test_lab": "ACT Laboratories of New York, LLC",
- "date_expire": "2027-06-09",
- "package_tags": [
-  "1A41203000004B3000017521",
-  "1A41203000004B3000023175"
- ]
+ "date_expire": "2027-06-09"
 }
