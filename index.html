@@ -3670,13 +3670,9 @@ function readFreshness(h){
   };
 }
 
-// Shop time, always: the counter is in Brooklyn whoever happens to be looking.
-const nyClock = iso => {
-  const d = new Date(iso);
-  return isFinite(d) ? new Intl.DateTimeFormat('en-US',
-    {timeZone:'America/New_York', hour:'numeric', minute:'2-digit'})
-    .format(d).toLowerCase().replace(/\s/g, '') : null;   // '3:45 PM' -> '3:45pm'
-};
+// Shop time is no longer shown — see renderFresh. Kept out rather than kept
+// around: an unused formatter is the kind of thing that gets wired back in by
+// accident.
 // These come off a header rather than the vetted catalogue, and real brands
 // carry ampersands — Kings & Queens — so they are escaped on the way in.
 const fEsc = s => String(s == null ? '' : s)
@@ -3694,16 +3690,18 @@ function renderFresh(){
   // rather than assert something about a shelf it cannot see.
   if (!FRESH){ el.innerHTML = ''; return; }
 
-  const t = nyClock(FRESH.checkedAt);
+  // NOR WHEN THE SHELF READING IS STALE — and this is the reason there is no
+  // "checked at" time on screen. (Alisha, 21 Sept: "I just want something that
+  // says 'all items on the shelf are in compass'".) A timestamp asks the reader
+  // to judge whether a number is old enough to distrust, which is work, and the
+  // 28 Aug version proved nobody wants it. So the line does that judging: it
+  // makes the claim only while the claim is backed, and goes quiet otherwise.
+  // Silence here is honest — Compass simply isn't saying anything — where a
+  // cheerful "all items are in Compass" over a stale read would be a lie.
+  if (FRESH.stale){ el.innerHTML = ''; return; }
 
-  if (FRESH.stale){
-    el.innerHTML = '<b>shelf not checked' + (t ? ' since ' + t : '') + '</b>'
-      + '<span class="sep"> — </span>sold-out may be out of date';
-    return;
-  }
   if (!FRESH.waiting){
-    el.innerHTML = 'everything on the shelf is in Compass'
-      + (t ? '<span class="sep"> · </span>checked ' + t : '');
+    el.innerHTML = 'all items on the shelf are in Compass';
     return;
   }
   // ONE PRODUCT: NAME IT. This is the case a "latest delivery" wording would
