@@ -3,3 +3,8 @@
 # Built demo output — regenerate with: node build-demo.js
 # The script is versioned; the 200KB generated snapshot is not.
 demo/
+
+# local operator dashboard — regenerate with: --dashboard
+# Carries whatever the run report carries, including partial Metrc tags.
+# Never committed, never published; see writeDashboard in tools/alleaves-sync.js
+dashboard.html
