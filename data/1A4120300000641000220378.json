@@ -1,0 +1,26 @@
+{
+ "id": "bd8e6d18f4",
+ "metrc_tag": "1A4120300000641000220378",
+ "brand": "Cheevo",
+ "strain": "Sweet n Sour Diesel",
+ "form": "Preroll 1g",
+ "confidence": "moderate",
+ "shelf_tag": "Hybrid",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "beta-Caryophyllene": 0.227,
+  "Limonene": 0.124,
+  "beta-Myrcene": 0.118,
+  "alpha-Humulene": 0.082,
+  "Guaiol": 0.049,
+  "alpha-Bisabolol": 0.04
+ },
+ "scanned_at": "2026-09-22T18:29:40.913Z",
+ "thc": 24.2971,
+ "total_terpenes": 0.851,
+ "in_stock": true,
+ "test_date": "2026-08-17",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-08-11"
+}

@@ -1,0 +1,28 @@
+{
+ "id": "02523a7876",
+ "metrc_tag": "1A4120300000641000220379",
+ "brand": "Florette",
+ "strain": "Pound Cake",
+ "form": "Flower 3.5g",
+ "confidence": "strong",
+ "shelf_tag": "Indica",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "beta-Myrcene": 1.08,
+  "beta-Caryophyllene": 0.22,
+  "Limonene": 0.14,
+  "alpha-Humulene": 0.06,
+  "Guaiol": 0.06,
+  "beta-Pinene": 0.02,
+  "Linalool": 0.02,
+  "alpha-Bisabolol": 0.01
+ },
+ "scanned_at": "2026-09-22T18:29:41.142Z",
+ "thc": 28.3313,
+ "total_terpenes": 1.64,
+ "in_stock": true,
+ "test_date": "2026-08-10",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-08-12"
+}

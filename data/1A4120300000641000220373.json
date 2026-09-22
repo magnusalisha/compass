@@ -1,0 +1,27 @@
+{
+ "id": "edd03f8133",
+ "metrc_tag": "1A4120300000641000220373",
+ "brand": "Florette",
+ "strain": "Lemon Fresh",
+ "form": "Preroll 1g",
+ "confidence": "strong",
+ "shelf_tag": "Sativa",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "Terpinolene": 1.033,
+  "beta-Myrcene": 0.335,
+  "beta-Caryophyllene": 0.191,
+  "Guaiol": 0.12,
+  "alpha-Humulene": 0.08,
+  "Farnesene": 0.051,
+  "Terpineol": 0.042
+ },
+ "scanned_at": "2026-09-22T18:29:39.834Z",
+ "thc": 28.2747,
+ "total_terpenes": 1.852,
+ "in_stock": true,
+ "test_date": "2026-07-14",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-07-07"
+}

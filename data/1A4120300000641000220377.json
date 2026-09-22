@@ -25,14 +25,16 @@
   "alpha-Humulene": 0.07,
   "beta-Myrcene": 0.07,
   "alpha-Bisabolol": 0.05,
+  "alpha-Pinene": 0.02,
   "Caryophyllene Oxide": 0.02,
   "Linalool": 0.02,
-  "alpha-Pinene": 0.02,
+  "beta-Pinene": 0.01,
   "Guaiol": 0.01,
   "Limonene": 0.01,
-  "Valencene": 0.01,
-  "beta-Pinene": 0.01
+  "Valencene": 0.01
  },
- "scanned_at": "2026-09-22T17:45:54.353Z",
- "date_expire": "2027-04-21"
+ "scanned_at": "2026-09-22T18:29:40.709Z",
+ "date_expire": "2027-04-21",
+ "test_date": "2026-04-21",
+ "test_lab": "Kaycha Labs NY"
 }

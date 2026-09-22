@@ -1,0 +1,30 @@
+{
+ "id": "09b7799940",
+ "metrc_tag": "1A4120300000641000220372",
+ "brand": "Florette",
+ "strain": "Pound Cake",
+ "form": "Preroll 0.5g (5-pack, 2.5g total)",
+ "confidence": "moderate",
+ "shelf_tag": "Indica",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "beta-Myrcene": 0.43,
+  "beta-Caryophyllene": 0.19,
+  "Limonene": 0.07,
+  "alpha-Humulene": 0.06,
+  "Guaiol": 0.06,
+  "Linalool": 0.03,
+  "alpha-Bisabolol": 0.02,
+  "beta-Pinene": 0.01,
+  "Fenchol": 0.01,
+  "Terpineol": 0.01
+ },
+ "scanned_at": "2026-09-22T18:29:39.648Z",
+ "thc": 28.3634,
+ "total_terpenes": 0.92,
+ "in_stock": true,
+ "test_date": "2026-08-24",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-08-18"
+}

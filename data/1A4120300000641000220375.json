@@ -1,0 +1,27 @@
+{
+ "id": "096608abf5",
+ "metrc_tag": "1A4120300000641000220375",
+ "brand": "Florette",
+ "strain": "Hypnotik",
+ "form": "Preroll 1g",
+ "confidence": "strong",
+ "shelf_tag": "Hybrid",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "beta-Myrcene": 0.455,
+  "Limonene": 0.277,
+  "Linalool": 0.198,
+  "beta-Caryophyllene": 0.189,
+  "Guaiol": 0.113,
+  "alpha-Humulene": 0.06,
+  "Farnesene": 0.045
+ },
+ "scanned_at": "2026-09-22T18:29:40.274Z",
+ "thc": 30.3118,
+ "total_terpenes": 1.46,
+ "in_stock": true,
+ "test_date": "2026-08-17",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-08-11"
+}

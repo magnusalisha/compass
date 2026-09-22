@@ -1,0 +1,33 @@
+{
+ "id": "c98931411b",
+ "metrc_tag": "1A4120300000641000220366",
+ "brand": "Florette",
+ "strain": "Purple Starfruit",
+ "form": "Flower 3.5g",
+ "confidence": "strong",
+ "shelf_tag": "Indica",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "Limonene": 0.71,
+  "Linalool": 0.41,
+  "beta-Caryophyllene": 0.21,
+  "alpha-Humulene": 0.11,
+  "Farnesene": 0.1,
+  "beta-Pinene": 0.09,
+  "beta-Myrcene": 0.08,
+  "alpha-Pinene": 0.05,
+  "Fenchol": 0.05,
+  "Terpineol": 0.05,
+  "alpha-Bisabolol": 0.01,
+  "Camphene": 0.01,
+  "Caryophyllene Oxide": 0.01
+ },
+ "scanned_at": "2026-09-22T18:29:39.025Z",
+ "thc": 28.0992,
+ "total_terpenes": 1.89,
+ "in_stock": true,
+ "test_date": "2026-09-08",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-09-01"
+}

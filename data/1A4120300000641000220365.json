@@ -1,0 +1,26 @@
+{
+ "id": "c3d514eb75",
+ "metrc_tag": "1A4120300000641000220365",
+ "brand": "Florette",
+ "strain": "Cheddar Cheeze",
+ "form": "Flower 3.5g",
+ "confidence": "moderate",
+ "shelf_tag": "Hybrid",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "Limonene": 0.248,
+  "beta-Myrcene": 0.203,
+  "Linalool": 0.147,
+  "beta-Caryophyllene": 0.116,
+  "Guaiol": 0.074,
+  "alpha-Humulene": 0.042
+ },
+ "scanned_at": "2026-09-22T18:29:38.832Z",
+ "thc": 30.6484,
+ "total_terpenes": 1.047,
+ "in_stock": true,
+ "test_date": "2026-09-11",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-09-04"
+}

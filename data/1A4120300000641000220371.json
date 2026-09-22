@@ -1,0 +1,33 @@
+{
+ "id": "fd2eb1207b",
+ "metrc_tag": "1A4120300000641000220371",
+ "brand": "Florette",
+ "strain": "Cherry Pie",
+ "form": "Preroll 0.5g (5-pack, 2.5g total)",
+ "confidence": "moderate",
+ "shelf_tag": "Sativa",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "beta-Caryophyllene": 0.32,
+  "Limonene": 0.17,
+  "alpha-Humulene": 0.1,
+  "Fenchol": 0.09,
+  "Linalool": 0.09,
+  "Terpineol": 0.09,
+  "alpha-Bisabolol": 0.07,
+  "Valencene": 0.03,
+  "beta-Myrcene": 0.02,
+  "alpha-Pinene": 0.01,
+  "beta-Pinene": 0.01,
+  "Caryophyllene Oxide": 0.01,
+  "Guaiol": 0.01
+ },
+ "scanned_at": "2026-09-22T18:29:39.425Z",
+ "thc": 28.2687,
+ "total_terpenes": 1.03,
+ "in_stock": true,
+ "test_date": "2026-08-07",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-08-08"
+}
