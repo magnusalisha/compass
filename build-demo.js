@@ -154,6 +154,15 @@ sub(/let DATA = \[\]/, `let DATA = ${blob}`, 'embed frozen catalogue');
 //    die structurally, at GH_USER/GH_REPO above, which editURL() needs. Verified
 //    on the built file: 0 edit links.
 
+// 5. the page's copyright notice names the owner, and the demo scrubs owner
+//    names — the guard below catches 'alisha' and fails the build, correctly.
+//    The claim still belongs on a public copy, so swap in a name-free one. The
+//    notice with the name lives in LICENSE, in the repo, where it is not being
+//    handed to strangers.
+sub(/<!-- Compass\. Copyright[\s\S]*?-->/,
+    '<!-- Compass. Copyright (c) 2026. All rights reserved. Not licensed for reuse. -->',
+    'anonymise the copyright notice');
+
 // 6. say what this is, once, quietly
 sub(/(<div class="sub">[^<]*<\/div>)/,
     `$1\n<div class="demonote">Demo — a frozen snapshot of a working shop's case. Real lab results. Nothing here saves or updates.</div>`,
