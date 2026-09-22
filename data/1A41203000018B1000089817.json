@@ -1,0 +1,33 @@
+{
+ "id": "035c4d17ec",
+ "metrc_tag": "1A41203000018B1000089817",
+ "brand": "Dank",
+ "strain": "Grease Monkey",
+ "form": "Preroll 1g",
+ "confidence": "faint",
+ "shelf_tag": "Hybrid",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "beta-Caryophyllene": 0.13,
+  "beta-Myrcene": 0.06,
+  "Guaiol": 0.06,
+  "alpha-Humulene": 0.05,
+  "Caryophyllene Oxide": 0.03,
+  "Linalool": 0.03,
+  "alpha-Bisabolol": 0.02,
+  "Limonene": 0.02,
+  "alpha-Pinene": 0.01,
+  "beta-Pinene": 0.01,
+  "Fenchol": 0.01,
+  "Ocimene": 0.01,
+  "Terpineol": 0.01,
+  "Valencene": 0.01
+ },
+ "scanned_at": "2026-09-22T20:36:00.600Z",
+ "thc": 25.9854,
+ "total_terpenes": 0.46,
+ "in_stock": true,
+ "test_date": "2026-03-20",
+ "test_lab": "Kaycha Labs NY"
+}

@@ -1,0 +1,30 @@
+{
+ "id": "618854f485",
+ "metrc_tag": "1A41203000018B1000089814",
+ "brand": "Dank",
+ "strain": "Melon Haze",
+ "form": "Flower 3.5g",
+ "confidence": "moderate",
+ "shelf_tag": "Sativa",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "Linalool": 0.32,
+  "beta-Caryophyllene": 0.21,
+  "Limonene": 0.19,
+  "alpha-Humulene": 0.1,
+  "Fenchol": 0.06,
+  "Terpineol": 0.06,
+  "beta-Myrcene": 0.03,
+  "beta-Pinene": 0.03,
+  "alpha-Pinene": 0.01,
+  "Valencene": 0.01
+ },
+ "scanned_at": "2026-09-22T20:36:00.019Z",
+ "thc": 29.0029,
+ "total_terpenes": 1.02,
+ "in_stock": true,
+ "test_date": "2026-06-26",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-08-06"
+}

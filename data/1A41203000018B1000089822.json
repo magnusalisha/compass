@@ -1,0 +1,28 @@
+{
+ "id": "0a20fc2115",
+ "metrc_tag": "1A41203000018B1000089822",
+ "brand": "Miss Grass",
+ "strain": "Quiet Times",
+ "form": "Preroll 2g",
+ "confidence": "faint",
+ "shelf_tag": "Indica",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "beta-Caryophyllene": 0.12,
+  "Linalool": 0.08,
+  "alpha-Humulene": 0.05,
+  "alpha-Bisabolol": 0.02,
+  "beta-Myrcene": 0.01,
+  "Fenchol": 0.01,
+  "Limonene": 0.01,
+  "Terpineol": 0.01,
+  "Valencene": 0.01
+ },
+ "scanned_at": "2026-09-22T20:36:01.608Z",
+ "thc": 26.2608,
+ "total_terpenes": 0.32,
+ "in_stock": true,
+ "test_date": "2025-12-02",
+ "test_lab": "Kaycha Labs NY"
+}

@@ -1,0 +1,32 @@
+{
+ "id": "cd36801b11",
+ "metrc_tag": "1A41203000018B1000089815",
+ "brand": "Dank",
+ "strain": "Pineapple Express",
+ "form": "Flower 3.5g",
+ "confidence": "strong",
+ "shelf_tag": "Hybrid",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "Limonene": 0.37,
+  "beta-Caryophyllene": 0.31,
+  "beta-Myrcene": 0.16,
+  "Linalool": 0.15,
+  "alpha-Humulene": 0.1,
+  "Guaiol": 0.09,
+  "beta-Pinene": 0.05,
+  "Fenchol": 0.05,
+  "Terpineol": 0.05,
+  "alpha-Pinene": 0.03,
+  "alpha-Bisabolol": 0.02,
+  "Camphene": 0.01
+ },
+ "scanned_at": "2026-09-22T20:36:00.205Z",
+ "thc": 30.6464,
+ "total_terpenes": 1.39,
+ "in_stock": true,
+ "test_date": "2026-06-26",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-08-06"
+}

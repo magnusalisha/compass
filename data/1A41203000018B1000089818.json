@@ -1,0 +1,31 @@
+{
+ "id": "99f27682f5",
+ "metrc_tag": "1A41203000018B1000089818",
+ "brand": "Dank",
+ "strain": "Mango Sherbert",
+ "form": "Preroll 1g",
+ "confidence": "moderate",
+ "shelf_tag": "Indica",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "Linalool": 0.37,
+  "beta-Caryophyllene": 0.26,
+  "Limonene": 0.16,
+  "alpha-Humulene": 0.09,
+  "Fenchol": 0.06,
+  "Terpineol": 0.06,
+  "alpha-Bisabolol": 0.04,
+  "beta-Myrcene": 0.04,
+  "beta-Pinene": 0.02,
+  "Caryophyllene Oxide": 0.02,
+  "alpha-Pinene": 0.01
+ },
+ "scanned_at": "2026-09-22T20:36:00.817Z",
+ "thc": 33.4049,
+ "total_terpenes": 1.16,
+ "in_stock": true,
+ "test_date": "2026-08-11",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-08-04"
+}

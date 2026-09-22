@@ -1,0 +1,32 @@
+{
+ "id": "4190d9cf90",
+ "metrc_tag": "1A41203000018B1000089816",
+ "brand": "Dank",
+ "strain": "Vanilla Gorilla",
+ "form": "Flower 3.5g",
+ "confidence": "strong",
+ "shelf_tag": "Indica",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "Limonene": 0.4,
+  "beta-Caryophyllene": 0.24,
+  "Linalool": 0.2,
+  "beta-Myrcene": 0.08,
+  "Guaiol": 0.08,
+  "alpha-Humulene": 0.07,
+  "alpha-Bisabolol": 0.06,
+  "beta-Pinene": 0.04,
+  "Terpineol": 0.04,
+  "alpha-Pinene": 0.03,
+  "Fenchol": 0.03,
+  "Valencene": 0.01
+ },
+ "scanned_at": "2026-09-22T20:36:00.394Z",
+ "thc": 33.6815,
+ "total_terpenes": 1.28,
+ "in_stock": true,
+ "test_date": "2026-06-26",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-08-07"
+}
