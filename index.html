@@ -781,7 +781,14 @@ const WANT = {
   confiden:['Limonene'], refresh:['Limonene','alpha-Pinene'], recharg:['Limonene','alpha-Pinene'],
   peace:['beta-Caryophyllene','Linalool','alpha-Bisabolol'], zen:['beta-Caryophyllene','Linalool'],
   grounded:['beta-Caryophyllene','Linalool'], centered:['beta-Caryophyllene','Linalool'],
-  chatt:['Limonene'], funny:['Limonene'], silly:['Limonene'], playful:['Limonene','Terpinolene'],
+  chatt:['Limonene'], funny:['Limonene'], silly:['Limonene'],
+  // Valencene added 2026-09-22 with its character word. "playful" is the
+  // word four cards now PRINT, off valencene — so a search for the word a
+  // budtender just read had to find the terpene that put it there. Without
+  // this, Papaya Punch Fuerte said "keeping things playful" on the card and
+  // ranked near the bottom of a playful search, on 0.07% of a different
+  // terpene. Order is cosmetic — these go into a Set.
+  playful:['Limonene','Terpinolene','Valencene'],
   sensual:['Limonene'], romant:['Limonene'], comfort:['Linalool','beta-Caryophyllene'],
   floaty:['beta-Myrcene','Linalool'], dreamy:['beta-Myrcene','Linalool'],
   spacey:['beta-Myrcene'], introspect:['Linalool','beta-Myrcene'],
