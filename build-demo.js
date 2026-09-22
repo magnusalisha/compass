@@ -145,10 +145,14 @@ sub(/  render\(\);\n  startAutoRefresh\(\);/,
 //    new variable added to that line cannot break this or be eaten by it.
 sub(/let DATA = \[\]/, `let DATA = ${blob}`, 'embed frozen catalogue');
 
-// 5. the footer tells you to "tap Edit on a card" to fix an unverified shelf
-//    tag — but the demo has no Edit links, so it points at a control that
-//    isn't there. State the count without the instruction.
-sub(/ — tap Edit on a card to set one/, '', 'drop the Edit instruction from the footer');
+// 5. the footer used to say "tap Edit on a card" to fix an unverified shelf tag,
+//    and this stripped it, because the demo has no Edit links. 083e92a took the
+//    counts out of the footer and that sentence went with them, so the strip had
+//    nothing left to match and sub() failed the build — correctly, that is what
+//    it is for. Removed rather than loosened: the affordance it guarded is gone
+//    from the source, and the LINKS were never this line's doing anyway. They
+//    die structurally, at GH_USER/GH_REPO above, which editURL() needs. Verified
+//    on the built file: 0 edit links.
 
 // 6. say what this is, once, quietly
 sub(/(<div class="sub">[^<]*<\/div>)/,
