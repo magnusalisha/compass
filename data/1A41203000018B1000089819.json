@@ -1,6 +1,6 @@
 {
  "id": "b1dd63ad32",
- "metrc_tag": "1A41203000018B1000083794",
+ "metrc_tag": "1A41203000018B1000089819",
  "brand": "Dank",
  "strain": "Purple Sunset",
  "form": "Preroll 1g",
@@ -21,12 +21,11 @@
   "Caryophyllene Oxide": 0.02,
   "alpha-Pinene": 0.01
  },
- "scanned_at": "2026-09-03T19:58:01.817Z",
+ "scanned_at": "2026-09-22T20:30:27.060Z",
  "thc": 31.8923,
  "total_terpenes": 1.22,
- "in_stock": false,
+ "in_stock": true,
  "test_date": "2026-08-11",
  "test_lab": "Kaycha Labs NY",
- "date_expire": "2027-08-04",
- "sold_out_at": "2026-09-14T16:15:57.138Z"
+ "date_expire": "2027-08-04"
 }
