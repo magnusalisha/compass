@@ -6,8 +6,17 @@
  "form": "Flower 3.5g",
  "confidence": "strong",
  "shelf_tag": "Sativa",
- "reported": [],
- "aroma": [],
+ "reported": [
+  "22.26% Total THC",
+  "1.32% Total Terpenes"
+ ],
+ "aroma": [
+  "hops",
+  "wood",
+  "mint",
+  "cinnamon",
+  "turpentine"
+ ],
  "terpenes": {
   "beta-Myrcene": 0.3573,
   "Caryophyllene Oxide": 0.3261,
