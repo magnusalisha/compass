@@ -1223,7 +1223,23 @@ const CHAR = {
   // above ("cozy and low-key") pair two effect words, and for nerolidol there
   // isn't a second honest word to reach for. Farnesene already sets that
   // precedent with ['settled','settled','settle'].
-  'Nerolidol':          ['soothing','soothing','settle']
+  'Nerolidol':          ['soothing','soothing','settle'],
+  // Added 2026-09-22. Valencene has had an evidence entry and no word since
+  // August, which made it one of only two terpenes Compass grades but cannot
+  // speak — so Candy Rain, carrying 1.82% of it as its second-largest terpene,
+  // built its read from a smaller limonene and printed a note apologising for
+  // the gap.
+  //
+  // "playful" is a CHOSEN word, not an earned one. The only story attached to
+  // valencene is "uplifting", and that is limonene's story — better evidenced,
+  // and already on most of the same cards. Of thirteen candidates playful was
+  // the one that says something limonene does not; "sunny" was preferred first
+  // and dropped because it describes a disposition rather than a state, and
+  // because it was a synonym for the phrase it displaced. Same bargain as
+  // ocimene's "breezy": the consistency is the argument, not the evidence.
+  //
+  // FLOORED, unlike every other entry here — see CHAR_FLOOR.
+  'Valencene':          ['playful','playful','lift']
 
   // Valencene and Guaiol had words here and no longer do.
   //
@@ -1379,6 +1395,7 @@ const SAY = {
   buzzy:    ['alert and buzzy',        'keeping you alert'],
   clear:    ['clear-headed',           'keeping your head clear'],
   breezy:   ['light',                  'keeping it light'],
+  playful:  ['playful',                'keeping things playful'],
 };
 // The broad phrases in the same two forms — see BROAD_T below.
 const BROAD_SAY = {
@@ -1401,8 +1418,35 @@ const broadLead = p => {
 };
 // Terpenes that have a character word, biggest first. The read is built from the
 // top of this list and nothing else.
+// How much of a terpene it takes before its word counts at all.
+//
+// The read sums DIRECTIONS, so a terpene steers the sentence on cards that never
+// name it. Valencene appears in 131 records and is a trace in most of them:
+// given a word with no floor it rewrote 34 reads while speaking on 5, and 15 of
+// those rewrites were driven by valencene below 0.04% — under what the labs
+// treat as detected. Acapulco Gold went from "calm all over" to "calm all over,
+// only slightly putting you in a good mood" off 0.01%. With the floor: 14 reads
+// change, none of them noise.
+//
+// 0.1 is borrowed from UNREAD_FLOOR — the amount below which the page already
+// treats a terpene as too small to be worth mentioning at all.
+//
+// ONLY THE NUMBER IS BORROWED, NOT THE RULE. unreadTerps also requires a
+// top-three placing; the read has never ranked anything. It sums EVERY worded
+// terpene by direction — a median of 9 per card, up to 14 — so valencene counts
+// here on 12 records where it sits fourth or lower and could never have earned
+// the note. That is exactly how every other worded terpene already behaves, and
+// it is the point: the floor makes valencene ordinary, not special. What it
+// buys is only that a reading too small for the labs to stand behind does not
+// get to move a sentence.
+//
+// NOT APPLIED TO THE REST, deliberately. They would benefit — a 0.01% limonene
+// tips reads today — but flooring the whole table rewrites 166 of 417 reads.
+// That is a shelf-wide change to what every card says and belongs to its own
+// decision, like the badge question further down.
+const CHAR_FLOOR = { 'Valencene': 0.1 };
 const rankedTerps = p => Object.entries(p.terpenes||{})
-  .filter(([k,v]) => v>0 && CHAR[k]).sort((a,b)=>b[1]-a[1]);
+  .filter(([k,v]) => v>0 && CHAR[k] && v >= (CHAR_FLOOR[k]||0)).sort((a,b)=>b[1]-a[1]);
 
 // Lift against calm is the only pairing where calling a product even says
 // anything. `settle` and `body` both speak in calm words — cozy, low-key,
