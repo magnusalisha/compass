@@ -1,6 +1,6 @@
 {
  "id": "a3f8c12e90",
- "metrc_tag": "1A4120300000A42000010536",
+ "metrc_tag": "1A4120300000A42000012129",
  "brand": "High Falls Canna",
  "strain": "OG Kush",
  "form": "Flower 7g",
@@ -29,9 +29,5 @@
  "test_date": "2025-09-16",
  "test_lab": "Green Analytics NY, LLC",
  "date_expire": "2027-03-10",
- "scanned_at": "2026-09-11T03:25:53.430Z",
- "package_tags": [
-  "1A4120300000A42000010536",
-  "1A4120300000A42000012129"
- ]
+ "scanned_at": "2026-09-23T01:30:21.932Z"
 }
