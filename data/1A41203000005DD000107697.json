@@ -34,7 +34,7 @@
   "alpha-Phellandrene": 0.0228,
   "Carene": 0.021
  },
- "scanned_at": "2026-09-20T19:22:24.811Z",
+ "scanned_at": "2026-09-23T18:45:56.607Z",
  "test_date": "2026-03-25",
  "test_lab": "ACT Laboratories of New York, LLC",
  "date_expire": "2027-03-17",
@@ -42,9 +42,10 @@
   85.44,
   88.27
  ],
- "batches": 2,
+ "batches": 3,
  "package_tags": [
   "1A41203000005DD000055697",
-  "1A41203000005DD000107697"
+  "1A41203000005DD000107697",
+  "1A41203000005DD000130974"
  ]
 }
