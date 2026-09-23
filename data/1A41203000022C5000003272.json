@@ -1,12 +1,12 @@
 {
  "id": "a3f7c2e910",
- "metrc_tag": "1A41203000022C5000001414",
+ "metrc_tag": "1A41203000022C5000003272",
  "brand": "Major",
  "strain": "Uptown Haze",
  "form": "Flower 3.5g",
- "thc": 27.809,
- "total_terpenes": 1.37,
- "confidence": "strong",
+ "thc": 27.515,
+ "total_terpenes": 0.43,
+ "confidence": "faint",
  "in_stock": true,
  "shelf_tag": "Sativa",
  "reported": [
@@ -21,10 +21,10 @@
   "spice"
  ],
  "terpenes": {
-  "beta-Myrcene": 0.74,
-  "beta-Caryophyllene": 0.2,
-  "Ocimene": 0.16,
-  "Limonene": 0.14,
-  "Linalool": 0.14
- }
+  "beta-Myrcene": 0.43
+ },
+ "test_date": "2026-09-09",
+ "test_lab": "Green Analytics NY, LLC",
+ "date_expire": "2027-08-27",
+ "scanned_at": "2026-09-23T21:32:46.223Z"
 }

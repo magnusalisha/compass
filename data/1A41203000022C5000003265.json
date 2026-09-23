@@ -1,0 +1,27 @@
+{
+ "id": "b9257fb3f6",
+ "metrc_tag": "1A41203000022C5000003265",
+ "brand": "Major",
+ "strain": "Hippie Crasher",
+ "form": "Flower 3.5g",
+ "confidence": "moderate",
+ "shelf_tag": "Hybrid",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "Limonene": 0.35,
+  "beta-Caryophyllene": 0.24,
+  "Linalool": 0.13,
+  "alpha-Pinene": 0.1,
+  "alpha-Bisabolol": 0.09,
+  "alpha-Humulene": 0.08,
+  "beta-Pinene": 0.08
+ },
+ "scanned_at": "2026-09-23T21:32:45.410Z",
+ "thc": 26.342,
+ "total_terpenes": 1.07,
+ "in_stock": true,
+ "test_date": "2026-07-21",
+ "test_lab": "Green Analytics NY, LLC",
+ "date_expire": "2027-07-10"
+}
