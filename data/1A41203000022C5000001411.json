@@ -7,7 +7,7 @@
  "thc": 34.166,
  "total_terpenes": 2.01,
  "confidence": "strong",
- "in_stock": false,
+ "in_stock": true,
  "shelf_tag": "Hybrid",
  "reported": [
   "34.2% Total THC",
@@ -29,6 +29,5 @@
   "Ocimene": 0.08,
   "alpha-Bisabolol": 0.08,
   "beta-Pinene": 0.07
- },
- "sold_out_at": "2026-08-15T19:16:34.680Z"
+ }
 }

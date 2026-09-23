@@ -7,7 +7,7 @@
  "thc": 27.809,
  "total_terpenes": 1.37,
  "confidence": "strong",
- "in_stock": false,
+ "in_stock": true,
  "shelf_tag": "Sativa",
  "reported": [
   "beta-Myrcene dominant",
@@ -26,6 +26,5 @@
   "Ocimene": 0.16,
   "Limonene": 0.14,
   "Linalool": 0.14
- },
- "sold_out_at": "2026-08-12T15:03:49.427Z"
+ }
 }
