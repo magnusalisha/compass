@@ -3847,12 +3847,38 @@ function renderFresh(){
   }
   // ONE PRODUCT: NAME IT. This is the case a "latest delivery" wording would
   // overstate — with a single item, naming it is both truer and more useful.
-  // Measured 20 Sept: across the 14 arrivals since the sync went live this has
+  // Measured 20 Sept: across the 14 arrivals since the sync went live this had
   // not happened once, so it is the rare branch, not the common one.
+  //
+  // A NEW PACKAGE IS NOT A NEW PRODUCT — 23 Sept, the first time this branch
+  // ever fired. It read "Ayrloom Blue Widow isn't in Compass yet" while Compass
+  // held Blue Widow twice, 1g and 2g, both in stock. What had arrived was a
+  // third PACKAGE of the 1g, tag ...130974, and `missing` compares Metrc tags,
+  // so an unknown tag on a known product lands here looking like a new arrival.
+  //
+  // That reading has a cost at the counter: it tells a budtender the card in
+  // front of them does not exist, when it does and is the right card. So when
+  // the title names a product Compass already carries, the line says which.
+  //
+  // MATCHED ON ANY SEGMENT, not the third. The brand is the first segment by
+  // convention, but the strain's position moves — Miss Grass writes
+  // "brand | type | strain | line | size" and dropped the strain slot entirely
+  // on 22 Sept — so every later segment is tried against the catalogue rather
+  // than trusting a position. searchNorm on both sides, the same comparison
+  // Find uses, so punctuation and case cannot cause a miss.
+  //
+  // It still says "isn't in Compass yet", because that is still true: the
+  // PACKAGE is not in Compass, its chemistry has not been read, and a full sync
+  // is still what clears it. Only the subject of the sentence changes.
   if (FRESH.waiting === 1 && FRESH.names.length === 1){
     const p = FRESH.names[0].split('|').map(x => x.trim()).filter(Boolean);
     const label = p.length >= 3 ? p[0] + ' ' + p[2] : (p.join(' ') || 'something');
-    el.innerHTML = '<b>' + fEsc(label) + " isn't in Compass yet</b>";
+    const b = searchNorm(p[0]);
+    const known = !b ? null : p.slice(1).reduce((hit, seg) => hit || (searchNorm(seg) &&
+      DATA.find(r => searchNorm(r.brand) === b && searchNorm(r.strain) === searchNorm(seg))), null);
+    el.innerHTML = known
+      ? '<b>a new package of ' + fEsc(known.brand + ' ' + known.strain) + " isn't in Compass yet</b>"
+      : '<b>' + fEsc(label) + " isn't in Compass yet</b>";
     return;
   }
   // OTHERWISE BY BRAND. Deliveries arrive by company, so sixteen packages become
