@@ -1,6 +1,6 @@
 {
  "id": "d06853713d",
- "metrc_tag": "1A41203000005DD000055696",
+ "metrc_tag": "1A41203000005DD000130975",
  "brand": "Ayrloom",
  "strain": "Alaskan Thunder Fuck",
  "form": "Vape 1g Disposable",
@@ -28,12 +28,8 @@
   "alpha-Humulene": 0.0465,
   "alpha-Phellandrene": 0.022
  },
- "scanned_at": "2026-09-16T06:05:18.108Z",
+ "scanned_at": "2026-09-23T21:45:25.700Z",
  "test_date": "2026-06-03",
  "test_lab": "ACT Laboratories of New York, LLC",
- "date_expire": "2027-05-27",
- "package_tags": [
-  "1A41203000005DD000055696",
-  "1A41203000005DD000130975"
- ]
+ "date_expire": "2027-05-27"
 }
