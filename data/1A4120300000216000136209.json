@@ -1,0 +1,29 @@
+{
+ "id": "a3b788de41",
+ "metrc_tag": "1A4120300000216000136209",
+ "brand": "Find.",
+ "strain": "Banana Burst",
+ "form": "Flower 3.5g",
+ "confidence": "strong",
+ "shelf_tag": "Indica",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "Limonene": 0.722,
+  "beta-Caryophyllene": 0.546,
+  "beta-Myrcene": 0.197,
+  "Ocimene": 0.18,
+  "alpha-Humulene": 0.172,
+  "Linalool": 0.134,
+  "beta-Pinene": 0.125,
+  "alpha-Pinene": 0.119,
+  "Terpineol": 0.09,
+  "Fenchol": 0.087
+ },
+ "scanned_at": "2026-09-24T18:16:34.848Z",
+ "thc": 27.3784,
+ "total_terpenes": 2.453,
+ "in_stock": true,
+ "test_date": "2026-08-14",
+ "test_lab": "Kaycha Labs NY"
+}

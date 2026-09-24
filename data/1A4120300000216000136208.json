@@ -1,0 +1,29 @@
+{
+ "id": "a7095a3c6d",
+ "metrc_tag": "1A4120300000216000136208",
+ "brand": "Anthem",
+ "strain": "Black Cherry Maduro",
+ "form": "Infused Preroll 2.5g",
+ "confidence": "faint",
+ "shelf_tag": "Indica",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "beta-Caryophyllene": 0.25,
+  "Linalool": 0.08,
+  "alpha-Humulene": 0.06,
+  "Limonene": 0.06,
+  "Terpineol": 0.05,
+  "Fenchol": 0.04,
+  "beta-Myrcene": 0.01,
+  "beta-Pinene": 0.01,
+  "Caryophyllene Oxide": 0.01
+ },
+ "scanned_at": "2026-09-24T18:16:34.634Z",
+ "thc": 38.9587,
+ "total_terpenes": 0.57,
+ "in_stock": true,
+ "test_date": "2026-08-07",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-08-07"
+}

@@ -1,0 +1,33 @@
+{
+ "id": "5f485e445d",
+ "metrc_tag": "1A4120300000216000136214",
+ "brand": "Anthem",
+ "strain": "Strawberry Cough",
+ "form": "Infused Preroll 2.5g",
+ "confidence": "moderate",
+ "shelf_tag": "Sativa",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "beta-Caryophyllene": 0.29,
+  "Limonene": 0.17,
+  "Linalool": 0.17,
+  "beta-Myrcene": 0.07,
+  "alpha-Bisabolol": 0.06,
+  "alpha-Humulene": 0.05,
+  "Terpineol": 0.05,
+  "Fenchol": 0.04,
+  "beta-Pinene": 0.02,
+  "Caryophyllene Oxide": 0.02,
+  "Geraniol": 0.02,
+  "alpha-Pinene": 0.01,
+  "Valencene": 0.01
+ },
+ "scanned_at": "2026-09-24T18:16:35.794Z",
+ "thc": 46.3075,
+ "total_terpenes": 1,
+ "in_stock": true,
+ "test_date": "2026-09-08",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-09-08"
+}

@@ -1,0 +1,26 @@
+{
+ "id": "61a021b0d4",
+ "metrc_tag": "1A4120300000216000136211",
+ "brand": "B Noble",
+ "strain": "Singapore Sling",
+ "form": "Flower 3.5g",
+ "confidence": "moderate",
+ "shelf_tag": "Sativa",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "beta-Myrcene": 0.439,
+  "beta-Caryophyllene": 0.184,
+  "Limonene": 0.108,
+  "alpha-Bisabolol": 0.085,
+  "alpha-Humulene": 0.061,
+  "Guaiol": 0.055
+ },
+ "scanned_at": "2026-09-24T18:16:35.074Z",
+ "thc": 25.0266,
+ "total_terpenes": 1.137,
+ "in_stock": true,
+ "test_date": "2026-08-24",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-08-24"
+}

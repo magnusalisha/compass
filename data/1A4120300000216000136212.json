@@ -1,0 +1,29 @@
+{
+ "id": "0582e91805",
+ "metrc_tag": "1A4120300000216000136212",
+ "brand": "Anthem",
+ "strain": "Grape Pie",
+ "form": "Infused Preroll 0.5g (5-pack, 2.5g total)",
+ "confidence": "faint",
+ "shelf_tag": "Hybrid",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "beta-Caryophyllene": 0.29,
+  "alpha-Humulene": 0.09,
+  "Linalool": 0.06,
+  "alpha-Bisabolol": 0.03,
+  "beta-Myrcene": 0.03,
+  "Limonene": 0.03,
+  "Terpineol": 0.02,
+  "Caryophyllene Oxide": 0.01,
+  "Fenchol": 0.01
+ },
+ "scanned_at": "2026-09-24T18:16:35.299Z",
+ "thc": 40.1015,
+ "total_terpenes": 0.58,
+ "in_stock": true,
+ "test_date": "2026-08-31",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-08-31"
+}

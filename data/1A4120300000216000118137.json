@@ -18,11 +18,20 @@
   "Terpineol": 0.053,
   "Fenchol": 0.051
  },
- "scanned_at": "2026-09-02T20:45:19.216Z",
+ "scanned_at": "2026-09-24T18:16:00.668Z",
  "thc": 46.214,
  "total_terpenes": 1.504,
  "in_stock": true,
  "test_date": "2026-08-14",
  "test_lab": "Kaycha Labs NY",
- "date_expire": "2027-08-07"
+ "date_expire": "2027-08-07",
+ "thc_range": [
+  46.214,
+  48.7808
+ ],
+ "batches": 2,
+ "package_tags": [
+  "1A4120300000216000118137",
+  "1A4120300000216000136210"
+ ]
 }
