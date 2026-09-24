@@ -7,7 +7,7 @@
  "thc": 73.68,
  "total_terpenes": 8.017,
  "confidence": "strong",
- "in_stock": false,
+ "in_stock": true,
  "shelf_tag": "Hybrid",
  "reported": [
   "Citrus",
@@ -37,6 +37,5 @@
   "Borneol": 0.0361,
   "Caryophyllene Oxide": 0.0347,
   "Terpinolene": 0.0323
- },
- "sold_out_at": "2026-08-17T14:14:53.076Z"
+ }
 }
