@@ -1,13 +1,13 @@
 {
  "id": "a3f9c21b7e",
- "metrc_tag": "1A4120300000216000118142",
+ "metrc_tag": "1A4120300000216000136207",
  "brand": "Find",
  "strain": "Tourist Trap",
  "form": "Flower 3.5g",
  "thc": 24.5516,
  "total_terpenes": 1.92,
  "confidence": "strong",
- "in_stock": false,
+ "in_stock": true,
  "shelf_tag": "Sativa",
  "reported": [],
  "aroma": [
@@ -35,7 +35,6 @@
  },
  "test_date": "2026-05-15",
  "test_lab": "Kaycha Labs NY",
- "scanned_at": "2026-09-10T00:59:41.691Z",
- "date_expire": "2027-05-08",
- "sold_out_at": "2026-09-24T14:15:20.456Z"
+ "scanned_at": "2026-09-24T18:00:20.872Z",
+ "date_expire": "2027-05-15"
 }
