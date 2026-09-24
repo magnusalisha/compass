@@ -3,7 +3,6 @@
  "metrc_tag": "1A412030000070B000056844",
  "brand": "Ruby Farms",
  "strain": "Strawberry Guava",
- "form": "Preroll 5g (7-pack)",
  "thc": 23.3001,
  "total_terpenes": 1.25,
  "confidence": "strong",
@@ -31,5 +30,6 @@
  "test_date": "2026-06-04",
  "test_lab": "Kaycha Labs NY",
  "date_expire": "2027-11-01",
- "scanned_at": "2026-09-10T01:05:05.272Z"
+ "scanned_at": "2026-09-24T18:47:51.589Z",
+ "form": "Preroll 0.7g (7-pack, 4.9g total)"
 }
