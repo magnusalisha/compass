@@ -38,8 +38,12 @@
   "Ocimene": 0.01,
   "Terpinolene": 0.01
  },
- "scanned_at": "2026-09-10T01:05:05.272Z",
+ "scanned_at": "2026-09-24T18:32:57.888Z",
  "test_date": "2026-01-15",
  "test_lab": "Kaycha Labs NY",
- "date_expire": "2027-07-31"
+ "date_expire": "2027-07-31",
+ "package_tags": [
+  "1A412030000070B000056847",
+  "1A412030000070B000061865"
+ ]
 }

@@ -1,11 +1,11 @@
 {
  "id": "86f21c1872",
- "metrc_tag": "1A412030000070B000056850",
+ "metrc_tag": "1A412030000070B000061869",
  "brand": "Ruby Farms",
  "strain": "Super Silver Haze",
  "form": "Preroll 0.5g (2-pack, 1g total)",
- "thc": 27.4237,
- "total_terpenes": 1.09,
+ "thc": 28.4774,
+ "total_terpenes": 1,
  "confidence": "moderate",
  "in_stock": true,
  "shelf_tag": "Sativa",
@@ -21,14 +21,14 @@
   "green"
  ],
  "terpenes": {
-  "beta-Caryophyllene": 0.57,
-  "alpha-Humulene": 0.24,
-  "Farnesene": 0.15,
-  "alpha-Bisabolol": 0.08,
-  "Caryophyllene Oxide": 0.05
+  "beta-Caryophyllene": 0.55,
+  "alpha-Humulene": 0.21,
+  "Farnesene": 0.14,
+  "alpha-Bisabolol": 0.06,
+  "Caryophyllene Oxide": 0.04
  },
- "scanned_at": "2026-09-10T01:05:05.273Z",
- "test_date": "2026-05-04",
+ "scanned_at": "2026-09-24T18:33:25.631Z",
+ "test_date": "2026-07-20",
  "test_lab": "Kaycha Labs NY",
- "date_expire": "2027-09-30"
+ "date_expire": "2027-11-01"
 }
