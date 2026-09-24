@@ -1,13 +1,13 @@
 {
  "id": "a3f8c21b9d",
- "metrc_tag": "1A412030000070B000056848",
+ "metrc_tag": "1A412030000070B000061867",
  "brand": "Ruby Farms",
  "strain": "OG #18",
  "form": "Preroll 0.5g (2-pack, 1g total)",
  "thc": 35.9374,
  "total_terpenes": 1.55,
  "confidence": "strong",
- "in_stock": false,
+ "in_stock": true,
  "shelf_tag": "Hybrid",
  "reported": [
   "OG #18",
@@ -41,7 +41,6 @@
  },
  "test_date": "2026-02-06",
  "test_lab": "Kaycha Labs NY",
- "scanned_at": "2026-09-10T01:05:05.272Z",
- "date_expire": "2027-08-31",
- "sold_out_at": "2026-09-18T14:30:38.076Z"
+ "scanned_at": "2026-09-24T18:30:20.380Z",
+ "date_expire": "2027-08-31"
 }

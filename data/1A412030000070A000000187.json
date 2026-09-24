@@ -7,7 +7,7 @@
  "thc": 25.9693,
  "total_terpenes": 1.12,
  "confidence": "moderate",
- "in_stock": false,
+ "in_stock": true,
  "shelf_tag": "Hybrid",
  "reported": [
   "Trop Cherry",
@@ -37,6 +37,5 @@
   "alpha-Pinene": 0.02,
   "Geraniol": 0.01,
   "Valencene": 0.01
- },
- "sold_out_at": "2026-08-02T16:15:50.287Z"
+ }
 }
