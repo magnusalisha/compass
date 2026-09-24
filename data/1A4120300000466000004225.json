@@ -1,6 +1,6 @@
 {
  "id": "c277743dbb",
- "metrc_tag": "1A4120300000D52000044631",
+ "metrc_tag": "1A4120300000466000004225",
  "brand": "MFNY",
  "strain": "Sour Diesel x Sour Diesel",
  "form": "Infused Preroll 0.75g (4-pack, 3g total)",
@@ -13,12 +13,10 @@
   "alpha-Humulene": 0.259,
   "alpha-Bisabolol": 0.177
  },
- "scanned_at": "2026-09-05T15:08:52.210Z",
+ "scanned_at": "2026-09-24T19:15:23.752Z",
  "thc": 33.1887,
  "total_terpenes": 1.033,
- "in_stock": false,
+ "in_stock": true,
  "test_date": "2026-07-01",
- "test_lab": "Kaycha Labs NY",
- "date_expire": "2027-06-23",
- "sold_out_at": "2026-09-22T23:15:24.660Z"
+ "test_lab": "Kaycha Labs NY"
 }
