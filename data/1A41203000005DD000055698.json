@@ -7,7 +7,7 @@
  "thc": 88.74,
  "total_terpenes": 1.8184,
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Hybrid",
  "reported": [],
  "aroma": [
@@ -27,5 +27,6 @@
  "scanned_at": "2026-09-20T19:22:33.655Z",
  "test_date": "2025-10-23",
  "test_lab": "ACT Laboratories of New York, LLC",
- "date_expire": "2026-10-16"
+ "date_expire": "2026-10-16",
+ "sold_out_at": "2026-09-24T14:00:22.565Z"
 }
