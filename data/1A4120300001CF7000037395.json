@@ -1,0 +1,46 @@
+{
+ "id": "a3f9c2e1b7",
+ "metrc_tag": "1A4120300001CF7000037395",
+ "brand": "Jaunty",
+ "strain": "Jokerz Candy 5",
+ "form": "Vape 0.5g Cartridge",
+ "thc": 76.325,
+ "total_terpenes": 7.8436,
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Hybrid",
+ "reported": [
+  "Citrus",
+  "Spicy"
+ ],
+ "aroma": [
+  "citrus",
+  "spicy",
+  "earthy",
+  "floral",
+  "herbal"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 2.0744,
+  "Limonene": 2.0288,
+  "Farnesene": 0.9872,
+  "alpha-Humulene": 0.5796,
+  "Nerolidol": 0.4782,
+  "beta-Myrcene": 0.2428,
+  "Linalool": 0.2262,
+  "beta-Pinene": 0.2233,
+  "alpha-Pinene": 0.2211,
+  "Ocimene": 0.2038,
+  "Fenchol": 0.1749,
+  "Terpineol": 0.1588,
+  "Caryophyllene Oxide": 0.0425,
+  "Camphene": 0.0412,
+  "Borneol": 0.0337,
+  "alpha-Bisabolol": 0.0335,
+  "Terpinolene": 0.0251
+ },
+ "test_date": "2026-07-29",
+ "test_lab": "ACT Laboratories of New York, LLC",
+ "date_expire": "2027-07-22",
+ "scanned_at": "2026-09-24T20:11:42.794Z"
+}

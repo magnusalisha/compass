@@ -42,5 +42,14 @@
  "test_date": "2026-06-12",
  "test_lab": "ACT Laboratories of New York, LLC",
  "date_expire": "2027-06-05",
- "scanned_at": "2026-08-20T23:39:03.535Z"
+ "scanned_at": "2026-09-24T20:10:54.674Z",
+ "thc_range": [
+  74.56,
+  77.169
+ ],
+ "batches": 2,
+ "package_tags": [
+  "1A4120300001CF7000029214",
+  "1A4120300001CF7000037398"
+ ]
 }
