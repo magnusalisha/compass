@@ -1,0 +1,33 @@
+{
+ "id": "17156d45ac",
+ "metrc_tag": "1A41203000018B1000090834",
+ "brand": "ZIPS",
+ "strain": "White Fire OG",
+ "form": "Flower 14g",
+ "confidence": "strong",
+ "shelf_tag": "Hybrid",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "Limonene": 0.74,
+  "Linalool": 0.24,
+  "beta-Myrcene": 0.17,
+  "beta-Caryophyllene": 0.13,
+  "beta-Pinene": 0.08,
+  "Terpineol": 0.08,
+  "Fenchol": 0.07,
+  "alpha-Pinene": 0.06,
+  "Guaiol": 0.06,
+  "Farnesene": 0.04,
+  "alpha-Humulene": 0.03,
+  "Ocimene": 0.02,
+  "Camphene": 0.01
+ },
+ "scanned_at": "2026-09-24T19:27:22.629Z",
+ "thc": 30.4557,
+ "total_terpenes": 1.73,
+ "in_stock": true,
+ "test_date": "2026-08-17",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-08-21"
+}

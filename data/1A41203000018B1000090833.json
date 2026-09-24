@@ -1,0 +1,28 @@
+{
+ "id": "06039e1628",
+ "metrc_tag": "1A41203000018B1000090833",
+ "brand": "ZIPS",
+ "strain": "Jack Herer",
+ "form": "Flower 14g",
+ "confidence": "strong",
+ "shelf_tag": "Sativa",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "beta-Myrcene": 0.53,
+  "alpha-Pinene": 0.29,
+  "beta-Caryophyllene": 0.16,
+  "beta-Pinene": 0.11,
+  "Limonene": 0.08,
+  "alpha-Humulene": 0.07,
+  "Linalool": 0.04,
+  "alpha-Bisabolol": 0.02
+ },
+ "scanned_at": "2026-09-24T19:27:22.409Z",
+ "thc": 28.8019,
+ "total_terpenes": 1.31,
+ "in_stock": true,
+ "test_date": "2026-08-17",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-08-21"
+}

@@ -1,0 +1,27 @@
+{
+ "id": "a472f8c419",
+ "metrc_tag": "1A41203000018B1000090832",
+ "brand": "ZIPS",
+ "strain": "Apple Fritter",
+ "form": "Flower 28g",
+ "confidence": "strong",
+ "shelf_tag": "Hybrid",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "beta-Myrcene": 0.351,
+  "Limonene": 0.315,
+  "beta-Caryophyllene": 0.202,
+  "Linalool": 0.199,
+  "alpha-Humulene": 0.087,
+  "Farnesene": 0.066,
+  "Guaiol": 0.058
+ },
+ "scanned_at": "2026-09-24T19:27:22.180Z",
+ "thc": 28.8685,
+ "total_terpenes": 1.455,
+ "in_stock": true,
+ "test_date": "2026-09-08",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-09-10"
+}

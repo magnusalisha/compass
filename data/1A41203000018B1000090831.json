@@ -1,0 +1,25 @@
+{
+ "id": "07ac2e9f9c",
+ "metrc_tag": "1A41203000018B1000090831",
+ "brand": "ZIPS",
+ "strain": "Face Off OG",
+ "form": "Flower 28g",
+ "confidence": "strong",
+ "shelf_tag": "Indica",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "beta-Caryophyllene": 0.569,
+  "alpha-Humulene": 0.228,
+  "Limonene": 0.192,
+  "Farnesene": 0.047,
+  "alpha-Bisabolol": 0.041
+ },
+ "scanned_at": "2026-09-24T19:27:21.960Z",
+ "thc": 27.2436,
+ "total_terpenes": 1.373,
+ "in_stock": true,
+ "test_date": "2026-09-08",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-09-10"
+}

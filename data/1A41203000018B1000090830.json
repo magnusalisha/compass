@@ -1,0 +1,28 @@
+{
+ "id": "ab2d3874fd",
+ "metrc_tag": "1A41203000018B1000090830",
+ "brand": "ZIPS",
+ "strain": "Chem Dawg",
+ "form": "Flower 28g",
+ "confidence": "strong",
+ "shelf_tag": "Hybrid",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "beta-Caryophyllene": 0.464,
+  "Limonene": 0.334,
+  "Linalool": 0.162,
+  "alpha-Humulene": 0.142,
+  "beta-Myrcene": 0.136,
+  "Farnesene": 0.096,
+  "Terpineol": 0.052,
+  "Fenchol": 0.051
+ },
+ "scanned_at": "2026-09-24T19:27:21.729Z",
+ "thc": 30.1934,
+ "total_terpenes": 1.57,
+ "in_stock": true,
+ "test_date": "2026-09-08",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-09-10"
+}
