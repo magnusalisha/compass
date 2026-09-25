@@ -7,7 +7,7 @@
  "thc": 75.7601,
  "total_terpenes": 3.96,
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Hybrid",
  "reported": [
   "Gelato flavor",
@@ -41,5 +41,6 @@
  },
  "test_date": "2026-04-28",
  "test_lab": "Kaycha Labs NY",
- "scanned_at": "2026-09-10T01:05:05.269Z"
+ "scanned_at": "2026-09-10T01:05:05.269Z",
+ "sold_out_at": "2026-09-25T15:45:55.395Z"
 }
