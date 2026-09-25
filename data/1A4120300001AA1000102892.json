@@ -1,0 +1,26 @@
+{
+ "id": "8bcaa8d8db",
+ "metrc_tag": "1A4120300001AA1000102892",
+ "brand": "Golden Garden",
+ "strain": "London Pound Cake",
+ "form": "Preroll 1g",
+ "confidence": "strong",
+ "shelf_tag": "Hybrid",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "beta-Caryophyllene": 0.54,
+  "alpha-Humulene": 0.17,
+  "Linalool": 0.17,
+  "Limonene": 0.13,
+  "alpha-Bisabolol": 0.11,
+  "Guaiol": 0.09
+ },
+ "scanned_at": "2026-09-25T20:35:17.213Z",
+ "in_stock": true,
+ "thc": 25.093,
+ "total_terpenes": 1.21,
+ "test_date": "2026-01-29",
+ "test_lab": "Keystone State Testing, LLC",
+ "date_expire": "2027-06-05"
+}

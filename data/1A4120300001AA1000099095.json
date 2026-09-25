@@ -16,10 +16,14 @@
   "alpha-Bisabolol": 0.1,
   "Guaiol": 0.09
  },
- "scanned_at": "2026-09-10T01:05:05.277Z",
+ "scanned_at": "2026-09-25T20:34:51.524Z",
  "thc": 24.933,
  "in_stock": true,
  "total_terpenes": 1.12,
  "test_date": "2026-01-29",
- "test_lab": "Keystone State Testing, LLC"
+ "test_lab": "Keystone State Testing, LLC",
+ "package_tags": [
+  "1A4120300001AA1000099095",
+  "1A4120300001AA1000102893"
+ ]
 }

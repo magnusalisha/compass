@@ -9,8 +9,12 @@
  "reported": [],
  "aroma": [],
  "terpenes": {},
- "scanned_at": "2026-09-19T21:03:34.144Z",
+ "scanned_at": "2026-09-25T20:34:52.289Z",
  "thc": 43.85,
  "in_stock": true,
- "date_expire": "2027-04-02"
+ "date_expire": "2027-04-02",
+ "package_tags": [
+  "1A4120300001AA1000099100",
+  "1A4120300001AA1000102889"
+ ]
 }

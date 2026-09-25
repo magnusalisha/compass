@@ -37,7 +37,11 @@
   "Guaiol": 0.01,
   "Valencene": 0.01
  },
- "scanned_at": "2026-09-01T18:28:39.587Z",
+ "scanned_at": "2026-09-25T20:34:27.507Z",
  "test_date": "2026-04-28",
- "test_lab": "Kaycha Labs NY"
+ "test_lab": "Kaycha Labs NY",
+ "package_tags": [
+  "1A412030000019E000135338",
+  "1A412030000019E000155351"
+ ]
 }
