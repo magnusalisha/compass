@@ -1,13 +1,13 @@
 {
  "id": "c0051eecdd",
- "metrc_tag": "1A4120300001AA1000099097",
+ "metrc_tag": "1A4120300001AA1000102891",
  "brand": "Golden Garden",
  "strain": "Melted Strawberries",
  "form": "Preroll 1g",
  "thc": 25.716,
  "total_terpenes": 1.11,
  "confidence": "moderate",
- "in_stock": false,
+ "in_stock": true,
  "shelf_tag": "Sativa",
  "reported": [],
  "aroma": [
@@ -25,8 +25,7 @@
   "alpha-Bisabolol": 0.1,
   "Guaiol": 0.08
  },
- "scanned_at": "2026-09-10T00:59:41.701Z",
+ "scanned_at": "2026-09-25T17:45:20.719Z",
  "test_date": "2026-01-29",
- "test_lab": "Keystone State Testing, LLC",
- "sold_out_at": "2026-09-20T17:45:34.343Z"
+ "test_lab": "Keystone State Testing, LLC"
 }

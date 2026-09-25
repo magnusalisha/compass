@@ -1,6 +1,6 @@
 {
  "id": "01722eb672",
- "metrc_tag": "1A4120300001AA1000099098",
+ "metrc_tag": "1A4120300001AA1000102890",
  "brand": "Golden Garden",
  "strain": "Super Boof",
  "form": "Preroll 1g",
@@ -16,11 +16,10 @@
   "alpha-Bisabolol": 0.1,
   "Guaiol": 0.09
  },
- "scanned_at": "2026-09-10T01:05:05.278Z",
+ "scanned_at": "2026-09-25T17:45:20.514Z",
  "thc": 25.121,
- "in_stock": false,
+ "in_stock": true,
  "total_terpenes": 1.14,
  "test_date": "2026-01-29",
- "test_lab": "Keystone State Testing, LLC",
- "sold_out_at": "2026-09-19T18:01:30.670Z"
+ "test_lab": "Keystone State Testing, LLC"
 }
