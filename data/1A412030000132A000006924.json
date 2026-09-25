@@ -7,7 +7,7 @@
  "thc": 56.9964,
  "total_terpenes": 1.02,
  "confidence": "moderate",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Hybrid",
  "reported": [],
  "aroma": [
@@ -37,5 +37,6 @@
  "scanned_at": "2026-09-13T08:58:30.926Z",
  "test_date": "2026-04-24",
  "test_lab": "Kaycha Labs NY",
- "date_expire": "2027-04-23"
+ "date_expire": "2027-04-23",
+ "sold_out_at": "2026-09-25T18:30:20.573Z"
 }
