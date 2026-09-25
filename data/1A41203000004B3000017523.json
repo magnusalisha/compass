@@ -7,7 +7,7 @@
  "thc": 74.67,
  "total_terpenes": 10.6111,
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Indica",
  "reported": [],
  "aroma": [
@@ -36,5 +36,6 @@
  "scanned_at": "2026-08-20T23:39:02.326Z",
  "test_date": "2026-06-05",
  "test_lab": "ACT Laboratories of New York, LLC",
- "date_expire": "2027-06-23"
+ "date_expire": "2027-06-23",
+ "sold_out_at": "2026-09-25T21:00:22.523Z"
 }
