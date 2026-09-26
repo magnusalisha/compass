@@ -1,6 +1,6 @@
 {
  "id": "a3f82c1d9e",
- "metrc_tag": "1A4120300000529000048754",
+ "metrc_tag": "1A4120300000529000069100",
  "brand": "Jetpacks",
  "strain": "Afghani",
  "form": "Infused Preroll 0.6g (5-pack, 3g total)",
@@ -31,10 +31,6 @@
  },
  "test_date": "2026-04-04",
  "test_lab": "Green Analytics NY, LLC",
- "date_expire": "2026-12-12",
- "scanned_at": "2026-09-06T19:27:41.321Z",
- "package_tags": [
-  "1A4120300000529000048754",
-  "1A4120300000529000069100"
- ]
+ "date_expire": "2027-04-01",
+ "scanned_at": "2026-09-26T19:15:51.010Z"
 }
