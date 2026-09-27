@@ -23,8 +23,9 @@
  "scanned_at": "2026-09-04T20:29:27.721Z",
  "thc": 26.21,
  "total_terpenes": 1.6313,
- "in_stock": true,
+ "in_stock": false,
  "test_date": "2026-08-17",
  "test_lab": "Reliable Labs, Inc.",
- "date_expire": "2028-02-07"
+ "date_expire": "2028-02-07",
+ "sold_out_at": "2026-09-27T00:45:44.057Z"
 }
