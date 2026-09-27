@@ -11,8 +11,9 @@
  "terpenes": {},
  "scanned_at": "2026-09-02T20:45:19.224Z",
  "thc": 88.783,
- "in_stock": true,
+ "in_stock": false,
  "test_date": "2026-02-05",
  "test_lab": "Green Analytics NY, LLC",
- "date_expire": "2027-01-27"
+ "date_expire": "2027-01-27",
+ "sold_out_at": "2026-09-27T21:45:47.709Z"
 }
