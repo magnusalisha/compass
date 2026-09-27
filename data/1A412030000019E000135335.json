@@ -7,7 +7,7 @@
  "thc": 80.2117,
  "total_terpenes": 3.14,
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Sativa",
  "reported": [],
  "aroma": [
@@ -34,5 +34,6 @@
  "scanned_at": "2026-08-20T23:39:19.387Z",
  "test_date": "2026-06-02",
  "test_lab": "Kaycha Labs NY",
- "date_expire": "2027-05-21"
+ "date_expire": "2027-05-21",
+ "sold_out_at": "2026-09-27T16:15:47.646Z"
 }
