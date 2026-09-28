@@ -1,0 +1,23 @@
+{
+ "id": "1df3b5b58e",
+ "metrc_tag": "1A4120300001AA1000102889",
+ "brand": "Revert",
+ "strain": "Golden Berry",
+ "form": "Infused Preroll 0.75g (2-pack, 1.5g total)",
+ "confidence": "moderate",
+ "shelf_tag": "Sativa",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "beta-Caryophyllene": 0.35,
+  "beta-Myrcene": 0.23,
+  "alpha-Humulene": 0.15
+ },
+ "scanned_at": "2026-09-28T14:53:12.724Z",
+ "thc": 43.847,
+ "in_stock": true,
+ "date_expire": "2027-04-02",
+ "total_terpenes": 0.84,
+ "test_date": "2026-04-20",
+ "test_lab": "Reliable Labs, Inc."
+}
