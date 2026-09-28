@@ -1,0 +1,32 @@
+{
+ "id": "1f391219c7",
+ "metrc_tag": "1A4120300000220000009367",
+ "brand": "Kitty Creme",
+ "strain": "Royale Highness",
+ "form": "Infused Preroll 1g",
+ "confidence": "strong",
+ "shelf_tag": "Hybrid",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "beta-Caryophyllene": 0.72,
+  "Linalool": 0.62,
+  "alpha-Humulene": 0.28,
+  "Limonene": 0.24,
+  "Farnesene": 0.2,
+  "Fenchol": 0.19,
+  "beta-Myrcene": 0.1,
+  "Terpineol": 0.05,
+  "beta-Pinene": 0.04,
+  "alpha-Bisabolol": 0.03,
+  "Caryophyllene Oxide": 0.03,
+  "alpha-Pinene": 0.02,
+  "Guaiol": 0.01
+ },
+ "scanned_at": "2026-09-28T22:06:29.566Z",
+ "thc": 23.8123,
+ "total_terpenes": 2.53,
+ "in_stock": true,
+ "test_date": "2026-06-24",
+ "test_lab": "Kaycha Labs NY"
+}

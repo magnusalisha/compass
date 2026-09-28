@@ -1,0 +1,27 @@
+{
+ "id": "22eb1e4d65",
+ "metrc_tag": "1A4120300000220000009368",
+ "brand": "Kitty Creme",
+ "strain": "Creme de la Kitty",
+ "form": "Infused Preroll 1g",
+ "confidence": "moderate",
+ "shelf_tag": "Indica",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "beta-Caryophyllene": 0.291,
+  "Linalool": 0.217,
+  "alpha-Humulene": 0.093,
+  "Farnesene": 0.07,
+  "Fenchol": 0.068,
+  "Caryophyllene Oxide": 0.041,
+  "alpha-Bisabolol": 0.04
+ },
+ "scanned_at": "2026-09-28T22:06:29.783Z",
+ "thc": 24.7572,
+ "total_terpenes": 0.82,
+ "in_stock": true,
+ "test_date": "2026-06-26",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-06-22"
+}

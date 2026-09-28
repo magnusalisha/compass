@@ -1,0 +1,30 @@
+{
+ "id": "11ddc71136",
+ "metrc_tag": "1A4120300000220000009366",
+ "brand": "Kitty Creme",
+ "strain": "PowerPuff",
+ "form": "Infused Preroll 1g",
+ "confidence": "moderate",
+ "shelf_tag": "Sativa",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "beta-Caryophyllene": 0.28,
+  "Linalool": 0.23,
+  "alpha-Humulene": 0.09,
+  "Fenchol": 0.07,
+  "Farnesene": 0.04,
+  "Guaiol": 0.04,
+  "Caryophyllene Oxide": 0.03,
+  "Terpineol": 0.03,
+  "alpha-Bisabolol": 0.02,
+  "Valencene": 0.01
+ },
+ "scanned_at": "2026-09-28T22:06:29.369Z",
+ "thc": 22.9146,
+ "total_terpenes": 0.84,
+ "in_stock": true,
+ "test_date": "2026-06-24",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-06-22"
+}
