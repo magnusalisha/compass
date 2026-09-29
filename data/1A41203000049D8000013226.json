@@ -7,7 +7,7 @@
  "thc": 82.491,
  "total_terpenes": 4.9061,
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Hybrid",
  "reported": [],
  "aroma": [
@@ -43,5 +43,6 @@
  "scanned_at": "2026-09-04T20:29:27.718Z",
  "test_date": "2026-07-30",
  "test_lab": "Smithers CTS New York, LLC",
- "date_expire": "2027-07-30"
+ "date_expire": "2027-07-30",
+ "sold_out_at": "2026-09-29T15:46:37.988Z"
 }
