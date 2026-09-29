@@ -1,6 +1,6 @@
 {
  "id": "a3f7c2e910",
- "metrc_tag": "1A412030000132A000005125",
+ "metrc_tag": "1A412030000132A000006925",
  "brand": "Lobo",
  "strain": "Soap x Purple Punch",
  "form": "Flower 3.5g Moonrocks Infused",
@@ -37,9 +37,5 @@
  "test_date": "2026-04-24",
  "test_lab": "Kaycha Labs NY",
  "date_expire": "2026-11-11",
- "scanned_at": "2026-09-13T08:57:09.090Z",
- "package_tags": [
-  "1A412030000132A000005125",
-  "1A412030000132A000006925"
- ]
+ "scanned_at": "2026-09-29T00:16:21.120Z"
 }
