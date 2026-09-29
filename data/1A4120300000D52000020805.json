@@ -21,8 +21,9 @@
  "scanned_at": "2026-08-20T23:38:42.516Z",
  "thc": 72.88,
  "total_terpenes": 10.721,
- "in_stock": true,
+ "in_stock": false,
  "test_date": "2026-01-12",
  "test_lab": "Keystone State Testing, LLC",
- "date_expire": "2027-01-06"
+ "date_expire": "2027-01-06",
+ "sold_out_at": "2026-09-29T19:16:35.037Z"
 }
