@@ -1,0 +1,26 @@
+{
+ "id": "286959693e",
+ "metrc_tag": "1A4120300000C1E000123442",
+ "brand": "Claybourne",
+ "strain": "Cobra Kush",
+ "form": "Flower 3.5g",
+ "confidence": "strong",
+ "shelf_tag": "Hybrid",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "beta-Caryophyllene": 0.35,
+  "Limonene": 0.35,
+  "beta-Myrcene": 0.22,
+  "Linalool": 0.19,
+  "alpha-Humulene": 0.1,
+  "Farnesene": 0.05
+ },
+ "scanned_at": "2026-09-30T22:19:49.384Z",
+ "thc": 32.2441,
+ "total_terpenes": 1.45,
+ "in_stock": true,
+ "test_date": "2026-08-05",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-07-29"
+}

@@ -1,0 +1,29 @@
+{
+ "id": "7b867e43ab",
+ "metrc_tag": "1A4120300000C1E000123432",
+ "brand": "Knack",
+ "strain": "Skunk Bomb",
+ "form": "Flower 28g",
+ "confidence": "strong",
+ "shelf_tag": "Sativa",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "alpha-Pinene": 0.59,
+  "Limonene": 0.41,
+  "beta-Myrcene": 0.34,
+  "beta-Pinene": 0.16,
+  "Linalool": 0.12,
+  "Guaiol": 0.07,
+  "beta-Caryophyllene": 0.04,
+  "Fenchol": 0.04,
+  "Terpineol": 0.04
+ },
+ "scanned_at": "2026-09-30T22:19:48.048Z",
+ "thc": 27.6937,
+ "total_terpenes": 1.88,
+ "in_stock": true,
+ "test_date": "2026-09-22",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-09-15"
+}

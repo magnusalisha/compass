@@ -1,0 +1,26 @@
+{
+ "id": "3b02c9a8eb",
+ "metrc_tag": "1A4120300000C1E000123444",
+ "brand": "Claybourne",
+ "strain": "Mule Fuel",
+ "form": "Flower 3.5g",
+ "confidence": "strong",
+ "shelf_tag": "Indica",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "beta-Myrcene": 1.143,
+  "alpha-Pinene": 0.218,
+  "Limonene": 0.168,
+  "beta-Pinene": 0.111,
+  "beta-Caryophyllene": 0.104,
+  "alpha-Humulene": 0.04
+ },
+ "scanned_at": "2026-09-30T22:19:49.621Z",
+ "thc": 26.7516,
+ "total_terpenes": 1.906,
+ "in_stock": true,
+ "test_date": "2026-09-14",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-09-04"
+}
