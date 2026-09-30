@@ -24,12 +24,18 @@
   "Geraniol": 0.0784,
   "Guaiol": 0.0281
  },
- "scanned_at": "2026-09-28T22:05:54.783Z",
+ "scanned_at": "2026-09-30T19:03:39.746Z",
  "test_date": "2025-10-23",
  "test_lab": "ACT Laboratories of New York, LLC",
  "date_expire": "2026-10-16",
  "package_tags": [
   "1A41203000005DD000055698",
+  "1A41203000005DD000112381",
   "1A41203000005DD000130976"
- ]
+ ],
+ "thc_range": [
+  87.588,
+  88.74
+ ],
+ "batches": 3
 }

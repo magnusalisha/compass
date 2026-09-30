@@ -1,0 +1,27 @@
+{
+ "id": "a3f7c2e841",
+ "metrc_tag": "1A4120300000529000076771",
+ "brand": "Untitled",
+ "strain": "Strawnana",
+ "form": "Vape 1g Cartridge",
+ "thc": 80.341,
+ "total_terpenes": 4.12,
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Indica",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "beta-Myrcene": 1.02,
+  "Limonene": 0.92,
+  "beta-Caryophyllene": 0.72,
+  "alpha-Pinene": 0.63,
+  "beta-Pinene": 0.35,
+  "alpha-Bisabolol": 0.22,
+  "Linalool": 0.11
+ },
+ "test_date": "2026-09-09",
+ "test_lab": "Green Analytics NY, LLC",
+ "date_expire": "2027-08-19",
+ "scanned_at": "2026-09-30T19:04:25.546Z"
+}

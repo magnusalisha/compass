@@ -29,5 +29,9 @@
  "test_date": "2026-07-31",
  "test_lab": "Green Analytics NY, LLC",
  "date_expire": "2027-07-21",
- "scanned_at": "2026-09-02T20:45:19.221Z"
+ "scanned_at": "2026-09-30T19:03:47.812Z",
+ "package_tags": [
+  "1A4120300000529000069105",
+  "1A4120300000529000076762"
+ ]
 }

@@ -27,8 +27,12 @@
   "alpha-Humulene": 0.0484,
   "alpha-Bisabolol": 0.0198
  },
- "scanned_at": "2026-09-20T19:22:59.807Z",
+ "scanned_at": "2026-09-30T19:04:05.846Z",
  "test_date": "2026-07-16",
  "test_lab": "ACT Laboratories of New York, LLC",
- "date_expire": "2027-07-06"
+ "date_expire": "2027-07-06",
+ "package_tags": [
+  "1A41203000005DD000112405",
+  "1A41203000005DD000130978"
+ ]
 }

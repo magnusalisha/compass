@@ -1,0 +1,47 @@
+{
+ "id": "a3f7c2e910",
+ "metrc_tag": "1A4120300001CF7000037394",
+ "brand": "Jaunty",
+ "strain": "Ice Cream Souffle",
+ "form": "Vape 0.5g Cartridge",
+ "thc": 75.189,
+ "total_terpenes": 9.6206,
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Indica",
+ "reported": [
+  "Live Rosin",
+  "Spicy, Citrus, Earthy"
+ ],
+ "aroma": [
+  "spicy",
+  "citrus",
+  "earthy",
+  "floral",
+  "herbal"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 2.9011,
+  "Limonene": 1.5195,
+  "alpha-Humulene": 0.9429,
+  "Linalool": 0.6646,
+  "Guaiol": 0.6382,
+  "beta-Myrcene": 0.4174,
+  "Farnesene": 0.312,
+  "Nerolidol": 0.2604,
+  "alpha-Pinene": 0.2187,
+  "beta-Pinene": 0.2094,
+  "Terpineol": 0.1471,
+  "Valencene": 0.1282,
+  "Fenchol": 0.1112,
+  "Ocimene": 0.093,
+  "Caryophyllene Oxide": 0.0778,
+  "Borneol": 0.0393,
+  "Camphene": 0.0336,
+  "Terpinolene": 0.021
+ },
+ "test_date": "2026-06-30",
+ "test_lab": "ACT Laboratories of New York, LLC",
+ "date_expire": "2027-06-23",
+ "scanned_at": "2026-09-30T19:04:21.110Z"
+}

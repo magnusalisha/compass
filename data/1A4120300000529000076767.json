@@ -1,12 +1,12 @@
 {
  "id": "a3f8c21d9e",
- "metrc_tag": "1A4120300000529000069106",
+ "metrc_tag": "1A4120300000529000076767",
  "brand": "Jetpacks",
  "strain": "Strawberry Sour Diesel",
  "form": "Preroll 0.6g Infused 5pk",
- "thc": 38.619,
- "total_terpenes": 1.48,
- "confidence": "strong",
+ "thc": 41.985,
+ "total_terpenes": 0.75,
+ "confidence": "faint",
  "in_stock": true,
  "shelf_tag": "Sativa",
  "reported": [
@@ -21,14 +21,12 @@
   "citrus"
  ],
  "terpenes": {
-  "beta-Caryophyllene": 0.72,
-  "alpha-Humulene": 0.24,
+  "beta-Caryophyllene": 0.36,
   "Linalool": 0.21,
-  "Limonene": 0.12,
-  "Terpinolene": 0.11
+  "alpha-Humulene": 0.18
  },
- "test_date": "2026-03-14",
+ "test_date": "2026-07-10",
  "test_lab": "Green Analytics NY, LLC",
- "date_expire": "2027-03-03",
- "scanned_at": "2026-09-02T20:45:19.221Z"
+ "date_expire": "2027-07-02",
+ "scanned_at": "2026-09-30T19:04:25.182Z"
 }

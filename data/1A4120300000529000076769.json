@@ -1,0 +1,38 @@
+{
+ "id": "a3f7c2e891",
+ "metrc_tag": "1A4120300000529000076769",
+ "brand": "Untitled",
+ "strain": "Pink Guava",
+ "form": "Vape 1g Cartridge",
+ "thc": 78.981,
+ "total_terpenes": 5.49,
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Sativa",
+ "reported": [
+  "Pink Guava",
+  "Vape Cartridge"
+ ],
+ "aroma": [
+  "citrus",
+  "tropical",
+  "fruity",
+  "herbal",
+  "spice"
+ ],
+ "terpenes": {
+  "Linalool": 1.81,
+  "beta-Caryophyllene": 1.03,
+  "Limonene": 0.89,
+  "beta-Myrcene": 0.76,
+  "alpha-Bisabolol": 0.33,
+  "Fenchol": 0.22,
+  "alpha-Humulene": 0.16,
+  "alpha-Pinene": 0.16,
+  "Terpineol": 0.14
+ },
+ "test_date": "2026-09-11",
+ "test_lab": "Green Analytics NY, LLC",
+ "date_expire": "2027-08-19",
+ "scanned_at": "2026-09-30T19:04:25.345Z"
+}

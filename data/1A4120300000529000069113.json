@@ -22,8 +22,12 @@
   "alpha-Humulene": 0.23,
   "Limonene": 0.19
  },
- "scanned_at": "2026-09-02T20:45:19.223Z",
+ "scanned_at": "2026-09-30T19:03:49.500Z",
  "test_date": "2026-03-04",
  "test_lab": "Green Analytics NY, LLC",
- "date_expire": "2027-02-25"
+ "date_expire": "2027-02-25",
+ "package_tags": [
+  "1A4120300000529000069113",
+  "1A4120300000529000076760"
+ ]
 }
