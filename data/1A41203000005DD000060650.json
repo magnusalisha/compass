@@ -7,7 +7,7 @@
  "thc": 82.07,
  "total_terpenes": 3.4901,
  "confidence": "strong",
- "in_stock": false,
+ "in_stock": true,
  "shelf_tag": "Sativa",
  "reported": [],
  "aroma": [
@@ -33,6 +33,5 @@
  },
  "scanned_at": "2026-08-20T23:38:54.367Z",
  "test_date": "2025-10-13",
- "test_lab": "ACT Laboratories of New York, LLC",
- "sold_out_at": "2026-08-30T20:01:00.972Z"
+ "test_lab": "ACT Laboratories of New York, LLC"
 }
