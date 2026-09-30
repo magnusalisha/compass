@@ -1,6 +1,6 @@
 {
  "id": "a3f82c1d9e",
- "metrc_tag": "1A41203000018B1000058658",
+ "metrc_tag": "1A41203000018B1000083798",
  "brand": "Ghost",
  "strain": "Guava",
  "form": "Vape 2g Disposable",
@@ -37,9 +37,5 @@
  "test_date": "2026-06-22",
  "test_lab": "Kaycha Labs NY",
  "date_expire": "2027-06-10",
- "scanned_at": "2026-09-06T19:27:41.323Z",
- "package_tags": [
-  "1A41203000018B1000058658",
-  "1A41203000018B1000083798"
- ]
+ "scanned_at": "2026-09-30T19:31:38.828Z"
 }
