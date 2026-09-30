@@ -1,0 +1,47 @@
+{
+ "id": "ed538827fb",
+ "metrc_tag": "1A41203000005DD000112382",
+ "brand": "Ayrloom",
+ "strain": "Pink Rozay",
+ "form": "Vape 1g Disposable",
+ "thc": 90.68,
+ "total_terpenes": 2.6653,
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Indica",
+ "reported": [],
+ "aroma": [
+  "citrus",
+  "floral",
+  "earthy",
+  "musky",
+  "spicy"
+ ],
+ "terpenes": {
+  "Limonene": 0.7126,
+  "Linalool": 0.6239,
+  "beta-Pinene": 0.4127,
+  "beta-Caryophyllene": 0.2062,
+  "alpha-Phellandrene": 0.1572,
+  "beta-Myrcene": 0.1541,
+  "alpha-Pinene": 0.1417,
+  "alpha-Humulene": 0.095,
+  "Terpinolene": 0.0721,
+  "Valencene": 0.0465,
+  "alpha-Bisabolol": 0.0253,
+  "Caryophyllene Oxide": 0.0181
+ },
+ "scanned_at": "2026-09-30T23:16:24.552Z",
+ "test_date": "2026-04-21",
+ "test_lab": "ACT Laboratories of New York, LLC",
+ "date_expire": "2027-04-14",
+ "package_tags": [
+  "1A41203000005DD000107701",
+  "1A41203000005DD000112382"
+ ],
+ "thc_range": [
+  85.84,
+  90.68
+ ],
+ "batches": 2
+}
