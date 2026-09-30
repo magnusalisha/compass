@@ -1,0 +1,26 @@
+{
+ "id": "4829fcb52d",
+ "metrc_tag": "1A4120300000C1E000123435",
+ "brand": "Bouket",
+ "strain": "Crunch Berrys",
+ "form": "Flower 3.5g",
+ "confidence": "moderate",
+ "shelf_tag": "Indica",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "beta-Caryophyllene": 0.276,
+  "Linalool": 0.236,
+  "Limonene": 0.184,
+  "beta-Myrcene": 0.181,
+  "alpha-Humulene": 0.083,
+  "alpha-Bisabolol": 0.048
+ },
+ "scanned_at": "2026-09-30T21:01:45.946Z",
+ "thc": 21.0153,
+ "total_terpenes": 1.008,
+ "in_stock": true,
+ "test_date": "2026-06-25",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-06-15"
+}

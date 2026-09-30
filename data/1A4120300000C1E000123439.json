@@ -1,0 +1,31 @@
+{
+ "id": "751b8fafc1",
+ "metrc_tag": "1A4120300000C1E000123439",
+ "brand": "1937",
+ "strain": "Blueberry Frosting",
+ "form": "Flower 3.5g",
+ "confidence": "moderate",
+ "shelf_tag": "Hybrid",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "Limonene": 0.26,
+  "beta-Caryophyllene": 0.16,
+  "beta-Myrcene": 0.14,
+  "Linalool": 0.12,
+  "alpha-Humulene": 0.05,
+  "alpha-Bisabolol": 0.03,
+  "beta-Pinene": 0.03,
+  "alpha-Pinene": 0.02,
+  "Valencene": 0.02,
+  "Fenchol": 0.01,
+  "Terpineol": 0.01
+ },
+ "scanned_at": "2026-09-30T21:01:46.723Z",
+ "thc": 25.1037,
+ "total_terpenes": 0.86,
+ "in_stock": true,
+ "test_date": "2026-09-14",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-09-17"
+}

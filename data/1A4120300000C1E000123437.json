@@ -1,0 +1,28 @@
+{
+ "id": "1d48c7c97d",
+ "metrc_tag": "1A4120300000C1E000123437",
+ "brand": "1937",
+ "strain": "Cinderella 99",
+ "form": "Flower 3.5g",
+ "confidence": "moderate",
+ "shelf_tag": "Sativa",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "beta-Myrcene": 0.6,
+  "Ocimene": 0.16,
+  "alpha-Pinene": 0.05,
+  "beta-Caryophyllene": 0.04,
+  "Guaiol": 0.03,
+  "alpha-Humulene": 0.02,
+  "beta-Pinene": 0.02,
+  "Limonene": 0.01
+ },
+ "scanned_at": "2026-09-30T21:01:46.408Z",
+ "thc": 23.9843,
+ "total_terpenes": 0.95,
+ "in_stock": true,
+ "test_date": "2026-09-14",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-09-04"
+}

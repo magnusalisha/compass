@@ -1,0 +1,37 @@
+{
+ "id": "4dcf124255",
+ "shelf_tag": "Hybrid",
+ "confidence": "strong",
+ "terpenes": {
+  "Limonene": 0.549,
+  "beta-Myrcene": 0.385,
+  "beta-Caryophyllene": 0.354,
+  "Linalool": 0.116,
+  "alpha-Humulene": 0.114,
+  "alpha-Bisabolol": 0.069,
+  "Fenchol": 0.045,
+  "Terpineol": 0.04
+ },
+ "brand": "Bouket",
+ "total_terpenes": 1.844,
+ "metrc_tag": "1A4120300000C1E000123434",
+ "reported": [
+  "Indoor grown",
+  "Large Bud"
+ ],
+ "aroma": [
+  "diesel",
+  "earthy",
+  "spicy",
+  "citrus",
+  "herbal"
+ ],
+ "form": "Flower 3.5g",
+ "strain": "Honeymoon Diesel",
+ "in_stock": true,
+ "thc": 31.8695,
+ "test_date": "2026-08-17",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-08-11",
+ "scanned_at": "2026-09-30T21:01:45.672Z"
+}
