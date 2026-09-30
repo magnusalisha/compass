@@ -1,13 +1,13 @@
 {
  "id": "7ee7ebe9c4",
- "metrc_tag": "1A4120300000529000069099",
+ "metrc_tag": "1A4120300000529000076774",
  "brand": "CRU",
  "strain": "Pink Guava",
  "form": "Infused Preroll 0.5g",
  "thc": 26.04,
  "total_terpenes": 0.87,
  "confidence": "moderate",
- "in_stock": false,
+ "in_stock": true,
  "shelf_tag": "Sativa",
  "reported": [],
  "aroma": [
@@ -22,9 +22,8 @@
   "alpha-Humulene": 0.25,
   "beta-Myrcene": 0.17
  },
- "scanned_at": "2026-09-02T20:45:19.219Z",
+ "scanned_at": "2026-09-30T17:02:28.510Z",
  "test_date": "2026-03-26",
  "test_lab": "Green Analytics NY, LLC",
- "date_expire": "2027-03-16",
- "sold_out_at": "2026-09-19T23:00:33.974Z"
+ "date_expire": "2027-03-16"
 }
