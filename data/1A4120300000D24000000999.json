@@ -1,0 +1,32 @@
+{
+ "id": "c7da4aecd0",
+ "metrc_tag": "1A4120300000D24000000999",
+ "brand": "Miss Perry",
+ "strain": "White Widow",
+ "form": "Infused Preroll 0.5g",
+ "confidence": "moderate",
+ "shelf_tag": "Hybrid",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "beta-Caryophyllene": 0.34,
+  "alpha-Humulene": 0.15,
+  "Linalool": 0.1,
+  "Fenchol": 0.09,
+  "alpha-Bisabolol": 0.08,
+  "Terpineol": 0.08,
+  "Limonene": 0.06,
+  "beta-Pinene": 0.02,
+  "Valencene": 0.02,
+  "alpha-Pinene": 0.01,
+  "beta-Myrcene": 0.01,
+  "Ocimene": 0.01
+ },
+ "scanned_at": "2026-10-01T00:23:16.041Z",
+ "thc": 33.7919,
+ "total_terpenes": 0.97,
+ "in_stock": true,
+ "test_date": "2026-04-02",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-05-02"
+}

@@ -1,0 +1,28 @@
+{
+ "id": "b9d520cb35",
+ "metrc_tag": "1A4120300000D24000000994",
+ "brand": "Miss Perry",
+ "strain": "Dantes Headband",
+ "form": "Infused Preroll 0.5g",
+ "confidence": "faint",
+ "shelf_tag": "Hybrid",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "beta-Caryophyllene": 0.14,
+  "alpha-Bisabolol": 0.07,
+  "Linalool": 0.07,
+  "alpha-Humulene": 0.06,
+  "Terpineol": 0.04,
+  "Fenchol": 0.03,
+  "Guaiol": 0.03,
+  "Valencene": 0.01
+ },
+ "scanned_at": "2026-10-01T00:23:15.098Z",
+ "thc": 31.8728,
+ "total_terpenes": 0.45,
+ "in_stock": true,
+ "test_date": "2026-03-27",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-05-02"
+}

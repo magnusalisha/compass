@@ -1,0 +1,29 @@
+{
+ "id": "e3afd5e9a0",
+ "metrc_tag": "1A4120300000D24000000995",
+ "brand": "Miss Perry",
+ "strain": "Purple Banana Butter",
+ "form": "Infused Preroll 0.5g",
+ "confidence": "faint",
+ "shelf_tag": "Indica",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "beta-Caryophyllene": 0.22,
+  "alpha-Humulene": 0.09,
+  "alpha-Bisabolol": 0.08,
+  "Caryophyllene Oxide": 0.07,
+  "Fenchol": 0.04,
+  "Linalool": 0.04,
+  "Terpineol": 0.04,
+  "Valencene": 0.02,
+  "Guaiol": 0.01,
+  "Limonene": 0.01
+ },
+ "scanned_at": "2026-10-01T00:23:15.265Z",
+ "thc": 22.8772,
+ "total_terpenes": 0.62,
+ "in_stock": true,
+ "test_date": "2025-12-16",
+ "test_lab": "Kaycha Labs NY"
+}

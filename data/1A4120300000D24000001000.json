@@ -1,0 +1,28 @@
+{
+ "id": "a15ba6f295",
+ "metrc_tag": "1A4120300000D24000001000",
+ "brand": "Miss Perry",
+ "strain": "Zaddy",
+ "form": "Infused Preroll 0.5g",
+ "confidence": "faint",
+ "shelf_tag": "Indica",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "alpha-Bisabolol": 0.07,
+  "beta-Caryophyllene": 0.07,
+  "Guaiol": 0.04,
+  "alpha-Humulene": 0.03,
+  "Caryophyllene Oxide": 0.02,
+  "Fenchol": 0.02,
+  "Linalool": 0.02,
+  "Terpineol": 0.02,
+  "Valencene": 0.01
+ },
+ "scanned_at": "2026-10-01T00:23:16.249Z",
+ "thc": 20.2118,
+ "total_terpenes": 0.3,
+ "in_stock": true,
+ "test_date": "2025-12-16",
+ "test_lab": "Kaycha Labs NY"
+}
