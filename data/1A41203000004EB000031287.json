@@ -1,0 +1,28 @@
+{
+ "id": "cdef9801bf",
+ "metrc_tag": "1A41203000004EB000031287",
+ "brand": "SMARTBUD",
+ "strain": "Lemonheadz",
+ "form": "Flower 3.5g",
+ "confidence": "strong",
+ "shelf_tag": null,
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "Linalool": 0.43,
+  "beta-Caryophyllene": 0.24,
+  "Limonene": 0.2,
+  "beta-Myrcene": 0.15,
+  "Farnesene": 0.09,
+  "Terpineol": 0.08,
+  "alpha-Humulene": 0.07,
+  "Fenchol": 0.07
+ },
+ "scanned_at": "2026-10-01T18:31:51.236Z",
+ "thc": 27.634,
+ "total_terpenes": 1.33,
+ "in_stock": true,
+ "test_date": "2026-09-03",
+ "test_lab": "Green Analytics NY, LLC",
+ "date_expire": "2027-08-26"
+}

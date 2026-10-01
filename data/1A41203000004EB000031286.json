@@ -1,0 +1,27 @@
+{
+ "id": "c6626e6900",
+ "metrc_tag": "1A41203000004EB000031286",
+ "brand": "SMARTBUD",
+ "strain": "GELONADE#9",
+ "form": "Flower 3.5g",
+ "confidence": "strong",
+ "shelf_tag": null,
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "Linalool": 0.38,
+  "Limonene": 0.36,
+  "beta-Myrcene": 0.33,
+  "beta-Caryophyllene": 0.29,
+  "Farnesene": 0.1,
+  "alpha-Humulene": 0.09,
+  "beta-Pinene": 0.09
+ },
+ "scanned_at": "2026-10-01T18:31:51.000Z",
+ "thc": 30.869,
+ "total_terpenes": 1.64,
+ "in_stock": true,
+ "test_date": "2026-08-25",
+ "test_lab": "Green Analytics NY, LLC",
+ "date_expire": "2027-08-18"
+}

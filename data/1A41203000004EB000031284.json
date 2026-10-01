@@ -1,0 +1,25 @@
+{
+ "id": "dbfa77c8a8",
+ "metrc_tag": "1A41203000004EB000031284",
+ "brand": "SMARTBUD",
+ "strain": "KING LOUIE OG",
+ "form": "Preroll 0.75g (5-pack, 3.75g total)",
+ "confidence": "moderate",
+ "shelf_tag": null,
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "Linalool": 0.32,
+  "beta-Caryophyllene": 0.22,
+  "Limonene": 0.15,
+  "beta-Myrcene": 0.08,
+  "Farnesene": 0.08
+ },
+ "scanned_at": "2026-10-01T18:31:50.412Z",
+ "thc": 31.572,
+ "total_terpenes": 0.86,
+ "in_stock": true,
+ "test_date": "2026-09-02",
+ "test_lab": "Green Analytics NY, LLC",
+ "date_expire": "2027-08-27"
+}

@@ -1,0 +1,28 @@
+{
+ "id": "a3adcdf3d8",
+ "metrc_tag": "1A41203000004EB000031285",
+ "brand": "SMARTBUD",
+ "strain": "Super Sour Diesel",
+ "form": "Preroll 0.75g (5-pack, 3.75g total)",
+ "confidence": "moderate",
+ "shelf_tag": null,
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "Linalool": 0.33,
+  "beta-Caryophyllene": 0.22,
+  "Limonene": 0.15,
+  "beta-Myrcene": 0.09,
+  "Farnesene": 0.09,
+  "alpha-Humulene": 0.07,
+  "Fenchol": 0.06,
+  "Terpineol": 0.06
+ },
+ "scanned_at": "2026-10-01T18:31:50.770Z",
+ "thc": 30.471,
+ "total_terpenes": 1.07,
+ "in_stock": true,
+ "test_date": "2026-09-02",
+ "test_lab": "Green Analytics NY, LLC",
+ "date_expire": "2027-08-27"
+}
