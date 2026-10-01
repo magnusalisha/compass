@@ -1,0 +1,25 @@
+{
+ "id": "97fd936288",
+ "metrc_tag": "1A4120300001AA1000104336",
+ "brand": "Golden Garden",
+ "strain": "Mango Kush",
+ "form": "Flower 4g Moonrocks Infused",
+ "confidence": "faint",
+ "shelf_tag": "Indica",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "beta-Caryophyllene": 0.36,
+  "alpha-Humulene": 0.11,
+  "Farnesene": 0.1,
+  "Limonene": 0.1,
+  "Linalool": 0.08
+ },
+ "scanned_at": "2026-10-01T22:22:12.726Z",
+ "thc": 60.778,
+ "total_terpenes": 0.78,
+ "in_stock": true,
+ "test_date": "2026-09-10",
+ "test_lab": "Green Analytics NY, LLC",
+ "date_expire": "2027-09-03"
+}

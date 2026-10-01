@@ -1,0 +1,25 @@
+{
+ "id": "91298532db",
+ "metrc_tag": "1A4120300001AA1000104335",
+ "brand": "Golden Garden",
+ "strain": "Lemon Cherry Gelato",
+ "form": "Flower 4g Moonrocks Infused",
+ "confidence": "moderate",
+ "shelf_tag": "Hybrid",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "beta-Caryophyllene": 0.4,
+  "alpha-Humulene": 0.12,
+  "Farnesene": 0.11,
+  "Limonene": 0.1,
+  "Linalool": 0.08
+ },
+ "scanned_at": "2026-10-01T22:22:12.463Z",
+ "thc": 54.604,
+ "total_terpenes": 0.84,
+ "in_stock": true,
+ "test_date": "2026-09-15",
+ "test_lab": "Green Analytics NY, LLC",
+ "date_expire": "2027-09-03"
+}

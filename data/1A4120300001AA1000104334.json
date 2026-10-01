@@ -1,0 +1,25 @@
+{
+ "id": "ecb0bfe0c1",
+ "metrc_tag": "1A4120300001AA1000104334",
+ "brand": "Golden Garden",
+ "strain": "Gas Face",
+ "form": "Flower 4g Moonrocks Infused",
+ "confidence": "moderate",
+ "shelf_tag": "Sativa",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "beta-Caryophyllene": 0.43,
+  "alpha-Humulene": 0.13,
+  "Farnesene": 0.12,
+  "Limonene": 0.11,
+  "Linalool": 0.09
+ },
+ "scanned_at": "2026-10-01T22:22:12.197Z",
+ "thc": 50.929,
+ "total_terpenes": 0.88,
+ "in_stock": true,
+ "test_date": "2026-09-10",
+ "test_lab": "Green Analytics NY, LLC",
+ "date_expire": "2027-09-03"
+}
