@@ -1,0 +1,34 @@
+{
+ "id": "6e25d59342",
+ "metrc_tag": "1A41203000005DD000130984",
+ "brand": "Ayrloom",
+ "strain": "Cereal Milk",
+ "form": "Vape 1g Disposable",
+ "thc": 90,
+ "total_terpenes": 2.9157,
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Hybrid",
+ "reported": [],
+ "aroma": [
+  "citrus",
+  "earthy",
+  "musky",
+  "pine",
+  "floral"
+ ],
+ "terpenes": {
+  "Limonene": 1.097,
+  "beta-Myrcene": 0.5111,
+  "beta-Pinene": 0.4163,
+  "alpha-Pinene": 0.3607,
+  "Linalool": 0.3543,
+  "alpha-Bisabolol": 0.0711,
+  "Terpinolene": 0.0287,
+  "Camphene": 0.0234
+ },
+ "scanned_at": "2026-10-02T18:02:06.468Z",
+ "test_date": "2026-06-11",
+ "test_lab": "ACT Laboratories of New York, LLC",
+ "date_expire": "2027-06-03"
+}
