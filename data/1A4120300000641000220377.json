@@ -7,7 +7,7 @@
  "thc": 28.1512,
  "total_terpenes": 0.46,
  "confidence": "faint",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Indica",
  "reported": [
   "high THC",
@@ -36,5 +36,6 @@
  "scanned_at": "2026-09-22T18:29:40.709Z",
  "date_expire": "2027-04-21",
  "test_date": "2026-04-21",
- "test_lab": "Kaycha Labs NY"
+ "test_lab": "Kaycha Labs NY",
+ "sold_out_at": "2026-10-03T19:31:24.378Z"
 }
