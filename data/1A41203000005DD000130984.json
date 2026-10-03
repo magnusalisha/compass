@@ -27,8 +27,12 @@
   "Terpinolene": 0.0287,
   "Camphene": 0.0234
  },
- "scanned_at": "2026-10-02T18:02:06.468Z",
+ "scanned_at": "2026-10-03T15:25:18.178Z",
  "test_date": "2026-06-11",
  "test_lab": "ACT Laboratories of New York, LLC",
- "date_expire": "2027-06-03"
+ "date_expire": "2027-06-03",
+ "package_tags": [
+  "1A41203000005DD000112380",
+  "1A41203000005DD000130984"
+ ]
 }

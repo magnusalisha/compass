@@ -30,8 +30,17 @@
   "alpha-Bisabolol": 0.063,
   "Valencene": 0.0483
  },
- "scanned_at": "2026-10-01T01:46:28.364Z",
+ "scanned_at": "2026-10-03T15:24:54.881Z",
  "test_date": "2026-03-21",
  "test_lab": "ACT Laboratories of New York, LLC",
- "date_expire": "2027-04-14"
+ "date_expire": "2027-04-14",
+ "thc_range": [
+  85.84,
+  90.68
+ ],
+ "batches": 2,
+ "package_tags": [
+  "1A41203000005DD000107701",
+  "1A41203000005DD000112382"
+ ]
 }
