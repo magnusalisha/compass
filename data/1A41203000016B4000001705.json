@@ -25,9 +25,10 @@
  ],
  "form": "Flower 1g",
  "strain": "Strawberry Diesel",
- "in_stock": true,
+ "in_stock": false,
  "thc": 22.307,
  "test_date": "2026-02-16",
  "test_lab": "Green Analytics NY, LLC",
- "scanned_at": "2026-08-20T23:38:42.042Z"
+ "scanned_at": "2026-08-20T23:38:42.042Z",
+ "sold_out_at": "2026-10-03T00:01:32.334Z"
 }
