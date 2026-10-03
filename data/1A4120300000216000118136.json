@@ -1,6 +1,6 @@
 {
  "id": "a3f8c2e1d9",
- "metrc_tag": "1A4120300000216000087943",
+ "metrc_tag": "1A4120300000216000118136",
  "brand": "Anthem",
  "strain": "King Louis XIII",
  "form": "Infused Preroll 0.5g (5-pack, 2.5g total)",
@@ -37,9 +37,5 @@
  "test_date": "2026-02-18",
  "test_lab": "Kaycha Labs NY",
  "date_expire": "2027-02-10",
- "scanned_at": "2026-09-06T19:27:41.332Z",
- "package_tags": [
-  "1A4120300000216000087943",
-  "1A4120300000216000118136"
- ]
+ "scanned_at": "2026-10-03T20:01:32.133Z"
 }
