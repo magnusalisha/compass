@@ -1,6 +1,6 @@
 {
  "id": "b571ef78db",
- "metrc_tag": "1A4120300000529000069102",
+ "metrc_tag": "1A4120300000529000076768",
  "brand": "CRU",
  "strain": "Blue Dream",
  "form": "Infused Preroll 0.5g",
@@ -23,12 +23,8 @@
   "beta-Myrcene": 0.22,
   "alpha-Pinene": 0.14
  },
- "scanned_at": "2026-09-30T19:03:46.337Z",
+ "scanned_at": "2026-10-03T00:16:25.732Z",
  "test_date": "2026-03-26",
  "test_lab": "Green Analytics NY, LLC",
- "date_expire": "2027-03-16",
- "package_tags": [
-  "1A4120300000529000069102",
-  "1A4120300000529000076768"
- ]
+ "date_expire": "2027-03-16"
 }
