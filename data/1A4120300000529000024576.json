@@ -7,7 +7,7 @@
  "thc": 31.886,
  "total_terpenes": 0.66,
  "confidence": "faint",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Hybrid",
  "reported": [],
  "aroma": [
@@ -22,5 +22,6 @@
  },
  "scanned_at": "2026-08-20T23:38:39.755Z",
  "test_date": "2025-09-03",
- "test_lab": "Green Analytics NY, LLC"
+ "test_lab": "Green Analytics NY, LLC",
+ "sold_out_at": "2026-10-03T14:46:12.755Z"
 }
