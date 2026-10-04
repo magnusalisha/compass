@@ -27,7 +27,8 @@
  "scanned_at": "2026-09-22T20:36:00.600Z",
  "thc": 25.9854,
  "total_terpenes": 0.46,
- "in_stock": true,
+ "in_stock": false,
  "test_date": "2026-03-20",
- "test_lab": "Kaycha Labs NY"
+ "test_lab": "Kaycha Labs NY",
+ "sold_out_at": "2026-10-04T14:31:40.205Z"
 }

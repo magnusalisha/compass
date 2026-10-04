@@ -28,10 +28,11 @@
  ],
  "form": "Flower 3.5g",
  "strain": "Animal Cookies",
- "in_stock": true,
+ "in_stock": false,
  "thc": 24.57,
  "test_date": "2026-07-21",
  "test_lab": "Reliable Labs, Inc.",
  "date_expire": "2027-06-25",
- "scanned_at": "2026-09-04T20:29:27.718Z"
+ "scanned_at": "2026-09-04T20:29:27.718Z",
+ "sold_out_at": "2026-10-04T14:31:40.202Z"
 }
