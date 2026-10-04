@@ -7,7 +7,7 @@
  "thc": 80.0421,
  "total_terpenes": 4.4313,
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Indica",
  "reported": [
   "berry",
@@ -37,5 +37,6 @@
  "test_date": "2026-08-10",
  "test_lab": "Smithers CTS New York, LLC",
  "date_expire": "2027-08-10",
- "scanned_at": "2026-09-04T20:29:27.715Z"
+ "scanned_at": "2026-09-04T20:29:27.715Z",
+ "sold_out_at": "2026-10-04T00:46:02.490Z"
 }
