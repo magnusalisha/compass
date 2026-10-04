@@ -251,6 +251,34 @@
     border:1px solid var(--gold);border-radius:999px;padding:7px 14px;cursor:pointer}
   .morerow button:hover{background:rgba(200,163,74,.12)}
   .lookup-list{display:flex;flex-direction:column;gap:8px}
+  /* Lookup's category pills carry their size menu — see lookupCatButtons. */
+  .lookseg-wrap{position:relative}
+  .lookseg button{display:flex;align-items:center;justify-content:center;gap:5px;white-space:nowrap;min-height:40px}
+  .lookseg-cv{font-size:17px;line-height:1;opacity:1;margin-top:-1px}
+  /* On a phone the selected pill's label ("Preroll · non-infused 5-pack")
+     can't share one line with three others, so the row wraps instead of
+     squeezing All to a sliver. The register's width never needs this. */
+  @media (max-width:520px){ .lookseg{flex-wrap:wrap} .lookseg button{flex:1 1 auto} }
+  .lookseg button.none{opacity:.38}
+  .lookseg-menu{position:absolute;top:calc(100% - 5px);z-index:20;min-width:190px;
+    background:var(--card);color:var(--ink);border-radius:12px;padding:6px;
+    box-shadow:0 8px 24px rgba(0,0,0,.4)}
+  .lookseg-menu button{display:block;width:100%;text-align:left;min-height:42px;border:none;background:none;
+    border-radius:8px;font:400 15px Inter,sans-serif;color:var(--ink);padding:0 12px;cursor:pointer}
+  .lookseg-menu button:hover{background:var(--card2)}
+  .lookseg-menu button.sel{background:#E0D8C8;font-weight:600}
+  .lookseg-menu button{display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .lookseg-menu button.none{color:var(--ink2);opacity:.45}
+  .lookseg-n{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink2);font-weight:400}
+  .lookseg-cols{display:grid;grid-template-columns:1fr 1fr;gap:0 6px;min-width:300px}
+  .lookseg-inf{display:flex;gap:4px;padding:2px 2px 8px;margin-bottom:4px;border-bottom:1px solid #E0D8C8}
+  /* One line each — "Not infused" wrapped onto two inside a 190px menu. The
+     menu widens to fit the switch instead (Alisha, 3 Oct: "not so squished"). */
+  .lookseg-inf button{flex:1;justify-content:center;min-height:38px;border:1px solid #CFC6B4;border-radius:999px;font-size:13.5px;padding:0 14px;white-space:nowrap}
+  .lookseg-inf button.on{background:var(--ink);color:var(--card);border-color:var(--ink);font-weight:600}
+  .lookseg-inf button.on:hover{background:var(--ink)}
+  .lookseg-gh{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--ink2);padding:8px 12px 4px}
   /* effect search: "right terps, wrong size" pivots — dimmed but readable */
   .pivot-head{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;
     text-transform:uppercase;color:var(--dim);margin:20px 2px 10px}
@@ -566,6 +594,24 @@ const sizeMatches = (p, sel) => {
   if (!k) return false;
   return sel.endsWith('|*') ? k[0] === sel[0] : k === sel;
 };
+// The size dropdown's options, given the sizes on offer, for Match by effect.
+// (Lookup's size menu is its own — see LOOKUP SIZE KEYS — because it groups
+// packs by count and vapes by hardware, which Match's dropdown does not.)
+// Only group when there is something to group against. With no packs in the
+// category (Flower, Vape) a lone "Singles" heading would be a distinction the
+// shelf doesn't make. Each group leads with an all-of-this-kind option: the ask
+// at the counter is "a pack of prerolls", and reaching that by size meant
+// knowing which sizes even come in packs (0.6g, 0.7g and 0.9g are packs only;
+// 1g is 25 singles against 1 pack).
+function sizeOptions(keys, current){
+  const singles = keys.filter(k => k[0] === 's'), packs = keys.filter(k => k[0] === 'p');
+  const opt = k => `<option value="${k}"${current===k?' selected':''}>${k.slice(2)}</option>`;
+  const all = (k, label) => `<option value="${k}"${current===k?' selected':''}>${label}</option>`;
+  return packs.length && singles.length
+    ? `<optgroup label="Singles">${all('s|*','All singles')}${singles.map(opt).join('')}</optgroup>`
+      + `<optgroup label="Multipacks">${all('p|*','All multipacks')}${packs.map(opt).join('')}</optgroup>`
+    : keys.map(k => `<option value="${k}"${current===k?' selected':''}>${k.slice(2)}${k[0]==='p'?' pack':''}</option>`).join('');
+}
 // Names the filter for the empty states: "0.5g packs", "multipacks", "singles".
 const sizeLabel = sel => {
   if (!sel || sel === 'any') return '';
@@ -983,7 +1029,7 @@ const key = p => p._key || p.id;
 // last good data when it cannot reach the repo, which is the right behaviour
 // and is untouched.
 let DATA = [], loadFailed = false, tab = 'effect', a = null, b = null, sel = null, flash = '', effCat = 'All', simCat = 'All',
-  lookupQ = '', lookupSel = null, lookupCat = 'All',
+  lookupQ = '', lookupSel = null, lookupCat = 'All', lookupSize = 'any', lookupInf = 'any', lookupMenu = null,
   effSize = 'any', effLean = 'any', effInfused = 'any', effHardware = 'any', unreadable = 0,
   // 'data' (a broken record — edit the file) | 'net' (didn't load — refresh) |
   // 'mixed'. See recordsFromIndex: the footer has to name the right remedy.
@@ -2698,21 +2744,7 @@ function render(){
            </select>
            <select id="effSize" aria-label="Size"${effSize!=='any'?' data-set':''}>
              <option value="any"${effSize==='any'?' selected':''}>Any size</option>
-             ${(() => {
-               const opt = k => `<option value="${k}"${effSize===k?' selected':''}>${k.slice(2)}</option>`;
-               // Only group when there is something to group against. With no
-               // packs in the category (Flower, Vape) a lone "Singles" heading
-               // would be a distinction the shelf doesn't make.
-               // Each group leads with an all-of-this-kind option: the ask at the
-               // counter is "a pack of prerolls", and reaching that by size meant
-               // knowing which sizes even come in packs (0.6g, 0.7g and 0.9g are
-               // packs only; 1g is 25 singles against 1 pack).
-               const all = (k, label) => `<option value="${k}"${effSize===k?' selected':''}>${label}</option>`;
-               return sizePacks.length && sizeSingles.length
-                 ? `<optgroup label="Singles">${all('s|*','All singles')}${sizeSingles.map(opt).join('')}</optgroup>`
-                   + `<optgroup label="Multipacks">${all('p|*','All multipacks')}${sizePacks.map(opt).join('')}</optgroup>`
-                 : sizeKeys.map(k => `<option value="${k}"${effSize===k?' selected':''}>${k.slice(2)}${k[0]==='p'?' pack':''}</option>`).join('');
-             })()}
+             ${sizeOptions(sizeKeys, effSize)}
            </select>
            ${infusedApplies ? `<select id="effInfused" aria-label="Infused or non-infused"${effInfused!=='any'?' data-set':''}>
              <option value="any"${effInfused==='any'?' selected':''}>Any infusion</option>
@@ -2911,7 +2943,8 @@ function render(){
     P.innerHTML = banner + `<div class="searchwrap">
         <input type="text" id="lookupQ" placeholder="Type a strain or brand…" value="${lookupQ.replace(/"/g,'&quot;')}">
         <button type="button" class="clearbtn${lookupQ ? ' show' : ''}" data-clear="lookupQ" aria-label="Clear search">&times;</button>
-      </div>` + categoryButtons('lookupCat', lookupCat);
+      </div>` + lookupCatButtons();
+    placeLookupMenu();
     return renderLookupResults();
   }
 
@@ -3401,8 +3434,172 @@ function pickQuery(text){
   renderEffectResults();
 }
 
+// SIZE, inside the category pill. The ask at the counter is often a narrowing,
+// not a name — "got any haze? … flower? an eighth?" — and Lookup could do
+// strain and category but not size, so the answer meant leaving Compass for the
+// shop's own menu (Alisha, 3 Oct). "haze" is 15 results on today's shelf, 4 in
+// Flower, 2 in Flower 3.5g.
+//
+// First built as a separate dropdown under the pills, the same one Match by
+// effect has. Swapped the same day, from a tappable mockup, for Alisha's own
+// idea: the pill IS the dropdown. Tap Flower and its sizes open under it; pick
+// 3.5g and the pill reads "Flower · 3.5g ▾". One control instead of two rows,
+// in the order the question is asked, and every size is a big tap target on
+// the register's touchscreen — a native <select> opens a small OS list there.
+//
+//   - tapping a category selects it AND opens its sizes, since size is the
+//     next question; tapping the selected pill again reopens them
+//   - All has no sizes: "3.5g of anything" isn't a question anyone asks
+//   - sizes are the ones that category has (respecting the out-of-stock box),
+//     not narrowed by the typed text, so the list doesn't move while you type
+//   - each kind of size is its own column, with an all-of-them option — see
+//     LOOKUP SIZE KEYS for which kinds
+//   - Escape or a tap anywhere else closes it
+//
+// Match by effect and Find similar keep the plain pills: their filters are a
+// different row of dropdowns, and this was only tried here.
+// LOOKUP SIZE KEYS. Built 3 Oct after the first menu (weights only) met the
+// questions people actually ask at the counter:
+//
+//   "a five-pack"  — packs are asked for by COUNT. One count spans many joint
+//                    weights: today's 5-packs are 0.4g, 0.5g, 0.6g, 0.75g and
+//                    0.9g joints, five separate options in a by-weight menu.
+//                    By count it is one tap (2-, 4-, 5-, 6-, 7-packs: 8, 1, 29,
+//                    5, 8). The rows below still print each pack's weight.
+//   "any carts?"   — vapes split by hardware: Carts 0.5g and 1g, Disposables
+//                    1g, 2g and 6g. Typing "cart" found nothing, since the
+//                    word is in the form, not the name.
+//   "infused?"     — a switch at the top of the menu, where the category has
+//                    both kinds (48 of 93 prerolls; 7 flowers). Same story:
+//                    "infused" typed found nothing.
+//
+// A key is kind|value. Kinds: s single (by weight), n pack (by count),
+// c cart, d disposable (both by weight), u a vape whose hardware isn't on the
+// record (none today; the column appears by itself if one lands, rather than
+// the vape silently dropping out of both). "x|*" is every size of kind x.
+const lookupKey = p => {
+  const w = weightOnly(p);
+  if (!w) return '';
+  if (category(p) === 'Vape'){ const t = vapeType(p); return (t === 'Cart' ? 'c' : t === 'Disposable' ? 'd' : 'u') + '|' + w; }
+  return isPackForm(p) ? 'n|' + parseSize(p).count : 's|' + w;
+};
+const lookupSizeOk = (p, sel) => {
+  if (sel === 'any') return true;
+  const k = lookupKey(p);
+  return !!k && (sel.endsWith('|*') ? k[0] === sel[0] : k === sel);
+};
+const lookupInfOk = (p, inf) => inf === 'any' || (inf === 'yes') === isInfused(p);
+const LOOKUP_KINDS = { s: ['Singles', 'All singles'], n: ['Packs', 'All packs'],
+  c: ['Carts', 'All carts'], d: ['Disposables', 'All disposables'], u: ['Not specified', 'All not specified'] };
+const lookupKeyLabel = k => k[0] === 'n' ? `${k.slice(2)}-pack` : k.slice(2);
+// What the pill says after the category: "infused 5-pack", "1g cart", "packs".
+const lookupPillText = () => {
+  const inf = lookupInf === 'yes' ? 'infused' : lookupInf === 'no' ? 'non-infused' : '';
+  const k = lookupSize, kind = k[0];
+  const size = k === 'any' ? '' : k.endsWith('|*') ? { s: 'singles', n: 'packs', c: 'carts', d: 'disposables', u: 'not specified' }[kind]
+    : lookupKeyLabel(k) + (kind === 'c' ? ' cart' : kind === 'd' ? ' disposable' : '');
+  return [inf, size].filter(Boolean).join(' ') || 'any size';
+};
+// The menu's contents for a category: its kinds, each kind's keys in order,
+// and whether the infused switch applies.
+const lookupMenuFor = c => {
+  const list = pool().filter(p => category(p) === c);
+  const keys = [...new Set(list.map(lookupKey).filter(Boolean))]
+    .sort((a, b) => parseFloat(a.slice(2)) - parseFloat(b.slice(2)));
+  const kinds = 'sncdu'.split('').filter(x => keys.some(k => k[0] === x));
+  const inf = list.some(isInfused) && list.some(p => !isInfused(p));
+  const valid = ['any', ...keys, ...(kinds.length > 1 ? kinds.map(x => x + '|*') : [])];
+  return { keys, kinds, inf, valid };
+};
+function lookupCatButtons(){
+  if (lookupCat === 'All'){ lookupSize = 'any'; lookupInf = 'any'; }
+  else {
+    const m = lookupMenuFor(lookupCat);
+    if (!m.valid.includes(lookupSize)) lookupSize = 'any';
+    if (!m.inf) lookupInf = 'any';
+  }
+  // The selected pill always names its filter, "any size" included. A bare
+  // "Flower ▾" never said there was a size to choose; "Flower · any size ▾"
+  // does, to a coworker who has never been shown the menu (item 5, 3 Oct).
+  const pills = CATEGORIES.map(c => {
+    const on = c === lookupCat, label = on && c !== 'All' ? `${c} · ${lookupPillText()}` : c;
+    return `<button type="button" class="${on ? 'active' : ''}" data-cat="${c}"${c === 'All' ? '' : ` aria-haspopup="true" aria-expanded="${lookupMenu === c}"`}>${label}${c === 'All' ? '' : '<span class="lookseg-cv">▾</span>'}</button>`;
+  }).join('');
+  return `<div class="lookseg-wrap"><div class="catseg lookseg" data-catkey="lookupCat">${pills}</div>${lookupMenu ? lookupMenuHTML() : ''}</div>`;
+}
+// COUNTS, once something is typed: each size shows how many of the typed
+// matches it holds, and a size with none is greyed — "haze" in Flower lights
+// 3.5g · 2, 14g · 1 and 28g · 1 and greys 1g, 4g and 7g (3 Oct). Greyed, NOT
+// removed: removing them would reshape the menu on every keystroke and move
+// the targets under the finger. A greyed size still works if tapped and gets
+// the empty message, rather than a tap that does nothing. With nothing typed
+// there is nothing to count, so the menu is plain — every size in it is
+// already one the category has. Counts respect the infused switch, so
+// "Infused" then "5-pack · 12" means twelve infused five-packs.
+//
+// The infused switch keeps the menu open (a size usually follows); a size
+// closes it.
+function lookupMenuHTML(){
+  const m = lookupMenuFor(lookupMenu);
+  const q = lookupQ.trim().toLowerCase();
+  const typed = q ? pool().filter(p => category(p) === lookupMenu && matchesQuery(p, q)) : null;
+  const hits = typed && typed.filter(p => lookupInfOk(p, lookupInf));
+  const b = (k, t) => {
+    const c = hits ? hits.filter(p => lookupSizeOk(p, k)).length : null;
+    return `<button type="button" data-lookup-size="${k}" class="${lookupSize === k ? 'sel' : ''}${c === 0 ? ' none' : ''}">${t}${
+      c ? `<span class="lookseg-n">${c}</span>` : ''}</button>`;
+  };
+  const sw = m.inf ? `<div class="lookseg-inf" role="group" aria-label="Infused">${[['any', 'Either'], ['yes', 'Infused'], ['no', 'Not infused']].map(([v, t]) => {
+      const none = typed && v !== 'any' && !typed.some(p => lookupInfOk(p, v));
+      return `<button type="button" data-lookup-inf="${v}" class="${lookupInf === v ? 'on' : ''}${none ? ' none' : ''}" aria-pressed="${lookupInf === v}">${t}</button>`;
+    }).join('')}</div>` : '';
+  const col = x => `<div><div class="lookseg-gh">${LOOKUP_KINDS[x][0]}</div>${b(x + '|*', LOOKUP_KINDS[x][1])}${
+    m.keys.filter(k => k[0] === x).map(k => b(k, lookupKeyLabel(k))).join('')}</div>`;
+  // Kinds side by side, not stacked: stacked, prerolls ran to 15 rows and off
+  // the bottom of a 768px register screen. One kind (Flower) is a plain list.
+  return `<div class="lookseg-menu" role="menu">${sw}${b('any', 'Any size')}${
+    m.kinds.length > 1
+      ? `<div class="lookseg-cols" style="grid-template-columns:repeat(${m.kinds.length},1fr)">${m.kinds.map(col).join('')}</div>`
+      : m.keys.map(k => b(k, lookupKeyLabel(k))).join('')
+  }</div>`;
+}
+// A category with nothing matching what's typed is greyed, the same way the
+// size menu greys an empty size — "gelato" has flower and prerolls but no vape,
+// and tapping over to Vape to find that out is a wasted trip (Alisha, 3 Oct).
+// Greyed, not hidden or disabled: the row keeps its shape while typing, and a
+// tap still works and shows the empty message. The selected pill is never
+// greyed — it stays gold so you can see where you are — and All never is.
+// Runs on every keystroke, since typing doesn't rebuild the pills.
+function syncLookupPills(){
+  const q = lookupQ.trim().toLowerCase();
+  const hit = q ? new Set(pool().filter(p => matchesQuery(p, q)).map(category)) : null;
+  document.querySelectorAll('.lookseg button[data-cat]').forEach(b => {
+    const c = b.dataset.cat;
+    b.classList.toggle('none', !!hit && c !== 'All' && c !== lookupCat && !hit.has(c));
+  });
+}
+// Line the menu up under its pill, kept inside the panel's right edge.
+function placeLookupMenu(){
+  const m = document.querySelector('.lookseg-menu');
+  if (!m) return;
+  const pill = document.querySelector(`.lookseg button[data-cat="${lookupMenu}"]`);
+  const wrap = m.parentElement;
+  m.style.left = Math.max(0, Math.min(pill.offsetLeft, wrap.clientWidth - m.offsetWidth)) + 'px';
+}
+function closeLookupMenu(){
+  if (!lookupMenu) return;
+  lookupMenu = null;
+  const m = document.querySelector('.lookseg-menu');
+  if (m) m.remove();
+  document.querySelectorAll('.lookseg button[aria-expanded]').forEach(b => b.setAttribute('aria-expanded', 'false'));
+}
+
 function renderLookupResults(){
   const O = $('#out');
+  syncLookupPills();
+  // Keep an open size menu's counts in step with what's typed.
+  const menu = document.querySelector('.lookseg-menu');
+  if (menu && lookupMenu){ menu.outerHTML = lookupMenuHTML(); placeLookupMenu(); }
   if (lookupSel){
     const p = DATA.find(x => key(x) === lookupSel);
     if (p){
@@ -3419,6 +3616,7 @@ function renderLookupResults(){
   // list gave no way to get to the one shelf you were standing at.
   const matches = pool()
     .filter(p => lookupCat === 'All' || category(p) === lookupCat)
+    .filter(p => lookupSizeOk(p, lookupSize) && lookupInfOk(p, lookupInf))
     .filter(p => matchesQuery(p, q));
 
   // One strain name spread over several products is the case where typing MORE
@@ -3451,8 +3649,7 @@ function renderLookupResults(){
       })()
     : '';
 
-  O.innerHTML = matches.length
-    ? tip + `<div class="lookup-list">${matches.map(p => `<button type="button" class="lookup-row" data-lookup-id="${key(p)}">
+  const row = p => `<button type="button" class="lookup-row" data-lookup-id="${key(p)}">
          <span class="lookup-left"><span class="lookup-strain">${p.strain}</span><span class="lookup-meta"><span class="lookup-form">${formLabel(p)}</span>${
            // The same chip the card carries, so the colour means one thing in both
            // places. Unverified keeps its dashed outline rather than a colour it
@@ -3471,8 +3668,12 @@ function renderLookupResults(){
             hasProfile(p) && p.total_terpenes > 0 ? `${tpct(p.total_terpenes)}% terps` : '']
              .filter(Boolean).join(' · ')
          }</span></span>
-       </button>`).join('')}</div>`
-    : `<div class="empty">${lookupCat === 'All'
+       </button>`;
+  O.innerHTML = matches.length
+    ? tip + `<div class="lookup-list">${matches.map(row).join('')}</div>`
+    : `<div class="empty">${lookupSize !== 'any' || lookupInf !== 'any'
+          ? `Nothing ${lookupInf === 'yes' ? 'infused ' : lookupInf === 'no' ? 'non-infused ' : ''}${lookupSize !== 'any' ? 'at that size ' : ''}matches — tap the pill to change it, or × to start over.`
+          : lookupCat === 'All'
           ? 'Nothing in Compass matches that.'
           : `No ${lookupCat.toLowerCase()} matches that — tap All to search every category.`}<br><span style="font-size:13px">It may be on the shelf but not in Compass yet.</span></div>`;
   return foot();
@@ -3511,12 +3712,28 @@ function foot(){
     <b>THC is the one number on the COA that reliably drives the experience.</b>`;
 }
 document.addEventListener('click', e => {
+  // Any tap outside Lookup's size menu and its pills closes the menu.
+  if (lookupMenu && !e.target.closest('.lookseg-menu') && !e.target.closest('.lookseg button')) closeLookupMenu();
   const more = e.target.closest('[data-effmore]');
   if (more){ effShowAll = more.dataset.effmore === '1'; renderEffectResults(); return; }
 
   const t = e.target.closest('.tabs button');
   if (t){ tab = t.dataset.tab; render(); return; }
 
+  const ls = e.target.closest('[data-lookup-size]');
+  if (ls){ lookupSize = ls.dataset.lookupSize; lookupMenu = null; lookupSel = null; render(); return; }
+  const li = e.target.closest('[data-lookup-inf]');
+  if (li){ lookupInf = li.dataset.lookupInf; lookupSel = null; render(); return; }   // menu stays open
+  const lc = e.target.closest('.lookseg button');
+  if (lc){
+    const c = lc.dataset.cat;
+    if (c === 'All'){ lookupCat = 'All'; lookupSize = 'any'; lookupInf = 'any'; lookupMenu = null; }
+    else if (c !== lookupCat){ lookupCat = c; lookupSize = 'any'; lookupInf = 'any'; lookupMenu = c; }
+    else lookupMenu = lookupMenu === c ? null : c;
+    lookupSel = null;   // a new shelf means a new search, not the card you had open
+    render();
+    return;
+  }
   const c = e.target.closest('.catseg button');
   if (c){
     const catKey = c.closest('.catseg').dataset.catkey;
@@ -3566,7 +3783,21 @@ document.addEventListener('click', e => {
       if (back) back.focus();
       return;
     }
-    else { lookupQ = ''; lookupSel = null; renderLookupResults(); }
+    else if (id === 'lookupQ'){
+      // The x means "next customer": text, category and size all go back to
+      // the start. A size left set from the last customer answers the next
+      // search from a slice of the shelf — "kush" showing only eighths, read as
+      // "we only have eighths". The category goes too, unlike the effect box
+      // above: here the size lives INSIDE the category pill, so the two are one
+      // choice, and Alisha wanted the x to mean starting over (3 Oct). A full
+      // render() redraws the pills, which replaces the input, so focus the new
+      // one and return.
+      lookupQ = ''; lookupSel = null; lookupCat = 'All'; lookupSize = 'any'; lookupInf = 'any'; lookupMenu = null;
+      render();
+      const back = document.getElementById(id);
+      if (back){ toggleClear(id); back.focus(); }
+      return;
+    }
     toggleClear(id);
     if (inp) inp.focus();                    // ready to type the next thing
     return;
@@ -3674,6 +3905,7 @@ document.addEventListener('focusout', e => {
   updateComboList(id);
 });
 document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && lookupMenu){ closeLookupMenu(); return; }
   const inp = e.target.closest('.combo-input');
   if (!inp) return;
   const id = inp.closest('.combo').dataset.combo;
