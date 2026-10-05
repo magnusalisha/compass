@@ -7,7 +7,7 @@
  "thc": 25.31,
  "total_terpenes": 1.6121,
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Sativa",
  "reported": [
   "Pine",
@@ -35,5 +35,6 @@
  "test_date": "2026-07-21",
  "test_lab": "Reliable Labs, Inc.",
  "date_expire": "2027-06-25",
- "scanned_at": "2026-09-04T20:29:27.719Z"
+ "scanned_at": "2026-09-04T20:29:27.719Z",
+ "sold_out_at": "2026-10-05T19:01:06.281Z"
 }
