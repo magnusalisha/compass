@@ -1,0 +1,45 @@
+{
+ "id": "a3f7c2e891",
+ "metrc_tag": "1A4120300001CF7000037398",
+ "brand": "Jaunty",
+ "strain": "Crunch N Munch",
+ "form": "Vape 0.5g Cartridge",
+ "thc": 77.169,
+ "total_terpenes": 7.105,
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Indica",
+ "reported": [
+  "Live Rosin",
+  "Spicy, Citrus, Earthy"
+ ],
+ "aroma": [
+  "spicy",
+  "citrus",
+  "earthy",
+  "herbal",
+  "floral"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 2.4983,
+  "Limonene": 1.1562,
+  "alpha-Humulene": 0.7587,
+  "Guaiol": 0.6045,
+  "Farnesene": 0.4937,
+  "Linalool": 0.4904,
+  "beta-Myrcene": 0.2433,
+  "beta-Pinene": 0.1487,
+  "alpha-Pinene": 0.1432,
+  "Terpineol": 0.13,
+  "Fenchol": 0.1269,
+  "Nerolidol": 0.1201,
+  "Ocimene": 0.078,
+  "Caryophyllene Oxide": 0.0625,
+  "Borneol": 0.0324,
+  "Camphene": 0.018
+ },
+ "test_date": "2026-07-30",
+ "test_lab": "ACT Laboratories of New York, LLC",
+ "date_expire": "2027-07-24",
+ "scanned_at": "2026-10-05T21:31:06.667Z"
+}
