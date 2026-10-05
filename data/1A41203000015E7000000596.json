@@ -7,7 +7,7 @@
  "thc": 43.3,
  "total_terpenes": 2.1852,
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Hybrid",
  "reported": [
   "infused preroll",
@@ -40,5 +40,6 @@
  "test_date": "2026-02-08",
  "test_lab": "Analytical Testing Center of Central New York",
  "date_expire": "2027-04-09",
- "scanned_at": "2026-09-16T22:15:47.425Z"
+ "scanned_at": "2026-09-16T22:15:47.425Z",
+ "sold_out_at": "2026-10-05T01:46:07.588Z"
 }
