@@ -1,0 +1,32 @@
+{
+ "id": "1919b6af17",
+ "metrc_tag": "1A412030000019E000188610",
+ "brand": "Florist Farms",
+ "strain": "Granddaddy Purp",
+ "form": "Vape 1g Cartridge",
+ "confidence": "strong",
+ "shelf_tag": "Indica",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "Terpinolene": 1.5,
+  "Ocimene": 0.85,
+  "Limonene": 0.69,
+  "beta-Myrcene": 0.68,
+  "alpha-Pinene": 0.28,
+  "beta-Caryophyllene": 0.27,
+  "beta-Pinene": 0.16,
+  "alpha-Humulene": 0.12,
+  "Farnesene": 0.08,
+  "alpha-Bisabolol": 0.05,
+  "Caryophyllene Oxide": 0.04,
+  "Guaiol": 0.04
+ },
+ "scanned_at": "2026-10-06T21:01:11.637Z",
+ "thc": 74.0958,
+ "total_terpenes": 4.94,
+ "in_stock": true,
+ "test_date": "2026-08-17",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-08-06"
+}

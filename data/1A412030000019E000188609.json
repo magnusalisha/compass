@@ -1,0 +1,46 @@
+{
+ "id": "a3f8c21b9e",
+ "metrc_tag": "1A412030000019E000188609",
+ "brand": "Florist Farms",
+ "strain": "Durban Poison",
+ "form": "Vape 1g Cartridge",
+ "thc": 85.506,
+ "total_terpenes": 7.1567,
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Sativa",
+ "reported": [
+  "Durban Poison",
+  "Vape Cartridge"
+ ],
+ "aroma": [
+  "piney",
+  "herbal",
+  "woody",
+  "citrus",
+  "earthy"
+ ],
+ "terpenes": {
+  "Terpinolene": 3.1963,
+  "Ocimene": 1.1993,
+  "beta-Myrcene": 0.6242,
+  "beta-Caryophyllene": 0.5018,
+  "Limonene": 0.3657,
+  "alpha-Pinene": 0.2752,
+  "beta-Pinene": 0.2056,
+  "alpha-Phellandrene": 0.135,
+  "alpha-Humulene": 0.1159,
+  "Linalool": 0.1114,
+  "alpha-Terpinene": 0.1086,
+  "Carene": 0.0833,
+  "Farnesene": 0.0713,
+  "Terpineol": 0.036,
+  "alpha-Bisabolol": 0.0339,
+  "Fenchol": 0.024,
+  "Caryophyllene Oxide": 0.0193
+ },
+ "test_date": "2026-08-10",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-08-13",
+ "scanned_at": "2026-10-06T21:01:11.430Z"
+}
