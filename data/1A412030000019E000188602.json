@@ -7,7 +7,7 @@
  "thc": 37.27,
  "total_terpenes": 2.4605,
  "confidence": "strong",
- "in_stock": false,
+ "in_stock": true,
  "shelf_tag": "Sativa",
  "reported": [
   "Live Resin Infused",
@@ -42,6 +42,5 @@
  "test_date": "2026-03-31",
  "test_lab": "ACT Laboratories of New York, LLC",
  "scanned_at": "2026-10-06T21:01:09.749Z",
- "date_expire": "2027-03-23",
- "sold_out_at": "2026-10-06T22:01:06.873Z"
+ "date_expire": "2027-03-23"
 }
