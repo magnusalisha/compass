@@ -1,0 +1,38 @@
+{
+ "id": "0730c2a2c9",
+ "metrc_tag": "1A41203000049D8000017509",
+ "brand": "Fernway",
+ "strain": "White Widow",
+ "form": "Vape 2g Disposable",
+ "thc": 83.056,
+ "total_terpenes": 4.2225,
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Hybrid",
+ "reported": [],
+ "aroma": [
+  "citrus",
+  "fruity",
+  "herbal",
+  "earthy",
+  "musky"
+ ],
+ "terpenes": {
+  "Limonene": 0.9323,
+  "Terpinolene": 0.7171,
+  "beta-Myrcene": 0.6118,
+  "beta-Caryophyllene": 0.5291,
+  "alpha-Pinene": 0.435,
+  "Ocimene": 0.4313,
+  "alpha-Humulene": 0.1805,
+  "beta-Pinene": 0.1622,
+  "Linalool": 0.1079,
+  "alpha-Phellandrene": 0.0698,
+  "Fenchol": 0.0442,
+  "Nerolidol": 0.0013
+ },
+ "scanned_at": "2026-10-07T17:46:13.559Z",
+ "test_date": "2026-09-17",
+ "test_lab": "Smithers CTS New York, LLC",
+ "date_expire": "2027-09-17"
+}

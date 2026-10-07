@@ -1,0 +1,30 @@
+{
+ "id": "6b451fb729",
+ "metrc_tag": "1A41203000049D8000017501",
+ "brand": "Fernway",
+ "strain": "Lava Cake",
+ "form": "Vape 1g Cartridge",
+ "confidence": "strong",
+ "shelf_tag": "Hybrid",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "Limonene": 1.3441,
+  "beta-Caryophyllene": 0.8895,
+  "beta-Myrcene": 0.6094,
+  "alpha-Humulene": 0.3095,
+  "alpha-Pinene": 0.221,
+  "Ocimene": 0.1717,
+  "Linalool": 0.1313,
+  "beta-Pinene": 0.1148,
+  "Fenchol": 0.0666,
+  "Nerolidol": 0.0013
+ },
+ "scanned_at": "2026-10-07T17:46:12.015Z",
+ "thc": 83.29,
+ "total_terpenes": 3.8592,
+ "in_stock": true,
+ "test_date": "2026-09-17",
+ "test_lab": "Smithers CTS New York, LLC",
+ "date_expire": "2027-09-17"
+}

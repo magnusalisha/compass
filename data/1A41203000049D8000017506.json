@@ -1,0 +1,41 @@
+{
+ "id": "f952e9ddda",
+ "metrc_tag": "1A41203000049D8000017506",
+ "brand": "Fernway",
+ "strain": "Red Headed Stranger",
+ "form": "Vape 2g Disposable",
+ "thc": 81.462,
+ "total_terpenes": 4.4288,
+ "confidence": "strong",
+ "in_stock": true,
+ "shelf_tag": "Sativa",
+ "reported": [],
+ "aroma": [
+  "spicy",
+  "peppery",
+  "citrus",
+  "green",
+  "apple"
+ ],
+ "terpenes": {
+  "beta-Caryophyllene": 1.6098,
+  "Limonene": 1.0475,
+  "alpha-Humulene": 0.5657,
+  "Linalool": 0.2725,
+  "beta-Myrcene": 0.2719,
+  "alpha-Pinene": 0.1548,
+  "beta-Pinene": 0.1071,
+  "Caryophyllene Oxide": 0.094,
+  "Eucalyptol": 0.0778,
+  "Fenchol": 0.0669,
+  "Nerolidol": 0.0432,
+  "alpha-Bisabolol": 0.0396,
+  "Terpinolene": 0.0362,
+  "Camphene": 0.0307,
+  "Borneol": 0.0111
+ },
+ "scanned_at": "2026-10-07T17:46:12.723Z",
+ "test_date": "2026-08-20",
+ "test_lab": "Smithers CTS New York, LLC",
+ "date_expire": "2027-08-20"
+}

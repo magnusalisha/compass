@@ -1,0 +1,33 @@
+{
+ "id": "cc2689812c",
+ "metrc_tag": "1A41203000049D8000017499",
+ "brand": "Fernway",
+ "strain": "Elderflower",
+ "form": "Vape 2g Disposable",
+ "confidence": "strong",
+ "shelf_tag": "Hybrid",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "Limonene": 1.068,
+  "beta-Myrcene": 0.3843,
+  "alpha-Bisabolol": 0.2719,
+  "Valencene": 0.1766,
+  "Terpineol": 0.1699,
+  "alpha-Pinene": 0.1626,
+  "Eucalyptol": 0.0725,
+  "Carene": 0.0486,
+  "alpha-Phellandrene": 0.0446,
+  "Geraniol": 0.0431,
+  "beta-Pinene": 0.0319,
+  "Camphene": 0.0297,
+  "Nerolidol": 0.0013
+ },
+ "scanned_at": "2026-10-07T17:46:11.775Z",
+ "thc": 86.652,
+ "total_terpenes": 4.5021,
+ "in_stock": true,
+ "test_date": "2026-08-31",
+ "test_lab": "Smithers CTS New York, LLC",
+ "date_expire": "2027-08-31"
+}
