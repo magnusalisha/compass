@@ -1,0 +1,26 @@
+{
+ "id": "0bfd70c29b",
+ "metrc_tag": "1A4120300001E8C000000884",
+ "brand": "Loud Buzz",
+ "strain": "Gelato 41",
+ "form": "Flower 3.5g",
+ "confidence": "moderate",
+ "shelf_tag": "Hybrid",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "beta-Caryophyllene": 0.28,
+  "Limonene": 0.27,
+  "Linalool": 0.26,
+  "Guaiol": 0.12,
+  "alpha-Humulene": 0.09,
+  "alpha-Bisabolol": 0.07
+ },
+ "scanned_at": "2026-10-07T15:00:36.477Z",
+ "thc": 20.356,
+ "total_terpenes": 1.08,
+ "in_stock": true,
+ "test_date": "2026-09-22",
+ "test_lab": "Green Analytics NY, LLC",
+ "date_expire": "2027-09-10"
+}

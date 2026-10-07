@@ -1,0 +1,25 @@
+{
+ "id": "231b2e4629",
+ "metrc_tag": "1A4120300001E8C000000885",
+ "brand": "Loud Buzz",
+ "strain": "NYC Runtz",
+ "form": "Flower 3.5g",
+ "confidence": "moderate",
+ "shelf_tag": "Hybrid",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "beta-Caryophyllene": 0.26,
+  "Limonene": 0.24,
+  "Linalool": 0.23,
+  "Guaiol": 0.11,
+  "alpha-Humulene": 0.08
+ },
+ "scanned_at": "2026-10-07T15:00:36.710Z",
+ "thc": 18.341,
+ "total_terpenes": 0.91,
+ "in_stock": true,
+ "test_date": "2026-09-22",
+ "test_lab": "Green Analytics NY, LLC",
+ "date_expire": "2027-09-10"
+}

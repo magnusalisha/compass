@@ -1,0 +1,25 @@
+{
+ "id": "94cb1b0b89",
+ "metrc_tag": "1A4120300001E8C000000883",
+ "brand": "Loud Buzz",
+ "strain": "Blue Dream",
+ "form": "Flower 3.5g",
+ "confidence": "moderate",
+ "shelf_tag": "Sativa",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "beta-Caryophyllene": 0.28,
+  "Limonene": 0.26,
+  "Linalool": 0.25,
+  "Guaiol": 0.12,
+  "alpha-Humulene": 0.09
+ },
+ "scanned_at": "2026-10-07T15:00:36.227Z",
+ "thc": 20.958,
+ "total_terpenes": 1,
+ "in_stock": true,
+ "test_date": "2026-09-22",
+ "test_lab": "Green Analytics NY, LLC",
+ "date_expire": "2027-09-10"
+}
