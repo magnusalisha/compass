@@ -7,7 +7,7 @@
  "thc": 28.4774,
  "total_terpenes": 1,
  "confidence": "moderate",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Sativa",
  "reported": [
   "beta-Caryophyllene dominant",
@@ -30,5 +30,6 @@
  "scanned_at": "2026-09-24T18:33:25.631Z",
  "test_date": "2026-07-20",
  "test_lab": "Kaycha Labs NY",
- "date_expire": "2027-11-01"
+ "date_expire": "2027-11-01",
+ "sold_out_at": "2026-10-08T15:02:05.064Z"
 }
