@@ -1,0 +1,33 @@
+{
+ "id": "17d7c3f5d7",
+ "metrc_tag": "1A4120300000641000304093",
+ "brand": "Jetty Extracts",
+ "strain": "Laundry Day",
+ "form": "Vape 1g Disposable",
+ "confidence": "strong",
+ "shelf_tag": "Indica",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "beta-Caryophyllene": 2.176,
+  "Limonene": 1.837,
+  "beta-Myrcene": 0.6228,
+  "alpha-Humulene": 0.6114,
+  "Linalool": 0.3707,
+  "beta-Pinene": 0.345,
+  "alpha-Pinene": 0.2083,
+  "Farnesene": 0.1962,
+  "Fenchol": 0.1681,
+  "Terpineol": 0.1047,
+  "alpha-Bisabolol": 0.0796,
+  "Camphene": 0.0561,
+  "Ocimene": 0.0205
+ },
+ "scanned_at": "2026-10-08T18:31:06.224Z",
+ "thc": 78,
+ "total_terpenes": 6.7964,
+ "in_stock": true,
+ "test_date": "2026-08-28",
+ "test_lab": "Certified Testing and Data NY, LLC",
+ "date_expire": "2027-08-19"
+}

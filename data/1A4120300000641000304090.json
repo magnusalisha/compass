@@ -1,0 +1,33 @@
+{
+ "id": "ff582e2926",
+ "metrc_tag": "1A4120300000641000304090",
+ "brand": "Jetty Extracts",
+ "strain": "Cherry Berries",
+ "form": "Vape 1g Disposable",
+ "confidence": "strong",
+ "shelf_tag": "Hybrid",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "beta-Caryophyllene": 2.0261,
+  "Limonene": 1.1512,
+  "Linalool": 0.6469,
+  "alpha-Humulene": 0.535,
+  "Farnesene": 0.3262,
+  "beta-Myrcene": 0.2429,
+  "beta-Pinene": 0.1594,
+  "Terpineol": 0.1173,
+  "Fenchol": 0.1011,
+  "alpha-Bisabolol": 0.0862,
+  "alpha-Pinene": 0.0782,
+  "Valencene": 0.0445,
+  "Camphene": 0.0236
+ },
+ "scanned_at": "2026-10-08T18:31:05.532Z",
+ "thc": 79.2,
+ "total_terpenes": 5.5386,
+ "in_stock": true,
+ "test_date": "2026-08-03",
+ "test_lab": "Certified Testing and Data NY, LLC",
+ "date_expire": "2027-07-24"
+}
