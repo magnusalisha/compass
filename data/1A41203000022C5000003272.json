@@ -7,7 +7,7 @@
  "thc": 27.515,
  "total_terpenes": 0.43,
  "confidence": "faint",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Sativa",
  "reported": [
   "beta-Myrcene dominant",
@@ -26,5 +26,6 @@
  "test_date": "2026-09-09",
  "test_lab": "Green Analytics NY, LLC",
  "date_expire": "2027-08-27",
- "scanned_at": "2026-09-23T21:32:46.223Z"
+ "scanned_at": "2026-09-23T21:32:46.223Z",
+ "sold_out_at": "2026-10-08T21:46:06.417Z"
 }
