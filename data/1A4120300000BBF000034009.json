@@ -23,5 +23,9 @@
  "thc": 15.709,
  "test_date": "2026-03-13",
  "test_lab": "Green Analytics NY, LLC",
- "scanned_at": "2026-10-05T17:46:40.086Z"
+ "scanned_at": "2026-10-08T00:46:05.120Z",
+ "package_tags": [
+  "1A4120300000BBF000033997",
+  "1A4120300000BBF000034009"
+ ]
 }
