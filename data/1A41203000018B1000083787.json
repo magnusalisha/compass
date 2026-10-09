@@ -24,11 +24,15 @@
   "alpha-Terpinene": 0.01,
   "Fenchol": 0.01
  },
- "scanned_at": "2026-09-03T19:58:01.814Z",
+ "scanned_at": "2026-10-09T18:01:30.998Z",
  "thc": 90.1966,
  "total_terpenes": 1.58,
  "in_stock": true,
  "test_date": "2026-07-30",
  "test_lab": "Kaycha Labs NY",
- "date_expire": "2027-07-24"
+ "date_expire": "2027-07-24",
+ "package_tags": [
+  "1A41203000018B1000083787",
+  "1A41203000018B1000097937"
+ ]
 }

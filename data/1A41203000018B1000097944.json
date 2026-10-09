@@ -1,0 +1,31 @@
+{
+ "id": "0edad43f36",
+ "metrc_tag": "1A41203000018B1000097944",
+ "brand": "ZIPS",
+ "strain": "Banana Diesel",
+ "form": "Flower 28g",
+ "confidence": "strong",
+ "shelf_tag": "Sativa",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "Limonene": 0.94,
+  "beta-Caryophyllene": 0.53,
+  "Ocimene": 0.22,
+  "beta-Myrcene": 0.19,
+  "beta-Pinene": 0.16,
+  "Linalool": 0.16,
+  "alpha-Humulene": 0.14,
+  "alpha-Pinene": 0.14,
+  "Terpineol": 0.11,
+  "Fenchol": 0.1,
+  "Farnesene": 0.04
+ },
+ "scanned_at": "2026-10-09T18:01:32.546Z",
+ "thc": 27.3618,
+ "total_terpenes": 2.8,
+ "in_stock": true,
+ "test_date": "2026-10-02",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-10-01"
+}

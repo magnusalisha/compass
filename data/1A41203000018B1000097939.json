@@ -1,0 +1,27 @@
+{
+ "id": "0c290fdd14",
+ "metrc_tag": "1A41203000018B1000097939",
+ "brand": "ZIPS",
+ "strain": "Purple Urkle",
+ "form": "Vape 2g Disposable",
+ "confidence": "strong",
+ "shelf_tag": "Indica",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "beta-Myrcene": 1.67,
+  "beta-Caryophyllene": 0.66,
+  "alpha-Pinene": 0.31,
+  "Limonene": 0.29,
+  "alpha-Humulene": 0.12,
+  "beta-Pinene": 0.12,
+  "alpha-Bisabolol": 0.06
+ },
+ "scanned_at": "2026-10-09T18:01:31.269Z",
+ "thc": 81.367,
+ "total_terpenes": 3.33,
+ "in_stock": true,
+ "test_date": "2026-09-08",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-09-02"
+}

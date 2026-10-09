@@ -1,0 +1,31 @@
+{
+ "id": "86cc851e47",
+ "metrc_tag": "1A41203000018B1000097943",
+ "brand": "ZIPS",
+ "strain": "Bubba Kush",
+ "form": "Flower 14g",
+ "confidence": "strong",
+ "shelf_tag": "Indica",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "Limonene": 0.76,
+  "beta-Caryophyllene": 0.36,
+  "beta-Myrcene": 0.26,
+  "alpha-Pinene": 0.14,
+  "alpha-Humulene": 0.13,
+  "beta-Pinene": 0.13,
+  "Linalool": 0.1,
+  "Terpineol": 0.07,
+  "Fenchol": 0.06,
+  "Guaiol": 0.06,
+  "alpha-Bisabolol": 0.04
+ },
+ "scanned_at": "2026-10-09T18:01:32.296Z",
+ "thc": 27.6274,
+ "total_terpenes": 2.24,
+ "in_stock": true,
+ "test_date": "2026-10-02",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-10-01"
+}

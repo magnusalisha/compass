@@ -1,0 +1,28 @@
+{
+ "id": "91aebac323",
+ "metrc_tag": "1A41203000018B1000097940",
+ "brand": "ZIPS",
+ "strain": "Tropicana Cookies",
+ "form": "Vape 2g Disposable",
+ "confidence": "strong",
+ "shelf_tag": "Sativa",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "Limonene": 1.15,
+  "beta-Caryophyllene": 0.7,
+  "beta-Myrcene": 0.69,
+  "Linalool": 0.27,
+  "beta-Pinene": 0.19,
+  "alpha-Bisabolol": 0.13,
+  "Fenchol": 0.1,
+  "Terpineol": 0.06
+ },
+ "scanned_at": "2026-10-09T18:01:31.518Z",
+ "thc": 81.8516,
+ "total_terpenes": 3.46,
+ "in_stock": true,
+ "test_date": "2026-09-08",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-09-02"
+}

@@ -1,0 +1,33 @@
+{
+ "id": "af43d01bcf",
+ "metrc_tag": "1A41203000018B1000097941",
+ "brand": "ZIPS",
+ "strain": "White Widow",
+ "form": "Flower 14g",
+ "confidence": "strong",
+ "shelf_tag": "Hybrid",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "beta-Myrcene": 0.77,
+  "alpha-Pinene": 0.39,
+  "beta-Pinene": 0.16,
+  "beta-Caryophyllene": 0.12,
+  "Limonene": 0.09,
+  "alpha-Humulene": 0.07,
+  "Linalool": 0.05,
+  "alpha-Bisabolol": 0.03,
+  "Camphene": 0.01,
+  "Caryophyllene Oxide": 0.01,
+  "Fenchol": 0.01,
+  "Terpineol": 0.01,
+  "Valencene": 0.01
+ },
+ "scanned_at": "2026-10-09T18:01:31.778Z",
+ "thc": 27.2048,
+ "total_terpenes": 1.75,
+ "in_stock": true,
+ "test_date": "2026-09-21",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-09-28"
+}
