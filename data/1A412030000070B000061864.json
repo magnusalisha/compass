@@ -6,7 +6,7 @@
  "thc": 24.6145,
  "total_terpenes": 1.394,
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Hybrid",
  "reported": [
   "Trop Cherry",
@@ -30,5 +30,6 @@
  "test_lab": "Kaycha Labs NY",
  "date_expire": "2027-11-01",
  "scanned_at": "2026-09-24T18:48:21.220Z",
- "form": "Preroll 0.7g (7-pack, 4.9g total)"
+ "form": "Preroll 0.7g (7-pack, 4.9g total)",
+ "sold_out_at": "2026-10-09T20:46:05.178Z"
 }
