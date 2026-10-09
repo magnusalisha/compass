@@ -1,0 +1,39 @@
+{
+ "id": "a2372b6b3c",
+ "metrc_tag": "1A4120300000466000007600",
+ "brand": "MFNY",
+ "strain": "Superboof",
+ "form": "Vape 1g Disposable",
+ "confidence": "strong",
+ "shelf_tag": "Hybrid",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "beta-Caryophyllene": 2.6244,
+  "Limonene": 1.3046,
+  "beta-Myrcene": 1.056,
+  "alpha-Humulene": 0.6211,
+  "alpha-Bisabolol": 0.3716,
+  "Linalool": 0.3552,
+  "alpha-Pinene": 0.1542,
+  "Farnesene": 0.1311,
+  "Terpineol": 0.0895,
+  "Fenchol": 0.0834,
+  "Nerolidol": 0.0671,
+  "beta-Pinene": 0.0473,
+  "Camphene": 0.0292,
+  "Borneol": 0.0214,
+  "Terpinolene": 0.0188
+ },
+ "scanned_at": "2026-10-09T19:31:09.085Z",
+ "thc": 82.258,
+ "package_tags": [
+  "1A4120300000466000007600",
+  "1A4120300000D52000053496"
+ ],
+ "total_terpenes": 6.9751,
+ "in_stock": true,
+ "test_date": "2026-09-20",
+ "test_lab": "ACT Laboratories of New York, LLC",
+ "date_expire": "2027-09-15"
+}

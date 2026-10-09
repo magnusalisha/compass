@@ -1,0 +1,31 @@
+{
+ "id": "c07723e684",
+ "metrc_tag": "1A4120300000D52000053498",
+ "brand": "MFNY",
+ "strain": "Grape Guava",
+ "form": "Vape 1g Cartridge",
+ "confidence": "strong",
+ "shelf_tag": "Indica",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "Limonene": 2.7,
+  "beta-Caryophyllene": 1.61,
+  "beta-Myrcene": 0.76,
+  "alpha-Humulene": 0.5,
+  "Linalool": 0.33,
+  "Guaiol": 0.27,
+  "alpha-Bisabolol": 0.24,
+  "alpha-Pinene": 0.24,
+  "Farnesene": 0.19,
+  "Fenchol": 0.13,
+  "Terpineol": 0.1
+ },
+ "scanned_at": "2026-10-09T19:31:09.594Z",
+ "thc": 75.4324,
+ "total_terpenes": 7.22,
+ "in_stock": true,
+ "test_date": "2026-09-26",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-09-23"
+}

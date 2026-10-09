@@ -1,0 +1,28 @@
+{
+ "id": "847a373592",
+ "metrc_tag": "1A4120300000D52000053495",
+ "brand": "MFNY",
+ "strain": "Hash Burger",
+ "form": "Vape 1g Disposable",
+ "confidence": "strong",
+ "shelf_tag": "Indica",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "beta-Myrcene": 2.51,
+  "Limonene": 2.06,
+  "beta-Caryophyllene": 1.86,
+  "alpha-Humulene": 0.94,
+  "alpha-Bisabolol": 0.3,
+  "alpha-Pinene": 0.22,
+  "Fenchol": 0.13,
+  "Terpineol": 0.1
+ },
+ "scanned_at": "2026-10-09T19:31:08.632Z",
+ "thc": 74.7873,
+ "total_terpenes": 8.28,
+ "in_stock": true,
+ "test_date": "2026-09-11",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-09-08"
+}

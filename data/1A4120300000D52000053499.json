@@ -1,0 +1,30 @@
+{
+ "id": "d15dd27484",
+ "metrc_tag": "1A4120300000D52000053499",
+ "brand": "MFNY",
+ "strain": "Honey Banana",
+ "form": "Vape 1g Cartridge",
+ "confidence": "strong",
+ "shelf_tag": "Sativa",
+ "reported": [],
+ "aroma": [],
+ "terpenes": {
+  "beta-Caryophyllene": 2.2,
+  "Limonene": 1.57,
+  "beta-Myrcene": 1.39,
+  "alpha-Humulene": 0.88,
+  "Farnesene": 0.18,
+  "Linalool": 0.18,
+  "alpha-Pinene": 0.14,
+  "Fenchol": 0.1,
+  "alpha-Bisabolol": 0.09,
+  "Terpineol": 0.08
+ },
+ "scanned_at": "2026-10-09T19:31:09.807Z",
+ "thc": 74.0566,
+ "total_terpenes": 6.98,
+ "in_stock": true,
+ "test_date": "2026-09-11",
+ "test_lab": "Kaycha Labs NY",
+ "date_expire": "2027-09-08"
+}
