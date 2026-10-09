@@ -33,5 +33,9 @@
  "test_date": "2026-06-11",
  "test_lab": "ACT Laboratories of New York, LLC",
  "date_expire": "2027-06-03",
- "scanned_at": "2026-10-01T22:21:41.905Z"
+ "scanned_at": "2026-10-09T16:31:24.067Z",
+ "package_tags": [
+  "1A41203000005DD000112374",
+  "1A41203000005DD000130980"
+ ]
 }
