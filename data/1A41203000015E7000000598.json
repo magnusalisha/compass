@@ -7,7 +7,7 @@
  "thc": 35.2,
  "total_terpenes": 2.0169,
  "confidence": "strong",
- "in_stock": true,
+ "in_stock": false,
  "shelf_tag": "Hybrid",
  "reported": [
   "Gas Runtz infused preroll",
@@ -39,5 +39,6 @@
  "test_date": "2026-02-08",
  "test_lab": "Analytical Testing Center of Central New York",
  "date_expire": "2027-04-01",
- "scanned_at": "2026-09-16T22:15:47.175Z"
+ "scanned_at": "2026-09-16T22:15:47.175Z",
+ "sold_out_at": "2026-10-10T17:41:44.031Z"
 }
