@@ -1,6 +1,6 @@
 {
  "id": "56cac07302",
- "metrc_tag": "1A4120300000C1E000123428",
+ "metrc_tag": "1A4120300000C1E000132367",
  "brand": "Kings & Queens",
  "strain": "Blueberry Sugar",
  "form": "Flower 3.5g",
@@ -19,12 +19,11 @@
   "alpha-Bisabolol": 0.02,
   "Valencene": 0.01
  },
- "scanned_at": "2026-09-30T22:19:47.340Z",
+ "scanned_at": "2026-10-10T15:16:52.581Z",
  "thc": 20.6618,
  "total_terpenes": 1.59,
- "in_stock": false,
+ "in_stock": true,
  "test_date": "2026-06-30",
  "test_lab": "Kaycha Labs NY",
- "date_expire": "2027-06-18",
- "sold_out_at": "2026-10-09T22:16:04.499Z"
+ "date_expire": "2027-06-18"
 }
